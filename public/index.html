@@ -507,7 +507,7 @@ function foldWrap(p,k,html){
 function subTabs(p){
   var all=SECS;
   return '<nav class="subtabs" aria-label="Secciones del paciente">'+all.map(function(s){
-    var n=s[0]==='res'||s[0]==='upd'?0:(s[0]==='ic'?openICs(p.id).length||secCount(p,'ic'):secCount(p,s[0]));
+    var n=s[0]==='res'||s[0]==='upd'||s[0]==='hx'?0:(s[0]==='ic'?openICs(p.id).length||secCount(p,'ic'):secCount(p,s[0]));
     return '<button class="st" data-a="goSec" data-k="'+s[0]+'"'+(S.sec===s[0]?' aria-current="page"':'')+'><span>'+s[1]+'</span>'+(n?'<span class="n">'+n+'</span>':'')+'</button>';
   }).join('')+'</nav>';
 }
