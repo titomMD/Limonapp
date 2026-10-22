@@ -3,6 +3,7 @@ LIMONAPP v14 - proyecto para Netlify (con cuenta y sincronizacion)
 Contenido
   public/                  la app (index.html, manifest, sw.js, iconos)
   netlify/functions/sync.mjs   guarda y devuelve los datos de cada usuario (Netlify Blobs)
+  netlify/functions/social.mjs perfiles, equipos por codigo, chat y envio de pacientes (Netlify Blobs)
   package.json, netlify.toml   configuracion
 
 Como publicarlo (Git, lo mas simple)
