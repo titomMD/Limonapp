@@ -141,7 +141,11 @@ export default async (req) => {
   const tc = cl(b.team, 12).toUpperCase();
   const t = me.teams.includes(tc) ? await getJ('t_' + tc) : null;
   if (!t || !t.members.includes(uid)) { if (me.teams.includes(tc)) { me.teams = me.teams.filter((c) => c !== tc); await putJ(pk(uid), me); } return E('No estás en ese equipo', 403); }
-  const mp = 'm_' + t.code + '_';
+  const mp = 'm_' + t.code + '_', ep = 'e_' + t.code + '_', fp = 'f_' + t.code + '_';
+  const stamp = () => String(Date.now()).padStart(13, '0') + '_' + Math.random().toString(36).slice(2, 7);
+  const emit = (id, patch, only) => putJ(ep + stamp(), only ? { id, patch, only } : { id, patch });
+  const seeMsg = (m) => m && (!m.to || m.to === uid || m.from === uid) && !(m.hid || []).includes(uid);
+  const getMsg = async (id) => { id = String(id || ''); return id.startsWith(mp) ? await getJ(id) : null; };
 
   if (act === 'poll') {
     const members = [];
@@ -154,9 +158,67 @@ export default async (req) => {
     for (const k of keys) {
       const m = await getJ(k); if (!m) continue;
       if (m.to && m.to !== uid && m.from !== uid) continue;
-      msgs.push(m);
+      if ((m.hid || []).includes(uid)) continue;
+      const { hid, ...pubm } = m; msgs.push(pubm);
     }
-    return J({ team: { code: t.code, name: t.name, owner: t.owner === uid }, members, msgs, cursor: keys.length ? keys[keys.length - 1] : after });
+    const eafter = cl(b.eafter, 90);
+    const ekeys = (await store.list({ prefix: ep })).blobs.map((x) => x.key).sort();
+    let events = [], ecursor = ekeys.length ? ekeys[ekeys.length - 1] : (eafter || '0');
+    if (eafter) {
+      for (const k of ekeys.filter((x) => x > eafter).slice(0, 200)) { const ev = await getJ(k); if (ev && (!ev.only || ev.only === uid)) events.push(ev); }
+      if (events.length || ekeys.some((x) => x > eafter)) ecursor = ekeys.filter((x) => x > eafter).slice(0, 200).pop() || eafter;
+    }
+    return J({ team: { code: t.code, name: t.name, owner: t.owner === uid }, members, msgs, cursor: keys.length ? keys[keys.length - 1] : after, events, ecursor });
+  }
+
+
+  if (act === 'renameTeam') {
+    if (t.owner !== uid) return E('Solo quien creó el equipo puede cambiarle el nombre', 403);
+    const nm = cl(b.name, 60); if (!nm) return E('Escribe un nombre');
+    t.name = nm; await putJ('t_' + t.code, t);
+    return J({ team: { code: t.code, name: t.name, owner: true } });
+  }
+
+  if (act === 'editMsg') {
+    const m = await getMsg(b.id); if (!m || m.from !== uid || m.kind !== 'text' || m.deleted) return E('No puedes editar este mensaje', 403);
+    const tx = cl(b.text, MAXTXT); if (!tx) return E('Mensaje vacío');
+    m.text = tx; m.edited = true; await putJ(m.id, m); await emit(m.id, { text: tx, edited: true });
+    return J({ ok: true });
+  }
+  if (act === 'delMsg') {
+    const m = await getMsg(b.id); if (!m || !seeMsg(m)) return E('Mensaje no encontrado', 404);
+    if (b.all) {
+      if (m.from !== uid && t.owner !== uid) return E('Solo puedes eliminar para todos tus propios mensajes', 403);
+      if (m.file) { try { await store.delete(m.file.id); } catch (e) {} }
+      const keep = { id: m.id, from: m.from, to: m.to, kind: 'text', text: '', at: m.at, deleted: true };
+      await putJ(m.id, keep); await emit(m.id, { deleted: true, text: '', pin: false, kind: 'text', file: null, pt: null, reply: null });
+    } else {
+      m.hid = [...(m.hid || []), uid]; await putJ(m.id, m); await emit(m.id, { hide: true }, uid);
+    }
+    return J({ ok: true });
+  }
+  if (act === 'pinMsg') {
+    const m = await getMsg(b.id); if (!m || !seeMsg(m) || m.deleted) return E('Mensaje no encontrado', 404);
+    m.pin = !!b.pin; m.pinBy = b.pin ? uid : null; await putJ(m.id, m); await emit(m.id, { pin: m.pin, pinBy: m.pinBy });
+    return J({ ok: true });
+  }
+  if (act === 'sendFile') {
+    const name = cl(b.name, 80) || 'documento.pdf', data = String(b.data || '');
+    if (!data.startsWith('JVBER') || data.length > 3 * 1024 * 1024 || !/^[A-Za-z0-9+/=]+$/.test(data)) return E('Solo se aceptan PDF de hasta 2 MB');
+    let to = b.to ? clean(b.to) : null;
+    if (to && (!t.members.includes(to) || to === uid)) return E('Destinatario inválido');
+    const id = stamp();
+    await store.set(fp + id, data);
+    const m = { id: mp + id, from: uid, to, kind: 'file', text: name, file: { id: fp + id, name, size: Math.round(data.length * 0.75) }, at: Date.now() };
+    await putJ(m.id, m);
+    return J({ msg: m });
+  }
+  if (act === 'getFile') {
+    const fid = String(b.id || ''); if (!fid.startsWith(fp)) return E('Archivo no encontrado', 404);
+    const m = await getMsg(mp + fid.slice(fp.length));
+    if (!seeMsg(m) || m.deleted || !m.file) return E('Archivo no disponible', 404);
+    const data = await store.get(fid, { type: 'text' }); if (!data) return E('Archivo no disponible', 404);
+    return J({ name: m.file.name, data });
   }
 
   if (act === 'photos') {
@@ -183,8 +245,9 @@ export default async (req) => {
       if (!d || !d.access.includes(uid)) return E('Paciente compartido no encontrado');
       if (!d.access.includes(to)) { d.access.push(to); await putJ('sp_' + share, d); }
     }
-    const id = String(Date.now()).padStart(13, '0') + '_' + Math.random().toString(36).slice(2, 7);
+    const id = stamp();
     const m = { id: mp + id, from: uid, to, kind, text, at: Date.now() };
+    if (b.reply) { const o = await getMsg(b.reply); if (seeMsg(o) && !!o.to === !!to) m.reply = { id: o.id, from: o.from, text: cl(o.deleted ? 'Mensaje eliminado' : (o.kind === 'file' ? 'Documento: ' + o.text : o.text), 90) }; }
     if (share) m.share = share;
     if (kind === 'patient' && b.pt && typeof b.pt === 'object') m.pt = { ini: cl(b.pt.ini, 6), age: cl(b.pt.age, 3), sex: cl(b.pt.sex, 2), bed: cl(b.pt.bed, 10), dx: cl(b.pt.dx, 300), sev: cl(b.pt.sev, 12), tasks: (Array.isArray(b.pt.tasks) ? b.pt.tasks : []).slice(0, 15).map((x) => cl(x, 200)).filter(Boolean) };
     await putJ(m.id, m);
@@ -192,6 +255,7 @@ export default async (req) => {
       const lim = Date.now() - KEEPDAYS * 864e5;
       const all = (await store.list({ prefix: mp })).blobs.map((x) => x.key);
       for (const k of all) { const ts = parseInt(k.slice(mp.length, mp.length + 13), 10); if (ts && ts < lim) await store.delete(k); }
+      for (const pre of [ep, fp]) for (const x of (await store.list({ prefix: pre })).blobs) { const ts = parseInt(x.key.slice(pre.length, pre.length + 13), 10); if (ts && ts < lim) await store.delete(x.key); }
     }
     return J({ msg: m });
   }
