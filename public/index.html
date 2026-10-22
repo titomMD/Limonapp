@@ -674,7 +674,7 @@ function render0(){
   else if(v==='tasks')html=viewTasks();
   else if(v==='handoff')html=viewHandoff();
   else html=viewBackup();
-  if(v!=='backup'&&needBackup())html='<div class="note warn">Llevas cambios sin respaldar. <button class="btn sm" data-a="nav" data-v="backup">Hacer respaldo ahora</button></div>'+html;
+  if(v!=='backup'&&!gOn()&&needBackup())html='<div class="note warn">Llevas cambios sin respaldar. <button class="btn sm" data-a="nav" data-v="backup">Hacer respaldo ahora</button></div>'+html;
   document.getElementById('app').innerHTML=html;
   applyDE();
 }
