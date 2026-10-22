@@ -288,6 +288,22 @@ html[data-theme="light"] .prof{color:#8a5a00;border-left-color:#c98a00;backgroun
 .tbox{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:16px;width:min(560px,100%);max-height:90vh;overflow:auto;display:grid;gap:10px}
 .tbox textarea,.tbox select{width:100%}
 @media (max-width:600px){.bub{max-width:94%}nav.tabs{gap:2px}nav.tabs .tab{font-size:12px;padding-inline:3px}}.tchat{overflow:hidden}
+
+#tour{pointer-events:none}.tcard{pointer-events:auto}
+.pres{margin-top:6px}.pres[hidden]{display:none}
+.presb{display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:13px;font-weight:600;padding:5px 12px;border-radius:99px;border:1.5px solid var(--line);background:var(--field);color:var(--ink);cursor:pointer}
+.presb.st-on{border-color:#2ea36b;color:#2ea36b}.presb.st-rest{border-color:#e0a100;color:#e0a100}.presb.st-off{border-color:#d1494d;color:#d1494d}
+.pdot{display:inline-block;width:10px;height:10px;border-radius:50%;flex:none;background:#d1494d;box-shadow:0 0 0 2px rgba(255,255,255,.08)}
+.pdot.st-on{background:#2ea36b}.pdot.st-rest{background:#e0a100}.pdot.st-off{background:#d1494d}
+.presm{display:flex;flex-direction:column;gap:2px;margin-top:6px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px;max-width:220px}
+.presi{display:flex;align-items:center;gap:8px;font:inherit;font-size:13.5px;padding:8px 10px;border:0;border-radius:8px;background:transparent;color:var(--ink);cursor:pointer;text-align:left}.presi:hover,.presi.cur{background:var(--field)}
+.shp.on{color:#2ea36b;border-color:#2ea36b;background:transparent}.shp.rest{color:#e0a100;border-color:#e0a100}.shp.off{color:#d1494d;border-color:#d1494d}.shp{display:inline-flex;align-items:center;gap:6px}
+.shbtn{display:inline-flex;align-items:center;gap:7px}.shbtn.cur.st-on{border-color:#2ea36b;color:#2ea36b;background:transparent}.shbtn.cur.st-rest{border-color:#e0a100;color:#e0a100;background:transparent}.shbtn.cur.st-off{border-color:#d1494d;color:#d1494d;background:transparent}
+.shb{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}.warn-t{color:#e0a100;font-weight:600}.shr{color:var(--c-ingreso);font-weight:600}.shr.upd{color:#e0a100}
+.trbig>summary{cursor:pointer;list-style:none;margin-bottom:8px}.trbig>summary::-webkit-details-marker{display:none}.trblk{margin:14px 0;padding-top:10px;border-top:1px solid var(--line)}.trblk .trh{margin-bottom:4px}
+.bigw{overflow-x:auto;padding-bottom:4px}.bigsvg{display:block;height:auto;max-width:none}.bigsvg .gl{stroke:var(--line);stroke-width:1}.bigsvg .ln{fill:none;stroke:var(--c-lab);stroke-width:2.6;stroke-linejoin:round}.bigsvg .pt{fill:var(--c-lab);stroke:var(--surface);stroke-width:2}
+.bigsvg .ax{fill:var(--muted);font-size:12px}.bigsvg .vl{fill:var(--ink);font-size:13px;font-weight:700}.trvals{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:6px}
+.cropw{position:relative;width:260px;max-width:100%;margin:0 auto;overflow:hidden;border-radius:8px}.cropw canvas{display:block;width:100%;height:auto;touch-action:none;cursor:grab;background:#000}.cropmask{position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 400px rgba(0,0,0,.55);pointer-events:none;border:2px solid #fff}
 </style>
 
 <div class="wrap">
@@ -367,7 +383,7 @@ function needBackup(){
   return ch>=3&&(Date.now()-new Date(lb).getTime())>7*864e5;
 }
 function load(){try{var r=localStorage.getItem(KEY);if(r){var d=JSON.parse(r);if(d&&d.v===1)return d;}}catch(e){}return null;}
-function save(){db.meta.changes=(db.meta.changes||0)+1;db.meta.mod=new Date().toISOString();persist();if(typeof gAuto==='function')gAuto();}
+function save(){db.meta.changes=(db.meta.changes||0)+1;db.meta.mod=new Date().toISOString();persist();if(typeof gAuto==='function')gAuto();if(typeof spAuto==='function')spAuto();}
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(db));storageOK=true;}catch(e){storageOK=false;}}
 persist();
 
@@ -436,7 +452,7 @@ function viewService(){
   if(S.newPatient)h+=patientForm();
   h+=list.length?'<div class="cols">'+list.map(function(p){
     var pc=pendCount(p.id);
-    return '<button class="pcard" data-a="openPatient" data-id="'+p.id+'"><div class="row spread"><div class="row"><span class="bed">Cama '+esc(p.bed||'—')+'</span><strong>'+esc(p.ini)+'</strong><span class="muted small">'+esc(p.age)+' a · '+esc(p.sex)+(p.hc?' · HC …'+esc(p.hc):'')+'</span></div><span class="pill '+esc(p.sev)+'">'+esc(p.sev)+'</span></div><div class="dx">'+esc(p.dx||'Sin diagnóstico')+'</div><div class="row small muted"><span>Día '+hd(p)+'</span>'+(pc?'<span>·</span><span>'+pc+' pendientes</span>':'')+'</div></button>';
+    return '<button class="pcard" data-a="openPatient" data-id="'+p.id+'"><div class="row spread"><div class="row"><span class="bed">Cama '+esc(p.bed||'—')+'</span><strong>'+esc(p.ini)+'</strong><span class="muted small">'+esc(p.age)+' a · '+esc(p.sex)+(p.hc?' · HC …'+esc(p.hc):'')+'</span></div><span class="pill '+esc(p.sev)+'">'+esc(p.sev)+'</span></div><div class="dx">'+esc(p.dx||'Sin diagnóstico')+'</div><div class="row small muted"><span>Día '+hd(p)+'</span>'+(pc?'<span>·</span><span>'+pc+' pendientes</span>':'')+(p.sh?'<span>·</span><span class="shr'+(p.sh.upd?' upd':'')+'">Compartido'+(p.sh.upd?' · actualizado por '+esc(p.sh.upd.by||'un colega'):'')+'</span>':'')+'</div></button>';
   }).join('')+'</div>':'<div class="empty">'+art('sleep')+(S.filter==='activos'?'Sin pacientes activos. Agrega el primero con “+ Paciente”.':'Aún no hay pacientes egresados.')+'</div>';
   h+='<div class="card"><h3>Servicio</h3><div class="row"><div class="grow"><input id="renSvc" value="'+esc(s.name)+'" aria-label="Renombrar servicio"></div><button class="btn sm" data-a="renameService">Renombrar</button>'+
      (S.confirm==='svc'?'<button class="btn sm danger" data-a="delService">Confirmar: borrar servicio y todo su contenido</button>':'<button class="btn sm danger" data-a="askDelService">Borrar servicio</button>')+'</div></div>';
@@ -512,7 +528,7 @@ function secHtml(p,k){
   if(k==='cron')return viewCron(p);
   if(k==='hx')return viewHx(p);
   if(k==='upd')return updCard(p);
-  if(k==='lab')return sepCard(p,'lab','Paraclínicos','Laboratorios y otros resultados. Cada resultado queda por fecha, aparte de la cronología.');
+  if(k==='lab')return trendsCards(p)+sepCard(p,'lab','Paraclínicos','Laboratorios y otros resultados. Cada resultado queda por fecha, aparte de la cronología.');
   if(k==='img')return sepCard(p,'img','Imágenes y lecturas','RX, TAC, RMN, ecografía… con la lectura oficial y tus propios hallazgos.');
   if(k==='ic')return sepCard(p,'interconsulta','Interconsultas','Preguntas a otros servicios y sus respuestas. Las pendientes también salen en Pendientes del turno.');
   if(k==='task'){
@@ -551,7 +567,7 @@ function viewPatient(){
   }
   var h='<div class="card"><div class="row"><span class="bed">Cama '+esc(p.bed||'—')+'</span><h2>'+esc(p.ini)+'</h2><span class="muted small">'+esc(p.age)+' a · '+esc(p.sex)+(p.hc?' · HC …'+esc(p.hc):'')+'</span></div><div class="dx">'+esc(p.dx||'Sin diagnóstico')+'</div><div class="row small muted"><span>Ingreso '+esc(p.adm)+'</span><span>·</span><span>'+(p.active?'Día '+hd(p):'Egresó, '+hd(p)+' días')+'</span></div>'+
      (p.cont?'<div class="note"><strong>Si pasa X, hacer Y.</strong> '+esc(p.cont)+'</div>':'')+
-     '<div class="row"><button class="btn sm" data-a="editPatient">Editar datos</button><button class="btn sm" data-a="ptSend" data-id="'+p.id+'">Enviar a un colega</button>'+(p.active?'':'<button class="btn sm" data-a="reactivate">Reactivar</button>')+
+     '<div class="row"><button class="btn sm" data-a="editPatient">Editar datos</button><button class="btn sm" data-a="ptSend" data-id="'+p.id+'">Enviar a un colega</button><button class="btn sm" data-a="mvOpen" data-id="'+p.id+'">Mover de servicio</button>'+(p.active?'':'<button class="btn sm" data-a="reactivate">Reactivar</button>')+
      (S.confirm==='pat'?'<button class="btn sm danger" data-a="delPatient">Confirmar: borrar paciente</button>':'<button class="btn sm danger" data-a="askDelPatient">Borrar paciente</button>')+'</div></div>';
   if(S.editPatient)h+=patientForm(p);
   if(S.editor)h+=entryForm();
@@ -641,7 +657,7 @@ function viewBackup(){
 
 var DE={
 'Servicios':'Stationen','Omitir consentimientos y datos administrativos':'Einwilligungen und Verwaltungsdaten auslassen','Limpiar':'Bereinigen','Pendientes':'Offene Aufgaben','Entrega':'Übergabe','Respaldo':'Datensicherung','Todo':'Alles','Historia':'Akte','Cronología':'Verlauf','Interconsultas':'Konsile','Imágenes':'Bildgebung','Importar PDF':'PDF-Import','Ocultar ▴':'Ausblenden ▴','Abrir aparte ↗':'Separat öffnen ↗','Ordenar formato':'Format ordnen','Limón supervisa tus rotaciones':'Limón überwacht deine Rotationen','Paraclínicos':'Laborbefunde','Paraclínico':'Laborbefund','Imágenes y lecturas':'Bildgebung und Befunde','Imagen':'Bildgebung','+ Agregar':'+ Hinzufügen',
-'Mis rotaciones':'Meine Rotationen','Resumen':'Zusammenfassung','Ver tutorial':'Anleitung ansehen','Saltar':'Überspringen','Siguiente':'Weiter','Atrás':'Zurück','Listo':'Fertig','Estado actual':'Aktueller Stand','Lectura rápida':'Kurzüberblick','Lista de problemas':'Problemliste','Tendencias de laboratorio':'Laborverläufe','Hitos documentados':'Dokumentierte Meilensteine','Buscar':'Suchen','Mostrar más':'Mehr anzeigen','Solo en este dispositivo':'Nur auf diesem Gerät','Sin guardado local':'Nicht lokal gespeichert',
+'Mis rotaciones':'Meine Rotationen','Equipo':'Team','Enviar a un colega':'An Kollegen senden','Mover de servicio':'Station wechseln','En turno':'Im Dienst','Descanso':'Pause','Fuera de turno':'Dienstfrei','Ver gráficas grandes en Paraclínicos':'Große Verlaufsdiagramme in den Befunden','Chat':'Chat','Grupo':'Gruppe','Enviar':'Senden','Únete a un equipo':'Einem Team beitreten','Unirme':'Beitreten','O crea uno nuevo':'Oder ein neues Team erstellen','Crear equipo':'Team erstellen','Copiar invitación':'Einladung kopieren','Salir del equipo':'Team verlassen','Confirmar: salir':'Bestätigen: verlassen','Editar perfil':'Profil bearbeiten','Guardar perfil':'Profil speichern','Crea tu perfil':'Profil erstellen','Elegir foto':'Foto wählen','Quitar foto':'Foto entfernen','Nombre completo':'Vollständiger Name','Cargo':'Funktion','Estado':'Status','Escribir':'Schreiben','Entendido':'Verstanden','Dejar de compartir conmigo':'Nicht mehr mit mir teilen','Entrar con Google o correo':'Mit Google oder E-Mail anmelden','Ir a Respaldo':'Zur Datensicherung','Reintentar':'Erneut versuchen','Cuenta y sincronización':'Konto und Synchronisierung','Cerrar sesión':'Abmelden','Sincronizar ahora':'Jetzt synchronisieren','Ver valores':'Werte anzeigen','Servicio nuevo':'Neue Station','Análisis':'Beurteilung','Ver completo en Cronología':'Vollständig im Verlauf ansehen','Ver todo en Cronología':'Alles im Verlauf ansehen','+ Agregar nota o evolución':'Notiz oder Verlaufsbericht hinzufügen','Actualizar desde PDF':'Aus PDF aktualisieren','Tipo de documento':'Dokumenttyp','Detectar solo':'Automatisch erkennen','Es solo de paraclínicos':'Nur Laborbefunde','Es solo de imágenes':'Nur Bildgebung','Es una respuesta de interconsulta':'Es ist eine Konsilantwort','Es una evolución':'Es ist ein Verlaufsbericht','Es historia clínica':'Es ist eine Krankenakte','Institución de donde sacas la historia':'Einrichtung, aus der die Akte stammt','Arrastra aquí el PDF':'PDF hierher ziehen','elige el archivo':'Datei auswählen','Política de privacidad':'Datenschutzerklärung','Términos de servicio':'Nutzungsbedingungen','Último registro clínico:':'Letzter klinischer Eintrag:','Cuenta y sincronización':'Konto und Synchronisierung','Pendientes (Tareas)':'Aufgaben','Nuevo pendiente':'Neue Aufgabe','Resumen':'Zusammenfassung','Ver tutorial':'Anleitung ansehen','Saltar':'Überspringen','Siguiente':'Weiter','Atrás':'Zurück','Listo':'Fertig','Estado actual':'Aktueller Stand','Lectura rápida':'Kurzüberblick','Lista de problemas':'Problemliste','Tendencias de laboratorio':'Laborverläufe','Hitos documentados':'Dokumentierte Meilensteine','Buscar':'Suchen','Mostrar más':'Mehr anzeigen','Solo en este dispositivo':'Nur auf diesem Gerät','Sin guardado local':'Nicht lokal gespeichert',
 'Nuevo servicio o rotación':'Neue Station oder Rotation','Agregar':'Hinzufügen','Guardar':'Speichern','Cancelar':'Abbrechen','Editar':'Bearbeiten','Borrar':'Löschen','Copiar':'Kopieren',
 'Datos del paciente':'Patientendaten','Nuevo paciente':'Neuer Patient','+ Paciente':'Patient','Editar datos':'Daten bearbeiten','Reactivar':'Reaktivieren','Borrar paciente':'Patient löschen','Confirmar: borrar paciente':'Bestätigen: Patient löschen',
 'Iniciales':'Initialen','HC (3 últimos)':'Akten-Nr. (letzte 3)','Edad':'Alter','Sexo':'Geschlecht','Cama':'Bett','Ingreso':'Aufnahme','Diagnóstico principal':'Hauptdiagnose','Gravedad':'Schweregrad',
@@ -666,7 +682,7 @@ var DE={
 'Borrar el ejemplo':'Beispiel löschen','Borrar todos los datos':'Alle Daten löschen','Confirmar: borrar todo':'Bestätigen: alles löschen','Confirmar: borrar':'Bestätigen: löschen',
 'Neurocirugía':'Neurochirurgie','Ortopedia':'Orthopädie','Ortopedia y traumatología':'Orthopädie und Unfallchirurgie','Cirugía general':'Allgemeinchirurgie','Cirugía':'Chirurgie','Cirugía plástica':'Plastische Chirurgie','UCI':'Intensivstation','Urgencias':'Notaufnahme','Medicina interna':'Innere Medizin','Anestesiología':'Anästhesiologie','Oncología':'Onkologie','Ginecología':'Gynäkologie','Pediatría':'Pädiatrie','Oftalmología':'Augenheilkunde','Otorrinolaringología':'HNO-Heilkunde','Urología':'Urologie','Cardiología':'Kardiologie','Neurología':'Neurologie','Psiquiatría':'Psychiatrie','Trauma':'Unfallchirurgie'
 };
-var DER=[[/^Activos \((\d+)\)$/,function(m){return 'Aktiv ('+m[1]+')';}],[/^Egresados \((\d+)\)$/,function(m){return 'Entlassen ('+m[1]+')';}],[/^(\d+) pacientes activos$/,function(m){return m[1]+' aktive Patienten';}],[/^(\d+) pendientes$/,function(m){return m[1]+' offen';}]];
+var DER=[[/^Cama (.+)$/,function(m){return 'Bett '+m[1];}],[/^D[ií]a (\d+)$/,function(m){return 'Tag '+m[1];}],[/^·\s*d[ií]a (\d+)\s*›$/,function(m){return '· Tag '+m[1]+' ›';}],[/^Ingreso (\d{4}-\d{2}-\d{2})$/,function(m){return 'Aufnahme '+m[1];}],[/^Interconsultas \((\d+)\)$/,function(m){return 'Konsile ('+m[1]+')';}],[/^(\d+) de (\d+) notas$/,function(m){return m[1]+' von '+m[2]+' Notizen';}],[/^Colegas \((\d+)\)$/,function(m){return 'Kollegen ('+m[1]+')';}],[/^Tendencias \((\d+)\)$/,function(m){return 'Verläufe ('+m[1]+')';}],[/^Activos \((\d+)\)$/,function(m){return 'Aktiv ('+m[1]+')';}],[/^Egresados \((\d+)\)$/,function(m){return 'Entlassen ('+m[1]+')';}],[/^(\d+) pacientes activos$/,function(m){return m[1]+' aktive Patienten';}],[/^(\d+) pendientes$/,function(m){return m[1]+' offen';}]];
 function b(es,de){return S.bi?es+' / '+de:es;}
 function deOf(t){if(DE.hasOwnProperty(t))return DE[t];for(var i=0;i<DER.length;i++){var m=DER[i][0].exec(t);if(m)return DER[i][1](m);}return null;}
 function unDE(){
@@ -680,7 +696,7 @@ function applyDE(){
   var root=document.querySelector('.wrap'),w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[],n;
   while((n=w.nextNode()))nodes.push(n);
   nodes.forEach(function(n){
-    var p=n.parentNode;if(!p||p.closest('dd,pre,textarea,.dx,.t,.dz,script,style,#biBtn,.tools,.nt,.tmodal'))return;
+    var p=n.parentNode;if(!p||p.closest('dd,pre,textarea,.dx,.t,.dz,script,style,#biBtn,.tools,.tmodal,.tmsgs,#pres'))return;
     var raw=n.nodeValue,m=/^([‹+›✕]\s*)?([\s\S]*?)\s*$/.exec(raw),key=m?m[2]:raw.trim();
     if(!key)return;
     var de=deOf(key);if(!de)return;
@@ -691,6 +707,7 @@ function applyDE(){
 }
 function render(){render0();try{hlApply();}catch(e){}try{tPost();}catch(e){}}
 function render0(){
+  if(!window.__mdx){window.__mdx=1;try{migDx();}catch(e){}}
   renderTabs();
   var v=S.view,html='';
   if(v==='services')html=viewServices();
@@ -1509,7 +1526,7 @@ function applyPdfNew(r){
   var extra=r.items.filter(function(i){return i.k!=='ev';}).concat(olds).map(function(i){var o={type:KTYPE[i.k],at:i.at,data:i.data};if(i.est)o.est=1;if(i.by)o.by=i.by;if(i.svc)o.svc=i.svc;if(i.k==='ic')o.status='respondida';return o;});
   if(!Object.keys(r.hx).length&&!evs.length&&!extra.length){toast('No reconocí secciones de historia clínica en ese PDF.');return;}
   var cur={};['ini','hc','age','sex','bed','adm','dx','sev','cont'].forEach(function(k){var v=val('f_'+k);if(v!=='')cur[k]=v;});if(cur.adm===today())delete cur.adm;
-  var dx=r.hx.dx?cut(r.hx.dx.split('\n')[0],140):(r.dx?cut(r.dx,140):'');
+  var dx=(r.hx.dx&&dxFromHx(r.hx.dx))||(r.dx?cut(r.dx,140):'');
   S.impP={ini:cur.ini||r.f.ini||'',hc:cur.hc||r.f.hc||'',age:cur.age||r.f.age||'',sex:r.f.sex||cur.sex||'M',bed:cur.bed||r.f.bed||'',adm:cur.adm||r.f.adm||today(),dx:cur.dx||dx,sev:cur.sev||'estable',cont:cur.cont||''};
   S.imp={hx:r.hx,ev:evs[0]||null,extra:extra,nev:evs.length,olds:olds.length,red:r.red,skip:r.skip};S.newPatient=true;render();
   toast('PDF leído. Revisa los datos y toca Guardar.');
@@ -1658,7 +1675,7 @@ function viewResumen(p){
   var pr=problemList(p);
   if(pr.length||p.dx)h+='<div class="card"><h3>Lista de problemas</h3>'+(pr.length?'<ul class="li2">'+pr.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul><div class="small muted">Tomada del último análisis médico (CIE-10).</div>':'<div>'+esc(p.dx)+'</div>')+'</div>';
   /* tendencias */
-  if(trs.length)h+='<div class="card"><h3>Tendencias de laboratorio</h3><div class="trs">'+trs.map(function(t){return t.html;}).join('')+'</div><div class="small muted">Se toman de la sección Paraclínicos. mg/dL son miligramos por decilitro (1 dL = 100 mL de sangre); g/dL, gramos por decilitro; ×10³/µL, miles de células por microlitro.</div></div>';
+  if(trs.length)h+='<div class="card"><h3>Tendencias de laboratorio</h3><div class="trs">'+trs.map(function(t){return t.html;}).join('')+'</div><div class="row"><button class="btn sm" data-a="goSec" data-k="lab">Ver gráficas grandes en Paraclínicos</button></div><div class="small muted">Se toman de la sección Paraclínicos. mg/dL son miligramos por decilitro (1 dL = 100 mL de sangre); g/dL, gramos por decilitro; ×10³/µL, miles de células por microlitro.</div></div>';
   /* hitos */
   var hs=hitos(p).slice(0,14);
   if(hs.length)h+='<div class="card"><h3>Hitos documentados</h3><ul class="li2">'+hs.map(function(x){return '<li><span class="mono small muted">'+esc(dlong(x.at))+(x.est?' ~':'')+'</span> '+esc(x.lbl)+'</li>';}).join('')+'</ul><button class="btn sm" data-a="goSec" data-k="cron">Ver todo en Cronología</button></div>';
@@ -1923,8 +1940,10 @@ var HELP=[
  {t:'Fechas con ~ o fechas equivocadas',kw:['fecha','fechas','~','impresion','dia','hora'],a:'La app usa la fecha de registro de cada documento, nunca la de impresión del PDF. Una “~” significa que el PDF no traía una fecha clara y la app la estimó. Abre la nota, toca Editar y corrige la fecha.',go:[]},
  {t:'Qué es el Resumen',kw:['resumen','estado actual','lectura rapida','problemas','tendencias','hitos'],a:'Es la primera pantalla de cada paciente: el último registro clínico, una lectura rápida del contenido, la lista de problemas (CIE-10), tendencias de laboratorio (creatinina, hemoglobina…), hitos y pendientes. Se calcula automáticamente del texto del PDF: confírmalo siempre con la historia original.',go:[['Ir al Resumen','sec:res']]},
  {t:'Buscar o filtrar en la Cronología',kw:['cronologia','buscar','filtrar','filtro','encontrar','busqueda','nota antigua'],a:'En la Cronología usa los botones por tipo (Evolución, Ingreso…) y el buscador de arriba (por ejemplo “sonda” o “creatinina”). Las notas están agrupadas por mes; toca una para abrirla.',go:[['Ir a Cronología','sec:cron']]},
- {t:'Perfil y equipo',kw:['perfil','foto','equipo','colegas','codigo','invitacion','en turno','turno','usuario','cargo','servicio'],a:'En la pestaña Equipo (con sesión iniciada) creas tu perfil: foto, nombre, nombre de usuario, cargo, servicio y si estás en turno. Luego creas un equipo y compartes el código de invitación, o te unes con el código que te den. Solo las personas del equipo ven tu perfil.',go:[['Ir a Equipo','nav:team']]},
- {t:'Enviar un paciente a un colega',kw:['enviar paciente','pasar paciente','compartir paciente','colega','resumen sin identificar','interconsulta colega'],a:'Abre el paciente y toca “Enviar a un colega”. Se arma un resumen con iniciales, edad, cama, diagnóstico, pendientes y plan, sin nombre ni cédula. Puedes editarlo antes de enviarlo. Quien lo recibe puede copiarlo o agregarlo a sus pacientes.'},
+ {t:'Perfil y equipo',kw:['perfil','foto','equipo','colegas','codigo','invitacion','en turno','turno','usuario','cargo','servicio'],a:'En la pestaña Equipo (con sesión iniciada) creas tu perfil: foto, nombre, nombre de usuario, cargo, servicio y si estás en turno. Tu especialidad o rango (Est., Int., Res., MG…) es obligatoria y va al comienzo de tu nombre. Puedes crear o unirte a varios equipos con su código y cambiar entre ellos; solo las personas de cada equipo ven tu perfil y el chat de ese equipo.',go:[['Ir a Equipo','nav:team']]},
+ {t:'Enviar un paciente a un colega',kw:['enviar paciente','pasar paciente','compartir paciente','colega','historia completa','sincronizar paciente','compartido'],a:'Abre el paciente y toca “Enviar a un colega”. Le llega con su historia, notas, paraclínicos y pendientes (sin nombre ni cédula). Al aceptarlo elige en qué servicio lo quiere. Desde entonces, los cambios que cualquiera haga se ven en ambos, y en la lista aparece “Compartido · actualizado por…”. Si no quieres seguir recibiendo cambios, usa “Dejar de compartir conmigo”.'},
+ {t:'Mover un paciente de servicio',kw:['mover','mover paciente','cambiar de servicio','otro servicio','trasladar'],a:'En la ficha del paciente toca “Mover de servicio” y elige el servicio (o crea uno). Solo cambia dónde lo ves tú: tus colegas lo siguen viendo en su propio servicio, y la información clínica sigue sincronizada.'},
+ {t:'Estados de turno',kw:['turno','en turno','descanso','fuera de turno','estado','verde','rojo','ambar','indicador'],a:'El indicador de color de arriba muestra tu estado ante tus colegas: verde en turno, ámbar en descanso (receso, almuerzo, cena, dormir) y rojo fuera de turno. Tócalo para cambiarlo. Si eres interno o estudiante, al ponerte en turno te pregunta en qué servicio estás.'},
  {t:'Chat del equipo',kw:['chat','mensaje','mensajes','escribir','notificacion','notificaciones','aviso'],a:'El chat está en Equipo → Chat: un grupo para todo el equipo y mensajes privados con cada colega. Se actualiza solo cada pocos segundos mientras tienes la app abierta; no manda avisos al teléfono cuando está cerrada. Úsalo solo para asuntos médicos y laborales y sin datos que identifiquen pacientes.'},
  {t:'Interconsultas pendientes',kw:['interconsulta','interconsultas','respondida','pendiente interconsulta','ic'],a:'Las interconsultas están en su sección. Toca “Pendiente: marcar respondida” cuando llegue la respuesta. Las pendientes también aparecen en la pestaña Pendientes.',go:[['Ir a Interconsultas','sec:ic']]},
  {t:'Pendientes del turno',kw:['pendientes','tareas','por hacer','lista de tareas','turno'],a:'Dentro de cada paciente, la sección Pendientes guarda sus tareas. La pestaña Pendientes (arriba) reúne las de todos tus pacientes activos.',go:[['Ir a Pendientes','nav:tasks']]},
@@ -1995,8 +2014,16 @@ function helpGoTo(t){
 }
 
 /* ===== v15: perfil, equipo por invitación, chat laboral y envío de pacientes sin identificar ===== */
-var T={loaded:false,loading:false,me:null,email:'',team:null,members:[],msgs:[],cursor:'',ph:{},phv:{},tab:'chat',conv:'g',err:'',draft:'',unread:0,photo:null,edit:false,confirmLeave:false,last:0,focus:false,added:{},poll:false};
+var T={teams:[],cache:{},loaded:false,loading:false,me:null,email:'',team:null,members:[],msgs:[],cursor:'',ph:{},phv:{},tab:'chat',conv:'g',err:'',draft:'',unread:0,photo:null,edit:false,confirmLeave:false,last:0,focus:false,added:{},poll:false};
 var CARGOS=['Estudiante de medicina','Interno','Médico general','Residente','Especialista','Jefe de servicio','Enfermería','Otro'];
+function tDisp(m){if(!m)return '';var n=m.username||m.name||'',r=m.rank||'';return r&&n.toLowerCase().indexOf(r.toLowerCase())!==0?r+' '+n:n;}
+var RMAP={'estudiante de medicina':'Est.','interno':'Int.','médico general':'MG','residente':'Res.','especialista':'Esp.','jefe de servicio':'Jefe','enfermería':'Enf.'};
+function tSwitch(code){
+  if(T.team)T.cache[T.team.code]={msgs:T.msgs,cursor:T.cursor,members:T.members};
+  T.team=T.teams.filter(function(x){return x.code===code;})[0]||null;
+  var c=T.team&&T.cache[T.team.code];T.msgs=c?c.msgs:[];T.cursor=c?c.cursor:'';T.members=c?c.members:[];T.conv='g';T.confirmLeave=false;T.last=0;
+  try{if(code)localStorage.setItem('rot_tcur',code);}catch(e){}
+}
 function tAvail(){return gAvail()&&gOn()&&gCons();}
 function tApi(body){
   return gTokenP().then(function(t){return fetch('/api/social',{method:'POST',headers:{Authorization:'Bearer '+t,'Content-Type':'application/json'},body:JSON.stringify(body)});})
@@ -2016,29 +2043,29 @@ function tMarkSeen(){
   if(top&&top>(s[T.conv]||'')){s[T.conv]=top;tSetSeen(s);}
 }
 function tMember(id){for(var i=0;i<T.members.length;i++)if(T.members[i].id===id)return T.members[i];return null;}
-function tReset(){T.loaded=false;T.loading=false;T.me=null;T.team=null;T.members=[];T.msgs=[];T.cursor='';T.ph={};T.phv={};T.unread=0;T.edit=false;T.photo=null;T.err='';renderTabs();if(S.view==='team')render();}
+function tReset(){T.loaded=false;T.loading=false;T.me=null;T.team=null;T.teams=[];T.cache={};T.members=[];T.msgs=[];T.cursor='';T.ph={};T.phv={};T.unread=0;T.edit=false;T.photo=null;T.err='';renderTabs();if(S.view==='team')render();}
 function tLoad(){
   if(T.loading||!tAvail())return Promise.resolve();T.loading=true;
   return tApi({action:'me'}).then(function(j){
-    T.me=j.me;T.email=j.email||'';T.team=j.team;T.loaded=true;T.err='';if(j.photo){T.ph[j.me.id]=j.photo;T.phv[j.me.id]=j.me.pv;}
-    if(!j.me.name)T.edit=true;
+    T.me=j.me;T.email=j.email||'';T.teams=j.teams||[];var cc='';try{cc=localStorage.getItem('rot_tcur')||'';}catch(e){}T.team=T.teams.filter(function(x){return x.code===cc;})[0]||T.teams[0]||null;T.loaded=true;T.err='';if(j.photo){T.ph[j.me.id]=j.photo;T.phv[j.me.id]=j.me.pv;}
+    if(!j.me.name||!j.me.rank)T.edit=true;
     T.loading=false;if(T.team)return tPoll(true);
   }).catch(function(e){T.loading=false;T.err=tErr(e);}).then(function(){renderTabs();if(S.view==='team')render();});
 }
 function tErr(e){var m=String(e&&e.message||e);return /Failed to fetch|NetworkError|offline/i.test(m)?'Sin conexión.':m==='auth'?'La sesión venció: cierra sesión y vuelve a entrar.':/404/.test(m)?'El servidor de equipos no está activo en este sitio.':m;}
 function tPoll(force){
   if(!tAvail()||!T.team||T.poll)return Promise.resolve();T.poll=true;T.last=Date.now();
-  return tApi({action:'poll',after:T.cursor}).then(function(j){
-    T.team=j.team;T.members=j.members;T.err='';
+  return tApi({action:'poll',team:T.team.code,after:T.cursor}).then(function(j){
+    T.teams=T.teams.map(function(x){return x.code===j.team.code?j.team:x;});T.team=j.team;T.members=j.members;T.err='';
     var have={};T.msgs.forEach(function(m){have[m.id]=1;});
     j.msgs.forEach(function(m){if(!have[m.id])T.msgs.push(m);});
     T.msgs.sort(function(a,b){return a.id<b.id?-1:1;});if(T.msgs.length>400)T.msgs=T.msgs.slice(-400);
     T.cursor=j.cursor||T.cursor;
     var need=[];T.members.forEach(function(m){if(m.pv&&T.phv[m.id]!==m.pv)need.push(m.id);});
     T.poll=false;
-    if(need.length)tApi({action:'photos',ids:need}).then(function(p){T.members.forEach(function(m){if(p.photos[m.id]){T.ph[m.id]=p.photos[m.id];T.phv[m.id]=m.pv;}});tPaint();}).catch(function(){});
+    if(need.length)tApi({action:'photos',team:T.team.code,ids:need}).then(function(p){T.members.forEach(function(m){if(p.photos[m.id]){T.ph[m.id]=p.photos[m.id];T.phv[m.id]=m.pv;}});tPaint();}).catch(function(){});
     tMarkSeen();tUnreadCalc();renderTabs();tPaint();
-  }).catch(function(e){T.poll=false;if(/No estás en un equipo/.test(String(e&&e.message))){T.team=null;T.members=[];T.msgs=[];T.cursor='';if(S.view==='team')render();}else{T.err=tErr(e);tPaint();}});
+  }).catch(function(e){T.poll=false;if(/No estás en ese equipo/.test(String(e&&e.message))){var gone=T.team&&T.team.code;T.teams=T.teams.filter(function(x){return x.code!==gone;});tSwitch(T.teams[0]&&T.teams[0].code);if(S.view==='team')render();}else{T.err=tErr(e);tPaint();}});
 }
 function tTick(){
   if(!tAvail()){return;}
@@ -2057,31 +2084,44 @@ document.addEventListener('keydown',function(e){if(e.target&&e.target.id==='tIn'
 /* ---------- presentación ---------- */
 function tIni(n){var w=String(n||'?').replace(/\b(MD|Dr\.?|Dra\.?)\b/gi,'').trim().split(/\s+/);return ((w[0]||'?')[0]+(w.length>1?w[w.length-1][0]:'')).toUpperCase();}
 function tAv(id,name,big){var src=T.ph[id];return src?'<img class="av'+(big?' lg':'')+'" src="'+esc(src)+'" alt="">':'<span class="av'+(big?' lg':'')+'" aria-hidden="true">'+esc(tIni(name))+'</span>';}
-function tShiftPill(on){return '<span class="shp '+(on?'on':'off')+'">'+(on?'En turno':'Fuera de turno')+'</span>';}
+var STL={on:'En turno',rest:'Descanso',off:'Fuera de turno'};
+function tStOf(m){return m&&(m.status||(m.onShift?'on':'off'))||'off';}
+function tRot(c){return /interno|estudiante/i.test(String(c||''));}
+function tShiftPill(st){st=st===true?'on':st===false?'off':(st||'off');return '<span class="shp '+st+'"><span class="pdot st-'+st+'"></span>'+STL[st]+'</span>';}
+function tPres(){
+  var b=document.getElementById('pres'),m=T.me;
+  if(!b){var tt=document.querySelector('.ttl');if(!tt)return;b=document.createElement('div');b.id='pres';b.className='pres';tt.appendChild(b);}
+  if(!tAvail()||!T.loaded||!m||!m.name||!m.rank){b.hidden=true;return;}
+  b.hidden=false;var st=tStOf(m);
+  b.innerHTML='<button class="presb st-'+st+'" data-a="presMenu" aria-haspopup="true" aria-expanded="'+(T.menu?'true':'false')+'" title="Tu estado ante tus colegas"><span class="pdot st-'+st+'"></span><span>'+STL[st]+(st==='on'&&tRot(m.cargo)&&m.servicio?' · '+esc(m.servicio):'')+'</span></button>'+
+    (T.menu?'<div class="presm" role="menu">'+['on','rest','off'].map(function(k){return '<button class="presi'+(k===st?' cur':'')+'" role="menuitem" data-a="tSt" data-id="'+k+'"><span class="pdot st-'+k+'"></span>'+STL[k]+'</button>';}).join('')+'</div>':'');
+}
+document.addEventListener('click',function(e){if(T.menu&&!(e.target.closest&&e.target.closest('#pres'))){T.menu=false;tPres();}});
 function tWho(m){return m.name+(m.username&&m.username!==m.name?'':'');}
 function tTime(at){var d=new Date(at),n=new Date();return d.toDateString()===n.toDateString()?d.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'}):fmt(d.toISOString());}
+function tLocalOf(m){return m.share?db.patients.filter(function(p){return p.sh&&p.sh.id===m.share;})[0]:null;}
 function tMsgHtml(m){
-  var mine=T.me&&m.from===T.me.id,who=tMember(m.from),nm=mine?'Yo':(who?(who.username||who.name):'Excolega');
+  var mine=T.me&&m.from===T.me.id,who=tMember(m.from),nm=mine?'Yo':(who?(tDisp(who)):'Excolega');
   if(m.kind==='patient'){
     var p=m.pt||{},to=m.to&&tMember(m.to);
-    return '<div class="bub pt '+(mine?'me':'ot')+'"><div class="bh"><strong>'+(mine?'Enviaste un paciente a '+esc(to?(to.username||to.name):'un colega'):esc(nm)+' te envía un paciente')+'</strong> <span class="muted small">'+esc(tTime(m.at))+'</span></div>'+
+    return '<div class="bub pt '+(mine?'me':'ot')+'"><div class="bh"><strong>'+(mine?'Enviaste un paciente a '+esc(to?(tDisp(to)):'un colega'):esc(nm)+' te envía un paciente')+'</strong> <span class="muted small">'+esc(tTime(m.at))+'</span></div>'+
       '<div class="ptc">'+(p.ini?'<div class="row"><span class="bed">Cama '+esc(p.bed||'—')+'</span><strong>'+esc(p.ini)+'</strong><span class="muted small">'+esc(p.age||'')+' a · '+esc(p.sex||'')+'</span></div>':'')+'<div class="ptx">'+esc(m.text)+'</div></div>'+
-      '<div class="row"><button class="btn sm" data-a="tCopy" data-id="'+esc(m.id)+'">Copiar</button>'+(!mine&&p.ini?(T.added[m.id]?'<span class="muted small">Ya agregado a tus pacientes</span>':'<button class="btn sm primary" data-a="tAddPt" data-id="'+esc(m.id)+'">Agregar a mis pacientes</button>'):'')+'</div></div>';
+      '<div class="row"><button class="btn sm" data-a="tCopy" data-id="'+esc(m.id)+'">Copiar</button>'+(!mine&&p.ini?(tLocalOf(m)?'<span class="muted small">Ya está en tus pacientes</span><button class="btn sm" data-a="tOpenPt" data-id="'+esc(tLocalOf(m).id)+'">Abrir</button>':'<button class="btn sm primary" data-a="tAddPt" data-id="'+esc(m.id)+'">Agregar a mis pacientes</button>'):'')+'</div></div>';
   }
   return '<div class="bub '+(mine?'me':'ot')+'">'+(mine?'':'<div class="bn">'+esc(nm)+'</div>')+'<div class="bt">'+esc(m.text)+'</div><div class="bm">'+esc(tTime(m.at))+'</div></div>';
 }
 function tLiveHtml(){
   if(!T.team)return '';
   if(T.tab==='col'){
-    var ms=T.members.slice().sort(function(a,b){return (b.onShift?1:0)-(a.onShift?1:0)||String(a.name).localeCompare(b.name);});
-    var on=ms.filter(function(m){return m.onShift;}).length;
+    var RK={on:0,rest:1,off:2},ms=T.members.slice().sort(function(a,b){return RK[tStOf(a)]-RK[tStOf(b)]||String(a.name).localeCompare(b.name);});
+    var on=ms.filter(function(m){return tStOf(m)==='on';}).length;
     return '<div class="small muted" style="margin:4px 0 8px">'+on+' en turno de '+ms.length+'.</div>'+ms.map(function(m){
       var me=T.me&&m.id===T.me.id;
-      return '<div class="colg">'+tAv(m.id,m.name)+'<div class="grow"><strong>'+esc(m.username||m.name)+'</strong>'+(me?' <span class="muted small">(tú)</span>':'')+'<div class="small muted">'+esc([m.cargo,m.servicio].filter(Boolean).join(' · ')||'Sin cargo')+'</div></div>'+tShiftPill(m.onShift)+(me?'':'<button class="btn sm" data-a="tOpenChat" data-id="'+esc(m.id)+'">Escribir</button>')+'</div>';}).join('');
+      return '<div class="colg">'+tAv(m.id,m.name)+'<div class="grow"><strong>'+esc(tDisp(m))+'</strong>'+(me?' <span class="muted small">(tú)</span>':'')+'<div class="small muted">'+esc([m.cargo,(tRot(m.cargo)&&tStOf(m)!=='on')?'':m.servicio].filter(Boolean).join(' · ')||'Sin cargo')+'</div></div>'+tShiftPill(tStOf(m))+(me?'':'<button class="btn sm" data-a="tOpenChat" data-id="'+esc(m.id)+'">Escribir</button>')+'</div>';}).join('');
   }
   var s=tSeen(),unreadOf=function(c){var n=0;T.msgs.forEach(function(m){if(T.me&&m.from!==T.me.id&&tConvOf(m)===c&&c!==T.conv&&m.id>(s[c]||''))n++;});return n;};
   var chips='<div class="convs"><button class="fc" data-a="tConv" data-id="g" aria-current="'+(T.conv==='g')+'">Grupo'+(unreadOf('g')?' <span class="n">'+unreadOf('g')+'</span>':'')+'</button>'+
-    T.members.filter(function(m){return !T.me||m.id!==T.me.id;}).map(function(m){return '<button class="fc" data-a="tConv" data-id="'+esc(m.id)+'" aria-current="'+(T.conv===m.id)+'">'+esc(m.username||m.name)+(m.onShift?' <span class="dot on" title="En turno"></span>':'')+(unreadOf(m.id)?' <span class="n">'+unreadOf(m.id)+'</span>':'')+'</button>';}).join('')+'</div>';
+    T.members.filter(function(m){return !T.me||m.id!==T.me.id;}).map(function(m){return '<button class="fc" data-a="tConv" data-id="'+esc(m.id)+'" aria-current="'+(T.conv===m.id)+'">'+esc(tDisp(m))+(tStOf(m)!=='off'?' <span class="pdot st-'+tStOf(m)+'" title="'+STL[tStOf(m)]+'"></span>':'')+(unreadOf(m.id)?' <span class="n">'+unreadOf(m.id)+'</span>':'')+'</button>';}).join('')+'</div>';
   var list=T.msgs.filter(function(m){return tConvOf(m)===T.conv;});
   return chips+'<div id="tMsgs" class="tmsgs" aria-live="polite">'+(list.length?list.map(tMsgHtml).join(''):'<div class="empty small">'+(T.conv==='g'?'Aún no hay mensajes en el grupo. Escribe el primero.':'Aún no hay mensajes con esta persona.')+'</div>')+'</div>';
 }
@@ -2093,6 +2133,7 @@ function tPaint(){
   var er=document.getElementById('tErr');if(er){er.textContent=T.err;er.hidden=!T.err;}
 }
 function tPost(){
+  try{tPres();}catch(e){}
   if(S.view!=='team')return;
   var b=document.getElementById('tMsgs');if(b)b.scrollTop=b.scrollHeight;
   if(T.focus){var i=document.getElementById('tIn');if(i){i.focus();try{i.setSelectionRange(i.value.length,i.value.length);}catch(e){}}}
@@ -2102,14 +2143,20 @@ function tProfileForm(){
   return '<div class="card"><h3>'+(m.name?'Editar perfil':'Crea tu perfil')+'</h3>'+
    '<div class="row"><span id="tPrev">'+(ph?'<img class="av lg" src="'+esc(ph)+'" alt="">':'<span class="av lg">'+esc(tIni(m.name))+'</span>')+'</span><div class="grow"><input type="file" id="tPhotoIn" accept="image/*" hidden><button class="btn sm" data-a="tPhotoPick">Elegir foto</button> <button class="btn sm" data-a="tPhotoDel">Quitar foto</button><div class="small muted">Se reduce a un cuadrado pequeño. Usa una foto tuya, profesional.</div></div></div>'+
    '<label>Nombre completo<input id="tpName" value="'+esc(m.name||'')+'" maxlength="80" autocomplete="name"></label>'+
-   '<label>Nombre de usuario (como te verán tus colegas, p. ej. Esteban Leguizamo MD)<input id="tpUser" value="'+esc(m.username||'')+'" maxlength="60"></label>'+
+   '<label>Especialidad o rango (obligatorio; va al comienzo de tu nombre)<input id="tpRank" list="tRanks" value="'+esc(m.rank||'')+'" maxlength="24" placeholder="Est., Int., Res., MG, Urol., Enf…"><datalist id="tRanks">'+['Est.','Int.','MG','Res.','Esp.','Jefe','Enf.','Urol.','Cx.','Ped.','MI','Ortop.','Neuroc.'].map(function(c){return '<option value="'+esc(c)+'">';}).join('')+'</datalist></label>'+
+   '<label>Nombre de usuario (opcional; si lo dejas vacío usamos tu nombre)<input id="tpUser" value="'+esc(m.username||'')+'" maxlength="60"></label>'+
+   '<div class="small muted">Así te verán: <strong id="tpShow">'+esc(tDisp(m)||'—')+'</strong></div>'+
    '<label>Cargo<input id="tpCargo" list="tCargos" value="'+esc(m.cargo||'')+'" maxlength="60" placeholder="Residente, interno, enfermería…"><datalist id="tCargos">'+CARGOS.map(function(c){return '<option value="'+esc(c)+'">';}).join('')+'</datalist></label>'+
-   '<label>Servicio<input id="tpServ" value="'+esc(m.servicio||'')+'" maxlength="80" placeholder="Urología, Medicina interna…"></label>'+
-   '<label style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" id="tpShift"'+(m.onShift?' checked':'')+'> <span>Estoy en turno ahora</span></label>'+
+   '<label id="tpServL"'+(tRot(m.cargo)?' hidden':'')+'>Servicio<input id="tpServ" value="'+esc(m.servicio||'')+'" maxlength="80" placeholder="Urología, Medicina interna…"></label>'+
+   '<div class="small muted" id="tpRotN"'+(tRot(m.cargo)?'':' hidden')+'>Como internos y estudiantes rotan, no tienes un servicio fijo: te preguntaremos en qué servicio estás cada vez que te pongas “En turno”.</div>'+
+   '<label>Estado<select id="tpStat">'+['on','rest','off'].map(function(k){return '<option value="'+k+'"'+(tStOf(m)===k?' selected':'')+'>'+STL[k]+'</option>';}).join('')+'</select></label>'+
    '<div class="small muted">Tu perfil lo ven solo las personas de tu equipo. No pongas teléfono ni datos personales que no quieras compartir.</div>'+
    '<div class="row"><button class="btn primary" data-a="tSaveProf">Guardar perfil</button>'+(m.name?'<button class="btn" data-a="tEditCancel">Cancelar</button>':'')+'</div></div>';
 }
 function viewTeam(){return '<div class="nt">'+viewTeam0()+'</div>';}
+function tJoinCards(){return '<div class="card"><h3>Únete a un equipo</h3><div class="small muted">Un equipo es un grupo cerrado de colegas (tu servicio, tu rotación). Solo sus miembros ven los perfiles y el chat. Pide el código a quien lo creó.</div>'+
+     '<label>Código de invitación<input id="tCode" maxlength="12" autocapitalize="characters" placeholder="Ej. K7M2XQ4P" style="text-transform:uppercase"></label><div class="row"><button class="btn primary" data-a="tJoin">Unirme</button></div></div>'+
+     '<div class="card"><h3>O crea uno nuevo</h3><label>Nombre del equipo<input id="tTeamName" maxlength="60" placeholder="Urología HUS, Internos 2026…"></label><div class="row"><button class="btn" data-a="tCreate">Crear equipo</button></div><div class="small muted">Recibirás un código para invitar a tus colegas.</div></div>';}
 function viewTeam0(){
   var h='<h2>Equipo</h2>';
   if(!gAvail())return h+'<div class="card"><div class="small muted">Los perfiles, el equipo y el chat funcionan en el sitio publicado de Limonapp, con tu cuenta iniciada (no en esta vista previa).</div></div>';
@@ -2118,15 +2165,13 @@ function viewTeam0(){
   if(!T.loaded){setTimeout(tLoad,0);return h+'<div class="card"><div class="small muted">'+(T.err?esc(T.err)+' ':'Cargando…')+'</div>'+(T.err?'<div class="row"><button class="btn sm" data-a="tRetry">Reintentar</button></div>':'')+'</div>';}
   var m=T.me;
   h+='<div class="note small" id="tErr"'+(T.err?'':' hidden')+'>'+esc(T.err)+'</div>';
-  if(T.edit||!m.name)return h+tProfileForm();
-  h+='<div class="card"><div class="row">'+tAv(m.id,m.name,true)+'<div class="grow"><h3 style="margin:0">'+esc(m.username||m.name)+'</h3><div class="small muted">'+esc([m.cargo,m.servicio].filter(Boolean).join(' · ')||'Completa cargo y servicio en tu perfil')+'</div></div></div>'+
-   '<div class="row"><button class="shbtn '+(m.onShift?'on':'off')+'" data-a="tShift" aria-pressed="'+(m.onShift?'true':'false')+'">'+(m.onShift?'En turno · tocar para salir':'Fuera de turno · tocar para entrar')+'</button><button class="btn sm" data-a="tEdit">Editar perfil</button></div></div>';
-  if(!T.team){
-    return h+'<div class="card"><h3>Únete a un equipo</h3><div class="small muted">Un equipo es un grupo cerrado de colegas (tu servicio, tu rotación). Solo sus miembros ven los perfiles y el chat. Pide el código a quien lo creó.</div>'+
-     '<label>Código de invitación<input id="tCode" maxlength="12" autocapitalize="characters" placeholder="Ej. K7M2XQ4P" style="text-transform:uppercase"></label><div class="row"><button class="btn primary" data-a="tJoin">Unirme</button></div></div>'+
-     '<div class="card"><h3>O crea uno nuevo</h3><label>Nombre del equipo<input id="tTeamName" maxlength="60" placeholder="Urología HUS, Internos 2026…"></label><div class="row"><button class="btn" data-a="tCreate">Crear equipo</button></div><div class="small muted">Recibirás un código para invitar a tus colegas.</div></div>';
-  }
+  if(T.edit||!m.name||!m.rank)return h+tProfileForm();
+  h+='<div class="card"><div class="row">'+tAv(m.id,m.name,true)+'<div class="grow"><h3 style="margin:0">'+esc(tDisp(m))+'</h3><div class="small muted">'+esc([m.cargo,(tRot(m.cargo)&&tStOf(m)!=='on')?'':m.servicio].filter(Boolean).join(' · ')||'Completa tu cargo en el perfil')+'</div></div></div>'+
+   '<div class="row">'+['on','rest','off'].map(function(k){return '<button class="shbtn st-'+k+(tStOf(m)===k?' cur':'')+'" data-a="tSt" data-id="'+k+'" aria-pressed="'+(tStOf(m)===k?'true':'false')+'"><span class="pdot st-'+k+'"></span>'+STL[k]+'</button>';}).join('')+'<button class="btn sm" data-a="tEdit">Editar perfil</button></div></div>';
+  if(!T.team)return h+tJoinCards();
+  if(T.teams.length>1)h+='<div class="fchips" aria-label="Mis equipos">'+T.teams.map(function(x){return '<button class="fc" data-a="tTeam" data-id="'+esc(x.code)+'" aria-current="'+(x.code===T.team.code)+'">'+esc(x.name)+'</button>';}).join('')+'</div>';
   h+='<div class="card"><div class="row spread"><div><h3 style="margin:0">'+esc(T.team.name)+'</h3><div class="small muted">Código de invitación: <span class="mono"><strong>'+esc(T.team.code)+'</strong></span></div></div><div class="row"><button class="btn sm" data-a="tInvite">Copiar invitación</button>'+(T.confirmLeave?'<button class="btn sm danger" data-a="tLeave">Confirmar: salir</button>':'<button class="btn sm" data-a="tAskLeave">Salir del equipo</button>')+'</div></div></div>';
+  h+='<details class="card"><summary><strong>Unirme a otro equipo o crear uno</strong></summary>'+tJoinCards()+'</details>';
   h+='<div class="fchips"><button class="fc" data-a="tTab" data-id="chat" aria-current="'+(T.tab==='chat')+'">Chat</button><button class="fc" data-a="tTab" data-id="col" aria-current="'+(T.tab==='col')+'">Colegas ('+T.members.length+')</button></div>';
   tMarkSeen();tUnreadCalc();
   h+='<div class="card tchat"><div id="tLive">'+tLiveHtml()+'</div>';
@@ -2150,28 +2195,56 @@ function ptText(s){
   if(s.cont)o.push('Si pasa X, hacer Y: '+cut(s.cont,200));
   return ptScrub(o.join('\n'));
 }
+function tSetSt(st,serv){
+  var o={action:'shift',status:st};if(serv!==undefined)o.servicio=serv;
+  tApi(o).then(function(j){T.me=j.me;tPres();toast(st==='on'?'Estás en turno'+(serv?' en '+serv:'')+'.':st==='rest'?'Estás en descanso.':'Saliste de turno.');if(T.team)tPoll(true);if(S.view==='team')render();}).catch(tErrToast);
+}
+function tSvcAsk(st){
+  tModalClose();var d=document.createElement('div');d.id='tModal';d.className='tmodal';d.setAttribute('role','dialog');
+  var names=db.services.map(function(s){return s.name;});
+  d.innerHTML='<div class="tbox"><h3>¿En qué servicio estás ahora?</h3><div class="small muted">Como rotas por varios servicios, tus colegas verán este servicio mientras estés en turno.</div><label>Servicio<input id="tsvIn" list="tsvL" maxlength="80" value="'+esc((T.me&&T.me.servicio)||'')+'" placeholder="Urología, Cirugía pediátrica…"><datalist id="tsvL">'+names.map(function(n){return '<option value="'+esc(n)+'">';}).join('')+'</datalist></label><div class="row"><button class="btn primary" data-a="tSvcOk">Ponerme en turno</button><button class="btn" data-a="tSvcX">Cancelar</button></div></div>';
+  document.body.appendChild(d);var i=document.getElementById('tsvIn');if(i)i.focus();
+}
 function tModalClose(){var m=document.getElementById('tModal');if(m)m.remove();}
 function tModal(p){
   var s=ptSummary(p),others=T.members.filter(function(m){return !T.me||m.id!==T.me.id;}).sort(function(a,b){return (b.onShift?1:0)-(a.onShift?1:0)||String(a.name).localeCompare(b.name);});
   tModalClose();
   var d=document.createElement('div');d.id='tModal';d.className='tmodal';d.setAttribute('role','dialog');d.setAttribute('aria-label','Enviar paciente a un colega');
   d.innerHTML='<div class="tbox"><h3>Enviar paciente a un colega</h3>'+
-   (others.length?'<label>Para<select id="tTo">'+others.map(function(m){return '<option value="'+esc(m.id)+'">'+esc((m.username||m.name)+(m.cargo?' · '+m.cargo:'')+(m.onShift?' (en turno)':' (fuera de turno)'))+'</option>';}).join('')+'</select></label>':'<div class="note warn">Aún no hay otros colegas en tu equipo. Invítalos con el código.</div>')+
-   '<label>Resumen que se enviará (puedes editarlo)<textarea id="tTxt" rows="10">'+esc(ptText(s))+'</textarea></label>'+
-   '<div class="small muted">Va solo con iniciales, edad, cama, diagnóstico, pendientes y notas clave. No se envían el nombre ni la cédula. Revisa que el texto no contenga datos que identifiquen al paciente.</div>'+
+   (others.length?'<label>Para<select id="tTo">'+others.map(function(m){return '<option value="'+esc(m.id)+'">'+esc((tDisp(m))+(m.cargo?' · '+m.cargo:'')+(m.onShift?' (en turno)':' (fuera de turno)'))+'</option>';}).join('')+'</select></label>':'<div class="note warn">Aún no hay otros colegas en tu equipo. Invítalos con el código.</div>')+
+   '<label>Mensaje de presentación (puedes editarlo)<textarea id="tTxt" rows="9">'+esc(ptText(s))+'</textarea></label>'+
+   '<div class="small muted">Se envía el paciente completo: sus datos, la historia, las notas, los paraclínicos y los pendientes. Quien lo acepte lo recibe con todo eso y, desde entonces, los cambios que cualquiera haga se ven en ambos. No incluye nombre ni cédula (solo iniciales, y los números largos se tachan solos), pero revisa que las notas no tengan nombres u otros datos que identifiquen al paciente.</div>'+
    '<div class="row"><button class="btn primary" data-a="tPtGo"'+(others.length?'':' disabled')+'>Enviar</button><button class="btn" data-a="tPtX">Cancelar</button></div></div>';
-  d._s=s;document.body.appendChild(d);
+  d._s=s;d._p=p;document.body.appendChild(d);
 }
 function tClip(t,ok){try{navigator.clipboard.writeText(t).then(function(){toast(ok);},function(){toast('No pude copiar. Selecciona el texto y cópialo.');});}catch(e){toast('No pude copiar.');}}
+var CR={im:null,cx:0,cy:0,z:1,drag:null};
+function crScale(){return Math.max(260/CR.im.width,260/CR.im.height)*CR.z;}
+function crClamp(){var sc=crScale(),hx=130/sc,hy=130/sc;CR.cx=Math.min(CR.im.width-hx,Math.max(hx,CR.cx));CR.cy=Math.min(CR.im.height-hy,Math.max(hy,CR.cy));}
+function crDraw(){
+  var c=document.getElementById('cvs');if(!c||!CR.im)return;crClamp();var x=c.getContext('2d'),sc=crScale();
+  x.fillStyle='#000';x.fillRect(0,0,260,260);x.drawImage(CR.im,CR.cx-130/sc,CR.cy-130/sc,260/sc,260/sc,0,0,260,260);
+}
 function tPhotoProcess(file){
   var fr=new FileReader();
   fr.onload=function(){var im=new Image();im.onload=function(){
-    var n=144,c=document.createElement('canvas');c.width=n;c.height=n;var x=c.getContext('2d'),m=Math.min(im.width,im.height),sx=(im.width-m)/2,sy=(im.height-m)/2;
-    x.drawImage(im,sx,sy,m,m,0,0,n,n);var q=.85,u=c.toDataURL('image/jpeg',q);while(u.length>42000&&q>.3){q-=.1;u=c.toDataURL('image/jpeg',q);}
-    if(u.length>44000){toast('La foto es muy pesada. Prueba con otra.');return;}
-    T.photo=u;var pv=document.getElementById('tPrev');if(pv)pv.innerHTML='<img class="av lg" src="'+u+'" alt="">';
+    CR.im=im;CR.cx=im.width/2;CR.cy=im.height/2;CR.z=1;tModalClose();
+    var d=document.createElement('div');d.id='tModal';d.className='tmodal';d.setAttribute('role','dialog');
+    d.innerHTML='<div class="tbox"><h3>Ajusta tu foto</h3><div class="cropw"><canvas id="cvs" width="260" height="260"></canvas><div class="cropmask"></div></div><label>Zoom<input type="range" id="cz" min="1" max="4" step="0.01" value="1"></label><div class="small muted">Arrastra la imagen para encuadrar tu cara. Lo que queda dentro del círculo es lo que se verá.</div><div class="row"><button class="btn primary" data-a="cropOk">Usar foto</button><button class="btn" data-a="cropX">Cancelar</button></div></div>';
+    document.body.appendChild(d);crDraw();
+    var c=document.getElementById('cvs');
+    c.addEventListener('pointerdown',function(e){CR.drag={x:e.clientX,y:e.clientY};try{c.setPointerCapture(e.pointerId);}catch(_){}});
+    c.addEventListener('pointermove',function(e){if(!CR.drag)return;var k=260/c.getBoundingClientRect().width,sc=crScale();CR.cx-=(e.clientX-CR.drag.x)*k/sc;CR.cy-=(e.clientY-CR.drag.y)*k/sc;CR.drag={x:e.clientX,y:e.clientY};crDraw();});
+    c.addEventListener('pointerup',function(){CR.drag=null;});c.addEventListener('pointercancel',function(){CR.drag=null;});
+    document.getElementById('cz').addEventListener('input',function(e){CR.z=parseFloat(e.target.value)||1;crDraw();});
   };im.onerror=function(){toast('No pude leer esa imagen.');};im.src=String(fr.result);};
   fr.readAsDataURL(file);
+}
+function crOut(){
+  var n=144,o=document.createElement('canvas');o.width=n;o.height=n;var x=o.getContext('2d'),sc=crScale();
+  x.drawImage(CR.im,CR.cx-130/sc,CR.cy-130/sc,260/sc,260/sc,0,0,n,n);
+  var q=.85,u=o.toDataURL('image/jpeg',q);while(u.length>42000&&q>.3){q-=.1;u=o.toDataURL('image/jpeg',q);}
+  return u.length>44000?null:u;
 }
 document.addEventListener('change',function(e){var el=e.target;if(el&&el.id==='tPhotoIn'&&el.files&&el.files[0])tPhotoProcess(el.files[0]);});
 function tErrToast(e){toast(tErr(e));}
@@ -2185,11 +2258,14 @@ var AT={
    tModal(p);
  },
  tPtX:function(){tModalClose();},
+ tOpenPt:function(el){var p=pat(el.dataset.id);if(p)go('patient',{patientId:p.id,serviceId:p.serviceId});},
+ cropX:function(){tModalClose();CR.im=null;},
+ cropOk:function(){var u=CR.im&&crOut();if(!u){toast('La foto es muy pesada. Prueba con otra.');return;}T.photo=u;tModalClose();CR.im=null;var pv=document.getElementById('tPrev');if(pv)pv.innerHTML='<img class="av lg" src="'+u+'" alt="">';},
  tPtGo:function(){
    var d=document.getElementById('tModal');if(!d)return;var to=val('tTo'),tx=ptScrub(val('tTxt')).trim();if(!to||!tx)return;
    var s=d._s;var b=d.querySelector('[data-a=tPtGo]');b.disabled=true;
    tApi({action:'send',kind:'patient',to:to,text:tx,pt:{ini:s.ini,age:s.age,sex:s.sex,bed:s.bed,dx:s.dx,sev:s.sev,tasks:s.tasks}}).then(function(j){
-     T.msgs.push(j.msg);T.msgs.sort(function(a,b){return a.id<b.id?-1:1;});tModalClose();var w=tMember(to);toast('Enviado a '+(w?(w.username||w.name):'tu colega')+'.');
+     T.msgs.push(j.msg);T.msgs.sort(function(a,b){return a.id<b.id?-1:1;});tModalClose();var w=tMember(to);toast('Enviado a '+(w?(tDisp(w)):'tu colega')+'.');
    }).catch(function(e){b.disabled=false;tErrToast(e);});
  },
  tRetry:function(){T.err='';T.loading=false;tLoad();},
@@ -2198,17 +2274,27 @@ var AT={
  tPhotoPick:function(){var i=document.getElementById('tPhotoIn');if(i)i.click();},
  tPhotoDel:function(){T.photo='';var pv=document.getElementById('tPrev');if(pv)pv.innerHTML='<span class="av lg">'+esc(tIni(val('tpName')))+'</span>';},
  tSaveProf:function(){
-   var o={action:'saveProfile',name:val('tpName'),username:val('tpUser'),cargo:val('tpCargo'),servicio:val('tpServ'),onShift:!!(document.getElementById('tpShift')||{}).checked};
+   var o={action:'saveProfile',name:val('tpName'),rank:val('tpRank'),username:val('tpUser'),cargo:val('tpCargo'),servicio:tRot(val('tpCargo'))?(tRot(T.me&&T.me.cargo)?(T.me.servicio||''):''):val('tpServ'),status:val('tpStat')||'off'};
+   if(o.status==='on'&&tRot(o.cargo)&&!o.servicio){T.pendProf=o;o.status='off';}
    if(!o.name.trim()){toast('Escribe tu nombre.');return;}
+   if(!o.rank.trim()){toast('Escribe tu especialidad o rango (Est., Int., Res., MG…). Va al comienzo de tu nombre.');return;}
    if(!o.username.trim())o.username=o.name;
    if(T.photo!==null)o.photo=T.photo;
-   tApi(o).then(function(j){T.me=j.me;if(T.photo!==null){if(T.photo){T.ph[j.me.id]=T.photo;}else delete T.ph[j.me.id];T.phv[j.me.id]=j.me.pv;}T.photo=null;T.edit=false;toast('Perfil guardado.');if(T.team)tPoll(true);render();}).catch(tErrToast);
+   tApi(o).then(function(j){T.me=j.me;if(T.photo!==null){if(T.photo){T.ph[j.me.id]=T.photo;}else delete T.ph[j.me.id];T.phv[j.me.id]=j.me.pv;}T.photo=null;T.edit=false;toast('Perfil guardado.');if(T.team)tPoll(true);tPres();render();if(T.pendProf){T.pendProf=null;tSvcAsk('on');}}).catch(tErrToast);
  },
- tShift:function(){tApi({action:'shift',onShift:!T.me.onShift}).then(function(j){T.me=j.me;toast(j.me.onShift?'Estás en turno.':'Saliste de turno.');if(T.team)tPoll(true);render();}).catch(tErrToast);},
- tCreate:function(){tApi({action:'createTeam',name:val('tTeamName')}).then(function(j){T.team=j.team;T.msgs=[];T.cursor='';toast('Equipo creado. Comparte el código con tus colegas.');return tPoll(true);}).then(function(){render();}).catch(tErrToast);},
- tJoin:function(){tApi({action:'join',code:val('tCode')}).then(function(j){T.team=j.team;T.msgs=[];T.cursor='';toast('Te uniste al equipo.');return tPoll(true);}).then(function(){render();}).catch(tErrToast);},
+ presMenu:function(){T.menu=!T.menu;tPres();},
+ tSt:function(el){
+   var st=el.dataset.id;T.menu=false;
+   if(st==='on'&&tRot(T.me.cargo)){tSvcAsk(st);return;}
+   tSetSt(st,undefined);
+ },
+ tSvcX:function(){tModalClose();},
+ tSvcOk:function(){var v=val('tsvIn').trim();if(!v){toast('Escribe el servicio.');return;}tSetSt('on',v);tModalClose();},
+ tTeam:function(el){tSwitch(el.dataset.id);tMarkSeen();tUnreadCalc();renderTabs();render();tPoll(true);},
+ tCreate:function(){tApi({action:'createTeam',name:val('tTeamName')}).then(function(j){T.teams.push(j.team);tSwitch(j.team.code);toast('Equipo creado. Comparte el código con tus colegas.');return tPoll(true);}).then(function(){render();}).catch(tErrToast);},
+ tJoin:function(){tApi({action:'join',code:val('tCode')}).then(function(j){if(!T.teams.some(function(x){return x.code===j.team.code;}))T.teams.push(j.team);tSwitch(j.team.code);toast('Te uniste al equipo.');return tPoll(true);}).then(function(){render();}).catch(tErrToast);},
  tAskLeave:function(){T.confirmLeave=true;render();},
- tLeave:function(){tApi({action:'leave'}).then(function(){T.team=null;T.members=[];T.msgs=[];T.cursor='';T.confirmLeave=false;if(T.me)T.me.onShift=false;toast('Saliste del equipo.');renderTabs();render();}).catch(tErrToast);},
+ tLeave:function(){var lc=T.team.code;tApi({action:'leave',team:lc}).then(function(){T.teams=T.teams.filter(function(x){return x.code!==lc;});delete T.cache[lc];T.team=null;tSwitch(T.teams[0]&&T.teams[0].code);toast('Saliste del equipo.');renderTabs();render();}).catch(tErrToast);},
  tInvite:function(){tClip('Únete a mi equipo en Limonapp ('+location.origin+'): entra a la pestaña Equipo y escribe el código '+T.team.code+'.','Invitación copiada.');},
  tTab:function(el){T.tab=el.dataset.id;T.confirmLeave=false;render();},
  tConv:function(el){T.conv=el.dataset.id;tMarkSeen();tUnreadCalc();renderTabs();render();},
@@ -2217,7 +2303,7 @@ var AT={
    var tx=val('tIn').trim();if(!tx)return;
    if(LONGNUM.test(tx)&&!confirm('El mensaje parece contener un número largo (¿cédula o teléfono?). No compartas datos que identifiquen pacientes. ¿Enviar de todas formas?'))return;
    var b=document.querySelector('[data-a=tSend]');if(b)b.disabled=true;
-   tApi({action:'send',to:T.conv==='g'?null:T.conv,text:tx}).then(function(j){T.msgs.push(j.msg);T.msgs.sort(function(a,b){return a.id<b.id?-1:1;});T.draft='';var i=document.getElementById('tIn');if(i){i.value='';}if(b)b.disabled=false;tMarkSeen();tPaint();var bx=document.getElementById('tMsgs');if(bx)bx.scrollTop=bx.scrollHeight;}).catch(function(e){if(b)b.disabled=false;tErrToast(e);});
+   tApi({action:'send',team:T.team.code,to:T.conv==='g'?null:T.conv,text:tx}).then(function(j){T.msgs.push(j.msg);T.msgs.sort(function(a,b){return a.id<b.id?-1:1;});T.draft='';var i=document.getElementById('tIn');if(i){i.value='';}if(b)b.disabled=false;tMarkSeen();tPaint();var bx=document.getElementById('tMsgs');if(bx)bx.scrollTop=bx.scrollHeight;}).catch(function(e){if(b)b.disabled=false;tErrToast(e);});
  },
  tCopy:function(el){var m=T.msgs.filter(function(x){return x.id===el.dataset.id;})[0];if(m)tClip(m.text,'Texto copiado.');},
  tAddPt:function(el){
@@ -2226,13 +2312,286 @@ var AT={
    if(!sid){toast('Crea primero un servicio en la pestaña Servicios.');return;}
    var q=m.pt,who=tMember(m.from),id=uid();
    db.patients.push({id:id,serviceId:sid,ini:q.ini||'??',hc:'',age:q.age||'',sex:q.sex||'',bed:q.bed||'',adm:today(),dx:q.dx||'',sev:SEV.indexOf(q.sev)>=0?q.sev:'vigilar',cont:'',active:true});
-   db.entries.push({id:uid(),patientId:id,type:'nota',at:new Date().toISOString(),data:{txt:'Recibido de '+(who?(who.username||who.name):'un colega')+':\n'+m.text}});
+   db.entries.push({id:uid(),patientId:id,type:'nota',at:new Date().toISOString(),data:{txt:'Recibido de '+(who?(tDisp(who)):'un colega')+':\n'+m.text}});
    (q.tasks||[]).forEach(function(t){db.tasks.push({id:uid(),patientId:id,text:t,done:false,at:new Date().toISOString()});});
    T.added[m.id]=1;try{localStorage.setItem('rot_tadded',JSON.stringify(T.added));}catch(e){}
    save();var sv=db.services.filter(function(s){return s.id===sid;})[0];toast('Agregado a '+(sv?sv.name:'tus pacientes')+'.');render();
  }
 };
 try{T.added=JSON.parse(localStorage.getItem('rot_tadded')||'{}')||{};}catch(e){T.added={};}
+
+document.addEventListener('input',function(e){if(e.target&&(e.target.id==='tpRank'||e.target.id==='tpUser'||e.target.id==='tpName')){var sh=document.getElementById('tpShow');if(sh)sh.textContent=tDisp({rank:val('tpRank'),username:val('tpUser'),name:val('tpName')})||'—';}
+  if(e.target&&e.target.id==='tpCargo'){var rk=document.getElementById('tpRank'),sg=RMAP[String(e.target.value).trim().toLowerCase()];if(rk&&sg&&(!rk.value||Object.keys(RMAP).some(function(k){return RMAP[k]===rk.value;}))){rk.value=sg;var sh2=document.getElementById('tpShow');if(sh2)sh2.textContent=tDisp({rank:sg,username:val('tpUser'),name:val('tpName')});}var r=tRot(e.target.value),a=document.getElementById('tpServL'),b=document.getElementById('tpRotN');if(a)a.hidden=r;if(b)b.hidden=!r;}});
+
+/* ===== v16: tutorial interactivo, estados de turno, pacientes compartidos, mover, tendencias grandes ===== */
+
+/* ---------- tutorial interactivo ---------- */
+TOUR=[
+ {t:'Bienvenido a Limonapp',x:'Aquí llevas tus rotaciones: servicios, pacientes, notas y pendientes. Este recorrido te lleva por la app: puedes tocar “Siguiente” o hacer lo que pide cada paso. Lo saltas o repites cuando quieras con el botón “Tutorial”.'},
+ {s:'#tabs',t:'Las cinco pestañas',x:'Servicios: tus rotaciones y sus pacientes. Pendientes: lo que falta, de todos tus pacientes juntos. Entrega: texto listo para la entrega de turno. Equipo: perfil, colegas y chat. Respaldo: copia de seguridad y cuenta.'},
+ {s:'.pcard[data-a=openService]',pre:'services',wait:'openService',t:'Servicios',x:'Cada rotación es un servicio (Urología, Cirugía pediátrica…). Toca uno para abrirlo y ver sus pacientes; abajo puedes crear servicios nuevos.'},
+ {s:'[data-a=newPatient]',pre:'service',t:'Agregar un paciente',x:'Dentro de un servicio toca “+ Paciente”. Escribe solo iniciales, edad y cama (nunca nombre ni cédula), o suelta el PDF de la historia clínica del hospital y Limonapp la organiza sola.'},
+ {s:'.pcard[data-a=openPatient]',pre:'service',wait:'openPatient',t:'Abrir un paciente',x:'Toca un paciente para abrir su ficha. Si un colega te lo compartió, aquí verás la marca “Compartido” y cuándo fue actualizado.'},
+ {s:'.subtabs',pre:'patient',sec:'res',t:'Las secciones del paciente',x:'Resumen, Cronología, Historia, Interconsultas, Paraclínicos, Imágenes, Pendientes e Importar PDF. Se cambia de sección con estos botones.'},
+ {s:'.subtabs [data-k=res]',pre:'patient',sec:'res',t:'Primera pantalla: el Resumen',x:'Estado actual, lectura rápida, lista de problemas, tendencias de laboratorio, hitos y pendientes. Es una lectura automática; verifícala siempre con la historia original.'},
+ {s:'.subtabs [data-k=cron]',pre:'patient',sec:'res',wait:'goSec',t:'Cronología',x:'Toca “Cronología” (o Siguiente): todas las notas por mes, con filtros y un buscador que resalta las coincidencias y te deja ir adelante y atrás.'},
+ {s:'.subtabs [data-k=lab]',pre:'patient',sec:'cron',t:'Paraclínicos y tendencias',x:'En Paraclínicos guardas los resultados por fecha y, arriba, ves las gráficas grandes de tendencia con la fecha y el valor de cada punto.'},
+ {s:'[data-a=ptSend]',pre:'patient',sec:'res',t:'Enviar y mover pacientes',x:'“Enviar a un colega” comparte el paciente con su historia, y los dos lo ven actualizado. “Mover de servicio” cambia solo dónde lo tienes tú.'},
+ {t:'Cómo se leen las fechas',x:'Cada registro usa la fecha en que se hizo, nunca la de impresión del PDF. Si la app no logra leerla, la marca con “~” para que la revises.'},
+ {s:'#tourBtn',t:'Tutorial, tema, 8-bit y alemán',x:'El botón “Tutorial” vuelve a abrir esta guía. Junto a él puedes quitar o poner el estilo 8-bit, cambiar entre tema oscuro y claro, y mostrar o no los textos en alemán.'},
+ {s:'#tabs [data-v=team]',t:'Equipo',x:'Con tu cuenta iniciada creas tu perfil (foto con encuadre, cargo, servicio y estado), te unes a un equipo con un código y chateas con tus colegas. El indicador de color arriba muestra si estás en turno (verde), en descanso (ámbar) o fuera de turno (rojo).'},
+ {t:'Tus datos y tu cuenta',x:'Sin iniciar sesión todo queda solo en este dispositivo; haz respaldos seguido. En Respaldo → “Cuenta y sincronización” puedes entrar con Google o correo para tener tus datos en cualquier dispositivo. Nunca escribas nombres, cédulas ni teléfonos de pacientes.'},
+ {s:'#helpFab',t:'Ayuda cuando te pierdas',x:'El botón “Ayuda” con el limón responde dudas de uso con guías escritas de antemano. Escríbele con tus palabras.'}
+];
+var tourBusy=false;
+function tourFirstPatient(){var ps=db.patients.filter(function(p){return p.active;});return (S.serviceId&&ps.filter(function(p){return p.serviceId===S.serviceId;})[0])||ps[0]||db.patients[0];}
+function tourPre(st){
+  if(!st||!st.pre)return;
+  if(st.pre==='services'){if(S.view!=='services')go('services');return;}
+  if(st.pre==='service'){
+    if(S.view==='service')return;
+    if(S.view==='patient'&&S.serviceId){go('service',{serviceId:S.serviceId,filter:'activos'});return;}
+    var s=db.services.filter(function(x){return activeOf(x.id).length;})[0]||db.services[0];if(s)go('service',{serviceId:s.id,filter:'activos'});return;
+  }
+  if(st.pre==='patient'){
+    if(S.view!=='patient'){var p=tourFirstPatient();if(p)go('patient',{patientId:p.id,serviceId:p.serviceId});}
+    if(S.view==='patient'&&st.sec&&S.sec!==st.sec){S.sec=st.sec;render();}
+  }
+}
+function tourGo(i){
+  if(i<0||i>=TOUR.length)return;
+  tourI=i;tourPre(TOUR[i]);tourShow();
+}
+function tourEl(st){return st&&st.s?document.querySelector(st.s):null;}
+function tourShow(){
+  var st=TOUR[tourI],t=document.getElementById('tour'),fresh=!t;
+  if(fresh){t=document.createElement('div');t.id='tour';t.setAttribute('role','dialog');t.setAttribute('aria-labelledby','tourT');t.innerHTML='<div class="tsp" id="tsp"></div><div class="tcard" id="tcard" style="visibility:hidden"></div>';document.body.appendChild(t);}
+  var last=tourI===TOUR.length-1,c=document.getElementById('tcard');
+  c.innerHTML='<div class="small muted">Paso '+(tourI+1)+' de '+TOUR.length+'</div><h3 id="tourT">'+esc(st.t)+'</h3><p>'+esc(st.x)+'</p><div class="row spread"><button class="btn sm ghost" data-a="tourSkip">'+(last?'Cerrar':'Saltar')+'</button><div class="row">'+(tourI?'<button class="btn sm" data-a="tourPrev">Atrás</button>':'')+'<button class="btn sm primary" data-a="'+(last?'tourSkip':'tourNext')+'">'+(last?'Listo':'Siguiente')+'</button></div></div>';
+  var el=tourEl(st);
+  if(el&&el.scrollIntoView){try{el.scrollIntoView({block:'center',behavior:'instant'});}catch(e){el.scrollIntoView();}}
+  requestAnimationFrame(function(){tourPlace(el,fresh);c.style.visibility='visible';});
+}
+function tourPlace(el,fresh){
+  var sp=document.getElementById('tsp'),c=document.getElementById('tcard');if(!sp||!c)return;
+  if(fresh)sp.style.transition='none';
+  var vw=window.innerWidth,vh=window.innerHeight,cw=Math.min(380,vw-24);c.style.width=cw+'px';
+  if(!el){sp.style.cssText='left:50%;top:50%;width:0;height:0'+(fresh?';transition:none':'');c.style.left=((vw-cw)/2)+'px';c.style.top=Math.max(16,(vh-c.offsetHeight)/2-20)+'px';}
+  else{
+    var r=el.getBoundingClientRect(),pd=6;
+    sp.style.cssText='left:'+(r.left-pd)+'px;top:'+(r.top-pd)+'px;width:'+(r.width+2*pd)+'px;height:'+(r.height+2*pd)+'px'+(fresh?';transition:none':'');
+    var ch=c.offsetHeight,top=r.bottom+pd+12;if(top+ch>vh-8)top=Math.max(8,r.top-pd-12-ch);
+    c.style.top=top+'px';c.style.left=Math.max(12,Math.min(vw-cw-12,r.left))+'px';
+  }
+  if(fresh){void sp.offsetWidth;sp.style.transition='';}
+}
+function tourStart(auto){tourGo(0);}
+window.addEventListener('resize',function(){if(document.getElementById('tour'))tourPlace(tourEl(TOUR[tourI]),false);});
+setInterval(function(){if(document.getElementById('tour'))tourPlace(tourEl(TOUR[tourI]),false);},700);
+document.addEventListener('click',function(e){
+  if(!document.getElementById('tour'))return;
+  var el=e.target.closest&&e.target.closest('[data-a]');if(!el)return;
+  var st=TOUR[tourI];
+  if(st&&st.wait&&el.dataset.a===st.wait&&!el.closest('#tour')){setTimeout(function(){if(document.getElementById('tour')&&TOUR[tourI]===st)tourGo(tourI+1);},80);}
+},true);
+document.addEventListener('keydown',function(e){
+  if(!document.getElementById('tour'))return;
+  if(e.key==='Escape')tourEnd();else if(e.key==='ArrowRight')tourGo(tourI+1);else if(e.key==='ArrowLeft')tourGo(tourI-1);
+});
+
+/* ---------- diagnóstico vacío ("Diagnósticos:") ---------- */
+var DXH=/^(diagn[oó]sticos?|an[aá]lisis)\s*:?\s*$/i;
+function dxClean(l){return cut(String(l).replace(/^[\s*\-–—•]+/,'').replace(/^[A-Z]\d+[A-Z0-9.]*\s*-\s*/,'').trim(),140);}
+function dxFromHx(t){var src=String(t||'').split('\n');for(var i=0;i<src.length;i++){var l=src[i].replace(/^[\s*\-–—•]+/,'').trim();if(l&&!DXH.test(l))return dxClean(l);}return '';}
+function migDx(){
+  var ch=0;db.patients.forEach(function(p){
+    if(!DXH.test(String(p.dx||'')))return;
+    var n=(p.hx&&p.hx.dx&&dxFromHx(p.hx.dx))||(problemList(p)[0]?dxClean(problemList(p)[0]):'');
+    if(n!==p.dx){p.dx=n;ch++;}
+  });
+  if(ch){db.meta.mod=new Date().toISOString();persist();}
+}
+
+/* ---------- tendencias grandes ---------- */
+function dshort(d){var m=/^(\d{4})-(\d{2})-(\d{2})/.exec(d);return m?m[3]+'/'+m[2]:d;}
+function bigTrend(pts,T){
+  var n=pts.length,vs=pts.map(function(x){return x.v;}),mn=Math.min.apply(null,vs),mx=Math.max.apply(null,vs);
+  var pad=(mx-mn)*0.18||Math.abs(mx)*0.1||1,lo=mn-pad,hi=mx+pad;
+  var W=Math.max(640,n*58),H=300,L=54,R=24,Tp=34,B=62,iw=W-L-R,ih=H-Tp-B;
+  var t0=new Date(pts[0].d+'T12:00').getTime(),tr=(new Date(pts[n-1].d+'T12:00').getTime()-t0)||1;
+  function X(i){return n===1?L+iw/2:L+(new Date(pts[i].d+'T12:00').getTime()-t0)/tr*iw;}
+  function Y(v){return Tp+ih-(v-lo)/(hi-lo)*ih;}
+  function f(v){return Math.abs(v)>=100?String(Math.round(v)):(Math.round(v*10)/10).toString();}
+  var g='',i;
+  for(i=0;i<=4;i++){var v=lo+(hi-lo)*i/4,y=Y(v);g+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" class="gl"/><text x="'+(L-8)+'" y="'+(y+4).toFixed(1)+'" text-anchor="end" class="ax">'+f(v)+'</text>';}
+  var xy=pts.map(function(p,k){return [X(k),Y(p.v)];});
+  var all=n<=14,extra={};if(!all){extra[0]=1;extra[n-1]=1;vs.forEach(function(v,k){if(v===mn||v===mx)extra[k]=1;});}
+  var dots='',labs='',xl='';
+  xy.forEach(function(a,k){
+    dots+='<circle cx="'+a[0].toFixed(1)+'" cy="'+a[1].toFixed(1)+'" r="'+(k===n-1?5:3.8)+'" class="pt"/>';
+    if(all||extra[k])labs+='<text x="'+a[0].toFixed(1)+'" y="'+(a[1]-11).toFixed(1)+'" text-anchor="middle" class="vl">'+f(pts[k].v)+'</text>';
+    xl+='<text transform="translate('+a[0].toFixed(1)+','+(H-B+16)+') rotate(-40)" text-anchor="end" class="ax">'+dshort(pts[k].d)+'</text>';
+  });
+  return '<div class="bigw"><svg class="bigsvg" viewBox="0 0 '+W+' '+H+'" style="'+(W>720?'width:'+W+'px':'width:100%;min-width:600px')+'" role="img" aria-label="Tendencia de '+esc(T.n)+': '+n+' valores">'+g+(n>1?'<polyline class="ln" points="'+xy.map(function(a){return a[0].toFixed(1)+','+a[1].toFixed(1);}).join(' ')+'"/>':'')+dots+labs+xl+'</svg></div>';
+}
+function trendsCards(p){
+  var cs=TRENDS.map(function(T){var pts=trendPts(p,T);return pts.length?{T:T,pts:pts}:null;}).filter(Boolean);
+  if(!cs.length)return '';
+  return '<details class="card trbig" open><summary><h3 style="display:inline">Tendencias ('+cs.length+')</h3> <span class="muted small">gráficas con fecha y valor de cada punto</span></summary>'+cs.map(function(c){
+    var a=c.pts[0],b=c.pts[c.pts.length-1];
+    return '<div class="trblk"><div class="trh"><strong>'+esc(c.T.n)+'</strong> <span class="muted small">'+esc(c.T.u)+'</span>'+(c.pts.length>1?' <span class="small">'+a.v+' → '+b.v+'</span>':'')+'</div>'+bigTrend(c.pts,c.T)+
+      '<div class="small muted">'+esc(c.T.h)+'</div><details class="small"><summary>Ver valores</summary><div class="trvals">'+c.pts.map(function(x){return '<span>'+esc(dlong(x.d))+': <strong>'+x.v+'</strong></span>';}).join('')+'</div></details></div>';
+  }).join('')+'<div class="small muted">Se toman de los resultados guardados en Paraclínicos. mg/dL son miligramos por decilitro (1 dL = 100 mL de sangre); g/dL, gramos por decilitro; ×10³/µL, miles de células por microlitro. La distancia horizontal es proporcional al tiempo entre fechas.</div></details>';
+}
+
+/* ---------- ventanas: elegir servicio / mover ---------- */
+var SV={cb:null};
+function svcModal(title,intro,okLabel,cb){
+  tModalClose();SV.cb=cb;
+  var d=document.createElement('div');d.id='tModal';d.className='tmodal';d.setAttribute('role','dialog');
+  d.innerHTML='<div class="tbox"><h3>'+esc(title)+'</h3><div class="small muted">'+esc(intro)+'</div><label>Servicio<select id="svSel">'+db.services.map(function(s){return '<option value="'+esc(s.id)+'"'+(s.id===S.serviceId?' selected':'')+'>'+esc(s.name)+'</option>';}).join('')+'<option value="__new">+ Crear un servicio nuevo…</option></select></label><label id="svNewL" hidden>Nombre del servicio nuevo<input id="svNew" maxlength="60"></label><div class="row"><button class="btn primary" data-a="svOk">'+esc(okLabel)+'</button><button class="btn" data-a="svX">Cancelar</button></div></div>';
+  document.body.appendChild(d);
+  if(!db.services.length){document.getElementById('svSel').value='__new';document.getElementById('svNewL').hidden=false;}
+}
+document.addEventListener('change',function(e){if(e.target&&e.target.id==='svSel'){var l=document.getElementById('svNewL');if(l)l.hidden=e.target.value!=='__new';}});
+function svcPick(){
+  var v=val('svSel');
+  if(v==='__new'){var nm=val('svNew').trim();if(!nm){toast('Escribe el nombre del servicio.');return null;}var s={id:uid(),name:nm};db.services.push(s);return s.id;}
+  return v||null;
+}
+
+/* ---------- pacientes compartidos ---------- */
+function sStable(o){if(o===null||typeof o!=='object')return JSON.stringify(o);if(Array.isArray(o))return '['+o.map(sStable).join(',')+']';return '{'+Object.keys(o).sort().map(function(k){return JSON.stringify(k)+':'+sStable(o[k]);}).join(',')+'}';}
+function sHash(s){var h=5381,i;for(i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return h+':'+s.length;}
+function scrubV(v,k){if(typeof v==='string')return k==='id'?v:ptScrub(v);if(Array.isArray(v))return v.map(function(x){return scrubV(x);});if(v&&typeof v==='object'){var o={};Object.keys(v).forEach(function(q){o[q]=scrubV(v[q],q);});return o;}return v;}
+var PNOSYNC={id:1,serviceId:1,sh:1,demo:1,active:1,exitAt:1};
+function shItems(p){
+  var it={},o={};Object.keys(p).forEach(function(k){if(!PNOSYNC[k])o[k]=p[k];});it.p=scrubV(o);
+  db.entries.forEach(function(e){if(e.patientId!==p.id)return;var c={};Object.keys(e).forEach(function(k){if(k!=='patientId')c[k]=e[k];});it['e:'+e.id]=scrubV(c);});
+  db.tasks.forEach(function(t){if(t.patientId!==p.id)return;var c={};Object.keys(t).forEach(function(k){if(k!=='patientId')c[k]=t[k];});it['t:'+t.id]=scrubV(c);});
+  return it;
+}
+function shDiff(p){
+  var cur=shItems(p),ch={},now=Date.now(),n=0;
+  Object.keys(cur).forEach(function(k){var h=sHash(sStable(cur[k]));if(p.sh.base[k]!==h){ch[k]={v:cur[k],m:now,h:h};n++;}});
+  Object.keys(p.sh.base).forEach(function(k){if(!(k in cur)){ch[k]={v:null,m:now,h:''};n++;}});
+  return {ch:ch,n:n};
+}
+function spSet(p,k,v){
+  if(k==='p'){if(!v)return;Object.keys(p).forEach(function(f){if(!PNOSYNC[f]&&!(f in v))delete p[f];});Object.keys(v).forEach(function(f){p[f]=v[f];});return;}
+  var arr=k.charAt(0)==='e'?db.entries:db.tasks,id=k.slice(2),i=-1;
+  arr.forEach(function(x,j){if(x.id===id)i=j;});
+  if(v===null){if(i>=0)arr.splice(i,1);return;}
+  var o={};Object.keys(v).forEach(function(f){o[f]=v[f];});o.patientId=p.id;
+  if(i>=0)arr[i]=o;else arr.push(o);
+}
+function dbTouch(){db.meta.mod=new Date().toISOString();persist();if(typeof gAuto==='function')gAuto();}
+var SP={busy:false,last:0,t:null};
+function spAny(){return db.patients.some(function(p){return p.sh&&p.sh.id&&!p.sh.gone;});}
+function spAuto(){if(!tAvail()||!spAny())return;clearTimeout(SP.t);SP.t=setTimeout(function(){spSyncAll();},2500);}
+function spApply(p,r,d){
+  var sh=p.sh,changed=0,by='';
+  Object.keys(r.items).forEach(function(k){
+    var it=r.items[k],mine=d.ch[k];
+    if(mine){
+      if(sStable(it.v)===sStable(mine.v)){if(it.v===null)delete sh.base[k];else sh.base[k]=mine.h;return;}
+    }else{
+      var cur=shItems(p)[k],hc=cur===undefined?undefined:sHash(sStable(cur));
+      if(hc!==sh.base[k])return;   /* lo editaste mientras tanto: tu cambio se envía en el siguiente ciclo */
+    }
+    spSet(p,k,it.v);changed++;by=it.bn||by;
+    var nw=shItems(p)[k];if(nw===undefined)delete sh.base[k];else sh.base[k]=sHash(sStable(nw));
+  });
+  sh.rev=r.rev;
+  if(changed)sh.upd={n:((sh.upd&&sh.upd.n)||0)+changed,at:new Date().toISOString(),by:by||(sh.upd&&sh.upd.by)||''};
+  return changed;
+}
+function spBusyEdit(){var a=document.activeElement;return !!(S.editor||S.editPatient||S.newPatient||S.hxEdit||(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.closest&&a.closest('#app')));}
+function spSyncAll(){
+  if(!tAvail()||SP.busy||!spAny())return Promise.resolve();
+  SP.busy=true;SP.last=Date.now();
+  var ps=db.patients.filter(function(p){return p.sh&&p.sh.id&&!p.sh.gone;}),sent={};
+  var shares=ps.map(function(p){var d=shDiff(p);sent[p.id]=d;var ch={};Object.keys(d.ch).forEach(function(k){ch[k]={v:d.ch[k].v,m:d.ch[k].m};});return {id:p.sh.id,since:p.sh.rev||0,changes:ch};});
+  return tApi({action:'spSync',shares:shares}).then(function(j){
+    var any=0,names=[];
+    j.shares.forEach(function(r){
+      var p=db.patients.filter(function(x){return x.sh&&x.sh.id===r.id;})[0];if(!p)return;
+      if(r.gone){p.sh.gone=1;return;}
+      var n=spApply(p,r,sent[p.id]);if(n){any+=n;names.push(p.ini+(p.sh.upd&&p.sh.upd.by?' ('+p.sh.upd.by+')':''));}
+    });
+    SP.busy=false;
+    if(any){dbTouch();toast('Actualizado: '+names.join(', ')+'.');if(!spBusyEdit())render();}
+  }).catch(function(e){SP.busy=false;});
+}
+function spShare(p){
+  if(p.sh&&p.sh.id&&!p.sh.gone)return spSyncAll().then(function(){return p.sh.id;});
+  var cur=shItems(p);
+  if(JSON.stringify(cur).length>4.2e6)return Promise.reject(new Error('Este paciente tiene demasiada información para compartirlo.'));
+  return tApi({action:'spCreate',items:cur}).then(function(j){var base={};Object.keys(cur).forEach(function(k){base[k]=sHash(sStable(cur[k]));});p.sh={id:j.id,base:base,rev:j.rev,upd:null};dbTouch();return j.id;});
+}
+function spJoin(shareId,serviceId){
+  var ex=db.patients.filter(function(x){return x.sh&&x.sh.id===shareId;})[0];
+  if(ex)return Promise.reject(new Error('Ya tienes a este paciente en tus servicios.'));
+  return tApi({action:'spSync',shares:[{id:shareId,since:0,changes:{}}]}).then(function(j){
+    var r=j.shares[0];if(!r||r.gone)throw new Error('Ya no tienes acceso a este paciente.');
+    var pv=r.items.p&&r.items.p.v;if(!pv)throw new Error('El paciente compartido está vacío.');
+    var p={id:uid(),serviceId:serviceId,active:true};Object.keys(pv).forEach(function(f){p[f]=pv[f];});
+    db.patients.push(p);p.sh={id:shareId,base:{},rev:r.rev,upd:null};
+    Object.keys(r.items).forEach(function(k){if(k!=='p'&&r.items[k].v!==null)spSet(p,k,r.items[k].v);});
+    var cur=shItems(p);Object.keys(cur).forEach(function(k){p.sh.base[k]=sHash(sStable(cur[k]));});
+    dbTouch();return p;
+  });
+}
+setInterval(function(){
+  if(!tAvail()||!spAny()||document.visibilityState!=='visible')return;
+  var cp=S.view==='patient'&&S.patientId&&pat(S.patientId),every=(cp&&cp.sh)?6000:20000;
+  if(Date.now()-SP.last>=every-300)spSyncAll();
+},3000);
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')spSyncAll();});
+var _vp=viewPatient;
+viewPatient=function(){
+  var h=_vp.apply(this,arguments),p=pat(S.patientId);
+  if(!p||!p.sh)return h;
+  var u=p.sh.upd;
+  return '<div class="note shb"><strong>Paciente compartido.</strong> '+(p.sh.gone?'Ya no tienes acceso a las actualizaciones.':'Los cambios que hagas llegan a tus colegas y los de ellos a ti.')+
+    (u?' <span class="warn-t">Actualizado por '+esc(u.by||'un colega')+' ('+u.n+' cambio'+(u.n===1?'':'s')+', '+esc(fmt(u.at))+').</span> <button class="btn sm" data-a="spSeen">Entendido</button>':'')+
+    ' <button class="btn sm ghost" data-a="spOff">Dejar de compartir conmigo</button></div>'+h;
+};
+
+/* ---------- acciones ---------- */
+AT.svX=function(){tModalClose();SV.cb=null;};
+AT.svOk=function(){var cb=SV.cb,id=svcPick();if(!id||!cb)return;cb(id);};
+AT.mvOpen=function(el){
+  var p=pat(el.dataset.id||S.patientId);if(!p)return;
+  svcModal('Mover a otro servicio','Solo cambia dónde ves tú a este paciente; tus colegas lo siguen viendo en su propio servicio.','Mover',function(sid){
+    p.serviceId=sid;save();S.serviceId=sid;tModalClose();render();var s=db.services.filter(function(x){return x.id===sid;})[0];toast('Movido a '+(s?s.name:'otro servicio')+'.');
+  });
+};
+AT.spSeen=function(){var p=pat(S.patientId);if(p&&p.sh){p.sh.upd=null;dbTouch();render();}};
+AT.spOff=function(){var p=pat(S.patientId);if(!p||!p.sh)return;if(!confirm('¿Dejar de compartir? Tu copia queda como está, pero ya no enviará ni recibirá cambios.'))return;delete p.sh;dbTouch();render();toast('Este paciente ya no se sincroniza.');};
+AT.tourNext=function(){tourGo(tourI+1);};
+AT.tourPrev=function(){tourGo(tourI-1);};
+AT.tPtGo=function(){
+  var d=document.getElementById('tModal');if(!d)return;var to=val('tTo'),tx=ptScrub(val('tTxt')).trim();if(!to||!tx)return;
+  var s=d._s,p=d._p,b=d.querySelector('[data-a=tPtGo]');b.disabled=true;b.textContent='Enviando…';
+  spShare(p).then(function(sid){
+    return tApi({action:'send',team:T.team.code,kind:'patient',to:to,text:tx,share:sid,pt:{ini:s.ini,age:s.age,sex:s.sex,bed:s.bed,dx:s.dx,sev:s.sev,tasks:s.tasks}});
+  }).then(function(j){
+    T.msgs.push(j.msg);T.msgs.sort(function(a,b){return a.id<b.id?-1:1;});tModalClose();var w=tMember(to);toast('Enviado a '+(w?(tDisp(w)):'tu colega')+' con su historia.');render();
+  }).catch(function(e){b.disabled=false;b.textContent='Enviar';tErrToast(e);});
+};
+AT.tAddPt=function(el){
+  var m=T.msgs.filter(function(x){return x.id===el.dataset.id;})[0];if(!m||!m.pt)return;
+  svcModal('¿En qué servicio quieres recibir a '+(m.pt.ini||'este paciente')+'?',m.share?'Se agrega con toda su historia. Después, los cambios que haga cualquiera de los dos se verán en ambos.':'Se agrega el resumen que te enviaron.','Agregar',function(sid){
+    var fin=function(p){T.added[m.id]=1;try{localStorage.setItem('rot_tadded',JSON.stringify(T.added));}catch(e){}tModalClose();S.serviceId=sid;var sv=db.services.filter(function(s){return s.id===sid;})[0];toast('Agregado a '+(sv?sv.name:'tus pacientes')+'.');render();};
+    if(m.share){tApi({action:'me'}).then(function(){return spJoin(m.share,sid);}).then(fin).catch(tErrToast);return;}
+    var q=m.pt,who=tMember(m.from),id=uid();
+    db.patients.push({id:id,serviceId:sid,ini:q.ini||'??',hc:'',age:q.age||'',sex:q.sex||'',bed:q.bed||'',adm:today(),dx:q.dx||'',sev:SEV.indexOf(q.sev)>=0?q.sev:'vigilar',cont:'',active:true});
+    db.entries.push({id:uid(),patientId:id,type:'nota',at:new Date().toISOString(),data:{txt:'Recibido de '+(who?(tDisp(who)):'un colega')+':\n'+m.text}});
+    (q.tasks||[]).forEach(function(t){db.tasks.push({id:uid(),patientId:id,text:t,done:false,at:new Date().toISOString()});});
+    save();fin();
+  });
+};
 
 var A={
  nav:function(el){go(el.dataset.v);},
