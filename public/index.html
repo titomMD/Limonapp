@@ -263,6 +263,10 @@ details.ce>summary{flex-wrap:wrap}.ce .who{flex:1 1 100%;order:3}.ce .pv2{order:
 #themeBtn{min-width:0;padding-inline:10px}
 
 @media (max-width:600px){.tools{gap:4px;margin:6px 0 2px}.tools .tl{min-height:30px;padding:3px 8px;font-size:12px}.tools .ti{width:18px;height:18px;font-size:12px}}
+
+.prof{display:block;font-weight:600;color:#f2c14e;border-left:3px solid #f2c14e;padding:1px 0 1px 8px;margin:3px 0;background:rgba(242,193,78,.08);border-radius:0 4px 4px 0}
+html[data-theme="light"] .prof{color:#8a5a00;border-left-color:#c98a00;background:rgba(201,138,0,.1)}
+@media (prefers-color-scheme:light){html:not([data-theme="dark"]) .prof{color:#8a5a00;border-left-color:#c98a00;background:rgba(201,138,0,.1)}}
 </style>
 
 <div class="wrap">
@@ -536,8 +540,8 @@ function viewPatient(){
 
 function sepCard(p,type,title,hint){
   var es=pEntries(p.id).filter(function(e){return e.type===type;});
-  return '<div class="card" style="border-color:var(--c-'+type+')"><div class="row spread"><h3>'+title+(es.length?' ('+es.length+')':'')+'</h3><div class="row">'+(es.length?'<button class="btn sm ghost" data-a="cleanNoise" data-t="'+type+'" title="Quitar consentimientos y datos administrativos">Limpiar</button>':'')+'<button class="btn sm" style="--c:var(--c-'+type+')" data-a="newEntry" data-t="'+type+'">+ Agregar</button></div></div>'+
-    (es.length?es.map(type==='interconsulta'?entryCard:entryRow).join(''):'<div class="small muted">'+hint+'</div>')+'</div>';
+  return '<div class="card" style="border-color:var(--c-'+type+')"><div class="row spread"><h3>'+title+(es.length?' ('+es.length+')':'')+'</h3><div class="row">'+(es.length>1?'<button class="btn sm ghost" data-a="openAll" data-o="1">Desplegar todo</button><button class="btn sm ghost" data-a="openAll" data-o="0">Contraer todo</button>':'')+(es.length?'<button class="btn sm ghost" data-a="cleanNoise" data-t="'+type+'" title="Quitar consentimientos y datos administrativos">Limpiar</button>':'')+'<button class="btn sm" style="--c:var(--c-'+type+')" data-a="newEntry" data-t="'+type+'">+ Agregar</button></div></div>'+
+    (es.length?es.map(entryRow).join(''):'<div class="small muted">'+hint+'</div>')+'</div>';
 }
 function taskRow(t){
   return '<div class="task'+(t.done?' done':'')+'"><input type="checkbox" data-a="toggleTask" data-id="'+t.id+'"'+(t.done?' checked':'')+' aria-label="Hecho"><span class="t">'+esc(t.text)+'</span><button class="btn sm ghost" data-a="delTask" data-id="'+t.id+'" aria-label="Borrar pendiente">✕</button></div>';
@@ -969,11 +973,20 @@ function sentChunks(l){
   if(cur)out.push(cur);return out;
 }
 var KNOWNH=/^(MOTIVO DE (LA )?CONSULTA|ENFERMEDAD ACTUAL|ANTECEDENTES( PERSONALES| FAMILIARES)?|REVISION POR (OTROS )?SISTEMAS?|EXAMEN FISICO|ANALISIS|PLAN( DE MANEJO| TERAPEUTICO)?|PARACLINICOS|DIAGNOSTICOS?( PRE\/POST)?|IMPRESION DIAGNOSTICA|TRATAMIENTO|INDICACIONES( MEDICAS)?|EXAMENES SOLICITADOS|MEDICAMENTOS( E INFUSIONES| SOLICITADOS)?|NOTA ACLARATORIA|DESCRIPCION (QUIRURGICA|DE LA ATENCION)|HALLAZGOS QUIRURGICOS|DATOS QUIRURGICOS|PROCEDIMIENTOS?|CONCLUSIONES?|RECOMENDACIONES|EVOLUCION( MEDICA)?|SUBJETIVO|OBJETIVO|CONDICIONES DE EGRESO|RESUMEN.*|SIGNOS VITALES|TAMIZAJES|OBSERVACIONES)$/;
+var PROFR=/(especialista|residente|m[eé]dic[oa]\b|interno|interna|internista|enfermer[oa]|jefe|cirujan[oa]|anestesi[oó]log|ginec[oó]log|urolog|ginecobstetra|oncolog|radi[oó]log|psic[oó]log|nutricionista|fisioterapeuta|md\b|auxiliar|hospitalari)/i;
+function isProf(t){
+  if(t.length>130||t.length<6)return false;
+  if(/^(Dr|Dra|Doctor|Doctora)\.?\s*[A-Za-zÁÉÍÓÚÑáéíóúñ]/.test(t)&&!/[.:]\s+[A-ZÁÉÍÓÚÑ].{60,}/.test(t.slice(6)))return true;
+  var m=/^([A-Za-zÁÉÍÓÚÑáéíóúñ.]+(?: [A-Za-zÁÉÍÓÚÑáéíóúñ.]+){1,4})\s*[-–—]\s*(.{4,70})$/.exec(t);
+  return !!(m&&PROFR.test(m[2])&&!/\d/.test(m[1])&&!/[.:;]$/.test(m[2])&&m[1].split(' ').length<=5&&!/^(respuesta|nota|interconsulta|evoluci|consulta|motivo|paciente|plan|diagn|control|hospitalizaci|ingreso|egreso)/i.test(m[1]));
+}
 function rich(s){
   var out=[];
   String(s==null?'':s).split('\n').forEach(function(l){
     var t=l.trim();
     if(!t){out.push('');return;}
+    var tp=t.replace(/^[-•*]+\s*/,'').replace(/\*+$/,'').trim();
+    if(isProf(tp)){out.push('<span class="prof">'+esc(tp)+'</span>');return;}
     if(/^- /.test(l)){out.push('<span class="li">'+inl(l.slice(2))+'</span>');return;}
     if(/^—.*—$/.test(t)){out.push('<span class="sh">'+esc(t.replace(/^—\s*|\s*—$/g,''))+'</span>');return;}
     var m=/^([A-ZÁÉÍÓÚÑ][^:\n]{1,40}):\s*$/.exec(t);
@@ -982,7 +995,7 @@ function rich(s){
     if(t.length>260){sentChunks(l).forEach(function(c,ix){out.push((ix?'<span class="pg"></span>':'')+inl(c));});return;}
     out.push(inl(l));
   });
-  return out.join('\n');
+  return out.join('\n').replace(/(class="prof">[^<]*<\/span>)\n/g,'$1');
 }
 /* ---------- Historia clínica del HUS: lectura por páginas (v12) ---------- */
 function norm2(s){return String(s==null?'':s).toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,' ').trim();}
@@ -1687,7 +1700,7 @@ function entPreview(e){
 }
 function entryRow(e){
   var T=TYPES[e.type];
-  return '<details class="ce" id="ce_'+e.id+'" data-who="'+esc(whoTxt(e))+'" style="--c:var(--c-'+e.type+')"'+(S.openId===e.id?' open':'')+'><summary><span class="chip" style="--c:var(--c-'+e.type+')">'+T.label+'</span><span class="mono small muted">'+esc(fmt(e.at))+(e.est?' <span title="Fecha aproximada: el PDF no la traía clara">~</span>':'')+'</span><span class="who">'+whoHtml(e)+'</span><span class="pv2">'+esc(entPreview(e))+'</span></summary>'+entryCard(e)+'</details>';
+  return '<details class="ce" id="ce_'+e.id+'" data-who="'+esc(whoTxt(e))+'" style="--c:var(--c-'+e.type+')"'+(S.openId===e.id?' open':'')+'><summary><span class="chip" style="--c:var(--c-'+e.type+')">'+T.label+'</span>'+(e.type==='interconsulta'?'<span class="pill '+(e.status==='pendiente'?'vigilar':'estable')+'">'+esc(e.status||'')+'</span>':'')+'<span class="mono small muted">'+esc(fmt(e.at))+(e.est?' <span title="Fecha aproximada: el PDF no la traía clara">~</span>':'')+'</span><span class="who">'+whoHtml(e)+'</span><span class="pv2">'+esc(entPreview(e))+'</span></summary>'+entryCard(e)+'</details>';
 }
 function viewCron(p){
   var all=pEntries(p.id).filter(function(e){var T=TYPES[e.type];return !(T&&(T.sep||T.own));});
@@ -1972,6 +1985,7 @@ var A={
  tourPrev:function(){if(tourI>0){tourI--;tourShow();}},
  tourSkip:function(){tourEnd();},
  cronF:function(el){S.cf=el.dataset.v;S.cmax=30;render();},
+ openAll:function(el){var o=el.dataset.o==='1';document.querySelectorAll('#app details.ce').forEach(function(d){d.open=o;});},
  hlPrev:function(){hlGo(-1);},
  hlNext:function(){hlGo(1);},
  cronQ:function(){S.cq=val('cq').trim();S.cmax=30;S.hi=0;S.hgo=1;render();var f=document.getElementById('cq');if(f)f.focus();},
