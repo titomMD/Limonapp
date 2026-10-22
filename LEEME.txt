@@ -1,0 +1,17 @@
+LIMONAPP v14 - proyecto para Netlify (con cuenta y sincronizacion)
+
+Contenido
+  public/                  la app (index.html, manifest, sw.js, iconos)
+  netlify/functions/sync.mjs   guarda y devuelve los datos de cada usuario (Netlify Blobs)
+  package.json, netlify.toml   configuracion
+
+Como publicarlo (Git, lo mas simple)
+  1. Crea un repositorio en GitHub y sube TODO este contenido (en la raiz del repo).
+  2. En Netlify: Add new project > Import from Git > elige el repo. No pongas comando de build;
+     netlify.toml ya indica publish=public y functions=netlify/functions.
+  3. En ese sitio: Site configuration > Identity > Enable. Registration: Open.
+     External providers > Google > "Use default configuration".
+  4. Abre la direccion del sitio > Respaldo > acepta el aviso > "Entrar con Google o correo".
+
+Alternativa por consola (sin GitHub): instala Node y netlify-cli, y desde esta carpeta ejecuta
+  netlify deploy --prod
