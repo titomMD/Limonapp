@@ -208,6 +208,15 @@ html[data-theme="light"]::before{opacity:.05}
 .rnidx{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.rnidx .fc.hasp{font-weight:800;text-decoration:underline}
 .rnnav{margin:10px 0}.rnnav .btn{flex:1}
 
+.sysm{text-align:center;font-size:.78rem;color:var(--muted);margin:8px 0}
+.emop{display:flex;flex-wrap:wrap;gap:2px;max-height:150px;overflow:auto;padding:6px;border:1px solid var(--line);background:var(--surface);margin-top:6px}.emop[hidden]{display:none}
+.emb{background:none;border:0;font-size:1.4rem;line-height:1;padding:5px;cursor:pointer;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+.emot{align-self:flex-end;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+.bub .bt,.tcomp textarea,.pinb,.rq,.sysm,.lgr{font-family:system-ui,-apple-system,"Segoe UI","Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+.shlog .lgr{border-top:1px solid var(--line);padding:6px 0}
+.rnpick{display:flex;flex-direction:row;align-items:center;gap:8px;padding:5px 0}
+.colg .row .btn{margin:2px}
+
 .legal{max-width:960px;margin:24px auto 40px;padding:0 16px;font-size:13px;color:var(--muted);text-align:center}.legal a{color:var(--c-ingreso)}.welcome{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px}
 .welcome h2{margin:0;font-size:26px;letter-spacing:-.02em;color:var(--c-ingreso)}.welcome p{margin:0;flex:1 1 240px;color:var(--muted);font-size:14.5px}
 .solo{display:grid;gap:12px}.rsg{grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));align-items:start}
@@ -322,7 +331,7 @@ html[data-theme="light"] .prof{color:#8a5a00;border-left-color:#c98a00;backgroun
 <div class="wrap">
   <header class="top">
     <div class="brand"><span class="mark"><img id="logo" alt="Limón" width="160" height="149"></span><div class="ttl"><h1>Limonapp</h1><span class="sub" id="status"></span></div></div>
-    <div class="tools" role="toolbar" aria-label="Ajustes de la app"><button class="btn tl" id="pxBtn" data-a="px" aria-pressed="true" title="Activa o quita el estilo retro de 8 bits"><span class="ti">▦</span><span class="tt">Estilo 8-bit</span></button><button class="btn tl" id="tourBtn" data-a="tour" title="Ver otra vez el tutorial paso a paso"><span class="ti">?</span><span class="tt">Tutorial</span></button><button class="btn tl" id="themeBtn" data-a="toggleTheme" title="Cambiar entre tema oscuro y claro"><span class="ti">☾</span><span class="tt">Tema oscuro</span></button><button class="btn tl" id="biBtn" data-a="toggleBi" aria-pressed="true" title="Mostrar también los textos en alemán (Deutsch)"><span class="ti">Aa</span><span class="tt">Alemán</span></button></div>
+    <div class="tools" role="toolbar" aria-label="Ajustes de la app"><button class="btn tl" id="pxBtn" data-a="px" aria-pressed="true" title="Activa o quita el estilo retro de 8 bits"><span class="ti">▦</span><span class="tt">Estilo 8-bit</span></button><button class="btn tl" id="rfBtn" data-a="refreshApp" title="Recargar la app (útil en el iPhone cuando está en la pantalla de inicio)"><span class="ti">↻</span><span class="tt">Actualizar</span></button><button class="btn tl" id="tourBtn" data-a="tour" title="Ver otra vez el tutorial paso a paso"><span class="ti">?</span><span class="tt">Tutorial</span></button><button class="btn tl" id="themeBtn" data-a="toggleTheme" title="Cambiar entre tema oscuro y claro"><span class="ti">☾</span><span class="tt">Tema oscuro</span></button><button class="btn tl" id="biBtn" data-a="toggleBi" aria-pressed="true" title="Mostrar también los textos en alemán (Deutsch)"><span class="ti">Aa</span><span class="tt">Alemán</span></button></div>
     <nav class="tabs" id="tabs" aria-label="Secciones"></nav>
     <img class="sitcat" id="sitcat" alt="" aria-hidden="true">
   </header>
@@ -925,7 +934,7 @@ function buildUpd(p,r){
   });
   r.items.forEach(function(it){
     var ty=KTYPE[it.k],key=dataKey(it.data),it2={k:it.k,type:ty,at:it.at,est:it.est,by:it.by,svc:it.svc,data:it.data,text:Object.keys(it.data).map(function(x){return it.data[x];}).join(' · '),label:KNAME[it.k]+(it.data.est?': '+it.data.est:it.k==='ic'?': '+it.data.serv:(it.sub?': '+it.sub:'')),on:true};
-    var same=ex.filter(function(e){return e.type===ty&&sameText(dataKey(e.data),key);})[0];
+    var same=ex.filter(function(e){return e.type===ty&&sameText(dataKey(e.data),key);})[0]||(it.k==='lab'?labDup(ex,it):null);
     if(it.k==='ic'&&!same){
       var ns=norm(it.data.serv),m=ex.filter(function(e){var s=norm(e.data.serv);return e.type==='interconsulta'&&e.status==='pendiente'&&s&&ns&&(s.indexOf(ns)>=0||ns.indexOf(s)>=0);})[0];
       if(m){it2.match=m.id;it2.note='responde la interconsulta pendiente a '+(m.data.serv||'ese servicio');}
@@ -1273,7 +1282,7 @@ function looseDate(s,atIso){
   if((m=/\b(\d{1,2})[\/.](\d{1,2})\b/.exec(s))&&at&&+m[2]<=12&&+m[1]<=31){var yy=at.getFullYear(),d2=new Date(yy,+m[2]-1,+m[1],12,0);if(d2>at)d2=new Date(yy-1,+m[2]-1,+m[1],12,0);return {iso:d2.toISOString(),lbl:('0'+m[1]).slice(-2)+'/'+('0'+m[2]).slice(-2)+'/'+d2.getFullYear(),exact:true};}
   return null;
 }
-var LABN=/^([A-ZÁÉÍÓÚÑ][A-Za-zÁÉÍÓÚÑáéíóúñ0-9_%.()\/ \-]{1,55}?)\s+([<>]?-?\d+(?:[.,]\d+)?)\s*(?:(\d+(?:[.,]\d+)?\s*-\s*\d+(?:[.,]\d+)?)\s*)?([A-Za-zµ%\/^0-9 ]{0,16})$/;
+var LABN=/^([A-ZÁÉÍÓÚÑ][A-Za-zÁÉÍÓÚÑáéíóúñ0-9_%.()\/ \-]{1,55}?)\s+([<>]?-?\d+(?:[.,]\d+)?)\s*(?:(\d+(?:[.,]\d+)?\s*-\s*\d+(?:[.,]\d+)?|-)\s*)?([A-Za-zµ%\/^0-9 ]{0,16})$/;
 var LABQ=/^(BILIRRUBINAS?|GLUCOSA|LEUCOCITOS|NITRITOS|PROTEINAS|CETONAS|SANGRE|PH|DENSIDAD|ASPECTO|COLOR|UROBILINOGENO[A-Z ]*|EXAMEN MICROSCOPICO[A-Z]*|BACTERIAS|CELULAS EPITELIALES|HEMATIES)\b\s*:?\s+(.+)$/i;
 var LABUNIT=/(mg\/dl|g\/dl|g\/l|%|\/ul|u\/l|ui\/l|meq\/l|mmol\/l|seg|\bfl\b|\bpg\b|ml\/mm3|x ?10|10\^|mg\/l|ng\/ml|ml\/min|segundos)/i;
 var LABKNOWN=/^(PCR|INR|MCV|MCH|MCHC|RDW|RBC|PLT|WBC|HGB|HCT|NEU|LYM|EOS|BASO|MONO|PT|PTT|TP|TPT|TGO|TGP|BUN|LDH|PH)\b/i;
@@ -1281,13 +1290,13 @@ var NOTLAB=/\b(TAB|TABLETA|AMP|AMPOLLA|BOLSA|CAPSULA|SOLUCION|JARABE|GOTAS|VIA O
 var DLINE=/^(\d{1,2})[.\/](\d{1,2})[.\/](\d{2,4})\s*$/;
 var UNITFIX={'mg/dl':'mg/dL','g/dl':'g/dL','g/l':'g/L','u/l':'U/L','ui/l':'UI/L','ul':'µL','x 10^3/ul':'×10³/µL','x10^3/ul':'×10³/µL','meq/l':'mEq/L','mmol/l':'mmol/L','ml/min':'mL/min','ml/mm3':'mL/mm³','seg':'s'};
 function fixUnit(u){u=String(u||'').trim();var k=u.toLowerCase();return UNITFIX[k]||u.replace(/mg\/dl/i,'mg/dL').replace(/g\/dl/i,'g/dL').replace(/\/ul/i,'/µL');}
-function labName(n){n=n.replace(/^PARACLINICOS\s*/i,'').replace(/[.\s]+$/,'').replace(/_CH$/,'');if(/[_%]/.test(n)||n.length<=4)return n.toUpperCase();return sentence(n);}
+function labName(n){n=n.replace(/^PARACLINICOS\s*/i,'').replace(/[.\s]+$/,'').replace(/_CH$/,'');var an=typeof ANAL!=='undefined'&&ANAL[n.replace(/\s*\(.*$/,'').toUpperCase()];if(an)return an;if(/[_%]/.test(n)||n.length<=4)return n.toUpperCase();return sentence(n);}
 function labRow(t){
   t=t.replace(/^PARACLINICOS\s*/i,'');var m=LABN.exec(t),q;
   if(m&&!NOTLAB.test(m[1])){
     var unit=m[4].trim();
     if(m[3]||LABUNIT.test(unit)||LABKNOWN.test(m[1])){
-      var ref=m[3]?m[3].replace(/\s+/g,''):'';
+      var ref=m[3]&&m[3]!=='-'?m[3].replace(/\s+/g,''):'';
       return {name:labName(m[1]),txt:labName(m[1])+': '+m[2].replace(',','.')+(unit?' '+fixUnit(unit):'')+(ref?' (ref '+ref+')':''),key:norm2(m[1]).replace(/[^A-Z0-9]/g,'')};
     }
   }
@@ -1500,7 +1509,7 @@ function analyzeHus(pages){
   recs.forEach(function(r){
     var k=husKind(r.title);
     if(!k){skipped++;return;}
-    var ls=husLines(r.body,c,nameSet),at=r.at||(/^\d{4}-\d{2}-\d{2}/.test(meta.adm||'')?new Date(meta.adm.slice(0,10)+'T12:00:00').toISOString():new Date().toISOString()),it=null,d,title=sentence(r.title);
+    var ls=husLines(r.body,c,nameSet),at=r.at||(/^\d{4}-\d{2}-\d{2}/.test(meta.adm||'')?new Date(meta.adm.slice(0,10)+'T12:00:00').toISOString():new Date().toISOString()),it=null,d,title=sentence(r.title),hPara='';
     if(!sex){var sm=/\bPACIENTE\s+(FEMENINA|MASCULINO)\b/i.exec(ls.join(' '));if(sm)sex=/^f/i.test(sm[1])?'F':'M';}
     if(k==='ev'){d=parseEvHUS(ls);if(Object.keys(d).length)it={k:'ev',at:at,data:d,sub:/^CONSULTA/i.test(r.title)?'Consulta externa':''};}
     else if(k==='ic'){d=parseIcHUS(ls,r.sub);if(d.resp.replace(/\s/g,'').length>10||d.serv)it={k:'ic',at:at,data:d};}
@@ -1508,13 +1517,14 @@ function analyzeHus(pages){
       var end=ls.length;for(var q=0;q<ls.length;q++)if(EV_END.test(norm2(ls[q]))){end=q;break;}
       var h=husIngreso(ls.slice(0,end));if(!h){h=parseHx(ls.slice(0,end).join('\n'));if(h.ea)h.ea=h.ea;}
       if(!firstIn||at<firstIn.at)firstIn={at:at,hx:h};
-      d={};if(h.motivo)d.motivo=h.motivo;if(h.ea)d.ea=h.ea+(h.rs?'\nRevisión por sistemas:\n'+h.rs:'');else if(h.rs)d.ea='Revisión por sistemas:\n'+h.rs;if(h.ant)d.ant=h.ant.replace(/^(antecedentes:?\s*\n?)+/i,'');if(h.ef)d.ef=h.ef+(h.para?'\nParaclínicos:\n'+h.para:'');if(h.dx)d.imp=h.dx;if(h.plan)d.plan=h.plan;
+      d={};if(h.motivo)d.motivo=h.motivo;if(h.ea)d.ea=h.ea+(h.rs?'\nRevisión por sistemas:\n'+h.rs:'');else if(h.rs)d.ea='Revisión por sistemas:\n'+h.rs;if(h.ant)d.ant=h.ant.replace(/^(antecedentes:?\s*\n?)+/i,'');if(h.ef)d.ef=h.ef+(h.para?'\nParaclínicos:\n'+h.para:'');hPara=h.para||'';if(h.dx)d.imp=h.dx;if(h.plan)d.plan=h.plan;
       if(Object.keys(d).length)it={k:'in',at:at,data:d,sub:r.sub?sentence(r.sub):title};
     }
     else if(k==='ep'){d=parseEvHUS(ls);var e={};if(d.s||d.a)e.res=[d.s,d.a].filter(Boolean).join('\n\n');if(d.o)e.cond=d.o;if(d.p)e.ind=d.p;if(Object.keys(e).length)it={k:'ep',at:at,data:e};}
     else{var txt=ls.join('\n').trim();if(txt.length>15)it={k:'nt',at:at,data:{txt:title+'\n'+txt},sub:title};}
     if(it){Object.keys(it.data).forEach(function(q){if(typeof it.data[q]==='string')it.data[q]=cleanEmpty(cleanTpl(it.data[q]));});it.svc=(it.k==='ic'&&it.data.serv)?'Interconsulta · '+it.data.serv:husRole(r.title,r.sub);it.by=husWho(ls,r.body);if(it.k==='ep'&&it.data.cond)it.data.cond=it.data.cond.split(/\n(?=Resumen historia|Evolucion medica)/i)[0];tidyObj(it.data);if(r.est)it.est=1;items.push(it);}
-    if(k!=='nt'||/PROCEDIMIENTO|JUNTA/i.test(r.title))husExtract(ls,at,items,seenX);
+    if(k!=='nt'||/PROCEDIMIENTO|JUNTA|ACLARATORIA/i.test(r.title))husExtract(ls,at,items,seenX);
+    if(hPara.replace(/\s/g,'').length>8)items.push({k:'lab',at:at,data:{est:'Paraclínicos del ingreso (de otra institución) · '+at.slice(0,10).split('-').reverse().join('/'),res:hPara.trim()}});
   });
   if(firstIn){hx=firstIn.hx;delete hx.otros;tidyObj(hx);}
   if(hx.ant)hx.ant=hx.ant.replace(/^(antecedentes:?\s*\n?)+/i,'');
@@ -1531,7 +1541,7 @@ function importPdf(file,mode){
   toast('Leyendo el PDF…');
   pdfPages(file).then(function(pages){
     if(pages.join('').replace(/\s/g,'').length<40){toast('Este PDF no tiene texto (parece una foto o escaneo). Por ahora no leo imágenes.');return;}
-    var r=(forced==='auto'&&isHus(pages))?analyzeHus(pages):analyzeAll(stripRepeats(pages),forced);
+    var r=((forced==='auto'||forced==='lab')&&labRep(pages))||((forced==='auto'&&isHus(pages))?analyzeHus(pages):analyzeAll(stripRepeats(pages),forced));
     if(mode==='new')applyPdfNew(r);else applyPdfUpd(r);
   }).catch(function(e){toast(e&&e.message==='offline'?'La primera vez necesito internet para cargar el lector de PDF.':'No pude leer ese PDF.');});
 }
@@ -1876,8 +1886,9 @@ function gSync(manual){
     if(ls&&lm<=ls){db=rd;db.meta=db.meta||{};db.meta.mod=rm;persist();gSet({last:rm});return 'Traje los cambios hechos en otro dispositivo.';}
     mergeDb(db,rd);db.meta.mod=new Date().toISOString();persist();
     return push().then(function(){return 'Había cambios en los dos lados: los combiné (no se perdió nada; lo borrado en un lado puede reaparecer).';});
-  }).then(function(m){G.busy=false;gSet({when:new Date().toISOString()});gUi('ok','');if(m)toast(m);render();if(G.again){G.again=false;gAuto();}})
+  }).then(function(m){G.busy=false;G.tries=0;gSet({when:new Date().toISOString()});gUi('ok','');if(m)toast(m);render();if(G.again){G.again=false;gAuto();}})
   .catch(function(e){G.busy=false;var em=String(e&&e.message||e);
+    if(/Failed to fetch|NetworkError|Load failed|http5\d\d|auth/i.test(em)&&(G.tries=(G.tries||0)+1)<=2){setTimeout(function(){gSync(manual);},1200*G.tries);return;}G.tries=0;
     gUi('err',/offline|Failed to fetch|NetworkError/i.test(em)?'Sin conexión: se sincroniza cuando vuelva.':em==='auth'?'La sesión venció: cierra sesión y vuelve a entrar.':em==='http404'?'El servidor de sincronización no está activo en este sitio.':'No pude sincronizar ('+em+').');});
 }
 function gAuto(){
@@ -1886,11 +1897,12 @@ function gAuto(){
 }
 function gBoot(){
   if(!gAvail())return;
+  gRestore();
   gLoad().then(function(){
     var ni=window.netlifyIdentity;
-    ni.on('init',function(u){G.ok=true;renderTabs();if(u&&gCons())gSync(false);else if(S.view==='backup')render();});
-    ni.on('login',function(u){ni.close();G.ok=true;gSet({when:''});if(gCons())gSync(true);else{renderTabs();render();}});
-    ni.on('logout',function(){tReset();G.busy=false;gUi('off','');toast('Sesión cerrada. Tus datos siguen en este dispositivo.');});
+    ni.on('init',function(u){G.ok=true;gBak();renderTabs();if(u&&gCons())gSync(false);else if(S.view==='backup')render();});
+    ni.on('login',function(u){ni.close();G.ok=true;gBak();gSet({when:''});if(gCons())gSync(true);else{renderTabs();render();}});
+    ni.on('logout',function(){try{localStorage.removeItem('rot_gu_bak');}catch(e){}tReset();G.busy=false;gUi('off','');toast('Sesión cerrada. Tus datos siguen en este dispositivo.');});
     ni.on('error',function(){});
     ni.init();
   }).catch(function(){});
@@ -1960,6 +1972,15 @@ var HELP=[
  {t:'Mover un paciente de servicio',kw:['mover','mover paciente','cambiar de servicio','otro servicio','trasladar'],a:'En la ficha del paciente toca “Mover de servicio” y elige el servicio (o crea uno). Solo cambia dónde lo ves tú: tus colegas lo siguen viendo en su propio servicio, y la información clínica sigue sincronizada.'},
  {t:'Estados de turno',kw:['turno','en turno','descanso','fuera de turno','estado','verde','rojo','ambar','indicador'],a:'El indicador de color de arriba muestra tu estado ante tus colegas: verde en turno, ámbar en descanso (receso, almuerzo, cena, dormir) y rojo fuera de turno. Tócalo para cambiarlo. Si eres interno o estudiante, al ponerte en turno te pregunta en qué servicio estás.'},
  {t:'Chat del equipo',kw:['chat','mensaje','mensajes','escribir','notificacion','notificaciones','aviso'],a:'El chat está en Equipo → Chat: un grupo para todo el equipo y mensajes privados con cada colega. Se actualiza solo cada pocos segundos mientras tienes la app abierta; no manda avisos al teléfono cuando está cerrada. Úsalo solo para asuntos médicos y laborales y sin datos que identifiquen pacientes.'},
+ {t:'Administradores y miembros del equipo',kw:['administrador','admin','expulsar','retirar','sacar','miembros','quitar miembro','invitar','agregar miembro'],a:'Quien crea el equipo es el creador y puede nombrar o quitar administradores (en Equipo → Colegas → Hacer admin). Los administradores pueden cambiar el nombre del equipo, ver el código, invitar personas, retirar miembros y borrar mensajes de cualquiera. Un administrador no puede retirar a otro administrador: solo el creador. Para agregar a alguien, búscalo en Buscar personas y toca Invitar: le llega una invitación y decide si entra.'},
+ {t:'Buscar personas y mensajes directos',kw:['buscar usuario','buscar persona','escribir a alguien','mensaje directo','directo','encontrar colega','buscar colega'],a:'En Equipo, abre Buscar personas, escribe al menos 3 letras del nombre, usuario, cargo o servicio y toca Escribir para abrir una conversación directa. En tu perfil puedes desactivar “Permitir que otros usuarios me encuentren”. Para dejar de ver una conversación directa, tócala y elige Ocultar conversación.'},
+ {t:'Emojis en el chat',kw:['emoji','emojis','carita','caritas','reaccion'],a:'En el chat toca el botón de la carita junto al cuadro de texto, elige un emoji y se inserta donde está el cursor. También puedes usar el teclado de emojis de tu celular.'},
+ {t:'Modo ronda',kw:['ronda','modo ronda','presentar paciente','excluir de la ronda','quitar de la ronda','cama ascendente','corto','largo'],a:'Desde el inicio o desde un servicio toca Ronda. Elige orden por cama (ascendente o descendente), detalle corto o largo, y ver todos o uno a uno. En “Pacientes en esta ronda” desmarca a quienes no vas a presentar (solo es tu elección). Cada paciente muestra sus pendientes y un campo para anotar lo que pide el doctor: queda como pendiente marcado “Ronda”.'},
+ {t:'Historial de cambios de un paciente compartido',kw:['historial de cambios','quien cambio','registro de cambios','auditoria','quien modifico','paciente compartido cambios'],a:'En un paciente compartido, el cuadro “Historial de cambios” lista cada cambio con fecha, hora, nombre y cargo de quien lo hizo (por ejemplo, agregó un paraclínico o modificó el diagnóstico). El registro llega unos segundos después del cambio y agrupa los cambios repetidos del mismo autor en 10 minutos.'},
+ {t:'Número de historia clínica y buscador',kw:['numero de historia','historia clinica numero','cedula','buscar paciente','buscador','hc'],a:'En la ficha del paciente puedes guardar el número de historia clínica. Queda solo en tu dispositivo: no se comparte con colegas ni se envía en resúmenes. En el inicio, el buscador encuentra pacientes por ese número (mínimo 3 dígitos), por iniciales o por cama.'},
+ {t:'PDF de la entrega de turno',kw:['pdf entrega','entrega pdf','descargar entrega','enviar entrega','pdf de entrega'],a:'En Entrega elige el servicio y toca Descargar PDF, Compartir o Enviar por el chat. Puedes incluir el número de historia clínica de cada paciente marcando la casilla.'},
+ {t:'Actualizar la app en el iPhone',kw:['actualizar','refrescar','recargar','reiniciar','iphone','pantalla de inicio','no carga','version nueva'],a:'Toca el botón Actualizar (flecha circular) arriba: guarda tus datos, busca la versión nueva y recarga la app. Así no tienes que cerrarla y abrirla.'},
+ {t:'La sesión se cierra o sale un error al entrar',kw:['sesion se cierra','se desconecta','error al entrar','error al iniciar','otro dispositivo sesion','simultanea'],a:'La sesión es independiente en cada dispositivo: iniciar sesión en el computador no debería cerrar la del celular. Si ves un error justo al iniciar, la app reintenta sola unos segundos. Si Google te abre una pestaña del navegador y no vuelves a la app instalada, entra desde la app con tu correo. Si la sesión venció, ve a Respaldo → Cerrar sesión y entra de nuevo: tus datos locales no se pierden.'},
  {t:'Interconsultas pendientes',kw:['interconsulta','interconsultas','respondida','pendiente interconsulta','ic'],a:'Las interconsultas están en su sección. Toca “Pendiente: marcar respondida” cuando llegue la respuesta. Las pendientes también aparecen en la pestaña Pendientes.',go:[['Ir a Interconsultas','sec:ic']]},
  {t:'Pendientes del turno',kw:['pendientes','tareas','por hacer','lista de tareas','turno'],a:'Dentro de cada paciente, la sección Pendientes guarda sus tareas. La pestaña Pendientes (arriba) reúne las de todos tus pacientes activos.',go:[['Ir a Pendientes','nav:tasks']]},
  {t:'Entrega de turno',kw:['entrega','entrega de turno','reporte','copiar entrega','handoff'],a:'En la pestaña Entrega se arma un texto con tus pacientes activos y sus pendientes. Elige el servicio y toca copiar para pegarlo donde lo necesites.',go:[['Ir a Entrega','nav:handoff']]},
@@ -2050,19 +2071,22 @@ function tConvOf(m){return m.to?(T.me&&m.from===T.me.id?m.to:m.from):'g';}
 function tUnreadCalc(){
   var s=tSeen(),n=0;
   if(T.me)T.msgs.forEach(function(m){if(m.from===T.me.id)return;var c=tConvOf(m);if(S.view==='team'&&T.tab==='chat'&&T.conv===c)return;if(m.id>(s[c]||''))n++;});
-  T.unread=n;
+  T.unreadOther=T.teams.filter(function(x){return x.last&&T.me&&x.lastFrom!==T.me.id&&(!T.team||x.code!==T.team.code)&&('m_'+x.code+'_'+x.last)>(s['T'+x.code]||'');}).length;
+  T.unread=n+T.unreadOther+((T.invites||[]).length);
 }
 function tMarkSeen(){
   if(S.view!=='team'||T.tab!=='chat'||!T.me)return;
   var s=tSeen(),top='';T.msgs.forEach(function(m){if(tConvOf(m)===T.conv&&m.id>top)top=m.id;});
-  if(top&&top>(s[T.conv]||'')){s[T.conv]=top;tSetSeen(s);}
+  if(top&&top>(s[T.conv]||'')){s[T.conv]=top;}
+  if(T.team&&T.team.last)s['T'+T.team.code]='m_'+T.team.code+'_'+T.team.last;
+  tSetSeen(s);
 }
 function tMember(id){for(var i=0;i<T.members.length;i++)if(T.members[i].id===id)return T.members[i];return null;}
 function tReset(){T.loaded=false;T.loading=false;T.me=null;T.team=null;T.teams=[];T.cache={};T.members=[];T.msgs=[];T.cursor='';T.ph={};T.phv={};T.unread=0;T.edit=false;T.photo=null;T.err='';renderTabs();if(S.view==='team')render();}
 function tLoad(){
   if(T.loading||!tAvail())return Promise.resolve();T.loading=true;
   return tApi({action:'me'}).then(function(j){
-    T.me=j.me;T.email=j.email||'';T.teams=j.teams||[];var cc='';try{cc=localStorage.getItem('rot_tcur')||'';}catch(e){}T.team=T.teams.filter(function(x){return x.code===cc;})[0]||T.teams[0]||null;T.loaded=true;T.err='';if(j.photo){T.ph[j.me.id]=j.photo;T.phv[j.me.id]=j.me.pv;}
+    T.me=j.me;T.email=j.email||'';T.teams=j.teams||[];T.invites=j.invites||[];T.disc=j.discoverable!==false;T.meAt=Date.now();var cc='';try{cc=localStorage.getItem('rot_tcur')||'';}catch(e){}T.team=T.teams.filter(function(x){return x.code===cc;})[0]||T.teams.filter(function(x){return !x.dm;})[0]||T.teams[0]||null;T.loaded=true;T.err='';if(j.photo){T.ph[j.me.id]=j.photo;T.phv[j.me.id]=j.me.pv;}
     if(!j.me.name||!j.me.rank)T.edit=true;
     T.loading=false;if(T.team)return tPoll(true);
   }).catch(function(e){T.loading=false;T.err=tErr(e);}).then(function(){renderTabs();if(S.view==='team')render();});
@@ -2071,7 +2095,7 @@ function tErr(e){var m=String(e&&e.message||e);return /Failed to fetch|NetworkEr
 function tPoll(force){
   if(!tAvail()||!T.team||T.poll)return Promise.resolve();T.poll=true;T.last=Date.now();
   return tApi({action:'poll',team:T.team.code,after:T.cursor,eafter:T.ecur||''}).then(function(j){
-    T.teams=T.teams.map(function(x){return x.code===j.team.code?j.team:x;});T.team=j.team;T.members=j.members;T.err='';
+    T.teams=T.teams.map(function(x){return x.code===j.team.code?(j.team.dm?Object.assign({},x,j.team,{name:x.name}):j.team):x;});T.team=T.teams.filter(function(x){return x.code===j.team.code;})[0]||j.team;T.members=j.members;T.err='';
     var have={};T.msgs.forEach(function(m){have[m.id]=1;});
     j.msgs.forEach(function(m){if(!have[m.id])T.msgs.push(m);});
     T.msgs.sort(function(a,b){return a.id<b.id?-1:1;});if(T.msgs.length>400)T.msgs=T.msgs.slice(-400);
@@ -2086,6 +2110,7 @@ function tPoll(force){
 function tTick(){
   if(!tAvail()){return;}
   if(!T.loaded){tLoad();return;}
+  if(Date.now()-(T.meAt||0)>30000)tMeRefresh();
   if(!T.team)return;
   var every=(S.view==='team'&&document.visibilityState==='visible')?5000:30000;
   if(Date.now()-T.last>=every-200)tPoll();
@@ -2123,6 +2148,7 @@ function tActs(m){
   return '<div class="macts"><button class="btn sm" data-a="tReply" data-id="'+esc(m.id)+'">Responder</button>'+(m.kind==='text'||m.kind==='patient'?'<button class="btn sm" data-a="tCopy" data-id="'+esc(m.id)+'">Copiar</button>':'')+'<button class="btn sm" data-a="tPin" data-id="'+esc(m.id)+'">'+(m.pin?'Desfijar':'Fijar')+'</button>'+(mine&&m.kind==='text'?'<button class="btn sm" data-a="tEditMsg" data-id="'+esc(m.id)+'">Editar</button>':'')+'<button class="btn sm" data-a="tDelMe" data-id="'+esc(m.id)+'">Eliminar para mí</button>'+((mine||own)?'<button class="btn sm danger" data-a="tDelAll" data-id="'+esc(m.id)+'">'+(T.confirmDel===m.id?'Confirmar: eliminar para todos':'Eliminar para todos')+'</button>':'')+'</div>';
 }
 function tMsgHtml(m){
+  if(m.kind==='sys')return '<div class="sysm">'+esc(m.text)+' · '+esc(tTime(m.at))+'</div>';
   var mine=T.me&&m.from===T.me.id,who=tMember(m.from),nm=mine?'Yo':(who?(tDisp(who)):'Excolega'),sel=T.sel===m.id,cls=(mine?'me':'ot');
   var inner;
   if(m.deleted){inner='<div class="bub del '+cls+'" data-a="tSel" data-id="'+esc(m.id)+'"><em>Mensaje eliminado</em><div class="bm">'+esc(tTime(m.at))+'</div></div>';}
@@ -2145,7 +2171,7 @@ function tLiveHtml(){
     var on=ms.filter(function(m){return tStOf(m)==='on';}).length;
     return '<div class="small muted" style="margin:4px 0 8px">'+on+' en turno de '+ms.length+'.</div>'+ms.map(function(m){
       var me=T.me&&m.id===T.me.id;
-      return '<div class="colg">'+tAv(m.id,m.name)+'<div class="grow"><strong>'+esc(tDisp(m))+'</strong>'+(me?' <span class="muted small">(tú)</span>':'')+'<div class="small muted">'+esc([m.cargo,(tRot(m.cargo)&&tStOf(m)!=='on')?'':m.servicio].filter(Boolean).join(' · ')||'Sin cargo')+'</div></div>'+tShiftPill(tStOf(m))+(me?'':'<button class="btn sm" data-a="tOpenChat" data-id="'+esc(m.id)+'">Escribir</button>')+'</div>';}).join('');
+      return tColRow(m,me);}).join('')+tColFoot();
   }
   var s=tSeen(),unreadOf=function(c){var n=0;T.msgs.forEach(function(m){if(T.me&&m.from!==T.me.id&&tConvOf(m)===c&&c!==T.conv&&m.id>(s[c]||''))n++;});return n;};
   var chips='<div class="convs"><button class="fc" data-a="tConv" data-id="g" aria-current="'+(T.conv==='g')+'">Grupo'+(unreadOf('g')?' <span class="n">'+unreadOf('g')+'</span>':'')+'</button>'+
@@ -2153,7 +2179,7 @@ function tLiveHtml(){
   var list=T.msgs.filter(function(m){return tConvOf(m)===T.conv;});
   var pins=list.filter(function(m){return m.pin&&!m.deleted;}).slice(-3);
   var pinh=pins.length?'<div class="pinb"><strong>Fijados</strong>'+pins.map(function(m){var w=tMember(m.from);return '<div class="pini"><span>'+esc((T.me&&m.from===T.me.id?'Yo':(w?tDisp(w):'Excolega'))+': '+cut(m.kind==='file'?'PDF '+m.text:m.text,90))+'</span><button class="btn sm ghost" data-a="tPin" data-id="'+esc(m.id)+'">Desfijar</button></div>';}).join('')+'</div>':'';
-  return chips+pinh+'<div id="tMsgs" class="tmsgs" aria-live="polite">'+(list.length?list.map(tMsgHtml).join(''):'<div class="empty small">'+(T.conv==='g'?'Aún no hay mensajes en el grupo. Escribe el primero.':'Aún no hay mensajes con esta persona.')+'</div>')+'</div>';
+  return (T.team.dm?'':chips)+pinh+'<div id="tMsgs" class="tmsgs" aria-live="polite">'+(list.length?list.map(tMsgHtml).join(''):'<div class="empty small">'+(T.conv==='g'?'Aún no hay mensajes en el grupo. Escribe el primero.':'Aún no hay mensajes con esta persona.')+'</div>')+'</div>';
 }
 function tPaint(){
   var el=document.getElementById('tLive');if(!el||S.view!=='team')return;
@@ -2180,7 +2206,7 @@ function tProfileForm(){
    '<label id="tpServL"'+(tRot(m.cargo)?' hidden':'')+'>Servicio<input id="tpServ" value="'+esc(m.servicio||'')+'" maxlength="80" placeholder="Urología, Medicina interna…"></label>'+
    '<div class="small muted" id="tpRotN"'+(tRot(m.cargo)?'':' hidden')+'>Como internos y estudiantes rotan, no tienes un servicio fijo: te preguntaremos en qué servicio estás cada vez que te pongas “En turno”.</div>'+
    '<label>Estado<select id="tpStat">'+['on','rest','off'].map(function(k){return '<option value="'+k+'"'+(tStOf(m)===k?' selected':'')+'>'+STL[k]+'</option>';}).join('')+'</select></label>'+
-   '<div class="small muted">Tu perfil lo ven solo las personas de tu equipo. No pongas teléfono ni datos personales que no quieras compartir.</div>'+
+   '<label style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" id="tpDisc"'+(T.disc!==false?' checked':'')+'><span class="small">Permitir que otros usuarios me encuentren al buscarme (para escribirme o invitarme a un equipo)</span></label><div class="small muted">Tu perfil lo ven las personas de tus equipos y quienes te encuentren al buscarte si lo permites. No pongas teléfono ni datos personales que no quieras compartir.</div>'+
    '<div class="row"><button class="btn primary" data-a="tSaveProf">Guardar perfil</button>'+(m.name?'<button class="btn" data-a="tEditCancel">Cancelar</button>':'')+'</div></div>';
 }
 function viewTeam(){return '<div class="nt">'+viewTeam0()+'</div>';}
@@ -2198,17 +2224,19 @@ function viewTeam0(){
   if(T.edit||!m.name||!m.rank)return h+tProfileForm();
   h+='<div class="card"><div class="row">'+tAv(m.id,m.name,true)+'<div class="grow"><h3 style="margin:0">'+esc(tDisp(m))+'</h3><div class="small muted">'+esc([m.cargo,(tRot(m.cargo)&&tStOf(m)!=='on')?'':m.servicio].filter(Boolean).join(' · ')||'Completa tu cargo en el perfil')+'</div></div></div>'+
    '<div class="row">'+['on','rest','off'].map(function(k){return '<button class="shbtn st-'+k+(tStOf(m)===k?' cur':'')+'" data-a="tSt" data-id="'+k+'" aria-pressed="'+(tStOf(m)===k?'true':'false')+'"><span class="pdot st-'+k+'"></span>'+STL[k]+'</button>';}).join('')+'<button class="btn sm" data-a="tEdit">Editar perfil</button></div></div>';
+  h+=tInvCards()+tSearchCard();
   if(!T.team)return h+tJoinCards();
-  if(T.teams.length>1)h+='<div class="fchips" aria-label="Mis equipos">'+T.teams.map(function(x){return '<button class="fc" data-a="tTeam" data-id="'+esc(x.code)+'" aria-current="'+(x.code===T.team.code)+'">'+esc(x.name)+'</button>';}).join('')+'</div>';
-  if(T.renaming&&T.team.owner)h+='<div class="card"><label>Nuevo nombre del equipo<input id="tRen" maxlength="60" value="'+esc(T.team.name)+'"></label><div class="row"><button class="btn primary" data-a="tRenGo">Guardar nombre</button><button class="btn" data-a="tRenS">Cancelar</button></div></div>';
-  h+='<div class="card"><div class="row spread"><div><h3 style="margin:0">'+esc(T.team.name)+'</h3><div class="small muted">Código de invitación: <span class="mono"><strong>'+esc(T.team.code)+'</strong></span></div></div><div class="row">'+(T.team.owner?'<button class="btn sm" data-a="tRenS">Cambiar nombre</button>':'')+'<button class="btn sm" data-a="tInvite">Copiar invitación</button>'+(T.confirmLeave?'<button class="btn sm danger" data-a="tLeave">Confirmar: salir</button>':'<button class="btn sm" data-a="tAskLeave">Salir del equipo</button>')+'</div></div></div>';
+  h+=tChips();
+  if(T.renaming&&T.team.admin&&!T.team.dm)h+='<div class="card"><label>Nuevo nombre del equipo<input id="tRen" maxlength="60" value="'+esc(T.team.name)+'"></label><div class="row"><button class="btn primary" data-a="tRenGo">Guardar nombre</button><button class="btn" data-a="tRenS">Cancelar</button></div></div>';
+  h+=tHeadCard();
   h+='<details class="card"><summary><strong>Unirme a otro equipo o crear uno</strong></summary>'+tJoinCards()+'</details>';
-  h+='<div class="fchips"><button class="fc" data-a="tTab" data-id="chat" aria-current="'+(T.tab==='chat')+'">Chat</button><button class="fc" data-a="tTab" data-id="col" aria-current="'+(T.tab==='col')+'">Colegas ('+T.members.length+')</button></div>';
+  if(T.team.dm)T.tab='chat';
+  h+=(T.team.dm?'':'<div class="fchips"><button class="fc" data-a="tTab" data-id="chat" aria-current="'+(T.tab==='chat')+'">Chat</button><button class="fc" data-a="tTab" data-id="col" aria-current="'+(T.tab==='col')+'">Colegas ('+T.members.length+')</button></div>');
   tMarkSeen();tUnreadCalc();
   h+='<div class="card tchat"><div id="tLive">'+tLiveHtml()+'</div>';
   if(T.tab==='chat'&&T.reply)h+='<div class="rbar">Respondiendo a <strong>'+esc(T.reply.name)+'</strong>: '+esc(T.reply.text)+' <button class="btn sm ghost" data-a="tRepX">Quitar</button></div>';
   if(T.tab==='chat'&&T.editing)h+='<div class="rbar">Editando un mensaje tuyo <button class="btn sm ghost" data-a="tEditX">Cancelar</button></div>';
-  if(T.tab==='chat')h+='<div class="tcomp"><textarea id="tIn" rows="2" maxlength="1500" placeholder="'+(T.conv==='g'?'Mensaje al grupo…':'Mensaje privado…')+'" aria-label="Mensaje">'+esc(T.draft)+'</textarea><button class="btn primary" data-a="tSend">Enviar</button></div><div class="small muted">Solo para asuntos médicos y laborales. Nada de nombres completos, cédulas ni teléfonos de pacientes. Se actualiza solo cada pocos segundos; no hay avisos con la app cerrada.</div>';
+  if(T.tab==='chat')h+='<div id="emoP" class="emop" hidden>'+EMO.map(function(e){return '<button class="emb" data-a="tEmoPick" data-e="'+e+'" aria-label="'+e+'">'+e+'</button>';}).join('')+'</div><div class="tcomp"><button class="btn sm emot" data-a="tEmo" aria-label="Emojis" title="Emojis">😊</button><textarea id="tIn" rows="2" maxlength="1500" placeholder="'+(T.conv==='g'?'Mensaje al grupo…':'Mensaje privado…')+'" aria-label="Mensaje">'+esc(T.draft)+'</textarea><button class="btn primary" data-a="tSend">Enviar</button></div><div class="small muted">Solo para asuntos médicos y laborales. Nada de nombres completos, cédulas ni teléfonos de pacientes. Se actualiza solo cada pocos segundos; no hay avisos con la app cerrada.</div>';
   return h+'</div>';
 }
 
@@ -2307,7 +2335,7 @@ var AT={
  tPhotoPick:function(){var i=document.getElementById('tPhotoIn');if(i)i.click();},
  tPhotoDel:function(){T.photo='';var pv=document.getElementById('tPrev');if(pv)pv.innerHTML='<span class="av lg">'+esc(tIni(val('tpName')))+'</span>';},
  tSaveProf:function(){
-   var o={action:'saveProfile',name:val('tpName'),rank:val('tpRank'),username:val('tpUser'),cargo:val('tpCargo'),servicio:tRot(val('tpCargo'))?(tRot(T.me&&T.me.cargo)?(T.me.servicio||''):''):val('tpServ'),status:val('tpStat')||'off'};
+   var o={action:'saveProfile',name:val('tpName'),rank:val('tpRank'),username:val('tpUser'),cargo:val('tpCargo'),servicio:tRot(val('tpCargo'))?(tRot(T.me&&T.me.cargo)?(T.me.servicio||''):''):val('tpServ'),status:val('tpStat')||'off',discoverable:!!(document.getElementById('tpDisc')&&document.getElementById('tpDisc').checked)};
    if(o.status==='on'&&tRot(o.cargo)&&!o.servicio){T.pendProf=o;o.status='off';}
    if(!o.name.trim()){toast('Escribe tu nombre.');return;}
    if(!o.rank.trim()){toast('Escribe tu especialidad o rango (Est., Int., Res., MG…). Va al comienzo de tu nombre.');return;}
@@ -2513,7 +2541,7 @@ function svcPick(){
 function sStable(o){if(o===null||typeof o!=='object')return JSON.stringify(o);if(Array.isArray(o))return '['+o.map(sStable).join(',')+']';return '{'+Object.keys(o).sort().map(function(k){return JSON.stringify(k)+':'+sStable(o[k]);}).join(',')+'}';}
 function sHash(s){var h=5381,i;for(i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return h+':'+s.length;}
 function scrubV(v,k){if(typeof v==='string')return k==='id'?v:ptScrub(v);if(Array.isArray(v))return v.map(function(x){return scrubV(x);});if(v&&typeof v==='object'){var o={};Object.keys(v).forEach(function(q){o[q]=scrubV(v[q],q);});return o;}return v;}
-var PNOSYNC={hcn:1,hc:1,id:1,serviceId:1,sh:1,demo:1,active:1,exitAt:1};
+var PNOSYNC={rnx:1,hcn:1,hc:1,id:1,serviceId:1,sh:1,demo:1,active:1,exitAt:1};
 function shItems(p){
   var it={},o={};Object.keys(p).forEach(function(k){if(!PNOSYNC[k])o[k]=p[k];});it.p=scrubV(o);
   db.entries.forEach(function(e){if(e.patientId!==p.id)return;var c={};Object.keys(e).forEach(function(k){if(k!=='patientId')c[k]=e[k];});it['e:'+e.id]=scrubV(c);});
@@ -2560,12 +2588,13 @@ function spSyncAll(){
   if(!tAvail()||SP.busy||!spAny())return Promise.resolve();
   SP.busy=true;SP.last=Date.now();
   var ps=db.patients.filter(function(p){return p.sh&&p.sh.id&&!p.sh.gone;}),sent={};
-  var shares=ps.map(function(p){var d=shDiff(p);sent[p.id]=d;var ch={};Object.keys(d.ch).forEach(function(k){ch[k]={v:d.ch[k].v,m:d.ch[k].m};});return {id:p.sh.id,since:p.sh.rev||0,changes:ch};});
+  var shares=ps.map(function(p){var d=shDiff(p);sent[p.id]=d;var ch={};Object.keys(d.ch).forEach(function(k){ch[k]={v:d.ch[k].v,m:d.ch[k].m};});return {id:p.sh.id,since:p.sh.rev||0,lsince:p.sh.logn||0,changes:ch};});
   return tApi({action:'spSync',shares:shares}).then(function(j){
     var any=0,names=[];
     j.shares.forEach(function(r){
       var p=db.patients.filter(function(x){return x.sh&&x.sh.id===r.id;})[0];if(!p)return;
       if(r.gone){p.sh.gone=1;return;}
+      spLog(p,r);
       var n=spApply(p,r,sent[p.id]);if(n){any+=n;names.push(p.ini+(p.sh.upd&&p.sh.upd.by?' ('+p.sh.upd.by+')':''));}
     });
     SP.busy=false;
@@ -2585,7 +2614,7 @@ function spJoin(shareId,serviceId){
     var r=j.shares[0];if(!r||r.gone)throw new Error('Ya no tienes acceso a este paciente.');
     var pv=r.items.p&&r.items.p.v;if(!pv)throw new Error('El paciente compartido está vacío.');
     var p={id:uid(),serviceId:serviceId,active:true};Object.keys(pv).forEach(function(f){p[f]=pv[f];});
-    db.patients.push(p);p.sh={id:shareId,base:{},rev:r.rev,upd:null};
+    db.patients.push(p);p.sh={id:shareId,base:{},rev:r.rev,upd:null};spLog(p,r);
     Object.keys(r.items).forEach(function(k){if(k!=='p'&&r.items[k].v!==null)spSet(p,k,r.items[k].v);});
     var cur=shItems(p);Object.keys(cur).forEach(function(k){p.sh.base[k]=sHash(sStable(cur[k]));});
     dbTouch();return p;
@@ -2604,7 +2633,7 @@ viewPatient=function(){
   var u=p.sh.upd;
   return '<div class="note shb"><strong>Paciente compartido.</strong> '+(p.sh.gone?'Ya no tienes acceso a las actualizaciones.':'Los cambios que hagas llegan a tus colegas y los de ellos a ti.')+
     (u?' <span class="warn-t">Actualizado por '+esc(u.by||'un colega')+' ('+u.n+' cambio'+(u.n===1?'':'s')+', '+esc(fmt(u.at))+').</span> <button class="btn sm" data-a="spSeen">Entendido</button>':'')+
-    ' <button class="btn sm ghost" data-a="spOff">Dejar de compartir conmigo</button></div>'+h;
+    ' <button class="btn sm ghost" data-a="spOff">Dejar de compartir conmigo</button></div>'+shLogHtml(p)+h;
 };
 
 /* ---------- acciones ---------- */
@@ -2675,7 +2704,7 @@ S.rn={sid:null,ord:'asc',mode:'short',one:false,i:0};
 try{var _rn=JSON.parse(localStorage.getItem('rot_rn')||'{}');['ord','mode','one'].forEach(function(k){if(_rn[k]!==undefined)S.rn[k]=_rn[k];});}catch(e){}
 function rnSave(){try{localStorage.setItem('rot_rn',JSON.stringify({ord:S.rn.ord,mode:S.rn.mode,one:S.rn.one}));}catch(e){}}
 function bedSort(a,b){return String(a.bed).localeCompare(String(b.bed),undefined,{numeric:true});}
-function rnPts(){var ps=activeOf(S.rn.sid).sort(bedSort);if(S.rn.ord==='desc')ps.reverse();return ps;}
+function rnPts(){var ps=activeOf(S.rn.sid).filter(function(p){return !p.rnx;}).sort(bedSort);if(S.rn.ord==='desc')ps.reverse();return ps;}
 function pTasksAll(p){
   return openTasks(p.id).map(function(t){return {id:t.id,text:t.text,r:!!t.r,k:'t'};}).concat(openICs(p.id).map(function(e){return {id:e.id,text:'Interconsulta '+(e.data.serv||'')+': '+cut(e.data.preg,140),r:false,k:'ic'};}));
 }
@@ -2724,7 +2753,7 @@ function rnCard(p){
    rnSecs(p,mode).map(function(s){return '<div class="rns"><div class="rnh">'+esc(s[0])+'</div><div class="rnt">'+esc(s[1])+'</div></div>';}).join('')+
    '<div class="rns rnp"><div class="rnh">Pendientes'+(ts.length?' ('+ts.length+')':'')+'</div>'+(ts.length?ts.map(function(t){return t.k==='t'?'<div class="task"><input type="checkbox" data-a="toggleTask" data-id="'+t.id+'" aria-label="Hecho"><span class="t">'+(t.r?'<span class="chip" style="--c:var(--c-interconsulta)">Ronda</span> ':'')+esc(t.text)+'</span></div>':'<div class="task"><span class="chip" style="--c:var(--c-interconsulta)">IC</span><span class="t">'+esc(t.text)+'</span></div>';}).join(''):'<div class="small muted">Ninguno.</div>')+
    '<div class="row"><div class="grow"><input id="rq_'+p.id+'" data-enter="rnAdd" data-id="'+p.id+'" placeholder="Lo que pidió el doctor en ronda…" aria-label="Solicitud de ronda"></div><button class="btn sm primary" data-a="rnAdd" data-id="'+p.id+'">Anotar</button></div><div class="small muted">Se guarda como pendiente marcado “Ronda”, para solicitarlo con calma después.</div></div>'+
-   '<div class="row"><button class="btn sm" data-a="rnCopyOne" data-id="'+p.id+'">Copiar presentación</button><button class="btn sm ghost" data-a="openPatient" data-id="'+p.id+'">Abrir ficha ›</button></div></div>';
+   '<div class="row"><button class="btn sm" data-a="rnCopyOne" data-id="'+p.id+'">Copiar presentación</button><button class="btn sm ghost" data-a="openPatient" data-id="'+p.id+'">Abrir ficha ›</button><button class="btn sm ghost" data-a="rnOut" data-id="'+p.id+'">Quitar de la ronda</button></div></div>';
 }
 function viewRonda(){
   var s=svc(S.rn.sid);if(!s){S.view='services';return viewServices();}
@@ -2733,6 +2762,7 @@ function viewRonda(){
    '<div class="rngrp"><span class="small muted">Detalle</span><div class="row"><button class="fc" data-a="rnMode" data-v="short" aria-current="'+(R.mode==='short')+'">Corto y conciso</button><button class="fc" data-a="rnMode" data-v="long" aria-current="'+(R.mode==='long')+'">Largo y detallado</button></div></div>'+
    '<div class="rngrp"><span class="small muted">Vista</span><div class="row"><button class="fc" data-a="rnOne" data-v="0" aria-current="'+(!R.one)+'">Todos</button><button class="fc" data-a="rnOne" data-v="1" aria-current="'+(R.one)+'">Uno a uno</button></div></div>'+
    '<div class="rngrp"><span class="small muted">Servicio</span><select id="rnSvc" aria-label="Servicio">'+db.services.map(function(x){return '<option value="'+esc(x.id)+'"'+(x.id===R.sid?' selected':'')+'>'+esc(x.name)+'</option>';}).join('')+'</select></div></div>';
+  h+=rnPicker();
   if(!ps.length)return h+'<div class="empty">'+art('sleep')+'No hay pacientes activos en este servicio.</div>';
   if(R.i>=ps.length)R.i=ps.length-1;if(R.i<0)R.i=0;
   h+='<div class="rnidx">'+ps.map(function(p,i){return '<button class="fc'+(pendCount(p.id)?' hasp':'')+'" data-a="rnJump" data-i="'+i+'" data-id="'+p.id+'"'+(R.one&&i===R.i?' aria-current="true"':'')+'>'+esc(p.bed||'—')+'</button>';}).join('')+'</div>';
@@ -2884,6 +2914,208 @@ var AT17b={
 AT17.rnStart=function(el){S.rn.sid=el.dataset.id;S.rn.i=0;go('ronda');};
 for(var k17 in AT17)AT[k17]=AT17[k17];
 for(var k17b in AT17b)AT[k17b]=AT17b[k17b];
+
+/* ===== v18: informes de laboratorio (HUS "Resultado de servicios") y paraclínicos de la historia ===== */
+var ANAL={'NEU':'Neutrófilos','NEU%':'Neutrófilos %','LYM':'Linfocitos','LYM%':'Linfocitos %','MONO':'Monocitos','MONO%':'Monocitos %','EOS':'Eosinófilos','EOS%':'Eosinófilos %','BASO':'Basófilos','BASO%':'Basófilos %','RBC':'Eritrocitos (RBC)','HGB':'Hemoglobina','HGB_CH':'Hemoglobina','HCT':'Hematocrito','HCT_CH':'Hematocrito','MCV':'VCM (MCV)','MCH':'HCM (MCH)','MCHC':'CHCM (MCHC)','PLT':'Plaquetas','MPV':'VPM (MPV)','WBC':'Leucocitos (WBC)','RDW_SD':'RDW-SD','RDW_CV':'RDW-CV','IPF':'IPF','IG#':'Granulocitos inmaduros #','IG%':'Granulocitos inmaduros %','NRBC#':'NRBC #','NRBC%':'NRBC %'};
+var ANRX=/^([A-ZÁÉÍÓÚÑ][A-ZÁÉÍÓÚÑ0-9_#%.]{1,11}(?:\s*\([A-ZÁÉÍÓÚÑ ]{3,30}\))?)\s+(-?\d+(?:[.,]\d+)?)\s+(-|[<>]?\s*\d[\d.,]*\s*-\s*\d[\d.,]*|[<>]\s*\d[\d.,]*)\s+(\S.{0,24})$/;
+function analLine(t){
+  var m=ANRX.exec(t.trim());if(!m)return null;
+  var key=m[1].replace(/\s*\(.*$/,'').toUpperCase(),nm=ANAL[key]||(m[1].replace(/\s*\(.*$/,'')),v=parseFloat(m[2].replace(',','.')),rg=m[3].replace(/\s+/g,''),flag='',rr=/^(-?[\d.,]+)-([\d.,]+)$/.exec(rg);
+  if(rr){var lo=parseFloat(rr[1].replace(',','.')),hi=parseFloat(rr[2].replace(',','.'));if(!isNaN(lo)&&!isNaN(hi)){if(v<lo)flag=' ↓';else if(v>hi)flag=' ↑';}}
+  var un=m[4].replace(/\bg\/dl\b/i,'g/dL').replace(/\bml\/mm3\b/i,'mL/mm³').replace(/x\s*10\^(\d)\/ul/i,'×10^$1/µL').replace(/\bfl\b/,'fL');
+  return nm+' '+m[2]+' '+un+(rg==='-'?'':' (ref '+rg+')')+flag;
+}
+function labDate(s){
+  var m=/(\d{1,2})\/(\d{1,2})\/(\d{2,4})\s+(\d{1,2}):(\d{2})\s*([ap])\.?\s*m/i.exec(s);if(!m)return null;
+  var y=+m[3];if(y<100)y+=2000;var h=+m[4];if(/p/i.test(m[6])&&h<12)h+=12;if(/a/i.test(m[6])&&h===12)h=0;
+  var d=new Date(y,+m[2]-1,+m[1],h,+m[5]);return isNaN(d)?null:d.toISOString();
+}
+function labRep(pages){
+  var txt=pages.join('\n');
+  if(!/LISTADO DE RESULTADOS|HCRPLIstaResultados/i.test(txt))return null;
+  var ls=txt.split('\n').map(function(l){return l.trim();}),items=[],i=0;
+  while(i<ls.length){
+    var h=/^(\d{5,6})\s+(\S.*)$/.exec(ls[i]);
+    if(!h||/^(Fecha|Nombre|Muncipio|Direcci)/i.test(h[2])){i++;continue;}
+    var name=h[2],j=i+1,at=null,body=[],mode='name';
+    while(j<ls.length&&!/^Fecha Solicitud/i.test(ls[j])&&j<i+8){name+=' '+ls[j];j++;}
+    var tom=/Fecha Tomado\s+(.*?)(?:\s{2,}|$)/i.exec(ls[j]||'');
+    at=labDate(ls[j]||'')||null;
+    for(var q=j;q<Math.min(j+3,ls.length);q++){var tt=/Fecha Tomado\s*(\d{1,2}\/\d{1,2}\/\d{2,4}\s+\d{1,2}:\d{2}\s*[ap]\.?\s*m)/i.exec(ls[q]);if(tt){at=labDate(tt[1]);break;}}
+    for(j=j+1;j<ls.length;j++){
+      var l=ls[j];
+      if(/^(\d{5,6})\s+\S/.test(l)&&!analLine(l))break;
+      if(/^(Nombre reporte|INTERPRETACION|Area de servicio)/i.test(l))break;
+      if(/^RESULTADO\s*$/i.test(l)||/^Fecha (Solicitud|Resultado|Interpretado)/i.test(l)||/^Comentario Analito/i.test(l)||!l)continue;
+      body.push(l);
+    }
+    var an=[],oth=[];body.forEach(function(l){var s=analLine(l);if(s)an.push(s);else oth.push(l);});
+    var nm=name.replace(/\s*\(.*$/,'').replace(/\s+/g,' ').trim();nm=sentence(nm).replace(/\b(iv|ii|iii)\b/i,function(x){return x.toUpperCase();});
+    var res=an.concat(oth).join('\n').trim();
+    if(res)items.push({k:'lab',at:at||new Date().toISOString(),data:{est:nm||'Laboratorio',res:res}});
+    i=j;
+  }
+  if(!items.length)return null;
+  return {f:{},hx:{},items:items,red:0,skip:0,labrep:true};
+}
+if(location.hash==='#dbg')window.__dbg={analyzeHus:analyzeHus,analyzeAll:analyzeAll,labRep:labRep,pdfPages:pdfPages,isHus:isHus};
+
+function labNums(t){var o={};String(t||'').split('\n').forEach(function(l){var m=/^(.*?)\s(-?\d+(?:[.,]\d+)?)(?:\s|$)/.exec(l.trim());if(m&&m[1].length<40){var v=m[2].replace(',','.');if(v.indexOf('.')>=0)v=v.replace(/0+$/,'').replace(/\.$/,'');o[v]=1;}});return Object.keys(o);}
+function labDup(ex,it){
+  var nv=labNums(it.data.res);if(nv.length<3)return null;
+  return ex.filter(function(e){
+    if(e.type!=='lab')return false;
+    var txt=String(e.data.res||'').replace(/(\d),(\d)/g,'$1.$2'),hit=nv.filter(function(v){return new RegExp('(^|[^\\d.])'+v.replace('.','\\.')+'(?![\\d])').test(txt);}).length;
+    return hit/nv.length>=0.8;
+  })[0]||null;
+}
+
+/* ===== v19: sesión robusta, equipos con administradores, directos, emojis, historial de cambios ===== */
+var EMO=['😀','😂','🙂','😉','😊','😍','🙏','👍','👎','👏','🙌','💪','🤝','👌','🤞','😅','😬','😴','😷','🤒','🤕','😢','😭','😮','😡','🤔','🙄','😎','🥳','🎉','✅','❌','⚠️','❗','❓','🔥','⭐','💊','💉','🩺','🩸','🧪','🏥','🚑','⏰','📌','📎','📋','☕','🍕','🌙','☀️','❤️','💯','👀','🫡','🙈','😇','🤯','🥱','😤','🤗'];
+
+/* ---------- sesión: renovar, reintentar, copia de seguridad ---------- */
+function gBak(){try{var v=localStorage.getItem('gotrue.user');if(v)localStorage.setItem('rot_gu_bak',v);}catch(e){}}
+function gRestore(){try{if(!localStorage.getItem('gotrue.user')){var b=localStorage.getItem('rot_gu_bak');if(b)localStorage.setItem('gotrue.user',b);}}catch(e){}}
+function gTokenP(){var u=gUser();if(!u)return Promise.reject(new Error('auth'));return u.jwt((G.tries||0)>0).catch(function(){return u.jwt(true);});}
+function gFetch(opt){
+  opt=opt||{};
+  return gTokenP().then(function(t){var o={};Object.keys(opt).forEach(function(k){if(k!=='_r')o[k]=opt[k];});o.headers=Object.assign({},opt.headers||{},{Authorization:'Bearer '+t});return fetch('/api/sync',o);}).then(function(r){
+    if(r.status===401){var u=gUser();if(!opt._r&&u){opt._r=1;return u.jwt(true).then(function(){return gFetch(opt);},function(){throw new Error('auth');});}throw new Error('auth');}
+    if(r.status===404&&(!opt.method||opt.method==='GET'))return null;
+    if(!r.ok)throw new Error('http'+r.status);
+    return r;});
+}
+var TRANS=/Failed to fetch|NetworkError|Load failed|http5\d\d|No pude validar/i;
+function tApi(body,n){
+  n=n||0;
+  return gTokenP().then(function(t){return fetch('/api/social',{method:'POST',headers:{Authorization:'Bearer '+t,'Content-Type':'application/json'},body:JSON.stringify(body)});})
+  .then(function(r){return r.json().catch(function(){return {};}).then(function(j){
+    if(r.status===401){var u=gUser();if(n<1&&u)return u.jwt(true).then(function(){return tApi(body,n+1);},function(){throw new Error('auth');});throw new Error('auth');}
+    if(!r.ok)throw new Error(j.error||('http'+r.status));
+    return j;});},function(e){throw e;})
+  .catch(function(e){
+    var m=String(e&&e.message||e);
+    if(n<2&&TRANS.test(m)&&body&&body.action!=='send'&&body.action!=='sendFile')return new Promise(function(res){setTimeout(res,n?1800:800);}).then(function(){return tApi(body,n+1);});
+    throw e;});
+}
+document.addEventListener('visibilitychange',function(){
+  if(document.visibilityState!=='visible')return;
+  var u=gUser();if(u)u.jwt().then(gBak).catch(function(){});
+});
+setInterval(function(){var u=gUser();if(u)gBak();},60000);
+function refreshApp(){
+  try{persist();}catch(e){}
+  toast('Actualizando…');
+  var go1=function(){setTimeout(function(){location.reload();},250);};
+  try{if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration){navigator.serviceWorker.getRegistration().then(function(r){return r?r.update():null;}).catch(function(){}).then(go1);return;}}catch(e){}
+  go1();
+}
+
+/* ---------- equipo: renovar la lista cada 30 s ---------- */
+function tMeRefresh(){
+  T.meAt=Date.now();
+  if(!tAvail()||!T.loaded)return;
+  tApi({action:'me'}).then(function(j){
+    T.me=j.me;T.invites=j.invites||[];T.disc=j.discoverable!==false;
+    var cur=T.team&&T.team.code;
+    T.teams=(j.teams||[]).map(function(x){var o=T.teams.filter(function(y){return y.code===x.code;})[0];return x.dm?x:x;});
+    if(cur&&!T.teams.some(function(x){return x.code===cur;})){T.team=null;tSwitch((T.teams.filter(function(x){return !x.dm;})[0]||T.teams[0]||{}).code);}
+    else if(cur){T.team=T.teams.filter(function(x){return x.code===cur;})[0];}
+    tUnreadCalc();renderTabs();if(S.view==='team'&&!tBusyEdit())render();
+  }).catch(function(){});
+}
+function tBusyEdit(){var a=document.activeElement;return !!(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName));}
+
+/* ---------- equipo: tarjetas nuevas ---------- */
+function tChips(){
+  var nd=T.teams.filter(function(x){return !x.dm;}),dm=T.teams.filter(function(x){return x.dm;}),h='';
+  var s=tSeen(),un=function(x){return x.last&&T.me&&x.lastFrom!==T.me.id&&(!T.team||x.code!==T.team.code)&&('m_'+x.code+'_'+x.last)>(s['T'+x.code]||'');};
+  if(nd.length>1||(nd.length&&dm.length))h+='<div class="fchips" aria-label="Mis equipos">'+nd.map(function(x){return '<button class="fc" data-a="tTeam" data-id="'+esc(x.code)+'" aria-current="'+(T.team&&x.code===T.team.code)+'">'+esc(x.name)+(un(x)?' <span class="n">!</span>':'')+'</button>';}).join('')+'</div>';
+  if(dm.length)h+='<div class="small muted" style="margin-top:6px">Mensajes directos</div><div class="fchips" aria-label="Mensajes directos">'+dm.map(function(x){return '<button class="fc" data-a="tTeam" data-id="'+esc(x.code)+'" aria-current="'+(T.team&&x.code===T.team.code)+'">'+esc(x.name||'Contacto')+(un(x)?' <span class="n">!</span>':'')+'</button>';}).join('')+'</div>';
+  return h;
+}
+function tHeadCard(){
+  var t=T.team;
+  if(t.dm)return '<div class="card"><div class="row spread"><div><h3 style="margin:0">'+esc(t.name||'Contacto')+'</h3><div class="small muted">Conversación directa</div></div><div class="row">'+(T.confirmLeave?'<button class="btn sm danger" data-a="tLeave">Confirmar: ocultar</button>':'<button class="btn sm" data-a="tAskLeave">Ocultar conversación</button>')+'</div></div></div>';
+  return '<div class="card"><div class="row spread"><div><h3 style="margin:0">'+esc(t.name)+'</h3><div class="small muted">'+(t.admin?'Código de invitación: <span class="mono"><strong>'+esc(t.code)+'</strong></span> · ':'')+(t.owner?'Eres el creador':t.admin?'Eres administrador':'Miembro')+'</div></div><div class="row">'+(t.admin?'<button class="btn sm" data-a="tRenS">Cambiar nombre</button><button class="btn sm" data-a="tInvite">Copiar invitación</button>':'')+(T.confirmLeave?'<button class="btn sm danger" data-a="tLeave">Confirmar: salir</button>':'<button class="btn sm" data-a="tAskLeave">Salir del equipo</button>')+'</div></div></div>';
+}
+function tInvCards(){
+  return (T.invites||[]).map(function(i){return '<div class="card"><strong>Invitación al equipo “'+esc(i.team)+'”</strong><div class="small muted">Te invita '+esc(i.by||'un colega')+'.</div><div class="row"><button class="btn primary" data-a="tInvOk" data-id="'+esc(i.code)+'">Aceptar</button><button class="btn" data-a="tInvNo" data-id="'+esc(i.code)+'">Rechazar</button></div></div>';}).join('');
+}
+function tSearchCard(){
+  var r=T.sres,h='<details class="card"'+(T.sOpen||r?' open':'')+'><summary><strong>Buscar personas</strong> <span class="small muted">para escribirles o invitarlas a un equipo</span></summary><div class="row"><div class="grow"><input id="tSq" type="search" placeholder="Nombre, usuario, cargo o servicio (mín. 3 letras)" value="'+esc(T.sq||'')+'" autocomplete="off"></div><button class="btn primary" data-a="tSearchGo">Buscar</button></div>';
+  if(T.sbusy)h+='<div class="small muted">Buscando…</div>';
+  else if(r){
+    h+=r.length?r.map(function(u){var inT=T.members.some(function(m){return m.id===u.id;});
+      return '<div class="colg"><span class="av" aria-hidden="true">'+esc(tIni(u.name))+'</span><div class="grow"><strong>'+esc(tDisp(u))+'</strong><div class="small muted">'+esc([u.cargo,u.servicio].filter(Boolean).join(' · '))+'</div></div><button class="btn sm primary" data-a="tOpenDm" data-id="'+esc(u.id)+'">Escribir</button>'+(T.team&&!T.team.dm&&T.team.admin&&!inT?'<button class="btn sm" data-a="tInviteUser" data-id="'+esc(u.id)+'">Invitar a “'+esc(cut(T.team.name,18))+'”</button>':'')+'</div>';}).join(''):'<div class="small muted">Nadie coincide. Solo aparecen quienes completaron su perfil y permiten ser encontrados.</div>';
+  }
+  return h+'</details>';
+}
+function tRolePill(r){return r==='owner'?' <span class="shp on">Creador</span>':r==='admin'?' <span class="shp rest">Admin</span>':'';}
+function tColRow(m,me){
+  var t=T.team,btn='';
+  if(!me){
+    btn+='<button class="btn sm" data-a="tOpenChat" data-id="'+esc(m.id)+'">Escribir</button>';
+    if(t.owner&&m.role!=='owner')btn+='<button class="btn sm" data-a="tSetAdm" data-id="'+esc(m.id)+'" data-v="'+(m.role==='admin'?'0':'1')+'">'+(m.role==='admin'?'Quitar admin':'Hacer admin')+'</button>';
+    if(t.admin&&m.role!=='owner'&&(m.role!=='admin'||t.owner))btn+=(T.confRm===m.id?'<button class="btn sm danger" data-a="tRm" data-id="'+esc(m.id)+'">Confirmar: retirar</button>':'<button class="btn sm danger" data-a="tAskRm" data-id="'+esc(m.id)+'">Retirar</button>');
+  }
+  return '<div class="colg">'+tAv(m.id,m.name)+'<div class="grow"><strong>'+esc(tDisp(m))+'</strong>'+tRolePill(m.role)+(me?' <span class="muted small">(tú)</span>':'')+'<div class="small muted">'+esc([m.cargo,(tRot(m.cargo)&&tStOf(m)!=='on')?'':m.servicio].filter(Boolean).join(' · ')||'Sin cargo')+'</div></div>'+tShiftPill(tStOf(m))+'<div class="row" style="justify-content:flex-end">'+btn+'</div></div>';
+}
+function tColFoot(){return T.team.admin?'<div class="small muted" style="margin-top:8px">Para agregar a alguien, búscalo arriba en “Buscar personas” y toca Invitar: recibirá una invitación y decide si entra. También puedes compartir el código del equipo.</div>':'';}
+
+/* ---------- acciones ---------- */
+AT.refreshApp=function(){refreshApp();};
+AT.tSearchGo=function(){
+  var q=val('tSq').trim();T.sq=q;if(q.length<3){toast('Escribe al menos 3 letras.');return;}
+  T.sbusy=true;T.sOpen=true;render();
+  tApi({action:'searchUsers',q:q}).then(function(j){T.sres=j.users||[];T.sbusy=false;render();}).catch(function(e){T.sbusy=false;T.sres=null;render();tErrToast(e);});
+};
+document.addEventListener('keydown',function(e){if(e.target&&e.target.id==='tSq'&&e.key==='Enter'){e.preventDefault();AT.tSearchGo();}});
+document.addEventListener('input',function(e){if(e.target&&e.target.id==='tSq')T.sq=e.target.value;});
+AT.tOpenDm=function(el){
+  tApi({action:'openDm',user:el.dataset.id}).then(function(j){
+    if(!T.teams.some(function(x){return x.code===j.team.code;}))T.teams.push(j.team);
+    tSwitch(j.team.code);T.tab='chat';T.sres=null;T.sq='';T.sOpen=false;return tPoll(true);
+  }).then(function(){render();}).catch(tErrToast);
+};
+AT.tInviteUser=function(el){tApi({action:'invite',team:T.team.code,user:el.dataset.id}).then(function(){toast('Invitación enviada.');}).catch(tErrToast);};
+AT.tInvOk=function(el){tApi({action:'invAccept',code:el.dataset.id}).then(function(j){T.invites=(T.invites||[]).filter(function(i){return i.code!==el.dataset.id;});if(!T.teams.some(function(x){return x.code===j.team.code;}))T.teams.push(j.team);tSwitch(j.team.code);toast('Te uniste al equipo.');return tPoll(true);}).then(function(){render();}).catch(tErrToast);};
+AT.tInvNo=function(el){tApi({action:'invDecline',code:el.dataset.id}).then(function(){T.invites=(T.invites||[]).filter(function(i){return i.code!==el.dataset.id;});render();}).catch(tErrToast);};
+AT.tSetAdm=function(el){tApi({action:'setAdmin',team:T.team.code,user:el.dataset.id,admin:el.dataset.v==='1'}).then(function(){toast(el.dataset.v==='1'?'Ahora es administrador.':'Ya no es administrador.');return tPoll(true);}).then(function(){render();}).catch(tErrToast);};
+AT.tAskRm=function(el){T.confRm=el.dataset.id;tPaint();};
+AT.tRm=function(el){tApi({action:'removeMember',team:T.team.code,user:el.dataset.id}).then(function(){T.confRm=null;toast('Miembro retirado.');return tPoll(true);}).then(function(){render();}).catch(function(e){T.confRm=null;tErrToast(e);});};
+AT.tEmo=function(){var p=document.getElementById('emoP');if(p)p.hidden=!p.hidden;};
+AT.tEmoPick=function(el){
+  var i=document.getElementById('tIn');if(!i)return;var e=el.dataset.e,a=i.selectionStart==null?i.value.length:i.selectionStart,b=i.selectionEnd==null?a:i.selectionEnd;
+  i.value=i.value.slice(0,a)+e+i.value.slice(b);var pos=a+e.length;T.draft=i.value;i.focus();try{i.setSelectionRange(pos,pos);}catch(x){}
+};
+
+/* ---------- pacientes compartidos: historial de cambios ---------- */
+function spLog(p,r){
+  if(!r||!Array.isArray(r.log))return;
+  var L=p.sh.log||[];
+  r.log.forEach(function(e){var i=-1;L.forEach(function(x,k){if(x.id===e.id)i=k;});if(i>=0)L[i]=e;else L.push(e);});
+  L.sort(function(a,b){return a.at-b.at;});if(L.length>250)L=L.slice(-250);
+  p.sh.log=L;if(r.logn!==undefined)p.sh.logn=r.logn;
+}
+function shLogHtml(p){
+  var L=(p.sh&&p.sh.log)||[];if(!L.length)return '';
+  var V={add:'Agregó',edit:'Modificó',del:'Eliminó'};
+  return '<details class="card shlog"><summary><strong>Historial de cambios ('+L.length+')</strong> <span class="small muted">quién cambió qué y cuándo</span></summary>'+L.slice().reverse().slice(0,80).map(function(e){
+    return '<div class="lgr"><div class="mono small muted">'+esc(fmt(new Date(e.at).toISOString()))+'</div><div><strong>'+esc(e.who||'Un colega')+'</strong>'+(e.cargo?' <span class="muted small">· '+esc(e.cargo)+'</span>':'')+'</div><div>'+esc((V[e.op]?V[e.op]+' · ':'')+e.label)+'</div></div>';}).join('')+
+    '<div class="small muted">Los cambios del mismo autor sobre el mismo elemento en menos de 10 minutos se agrupan. El registro llega unos segundos después del cambio.</div></details>';
+}
+
+/* ---------- ronda: elegir quién entra ---------- */
+function rnPicker(){
+  var all=activeOf(S.rn.sid).sort(bedSort),n=all.filter(function(p){return !p.rnx;}).length;
+  return '<details class="card"><summary><strong>Pacientes en esta ronda ('+n+' de '+all.length+')</strong></summary><div class="small muted">Quita a quienes no vas a presentar. Es solo tu elección: no afecta a tus colegas ni a la ficha del paciente.</div>'+
+   '<div class="row"><button class="btn sm" data-a="rnAll" data-v="1">Todos</button><button class="btn sm" data-a="rnAll" data-v="0">Ninguno</button></div>'+
+   all.map(function(p){return '<label class="rnpick"><input type="checkbox" data-a="rnTog" data-id="'+p.id+'"'+(p.rnx?'':' checked')+'><span>Cama '+esc(p.bed||'—')+' · <strong>'+esc(p.ini)+'</strong> <span class="muted small">'+esc(cut(p.dx||'',40))+'</span></span></label>';}).join('')+'</details>';
+}
+AT.rnTog=function(el){var p=pat(el.dataset.id);if(!p)return;if(el.checked||el.dataset.v==='in')delete p.rnx;else p.rnx=1;save();S.rn.i=0;render();};
+AT.rnOut=function(el){var p=pat(el.dataset.id);if(!p)return;p.rnx=1;save();S.rn.i=0;render();toast('Quitado de la ronda. Puedes volver a incluirlo en “Pacientes en esta ronda”.');};
+AT.rnAll=function(el){activeOf(S.rn.sid).forEach(function(p){if(el.dataset.v==='1')delete p.rnx;else p.rnx=1;});save();S.rn.i=0;render();};
 
 var A={
  nav:function(el){go(el.dataset.v);},
