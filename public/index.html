@@ -1524,7 +1524,7 @@ function analyzeHus(pages){
     else{var txt=ls.join('\n').trim();if(txt.length>15)it={k:'nt',at:at,data:{txt:title+'\n'+txt},sub:title};}
     if(it){Object.keys(it.data).forEach(function(q){if(typeof it.data[q]==='string')it.data[q]=cleanEmpty(cleanTpl(it.data[q]));});it.svc=(it.k==='ic'&&it.data.serv)?'Interconsulta · '+it.data.serv:husRole(r.title,r.sub);it.by=husWho(ls,r.body);if(it.k==='ep'&&it.data.cond)it.data.cond=it.data.cond.split(/\n(?=Resumen historia|Evolucion medica)/i)[0];tidyObj(it.data);if(r.est)it.est=1;items.push(it);}
     if(k!=='nt'||/PROCEDIMIENTO|JUNTA|ACLARATORIA/i.test(r.title))husExtract(ls,at,items,seenX);
-    if(hPara.replace(/\s/g,'').length>8)items.push({k:'lab',at:at,data:{est:'Paraclínicos del ingreso (de otra institución) · '+at.slice(0,10).split('-').reverse().join('/'),res:hPara.trim()}});
+    if(hPara.replace(/\s/g,'').length>8)items.push({k:'lab',at:at,data:{est:'Paraclínicos del ingreso (de otra institución) · '+at.slice(0,10).split('-').reverse().join('/'),res:labAbbr(hPara.trim())}});
   });
   if(firstIn){hx=firstIn.hx;delete hx.otros;tidyObj(hx);}
   if(hx.ant)hx.ant=hx.ant.replace(/^(antecedentes:?\s*\n?)+/i,'');
@@ -1615,14 +1615,16 @@ var TRENDS=[
  {k:'cr',n:'Creatinina',u:'mg/dL',rx:/\bcreatinina\b[^0-9\n]{0,18}?(\d{1,2}[.,]\d{1,2})(?!\d)(?!\s*\/)/i,lo:0.2,hi:20,h:'Residuo del músculo que el riñón filtra; si el riñón filtra menos, la cifra sube.'},
  {k:'bun',n:'BUN (nitrógeno ureico)',u:'mg/dL',rx:/\b(?:bun|nitrogeno ureico)\b[^0-9\n]{0,12}?(\d{1,3}(?:[.,]\d)?)/i,lo:1,hi:300,h:'Nitrógeno de la urea en sangre; sube con falla renal, deshidratación o sangrado digestivo.'},
  {k:'hb',n:'Hemoglobina',u:'g/dL',rx:/\b(?:hgb|hemoglobina|hb)\b[^0-9\n]{0,18}?(\d{1,2}(?:[.,]\d)?)(?!\d)/i,lo:3,hi:20,h:'Proteína del glóbulo rojo que transporta oxígeno; baja en la anemia.'},
- {k:'wbc',n:'Leucocitos',u:'×10³/µL',rx:/\bwbc\b[^0-9\n]*?(\d{1,3}[.,]\d{1,2})/i,lo:0.5,hi:200,h:'Glóbulos blancos; suben con infección o inflamación.'},
+ {k:'wbc',n:'Leucocitos',u:'×10³/µL',rx:/\b(?:wbc|leucocitos|leucos|leuc|leu)\b[^0-9\n]*?(\d{1,6}(?:[.,]\d{1,2})?)/i,lo:0.5,hi:200,kx:1,h:'Glóbulos blancos; suben con infección o inflamación.'},
+ {k:'plt',n:'Plaquetas',u:'×10³/µL',rx:/\b(?:plt|plaquetas|plaq)\b[^0-9\n]*?(\d{1,6}(?:[.,]\d{1,2})?)/i,lo:5,hi:1500,kx:1,h:'Fragmentos de célula que ayudan a coagular; bajan con sangrados, infecciones graves o algunos medicamentos.'},
+ {k:'hct',n:'Hematocrito',u:'%',rx:/\b(?:hct|hto|hcto|hematocrito)\b[^0-9\n]{0,18}?(\d{1,2}(?:[.,]\d)?)(?!\d)/i,lo:10,hi:70,h:'Porcentaje de la sangre que ocupan los glóbulos rojos; baja en la anemia y sube con la deshidratación.'},
  {k:'pcr',n:'PCR',u:'unidad del reporte',rx:/\bpcr\b[^0-9\n]{0,45}?(\d{1,3}(?:[.,]\d{1,2})?)/i,lo:0,hi:600,h:'Proteína C reactiva, marcador de inflamación; sube horas después de una infección.'}
 ];
 function trendPts(p,T){
   var pts={};
   ofType(p,'lab').forEach(function(e){
     var m=T.rx.exec(e.data.res||'');if(!m)return;
-    var v=parseFloat(m[1].replace(',','.'));if(isNaN(v)||v<T.lo||v>T.hi)return;
+    var v=parseFloat(m[1].replace(',','.'));if(T.kx&&v>=1000)v=Math.round(v/10)/100;if(isNaN(v)||v<T.lo||v>T.hi)return;
     pts[ldk(e.at)]=v;
   });
   return Object.keys(pts).sort().map(function(d){return {d:d,v:pts[d]};}).slice(-40);
@@ -2968,6 +2970,36 @@ function labDup(ex,it){
     var txt=String(e.data.res||'').replace(/(\d),(\d)/g,'$1.$2'),hit=nv.filter(function(v){return new RegExp('(^|[^\\d.])'+v.replace('.','\\.')+'(?![\\d])').test(txt);}).length;
     return hit/nv.length>=0.8;
   })[0]||null;
+}
+
+/* ---------- abreviaturas del uso real: hb, hto, leu, plaq… ---------- */
+var ABBR=[
+ [/^(hb|hgb|hemoglobina|hemog)$/,'Hemoglobina','g/dL'],[/^(hto|hcto|hct|hematocrito)$/,'Hematocrito','%'],
+ [/^(leu|leuc|leucos|leucocitos|gb|wbc|globulos blancos)$/,'Leucocitos','×10³/µL','k'],[/^(plaq|plaquetas|plt|plqt)$/,'Plaquetas','×10³/µL','k'],
+ [/^(neutrofilos|neutros|neu|neut|pmn|segmentados)$/,'Neutrófilos',''],[/^(linfocitos|linfos|linf|lin|lym)$/,'Linfocitos',''],[/^(monocitos|monos|mono)$/,'Monocitos',''],[/^(eosinofilos|eos|eosi)$/,'Eosinófilos',''],[/^(basofilos|baso)$/,'Basófilos',''],
+ [/^(creatinina|creat|crea|cr)$/,'Creatinina','mg/dL'],[/^(bun|nitrogeno ureico)$/,'BUN','mg/dL'],[/^(urea)$/,'Urea','mg/dL'],[/^(glucosa|glu|glicemia|glucemia)$/,'Glucosa','mg/dL'],
+ [/^(na|sodio)$/,'Sodio','mEq/L'],[/^(k|potasio)$/,'Potasio','mEq/L'],[/^(cl|cloro)$/,'Cloro','mEq/L'],[/^(ca|calcio)$/,'Calcio','mg/dL'],[/^(mg|magnesio)$/,'Magnesio','mg/dL'],
+ [/^(pcr|proteina c reactiva)$/,'PCR','mg/dL'],[/^(tgo|ast)$/,'TGO (AST)','U/L'],[/^(tgp|alt)$/,'TGP (ALT)','U/L'],[/^(bt|bilirrubina total)$/,'Bilirrubina total','mg/dL'],[/^(bd|bilirrubina directa)$/,'Bilirrubina directa','mg/dL'],[/^(bi|bilirrubina indirecta)$/,'Bilirrubina indirecta','mg/dL'],
+ [/^(fa|fosfatasa alcalina)$/,'Fosfatasa alcalina','U/L'],[/^(amilasa)$/,'Amilasa','U/L'],[/^(lipasa)$/,'Lipasa','U/L'],[/^(ldh)$/,'LDH','U/L'],[/^(lactato|lact)$/,'Lactato','mmol/L'],
+ [/^(inr)$/,'INR',''],[/^(tp)$/,'TP','s'],[/^(tpt|ptt)$/,'TPT','s'],[/^(ph)$/,'pH',''],[/^(densidad|dens)$/,'Densidad',''],
+ [/^(sangre|hematies|hematíes)$/,'Sangre',''],[/^(proteinas|proteina|prot)$/,'Proteínas',''],[/^(cetonas)$/,'Cetonas',''],[/^(bacteria|bacterias)$/,'Bacterias',''],[/^(nitritos)$/,'Nitritos',''],[/^(leucocituria)$/,'Leucocituria',''],[/^(bilirrubinas)$/,'Bilirrubinas',''],[/^(urobilinogeno)$/,'Urobilinógeno',''],[/^(almidones)$/,'Almidones','']
+];
+function labAbbrLine(l){
+  var m=/^\s*[-*•]?\s*([A-Za-zÁÉÍÓÚáéíóúñÑ ]{1,26}?)\s*[:=]?\s*(<|>)?\s*(-?\d+(?:[.,]\d+)?|\+{1,4}|negativo|positivo|normal|neg|pos|trazas?)\s*(%|mg\/dl|g\/dl|u\/l|meq\/l|mmol\/l|\/mm3|x10\^?3\/?u?l|s)?\s*$/i.exec(l);
+  if(!m)return null;
+  var key=m[1].trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''),hit=null;
+  for(var i=0;i<ABBR.length;i++)if(ABBR[i][1]&&ABBR[i][0].test(key)){hit=ABBR[i];break;}
+  if(!hit)return null;
+  var v=m[3],isNum=/^-?\d/.test(v),un=hit[2];
+  if(isNum){
+    var n=parseFloat(v.replace(',','.'));
+    if(hit[3]==='k'&&n>=1000){n=Math.round(n/10)/100;v=String(n);}else v=v.replace(',','.');
+    if(m[4]==='%')un='%';else if(!un&&/^(neutrofilos|linfocitos|monocitos|eosinofilos|basofilos)/i.test(hit[1].normalize('NFD').replace(/[̀-ͯ]/g,'')))un='';
+  }else{v=v.toLowerCase();un='';}
+  return hit[1]+': '+(m[2]?m[2]:'')+v+(un?' '+un:'');
+}
+function labAbbr(txt){
+  return String(txt||'').split('\n').map(function(l){var r=labAbbrLine(l);return r||l.trim().replace(/^(hemograma|uroanalisis|uroanálisis|quimica|química)$/i,function(x){return x.charAt(0).toUpperCase()+x.slice(1).toLowerCase();}).replace(/^cpc$/i,'CPC');}).join('\n');
 }
 
 /* ===== v19: sesión robusta, equipos con administradores, directos, emojis, historial de cambios ===== */
