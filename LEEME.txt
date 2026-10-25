@@ -1,4 +1,16 @@
-LIMONAPP v33 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+LIMONAPP v34 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+
+QUE CAMBIA EN LA v34 (sobre la v33)
+  - Evolucion con el formato del HUS: subjetivo, signos vitales (TA, PAM, FC, FR, T, SatO2, peso, glucometria,
+    Glasgow, dolor), examen fisico por sistemas, analisis, plan, recomendaciones y signos de alarma.
+    Las evoluciones antiguas (S/O/A/P) se siguen viendo y editando.
+  - Plan: todo plan escrito en una evolucion o ingreso aparece en la pestana Plan. Los paraclinicos e imagenes
+    pedidos quedan "pendientes" hasta registrar el resultado; al registrar uno se elige a que pedido responde.
+  - CIE-10: buscador oficial (codigo o nombre) en todos los campos de diagnostico. El listado esta en
+    public/vendor/cie10.txt (se carga solo cuando se usa).
+  - "Llenar desde PDF" en cada nota de la Cronologia (lee el PDF del HUS y llena los campos; no adjunta el archivo).
+  - Epicrisis ya no se ofrece como nota nueva (las existentes se siguen viendo).
+  - Importar PDF del HUS: ya no transcribe encabezados, datos administrativos, firmas ni cuestionarios de egreso.
 
 QUE CAMBIA EN LA v33 (sobre la v31)
   (La v32 tuvo un error: los dibujos del gato Limon salian rotos. La v33 es la v32 corregida. Si ya subiste la v32,
@@ -15,7 +27,7 @@ QUE CAMBIA EN LA v33 (sobre la v31)
     public/privacidad.html, package.json y este LEEME.
 
 COMO SUBIRLA (por GitHub Desktop)
-  Copia el contenido del zip sobre la carpeta del repositorio, escribe "Version 33", Commit y Push. Netlify publica solo.
+  Copia el contenido del zip sobre la carpeta del repositorio, escribe "Version 34", Commit y Push. Netlify publica solo.
   Para volver atras: GitHub Desktop > History > clic derecho en el commit > Revert Changes in Commit > Push.
 
 QUE CAMBIO EN LA v31 RESPECTO A LA v30
@@ -26,7 +38,7 @@ QUE CAMBIO EN LA v31 RESPECTO A LA v30
   - Nada de esto borra ni modifica datos existentes; al entrar solo se leen.
 
 CONTENIDO
-  public/                       la app: index.html, sw.js (cache limonapp-v33), privacidad, terminos, iconos
+  public/                       la app: index.html, sw.js (cache limonapp-v34), privacidad, terminos, iconos
   public/vendor/auth-js.supabase.js   libreria de login de Supabase (incluida, no depende de internet externo)
   netlify/functions/sync.mjs    guarda y devuelve los datos de cada usuario
   netlify/functions/social.mjs  perfiles, equipos, chat, pacientes compartidos

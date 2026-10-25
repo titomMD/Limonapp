@@ -341,6 +341,13 @@ html[data-theme="light"] .prof{color:#8a5a00;border-left-color:#c98a00;backgroun
 #imgBig{max-width:100%;max-height:100%;object-fit:contain;cursor:zoom-in}
 #imgBig.zoom{max-width:none;max-height:none;width:200%;cursor:zoom-out}
 #imgMsg{text-align:center;padding:10px;font-size:14px}
+.cie{position:relative;margin:-2px 0 4px}.cie .cieq{width:100%}.cier{border:1px solid var(--line);border-radius:10px;background:var(--surface);max-height:260px;overflow:auto;margin-top:4px;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.cieo{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:9px 12px;font:inherit;font-size:13px;color:inherit;cursor:pointer}.cieo:last-child{border-bottom:0}.cieo b{font-family:var(--mono);margin-right:6px}.cieo:hover,.cieo:focus{background:var(--field)}
+.evh{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--c-evolucion);margin:12px 0 2px;border-top:1px solid var(--line);padding-top:10px}
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px;margin:4px 0}.vg .u{font-size:11px;opacity:.7}.vg input,.vg select{min-width:0;width:100%}.gtot{font-family:var(--mono);font-size:18px;padding:6px 2px}
+.vtc{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}.vtc span{border:1px solid var(--line);background:var(--field);border-radius:8px;padding:3px 8px;font-size:13px}.vtc i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--muted);margin-right:4px}
+.entry dd .li{display:block}
+.task .chip{flex:none}
 </style>
 
 <div class="wrap">
@@ -361,11 +368,11 @@ html[data-theme="light"] .prof{color:#8a5a00;border-left-color:#c98a00;backgroun
 var KEY='rotaciones_v1';
 var storageOK=true;
 var TYPES={
- ingreso:{label:'Ingreso',f:[['motivo','Motivo de consulta',2],['ea','Enfermedad actual',4],['ant','Antecedentes',3],['ef','Examen físico',4],['imp','Impresión diagnóstica',2],['plan','Plan inicial',3]]},
+ ingreso:{label:'Ingreso',f:[['motivo','Motivo de consulta',2],['ea','Enfermedad actual',4],['ant','Antecedentes',3],['ef','Examen físico',4],['imp','Impresión diagnóstica',2],['plan','Plan inicial',3],['ordl','Paraclínicos solicitados (uno por línea)',2],['ordi','Imágenes solicitadas (una por línea)',2]]},
  evolucion:{label:'Evolución',f:[['s','S · Subjetivo',2],['o','O · Objetivo (signos vitales, examen, paraclínicos)',4],['a','A · Análisis',3],['p','P · Plan',3]]},
- plan:{label:'Plan',f:[['plan','Plan y órdenes',5]]},
+ plan:{label:'Plan',own:1,f:[['plan','Plan y órdenes',5],['ordl','Paraclínicos solicitados (uno por línea)',2],['ordi','Imágenes solicitadas (una por línea)',2]]},
  interconsulta:{label:'Interconsulta',own:1,f:[['serv','Servicio consultado',1],['preg','Pregunta clínica',3],['resp','Respuesta y recomendaciones',3]]},
- epicrisis:{label:'Epicrisis',f:[['dxi','Diagnóstico de ingreso',2],['dxe','Diagnóstico de egreso',2],['res','Resumen de la evolución',5],['proc','Procedimientos',2],['cond','Condición al egreso',2],['ind','Indicaciones y controles',3]]},
+ epicrisis:{label:'Epicrisis',hide:1,f:[['dxi','Diagnóstico de ingreso',2],['dxe','Diagnóstico de egreso',2],['res','Resumen de la evolución',5],['proc','Procedimientos',2],['cond','Condición al egreso',2],['ind','Indicaciones y controles',3]]},
  salida:{label:'Salida',f:[['tipo','Tipo de salida',0],['dest','Destino',1],['pend','Pendientes tras la salida',2]]},
  nota:{label:'Nota',f:[['txt','Nota',5]]},
  lab:{label:'Paraclínico',sep:1,f:[['est','Estudio o panel (ej. hemograma, química, gases)',1],['res','Resultados (valor y unidad)',6],['int','Interpretación: qué significa y qué cambia',3]]},
@@ -434,7 +441,7 @@ function pEntries(id){return db.entries.filter(function(e){return e.patientId===
 function pTasks(id){return db.tasks.filter(function(t){return t.patientId===id;});}
 function openICs(id){return db.entries.filter(function(e){return e.patientId===id&&e.type==='interconsulta'&&e.status==='pendiente';});}
 function openTasks(id){return pTasks(id).filter(function(t){return !t.done;});}
-function pendCount(pid){return openTasks(pid).length+openICs(pid).length;}
+function pendCount(pid){return openTasks(pid).length+openICs(pid).length+pendOrders(pid).length;}
 function activeOf(sid){return db.patients.filter(function(p){return p.serviceId===sid&&p.active;});}
 function allPending(){var n=0;db.patients.forEach(function(p){if(p.active)n+=pendCount(p.id);});return n;}
 
@@ -475,7 +482,7 @@ function patientForm(p){
    '<label>Sexo<select id="f_sex"><option'+(p.sex==='M'?' selected':'')+'>M</option><option'+(p.sex==='F'?' selected':'')+'>F</option></select></label>'+
    '<label>Cama<input id="f_bed" maxlength="8" value="'+esc(p.bed)+'" placeholder="12"></label>'+
    '<label>Ingreso<input id="f_adm" type="date" value="'+esc(p.adm)+'"></label></div>'+
-   '<label>Diagnóstico principal<input id="f_dx" value="'+esc(p.dx)+'"></label>'+
+   '<label>Diagnóstico principal<input id="f_dx" value="'+esc(p.dx)+'"></label>'+cieBox('f_dx')+
    '<label>Gravedad<select id="f_sev">'+SEV.map(function(s){return '<option value="'+s+'"'+(p.sev===s?' selected':'')+'>'+s+'</option>';}).join('')+'</select></label>'+
    '<label>Si pasa X, hacer Y (para la entrega de turno)<textarea id="f_cont" rows="2">'+esc(p.cont||'')+'</textarea></label>'+
    '<div class="row"><button class="btn primary" data-a="savePatient"'+(p.id?' data-id="'+p.id+'"':'')+'>Guardar</button><button class="btn ghost" data-a="cancelPatient">Cancelar</button></div></div>';
@@ -499,20 +506,327 @@ function viewService(){
 
 function entryForm(){
   var ed=S.editor,T=TYPES[ed.type],e=ed.entryId?db.entries.filter(function(x){return x.id===ed.entryId;})[0]:null;
-  var d=(e&&e.data)||ed.prefill||{};
-  var h='<div class="card" style="border-color:var(--c-'+ed.type+')"><div class="row spread"><span class="chip" style="--c:var(--c-'+ed.type+')">'+T.label+'</span>'+(ed.type==='evolucion'&&!e?'<button class="btn sm" data-a="copyLastEv">Partir de la evolución anterior</button>':'')+'</div>';
-  h+='<label>Fecha y hora<input id="e_at" type="datetime-local" value="'+esc(e?toLocal(e.at):(ed.at||nowLocal()))+'"></label>';
+  var d=ed.prefill||(e&&e.data)||{};
+  if(ed.type==='plan'&&!ed.prefill&&e){d={plan:e.data.plan||'',ordl:(e.data.ord||[]).filter(function(o){return o.k==='lab';}).map(function(o){return o.n;}).join('\n'),ordi:(e.data.ord||[]).filter(function(o){return o.k==='img';}).map(function(o){return o.n;}).join('\n')};}
+  var h='<div class="card" style="border-color:var(--c-'+ed.type+')"><div class="row spread"><span class="chip" style="--c:var(--c-'+ed.type+')">'+T.label+'</span><div class="row">'+(ed.type==='evolucion'&&!e?'<button class="btn sm" data-a="copyLastEv">Partir de la evolución anterior</button>':'')+'<button class="btn sm" data-a="fillPdf" title="Se lee en tu dispositivo; nada se sube">Llenar desde PDF</button></div></div>';
+  h+='<label>Fecha y hora<input id="e_at" type="datetime-local" value="'+esc(ed.at?ed.at:(e?toLocal(e.at):nowLocal()))+'"></label>';
+  if(ed.type==='lab'||ed.type==='img')h+=refSelect(ed,d);
+  if(ed.type==='evolucion')h+=evFormHtml(d);
   if(ed.type==='img')imgEdInit(ed,d);
-  h+=T.f.map(function(f){
+  if(ed.type!=='evolucion')h+=T.f.map(function(f){
     if(ed.type==='img'){var ih=imgFormPart(f,d);if(ih!==null)return ih;}
     if(ed.type==='salida'&&f[0]==='tipo')return '<label>'+f[1]+'<select id="e_tipo">'+SALIDAS.map(function(o){return '<option'+(d.tipo===o?' selected':'')+'>'+o+'</option>';}).join('')+'</select></label>';
     if(f[2]<=1)return '<label>'+f[1]+'<input id="e_'+f[0]+'" value="'+esc(d[f[0]]||'')+'"></label>';
-    return '<label>'+f[1]+'<textarea id="e_'+f[0]+'" rows="'+f[2]+'">'+esc(d[f[0]]||'')+'</textarea></label>';
+    return '<label>'+f[1]+'<textarea id="e_'+f[0]+'" rows="'+f[2]+'">'+esc(d[f[0]]||'')+'</textarea></label>'+(ed.type==='ingreso'&&f[0]==='imp'?cieBox('e_imp'):'');
   }).join('');
   if(S.warned)h+='<div class="note bad">Detecté un número largo que podría ser una cédula o un teléfono. Revísalo; si es otro dato, toca Guardar otra vez.</div>';
   if(ed.type==='salida')h+='<div class="note">Al guardar la salida, el paciente pasa a Egresados.</div>';
   h+='<div class="row"><button class="btn primary" data-a="saveEntry">Guardar</button><button class="btn ghost" data-a="cancelEntry">Cancelar</button></div></div>';
   return h;
+}
+
+/* ===== v34: CIE-10, evolución estructurada, plan con pendientes, llenar desde PDF ===== */
+
+/* ---------- CIE-10 (listado en español, archivo aparte que se carga la primera vez que se usa) ---------- */
+var CIE={st:0,c:[],n:[],t:[],q:[]};
+function cieLoad(cb){
+  if(CIE.st===2){cb(true);return;}
+  if(CIE.st===1){CIE.q.push(cb);return;}
+  CIE.st=1;CIE.q=[cb];
+  function done(ok){CIE.st=ok?2:-1;var q=CIE.q;CIE.q=[];q.forEach(function(f){try{f(ok);}catch(e){}});}
+  try{
+    fetch('vendor/cie10.txt').then(function(r){if(!r.ok)throw new Error('x');return r.text();}).then(function(tx){
+      tx.split('\n').forEach(function(l){var i=l.indexOf('|');if(i<1)return;CIE.c.push(l.slice(0,i));var nm=l.slice(i+1);CIE.n.push(nm);CIE.t.push(norm(nm));});
+      done(CIE.c.length>1000);
+    }).catch(function(){done(false);});
+  }catch(e){done(false);}
+}
+function cieFind(q){
+  var raw=String(q||'').trim(),out=[],i,n=CIE.c.length;
+  if(!raw)return out;
+  var code=raw.replace(/[\s.]/g,'').toUpperCase();
+  if(/^[A-Z]\d{1,3}X?$/.test(code)){
+    var cc=code.replace(/X$/,'');
+    for(i=0;i<n&&out.length<14;i++)if(CIE.c[i].indexOf(code)===0||(cc.length===3&&CIE.c[i]===cc+'X'))out.push(i);
+    if(!out.length)for(i=0;i<n&&out.length<14;i++)if(CIE.c[i].indexOf(cc)===0)out.push(i);
+    return out;
+  }
+  var tk=norm(raw).split(' ').filter(Boolean);if(!tk.length)return out;
+  var hit=[];
+  for(i=0;i<n;i++){
+    var t=CIE.t[i],ok=true,j;
+    for(j=0;j<tk.length;j++)if(t.indexOf(tk[j])<0){ok=false;break;}
+    if(ok)hit.push([(t.indexOf(tk[0])===0?0:(t.indexOf(' '+tk[0])>=0?1:2))*1000+t.length,i]);
+  }
+  hit.sort(function(a,b){return a[0]-b[0];});
+  return hit.slice(0,14).map(function(x){return x[1];});
+}
+function cieBox(target,hint){
+  return '<div class="cie" data-t="'+target+'"><input class="cieq" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="'+esc(hint||'Buscar diagnóstico CIE-10 (código o nombre)')+'" aria-label="Buscar diagnóstico CIE-10"><div class="cier" hidden></div></div>';
+}
+var cieTimer=null;
+function cieRun(inp){
+  var box=inp.closest('.cie'),res=box.querySelector('.cier'),q=inp.value;
+  if(!q.trim()){res.hidden=true;res.innerHTML='';return;}
+  res.hidden=false;res.innerHTML='<div class="small muted" style="padding:9px 12px">Buscando…</div>';
+  cieLoad(function(ok){
+    if(!ok){res.innerHTML='<div class="small muted" style="padding:9px 12px">No pude cargar el listado CIE-10 (hace falta conexión la primera vez). Escribe el diagnóstico a mano.</div>';return;}
+    if(inp.value!==q)return;
+    var ix=cieFind(q);
+    res.innerHTML=ix.length?ix.map(function(i){return '<button type="button" class="cieo" data-a="ciePick" data-i="'+i+'"><b>'+esc(CIE.c[i])+'</b> '+esc(accFix(CIE.n[i]))+'</button>';}).join(''):'<div class="small muted" style="padding:9px 12px">Sin coincidencias. Prueba con otra palabra o con el código.</div>';
+  });
+}
+document.addEventListener('input',function(ev){
+  var t=ev.target;if(!t||!t.classList||!t.classList.contains('cieq'))return;
+  clearTimeout(cieTimer);cieTimer=setTimeout(function(){cieRun(t);},180);
+});
+function ciePickInto(i,box){
+  var tid=box.dataset.t,t=document.getElementById(tid);if(!t)return;
+  var line=CIE.c[i]+' - '+accFix(CIE.n[i]),cur=t.value||'';
+  if(cur.toUpperCase().indexOf(CIE.c[i])>=0){toast('Ese diagnóstico ya está.');}
+  else if(t.tagName==='TEXTAREA')t.value=(cur.trim()?cur.replace(/\s+$/,'')+'\n':'')+line;
+  else t.value=(cur.trim()?cur.replace(/[\s;]+$/,'')+'; ':'')+line;
+  var q=box.querySelector('.cieq'),r=box.querySelector('.cier');q.value='';r.hidden=true;r.innerHTML='';
+  try{t.dispatchEvent(new Event('input',{bubbles:true}));}catch(e){}
+}
+
+/* ---------- Evolución estructurada (formato HUS: subjetivo, objetivo desglosado, análisis, plan) ---------- */
+var VIT=[['tas','TA sistólica','mmHg'],['tad','TA diastólica','mmHg'],['tam','TA media','mmHg'],['fc','FC','lpm'],['fr','FR','rpm'],['t','Temperatura','°C'],['sat','SatO₂','%'],['peso','Peso','kg'],['gluc','Glucometría','mg/dL']];
+var GLO=[['go','Ojos',['4 · Espontánea','3 · A la voz','2 · Al dolor','1 · Ninguna']],['gv','Verbal',['5 · Orientado','4 · Confuso','3 · Palabras inapropiadas','2 · Sonidos incomprensibles','1 · Ninguna']],['gm','Motora',['6 · Obedece órdenes','5 · Localiza el dolor','4 · Retira','3 · Flexión anormal','2 · Extensión','1 · Ninguna']]];
+var EXL=[['gen','Estado general'],['cab','Cabeza y cuello'],['tor','Tórax / cardiopulmonar'],['abd','Abdomen'],['gu','Genitourinario'],['ext','Extremidades'],['neu','Neurológico'],['piel','Piel']];
+function pamOf(v){
+  if(v.tam)return v.tam;
+  var s=parseFloat(String(v.tas||'').replace(',','.')),d=parseFloat(String(v.tad||'').replace(',','.'));
+  return (s>0&&d>0)?String(Math.round((s+2*d)/3)):'';
+}
+function glasgowTot(v){var a=+v.go||0,b=+v.gv||0,c=+v.gm||0;return (a&&b&&c)?a+b+c:0;}
+function vitParts(v){
+  v=v||{};var o=[],pam=pamOf(v);
+  if(v.tas||v.tad)o.push(['TA',(v.tas||'?')+'/'+(v.tad||'?')+(pam?' (PAM '+pam+')':'')]);
+  else if(pam)o.push(['PAM',pam]);
+  if(v.fc)o.push(['FC',v.fc+' lpm']);if(v.fr)o.push(['FR',v.fr+' rpm']);if(v.t)o.push(['T',v.t+' °C']);if(v.sat)o.push(['SatO₂',v.sat+' %']);
+  if(v.peso)o.push(['Peso',v.peso+' kg']);if(v.gluc)o.push(['Glucometría',v.gluc+' mg/dL']);
+  var gt=glasgowTot(v);
+  if(gt)o.push(['Glasgow',gt+'/15 (O'+v.go+' V'+v.gv+' M'+v.gm+')']);else if(v.go||v.gv||v.gm)o.push(['Glasgow',[v.go?'O'+v.go:'',v.gv?'V'+v.gv:'',v.gm?'M'+v.gm:''].filter(Boolean).join(' ')]);
+  if(v.dolor!==undefined&&v.dolor!=='')o.push(['Dolor',v.dolor+'/10']);
+  return o;
+}
+function vitLine(v){return vitParts(v).map(function(p){return p[0]+' '+p[1];}).join(' · ');}
+/* Texto plano del objetivo: lo leen la cronología, el resumen, la entrega y las búsquedas */
+function composeO(d){
+  var o=[],vl=vitLine(d.vit);
+  if(vl)o.push('Signos vitales: '+vl);
+  var ex=d.ex||{};
+  EXL.forEach(function(x){if(ex[x[0]])o.push('- '+x[1]+': '+ex[x[0]]);});
+  if(ex.otr)o.push(ex.otr);
+  if(d.ayu)o.push('Paraclínicos / ayudas diagnósticas: '+d.ayu);
+  return o.join('\n');
+}
+function evNorm(d){ /* evolución antigua (solo texto en "o") -> campos del formulario nuevo */
+  d=d||{};
+  if(!d.vit&&!d.ex&&d.o){var c={};for(var k in d)c[k]=d[k];c.ex={otr:d.o};return c;}
+  return d;
+}
+function vsel(id,opts,cur){
+  return '<select id="'+id+'"><option value="">—</option>'+opts.map(function(t,i){var v=String(parseInt(t,10));return '<option value="'+v+'"'+(String(cur)===v?' selected':'')+'>'+esc(t)+'</option>';}).join('')+'</select>';
+}
+function evFormHtml(d){
+  d=evNorm(d);var v=d.vit||{},ex=d.ex||{},h='';
+  h+='<label>Título (opcional, ej. Egreso médico)<input id="e_tit" value="'+esc(d.tit||'')+'"></label>';
+  h+='<label>Diagnósticos / impresión diagnóstica (CIE-10)<textarea id="e_dx" rows="2" placeholder="Uno por línea. Usa el buscador de abajo para elegir del CIE-10.">'+esc(d.dx||'')+'</textarea></label>'+cieBox('e_dx');
+  h+='<label>S · Subjetivo<textarea id="e_s" rows="3">'+esc(d.s||'')+'</textarea></label>';
+  h+='<div class="evh">O · Objetivo</div><div class="vg">'+VIT.map(function(x){
+    return '<label>'+x[1]+' <span class="u">'+x[2]+'</span><input id="e_v_'+x[0]+'" inputmode="decimal" value="'+esc(v[x[0]]||'')+'"'+(x[0]==='tam'?' placeholder="'+esc(pamOf(v)||'auto')+'"':'')+'></label>';
+  }).join('')+'<label>Dolor <span class="u">0–10</span>'+vsel('e_v_dolor',['0','1','2','3','4','5','6','7','8','9','10'],v.dolor===undefined?'':v.dolor)+'</label></div>';
+  h+='<div class="vg">'+GLO.map(function(g){return '<label>Glasgow · '+g[1]+vsel('e_v_'+g[0],g[2],v[g[0]]||'')+'</label>';}).join('')+'<label>Glasgow total <span class="u">/15</span><span class="gtot" id="e_gtot">'+(glasgowTot(v)||'—')+'</span></label></div>';
+  h+='<div class="small muted" style="margin:6px 0 2px">Examen físico por sistemas (deja en blanco lo que no examinaste)</div>'+EXL.map(function(x){return '<label>'+x[1]+'<textarea id="e_x_'+x[0]+'" rows="2">'+esc(ex[x[0]]||'')+'</textarea></label>';}).join('');
+  h+='<label>Otros hallazgos / texto libre del examen<textarea id="e_x_otr" rows="2">'+esc(ex.otr||'')+'</textarea></label>';
+  h+='<label>Paraclínicos y ayudas diagnósticas del día<textarea id="e_ayu" rows="2">'+esc(d.ayu||'')+'</textarea></label>';
+  h+='<label>A · Análisis<textarea id="e_a" rows="4">'+esc(d.a||'')+'</textarea></label>';
+  h+='<div class="evh">P · Plan</div><label>Plan (conducta, medicamentos, controles)<textarea id="e_p" rows="4">'+esc(d.p||'')+'</textarea></label>';
+  h+='<label>Paraclínicos solicitados (uno por línea)<textarea id="e_ordl" rows="2" placeholder="Ej. Hemograma">'+esc(d.ordl||'')+'</textarea></label>';
+  h+='<label>Imágenes solicitadas (una por línea)<textarea id="e_ordi" rows="2" placeholder="Ej. RX de tórax">'+esc(d.ordi||'')+'</textarea></label>';
+  h+='<div class="small muted">Lo que escribas en el plan y lo que solicites pasa solo a la sección Plan; lo solicitado queda “pendiente” hasta que registres el resultado.</div>';
+  h+='<details class="addf"'+((d.rec||d.alarm)?' open':'')+'><summary class="btn sm">Recomendaciones generales y signos de alarma</summary><label>Recomendaciones generales<textarea id="e_rec" rows="3">'+esc(d.rec||'')+'</textarea></label><label>Signos de alarma<textarea id="e_alarm" rows="3">'+esc(d.alarm||'')+'</textarea></label></details>';
+  return h;
+}
+function evCollect(){
+  var d={},g=function(id){return val(id).trim();};
+  ['tit','dx','s','ayu','a','p','ordl','ordi','rec','alarm'].forEach(function(k){var x=g('e_'+k);if(x)d[k]=x;});
+  var v={};VIT.forEach(function(x){var y=g('e_v_'+x[0]).replace(/[^\d.,]/g,'');if(y)v[x[0]]=y;});
+  ['go','gv','gm','dolor'].forEach(function(k){var y=g('e_v_'+k);if(y!=='')v[k]=y;});
+  if(!v.tam){var pm=pamOf(v);if(pm&&v.tas&&v.tad)v.tam=pm;}
+  if(Object.keys(v).length)d.vit=v;
+  var ex={};EXL.forEach(function(x){var y=g('e_x_'+x[0]);if(y)ex[x[0]]=y;});var ot=g('e_x_otr');if(ot)ex.otr=ot;
+  if(Object.keys(ex).length)d.ex=ex;
+  var o=composeO(d);if(o)d.o=o;
+  return d;
+}
+function evText(d){return [d.dx,d.s,d.o,d.a,d.p,d.ordl,d.ordi,d.rec,d.alarm].filter(Boolean).join(' ');}
+function ordList(title,txt,k){
+  var ls=ordLines(txt);if(!ls.length)return '';
+  return '<dt>'+title+'</dt><dd>'+ls.map(function(x){return '<span class="li">'+esc(x)+'</span>';}).join('')+'</dd>';
+}
+function evBody(e){
+  var d=evNorm(e.data),h='';
+  if(d.tit)h+='<dt>Tipo de nota</dt><dd>'+esc(d.tit)+'</dd>';
+  if(d.dx)h+='<dt>Diagnósticos</dt><dd>'+rich(d.dx.split('\n').map(function(x){return '- '+x;}).join('\n'))+'</dd>';
+  if(d.s)h+='<dt>S · Subjetivo</dt><dd>'+rich(d.s)+'</dd>';
+  var vp=vitParts(d.vit),ex=d.ex||{},exh='';
+  EXL.forEach(function(x){if(ex[x[0]])exh+='<span class="li"><b>'+x[1]+':</b> '+esc(ex[x[0]])+'</span>';});
+  if(ex.otr)exh+=rich(ex.otr);
+  if(vp.length||exh||d.ayu){
+    h+='<dt>O · Objetivo</dt><dd>'+(vp.length?'<div class="vtc">'+vp.map(function(p){return '<span><i>'+esc(p[0])+'</i> '+esc(p[1])+'</span>';}).join('')+'</div>':'')+exh+(d.ayu?'<span class="li"><b>Paraclínicos / ayudas:</b> '+esc(d.ayu)+'</span>':'')+'</dd>';
+  }
+  if(d.a)h+='<dt>A · Análisis</dt><dd>'+rich(d.a)+'</dd>';
+  if(d.p)h+='<dt>P · Plan</dt><dd>'+rich(d.p)+'</dd>';
+  h+=ordList('Paraclínicos solicitados',d.ordl)+ordList('Imágenes solicitadas',d.ordi);
+  if(d.rec)h+='<dt>Recomendaciones generales</dt><dd>'+rich(d.rec)+'</dd>';
+  if(d.alarm)h+='<dt>Signos de alarma</dt><dd>'+rich(d.alarm)+'</dd>';
+  return h;
+}
+document.addEventListener('change',function(ev){
+  var t=ev.target;if(!t||!t.id)return;
+  if(t.id==='e_v_go'||t.id==='e_v_gv'||t.id==='e_v_gm'){var el=document.getElementById('e_gtot');if(el)el.textContent=glasgowTot({go:val('e_v_go'),gv:val('e_v_gv'),gm:val('e_v_gm')})||'—';}
+  if(t.id==='e_ref'){ /* al vincular un resultado con un pedido, se sugiere el nombre del estudio */
+    var o=ordById(t.value),est=document.getElementById('e_est');
+    if(o&&est&&!est.value.trim())est.value=o.o.n;
+  }
+});
+
+/* ---------- Plan: órdenes pendientes y vínculo con los resultados ---------- */
+function ordLines(txt){return String(txt||'').split('\n').map(function(x){return x.replace(/^[-•*\s]+/,'').trim();}).filter(Boolean);}
+function planOf(e){return db.entries.filter(function(x){return x.type==='plan'&&x.data&&x.data.src===e.id;})[0];}
+function mkOrd(old,lab,img){
+  var out=[],used={};
+  function add(k,n){
+    var key=k+'|'+norm(n),f=(old||[]).filter(function(o){return !used[o.id]&&o.k===k&&norm(o.n)===norm(n);})[0];
+    if(f){used[f.id]=1;out.push(f);}else out.push({id:uid(),k:k,n:n});
+  }
+  ordLines(lab).forEach(function(n){add('lab',n);});ordLines(img).forEach(function(n){add('img',n);});
+  (old||[]).forEach(function(o){if(!used[o.id]&&o.k&&o.keep)out.push(o);});
+  return out;
+}
+/* Cada evolución o ingreso con plan u órdenes mantiene una entrada "Plan" ligada (data.src). */
+function ensurePlan(e){
+  if(!e||(e.type!=='evolucion'&&e.type!=='ingreso'))return;
+  var d=e.data||{},ptxt=String((e.type==='evolucion'?d.p:d.plan)||'').trim(),pl=planOf(e);
+  var ord=mkOrd(pl&&pl.data.ord,d.ordl,d.ordi);
+  if(!ptxt&&!ord.length){if(pl)db.entries=db.entries.filter(function(x){return x!==pl;});return;}
+  if(pl){pl.at=e.at;pl.data.plan=ptxt;pl.data.ord=ord;pl.data.src=e.id;}
+  else db.entries.push({id:uid(),patientId:e.patientId,type:'plan',at:e.at,data:{plan:ptxt,ord:ord,src:e.id}});
+}
+function ensurePlans(pid){db.entries.filter(function(x){return x.patientId===pid&&(x.type==='evolucion'||x.type==='ingreso');}).forEach(ensurePlan);}
+function ordResults(pid){
+  var m={};
+  db.entries.forEach(function(x){if(x.patientId===pid&&(x.type==='lab'||x.type==='img')&&x.data&&x.data.ref)m[x.data.ref]=x;});
+  return m;
+}
+function planEntries(pid){return db.entries.filter(function(x){return x.patientId===pid&&x.type==='plan';}).sort(function(a,b){return a.at<b.at?1:-1;});}
+function pendOrders(pid){
+  var res=ordResults(pid),out=[];
+  planEntries(pid).forEach(function(pl){(pl.data.ord||[]).forEach(function(o){if(!res[o.id]&&!o.x)out.push({o:o,pl:pl});});});
+  return out;
+}
+function ordById(id){
+  var r=null;
+  db.entries.forEach(function(pl){if(pl.type==='plan'&&pl.data&&pl.data.ord)pl.data.ord.forEach(function(o){if(o.id===id)r={o:o,pl:pl};});});
+  return r;
+}
+function refSelect(ed,d){
+  var pid=S.patientId,res=ordResults(pid),cur=d&&d.ref,opts=[];
+  planEntries(pid).forEach(function(pl){(pl.data.ord||[]).forEach(function(o){
+    if(o.k!==ed.type)return;
+    if((!res[o.id]&&!o.x)||o.id===cur)opts.push('<option value="'+o.id+'"'+(o.id===cur?' selected':'')+'>'+esc(o.n)+' · pedido '+esc(dlong(pl.at))+'</option>');
+  });});
+  return '<label>¿Responde a un pedido pendiente del Plan?<select id="e_ref"><option value="">No, es un resultado aparte</option>'+opts.join('')+'</select></label>'+(opts.length?'':'<div class="small muted" style="margin-top:-4px">No hay '+(ed.type==='lab'?'paraclínicos':'imágenes')+' pendientes en el Plan.</div>');
+}
+function ordBadge(o,res){
+  if(res)return '<span class="pill estable">Resultado '+esc(dlong(res.at))+'</span>';
+  if(o.x)return '<span class="pill">Descartado</span>';
+  return '<span class="pill vigilar">Pendiente</span>';
+}
+function ordRow(o,pl,res){
+  return '<div class="task"><span class="chip" style="--c:var(--c-'+(o.k==='img'?'img':'lab')+')">'+(o.k==='img'?'Imagen':'Paraclínico')+'</span><span class="t">'+esc(o.n)+(o.cups?' <span class="muted small">CUPS '+esc(o.cups)+'</span>':'')+' '+ordBadge(o,res)+(pl?' <span class="muted small">pedido '+esc(dlong(pl.at))+'</span>':'')+'</span>'+
+    (res?'<button class="btn sm ghost" data-a="goRes" data-id="'+res.id+'">Ver resultado</button>':(o.x?'<button class="btn sm ghost" data-a="ordUndo" data-id="'+o.id+'">Reabrir</button>':'<button class="btn sm primary" data-a="regOrd" data-id="'+o.id+'">Registrar resultado</button><button class="btn sm ghost" data-a="ordDrop" data-id="'+o.id+'" title="Ya no se hará">Descartar</button>'))+'</div>';
+}
+function planCard(pl){
+  var d=pl.data||{},src=d.src?db.entries.filter(function(x){return x.id===d.src;})[0]:null,res=ordResults(pl.patientId);
+  var from=src?('De la '+(src.type==='ingreso'?'nota de ingreso':'evolución')+' del '+dlong(src.at)):'Plan escrito aparte';
+  return '<article class="entry" style="--c:var(--c-plan)"><div class="row spread"><div class="row"><span class="chip" style="--c:var(--c-plan)">Plan</span><span class="small muted">'+esc(from)+'</span></div><span class="mono small muted">'+fmt(pl.at)+'</span></div><dl>'+
+    (d.plan?'<dt>Plan</dt><dd>'+rich(d.plan)+'</dd>':'')+
+    ((d.ord&&d.ord.length)?'<dt>Órdenes</dt><dd>'+d.ord.map(function(o){return ordRow(o,null,res[o.id]);}).join('')+'</dd>':'')+'</dl>'+
+    '<div class="row">'+(src?'<button class="btn sm" data-a="cronOpen" data-id="'+src.id+'">Ver nota de origen</button>':'<button class="btn sm" data-a="editEntry" data-id="'+pl.id+'">Editar</button>')+
+    (S.confirm===pl.id?'<button class="btn sm danger" data-a="delEntry" data-id="'+pl.id+'">Confirmar: borrar</button>':'<button class="btn sm danger" data-a="askDelEntry" data-id="'+pl.id+'">Borrar</button>')+'</div></article>';
+}
+function planSection(p){
+  var pend=pendOrders(p.id),pls=planEntries(p.id),h='';
+  h+='<div class="card" style="border-color:var(--c-plan)"><div class="row spread"><h3>Pendiente de resultado'+(pend.length?' ('+pend.length+')':'')+'</h3><button class="btn sm primary" data-a="newEntry" data-t="plan">+ Plan</button></div>'+
+    (pend.length?pend.map(function(x){return ordRow(x.o,x.pl,null);}).join(''):'<div class="small muted">Nada pendiente. Lo que solicites en una evolución, un ingreso o un plan queda aquí hasta que registres su resultado en Paraclínicos o Imágenes.</div>')+'</div>';
+  if(!pls.length){var cand=db.entries.filter(function(x){return x.patientId===p.id&&((x.type==='evolucion'&&x.data.p)||(x.type==='ingreso'&&x.data.plan));});if(cand.length)h+='<div class="card"><div class="small muted">Este paciente tiene '+cand.length+' nota'+(cand.length===1?'':'s')+' con plan escrito antes de existir esta sección.</div><div class="row"><button class="btn sm" data-a="backfillPlans">Traer los planes de las últimas 5</button></div></div>';}
+  h+='<div><h3>Plan</h3></div><div class="tl">'+(pls.length?pls.map(planCard).join(''):'<div class="empty">'+art('sleep')+'Aún no hay planes. Se crean solos al guardar una evolución con plan, o con “+ Plan”.</div>')+'</div>';
+  return h;
+}
+
+/* ---------- Llenar el formulario de una nota desde un PDF (se lee en el dispositivo) ---------- */
+var FILLK={ingreso:['in'],evolucion:['ev'],plan:['pl'],interconsulta:['ic'],lab:['lab'],img:['img'],nota:['nt'],salida:['ev']};
+function formNow(){
+  var ed=S.editor,T=TYPES[ed.type],d={};
+  if(ed.type==='evolucion')return evCollect();
+  T.f.forEach(function(f){var v=val('e_'+f[0]).trim();if(v)d[f[0]]=v;});
+  return d;
+}
+function itemText(it){
+  var d=it.data||{},rows=[];
+  if(it.k==='ev'){var ee=evNorm(d);return [ee.tit,ee.dx,ee.s,composeO(ee),ee.a,ee.p].filter(Boolean).join('\n');}
+  Object.keys(d).forEach(function(k){if(k!=='ord'&&d[k])rows.push(dataText(d[k]));});
+  return rows.join('\n');
+}
+function fillMap(ed,it){
+  var d=it.data||{},ty=ed.type,o={};
+  if(ty==='evolucion'){o=evNorm(d);}
+  else if(ty==='ingreso'){['motivo','ea','ant','ef','imp','plan'].forEach(function(k){if(d[k])o[k]=d[k];});}
+  else if(ty==='plan'){o.plan=d.plan||'';(d.ord||[]).forEach(function(x){var k=x.k==='img'?'ordi':'ordl';o[k]=(o[k]?o[k]+'\n':'')+x.n;});}
+  else if(ty==='interconsulta'){if(d.serv)o.serv=d.serv;if(d.resp)o.resp=d.resp;if(d.preg)o.preg=d.preg;}
+  else if(ty==='lab'){o={est:d.est||'',res:d.res||''};}
+  else if(ty==='img'){o={est:d.est||''};if(d.lec)o.lec=d.lec;if(d.mia)o.mia=d.mia;}
+  else if(ty==='nota'){o.txt=(it.k==='nt'&&d.txt)?d.txt:(KNAME[it.k]+'\n'+itemText(it));}
+  else if(ty==='salida'){
+    o.tipo='Alta';var ee=evNorm(d);
+    if(it.ext&&it.ext.dest)o.dest=it.ext.dest;
+    var pend=String(ee.p||'').split('\n').filter(function(l){return /control|cita|consulta/i.test(l);}).map(function(l){return l.replace(/^[-•*\s]+/,'');});
+    if(pend.length)o.pend=pend.join('\n');
+  }
+  return o;
+}
+function fillFromPdf(file){
+  var ed=S.editor;if(!ed)return;
+  if(!/\.pdf$/i.test(file.name)&&!/pdf/i.test(file.type)){toast('Solo archivos PDF.');return;}
+  if(file.size>25e6){toast('El PDF pesa más de 25 MB.');return;}
+  toast('Leyendo el PDF…');
+  pdfPages(file).then(function(pages){
+    if(pages.join('').replace(/\s/g,'').length<40){toast('Este PDF no tiene texto (parece una foto o escaneo). Por ahora no leo imágenes.');return;}
+    var r=(ed.type==='lab'&&labRep(pages))||(isHus(pages)?analyzeHus(pages):analyzeAll(stripRepeats(pages),'auto'));
+    var kinds=FILLK[ed.type]||[],items=r.items.filter(function(i){return kinds.indexOf(i.k)>=0;});
+    if(ed.type==='salida')items=items.filter(function(i){return i.data&&(i.data.tit||i.ext&&i.ext.dest);}).concat(items);
+    if(!items.length&&ed.type==='nota')items=r.items.slice();
+    if(!items.length){
+      var have={};r.items.forEach(function(i){have[KNAME[i.k]||i.k]=1;});
+      if(!r.items.length&&Object.keys(r.hx||{}).length)have['Historia clínica']=1;
+      var tx=Object.keys(have);
+      toast(tx.length?'Este PDF trae: '+tx.join(', ').toLowerCase()+'. Ábrelo en esa opción, o usa Importar PDF.':'No reconocí nada para esta nota en el PDF.');
+      return;
+    }
+    items.sort(function(a,b){return a.at<b.at?1:-1;});
+    var it=(ed.type==='ingreso')?items[items.length-1]:items[0];
+    var cur=formNow(),pdfd=fillMap(ed,it),m={},k;
+    for(k in cur)m[k]=cur[k];for(k in pdfd)if(pdfd[k]!==''&&pdfd[k]!==undefined)m[k]=pdfd[k];
+    ed.prefill=m;if(it.at&&ed.type!=='interconsulta')ed.at=toLocal(it.at);
+    if(ed.type==='evolucion'&&it.svc&&!m.tit&&/egreso/i.test(it.svc)){m.tit='Egreso médico';}
+    S.warned=false;render();
+    var extra=items.length>1&&(ed.type==='lab'||ed.type==='img')?' El PDF trae '+items.length+' estudios: cargué el más reciente; para todos usa Importar PDF.':'';
+    toast('PDF leído: revisa los campos y toca Guardar.'+extra);
+  }).catch(function(e){toast(e&&e.message==='offline'?'La primera vez necesito internet para cargar el lector de PDF.':'No pude leer ese PDF.');});
 }
 
 var HXF=[['motivo','Motivo de consulta',2],['ea','Enfermedad actual',5],['ant','Antecedentes (patológicos, quirúrgicos, farmacológicos, alérgicos, familiares, tóxicos)',4],['rs','Revisión por sistemas',3],['ef','Examen físico',5],['para','Paraclínicos e imágenes',4],['dx','Diagnósticos y análisis',3],['plan','Plan y conducta',4],['otros','Otros (texto sin clasificar)',3]];
@@ -533,7 +847,7 @@ function viewHx(p){
   if(S.hxEdit){
     var d=S.hxDraft||hx;
     var h='<div class="card"><h3>Historia clínica</h3><div class="note">Pega aquí la historia de un colega y toca Organizar: la separo por secciones y tú revisas. Antes de pegar, quita nombres completos, cédulas y teléfonos.</div><label>Texto pegado<textarea id="hx_paste" rows="5" placeholder="Pega la historia clínica completa"></textarea></label><div class="row"><button class="btn" data-a="parseHx">Organizar texto pegado</button><button class="btn" data-a="tidyHx">Ordenar formato</button></div>';
-    h+=HXF.map(function(f){return '<label>'+f[1]+'<textarea id="hx_'+f[0]+'" rows="'+f[2]+'">'+esc(d[f[0]]||'')+'</textarea></label>';}).join('');
+    h+=HXF.map(function(f){return '<label>'+f[1]+'<textarea id="hx_'+f[0]+'" rows="'+f[2]+'">'+esc(d[f[0]]||'')+'</textarea></label>'+(f[0]==='dx'?cieBox('hx_dx'):'');}).join('');
     if(S.warned)h+='<div class="note bad">Detecté un número largo que podría ser una cédula o un teléfono. Revísalo; si es otro dato, toca Guardar otra vez.</div>';
     return h+'<div class="row"><button class="btn primary" data-a="saveHx">Guardar historia</button><button class="btn ghost" data-a="cancelHx">Cancelar</button></div></div>';
   }
@@ -543,12 +857,13 @@ function viewHx(p){
 }
 
 /* ---------- secciones del paciente: ocultar / abrir aparte ---------- */
-var SECS=[['res','Resumen'],['cron','Cronología'],['hx','Historia'],['ic','Interconsultas'],['lab','Paraclínicos'],['img','Imágenes'],['task','Pendientes'],['upd','Importar PDF']];
+var SECS=[['res','Resumen'],['cron','Cronología'],['plan','Plan'],['hx','Historia'],['ic','Interconsultas'],['lab','Paraclínicos'],['img','Imágenes'],['task','Pendientes'],['upd','Importar PDF']];
 function ofType(p,t){return pEntries(p.id).filter(function(e){return e.type===t;});}
 function secCount(p,k){
   if(k==='hx')return HXF.filter(function(f){return (p.hx||{})[f[0]];}).length;
   if(k==='cron')return pEntries(p.id).filter(function(e){var T=TYPES[e.type];return !(T&&(T.sep||T.own));}).length;
   if(k==='ic')return ofType(p,'interconsulta').length;
+  if(k==='plan')return pendOrders(p.id).length;
   if(k==='lab')return ofType(p,'lab').length;
   if(k==='img')return ofType(p,'img').length;
   if(k==='task')return pTasks(p.id).filter(function(t){return !t.done;}).length;
@@ -559,6 +874,7 @@ function secSummary(p,k){
   if(k==='hx')return n?n+(n===1?' sección':' secciones'):'vacía';
   if(k==='ic'){var pe=openICs(p.id).length;return n?n+(pe?' ('+pe+' pendiente'+(pe===1?'':'s')+')':''):'ninguna';}
   if(k==='task')return n?n+' pendiente'+(n===1?'':'s'):'nada pendiente';
+  if(k==='plan')return n?n+' sin resultado':'al día';
   if(k==='upd')return 'arrastra un PDF';
   return n?String(n):'ninguno';
 }
@@ -566,6 +882,7 @@ function secName(k){return SECS.filter(function(s){return s[0]===k;})[0][1];}
 function secHtml(p,k){
   if(k==='res')return viewResumen(p);
   if(k==='cron')return viewCron(p);
+  if(k==='plan')return planSection(p);
   if(k==='hx')return viewHx(p);
   if(k==='upd')return updCard(p);
   if(k==='lab')return trendsCards(p)+sepCard(p,'lab','Paraclínicos','Laboratorios y otros resultados. Cada resultado queda por fecha, aparte de la cronología.');
@@ -593,7 +910,7 @@ function subTabs(p){
   }).join('')+'</nav>';
 }
 function addRow(){
-  return '<div><h3>Agregar</h3><div class="types" style="margin-top:8px">'+Object.keys(TYPES).filter(function(k){return !TYPES[k].sep;}).map(function(k){return '<button class="btn sm" style="--c:var(--c-'+k+')" data-a="newEntry" data-t="'+k+'">'+TYPES[k].label+'</button>';}).join('')+'</div></div>';
+  return '<div><h3>Agregar</h3><div class="types" style="margin-top:8px">'+Object.keys(TYPES).filter(function(k){return !TYPES[k].sep&&!TYPES[k].hide;}).map(function(k){return '<button class="btn sm" style="--c:var(--c-'+k+')" data-a="newEntry" data-t="'+k+'">'+TYPES[k].label+'</button>';}).join('')+'</div></div>';
 }
 function viewPatient(){
   var p=pat(S.patientId);if(!p){S.view='services';return viewServices();}
@@ -625,7 +942,8 @@ function taskRow(t){
 }
 function entryCard(e){
   var T=TYPES[e.type];
-  var body=e.type==='img'?imgBody(e):T.f.map(function(f){var v=e.data[f[0]];return v?'<dt>'+f[1]+'</dt><dd>'+rich(v)+'</dd>':'';}).join('');
+  if(e.type==='plan')return planCard(e);
+  var body=e.type==='img'?imgBody(e):e.type==='evolucion'?evBody(e):T.f.map(function(f){var v=e.data[f[0]];return v?'<dt>'+f[1]+'</dt><dd>'+rich(v)+'</dd>':'';}).join('');
   var ic=e.type==='interconsulta'?'<button class="btn sm" data-a="toggleIC" data-id="'+e.id+'">'+(e.status==='pendiente'?'Pendiente: marcar respondida':'Respondida: marcar pendiente')+'</button>':'';
   return '<article class="entry" style="--c:var(--c-'+e.type+')"><div class="row spread"><div class="row"><span class="chip" style="--c:var(--c-'+e.type+')">'+T.label+'</span>'+(e.type==='interconsulta'?'<span class="pill '+(e.status==='pendiente'?'vigilar':'estable')+'">'+esc(e.status)+'</span>':'')+'</div><span class="mono small muted">'+fmt(e.at)+'</span></div><dl>'+(body||'<dd class="muted">Sin contenido.</dd>')+'</dl><div class="row">'+ic+'<button class="btn sm" data-a="editEntry" data-id="'+e.id+'">Editar</button>'+
     (S.confirm===e.id?'<button class="btn sm danger" data-a="delEntry" data-id="'+e.id+'">Confirmar: borrar</button>':'<button class="btn sm danger" data-a="askDelEntry" data-id="'+e.id+'">Borrar</button>')+'</div></article>';
@@ -638,7 +956,7 @@ function viewTasks(){
     if(!ps.length)return;any=true;
     h+='<div class="card"><h3>'+esc(s.name)+'</h3>'+ps.map(function(p){
       return '<div><div class="row"><span class="bed">Cama '+esc(p.bed||'—')+'</span><button class="btn sm ghost" data-a="openPatient" data-id="'+p.id+'"><strong>'+esc(p.ini)+'</strong> · día '+hd(p)+' ›</button></div>'+
-        openTasks(p.id).map(taskRow).join('')+
+        openTasks(p.id).map(taskRow).join('')+pendOrders(p.id).map(function(x){return ordRow(x.o,x.pl,null);}).join('')+
         openICs(p.id).map(function(e){return '<div class="task"><span class="chip" style="--c:var(--c-interconsulta)">IC</span><span class="t">'+esc(e.data.serv||'Interconsulta')+': '+esc(e.data.preg||'')+'</span><button class="btn sm" data-a="toggleIC" data-id="'+e.id+'">Respondida</button></div>';}).join('')+'</div>';
     }).join('')+'</div>';
   });
@@ -667,6 +985,7 @@ function handoffText(){
       out.push(b('Dx','Diagnose')+': '+(p.dx||'—'));
       if(res)out.push(b('Resumen','Zusammenfassung')+': '+cut(res,280));
       if(plan)out.push('Plan: '+cut(plan,280));
+      var po=pendOrders(p.id);if(po.length)out.push(b('Resultados pendientes','Ausstehende Befunde')+': '+po.map(function(x){return x.o.n;}).join('; '));
       var ts=openTasks(p.id).map(function(t){return '- '+t.text;});
       var ics=openICs(p.id).map(function(e){return '- '+b('IC','Konsil')+' '+(e.data.serv||'')+': '+cut(e.data.preg,120);});
       if(ts.length||ics.length){out.push(b('Pendientes','Offene Aufgaben')+':');out=out.concat(ts,ics);}
@@ -770,7 +1089,7 @@ function savePatientForm(id){
   var o={ini:val('f_ini').trim().toUpperCase(),hcn:val('f_hcn').replace(/\D/g,'').slice(0,14),hc:val('f_hcn').replace(/\D/g,'').slice(-3),age:val('f_age').replace(/\D/g,''),sex:val('f_sex'),bed:val('f_bed').trim(),adm:val('f_adm')||today(),dx:val('f_dx').trim(),sev:val('f_sev'),cont:val('f_cont').trim()};
   if(!o.ini){toast('Escribe las iniciales.');return;}
   if(id){var p=pat(id);if(!o.hcn){o.hc=p.hc||'';o.hcn=p.hcn||'';}for(var k in o)p[k]=o[k];}
-  else{o.id=uid();o.serviceId=S.serviceId;o.active=true;if(S.imp&&Object.keys(S.imp.hx).length)o.hx=S.imp.hx;db.patients.push(o);S.patientId=o.id;if(S.imp&&S.imp.ev)db.entries.push({id:uid(),patientId:o.id,type:'evolucion',at:S.imp.ev.at,data:S.imp.ev.data,est:S.imp.ev.est?1:undefined});if(S.imp&&S.imp.extra)S.imp.extra.forEach(function(x){var n={id:uid(),patientId:o.id,type:x.type,at:x.at,data:x.data};if(x.status)n.status=x.status;if(x.est)n.est=1;if(x.by)n.by=x.by;if(x.svc)n.svc=x.svc;db.entries.push(n);});S.imp=null;S.impP=null;}
+  else{o.id=uid();o.serviceId=S.serviceId;o.active=true;if(S.imp&&Object.keys(S.imp.hx).length)o.hx=S.imp.hx;db.patients.push(o);S.patientId=o.id;if(S.imp&&S.imp.ev)db.entries.push({id:uid(),patientId:o.id,type:'evolucion',at:S.imp.ev.at,data:S.imp.ev.data,est:S.imp.ev.est?1:undefined,by:S.imp.ev.by,svc:S.imp.ev.svc});if(S.imp&&S.imp.extra)S.imp.extra.forEach(function(x){var n={id:uid(),patientId:o.id,type:x.type,at:x.at,data:x.data};if(x.status)n.status=x.status;if(x.est)n.est=1;if(x.by)n.by=x.by;if(x.svc)n.svc=x.svc;db.entries.push(n);});ensurePlans(o.id);S.imp=null;S.impP=null;}
   save();S.newPatient=false;S.editPatient=false;
   if(!id){S.view='patient';}
   render();toast('Paciente guardado.');
@@ -778,16 +1097,23 @@ function savePatientForm(id){
 var LONGNUM=/\b\d{7,}\b|\b3\d{2}[ -]?\d{3}[ -]?\d{4}\b/;
 function saveEntry(){
   var ed=S.editor,T=TYPES[ed.type],data={},all='';
-  T.f.forEach(function(f){var v=val('e_'+f[0]).trim();if(v){data[f[0]]=v;all+=' '+v;}});
+  if(ed.type==='evolucion'){data=evCollect();all=evText(data);}
+  else T.f.forEach(function(f){var v=val('e_'+f[0]).trim();if(v){data[f[0]]=v;all+=' '+v;}});
+  if(ed.type==='lab'||ed.type==='img'){var rf=val('e_ref');if(rf)data.ref=rf;}
+  var oldE=ed.entryId?db.entries.filter(function(x){return x.id===ed.entryId;})[0]:null;
+  if(ed.type==='plan'){data.ord=mkOrd(oldE&&oldE.data&&oldE.data.ord,data.ordl,data.ordi);if(oldE&&oldE.data&&oldE.data.src)data.src=oldE.data.src;delete data.ordl;delete data.ordi;}
   var imx=null;if(ed.type==='img'){imx=imgCollect(data);all+=imx.text;}
   if(!all.trim()&&ed.type!=='salida'&&!(imx&&imx.extra)){toast('Escribe algo antes de guardar.');return;}
   if(LONGNUM.test(all)&&!S.warned){S.warned=true;render();return;}
   var imp=ed.type==='img'?imgPlan():null;
   var at=fromLocal(val('e_at'));
-  if(ed.entryId){var e=db.entries.filter(function(x){return x.id===ed.entryId;})[0];e.at=at;e.data=data;}
-  else{var ne={id:uid(),patientId:S.patientId,type:ed.type,at:at,data:data};if(ed.type==='interconsulta')ne.status='pendiente';db.entries.push(ne);
+  var saved=null;
+  if(ed.entryId){var e=db.entries.filter(function(x){return x.id===ed.entryId;})[0];e.at=at;e.data=data;saved=e;}
+  else{var ne={id:uid(),patientId:S.patientId,type:ed.type,at:at,data:data};if(ed.type==='interconsulta')ne.status='pendiente';db.entries.push(ne);saved=ne;
     if(ed.type==='salida'){var p=pat(S.patientId);p.active=false;p.exitAt=at;}}
-  save();S.editor=null;S.warned=false;render();toast('Guardado.');
+  if(saved)ensurePlan(saved);
+  if(ed.type==='plan')S.sec='plan';
+  save();S.editor=null;S.warned=false;render();toast('Guardado.'+((saved&&saved.type==='evolucion'||saved&&saved.type==='ingreso')&&planOf(saved)?' El plan pasó a la sección Plan.':''));
   if(imp)imgCommit(imp);
 }
 function copyText(txt,srcId){
@@ -900,9 +1226,9 @@ function redact(t,c){return t.replace(/\b\d{7,}\b/g,function(){c.n++;return '[�
 var ACR=/^(TAC|RMN|RX|TC|RM|ECG|EKG|EEG|PET|SPECT|UCI|LCR|PCR|VSG|TSH|BUN|TGO|TGP|INR|PT|PTT|HTA|DM2|EPOC)$/;
 function sentence(t){t=t.replace(/\s+/g,' ').trim();if(!t)return '';if(isUp(t))t=t.split(' ').map(function(w){return ACR.test(w)?w:w.toLowerCase();}).join(' ');return t.charAt(0).toUpperCase()+t.slice(1);}
 function titleOf(head){return (head.replace(/\d{1,2}[\/\-.]\d{1,2}[\/\-.]\d{2,4}([ ,T]+\d{1,2}:\d{2})?/g,'').replace(/[:\-–\s]+$/,'').replace(/^[:\-–\s]+/,''));}
-var KORD={hx:0,in:1,ev:2,ic:3,lab:4,img:5,ep:6,nt:7};
-var KNAME={hx:'Historia clínica',in:'Ingreso',ev:'Evolución',ic:'Interconsulta',lab:'Paraclínico',img:'Imagen',ep:'Epicrisis',nt:'Nota'};
-var KTYPE={in:'ingreso',ev:'evolucion',ic:'interconsulta',lab:'lab',img:'img',ep:'epicrisis',nt:'nota'};
+var KORD={hx:0,in:1,ev:2,pl:3,ic:4,lab:5,img:6,nt:7};
+var KNAME={hx:'Historia clínica',in:'Ingreso',ev:'Evolución',ic:'Interconsulta',lab:'Paraclínico',img:'Imagen',pl:'Plan',nt:'Nota'};
+var KTYPE={in:'ingreso',ev:'evolucion',ic:'interconsulta',lab:'lab',img:'img',pl:'plan',nt:'nota'};
 function blockItem(b,ctx){
   var d0=pdfDate(b.head)||pdfDate(b.lines.slice(0,4).join(' ')),it=blockItem0(b,ctx);if(it&&!d0)it.est=1;return it;
 }
@@ -943,7 +1269,8 @@ function analyzeAll(raw,forced){
   return {f:f,hx:hx,items:items,red:c.n,skip:c.skip||0};
 }
 function norm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,' ').trim();}
-function dataKey(d){return norm(Object.keys(d).sort().map(function(k){return d[k];}).join(' '));}
+function dataText(v){if(v==null)return '';if(typeof v==='object')return Object.keys(v).sort().map(function(k){return dataText(v[k]);}).join(' ');return String(v);}
+function dataKey(d){return norm(Object.keys(d).sort().filter(function(k){return k!=='ord';}).map(function(k){return dataText(d[k]);}).join(' '));}
 function sameText(a,b){return a===b||(Math.min(a.length,b.length)>30&&(a.indexOf(b)>=0||b.indexOf(a)>=0));}
 function lastEv(pid){return pEntries(pid).filter(function(e){return e.type==='evolucion';})[0];}
 function buildUpd(p,r){
@@ -954,7 +1281,7 @@ function buildUpd(p,r){
     out.push({k:'hx',field:f[0],label:f[1].split(' (')[0],text:nw,old:old,dup:dup,on:!dup,note:dup?'ya está en la historia':(old?'se agrega al final, sin borrar lo que hay':'sección vacía: se llena')});
   });
   r.items.forEach(function(it){
-    var ty=KTYPE[it.k],key=dataKey(it.data),it2={k:it.k,type:ty,at:it.at,est:it.est,by:it.by,svc:it.svc,data:it.data,text:Object.keys(it.data).map(function(x){return it.data[x];}).join(' · '),label:KNAME[it.k]+(it.data.est?': '+it.data.est:it.k==='ic'?': '+it.data.serv:(it.sub?': '+it.sub:'')),on:true};
+    var ty=KTYPE[it.k],key=dataKey(it.data),it2={k:it.k,type:ty,at:it.at,est:it.est,by:it.by,svc:it.svc,data:it.data,text:itemText(it).replace(/\n+/g,' · '),label:KNAME[it.k]+(it.data.est?': '+it.data.est:it.k==='ic'?': '+it.data.serv:(it.sub?': '+it.sub:'')),on:true};
     var same=ex.filter(function(e){return e.type===ty&&sameText(dataKey(e.data),key);})[0]||(it.k==='lab'?labDup(ex,it):null);
     if(it.k==='ic'&&!same){
       var ns=norm(it.data.serv),m=ex.filter(function(e){var s=norm(e.data.serv);return e.type==='interconsulta'&&e.status==='pendiente'&&s&&ns&&(s.indexOf(ns)>=0||ns.indexOf(s)>=0);})[0];
@@ -1090,10 +1417,10 @@ function husPage(s){
   var ls=String(s).split('\n').map(function(l){return l.replace(/\s+$/,'');}),ip=-1,iF=-1,i;
   for(i=0;i<ls.length&&i<30;i++)if(/^P[áa]gina\s+\d+\s*\/\s*\d+/i.test(ls[i].trim())){ip=i;break;}
   if(ip<0)return null;
-  for(i=ip+1;i<Math.min(ip+14,ls.length);i++)if(/FOLIO/i.test(ls[i])){iF=i;break;}
+  for(i=ip+1;i<Math.min(ip+18,ls.length);i++)if(/FOLIO/i.test(ls[i])){iF=i;break;}
   if(iF<0)return null;
   var head=ls.slice(ip+1,iF+1).join(' ').replace(/NUEVA\s+EMPRESA\s+PROMOTORA\s+DE\s+SALUD\s+S\.A\./i,'').replace(/\s+/g,' ').trim();
-  var m=/^(.*?)\s*(\d{1,6})\s*FOLIO\s*:?\s*$/i.exec(head)||/^(.*?)\s*FOLIO\s*:?\s*(\d{1,6})\s*$/i.exec(head);
+  var m=/^(.*?)\s*(\d{1,6})\s*FOLIO\s*:?\s*$/i.exec(head)||/^(.*?)\s*FOLIO\s*:?\s*(\d{1,6})\s*$/i.exec(head)||/^(.*?)\s+(\d{1,5})(?=[A-ZÁÉÍÓÚÑ]|\s)[\s\S]*\bFOLIO\s*:?\s*$/i.exec(head);
   if(!m)return null;
   var title=m[1].replace(/[\s|:\-]+$/,'').trim(),folio=m[2],last=iF,gap=0,seen=false,subs=[];
   for(i=iF+1;i<Math.min(iF+50,ls.length);i++){
@@ -1101,6 +1428,7 @@ function husPage(s){
     if(LHA.test(t)){last=i;gap=0;seen=true;}
     else{gap++;if(!seen){if(gap>4)break;if(t.length<50)subs.push(t);}else if(gap>1)break;}
   }
+  for(i=iF+1;i<Math.min(iF+45,ls.length);i++)if(/^Finalidad Consulta\s*:/i.test(ls[i].trim())){if(i>last)last=i;break;}
   var lh=ls.slice(ip,last+1),lhs=lh.join('\n'),at=null,j,mm;
   for(j=0;j<lh.length&&!at;j++){
     if(/riage|Finalizaci|Impresi/i.test(lh[j]))continue;
@@ -1120,10 +1448,11 @@ var EV_DROP=/^(CONDICIONES GENERALES|EL PACIENTE INGRESA AL PROGRAMA DE PREALTA|
 var TAILN=/(^|\s)Profesional\s*:|^Nombre reporte|^LICENCIADO A|Registro Profesional|R\s*\.\s*M\s*\.\s*:/i;
 var IDENTN=/^(IDENTIFICACION|NOMBRE( COMPLETO)?|DOCUMENTO|NATURAL|RESIDENTE( Y PROCEDENTE)?|ESCOLARIDAD|ESTADO CIVIL|RELIGION|OCUPACION|EDAD DE LA PAREJA|ESCOLARIDAD DE LA PAREJA|ACOMPANANTE|INFORMANTE|CALIDAD DE (LA )?INFORMACION|CALIDAD DE LA INFORMANTE|FECHA DE NACIMIENTO|LUGAR DE (NACIMIENTO|RESIDENCIA)|DIRECCION|TELEFONO|EDAD)\s*:?(\s|$)/;
 function husLines(lines,c,nameSet){
-  var out=[],skipName=false;
+  var out=[],skipName=false,afterRM=false;
   lines.forEach(function(raw){
     var t=raw.trim();if(!t)return;
-    if(TAILN.test(t))return;
+    if(afterRM){afterRM=false;if(t.length<60&&isUp(t)&&!HSTOP.test(norm2(t)))return;}
+    if(TAILN.test(t)){if(/R\s*\.\s*M\s*\./i.test(t))afterRM=true;return;}
     var n=norm2(t);
     if(n==='IDENTIFICACION'){skipName=true;return;}
     if(skipName){skipName=false;if(!/[:\d]/.test(t)&&t.split(' ').length<=6)return;}
@@ -1167,6 +1496,220 @@ function parseEvHUS(lines){
   var out={};['s','o','a','p'].forEach(function(k){var v=cleanEmpty(buf[k].join('\n')).trim();if(v)out[k]=v;});
   return out;
 }
+/* ===== v34: lectura estructurada de folios HUS (evolución, egreso, solicitud de exámenes, procedimiento) =====
+   Se transcribe lo clínico; se descarta el formato del HUS: cabezal con nombre/cédula/dirección/teléfono/responsable,
+   tablas vacías, cuestionario de egreso, "Tipo: Presuntivo…", firma, indicaciones médicas, textos repetidos al cambiar de página. */
+var VLAB=[
+ ['tas',/(?:TENSION ARTERIAL )?SISTOLICA ?:?/],['tad',/(?:TENSION ARTERIAL )?DIASTOLICA ?:?/],['tam',/(?:TENSION ARTERIAL )?MEDIA ?:?/],
+ ['fc',/FRECUENCIA CARDIACA(?: ?\([^)]*\))? ?:?/],['fr',/FRECUENCIA RESPIRATORIA(?: ?\([^)]*\))? ?:?/],
+ ['t',/TEMPERATURA(?: ?°? ?C)? ?:?/],['sat',/SATURACION (?:DE )?OXIGENO(?: ?\(%\))? ?:?/],
+ ['peso',/PESO(?: ?\([^)]*\))? ?:?/],['talla',/TALLA(?: ?\([^)]*\))? ?:?/],['imc',/IMC ?:?/],['gluc',/GLUCOMETRIA(?: ?\([^)]*\))? ?:?/],
+ ['go',/RESPUESTA APERTURA DE OJOS ?:?/],['gv',/RESPUESTA VERBAL ?:?/],['gm',/RESPUESTA MOTORA ?:?/],['gt',/TOTAL GLASGOW(?: ?\/ ?15)? ?:?/],
+ ['dolor',/ESCALA DEL DOLOR ?:?/]
+];
+var VRX=new RegExp(VLAB.map(function(l){return '('+l[1].source+')';}).join('|')+'|(\\d+(?:,\\d+)?(?:\\.\\d+)?)','g');
+function vnum(s,dec){
+  var x=parseFloat(String(s).replace(',','.'));if(!isFinite(x)||x<=0)return '';
+  var r=dec?Math.round(x*Math.pow(10,dec))/Math.pow(10,dec):Math.round(x);
+  return String(r).replace('.',',');
+}
+/* Lee los signos vitales de la tabla del HUS (las etiquetas llegan mezcladas con los valores). Vacío si la tabla no trae valores. */
+function husVitals(ls){
+  var T=norm2(ls.join(' ')).replace(/(\d+,\d{3})\s+(\d)(?=\s|$)/g,'$1$2'),V={},last=null,m;
+  VRX.lastIndex=0;
+  while((m=VRX.exec(T))){
+    var i;for(i=1;i<=VLAB.length;i++)if(m[i]){last=VLAB[i-1][0];break;}
+    if(i<=VLAB.length)continue;
+    if(last&&V[last]===undefined){V[last]=m[VLAB.length+1];}
+    last=null;
+  }
+  var o={},g;
+  if((g=vnum(V.tas)))o.tas=g;if((g=vnum(V.tad)))o.tad=g;if((g=vnum(V.tam)))o.tam=g;
+  if((g=vnum(V.fc)))o.fc=g;if((g=vnum(V.fr)))o.fr=g;if((g=vnum(V.t,1)))o.t=g;if((g=vnum(V.sat)))o.sat=g;
+  if((g=vnum(V.peso,1)))o.peso=g;if((g=vnum(V.talla,2)))o.talla=g;if((g=vnum(V.gluc)))o.gluc=g;
+  if((g=vnum(V.dolor))&&+g<=10)o.dolor=g;
+  if((g=vnum(V.go))&&+g<=4)o.go=g;if((g=vnum(V.gv))&&+g<=5)o.gv=g;if((g=vnum(V.gm))&&+g<=6)o.gm=g;
+  return o;
+}
+var EXM=[[/^(estado|aspecto) general$/i,'gen'],[/^cabeza( y cuello)?$/i,'cab'],[/^cuello$/i,'cab'],[/^t[oó]rax$/i,'tor'],[/^(cardiopulmonar|cardiovascular|pulmonar|cardio ?pulmonar)$/i,'tor'],[/^abdomen$/i,'abd'],[/^(genitourinario|genitales|genito ?urinario)$/i,'gu'],[/^(extremidades|osteomuscular|musculoesquel[eé]tico)$/i,'ext'],[/^neurol[oó]gico$/i,'neu'],[/^piel( y anexos)?$/i,'piel']];
+var EXMK=/(^|\n|[.;]\s+)\s*[-•*]?\s*(Estado general|Aspecto general|Cabeza y cuello|Cabeza|Cuello|T[oó]rax|Cardiopulmonar|Cardiovascular|Pulmonar|Abdomen|Genitourinario|Genitales|Extremidades|Osteomuscular|Musculoesquel[eé]tico|Neurol[oó]gico|Piel y anexos|Piel)\s*:\s*/gi;
+/* Divide el examen físico en sistemas cuando el texto trae encabezados ("Tórax: …"); lo demás queda como texto libre. */
+function husExam(txt){
+  var ex={},marks=[],m;txt=String(txt||'').trim();if(!txt)return ex;
+  EXMK.lastIndex=0;
+  while((m=EXMK.exec(txt)))marks.push({i:m.index+m[1].length,e:m.index+m[0].length,l:m[2]});
+  if(!marks.length){ex.otr=txt;return ex;}
+  var head=txt.slice(0,marks[0].i).replace(/[\s.;]+$/,'').trim();
+  function put(k,v,label){v=v.replace(/\s+/g,' ').replace(/^[-•*\s]+|[\s.;,]+$/g,'').trim();if(!v)return;v=v.charAt(0).toUpperCase()+v.slice(1);if(label)v=label+': '+v;ex[k]=ex[k]?ex[k]+'. '+v:v;}
+  if(head)put('gen',head);
+  marks.forEach(function(mk,ix){
+    var seg=txt.slice(mk.e,ix+1<marks.length?marks[ix+1].i:txt.length),k=null,j;
+    for(j=0;j<EXM.length;j++)if(EXM[j][0].test(mk.l)){k=EXM[j][1];break;}
+    var lab=/^cuello$/i.test(mk.l)?'Cuello':(/^(cardiopulmonar|cardiovascular|pulmonar|cardio ?pulmonar)$/i.test(mk.l)?mk.l.charAt(0).toUpperCase()+mk.l.slice(1).toLowerCase():'');
+    put(k||'otr',seg,lab);
+  });
+  return ex;
+}
+var IMGRX=/RADIOGRAF|\bRX\b|TOMOGRAF|\bTAC\b|\bTC\b|RESONANCIA|\bRMN\b|\bRM\b|ECOGRAF|\bECO\b|ECOCARDIO|DOPPLER|ANGIO|ARTERIOGRAF|MAMOGRAF|GAMMAGRAF|ESCANOGRAF|FLUOROSCOP|COLANGIO|UROGRAF|ENEMA|ESOFAGOGRAMA|DENSITOMETRIA|\bPET\b|CAVOGRAF|FISTULOGRAF|SIALOGRAF|HISTEROSALPING/;
+function ordKind(name){return IMGRX.test(norm2(name))?'img':'lab';}
+/* Divide "NOMBRE DEL CUPS OBSERVACIÓN" cuando la observación repite la primera palabra del nombre. */
+function cupsSplit(txt){
+  var w=norm2(txt).split(' ')[0],parts=txt.split(/\s+/),i,name=txt,obs='';
+  if(w&&w.length>=5)for(i=2;i<parts.length;i++)if(norm2(parts[i])===w){name=parts.slice(0,i).join(' ');obs=parts.slice(i).join(' ');break;}
+  return {name:name,obs:obs};
+}
+function husOrders(rows){ /* rows: líneas de la tabla EXÁMENES SOLICITADOS ya sin cabeceras */
+  var out=[],cur=null;
+  rows.forEach(function(t){
+    var m=/^(\d{5,7}[A-Z]{0,3})\s*[-–]\s*(.+?)(?:\s+\d{1,2})?$/.exec(t);
+    if(m){var sp=cupsSplit(m[2].replace(/\s+\d{1,2}$/,''));cur={cups:m[1].replace(/[A-Z]+$/,''),name:sp.name,obs:[sp.obs].filter(Boolean),inline:!!sp.obs,just:[]};out.push(cur);return;}
+    if(cur){if(cur.inline&&!cur.just.length)cur.obs[0]+=' '+t;else if(!cur.obs.length)cur.obs.push(t);else cur.just.push(t);}
+  });
+  return out.map(function(o){
+    var line=(o.obs[0]||o.name);
+    return {cups:o.cups,name:sentence(o.name),line:capFix(sentence(line.replace(/\s+/g,' ').trim())),just:o.just.map(function(x){return capFix(sentence(x));}).join(' '),k:ordKind(o.name+' '+line)};
+  });
+}
+var HDG_DROP=/^(CONDICIONES GENERALES|EL PACIENTE INGRESA AL PROGRAMA DE PREALTA|CODIGO NOMBRE|CUPS NOMBRE|NOMBRE DE MEDICAMENTOS|TIPO:)/;
+var HDG_SKIP=/^(COMPLICACIONES|PROCESO NATURAL DE LA ENFERMEDAD.*|FACTORES DE RIESGO|SIGNOS Y SINTOMAS|TRATAMIENTO|DEBERES Y DERECHOS.*|ACTIVIDADES DE PROMOCION.*|ESCALAS Y EDUCACION)$/;
+var HDG_EGR=/^(CONDICIONES DE EGRESO|GESTION DEL PROCESO DE DONACION|PLAN DE ATENCION DOMICILIARIA|ESCALA BARTHEL|CONCILIACION DE MEDICAMENTOS|REMISION A PROGRAMA.*|SE INDICA CONTROL AMBULATORIO PARA LAS SIGUIENTES ESPECIALIDADES)$/;
+function lookVit(ls,i){
+  for(var k=i+1;k<Math.min(ls.length,i+6);k++){var n=norm2(ls[k]);if(/TENSION ARTERIAL|SISTOLICA|FRECUENCIA CARDIACA|SIGNOS VITALES|ESCALA DEL DOLOR|GLASGOW/.test(n))return true;if(/^(ANALISIS|PLAN|SUBJETIVO)\b/.test(n))return false;}
+  return false;
+}
+function pushBlk(arr,seen,h,lines){
+  var txt=lines.join('\n').trim(),key=norm2(h+' '+txt).replace(/[^A-Z0-9]/g,''),k2;
+  if(!txt)return;
+  for(k2 in seen)if(k2.indexOf(key)>=0||key.indexOf(k2)>=0)return;
+  seen[key]=1;arr.push({h:h,t:txt});
+}
+/* kind: 'ev' (evolución) o 'eg' (egreso hospitalario médico). ls: líneas ya limpias (sin cabezal, sin nombres). */
+function husEv(ls,kind){
+  var B={s:[],vit:[],ef:[],a:[],ayu:[],p:[],amb:[],dx:[],ord:[],proc:[],egr:[]},sec='pre',seenVit=false,blk=null,recs=[],alarms=[],seen={},ambH='',dest='',barthel='',disp='',tit='',i,t,n,m;
+  function endBlk(){if(!blk)return;pushBlk(blk.arr,seen,blk.h,unwrapL(blk.l,false).map(fixCase));blk=null;}
+  function open(sc){endBlk();sec=sc;}
+  for(i=0;i<ls.length;i++){
+    t=ls[i].trim();if(!t)continue;n=norm2(t).replace(/\s*:\s*$/,'');
+    if(/^[-•*.,;\s]*$/.test(t))continue;
+    if(HDG_DROP.test(n)&&!/^TIPO:/.test(n)){if(/^CONDICIONES GENERALES$|^EL PACIENTE INGRESA/.test(n))open('pre');continue;}
+    if(/^TIPO:.*CLASE:/.test(n))continue;
+    if(/^(INFORMACION SUBJETIVA DEL PACIENTE|SUBJETIVO)$/.test(n)){open('s');continue;}
+    if((m=/^SUBJETIVO\s*:\s*(.+)$/.exec(norm2(t))))
+      {open('s');B.s.push(null,t.replace(/^\s*subjetivo\s*:\s*/i,''));continue;}
+    if(/^SIGNOS VITALES\b/.test(n)){open('vit');seenVit=true;B.vit.push(t);continue;}
+    if(/^(EXAMEN FISICO|OBJETIVO)$/.test(n)){
+      if(sec!=='vit'&&!seenVit&&lookVit(ls,i)){open('vit');seenVit=true;}else open('ef');continue;
+    }
+    if(/^ANALISIS$|^RESUMEN HISTORIA CLINICA Y ANALISIS$|^ANALISIS Y PLAN$/.test(n)){open('a');continue;}
+    if((m=/^ANALISIS\s*:\s*(.+)$/.exec(norm2(t)))){open('a');B.a.push(t.replace(/^\s*an[aá]lisis\s*:\s*/i,''));continue;}
+    if(/^INTERPRETACION (DE )?(AYUDAS DIAGNOSTICAS|PARACLINICOS)$/.test(n)){open('ayu');continue;}
+    if(/^(PLAN TERAPEUTICO|PLAN|PLAN DE MANEJO|PLAN DE EGRESO|CONDUCTA)$/.test(n)){open('p');continue;}
+    if((m=/^PLAN\s*:\s*(.+)$/.exec(norm2(t)))){open('p');B.p.push(t.replace(/^\s*plan\s*:\s*/i,''));continue;}
+    if(/^EXAMENES AMBULATORIOS\b/.test(n)){open('amb');ambH=(/\(([^)]*)\)/.exec(t)||[])[1]||'';continue;}
+    if(/^RECOMENDACIONES\b/.test(n)&&n.length<60){endBlk();sec='rec';blk={arr:recs,h:/GENERALES$/.test(n)?'':sentence(t.replace(/:\s*$/,'')),l:[]};continue;}
+    if(/^(OTROS )?SIGNOS DE ALARMA$/.test(n)){endBlk();sec='alarm';blk={arr:alarms,h:/^OTROS/.test(n)?'Otros signos de alarma':'',l:[]};continue;}
+    if(/^IMPRESION DIAGNOSTICA\b/.test(n)){open('dx');continue;}
+    if(/^EXAMENES SOLICITADOS$/.test(n)){open('ord');continue;}
+    if(/^MEDICAMENTOS SOLICITADOS$/.test(n)){open('med');continue;}
+    if(/^PROCEDIMIENTOS NO QUIRURGICOS SOLICITADOS$/.test(n)){open('proc');continue;}
+    if(/^INDICACIONES MEDICAS$/.test(n)){open('skip');continue;}
+    if(HDG_EGR.test(n)){open('egr');}
+    if(HDG_SKIP.test(n)){open('skip');continue;}
+    if(sec==='egr'||HDG_EGR.test(n)){
+      if((m=/^El paciente egresa\s+(.+)$/i.exec(t)))dest=capFix(sentence(m[1]));
+      else if((m=/^ESCALA BARTHEL\s+(.+)$/i.exec(t)))barthel=capFix(sentence(m[1]));
+      continue;
+    }
+    if(sec==='skip'||sec==='pre'||sec==='med')continue;
+    if(sec==='rec'||sec==='alarm'){blk.l.push(t);continue;}
+    if(sec==='vit'){B.vit.push(t);continue;}
+    if(sec==='s'&&!tit&&B.s.length===0&&/^(EVOLUCION\b|EGRESO MEDICO$|NOTA DE EVOLUCION)/.test(n)){tit=sentence(t);continue;}
+    if(sec==='s'&&B.s.length<4&&/^DRA?\.?\s+\S+.*[-–]\s*\S+/i.test(t)&&t.length<80)continue;
+    if(sec==='dx'){
+      if((m=/^([A-Z]\d{2,3}[A-Z0-9]?)\s*[-–]\s*(.+)$/.exec(t))){B.dx.push(m[1]+' - '+sentence(m[2]));continue;}
+      continue;
+    }
+    if(sec==='ord'){if(!/^(CUPS\b|CODIGO)/.test(n))B.ord.push(t);continue;}
+    if(sec==='proc'){if(!/^(CUPS\b|CODIGO)/.test(n))B.proc.push(t);continue;}
+    if(B[sec])B[sec].push(t);
+  }
+  endBlk();
+  function prose(arr){
+    var segs=[[]];arr.forEach(function(x){if(x===null)segs.push([]);else segs[segs.length-1].push(x);});
+    return segs.map(function(g){return unwrapL(g,false).map(fixCase).join('\n');}).join('\n').replace(/\n{3,}/g,'\n\n').trim();
+  }
+  var d={};
+  if(tit&&kind==='eg')d.tit='Egreso médico';
+  var s=prose(B.s);if(s)d.s=s;
+  var vit=husVitals(B.vit);if(Object.keys(vit).length)d.vit=vit;
+  var ef=prose(B.ef);if(ef){var ex=husExam(ef);if(Object.keys(ex).length)d.ex=ex;}
+  var ay=prose(B.ayu).replace(/^[-\s]+/,'');if(ay&&!/^sin reporte/i.test(ay))d.ayu=ay;else if(ay)d.ayu=ay;
+  var a=prose(B.a);if(a)d.a=a;
+  /* plan */
+  var pl=unwrapL(B.p,false).map(fixCase).filter(function(l){return !/^[-•*\s]*$/.test(l);});
+  if(pl.length&&/^[-•*\s]*salida\.?$/i.test(pl[0])){disp='Salida';pl.shift();}
+  var ord=[];
+  /* exámenes ambulatorios: "Hemograma, PCR, función renal" -> una orden por nombre */
+  var amb=B.amb.join(' ').replace(/\s+/g,' ').trim();
+  if(amb){amb.split(/\s*[,;]\s*|\s+y\s+(?=[A-ZÁÉÍÓÚa-z])/).forEach(function(x){x=x.replace(/^[-•*\s]+|[.\s]+$/g,'');if(x.length>1)ord.push({k:ordKind(x),line:capFix(sentence(x))});});
+    pl.push('Exámenes ambulatorios'+(ambH?' ('+sentence(ambH)+')':'')+': '+amb.replace(/[.\s]+$/,''));}
+  /* exámenes solicitados (tabla CUPS) */
+  var hrows=husOrders(B.ord);
+  hrows.forEach(function(o){ord.push({k:o.k,line:o.line,cups:o.cups,just:o.just});});
+  /* procedimientos no quirúrgicos solicitados: las consultas de control ya van en el plan; lo demás se anota */
+  B.proc.forEach(function(r){var mm=/^(\d{5,7})\s+(.+)$/.exec(r);if(mm&&!/^890/.test(mm[1])&&!/^CONSULTA/i.test(mm[2]))pl.push('Procedimiento solicitado: '+capFix(sentence(mm[2])));});
+  if(disp)pl.unshift('Disposición: '+disp.toLowerCase());
+  var p=pl.join('\n').replace(/\n{3,}/g,'\n\n').trim();if(p)d.p=p;
+  var ol=ord.filter(function(o){return o.k==='lab';}).map(function(o){return o.line;}),oi=ord.filter(function(o){return o.k==='img';}).map(function(o){return o.line;});
+  if(ol.length)d.ordl=ol.join('\n');if(oi.length)d.ordi=oi.join('\n');
+  if(B.dx.length)d.dx=B.dx.join('\n');
+  if(recs.length)d.rec=recs.map(function(r){var h=r.h||(recs.length>1?'Recomendaciones generales':'');return (h?h.replace(/:$/,'')+':\n':'')+r.t;}).join('\n\n');
+  if(alarms.length)d.alarm=alarms.map(function(r){return (r.h?r.h+':\n':'')+r.t;}).join('\n\n');
+  var ext={};if(kind==='eg'){if(dest)ext.dest=dest;if(barthel)ext.barthel=barthel;}
+  return {d:d,ext:ext,ord:ord};
+}
+/* Folio 11: solicitud de procedimientos, insumos y/o medicamentos -> plan con órdenes pendientes */
+function husSol(ls){
+  var dx=[],ord=[],rows=[],sec='',para='',i,t,n,m;
+  for(i=0;i<ls.length;i++){
+    t=ls[i].trim();if(!t)continue;n=norm2(t).replace(/\s*:\s*$/,'');
+    if((m=/^SE ABRE FOLIO PARA\s*:?\s*(.+)$/.exec(norm2(t)))){para=capFix(sentence(t.replace(/^se abre folio para\s*:?\s*/i,'')));continue;}
+    if(/^IMPRESION DIAGNOSTICA/.test(n)){sec='dx';continue;}
+    if(/^EXAMENES SOLICITADOS$/.test(n)){sec='ord';continue;}
+    if(/^(MEDICAMENTOS SOLICITADOS|PROCEDIMIENTOS (NO QUIRURGICOS )?SOLICITADOS|INSUMOS)$/.test(n)){sec='x';continue;}
+    if(/^INDICACIONES MEDICAS$/.test(n)){sec='skip';continue;}
+    if(HDG_DROP.test(n)||/^TIPO:.*CLASE:/.test(n)||/^CUPS\b/.test(n))continue;
+    if(sec==='dx'&&(m=/^([A-Z]\d{2,3}[A-Z0-9]?)\s*[-–]\s*(.+)$/.exec(t))){dx.push(m[1]+' - '+sentence(m[2]));continue;}
+    if(sec==='ord')rows.push(t);
+  }
+  husOrders(rows).forEach(function(o){ord.push({k:o.k,line:o.line,cups:o.cups,just:o.just});});
+  return {dx:dx,ord:ord,para:para};
+}
+/* Folio 12: nota de descripción de procedimientos no quirúrgicos -> nota */
+function husProc(ls){
+  var procs=[],desc=[],comp='',anes='',dx=[],sec='',i,t,n,m;
+  for(i=0;i<ls.length;i++){
+    t=ls[i].trim();if(!t)continue;n=norm2(t).replace(/\s*:\s*$/,'');
+    if((m=/^PROCEDIMIENTO NO QX\s*:\s*\d+\s+(\S+)\s+(.+)$/.exec(t))){procs.push({c:m[1],n:capFix(sentence(m[2]))});sec='proc';continue;}
+    if(sec==='proc'&&/^\(?EXCEPTO|^[A-ZÁÉÍÓÚÑ ()]{3,40}\)?$/.test(t)&&procs.length&&!/^(DESCRIPCION|COMPLICACIONES|ANESTESIA)/.test(n)){procs[procs.length-1].n+=' '+t.toLowerCase();continue;}
+    if(/^DESCRIPCION DEL PROCEDIMIENTO$/.test(n)){sec='desc';continue;}
+    if((m=/^COMPLICACIONES\s*:\s*(.*)$/i.exec(t))){comp=capFix(sentence(m[1].toLowerCase()));sec='';continue;}
+    if((m=/^ANESTESIA\s*:\s*(.*)$/i.exec(t))){anes=capFix(sentence(m[1].toLowerCase()));sec='';continue;}
+    if(/^MEDICO (ESPECIALISTA|ANESTESIOLOGO)/.test(n)){sec='';continue;}
+    if(/^IMPRESION DIAGNOSTICA/.test(n)){sec='dx';continue;}
+    if(/^INDICACIONES MEDICAS$/.test(n)){sec='skip';continue;}
+    if(HDG_DROP.test(n)||/^TIPO:.*CLASE:/.test(n))continue;
+    if(sec==='dx'&&(m=/^([A-Z]\d{2,3}[A-Z0-9]?)\s*[-–]\s*(.+)$/.exec(t))){dx.push(m[1]+' - '+sentence(m[2]));continue;}
+    if(sec==='desc')desc.push(t);
+  }
+  var out=['Procedimiento no quirúrgico'];
+  procs.forEach(function(p){out.push('- '+p.n+' ('+p.c+')');});
+  if(desc.length)out.push('Descripción: '+unwrapL(desc,false).map(fixCase).join(' '));
+  if(comp||anes)out.push('Complicaciones: '+(comp||'—')+(anes?' · Anestesia: '+anes:''));
+  if(dx.length)out.push('Diagnóstico:',dx.map(function(x){return '- '+x;}).join('\n'));
+  return {txt:out.join('\n'),have:procs.length||desc.length};
+}
+
 var SVSTOP='(?=\\s+(?:DR|DRA|DRES|MD|DOCTOR|DOCTORA|ESPECIALISTA|QUIEN|QUIENES|PACIENTE|FECHA|NOTA|MOTIVO|FAVOR|SE|EL|LA|CON|POR)\\b|[\\d,.*\\-–:(]|$)';
 var RSV=new RegExp('INTERCONSULTA\\s*(?:POR|DE|A|CON|PARA|AL SERVICIO DE|AL SERVICIO)?\\s*[-–:*]*\\s*([A-Za-zÁÉÍÓÚÑáéíóúñ][A-Za-zÁÉÍÓÚÑáéíóúñ ]{2,50}?)'+SVSTOP,'i');
 var SERVS=[[/trabajo social/i,'Trabajo social'],[/nutrici|nutricional/i,'Nutrición'],[/interven/i,'Radiología intervencionista'],[/radioter|radi[oó]logo? oncol/i,'Radioterapia'],[/oncolog/i,'Oncología clínica'],[/medicina interna|internista/i,'Medicina interna'],[/anestesi/i,'Anestesiología'],[/psicolog/i,'Psicología'],[/dolor|paliativ/i,'Clínica del dolor y cuidado paliativo'],[/urolog/i,'Urología'],[/infectolog/i,'Infectología'],[/nutrici|nutricional/i,'Nutrición'],[/trabajo social/i,'Trabajo social'],[/nefrolog/i,'Nefrología'],[/hematolog/i,'Hematología'],[/ginecolog/i,'Ginecología oncológica'],[/cirug[ií]a general/i,'Cirugía general'],[/gastroenterolog/i,'Gastroenterología'],[/psiquiatr/i,'Psiquiatría'],[/cardiolog/i,'Cardiología'],[/radiolog/i,'Radiología']];
@@ -1199,7 +1742,9 @@ function husKind(title){
   if(/INTERCONSULTA/.test(n)&&/^(RESPUESTA|NOTA)/.test(n))return 'ic';
   if(/^CONSULTA EXTERNA/.test(n))return 'ev';
   if(/^(CONSULTA URGENCIAS|INGRESO A HOSPITALIZACION)/.test(n))return 'in';
-  if(/^EGRESO HOSPITALARIO MEDICO/.test(n))return 'ep';
+  if(/^EGRESO HOSPITALARIO MEDICO/.test(n))return 'eg';
+  if(/^SOLICITUD DE PROCEDIMIENTOS/.test(n))return 'so';
+  if(/^NOTA DESCRIPCION PROCEDIMIENTOS/.test(n))return 'np';
   if(/^(REGISTRO PROCEDIMIENTO QUIRURGICO|INFORME PROCEDIMIENTO|NOTA DE PROCEDIMIENTO|JUNTA|NOTA ACLARATORIA|REGISTRO HOJA PROCEDIMIENTO DE RADIOTERAPIA|DESCRIPCION QUIRURGICA|EPICRISIS)/.test(n))return 'nt';
   return null;
 }
@@ -1216,6 +1761,8 @@ function husRole(title,sub){
   else if(/RESPUESTA INTERCONSULTA/.test(t))s='Interconsulta';
   else if(/INGRESO A HOSPITALIZACION/.test(t))s='Hospitalización';
   else if(/EGRESO HOSPITALARIO MEDICO/.test(t))s='Egreso médico';
+  else if(/^SOLICITUD DE PROCEDIMIENTOS/.test(t))s='Solicitud de exámenes';
+  else if(/^NOTA DESCRIPCION PROCEDIMIENTOS/.test(t))s='Procedimientos no quirúrgicos';
   else if(/NOTA ACLARATORIA LABORATORIO/.test(t))s='Laboratorio clínico';
   else if(/NOTA ACLARATORIA/.test(t))s='Nota aclaratoria';
   else if(/PROCEDIMIENTO QUIRURGICO|ANESTESICO/.test(t))s='Cirugía / anestesia';
@@ -1372,7 +1919,7 @@ function husExtract(ls,at,items,seen){
       var kind=m[2].toUpperCase(),isPath=/^(BIOPSIA|PATOLOG|CITOLOG)/i.test(kind);
       var dsrc=(m[1]||'')+' '+m[3],ld3=looseDate(dsrc,at);
       var ttl=sentence((m[2]+m[3]).replace(/\d{1,2}[\/.]\d{1,2}[\/.]\d{2,4}|\d{1,2}[\/.]\d{2}\b/g,'').replace(/\s+/g,' ').replace(/[\s,\-:]+$/,''));
-      var txt2=body.join('\n').trim();
+      var txt2=body.join('\n').trim().split('\n').map(fixCase).join('\n');
       var key4=(isPath?'P|':'S|')+norm2(ttl)+'|'+norm2(txt2).slice(0,70);
       var when=ld3?ld3.lbl:('registro del '+at.slice(0,10).split('-').reverse().join('/'));
       var rec={k:isPath?'lab':'img',at:ld3?ld3.iso:at,exact:!!(ld3&&ld3.exact),data:isPath?{est:ttl+' · '+when,res:txt2}:{est:ttl+' · '+when,lec:txt2}};
@@ -1389,24 +1936,42 @@ function cleanTpl(s){return String(s).replace(/^(Signos vitales tension arterial
 
 var REGL=/^(CABEZA|CUELLO|TORAX|ABDOMEN|PSIQUIATRICO|EXTREMIDADES|GENITALES|GENITOURINARIO|PIEL Y ANEXOS?|NEUROLOGICO|MUSCULOESQUELETICO|OJOS|ORL)$/;
 var VTPL=/^(CONVERSANDO|VERBAL O ESTIMULO|DOLOROSO$|OBEDECE|ESPONTANE|OBESIDAD|DESORIENTAD|CONFUSO|INCOMPRENSIBLE|FLEXION|EXTENSION|LOCALIZA|RETIRA|FRE RESPIRATORIA|%O2 REQUERIDO|GLASGO$|W$|REALIZO CONTROLES|ESCALA OBSTETRICA|GRADO DE RESPUESTA|CONDICIONES GENERALES$|EXAMEN FISICO ESCALA|RESPUESTA OCULAR|TOTAL ?\(|GLASGOW\)|TENSION ARTERIAL SISTOLICA|PESO ?\(KG\)|ES GESTANTE|TENSION ARTERIAL|PRESION ARTERIAL|PESO ?\(|FRECUENCIA (CARDIACA|RESPIRATORIA)|TEMPERATURA|SATURAC|GLASGOW|RESPUESTA|TOTAL GLASGOW|CONDICION DE DISCAPACIDAD|ULTIMA REGLA|GLUCOMETRIA|\d{1,3}$|\*+$|EXAMEN FISICO$)/;
+var HSTOP=/^(SUBJETIVO|OBJETIVO|EXAMEN FISICO|ANALISIS|RESUMEN HISTORIA CLINICA Y ANALISIS|PLAN( [A-Z ]+)?|CONDICIONES [A-Z ]+|IMPRESION DIAGNOSTICA.*|EXAMENES [A-Z ]+|MEDICAMENTOS [A-Z ]+|INDICACIONES MEDICAS|SIGNOS [A-Z ]+|RECOMENDACIONES [A-Z ]+|ESCALAS Y EDUCACION|INTERPRETACION [A-Z ]+|INFORMACION SUBJETIVA DEL PACIENTE)$/;
 function unwrapL(a,strict){
   var o=[];
   a.forEach(function(t){
     var p=o.length?o[o.length-1]:null;
-    if(p!==null&&!/^[-•*]/.test(t)&&(( !strict&&p.length>=88&&!/[.:;?!]$/.test(p))||/(-|,|\s(de|del|la|el|los|las|y|o|a|con|por|para|en|que|se|su|sin|al))$/i.test(p))&&!/^[A-ZÁÉÍÓÚÑ][^.:]{0,40}:\s/.test(t))o[o.length-1]=p+' '+t;
+    if(p!==null&&!/^[-•*]/.test(t)&&!HSTOP.test(norm2(t).replace(/\s*:$/,''))&&(( !strict&&p.length>=88&&!/[.:;?!]$/.test(p))||/(-|,|\s(de|del|la|el|los|las|y|o|a|con|por|para|en|que|se|su|sin|al))$/i.test(p))&&!/^[A-ZÁÉÍÓÚÑ][^.:]{0,40}:\s/.test(t))o[o.length-1]=p+' '+t;
     else o.push(t);
   });
   return o;
 }
 function lowFirst(s){return sentence(s);}
-var ACRU=/\b(ivu|hic|iv|ev|vo|sc|im|tac|uci|hta|erc|irc|epoc|vih|sida|ecg|pam|ets|rmn|tc|ac|inr|pcr|bun|tgo|tgp|ldh|hcg|ca|dm|fc|fr|ta|rx|uti)\b/g;
+var ACRU=/\b(ivu|hic|iv|ev|vo|sc|im|tac|uci|hta|erc|irc|epoc|vih|sida|ecg|pam|ets|rmn|tc|ac|inr|pcr|bun|tgo|tgp|ldh|hcg|ca|dm|fc|fr|ta|rx|uti|ap|msi|msd|mii|mid|tas|tad|ekg)\b/gi;
+/* Los folios del HUS en mayúscula vienen sin tildes: se restauran las palabras clínicas más comunes. */
+var ACCW={ferula:'férula',epifisis:'epífisis',diafisis:'diáfisis',metafisis:'metáfisis',cubito:'cúbito',transito:'tránsito',analisis:'análisis',sindrome:'síndrome',via:'vía',vias:'vías',dia:'día',dias:'días',diagnostico:'diagnóstico',diagnosticos:'diagnósticos',clinico:'clínico',clinica:'clínica',clinicamente:'clínicamente',medico:'médico',medica:'médica',paraclinico:'paraclínico',paraclinicos:'paraclínicos',hemodinamicamente:'hemodinámicamente',pronostico:'pronóstico',torax:'tórax',femur:'fémur',humero:'húmero',oseo:'óseo',osea:'ósea',indice:'índice',neurologico:'neurológico',ortopedico:'ortopédico',ortopedica:'ortopédica',quirurgico:'quirúrgico',quirurgica:'quirúrgica',fisico:'físico',fisica:'física',tecnica:'técnica',acido:'ácido',numero:'número',pulmon:'pulmón',corazon:'corazón',glucemia:'glucemia',musculo:'músculo',arteria:'arteria',venoso:'venoso',oxigeno:'oxígeno',saturacion:'saturación',analgesico:'analgésico',antibiotico:'antibiótico',cirugia:'cirugía',pelvico:'pélvico',abdominal:'abdominal',lumbar:'lumbar',cervical:'cervical',cardiaco:'cardíaco',cardiaca:'cardíaca',respiratorio:'respiratorio',proximo:'próximo',ultimo:'último',ultima:'última',minimo:'mínimo',maximo:'máximo',rapido:'rápido',dolor:'dolor',tambien:'también',despues:'después',articulo:'artículo',codigo:'código',hospitalizacion:'hospitalización',uroanalisis:'uroanálisis',lipidico:'lipídico',hepatico:'hepático',diagnosticas:'diagnósticas',diagnostica:'diagnóstica',farmacologico:'farmacológico',anatomia:'anatomía'};
+function accFix(x){
+  return String(x).replace(/[A-Za-zÁÉÍÓÚÑáéíóúñ]+/g,function(w){
+    if(/[áéíóúÁÉÍÓÚ]/.test(w)||w.length<3)return w;
+    var lw=w.toLowerCase(),r=ACCW[lw];
+    if(!r){
+      if(/cion$/.test(lw))r=lw.slice(0,-4)+'ción';
+      else if(/sion$/.test(lw)&&lw.length>5)r=lw.slice(0,-4)+'sión';
+      else if(/(ologia|grafia|scopia|tomia|metria|patia)$/.test(lw))r=lw.slice(0,-1)+'í'+lw.slice(-1);
+      else return w;
+    }
+    if(r===lw)return w;
+    if(w===w.toUpperCase()&&w.length>1)return r.toUpperCase();
+    return w.charAt(0)===w.charAt(0).toUpperCase()?r.charAt(0).toUpperCase()+r.slice(1):r;
+  });
+}
 function capFix(x){
   x=x.replace(ACRU,function(w){return w.toUpperCase();}).replace(/\bca de\b/gi,'CA de').replace(/\b(estadio|grado|g)\s*([ivx]+[abc]?)\b/gi,function(m,a,b){return a+' '+b.toUpperCase();}).replace(/\bg(\d+)p(\d+)(c\d+)?(v\d+)?(a\d+)?\b/gi,function(m){return m.toUpperCase();}).replace(/\b(venezuela|colombia|bucaramanga|barrancabermeja|santander|bogot[aá])\b/g,function(w){return w.charAt(0).toUpperCase()+w.slice(1);}).replace(/\bo\+/g,'O+');
-  return x.replace(/([.?!]\s+)([a-záéíóúñ])/g,function(m,a,b){return a+b.toUpperCase();});
+  return accFix(x).replace(/([.?!]\s+)([a-záéíóúñ])/g,function(m,a,b){return a+b.toUpperCase();});
 }
 function fixCase(l){
   var m=/^([-•*\s]*)(.*)$/.exec(l),p=m[1],x=m[2].replace(/\*{2,}/g,'').trim();
-  if(x.length>3&&isUp(x))x=capFix(sentence(x));
+  if(x.length>3&&(isUp(x)||capsLine(x)))x=capFix(sentence(isUp(x)?x:x.toUpperCase()));else x=accFix(x);
   return (/[-*]/.test(p)?'- ':'')+x;
 }
 function husIngreso(ls){
@@ -1532,7 +2097,18 @@ function analyzeHus(pages){
     if(!k){skipped++;return;}
     var ls=husLines(r.body,c,nameSet),at=r.at||(/^\d{4}-\d{2}-\d{2}/.test(meta.adm||'')?new Date(meta.adm.slice(0,10)+'T12:00:00').toISOString():new Date().toISOString()),it=null,d,title=sentence(r.title),hPara='';
     if(!sex){var sm=/\bPACIENTE\s+(FEMENINA|MASCULINO)\b/i.exec(ls.join(' '));if(sm)sex=/^f/i.test(sm[1])?'F':'M';}
-    if(k==='ev'){d=parseEvHUS(ls);if(Object.keys(d).length)it={k:'ev',at:at,data:d,sub:/^CONSULTA/i.test(r.title)?'Consulta externa':''};}
+    if(k==='ev'||k==='eg'){var he=husEv(ls,k);if(Object.keys(he.d).length)it={k:'ev',at:at,data:he.d,ext:he.ext,v:2,sub:/^CONSULTA/i.test(r.title)?'Consulta externa':''};}
+    else if(k==='so'){
+      var hs=husSol(ls);
+      if(hs.ord.length){
+        var plx=['Solicitud de exámenes'+(hs.para&&!/^solicitud/i.test(hs.para)?': '+hs.para:'')].concat(hs.ord.map(function(o){return '- '+o.line+(o.cups?' (CUPS '+o.cups+')':'');}));
+        var jj=hs.ord.map(function(o){return o.just;}).filter(Boolean).filter(function(x,ix,a){return a.indexOf(x)===ix;});
+        if(jj.length)plx.push('Justificación: '+jj.join(' · '));
+        if(hs.dx.length)plx.push('Diagnóstico:',hs.dx.map(function(x){return '- '+x;}).join('\n'));
+        it={k:'pl',at:at,v:2,data:{plan:plx.join('\n'),ord:hs.ord.map(function(o){return {id:uid(),k:o.k,n:o.line,cups:o.cups||''};})}};
+      }
+    }
+    else if(k==='np'){var hp=husProc(ls);if(hp.have)it={k:'nt',at:at,v:2,data:{txt:hp.txt},sub:'Procedimientos no quirúrgicos'};}
     else if(k==='ic'){d=parseIcHUS(ls,r.sub);if(d.resp.replace(/\s/g,'').length>10||d.serv)it={k:'ic',at:at,data:d};}
     else if(k==='in'){
       var end=ls.length;for(var q=0;q<ls.length;q++)if(EV_END.test(norm2(ls[q]))){end=q;break;}
@@ -1541,16 +2117,16 @@ function analyzeHus(pages){
       d={};if(h.motivo)d.motivo=h.motivo;if(h.ea)d.ea=h.ea+(h.rs?'\nRevisión por sistemas:\n'+h.rs:'');else if(h.rs)d.ea='Revisión por sistemas:\n'+h.rs;if(h.ant)d.ant=h.ant.replace(/^(antecedentes:?\s*\n?)+/i,'');if(h.ef)d.ef=h.ef+(h.para?'\nParaclínicos:\n'+h.para:'');hPara=h.para||'';if(h.dx)d.imp=h.dx;if(h.plan)d.plan=h.plan;
       if(Object.keys(d).length)it={k:'in',at:at,data:d,sub:r.sub?sentence(r.sub):title};
     }
-    else if(k==='ep'){d=parseEvHUS(ls);var e={};if(d.s||d.a)e.res=[d.s,d.a].filter(Boolean).join('\n\n');if(d.o)e.cond=d.o;if(d.p)e.ind=d.p;if(Object.keys(e).length)it={k:'ep',at:at,data:e};}
     else{var txt=ls.join('\n').trim();if(txt.length>15)it={k:'nt',at:at,data:{txt:title+'\n'+txt},sub:title};}
-    if(it){Object.keys(it.data).forEach(function(q){if(typeof it.data[q]==='string')it.data[q]=cleanEmpty(cleanTpl(it.data[q]));});it.svc=(it.k==='ic'&&it.data.serv)?'Interconsulta · '+it.data.serv:husRole(r.title,r.sub);it.by=husWho(ls,r.body);if(it.k==='ep'&&it.data.cond)it.data.cond=it.data.cond.split(/\n(?=Resumen historia|Evolucion medica)/i)[0];tidyObj(it.data);if(r.est)it.est=1;items.push(it);}
-    if(k!=='nt'||/PROCEDIMIENTO|JUNTA|ACLARATORIA/i.test(r.title))husExtract(ls,at,items,seenX);
+    if(it){if(!it.v)Object.keys(it.data).forEach(function(q){if(typeof it.data[q]==='string')it.data[q]=cleanEmpty(cleanTpl(it.data[q]));});it.svc=(it.k==='ic'&&it.data.serv)?'Interconsulta · '+it.data.serv:husRole(r.title,r.sub);it.by=husWho(ls,r.body);if(!it.v)tidyObj(it.data);if(r.est)it.est=1;items.push(it);}
+    if(k!=='so'&&k!=='np'&&(k!=='nt'||/PROCEDIMIENTO|JUNTA|ACLARATORIA/i.test(r.title)))husExtract(k==='eg'?unwrapL(ls,false):ls,at,items,seenX);
     if(hPara.replace(/\s/g,'').length>8)items.push({k:'lab',at:at,data:{est:'Paraclínicos del ingreso (de otra institución) · '+at.slice(0,10).split('-').reverse().join('/'),res:labAbbr(hPara.trim())}});
   });
   if(firstIn){hx=firstIn.hx;delete hx.otros;tidyObj(hx);}
   if(hx.ant)hx.ant=hx.ant.replace(/^(antecedentes:?\s*\n?)+/i,'');
   var lastEv=items.filter(function(i){return i.k==='ev';}).sort(function(a,b){return a.at<b.at?1:-1;})[0];
-  if(lastEv&&lastEv.data.a){var dm=/Diagnósticos \(CIE-10\):\n- ([^\n]+)/.exec(lastEv.data.a);if(dm)dxLine=dm[1].replace(/^[A-Z]\d+[A-Z0-9]?\s*-\s*/,'');}
+  if(lastEv&&lastEv.data.dx){dxLine=lastEv.data.dx.split('\n')[0].replace(/^[A-Z]\d+[A-Z0-9]?\s*-\s*/,'');}
+  else if(lastEv&&lastEv.data.a){var dm=/Diagnósticos \(CIE-10\):\n- ([^\n]+)/.exec(lastEv.data.a);if(dm)dxLine=dm[1].replace(/^[A-Z]\d+[A-Z0-9]?\s*-\s*/,'');}
   var f={ini:meta.ini,age:meta.age,bed:meta.bed,hc:meta.hc,sex:sex,adm:meta.adm};
   return {f:f,hx:hx,items:items,red:c.n,skip:skipped,dx:dxLine,hus:true};
 }
@@ -1626,7 +2202,7 @@ function doApplyUpd(){
     if(i.k==='ic')ne.status='respondida';
     db.entries.push(ne);n++;
   });
-  save();S.upd=null;render();toast('Agregado: '+n+' elemento'+(n===1?'':'s')+'.');
+  ensurePlans(p.id);save();S.upd=null;render();toast('Agregado: '+n+' elemento'+(n===1?'':'s')+'.');
 }
 
 /* ===== v13: Resumen, Cronología navegable, tutorial ===== */
@@ -1671,7 +2247,8 @@ function trendRow(p,T){
 }
 function problemList(p){
   var le=lastEv(p.id),out=[];
-  if(le&&le.data.a){
+  if(le&&le.data.dx){le.data.dx.split('\n').forEach(function(l){l=l.replace(/^- /,'').trim();if(l)out.push(l);});}
+  else if(le&&le.data.a){
     var m=/Diagnósticos \(CIE-10\):\n((?:- [^\n]+\n?)+)/.exec(le.data.a);
     if(m)m[1].split('\n').forEach(function(l){l=l.replace(/^- /,'').trim();if(l)out.push(l);});
   }
@@ -1730,6 +2307,8 @@ function viewResumen(p){
   /* ultimo estudio imagen */
   var im=ofType(p,'img')[0];
   if(im)h+='<div class="card"><h3>Última imagen o estudio</h3><div class="small muted">'+esc(im.data.est||'')+'</div><div>'+(im.data.lecNo?'<span class="pill vigilar">No leída aún</span>':rich(cut(im.data.lec||'',500)))+'</div>'+imgRdSummary(im)+'<button class="btn sm" data-a="goSec" data-k="img">Ver imágenes ('+cnt.img+')</button></div>';
+  var po=pendOrders(p.id);
+  if(po.length)h+='<div class="card"><h3>Pendiente de resultado ('+po.length+')</h3>'+po.slice(0,8).map(function(x){return ordRow(x.o,x.pl,null);}).join('')+'<button class="btn sm" data-a="goSec" data-k="plan">Ir al Plan</button></div>';
   /* antecedentes y pendientes */
   if(p.hx&&p.hx.ant)h+='<div class="card"><h3>Antecedentes</h3><div>'+rich(cut(p.hx.ant,600))+'</div><button class="btn sm" data-a="goSec" data-k="hx">Ver historia</button></div>';
   if(tasksOpen.length||ics.length)h+='<div class="card"><h3>Pendientes</h3>'+tasksOpen.map(taskRow).join('')+ics.map(function(e){return '<div class="task"><span class="chip" style="--c:var(--c-interconsulta)">IC</span><span class="t">'+esc(e.data.serv||'Interconsulta')+'</span></div>';}).join('')+'</div>';
@@ -3395,14 +3974,21 @@ var A={
  askDelPatient:function(){S.confirm='pat';render();},
  delPatient:function(){var sid=S.serviceId;delPatientData(S.patientId);save();go('service',{serviceId:sid});toast('Paciente borrado.');},
  reactivate:function(){var p=pat(S.patientId);p.active=true;delete p.exitAt;save();render();},
+ backfillPlans:function(){var c=db.entries.filter(function(x){return x.patientId===S.patientId&&((x.type==='evolucion'&&x.data.p)||(x.type==='ingreso'&&x.data.plan));}).sort(function(a,b){return a.at<b.at?1:-1;}).slice(0,5);c.forEach(ensurePlan);save();render();toast('Listo: '+c.length+' plan'+(c.length===1?'':'es')+'.');},
+ ciePick:function(el){ciePickInto(+el.dataset.i,el.closest('.cie'));},
+ fillPdf:function(){var i=document.createElement('input');i.type='file';i.accept='application/pdf,.pdf';i.onchange=function(){if(i.files&&i.files[0])fillFromPdf(i.files[0]);};i.click();},
+ regOrd:function(el){var r=ordById(el.dataset.id);if(!r)return;var go2=function(){S.editor={type:r.o.k,prefill:{est:r.o.n,ref:r.o.id}};S.sec=r.o.k;S.warned=false;render();window.scrollTo(0,0);};if(S.patientId!==r.pl.patientId||S.view!=='patient'){go('patient',{patientId:r.pl.patientId,serviceId:(pat(r.pl.patientId)||{}).serviceId});}go2();},
+ ordDrop:function(el){var r=ordById(el.dataset.id);if(r){r.o.x=1;save();render();toast('Descartado: ya no queda pendiente.');}},
+ ordUndo:function(el){var r=ordById(el.dataset.id);if(r){delete r.o.x;save();render();}},
+ goRes:function(el){var e=db.entries.filter(function(x){return x.id===el.dataset.id;})[0];if(!e)return;S.sec=e.type;S.openId=e.id;render();setTimeout(function(){var d=document.getElementById('ce_'+e.id);if(d){d.open=true;d.scrollIntoView({block:'center'});}},50);},
  newEntry:function(el){S.editor={type:el.dataset.t};S.warned=false;render();var f=document.querySelector('.card textarea, .card input[id^=e_]:not([type=datetime-local])');if(f)f.scrollIntoView({block:'center'});},
  editEntry:function(el){var e=db.entries.filter(function(x){return x.id===el.dataset.id;})[0];S.editor={type:e.type,entryId:e.id};S.warned=false;render();window.scrollTo(0,0);},
  cancelEntry:function(){imgDiscard();S.editor=null;S.warned=false;render();},
  imgOpen:function(el){imgOpenH(el);},imgPrev:function(){imgStep(-1);},imgNext:function(){imgStep(1);},imgClose:function(){imgCloseH();},imgRm:function(el){imgRmH(el);},rdAdd:function(){rdAddH();},rdDel:function(el){var r=el.closest('.rdRow');if(r)r.remove();},
  saveEntry:function(){saveEntry();},
- copyLastEv:function(){var ev=pEntries(S.patientId).filter(function(e){return e.type==='evolucion';})[0];if(!ev){toast('No hay evolución anterior.');return;}S.editor={type:'evolucion',prefill:ev.data};render();},
+ copyLastEv:function(){var ev=pEntries(S.patientId).filter(function(e){return e.type==='evolucion';})[0];if(!ev){toast('No hay evolución anterior.');return;}var pf=evNorm(ev.data),cp={};Object.keys(pf).forEach(function(k){if(['vit','ayu','ordl','ordi','tit','o'].indexOf(k)<0)cp[k]=pf[k];});S.editor={type:'evolucion',prefill:cp};render();},
  askDelEntry:function(el){S.confirm=el.dataset.id;render();},
- delEntry:function(el){var id=el.dataset.id;var e=db.entries.filter(function(x){return x.id===id;})[0];db.entries=db.entries.filter(function(x){return x.id!==id;});try{imgDelEntry(e);}catch(x){}
+ delEntry:function(el){var id=el.dataset.id;var e=db.entries.filter(function(x){return x.id===id;})[0];db.entries=db.entries.filter(function(x){return x.id!==id&&!(x.type==='plan'&&x.data&&x.data.src===id);});try{imgDelEntry(e);}catch(x){}
    if(e&&e.type==='salida'){var p=pat(e.patientId);if(p&&!db.entries.some(function(x){return x.patientId===p.id&&x.type==='salida';})){p.active=true;delete p.exitAt;}}
    save();S.confirm=null;render();toast('Nota borrada.');},
  toggleIC:function(el){var e=db.entries.filter(function(x){return x.id===el.dataset.id;})[0];e.status=e.status==='pendiente'?'respondida':'pendiente';save();render();},
