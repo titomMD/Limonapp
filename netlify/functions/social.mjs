@@ -5,13 +5,16 @@ import { getStore } from '@netlify/blobs';
    (JWKS), emisor, audiencia y vencimiento. Devuelve el ID con el que se guardan los datos del usuario. */
 const SUPABASE_URL = 'https://lwfsydrtxukbbviocrvv.supabase.co';
 const ISS = SUPABASE_URL + '/auth/v1';
-/* Personas que ya usaban Limonapp con Netlify Identity: correo de Google VERIFICADO -> ID bajo el que ya están
-   guardados sus datos. Así conservan pacientes, equipos, mensajes y roles. Todos los demás usan su ID de Supabase. */
+/* Personas que ya usaban Limonapp con Netlify Identity: huella SHA-256 de su correo de Google VERIFICADO (en minusculas)
+   -> ID bajo el que ya estan guardados sus datos. Asi conservan pacientes, equipos, mensajes y roles.
+   Se guarda la huella y no el correo porque este repositorio es publico. Todos los demas usan su ID de Supabase.
+   Para obtener la huella de un correo (Mac, Terminal):  printf '%s' "correo@gmail.com" | shasum -a 256 */
 const LEGACY = {
-  'estebanlegui295@gmail.com': 'be0a9bec-7f40-4b80-a0e4-5b474fe36106',
-  'lizethjaimesferreira@gmail.com': 'e1603fa0-0193-4770-9663-ec6d6f9e6f54',
-  'titomracsogabi@gmail.com': 'd3d52a34-043f-42d1-87f5-7df340aebf36',
+  '76e21e5b52a74bffcb13cdf1cc78578dcfb9a45a67259480eebb174748359a73': 'be0a9bec-7f40-4b80-a0e4-5b474fe36106',
+  '883bcbd76c4ed2632953f9cdde627d5acf710e2bcfecd04d1005fe9c44f20220': 'e1603fa0-0193-4770-9663-ec6d6f9e6f54',
+  'ae0cb6014a392bfcd1733bd85609791c93a9daed96d67587dff1ff5c7297ff60': 'd3d52a34-043f-42d1-87f5-7df340aebf36',
 };
+const sha256 = async (t) => Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)))).map((b) => b.toString(16).padStart(2, '0')).join('');
 const b64u = (s) => Uint8Array.from(atob(String(s).replace(/-/g, '+').replace(/_/g, '/').padEnd(Math.ceil(String(s).length / 4) * 4, '=')), (c) => c.charCodeAt(0));
 const txt = (u8) => new TextDecoder().decode(u8);
 let JWKS = { at: 0, keys: [] };
@@ -56,7 +59,8 @@ async function authenticate(req) {
   const um = p.user_metadata && typeof p.user_metadata === 'object' ? p.user_metadata : {};
   const email = String(p.email || um.email || '').toLowerCase();
   const verified = !!email && ((p.app_metadata && p.app_metadata.provider) === 'google') && (um.email_verified === true || um.email_verified === 'true');
-  const legacy = verified && Object.prototype.hasOwnProperty.call(LEGACY, email) ? LEGACY[email] : '';
+  const h256 = verified ? await sha256(email) : '';
+  const legacy = verified && Object.prototype.hasOwnProperty.call(LEGACY, h256) ? LEGACY[h256] : '';
   return { user: { id: legacy || p.sub, sub: p.sub, legacy: !!legacy, email, user_metadata: um } };
 }
 /* ===== AUTH-END ===== */

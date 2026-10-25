@@ -16,7 +16,8 @@ Secciones del paciente (v10): SECS/secHtml/foldWrap/subTabs en viewPatient; chip
 Importacion limpia (v11): dropNoise() quita consentimientos informados (CONSH/CONS) y lineas administrativas (ADMIN) antes de separar el PDF; casilla input.noiseOn en dropZone; boton 'Limpiar' (A.cleanNoise) en Paraclinicos/Imagenes para entradas ya guardadas; tidyHx tambien lo aplica. rich() da estructura visual: encabezados .sh, etiquetas en negrita (lbl), fechas (.dt), valores clinicos (.val), parrafos largos partidos por oraciones (.pg).
 Lectura HUS (v12): pdfPages()->isHus()/husPage() lee cada pagina por su cabecera ('Pagina n/N', 'TITULO nFOLIO:', fecha de registro, paciente) y agrupa paginas del mismo folio; husKind() clasifica (ev/ic/in/ep/nt) y omite enfermeria, escalas, consentimientos, solicitudes; parseEvHUS (S/O/A/P por encabezados), parseIcHUS (servicio desde 'RESPUESTA A INTERCONSULTA POR X'), analyzeHus(). Formatos de otros hospitales siguen por analyzeAll. Tope EVMAX evoluciones al crear paciente.
 Privacidad: la app pide solo iniciales, edad, cama y 3 ultimos digitos de HC; avisa si detecta numeros largos.
-v31 (25-oct-2026) LOGIN CON SUPABASE: ya no se usa Netlify Identity. Proyecto Supabase 'Limonapp' (URL y clave publishable en SB_URL/SB_KEY, publicas por diseño; NUNCA guardar secret/service_role). Solo Google; correo y anonimo desactivados en Supabase. Cliente: SOLO @supabase/auth-js 2.117.2 empaquetado con esbuild en public/vendor/auth-js.supabase.js (expone window.LimonAuth.GoTrueClient; entrada: import {GoTrueClient} from '@supabase/auth-js'; window.LimonAuth={GoTrueClient}; npx esbuild --bundle --minify --format=iife). En el artifact (claude.ai) gAvail() es falso: no hay login ni carga la libreria. Flujo PKCE con redireccion completa; gOnSess() maneja INITIAL_SESSION/SIGNED_IN/SIGNED_OUT; sbUser() da u.id/u.email/u.jwt(forzar) como antes; gWho() pide /api/sync?whoami=1 para saber con que ID guarda el servidor los datos de la persona (G.uid) y asi gSt().uid de las cuentas anteriores no se reinicia. Servidor: netlify/functions/sync.mjs y social.mjs llevan el MISMO bloque AUTH (entre AUTH-BEGIN y AUTH-END): verifica el token ES256 con el JWKS del proyecto (WebCrypto, sin librerias), emisor, audiencia, vencimiento. Tabla LEGACY en ese bloque: correo de Google verificado -> ID viejo de Netlify Identity (estebanlegui295 be0a9bec-..., lizethjaimesferreira e1603fa0-..., titomracsogabi d3d52a34-... cuenta de pruebas); quien no esta en la tabla usa su ID de Supabase (registro abierto). Para dar a alguien un ID existente hay que editar LEGACY en los dos archivos y desplegar. Llaves de datos no cambian: u_<id> (almacen limonapp), p_/t_/m_/e_/f_/sp_ (limonapp-social). Netlify Identity puede apagarse cuando todo funcione.
+v31 (25-oct-2026) LOGIN CON SUPABASE: ya no se usa Netlify Identity. Proyecto Supabase 'Limonapp' (URL y clave publishable en SB_URL/SB_KEY, publicas por diseño; NUNCA guardar secret/service_role). Solo Google; correo y anonimo desactivados en Supabase. Cliente: SOLO @supabase/auth-js 2.117.2 empaquetado con esbuild en public/vendor/auth-js.supabase.js (expone window.LimonAuth.GoTrueClient; entrada: import {GoTrueClient} from '@supabase/auth-js'; window.LimonAuth={GoTrueClient}; npx esbuild --bundle --minify --format=iife). En el artifact (claude.ai) gAvail() es falso: no hay login ni carga la libreria. Flujo PKCE con redireccion completa; gOnSess() maneja INITIAL_SESSION/SIGNED_IN/SIGNED_OUT; sbUser() da u.id/u.email/u.jwt(forzar) como antes; gWho() pide /api/sync?whoami=1 para saber con que ID guarda el servidor los datos de la persona (G.uid) y asi gSt().uid de las cuentas anteriores no se reinicia. Servidor: netlify/functions/sync.mjs y social.mjs llevan el MISMO bloque AUTH (entre AUTH-BEGIN y AUTH-END): verifica el token ES256 con el JWKS del proyecto (WebCrypto, sin librerias), emisor, audiencia, vencimiento. Tabla LEGACY en ese bloque: huella SHA-256 del correo de Google verificado -> ID viejo de Netlify Identity (3 cuentas; el repositorio es publico, por eso no van los correos); quien no esta en la tabla usa su ID de Supabase (registro abierto). Para dar a alguien un ID existente hay que editar LEGACY en los dos archivos y desplegar. Llaves de datos no cambian: u_<id> (almacen limonapp), p_/t_/m_/e_/f_/sp_ (limonapp-social). Netlify Identity puede apagarse cuando todo funcione.
+v32 (25-oct-2026) IMAGENES Y LECTURAS: entradas tipo img guardan data.imgs (IDs de JPEG), data.lecNo (1 = lectura oficial 'No leida aun', y se omite data.lec), data.lec (informe oficial, igual que antes), data.rd (lecturas por especialidad: [{s,t,at}]) y data.mia (mis hallazgos, igual que antes). Entradas antiguas con lec/mia se ven igual. Los JPEG NO van en rotaciones_v1 ni se sincronizan ni entran al respaldo: viven en IndexedDB 'limonapp-img' (almacen 'b', claves 'f:ID' imagen reducida a 2000 px y 't:ID' miniatura 320 px, ambas JPEG sin EXIF). En otro dispositivo se ve 'Solo en otro dispositivo'. Se borran al borrar la entrada, el paciente o todos los datos. Sin cambios en el servidor.
 -->
 <title>Limonapp</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
@@ -327,6 +328,19 @@ html[data-theme="light"] .prof{color:#8a5a00;border-left-color:#c98a00;backgroun
 .bigw{overflow-x:auto;padding-bottom:4px}.bigsvg{display:block;height:auto;max-width:none}.bigsvg .gl{stroke:var(--line);stroke-width:1}.bigsvg .ln{fill:none;stroke:var(--c-lab);stroke-width:2.6;stroke-linejoin:round}.bigsvg .pt{fill:var(--c-lab);stroke:var(--surface);stroke-width:2}
 .bigsvg .ax{fill:var(--muted);font-size:12px}.bigsvg .vl{fill:var(--ink);font-size:13px;font-weight:700}.trvals{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:6px}
 .cropw{position:relative;width:260px;max-width:100%;margin:0 auto;overflow:hidden;border-radius:8px}.cropw canvas{display:block;width:100%;height:auto;touch-action:none;cursor:grab;background:#000}.cropmask{position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 400px rgba(0,0,0,.55);pointer-events:none;border:2px solid #fff}
+.imgs{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.imgs .th{position:relative;width:92px;height:92px;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--field);display:flex;align-items:center;justify-content:center;font-size:11px;text-align:center;color:var(--muted);padding:0}
+.imgs .th img{width:100%;height:100%;object-fit:cover;display:block;cursor:pointer}
+.imgs .th .x{position:absolute;top:3px;right:3px;width:24px;height:24px;border-radius:99px;border:0;background:#000b;color:#fff;font-size:13px;line-height:1;cursor:pointer;padding:0}
+.imgs .th span{padding:4px}
+.rdRow{border:1px solid var(--line);border-radius:10px;padding:8px;margin:6px 0;display:grid;gap:6px}
+.rdsec,.imgsec{display:grid;gap:6px;margin:8px 0}
+#imgView{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.93);display:flex;flex-direction:column;color:#fff}
+#imgView .bar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px}
+#imgWrap{flex:1;min-height:0;overflow:auto;display:flex;align-items:center;justify-content:center;touch-action:pinch-zoom pan-x pan-y}
+#imgBig{max-width:100%;max-height:100%;object-fit:contain;cursor:zoom-in}
+#imgBig.zoom{max-width:none;max-height:none;width:200%;cursor:zoom-out}
+#imgMsg{text-align:center;padding:10px;font-size:14px}
 </style>
 
 <div class="wrap">
@@ -488,7 +502,9 @@ function entryForm(){
   var d=(e&&e.data)||ed.prefill||{};
   var h='<div class="card" style="border-color:var(--c-'+ed.type+')"><div class="row spread"><span class="chip" style="--c:var(--c-'+ed.type+')">'+T.label+'</span>'+(ed.type==='evolucion'&&!e?'<button class="btn sm" data-a="copyLastEv">Partir de la evolución anterior</button>':'')+'</div>';
   h+='<label>Fecha y hora<input id="e_at" type="datetime-local" value="'+esc(e?toLocal(e.at):(ed.at||nowLocal()))+'"></label>';
+  if(ed.type==='img')imgEdInit(ed,d);
   h+=T.f.map(function(f){
+    if(ed.type==='img'){var ih=imgFormPart(f,d);if(ih!==null)return ih;}
     if(ed.type==='salida'&&f[0]==='tipo')return '<label>'+f[1]+'<select id="e_tipo">'+SALIDAS.map(function(o){return '<option'+(d.tipo===o?' selected':'')+'>'+o+'</option>';}).join('')+'</select></label>';
     if(f[2]<=1)return '<label>'+f[1]+'<input id="e_'+f[0]+'" value="'+esc(d[f[0]]||'')+'"></label>';
     return '<label>'+f[1]+'<textarea id="e_'+f[0]+'" rows="'+f[2]+'">'+esc(d[f[0]]||'')+'</textarea></label>';
@@ -553,7 +569,7 @@ function secHtml(p,k){
   if(k==='hx')return viewHx(p);
   if(k==='upd')return updCard(p);
   if(k==='lab')return trendsCards(p)+sepCard(p,'lab','Paraclínicos','Laboratorios y otros resultados. Cada resultado queda por fecha, aparte de la cronología.');
-  if(k==='img')return sepCard(p,'img','Imágenes y lecturas','RX, TAC, RMN, ecografía… con la lectura oficial y tus propios hallazgos.');
+  if(k==='img')return sepCard(p,'img','Imágenes y lecturas','RX, TAC, RMN, ecografía… con imágenes (JPEG), la lectura oficial —o “No leída aún”—, la lectura de cada especialidad y tus hallazgos. Las imágenes quedan solo en este dispositivo.');
   if(k==='ic')return sepCard(p,'interconsulta','Interconsultas','Preguntas a otros servicios y sus respuestas. Las pendientes también salen en Pendientes del turno.');
   if(k==='task'){
     var tasks=pTasks(p.id);
@@ -609,7 +625,7 @@ function taskRow(t){
 }
 function entryCard(e){
   var T=TYPES[e.type];
-  var body=T.f.map(function(f){var v=e.data[f[0]];return v?'<dt>'+f[1]+'</dt><dd>'+rich(v)+'</dd>':'';}).join('');
+  var body=e.type==='img'?imgBody(e):T.f.map(function(f){var v=e.data[f[0]];return v?'<dt>'+f[1]+'</dt><dd>'+rich(v)+'</dd>':'';}).join('');
   var ic=e.type==='interconsulta'?'<button class="btn sm" data-a="toggleIC" data-id="'+e.id+'">'+(e.status==='pendiente'?'Pendiente: marcar respondida':'Respondida: marcar pendiente')+'</button>':'';
   return '<article class="entry" style="--c:var(--c-'+e.type+')"><div class="row spread"><div class="row"><span class="chip" style="--c:var(--c-'+e.type+')">'+T.label+'</span>'+(e.type==='interconsulta'?'<span class="pill '+(e.status==='pendiente'?'vigilar':'estable')+'">'+esc(e.status)+'</span>':'')+'</div><span class="mono small muted">'+fmt(e.at)+'</span></div><dl>'+(body||'<dd class="muted">Sin contenido.</dd>')+'</dl><div class="row">'+ic+'<button class="btn sm" data-a="editEntry" data-id="'+e.id+'">Editar</button>'+
     (S.confirm===e.id?'<button class="btn sm danger" data-a="delEntry" data-id="'+e.id+'">Confirmar: borrar</button>':'<button class="btn sm danger" data-a="askDelEntry" data-id="'+e.id+'">Borrar</button>')+'</div></article>';
@@ -729,7 +745,7 @@ function applyDE(){
     var em=document.createElement('em');em.className='de';em.textContent=de;sp.appendChild(em);p.replaceChild(sp,n);
   });
 }
-function render(){render0();try{hlApply();}catch(e){}try{tPost();}catch(e){}}
+function render(){render0();try{hlApply();}catch(e){}try{tPost();}catch(e){}try{imgHydrate();}catch(e){}}
 function render0(){
   if(!window.__mdx){window.__mdx=1;try{migDx();}catch(e){}}
   renderTabs();
@@ -763,13 +779,16 @@ var LONGNUM=/\b\d{7,}\b|\b3\d{2}[ -]?\d{3}[ -]?\d{4}\b/;
 function saveEntry(){
   var ed=S.editor,T=TYPES[ed.type],data={},all='';
   T.f.forEach(function(f){var v=val('e_'+f[0]).trim();if(v){data[f[0]]=v;all+=' '+v;}});
-  if(!all.trim()&&ed.type!=='salida'){toast('Escribe algo antes de guardar.');return;}
+  var imx=null;if(ed.type==='img'){imx=imgCollect(data);all+=imx.text;}
+  if(!all.trim()&&ed.type!=='salida'&&!(imx&&imx.extra)){toast('Escribe algo antes de guardar.');return;}
   if(LONGNUM.test(all)&&!S.warned){S.warned=true;render();return;}
+  var imp=ed.type==='img'?imgPlan():null;
   var at=fromLocal(val('e_at'));
   if(ed.entryId){var e=db.entries.filter(function(x){return x.id===ed.entryId;})[0];e.at=at;e.data=data;}
   else{var ne={id:uid(),patientId:S.patientId,type:ed.type,at:at,data:data};if(ed.type==='interconsulta')ne.status='pendiente';db.entries.push(ne);
     if(ed.type==='salida'){var p=pat(S.patientId);p.active=false;p.exitAt=at;}}
   save();S.editor=null;S.warned=false;render();toast('Guardado.');
+  if(imp)imgCommit(imp);
 }
 function copyText(txt,srcId){
   var ok=false;
@@ -778,6 +797,7 @@ function copyText(txt,srcId){
   function sel(){var el=document.getElementById(srcId);if(el){var r=document.createRange();r.selectNodeContents(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);if(el.select)el.select();}toast('Selecciona y copia con el menú del teléfono o Ctrl/Cmd+C.');}
 }
 function delPatientData(id){
+  try{db.entries.filter(function(e){return e.patientId===id;}).forEach(imgDelEntry);}catch(x){}
   db.entries=db.entries.filter(function(e){return e.patientId!==id;});
   db.tasks=db.tasks.filter(function(t){return t.patientId!==id;});
   db.patients=db.patients.filter(function(p){return p.id!==id;});
@@ -1709,7 +1729,7 @@ function viewResumen(p){
   if(hs.length)h+='<div class="card"><h3>Hitos documentados</h3><ul class="li2">'+hs.map(function(x){return '<li><span class="mono small muted">'+esc(dlong(x.at))+(x.est?' ~':'')+'</span> '+esc(x.lbl)+'</li>';}).join('')+'</ul><button class="btn sm" data-a="goSec" data-k="cron">Ver todo en Cronología</button></div>';
   /* ultimo estudio imagen */
   var im=ofType(p,'img')[0];
-  if(im)h+='<div class="card"><h3>Última imagen o estudio</h3><div class="small muted">'+esc(im.data.est||'')+'</div><div>'+rich(cut(im.data.lec||'',500))+'</div><button class="btn sm" data-a="goSec" data-k="img">Ver imágenes ('+cnt.img+')</button></div>';
+  if(im)h+='<div class="card"><h3>Última imagen o estudio</h3><div class="small muted">'+esc(im.data.est||'')+'</div><div>'+(im.data.lecNo?'<span class="pill vigilar">No leída aún</span>':rich(cut(im.data.lec||'',500)))+'</div>'+imgRdSummary(im)+'<button class="btn sm" data-a="goSec" data-k="img">Ver imágenes ('+cnt.img+')</button></div>';
   /* antecedentes y pendientes */
   if(p.hx&&p.hx.ant)h+='<div class="card"><h3>Antecedentes</h3><div>'+rich(cut(p.hx.ant,600))+'</div><button class="btn sm" data-a="goSec" data-k="hx">Ver historia</button></div>';
   if(tasksOpen.length||ics.length)h+='<div class="card"><h3>Pendientes</h3>'+tasksOpen.map(taskRow).join('')+ics.map(function(e){return '<div class="task"><span class="chip" style="--c:var(--c-interconsulta)">IC</span><span class="t">'+esc(e.data.serv||'Interconsulta')+'</span></div>';}).join('')+'</div>';
@@ -1762,12 +1782,12 @@ function entPreview(e){
   else if(t==='nota')s=d.txt;else if(t==='plan')s=d.plan;else if(t==='salida')s=(d.tipo||'')+' '+(d.dest||'');
   else if(t==='interconsulta')s=(d.serv||'')+': '+(d.resp||d.preg||'');
   else if(t==='lab')s=(d.est||'')+' — '+String(d.res||'').split('\n')[0];
-  else if(t==='img')s=(d.est||'')+' — '+String(d.lec||'').split('\n')[0];
+  else if(t==='img')s=(d.est||'')+' — '+(d.lecNo?'No leída aún':String(d.lec||(d.rd&&d.rd[0]&&d.rd[0].t)||'').split('\n')[0]);
   return cut(String(s||'').replace(/Diagnósticos \(CIE-10\):/,'Dx:'),150);
 }
 function entryRow(e){
   var T=TYPES[e.type];
-  return '<details class="ce" id="ce_'+e.id+'" data-who="'+esc(whoTxt(e))+'" style="--c:var(--c-'+e.type+')"'+(S.openId===e.id?' open':'')+'><summary><span class="chip" style="--c:var(--c-'+e.type+')">'+T.label+'</span>'+(e.type==='interconsulta'?'<span class="pill '+(e.status==='pendiente'?'vigilar':'estable')+'">'+esc(e.status||'')+'</span>':'')+'<span class="mono small muted">'+esc(fmt(e.at))+(e.est?' <span title="Fecha aproximada: el PDF no la traía clara">~</span>':'')+'</span><span class="who">'+whoHtml(e)+'</span><span class="pv2">'+esc(entPreview(e))+'</span></summary>'+entryCard(e)+'</details>';
+  return '<details class="ce" id="ce_'+e.id+'" data-who="'+esc(whoTxt(e))+'" style="--c:var(--c-'+e.type+')"'+(S.openId===e.id?' open':'')+'><summary><span class="chip" style="--c:var(--c-'+e.type+')">'+T.label+'</span>'+(e.type==='interconsulta'?'<span class="pill '+(e.status==='pendiente'?'vigilar':'estable')+'">'+esc(e.status||'')+'</span>':'')+(e.type==='img'&&e.data&&e.data.lecNo?'<span class="pill vigilar">No leída aún</span>':'')+'<span class="mono small muted">'+esc(fmt(e.at))+(e.est?' <span title="Fecha aproximada: el PDF no la traía clara">~</span>':'')+'</span><span class="who">'+whoHtml(e)+'</span><span class="pv2">'+esc(entPreview(e))+'</span></summary>'+entryCard(e)+'</details>';
 }
 function viewCron(p){
   var all=pEntries(p.id).filter(function(e){var T=TYPES[e.type];return !(T&&(T.sep||T.own));});
@@ -2769,7 +2789,7 @@ function rnSecs(p,mode){
     var tr=TRENDS.map(function(T){return trendRow(p,T);}).filter(Boolean).map(function(t){return t.txt;});
     if(tr.length)secs.push(['Tendencias',tr.join('\n')]);
     var im=ofType(p,'img')[0];
-    if(im&&(im.data.lec||im.data.mia))secs.push(['Imágenes ('+dlong(im.at)+')',cut((im.data.est?im.data.est+': ':'')+(im.data.lec||im.data.mia),450)]);
+    if(im&&(im.data.lec||im.data.mia||im.data.lecNo||(im.data.rd&&im.data.rd.length)))secs.push(['Imágenes ('+dlong(im.at)+')',cut(imgPlain(im),600)]);
     var icr=ofType(p,'interconsulta').filter(function(e){return e.status==='respondida'&&e.data.resp;})[0];
     if(icr)secs.push(['Última interconsulta respondida',cut((icr.data.serv||'')+': '+icr.data.resp,400)]);
   }
@@ -3183,6 +3203,160 @@ AT.rnTog=function(el){var p=pat(el.dataset.id);if(!p)return;if(el.checked||el.da
 AT.rnOut=function(el){var p=pat(el.dataset.id);if(!p)return;p.rnx=1;save();S.rn.i=0;render();toast('Quitado de la ronda. Puedes volver a incluirlo en “Pacientes en esta ronda”.');};
 AT.rnAll=function(el){activeOf(S.rn.sid).forEach(function(p){if(el.dataset.v==='1')delete p.rnx;else p.rnx=1;});save();S.rn.i=0;render();};
 
+
+/* ---------- imágenes JPEG de los estudios (v32): solo en este dispositivo (IndexedDB 'limonapp-img'), no se sincronizan ni van al respaldo ---------- */
+var IMG={p:null,url:{},pend:{},v:null},IMG_MAX=12;
+var RD_SPECS=['Ortopedia','Neurocirugía','Cirugía general','Cirugía plástica','Cirugía pediátrica','Urología','Trauma / Urgencias','Medicina interna','Otorrinolaringología','Oftalmología','Anestesiología','Radiología (preliminar)','Radiología intervencionista','Oncología','Ginecología'];
+function imgDB(){
+  if(IMG.p)return IMG.p;
+  IMG.p=new Promise(function(res,rej){try{var r=indexedDB.open('limonapp-img',1);r.onupgradeneeded=function(){r.result.createObjectStore('b');};r.onsuccess=function(){res(r.result);};r.onerror=function(){rej(r.error);};}catch(e){rej(e);}});
+  IMG.p.catch(function(){IMG.p=null;});return IMG.p;
+}
+function imgTx(mode,fn){return imgDB().then(function(d){return new Promise(function(res,rej){var tx=d.transaction('b',mode),rq=fn(tx.objectStore('b'));tx.oncomplete=function(){res(rq&&rq.result);};tx.onerror=tx.onabort=function(){rej(tx.error);};});});}
+function imgPut(k,b){return imgTx('readwrite',function(st){return st.put(b,k);});}
+function imgGet(k){return imgTx('readonly',function(st){return st.get(k);});}
+function imgDel(k){return imgTx('readwrite',function(st){return st.delete(k);});}
+function imgUrl(id,k){
+  var key=k+':'+id;if(IMG.url[key])return Promise.resolve(IMG.url[key]);
+  return imgGet(key).then(function(b){if(!b)return '';IMG.url[key]=URL.createObjectURL(b);return IMG.url[key];}).catch(function(){return '';});
+}
+function imgShrink(file,max,q){
+  return new Promise(function(res,rej){
+    var u=URL.createObjectURL(file),im=new Image();
+    im.onload=function(){
+      var w=im.naturalWidth,h=im.naturalHeight;if(!w||!h){URL.revokeObjectURL(u);rej(new Error('vacia'));return;}
+      var sc=Math.min(1,max/Math.max(w,h)),c=document.createElement('canvas');c.width=Math.max(1,Math.round(w*sc));c.height=Math.max(1,Math.round(h*sc));
+      var x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);
+      c.toBlob(function(b){URL.revokeObjectURL(u);b?res(b):rej(new Error('blob'));},'image/jpeg',q);
+    };
+    im.onerror=function(){URL.revokeObjectURL(u);rej(new Error('lectura'));};im.src=u;
+  });
+}
+function imgEdInit(ed,d){if(ed.imgInit)return;ed.imgs=(d.imgs||[]).slice();ed.rem=[];ed.imgInit=1;IMG.pend={};}
+function edImgsHtml(){
+  var ed=S.editor;if(!ed||!ed.imgs||!ed.imgs.length)return '<span class="small muted">Aún no hay imágenes.</span>';
+  var ids=ed.imgs.join(',');
+  return ed.imgs.map(function(id){return '<div class="th"><img data-imt="'+esc(id)+'" data-a="imgOpen" data-im="'+esc(id)+'" data-ids="'+esc(ids)+'" alt="Imagen del estudio"><button type="button" class="x" data-a="imgRm" data-im="'+esc(id)+'" aria-label="Quitar imagen">✕</button></div>';}).join('');
+}
+function rdRowHtml(r){
+  r=r||{};
+  return '<div class="rdRow" data-at="'+esc(r.at||'')+'"><div class="row"><input class="rdS grow" list="rdList" value="'+esc(r.s||'')+'" placeholder="Especialidad que lee (ej. Ortopedia)" aria-label="Especialidad que lee la imagen"><button type="button" class="btn sm ghost danger" data-a="rdDel" aria-label="Quitar esta lectura">✕</button></div><textarea class="rdT" rows="3" placeholder="Qué describe o concluye esta especialidad" aria-label="Lectura de la especialidad">'+esc(r.t||'')+'</textarea></div>';
+}
+function imgFormPart(f,d){
+  if(f[0]==='est')return '<label>'+f[1]+'<input id="e_est" value="'+esc(d.est||'')+'"></label>'+
+    '<div class="imgsec"><div class="small muted">Imágenes del estudio (JPEG, PNG o foto). Se guardan solo en este dispositivo.</div><div class="imgs" id="imgBox">'+edImgsHtml()+'</div>'+
+    '<label class="btn sm" style="cursor:pointer;justify-self:start">+ Agregar imagen<input type="file" id="imgIn" accept="image/*" multiple hidden></label>'+
+    '<div class="note">Antes de cargarla, tapa nombre, cédula y número de HC: la app no puede quitarlos de la imagen.</div></div>';
+  if(f[0]==='lec')return '<label>'+f[1]+'<select id="e_lecst"><option value="1"'+(d.lecNo?'':' selected')+'>Ya está el informe</option><option value="0"'+(d.lecNo?' selected':'')+'>No leída aún (la imagen salió, falta el informe)</option></select></label>'+
+    '<label id="lecTa"'+(d.lecNo?' hidden':'')+'><textarea id="e_lec" rows="'+f[2]+'" aria-label="Texto del informe oficial">'+esc(d.lec||'')+'</textarea></label>';
+  if(f[0]==='mia')return '<div class="rdsec"><div class="small muted">Lecturas de otras especialidades: quién revisó la imagen y qué describió (ortopedia, neurocirugía…). Puedes agregar varias.</div><div id="rdBox">'+(d.rd||[]).map(rdRowHtml).join('')+'</div>'+
+    '<button type="button" class="btn sm" style="justify-self:start" data-a="rdAdd">+ Lectura de otra especialidad</button><datalist id="rdList">'+RD_SPECS.map(function(o){return '<option value="'+esc(o)+'">';}).join('')+'</datalist></div>'+
+    '<label>'+f[1]+'<textarea id="e_mia" rows="'+f[2]+'">'+esc(d.mia||'')+'</textarea></label>';
+  return null;
+}
+function rdAddH(){var b=document.getElementById('rdBox');if(!b)return;b.insertAdjacentHTML('beforeend',rdRowHtml());var i=b.querySelectorAll('.rdS');if(i.length)i[i.length-1].focus();}
+function imgCollect(data){
+  var ed=S.editor,x={text:'',extra:false};
+  if(ed.imgs&&ed.imgs.length){data.imgs=ed.imgs.slice();x.extra=true;}
+  if(val('e_lecst')==='0'){data.lecNo=1;delete data.lec;x.extra=true;}
+  var rd=[];
+  Array.prototype.forEach.call(document.querySelectorAll('#rdBox .rdRow'),function(r){
+    var t=r.querySelector('.rdT').value.trim(),sp=r.querySelector('.rdS').value.trim();if(!t)return;
+    rd.push({s:sp||'Otra especialidad',t:t,at:r.getAttribute('data-at')||new Date().toISOString()});x.text+=' '+t;
+  });
+  if(rd.length){data.rd=rd;x.extra=true;}
+  return x;
+}
+function imgPlan(){var ed=S.editor,p={put:[],del:(ed.rem||[]).slice()};(ed.imgs||[]).forEach(function(id){if(IMG.pend[id])p.put.push([id,IMG.pend[id]]);});return p;}
+function imgCommit(p){
+  IMG.pend={};if(!p.put.length&&!p.del.length)return;
+  Promise.all(p.put.map(function(a){return imgPut('f:'+a[0],a[1].full).then(function(){return imgPut('t:'+a[0],a[1].thumb);});}))
+    .then(function(){return Promise.all(p.del.map(function(id){return imgDel('f:'+id).then(function(){return imgDel('t:'+id);});}));})
+    .then(function(){imgHydrate();})
+    .catch(function(){toast('No pude guardar la imagen en este dispositivo (sin espacio o sin permiso del navegador).');});
+}
+function imgDiscard(){
+  Object.keys(IMG.pend).forEach(function(id){['f','t'].forEach(function(k){var u=IMG.url[k+':'+id];if(u){try{URL.revokeObjectURL(u);}catch(e){}delete IMG.url[k+':'+id];}});});
+  IMG.pend={};
+}
+function imgDelEntry(e){
+  if(!e||e.type!=='img'||!e.data||!e.data.imgs)return;
+  e.data.imgs.forEach(function(id){['f','t'].forEach(function(k){var u=IMG.url[k+':'+id];if(u){try{URL.revokeObjectURL(u);}catch(x){}delete IMG.url[k+':'+id];}imgDel(k+':'+id).catch(function(){});});});
+}
+function imgWipe(){imgTx('readwrite',function(st){return st.clear();}).catch(function(){});IMG.url={};IMG.pend={};}
+function imgAddFiles(files){
+  var ed=S.editor;if(!ed||ed.type!=='img'||!ed.imgs)return;
+  var room=IMG_MAX-ed.imgs.length;if(room<=0){toast('Máximo '+IMG_MAX+' imágenes por estudio.');return;}
+  if(files.length>room){toast('Solo caben '+room+' más; agregué las primeras.');files=files.slice(0,room);}
+  var bad=0;
+  Promise.all(files.map(function(f){
+    return Promise.all([imgShrink(f,2000,.85),imgShrink(f,320,.72)]).then(function(r){
+      var id=uid()+uid();IMG.pend[id]={full:r[0],thumb:r[1]};IMG.url['f:'+id]=URL.createObjectURL(r[0]);IMG.url['t:'+id]=URL.createObjectURL(r[1]);ed.imgs.push(id);
+    }).catch(function(){bad++;});
+  })).then(function(){
+    var b=document.getElementById('imgBox');if(b){b.innerHTML=edImgsHtml();imgHydrate();}
+    if(bad)toast('No pude leer '+bad+' archivo(s). Usa JPEG o PNG (si es HEIC, elige "más compatible" al exportar).');
+  });
+}
+function imgRmH(el){
+  var ed=S.editor,id=el.dataset.im;if(!ed||!ed.imgs)return;
+  ed.imgs=ed.imgs.filter(function(x){return x!==id;});
+  if(IMG.pend[id]){delete IMG.pend[id];['f','t'].forEach(function(k){var u=IMG.url[k+':'+id];if(u){try{URL.revokeObjectURL(u);}catch(e){}delete IMG.url[k+':'+id];}});}
+  else ed.rem.push(id);
+  var b=document.getElementById('imgBox');if(b){b.innerHTML=edImgsHtml();imgHydrate();}
+}
+function imgHydrate(){
+  Array.prototype.forEach.call(document.querySelectorAll('img[data-imt]'),function(im){
+    if(im.getAttribute('src')||im.dataset.imBusy)return;im.dataset.imBusy='1';
+    imgUrl(im.getAttribute('data-imt'),'t').then(function(u){
+      if(!im.isConnected)return;
+      if(u){im.src=u;}else{var sp=document.createElement('span');sp.textContent='Solo en otro dispositivo';im.replaceWith(sp);}
+    });
+  });
+}
+function imgBody(e){
+  var d=e.data||{},h='';
+  if(d.est)h+='<dt>Estudio y región</dt><dd>'+rich(d.est)+'</dd>';
+  if(d.imgs&&d.imgs.length){var ids=d.imgs.join(',');h+='<dt>Imágenes ('+d.imgs.length+')</dt><dd><div class="imgs">'+d.imgs.map(function(id){return '<div class="th"><img data-imt="'+esc(id)+'" data-a="imgOpen" data-im="'+esc(id)+'" data-ids="'+esc(ids)+'" alt="Imagen del estudio"></div>';}).join('')+'</div></dd>';}
+  if(d.lecNo)h+='<dt>Lectura oficial (informe de radiología)</dt><dd><span class="pill vigilar">No leída aún</span></dd>';
+  else if(d.lec)h+='<dt>Lectura oficial (informe de radiología)</dt><dd>'+rich(d.lec)+'</dd>';
+  (d.rd||[]).forEach(function(r){if(r&&r.t)h+='<dt>Lectura de '+esc(r.s||'otra especialidad')+(r.at?' · '+esc(fmt(r.at)):'')+'</dt><dd>'+rich(r.t)+'</dd>';});
+  if(d.mia)h+='<dt>Mis hallazgos y correlación clínica</dt><dd>'+rich(d.mia)+'</dd>';
+  return h;
+}
+function imgRdSummary(e){
+  var d=e.data||{},rd=(d.rd||[]).filter(function(r){return r&&r.t;});
+  if(!rd.length&&!(d.imgs&&d.imgs.length))return '';
+  var h='<div class="small muted">';
+  if(d.imgs&&d.imgs.length)h+=d.imgs.length+(d.imgs.length===1?' imagen. ':' imágenes. ');
+  h+=rd.map(function(r){return esc(r.s)+': '+esc(cut(r.t,160));}).join(' · ');
+  return h+'</div>';
+}
+function imgPlain(e){
+  var d=e.data||{},o=[];
+  if(d.est)o.push(d.est);
+  o.push('Lectura oficial: '+(d.lecNo?'no leída aún':(d.lec||'—')));
+  (d.rd||[]).forEach(function(r){if(r&&r.t)o.push('Lectura de '+r.s+': '+r.t);});
+  if(d.mia)o.push('Mis hallazgos: '+d.mia);
+  return o.join('. ');
+}
+function imgOpenH(el){var ids=(el.dataset.ids||el.dataset.im||'').split(',').filter(Boolean),i=Math.max(0,ids.indexOf(el.dataset.im));IMG.v={ids:ids,i:i};imgViewShow();}
+function imgStep(n){var v=IMG.v;if(!v)return;v.i=(v.i+n+v.ids.length)%v.ids.length;imgViewShow();}
+function imgCloseH(){var o=document.getElementById('imgView');if(o)o.remove();IMG.v=null;}
+function imgViewShow(){
+  var v=IMG.v;if(!v)return;var id=v.ids[v.i],o=document.getElementById('imgView');
+  if(!o){o=document.createElement('div');o.id='imgView';o.setAttribute('role','dialog');o.setAttribute('aria-label','Imagen del estudio');document.body.appendChild(o);}
+  o.innerHTML='<div class="bar"><span class="mono small">'+(v.i+1)+' / '+v.ids.length+'</span><div class="row">'+(v.ids.length>1?'<button class="btn sm" data-a="imgPrev" aria-label="Anterior">◀</button><button class="btn sm" data-a="imgNext" aria-label="Siguiente">▶</button>':'')+'<button class="btn sm" data-a="imgClose">Cerrar</button></div></div><div id="imgWrap"><img id="imgBig" alt="Imagen del estudio"></div><div id="imgMsg"></div>';
+  imgUrl(id,'f').then(function(u){var im=document.getElementById('imgBig');if(!im||!IMG.v||IMG.v.ids[IMG.v.i]!==id)return;if(u)im.src=u;else document.getElementById('imgMsg').textContent='Esta imagen no está en este dispositivo (se cargó en otro).';});
+}
+document.addEventListener('click',function(e){if(e.target&&e.target.id==='imgBig')e.target.classList.toggle('zoom');});
+document.addEventListener('keydown',function(e){if(!IMG.v)return;if(e.key==='Escape')imgCloseH();else if(e.key==='ArrowRight')imgStep(1);else if(e.key==='ArrowLeft')imgStep(-1);});
+document.addEventListener('change',function(e){
+  var el=e.target;if(!el)return;
+  if(el.id==='imgIn'&&el.files&&el.files.length){var fl=Array.prototype.slice.call(el.files);el.value='';imgAddFiles(fl);}
+  if(el.id==='e_lecst'){var t=document.getElementById('lecTa');if(t)t.hidden=el.value==='0';}
+});
+
 var A={
  nav:function(el){go(el.dataset.v);},
  px:function(){try{localStorage.setItem('rot_px',pxOn()?'0':'1');}catch(e){}pxApply();},
@@ -3223,11 +3397,12 @@ var A={
  reactivate:function(){var p=pat(S.patientId);p.active=true;delete p.exitAt;save();render();},
  newEntry:function(el){S.editor={type:el.dataset.t};S.warned=false;render();var f=document.querySelector('.card textarea, .card input[id^=e_]:not([type=datetime-local])');if(f)f.scrollIntoView({block:'center'});},
  editEntry:function(el){var e=db.entries.filter(function(x){return x.id===el.dataset.id;})[0];S.editor={type:e.type,entryId:e.id};S.warned=false;render();window.scrollTo(0,0);},
- cancelEntry:function(){S.editor=null;S.warned=false;render();},
+ cancelEntry:function(){imgDiscard();S.editor=null;S.warned=false;render();},
+ imgOpen:function(el){imgOpenH(el);},imgPrev:function(){imgStep(-1);},imgNext:function(){imgStep(1);},imgClose:function(){imgCloseH();},imgRm:function(el){imgRmH(el);},rdAdd:function(){rdAddH();},rdDel:function(el){var r=el.closest('.rdRow');if(r)r.remove();},
  saveEntry:function(){saveEntry();},
  copyLastEv:function(){var ev=pEntries(S.patientId).filter(function(e){return e.type==='evolucion';})[0];if(!ev){toast('No hay evolución anterior.');return;}S.editor={type:'evolucion',prefill:ev.data};render();},
  askDelEntry:function(el){S.confirm=el.dataset.id;render();},
- delEntry:function(el){var id=el.dataset.id;var e=db.entries.filter(function(x){return x.id===id;})[0];db.entries=db.entries.filter(function(x){return x.id!==id;});
+ delEntry:function(el){var id=el.dataset.id;var e=db.entries.filter(function(x){return x.id===id;})[0];db.entries=db.entries.filter(function(x){return x.id!==id;});try{imgDelEntry(e);}catch(x){}
    if(e&&e.type==='salida'){var p=pat(e.patientId);if(p&&!db.entries.some(function(x){return x.patientId===p.id&&x.type==='salida';})){p.active=true;delete p.exitAt;}}
    save();S.confirm=null;render();toast('Nota borrada.');},
  toggleIC:function(el){var e=db.entries.filter(function(x){return x.id===el.dataset.id;})[0];e.status=e.status==='pendiente'?'respondida':'pendiente';save();render();},
@@ -3272,7 +3447,7 @@ var A={
  toggleBi:function(){S.bi=!S.bi;try{localStorage.setItem('rot_bi',S.bi?'1':'0');}catch(e){}render();},
  delDemo:function(){db.patients.filter(function(p){return p.demo;}).forEach(function(p){delPatientData(p.id);});save();render();toast('Ejemplo borrado.');},
  askWipe:function(){S.confirm='wipe';render();},
- wipe:function(){db={v:1,meta:{changes:0,lastBackup:null,mod:new Date().toISOString()},services:[],patients:[],entries:[],tasks:[]};persist();S.confirm=null;go('services');toast('Todo borrado.');}
+ wipe:function(){try{imgWipe();}catch(x){}db={v:1,meta:{changes:0,lastBackup:null,mod:new Date().toISOString()},services:[],patients:[],entries:[],tasks:[]};persist();S.confirm=null;go('services');toast('Todo borrado.');}
 };
 
 for(var k_ in AT)A[k_]=AT[k_];

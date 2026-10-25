@@ -1,14 +1,32 @@
-LIMONAPP v31 - proyecto para Netlify (login con Supabase + Google)
+LIMONAPP v32 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
 
-QUE CAMBIO RESPECTO A LA v30
+QUE CAMBIA EN LA v32 (sobre la v31)
+  - Imagenes: en cada paciente > Imagenes, cada estudio acepta imagenes JPEG/PNG/foto (hasta 12). Se reducen y se
+    guardan SOLO en el dispositivo donde las cargas (no se sincronizan, no van al respaldo, no se envian a colegas).
+    En otro dispositivo se ve "Solo en otro dispositivo". Hay que tapar nombre, cedula y HC antes de cargarlas.
+  - Lectura oficial: nuevo selector "Ya esta el informe" / "No leida aun". Si no esta leida, sale la etiqueta
+    "No leida aun" en la fila, en el resumen y en la entrega, y al llegar el informe se edita y se cambia el selector.
+  - Lecturas por especialidad: cada estudio puede tener varias lecturas (Ortopedia, Neurocirugia, etc.), cada una con
+    su especialidad y su hora. Se suman a la lectura oficial y a "Mis hallazgos". Estas lecturas son texto y si se sincronizan.
+  - Las entradas de imagenes que ya existian se ven igual que antes.
+  - El servidor (carpeta netlify/functions) NO cambia respecto a la v31. Cambian: public/index.html, public/sw.js,
+    public/privacidad.html, package.json y este LEEME.
+
+COMO SUBIRLA (igual que la v31, por GitHub)
+  Copia el contenido del zip sobre la carpeta del repositorio, GitHub Desktop mostrara solo los archivos cambiados,
+  escribe "Version 32", Commit y Push. Netlify publica solo.
+  Recomendacion: sube la v32 despues de confirmar que el login de la v31 funciona, para no mezclar dos cambios.
+  Para volver atras: en GitHub Desktop > History > clic derecho en "Version 32" > Revert Changes in Commit > Push.
+
+QUE CAMBIO EN LA v31 RESPECTO A LA v30
   - El login ya no usa Netlify Identity: usa Supabase Auth con Google.
   - Los datos siguen en Netlify Blobs, con las mismas llaves. Las 3 cuentas que ya existian
-    (estebanlegui295, lizethjaimesferreira, titomracsogabi) entran con su mismo correo de Google y
+    entran con su mismo correo de Google y
     recuperan sus pacientes, equipos, mensajes y roles. Cualquier otra persona entra como cuenta nueva.
   - Nada de esto borra ni modifica datos existentes; al entrar solo se leen.
 
 CONTENIDO
-  public/                       la app: index.html, sw.js (cache limonapp-v31), privacidad, terminos, iconos
+  public/                       la app: index.html, sw.js (cache limonapp-v32), privacidad, terminos, iconos
   public/vendor/auth-js.supabase.js   libreria de login de Supabase (incluida, no depende de internet externo)
   netlify/functions/sync.mjs    guarda y devuelve los datos de cada usuario
   netlify/functions/social.mjs  perfiles, equipos, chat, pacientes compartidos
@@ -23,24 +41,33 @@ ANTES DE SUBIR (marca cada uno)
       "Callback URL" de Supabase; pantalla de consentimiento "En produccion".
   [ ] NO desactives Netlify Identity todavia (sirve para volver atras).
 
-COMO SUBIRLO (un solo despliegue)
-  1. Descomprime este zip. Debe quedar una carpeta con public/, netlify/, netlify.toml y package.json.
-  2. En Netlify abre el sitio limonappp > Deploys y arrastra la CARPETA completa (igual que la vez pasada).
-  3. Espera a que diga Published. En Functions deben aparecer "sync" y "social".
+COMO SUBIRLO (el sitio esta conectado a GitHub: titomMD/Limonapp; Netlify publica solo al guardar)
+  1. Descomprime este zip. Abre https://github.com/titomMD/Limonapp > Add file > Upload files.
+  2. Arrastra el CONTENIDO de la carpeta (public, netlify, netlify.toml, package.json, LEEME.txt), no la carpeta
+     que los contiene. Deben quedar en la raiz del repositorio, como estan ahora.
+     Cuando GitHub pregunte, deja que reemplace los archivos que ya existen.
+  3. Abajo, en "Commit changes", escribe "Version 31" y pulsa el boton verde. Es UN solo commit = UN solo despliegue.
+  4. (Opcional) Borra el archivo viejo netlify/functions/social_v28.bak desde GitHub (no hace falta para que funcione).
+  5. En Netlify > Deploys espera a que el ultimo diga Published. En Functions deben aparecer "sync" y "social".
+  Importante: no arrastres el zip a Netlify a mano; el siguiente cambio en GitHub lo pisaria.
 
 PRUEBA RAPIDA DESPUES DE SUBIR (tu cuenta primero, en el computador)
   1. Abre https://limonappp.netlify.app (si ves la version vieja, recarga con Cmd+Shift+R).
-  2. Respaldo > "Cuenta y sincronización" > marca el aviso > "Entrar con Google" > elige estebanlegui295.
-  3. Debe decir "Sesión iniciada: estebanlegui295@gmail.com" y traer tus pacientes y notas.
+  2. Respaldo > "Cuenta y sincronización" > marca el aviso > "Entrar con Google" > elige tu cuenta.
+  3. Debe decir "Sesión iniciada: tu correo de Google" y traer tus pacientes y notas.
   4. Pestaña Equipo: debe aparecer "Grupo C Rotación" y tu rol de dueño.
   5. Repite en el celular (con la app instalada) y confirma que ambos quedan con la sesion abierta.
-  6. Recien despues avisa a Lizeth. Debe entrar con lizethjaimesferreira@gmail.com.
+  6. Recien despues avisa a Lizeth. Debe entrar con el mismo correo de Google que usaba antes.
 
 SI ALGO SALE MAL: VOLVER ATRAS (no se pierde nada)
-  1. Netlify > Deploys > elige el despliegue anterior (el de la v30) > "Publish deploy".
-  2. Netlify Identity sigue activo, asi que la v30 vuelve a funcionar como antes.
-  3. Tus datos en el servidor no cambiaron. En los dispositivos se actualiza sola la app al recargar.
+  Opcion A (la mas limpia): en GitHub abre el commit "Version 31" > menu de los tres puntos > "Revert".
+    Crea un commit que deshace todo y Netlify vuelve a publicar la v30.
+  Opcion B (mas rapida): Netlify > Deploys > el despliegue anterior (v30) > "Publish deploy". Esto deja el sitio
+    fijado en ese despliegue y pausa las publicaciones automaticas hasta que pulses "Start auto publishing".
+  En ambos casos Netlify Identity sigue activo, asi que la v30 funciona como antes, y tus datos no cambiaron.
 
 PARA AGREGAR A ALGUIEN CON DATOS EXISTENTES
   La tabla LEGACY esta al inicio de sync.mjs y social.mjs (el bloque entre AUTH-BEGIN y AUTH-END debe ser
-  identico en los dos). Solo hace falta si alguien con datos viejos entra con un correo distinto.
+  identico en los dos). Guarda la HUELLA del correo, no el correo, porque el repositorio es publico.
+  Huella de un correo (Mac, Terminal):  printf '%s' "correo@gmail.com" | shasum -a 256
+  Solo hace falta si alguien con datos viejos entra con un correo distinto.
