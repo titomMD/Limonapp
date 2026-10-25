@@ -16,6 +16,7 @@ Secciones del paciente (v10): SECS/secHtml/foldWrap/subTabs en viewPatient; chip
 Importacion limpia (v11): dropNoise() quita consentimientos informados (CONSH/CONS) y lineas administrativas (ADMIN) antes de separar el PDF; casilla input.noiseOn en dropZone; boton 'Limpiar' (A.cleanNoise) en Paraclinicos/Imagenes para entradas ya guardadas; tidyHx tambien lo aplica. rich() da estructura visual: encabezados .sh, etiquetas en negrita (lbl), fechas (.dt), valores clinicos (.val), parrafos largos partidos por oraciones (.pg).
 Lectura HUS (v12): pdfPages()->isHus()/husPage() lee cada pagina por su cabecera ('Pagina n/N', 'TITULO nFOLIO:', fecha de registro, paciente) y agrupa paginas del mismo folio; husKind() clasifica (ev/ic/in/ep/nt) y omite enfermeria, escalas, consentimientos, solicitudes; parseEvHUS (S/O/A/P por encabezados), parseIcHUS (servicio desde 'RESPUESTA A INTERCONSULTA POR X'), analyzeHus(). Formatos de otros hospitales siguen por analyzeAll. Tope EVMAX evoluciones al crear paciente.
 Privacidad: la app pide solo iniciales, edad, cama y 3 ultimos digitos de HC; avisa si detecta numeros largos.
+v31 (25-oct-2026) LOGIN CON SUPABASE: ya no se usa Netlify Identity. Proyecto Supabase 'Limonapp' (URL y clave publishable en SB_URL/SB_KEY, publicas por diseño; NUNCA guardar secret/service_role). Solo Google; correo y anonimo desactivados en Supabase. Cliente: SOLO @supabase/auth-js 2.117.2 empaquetado con esbuild en public/vendor/auth-js.supabase.js (expone window.LimonAuth.GoTrueClient; entrada: import {GoTrueClient} from '@supabase/auth-js'; window.LimonAuth={GoTrueClient}; npx esbuild --bundle --minify --format=iife). En el artifact (claude.ai) gAvail() es falso: no hay login ni carga la libreria. Flujo PKCE con redireccion completa; gOnSess() maneja INITIAL_SESSION/SIGNED_IN/SIGNED_OUT; sbUser() da u.id/u.email/u.jwt(forzar) como antes; gWho() pide /api/sync?whoami=1 para saber con que ID guarda el servidor los datos de la persona (G.uid) y asi gSt().uid de las cuentas anteriores no se reinicia. Servidor: netlify/functions/sync.mjs y social.mjs llevan el MISMO bloque AUTH (entre AUTH-BEGIN y AUTH-END): verifica el token ES256 con el JWKS del proyecto (WebCrypto, sin librerias), emisor, audiencia, vencimiento. Tabla LEGACY en ese bloque: correo de Google verificado -> ID viejo de Netlify Identity (estebanlegui295 be0a9bec-..., lizethjaimesferreira e1603fa0-..., titomracsogabi d3d52a34-... cuenta de pruebas); quien no esta en la tabla usa su ID de Supabase (registro abierto). Para dar a alguien un ID existente hay que editar LEGACY en los dos archivos y desplegar. Llaves de datos no cambian: u_<id> (almacen limonapp), p_/t_/m_/e_/f_/sp_ (limonapp-social). Netlify Identity puede apagarse cuando todo funcione.
 -->
 <title>Limonapp</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
@@ -680,7 +681,7 @@ function viewBackup(){
 
 var DE={
 'Servicios':'Stationen','Omitir consentimientos y datos administrativos':'Einwilligungen und Verwaltungsdaten auslassen','Limpiar':'Bereinigen','Pendientes':'Offene Aufgaben','Entrega':'Übergabe','Respaldo':'Datensicherung','Todo':'Alles','Historia':'Akte','Cronología':'Verlauf','Interconsultas':'Konsile','Imágenes':'Bildgebung','Importar PDF':'PDF-Import','Ocultar ▴':'Ausblenden ▴','Abrir aparte ↗':'Separat öffnen ↗','Ordenar formato':'Format ordnen','Limón supervisa tus rotaciones':'Limón überwacht deine Rotationen','Paraclínicos':'Laborbefunde','Paraclínico':'Laborbefund','Imágenes y lecturas':'Bildgebung und Befunde','Imagen':'Bildgebung','+ Agregar':'+ Hinzufügen',
-'Mis rotaciones':'Meine Rotationen','Equipo':'Team','Enviar a un colega':'An Kollegen senden','Mover de servicio':'Station wechseln','En turno':'Im Dienst','Descanso':'Pause','Fuera de turno':'Dienstfrei','Ver gráficas grandes en Paraclínicos':'Große Verlaufsdiagramme in den Befunden','Chat':'Chat','Grupo':'Gruppe','Enviar':'Senden','Únete a un equipo':'Einem Team beitreten','Unirme':'Beitreten','O crea uno nuevo':'Oder ein neues Team erstellen','Crear equipo':'Team erstellen','Copiar invitación':'Einladung kopieren','Salir del equipo':'Team verlassen','Confirmar: salir':'Bestätigen: verlassen','Editar perfil':'Profil bearbeiten','Guardar perfil':'Profil speichern','Crea tu perfil':'Profil erstellen','Elegir foto':'Foto wählen','Quitar foto':'Foto entfernen','Nombre completo':'Vollständiger Name','Cargo':'Funktion','Estado':'Status','Escribir':'Schreiben','Entendido':'Verstanden','Dejar de compartir conmigo':'Nicht mehr mit mir teilen','Entrar con Google o correo':'Mit Google oder E-Mail anmelden','Ir a Respaldo':'Zur Datensicherung','Reintentar':'Erneut versuchen','Cuenta y sincronización':'Konto und Synchronisierung','Cerrar sesión':'Abmelden','Sincronizar ahora':'Jetzt synchronisieren','Ver valores':'Werte anzeigen','Servicio nuevo':'Neue Station','Análisis':'Beurteilung','Ver completo en Cronología':'Vollständig im Verlauf ansehen','Ver todo en Cronología':'Alles im Verlauf ansehen','+ Agregar nota o evolución':'Notiz oder Verlaufsbericht hinzufügen','Actualizar desde PDF':'Aus PDF aktualisieren','Tipo de documento':'Dokumenttyp','Detectar solo':'Automatisch erkennen','Es solo de paraclínicos':'Nur Laborbefunde','Es solo de imágenes':'Nur Bildgebung','Es una respuesta de interconsulta':'Es ist eine Konsilantwort','Es una evolución':'Es ist ein Verlaufsbericht','Es historia clínica':'Es ist eine Krankenakte','Institución de donde sacas la historia':'Einrichtung, aus der die Akte stammt','Arrastra aquí el PDF':'PDF hierher ziehen','elige el archivo':'Datei auswählen','Política de privacidad':'Datenschutzerklärung','Términos de servicio':'Nutzungsbedingungen','Último registro clínico:':'Letzter klinischer Eintrag:','Cuenta y sincronización':'Konto und Synchronisierung','Pendientes (Tareas)':'Aufgaben','Nuevo pendiente':'Neue Aufgabe','Resumen':'Zusammenfassung','Ver tutorial':'Anleitung ansehen','Saltar':'Überspringen','Siguiente':'Weiter','Atrás':'Zurück','Listo':'Fertig','Estado actual':'Aktueller Stand','Lectura rápida':'Kurzüberblick','Lista de problemas':'Problemliste','Tendencias de laboratorio':'Laborverläufe','Hitos documentados':'Dokumentierte Meilensteine','Buscar':'Suchen','Mostrar más':'Mehr anzeigen','Solo en este dispositivo':'Nur auf diesem Gerät','Sin guardado local':'Nicht lokal gespeichert',
+'Mis rotaciones':'Meine Rotationen','Equipo':'Team','Enviar a un colega':'An Kollegen senden','Mover de servicio':'Station wechseln','En turno':'Im Dienst','Descanso':'Pause','Fuera de turno':'Dienstfrei','Ver gráficas grandes en Paraclínicos':'Große Verlaufsdiagramme in den Befunden','Chat':'Chat','Grupo':'Gruppe','Enviar':'Senden','Únete a un equipo':'Einem Team beitreten','Unirme':'Beitreten','O crea uno nuevo':'Oder ein neues Team erstellen','Crear equipo':'Team erstellen','Copiar invitación':'Einladung kopieren','Salir del equipo':'Team verlassen','Confirmar: salir':'Bestätigen: verlassen','Editar perfil':'Profil bearbeiten','Guardar perfil':'Profil speichern','Crea tu perfil':'Profil erstellen','Elegir foto':'Foto wählen','Quitar foto':'Foto entfernen','Nombre completo':'Vollständiger Name','Cargo':'Funktion','Estado':'Status','Escribir':'Schreiben','Entendido':'Verstanden','Dejar de compartir conmigo':'Nicht mehr mit mir teilen','Entrar con Google':'Mit Google anmelden','Ir a Respaldo':'Zur Datensicherung','Reintentar':'Erneut versuchen','Cuenta y sincronización':'Konto und Synchronisierung','Cerrar sesión':'Abmelden','Sincronizar ahora':'Jetzt synchronisieren','Ver valores':'Werte anzeigen','Servicio nuevo':'Neue Station','Análisis':'Beurteilung','Ver completo en Cronología':'Vollständig im Verlauf ansehen','Ver todo en Cronología':'Alles im Verlauf ansehen','+ Agregar nota o evolución':'Notiz oder Verlaufsbericht hinzufügen','Actualizar desde PDF':'Aus PDF aktualisieren','Tipo de documento':'Dokumenttyp','Detectar solo':'Automatisch erkennen','Es solo de paraclínicos':'Nur Laborbefunde','Es solo de imágenes':'Nur Bildgebung','Es una respuesta de interconsulta':'Es ist eine Konsilantwort','Es una evolución':'Es ist ein Verlaufsbericht','Es historia clínica':'Es ist eine Krankenakte','Institución de donde sacas la historia':'Einrichtung, aus der die Akte stammt','Arrastra aquí el PDF':'PDF hierher ziehen','elige el archivo':'Datei auswählen','Política de privacidad':'Datenschutzerklärung','Términos de servicio':'Nutzungsbedingungen','Último registro clínico:':'Letzter klinischer Eintrag:','Cuenta y sincronización':'Konto und Synchronisierung','Pendientes (Tareas)':'Aufgaben','Nuevo pendiente':'Neue Aufgabe','Resumen':'Zusammenfassung','Ver tutorial':'Anleitung ansehen','Saltar':'Überspringen','Siguiente':'Weiter','Atrás':'Zurück','Listo':'Fertig','Estado actual':'Aktueller Stand','Lectura rápida':'Kurzüberblick','Lista de problemas':'Problemliste','Tendencias de laboratorio':'Laborverläufe','Hitos documentados':'Dokumentierte Meilensteine','Buscar':'Suchen','Mostrar más':'Mehr anzeigen','Solo en este dispositivo':'Nur auf diesem Gerät','Sin guardado local':'Nicht lokal gespeichert',
 'Nuevo servicio o rotación':'Neue Station oder Rotation','Agregar':'Hinzufügen','Guardar':'Speichern','Cancelar':'Abbrechen','Editar':'Bearbeiten','Borrar':'Löschen','Copiar':'Kopieren',
 'Datos del paciente':'Patientendaten','Nuevo paciente':'Neuer Patient','+ Paciente':'Patient','Editar datos':'Daten bearbeiten','Reactivar':'Reaktivieren','Borrar paciente':'Patient löschen','Confirmar: borrar paciente':'Bestätigen: Patient löschen',
 'Iniciales':'Initialen','HC (3 últimos)':'Akten-Nr. (letzte 3)','Edad':'Alter','Sexo':'Geschlecht','Cama':'Bett','Ingreso':'Aufnahme','Diagnóstico principal':'Hauptdiagnose','Gravedad':'Schweregrad',
@@ -1804,7 +1805,7 @@ var TOUR=[
  {s:'#tourBtn',t:'Tutorial, tema, 8-bit y alemán',x:'El botón “Tutorial” vuelve a abrir esta guía cuando quieras. Junto a él puedes quitar o poner el estilo 8-bit, cambiar entre tema oscuro y claro, y mostrar o no los textos en alemán.'},
  {t:'Tus datos viven en este dispositivo',x:'Sin iniciar sesión, todo se guarda solo en este dispositivo. Haz un respaldo seguido en la pestaña Respaldo, sobre todo antes de borrar los datos del navegador.'},
  {t:'Equipo: perfil, colegas y chat',x:'Con tu cuenta iniciada, la pestaña Equipo te deja crear tu perfil (foto, nombre, cargo, servicio y si estás en turno), unirte a un equipo con un código de invitación, chatear con tus colegas y enviarles un paciente como resumen sin nombre ni cédula. Solo ven tu perfil las personas de tu equipo.'},
- {t:'Cuenta: entrar desde cualquier dispositivo',x:'En Respaldo → “Cuenta y sincronización” marca el aviso de datos y toca “Entrar con Google o correo”. Desde ese momento tus datos se guardan en tu cuenta y se sincronizan solos unos segundos después de cada cambio. En otro celular o computador, entra con la misma cuenta y toca “Sincronizar ahora”.'},
+ {t:'Cuenta: entrar desde cualquier dispositivo',x:'En Respaldo → “Cuenta y sincronización” marca el aviso de datos y toca “Entrar con Google”. Desde ese momento tus datos se guardan en tu cuenta y se sincronizan solos unos segundos después de cada cambio. En otro celular o computador, entra con la misma cuenta y toca “Sincronizar ahora”.'},
  {t:'Cerrar sesión y compartir equipo',x:'“Cerrar sesión” (en la misma tarjeta) deja tus datos en tu cuenta y en este dispositivo. Si usas un equipo ajeno, cierra sesión al terminar. Nunca escribas nombres, cédulas ni teléfonos de pacientes.'},
  {s:'#helpFab',t:'Ayuda cuando te pierdas',x:'El botón “Ayuda” con el limón responde dudas de uso: cómo importar un PDF, hacer un respaldo, iniciar sesión… No es una IA: usa guías escritas de antemano. Escríbele con tus palabras.'}
 ];
@@ -1835,21 +1836,37 @@ document.addEventListener('keydown',function(e){
   if(e.key==='Escape')tourEnd();else if(e.key==='ArrowRight'&&tourI<TOUR.length-1){tourI++;tourShow();}else if(e.key==='ArrowLeft'&&tourI>0){tourI--;tourShow();}
 });
 
-/* ===== v14: cuenta Limonapp con Netlify Identity + sincronización (Netlify Functions + Blobs) ===== */
-var G={st:'off',msg:'',busy:false,t:null,ok:false};
+/* ===== v14/v31: cuenta Limonapp con Supabase Auth (Google) + sincronización (Netlify Functions + Blobs) ===== */
+var G={st:'off',msg:'',busy:false,t:null,ok:false,uid:'',uidFor:''};
+/* v31: dirección y clave PÚBLICA (publishable) del proyecto Supabase 'Limonapp'. Son públicas por diseño; nunca poner aquí la clave secret/service_role. */
+var SB_URL='https://lwfsydrtxukbbviocrvv.supabase.co',SB_KEY='sb_publishable_l--NvMaDY0poJC4oWgHsxA_PvA7XiMv';
+var SB={c:null,u:null};
 function gSt(){try{return JSON.parse(localStorage.getItem('rot_gsync')||'null')||{};}catch(e){return {};}}
 function gSet(o){var s=gSt();for(var k in o)s[k]=o[k];try{localStorage.setItem('rot_gsync',JSON.stringify(s));}catch(e){}}
-function gUser(){try{return window.netlifyIdentity&&window.netlifyIdentity.currentUser();}catch(e){return null;}}
+function gUser(){return SB.u;}
+/* Envuelve la sesión de Supabase con la misma interfaz que usaba el resto de la app: u.id, u.email, u.jwt(forzar). */
+function sbUser(s){
+  if(!s||!s.user)return null;var u=s.user;
+  return {id:u.id,email:u.email||'',jwt:function(force){
+    var p=force?SB.c.refreshSession().then(function(r){if(r.error)throw r.error;return r.data&&r.data.session;}):SB.c.getSession().then(function(r){return r.data&&r.data.session;});
+    return p.then(function(ss){if(!ss||!ss.access_token)throw new Error('auth');return ss.access_token;});}};
+}
 function gOn(){return !!gUser();}
 function gCons(){try{return localStorage.getItem('rot_cons')==='1';}catch(e){return false;}}
 function gUi(st,msg){G.st=st;G.msg=msg||'';renderTabs();if(S.view==='backup')render();}
 function gAvail(){return /^https?:$/.test(location.protocol)&&!/claude\.ai|claudeusercontent|localhost|127\.0\.0\.1/.test(location.hostname);}
 function gLoad(){
   return new Promise(function(res,rej){
-    if(window.netlifyIdentity)return res();
-    var s=document.createElement('script');s.src='https://identity.netlify.com/v1/netlify-identity-widget.js';
+    if(window.LimonAuth)return res();
+    var s=document.createElement('script');s.src='vendor/auth-js.supabase.js';
     s.onload=function(){res();};s.onerror=function(){rej(new Error('offline'));};document.head.appendChild(s);
   });
+}
+/* v31: con qué ID guarda el servidor MIS datos (las cuentas anteriores conservan el suyo) */
+function gWho(u){
+  return gTokenP().then(function(t){return fetch('/api/sync?whoami=1',{headers:{Authorization:'Bearer '+t}});}).then(function(r){
+    if(r.status===401)throw new Error('auth');if(!r.ok)throw new Error('http'+r.status);return r.json();}).then(function(j){
+    if(!j||!j.uid)throw new Error('formato');G.uid=String(j.uid);G.uidFor=u.id;});
 }
 function gTokenP(){var u=gUser();if(!u)return Promise.reject(new Error('auth'));return u.jwt();}
 function gFetch(opt){
@@ -1867,7 +1884,14 @@ function gKey(u){return String((u&&(u.id||u.email))||'');}
 function gSync(manual){
   var u=gUser();if(!u){gUi('off','');return Promise.resolve();}
   if(!gCons()){gUi('err','Acepta primero el aviso de datos.');return Promise.resolve();}
-  var key=gKey(u);if(!key){gUi('err','No pude identificar tu cuenta. Cierra sesión y vuelve a entrar.');return Promise.resolve();}
+  if(G.uidFor!==u.id){
+    if(G.busy){G.again=true;return Promise.resolve();}
+    G.busy=true;gUi('busy','Sincronizando…');
+    return gWho(u).then(function(){G.busy=false;return gSync(manual);},function(e){G.busy=false;var em=String(e&&e.message||e);
+      if(/Failed to fetch|NetworkError|Load failed|http5\d\d|offline/i.test(em)&&(G.tries=(G.tries||0)+1)<=2){setTimeout(function(){gSync(manual);},1200*G.tries);return;}G.tries=0;
+      gUi('err',/Failed to fetch|NetworkError|Load failed/i.test(em)?'Sin conexión: se sincroniza cuando vuelva.':em==='auth'?'La sesión venció: cierra sesión y vuelve a entrar.':'No pude identificar tu cuenta ('+em+').');});
+  }
+  var key=G.uid;if(!key){gUi('err','No pude identificar tu cuenta. Cierra sesión y vuelve a entrar.');return Promise.resolve();}
   if(G.busy){G.again=true;return Promise.resolve();}
   if(gSt().uid!==key)gSet({uid:key,last:''});
   G.busy=true;gUi('busy','Sincronizando…');
@@ -1897,16 +1921,26 @@ function gAuto(){
   if(!gOn()||!gCons())return;clearTimeout(G.t);
   G.t=setTimeout(function(){if(!G.busy)gSync(false);},4000);
 }
+/* Cambios de sesión: INITIAL_SESSION (al abrir), SIGNED_IN (al volver de Google), TOKEN_REFRESHED (renovación silenciosa), SIGNED_OUT. */
+function gOnSess(ev,s){
+  var nu=sbUser(s),old=SB.u;
+  SB.u=nu;G.ok=true;
+  if(!nu){
+    if(old){tReset();G.busy=false;G.uid='';G.uidFor='';gUi('off','');toast('Sesión cerrada. Tus datos siguen en este dispositivo.');}
+    else{renderTabs();if(S.view==='backup'||S.view==='team')render();}
+    return;
+  }
+  if(old&&old.id===nu.id)return;                    /* renovación de token u otro aviso: la persona sigue siendo la misma */
+  if(ev==='SIGNED_IN')gSet({when:''});
+  if(gCons())gSync(ev==='SIGNED_IN');else{renderTabs();render();}
+}
 function gBoot(){
   if(!gAvail())return;
-  gRestore();
+  try{var q=new URLSearchParams(location.search+'&'+location.hash.replace(/^#/,'')),ed=q.get('error_description');
+    if(ed){G.st='err';G.msg='No se pudo iniciar sesión: '+ed.replace(/\+/g,' ');try{history.replaceState(null,'',location.pathname);}catch(e){}}}catch(e){}
   gLoad().then(function(){
-    var ni=window.netlifyIdentity;
-    ni.on('init',function(u){G.ok=true;gBak();renderTabs();if(u&&gCons())gSync(false);else if(S.view==='backup')render();});
-    ni.on('login',function(u){ni.close();G.ok=true;gBak();gSet({when:''});if(gCons())gSync(true);else{renderTabs();render();}});
-    ni.on('logout',function(){try{localStorage.removeItem('rot_gu_bak');}catch(e){}tReset();G.busy=false;gUi('off','');toast('Sesión cerrada. Tus datos siguen en este dispositivo.');});
-    ni.on('error',function(){});
-    ni.init();
+    SB.c=new window.LimonAuth.GoTrueClient({url:SB_URL+'/auth/v1',headers:{apikey:SB_KEY},storageKey:'limonapp-auth',storage:window.localStorage,flowType:'pkce',autoRefreshToken:true,persistSession:true,detectSessionInUrl:true});
+    SB.c.onAuthStateChange(function(ev,s){setTimeout(function(){gOnSess(ev,s);},0);});   /* sin llamar a Supabase dentro del aviso */
   }).catch(function(){});
 }
 function gCard(){
@@ -1915,7 +1949,7 @@ function gCard(){
     return h+'<div class="small muted">La cuenta y la sincronización funcionan en el sitio publicado de Limonapp (no en esta vista previa). Entra desde la dirección de tu sitio.</div></div>';
   }
   var u=gUser();
-  h+='<div class="small muted">Con tu cuenta (Google o correo) tus datos se guardan en el servidor de esta app, ligados a ti, y los abres en cualquier dispositivo. Las iniciales, la cama y el contenido de las historias que importes quedan allí: no escribas nombres, cédulas ni teléfonos.</div>';
+  h+='<div class="small muted">Con tu cuenta de Google tus datos se guardan en el servidor de esta app, ligados a ti, y los abres en cualquier dispositivo. Las iniciales, la cama y el contenido de las historias que importes quedan allí: no escribas nombres, cédulas ni teléfonos.</div>';
   if(!gCons())h+='<label style="flex-direction:row;align-items:flex-start;gap:8px"><input type="checkbox" data-a="gCons" aria-label="Acepto"><span class="small">Entiendo que mis datos clínicos se guardarán en el servidor de Limonapp, asociados a mi cuenta, y que soy responsable de no incluir datos que identifiquen a pacientes.</span></label>';
   h+='<div class="small muted"><a href="privacidad.html" target="_blank" rel="noopener">Política de privacidad</a> · <a href="terminos.html" target="_blank" rel="noopener">Términos de servicio</a></div>';
   if(u){
@@ -1923,7 +1957,7 @@ function gCard(){
     h+='<div class="row"><button class="btn primary" data-a="gSync"'+(gCons()?'':' disabled')+'>Sincronizar ahora</button><button class="btn danger" data-a="gLogout">Cerrar sesión</button></div>';
     h+='<div class="small muted">Se sincroniza solo unos segundos después de cada cambio. Si borras todo aquí, también se borra en tu cuenta en la siguiente sincronización.</div>';
   }else{
-    h+='<div class="row"><button class="btn primary" data-a="gLogin"'+(G.ok?'':' disabled')+'>'+(G.ok?'Entrar con Google o correo':'Cargando…')+'</button></div>';
+    h+='<div class="row"><button class="btn primary" data-a="gLogin"'+(G.ok?'':' disabled')+'>'+(G.ok?'Entrar con Google':'Cargando…')+'</button></div>';
     if(G.st==='err')h+='<div class="note bad">'+esc(G.msg)+'</div>';
   }
   return h+'</div>';
@@ -1982,12 +2016,12 @@ var HELP=[
  {t:'Número de historia clínica y buscador',kw:['numero de historia','historia clinica numero','cedula','buscar paciente','buscador','hc'],a:'En la ficha del paciente puedes guardar el número de historia clínica. Queda solo en tu dispositivo: no se comparte con colegas ni se envía en resúmenes. En el inicio, el buscador encuentra pacientes por ese número (mínimo 3 dígitos), por iniciales o por cama.'},
  {t:'PDF de la entrega de turno',kw:['pdf entrega','entrega pdf','descargar entrega','enviar entrega','pdf de entrega'],a:'En Entrega elige el servicio y toca Descargar PDF, Compartir o Enviar por el chat. Puedes incluir el número de historia clínica de cada paciente marcando la casilla.'},
  {t:'Actualizar la app en el iPhone',kw:['actualizar','refrescar','recargar','reiniciar','iphone','pantalla de inicio','no carga','version nueva'],a:'Toca el botón Actualizar (flecha circular) arriba: guarda tus datos, busca la versión nueva y recarga la app. Así no tienes que cerrarla y abrirla.'},
- {t:'La sesión se cierra o sale un error al entrar',kw:['sesion se cierra','se desconecta','error al entrar','error al iniciar','otro dispositivo sesion','simultanea'],a:'La sesión es independiente en cada dispositivo: iniciar sesión en el computador no debería cerrar la del celular. Si ves un error justo al iniciar, la app reintenta sola unos segundos. Si Google te abre una pestaña del navegador y no vuelves a la app instalada, entra desde la app con tu correo. Si la sesión venció, ve a Respaldo → Cerrar sesión y entra de nuevo: tus datos locales no se pierden.'},
+ {t:'La sesión se cierra o sale un error al entrar',kw:['sesion se cierra','se desconecta','error al entrar','error al iniciar','otro dispositivo sesion','simultanea'],a:'La sesión es independiente en cada dispositivo: iniciar sesión en el computador no debería cerrar la del celular. Si ves un error justo al iniciar, la app reintenta sola unos segundos. Si Google te abre una pestaña del navegador y no vuelves a la app instalada, cierra esa pestaña, abre la app instalada y toca de nuevo “Entrar con Google”. Si la sesión venció, ve a Respaldo → Cerrar sesión y entra de nuevo: tus datos locales no se pierden.'},
  {t:'Interconsultas pendientes',kw:['interconsulta','interconsultas','respondida','pendiente interconsulta','ic'],a:'Las interconsultas están en su sección. Toca “Pendiente: marcar respondida” cuando llegue la respuesta. Las pendientes también aparecen en la pestaña Pendientes.',go:[['Ir a Interconsultas','sec:ic']]},
  {t:'Pendientes del turno',kw:['pendientes','tareas','por hacer','lista de tareas','turno'],a:'Dentro de cada paciente, la sección Pendientes guarda sus tareas. La pestaña Pendientes (arriba) reúne las de todos tus pacientes activos.',go:[['Ir a Pendientes','nav:tasks']]},
  {t:'Entrega de turno',kw:['entrega','entrega de turno','reporte','copiar entrega','handoff'],a:'En la pestaña Entrega se arma un texto con tus pacientes activos y sus pendientes. Elige el servicio y toca copiar para pegarlo donde lo necesites.',go:[['Ir a Entrega','nav:handoff']]},
  {t:'Respaldo y restaurar',kw:['respaldo','backup','copia de seguridad','restaurar','recuperar','exportar','guardar copia'],a:'En Respaldo toca “Generar respaldo” y copia el texto (guárdalo en tus notas o envíatelo). Para restaurar, pégalo en “Importar”: reemplaza lo que haya en ese dispositivo. Hazlo con frecuencia, sobre todo antes de borrar datos del navegador.',go:[['Ir a Respaldo','nav:backup']]},
- {t:'Iniciar sesión y sincronizar',kw:['login','logeo','sesion','iniciar sesion','entrar','cuenta','google','sincronizar','sincronizacion','correo','registrarme','registrar'],a:'Ve a Respaldo → “Cuenta y sincronización”. Marca el aviso de datos y toca “Entrar con Google o correo”. Desde ahí tus datos se guardan en tu cuenta y se sincronizan solos unos segundos después de cada cambio. Funciona en el sitio publicado de Limonapp.',go:[['Ir a Respaldo','nav:backup']]},
+ {t:'Iniciar sesión y sincronizar',kw:['login','logeo','sesion','iniciar sesion','entrar','cuenta','google','sincronizar','sincronizacion','correo','registrarme','registrar'],a:'Ve a Respaldo → “Cuenta y sincronización”. Marca el aviso de datos y toca “Entrar con Google”. Desde ahí tus datos se guardan en tu cuenta y se sincronizan solos unos segundos después de cada cambio. Funciona en el sitio publicado de Limonapp.',go:[['Ir a Respaldo','nav:backup']]},
  {t:'Mis datos no aparecen en otro dispositivo',kw:['otro dispositivo','otro celular','otro computador','no aparecen','no sincroniza','no se sincroniza','celular','computador'],a:'Entra al mismo sitio, ve a Respaldo e inicia sesión con la misma cuenta. Marca el aviso de datos y toca “Sincronizar ahora”. Si ese dispositivo tenía datos propios, la app los combina con los de tu cuenta sin borrar nada.',go:[['Ir a Respaldo','nav:backup']]},
  {t:'Cerrar sesión',kw:['cerrar sesion','salir','logout','desconectar'],a:'En Respaldo → “Cuenta y sincronización” toca “Cerrar sesión”. Tus datos siguen en ese dispositivo y en tu cuenta.',go:[['Ir a Respaldo','nav:backup']]},
  {t:'Instalar la app en el celular',kw:['instalar','pantalla de inicio','app movil','instalarla','icono','pwa'],a:'En Chrome (Android): menú ⋮ → “Instalar app”. En iPhone (Safari): botón Compartir → “Añadir a pantalla de inicio”. Se abre como una app normal.',go:[]},
@@ -2218,7 +2252,7 @@ function tJoinCards(){return '<div class="card"><h3>Únete a un equipo</h3><div 
 function viewTeam0(){
   var h='<h2>Equipo</h2>';
   if(!gAvail())return h+'<div class="card"><div class="small muted">Los perfiles, el equipo y el chat funcionan en el sitio publicado de Limonapp, con tu cuenta iniciada (no en esta vista previa).</div></div>';
-  if(!gUser())return h+'<div class="card"><p>Para tener perfil, equipo y chat con tus colegas, inicia sesión.</p><div class="row"><button class="btn primary" data-a="gLogin"'+(G.ok?'':' disabled')+'>'+(G.ok?'Entrar con Google o correo':'Cargando…')+'</button></div></div>';
+  if(!gUser())return h+'<div class="card"><p>Para tener perfil, equipo y chat con tus colegas, inicia sesión.</p><div class="row"><button class="btn primary" data-a="gLogin"'+(G.ok?'':' disabled')+'>'+(G.ok?'Entrar con Google':'Cargando…')+'</button></div></div>';
   if(!gCons())return h+'<div class="card"><p>Antes de usar el equipo, acepta el aviso de datos en Respaldo → Cuenta y sincronización.</p><div class="row"><button class="btn primary" data-a="nav" data-v="backup">Ir a Respaldo</button></div></div>';
   if(!T.loaded){setTimeout(tLoad,0);return h+'<div class="card"><div class="small muted">'+(T.err?esc(T.err)+' ':'Cargando…')+'</div>'+(T.err?'<div class="row"><button class="btn sm" data-a="tRetry">Reintentar</button></div>':'')+'</div>';}
   var m=T.me;
@@ -2417,7 +2451,7 @@ TOUR=[
  {t:'Cómo se leen las fechas',x:'Cada registro usa la fecha en que se hizo, nunca la de impresión del PDF. Si la app no logra leerla, la marca con “~” para que la revises.'},
  {s:'#tourBtn',t:'Tutorial, tema, 8-bit y alemán',x:'El botón “Tutorial” vuelve a abrir esta guía. Junto a él puedes quitar o poner el estilo 8-bit, cambiar entre tema oscuro y claro, y mostrar o no los textos en alemán.'},
  {s:'#tabs [data-v=team]',t:'Equipo',x:'Con tu cuenta iniciada creas tu perfil (foto con encuadre, cargo, servicio y estado), te unes a un equipo con un código y chateas con tus colegas. El indicador de color arriba muestra si estás en turno (verde), en descanso (ámbar) o fuera de turno (rojo).'},
- {t:'Tus datos y tu cuenta',x:'Sin iniciar sesión todo queda solo en este dispositivo; haz respaldos seguido. En Respaldo → “Cuenta y sincronización” puedes entrar con Google o correo para tener tus datos en cualquier dispositivo. Nunca escribas nombres, cédulas ni teléfonos de pacientes.'},
+ {t:'Tus datos y tu cuenta',x:'Sin iniciar sesión todo queda solo en este dispositivo; haz respaldos seguido. En Respaldo → “Cuenta y sincronización” puedes entrar con Google para tener tus datos en cualquier dispositivo. Nunca escribas nombres, cédulas ni teléfonos de pacientes.'},
  {s:'#helpFab',t:'Ayuda cuando te pierdas',x:'El botón “Ayuda” con el limón responde dudas de uso con guías escritas de antemano. Escríbele con tus palabras.'}
 ];
 var tourBusy=false;
@@ -3006,8 +3040,8 @@ function labAbbr(txt){
 var EMO=['😀','😂','🙂','😉','😊','😍','🙏','👍','👎','👏','🙌','💪','🤝','👌','🤞','😅','😬','😴','😷','🤒','🤕','😢','😭','😮','😡','🤔','🙄','😎','🥳','🎉','✅','❌','⚠️','❗','❓','🔥','⭐','💊','💉','🩺','🩸','🧪','🏥','🚑','⏰','📌','📎','📋','☕','🍕','🌙','☀️','❤️','💯','👀','🫡','🙈','😇','🤯','🥱','😤','🤗'];
 
 /* ---------- sesión: renovar, reintentar, copia de seguridad ---------- */
-function gBak(){try{var v=localStorage.getItem('gotrue.user');if(v)localStorage.setItem('rot_gu_bak',v);}catch(e){}}
-function gRestore(){try{if(!localStorage.getItem('gotrue.user')){var b=localStorage.getItem('rot_gu_bak');if(b)localStorage.setItem('gotrue.user',b);}}catch(e){}}
+function gBak(){}   /* v31: ya no hay copia de sesión: Supabase renueva y guarda la sesión por su cuenta */
+function gRestore(){}
 function gTokenP(){var u=gUser();if(!u)return Promise.reject(new Error('auth'));return u.jwt((G.tries||0)>0).catch(function(){return u.jwt(true);});}
 function gFetch(opt){
   opt=opt||{};
@@ -3157,8 +3191,8 @@ var A={
  helpSend:function(){helpAsk((document.getElementById('helpIn')||{}).value);},
  helpTopic:function(el){helpAsk(el.dataset.t);},
  helpGo:function(el){helpGoTo(el.dataset.t);},
- gLogin:function(){if(window.netlifyIdentity)window.netlifyIdentity.open('login');},
- gLogout:function(){if(window.netlifyIdentity)window.netlifyIdentity.logout();},
+ gLogin:function(){if(!SB.c)return;SB.c.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname,queryParams:{prompt:'select_account'}}}).then(function(r){if(r&&r.error){G.st='err';G.msg='No pude abrir Google: '+r.error.message;render();}});},
+ gLogout:function(){if(SB.c)SB.c.signOut({scope:'local'});},
  gSync:function(){gSync(true);},
  gCons:function(el){try{localStorage.setItem('rot_cons',el.checked?'1':'0');}catch(e){}render();if(el.checked&&gOn())gSync(true);},
  tour:function(){tourStart();},

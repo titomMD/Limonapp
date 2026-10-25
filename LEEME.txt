@@ -1,18 +1,46 @@
-LIMONAPP v14 - proyecto para Netlify (con cuenta y sincronizacion)
+LIMONAPP v31 - proyecto para Netlify (login con Supabase + Google)
 
-Contenido
-  public/                  la app (index.html, manifest, sw.js, iconos)
-  netlify/functions/sync.mjs   guarda y devuelve los datos de cada usuario (Netlify Blobs)
-  netlify/functions/social.mjs perfiles, equipos por codigo, chat y envio de pacientes (Netlify Blobs)
-  package.json, netlify.toml   configuracion
+QUE CAMBIO RESPECTO A LA v30
+  - El login ya no usa Netlify Identity: usa Supabase Auth con Google.
+  - Los datos siguen en Netlify Blobs, con las mismas llaves. Las 3 cuentas que ya existian
+    (estebanlegui295, lizethjaimesferreira, titomracsogabi) entran con su mismo correo de Google y
+    recuperan sus pacientes, equipos, mensajes y roles. Cualquier otra persona entra como cuenta nueva.
+  - Nada de esto borra ni modifica datos existentes; al entrar solo se leen.
 
-Como publicarlo (Git, lo mas simple)
-  1. Crea un repositorio en GitHub y sube TODO este contenido (en la raiz del repo).
-  2. En Netlify: Add new project > Import from Git > elige el repo. No pongas comando de build;
-     netlify.toml ya indica publish=public y functions=netlify/functions.
-  3. En ese sitio: Site configuration > Identity > Enable. Registration: Open.
-     External providers > Google > "Use default configuration".
-  4. Abre la direccion del sitio > Respaldo > acepta el aviso > "Entrar con Google o correo".
+CONTENIDO
+  public/                       la app: index.html, sw.js (cache limonapp-v31), privacidad, terminos, iconos
+  public/vendor/auth-js.supabase.js   libreria de login de Supabase (incluida, no depende de internet externo)
+  netlify/functions/sync.mjs    guarda y devuelve los datos de cada usuario
+  netlify/functions/social.mjs  perfiles, equipos, chat, pacientes compartidos
+  package.json, netlify.toml    configuracion (no cambian las dependencias)
+  respaldo-blobs.mjs            (viene aparte) copia de seguridad de los datos de Netlify
 
-Alternativa por consola (sin GitHub): instala Node y netlify-cli, y desde esta carpeta ejecuta
-  netlify deploy --prod
+ANTES DE SUBIR (marca cada uno)
+  [ ] Hiciste la copia de seguridad con respaldo-blobs.mjs y terminó con "LISTO. Copia completa y verificada."
+  [ ] En Supabase: Google activado, Email apagado, URL del sitio = https://limonappp.netlify.app
+      y Redirect URL = https://limonappp.netlify.app/**
+  [ ] En Google Cloud: cliente web con origen https://limonappp.netlify.app y como redireccion la
+      "Callback URL" de Supabase; pantalla de consentimiento "En produccion".
+  [ ] NO desactives Netlify Identity todavia (sirve para volver atras).
+
+COMO SUBIRLO (un solo despliegue)
+  1. Descomprime este zip. Debe quedar una carpeta con public/, netlify/, netlify.toml y package.json.
+  2. En Netlify abre el sitio limonappp > Deploys y arrastra la CARPETA completa (igual que la vez pasada).
+  3. Espera a que diga Published. En Functions deben aparecer "sync" y "social".
+
+PRUEBA RAPIDA DESPUES DE SUBIR (tu cuenta primero, en el computador)
+  1. Abre https://limonappp.netlify.app (si ves la version vieja, recarga con Cmd+Shift+R).
+  2. Respaldo > "Cuenta y sincronización" > marca el aviso > "Entrar con Google" > elige estebanlegui295.
+  3. Debe decir "Sesión iniciada: estebanlegui295@gmail.com" y traer tus pacientes y notas.
+  4. Pestaña Equipo: debe aparecer "Grupo C Rotación" y tu rol de dueño.
+  5. Repite en el celular (con la app instalada) y confirma que ambos quedan con la sesion abierta.
+  6. Recien despues avisa a Lizeth. Debe entrar con lizethjaimesferreira@gmail.com.
+
+SI ALGO SALE MAL: VOLVER ATRAS (no se pierde nada)
+  1. Netlify > Deploys > elige el despliegue anterior (el de la v30) > "Publish deploy".
+  2. Netlify Identity sigue activo, asi que la v30 vuelve a funcionar como antes.
+  3. Tus datos en el servidor no cambiaron. En los dispositivos se actualiza sola la app al recargar.
+
+PARA AGREGAR A ALGUIEN CON DATOS EXISTENTES
+  La tabla LEGACY esta al inicio de sync.mjs y social.mjs (el bloque entre AUTH-BEGIN y AUTH-END debe ser
+  identico en los dos). Solo hace falta si alguien con datos viejos entra con un correo distinto.

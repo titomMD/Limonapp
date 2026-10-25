@@ -1,23 +1,79 @@
 import { getStore } from '@netlify/blobs';
 
 /* Limonapp: guarda y devuelve la base de datos de UN usuario.
-   La identidad se valida preguntándole a Netlify Identity quién es el dueño del token. */
+   La identidad se valida con la sesión de Supabase Auth (Google); ver bloque AUTH más abajo. */
 const MAX = 4 * 1024 * 1024; // 4 MB (el límite de una función es ~6 MB)
 
-export default async (req) => {
-  const auth = req.headers.get('authorization') || '';
-  if (!/^Bearer\s+\S+/.test(auth)) return new Response('Sin sesión', { status: 401 });
-
-  const origin = new URL(req.url).origin;
-  let user;
+/* ===== AUTH-BEGIN: idéntico en sync.mjs y social.mjs (si lo cambias, cámbialo en los dos) =====
+   Verifica la sesión de Supabase Auth (Google) sin librerías: firma ES256 con la clave pública del proyecto
+   (JWKS), emisor, audiencia y vencimiento. Devuelve el ID con el que se guardan los datos del usuario. */
+const SUPABASE_URL = 'https://lwfsydrtxukbbviocrvv.supabase.co';
+const ISS = SUPABASE_URL + '/auth/v1';
+/* Personas que ya usaban Limonapp con Netlify Identity: correo de Google VERIFICADO -> ID bajo el que ya están
+   guardados sus datos. Así conservan pacientes, equipos, mensajes y roles. Todos los demás usan su ID de Supabase. */
+const LEGACY = {
+  'estebanlegui295@gmail.com': 'be0a9bec-7f40-4b80-a0e4-5b474fe36106',
+  'lizethjaimesferreira@gmail.com': 'e1603fa0-0193-4770-9663-ec6d6f9e6f54',
+  'titomracsogabi@gmail.com': 'd3d52a34-043f-42d1-87f5-7df340aebf36',
+};
+const b64u = (s) => Uint8Array.from(atob(String(s).replace(/-/g, '+').replace(/_/g, '/').padEnd(Math.ceil(String(s).length / 4) * 4, '=')), (c) => c.charCodeAt(0));
+const txt = (u8) => new TextDecoder().decode(u8);
+let JWKS = { at: 0, keys: [] };
+const KEYC = new Map();
+async function jwks(force) {
+  const age = Date.now() - JWKS.at;
+  if (JWKS.keys.length && (force ? age < 30000 : age < 600000)) return JWKS.keys;
   try {
-    const r = await fetch(origin + '/.netlify/identity/user', { headers: { Authorization: auth } });
-    if (!r.ok) return new Response('Sesión inválida', { status: 401 });
-    user = await r.json();
+    const r = await fetch(ISS + '/.well-known/jwks.json', { headers: { accept: 'application/json' } });
+    if (!r.ok) throw new Error('jwks ' + r.status);
+    const j = await r.json();
+    JWKS = { at: Date.now(), keys: Array.isArray(j.keys) ? j.keys : [] };
   } catch (e) {
-    return new Response('No pude validar la sesión', { status: 502 });
+    if (!JWKS.keys.length) throw e; /* si falla la consulta pero hay claves guardadas, sigo con ellas */
   }
-  if (!user || !user.id) return new Response('Sesión inválida', { status: 401 });
+  return JWKS.keys;
+}
+async function keyFor(kid) {
+  let jwk = (await jwks(false)).find((k) => k.kid === kid);
+  if (!jwk) jwk = (await jwks(true)).find((k) => k.kid === kid);
+  if (!jwk || jwk.kty !== 'EC' || jwk.crv !== 'P-256') return null;
+  const id = kid + '|' + jwk.x + '|' + jwk.y;
+  if (!KEYC.has(id)) KEYC.set(id, await crypto.subtle.importKey('jwk', { kty: 'EC', crv: 'P-256', x: jwk.x, y: jwk.y, ext: true }, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['verify']));
+  return KEYC.get(id);
+}
+/* Devuelve { user } o { status, msg }. user.id = ID de datos; user.sub = ID de Supabase. */
+async function authenticate(req) {
+  const m = /^Bearer\s+([A-Za-z0-9_-]+)\.([A-Za-z0-9_-]+)\.([A-Za-z0-9_-]+)$/.exec(req.headers.get('authorization') || '');
+  if (!m) return { status: 401, msg: 'Sin sesión' };
+  let h, p, sig;
+  try { h = JSON.parse(txt(b64u(m[1]))); p = JSON.parse(txt(b64u(m[2]))); sig = b64u(m[3]); } catch (e) { return { status: 401, msg: 'Sesión inválida' }; }
+  if (!h || h.alg !== 'ES256' || typeof h.kid !== 'string' || !p || typeof p !== 'object' || sig.length !== 64) return { status: 401, msg: 'Sesión inválida' };
+  let ok = false;
+  try {
+    const key = await keyFor(h.kid);
+    if (!key) return { status: 401, msg: 'Sesión inválida' };
+    ok = await crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, key, sig, new TextEncoder().encode(m[1] + '.' + m[2]));
+  } catch (e) { return { status: 502, msg: 'No pude validar la sesión' }; }
+  const now = Date.now() / 1000;
+  const aud = Array.isArray(p.aud) ? p.aud : [p.aud];
+  if (!ok || p.iss !== ISS || !aud.includes('authenticated') || p.role !== 'authenticated' || p.is_anonymous === true || typeof p.exp !== 'number' || p.exp < now - 30 || (typeof p.nbf === 'number' && p.nbf > now + 30) || typeof p.sub !== 'string' || !/^[0-9a-fA-F-]{36}$/.test(p.sub)) return { status: 401, msg: 'Sesión inválida' };
+  const um = p.user_metadata && typeof p.user_metadata === 'object' ? p.user_metadata : {};
+  const email = String(p.email || um.email || '').toLowerCase();
+  const verified = !!email && ((p.app_metadata && p.app_metadata.provider) === 'google') && (um.email_verified === true || um.email_verified === 'true');
+  const legacy = verified && Object.prototype.hasOwnProperty.call(LEGACY, email) ? LEGACY[email] : '';
+  return { user: { id: legacy || p.sub, sub: p.sub, legacy: !!legacy, email, user_metadata: um } };
+}
+/* ===== AUTH-END ===== */
+
+export default async (req) => {
+  const a = await authenticate(req);
+  if (!a.user) return new Response(a.msg, { status: a.status });
+  const user = a.user;
+
+  /* El cliente pregunta con qué ID se guardan sus datos (cuentas anteriores conservan el suyo). */
+  if (req.method === 'GET' && new URL(req.url).searchParams.get('whoami')) {
+    return new Response(JSON.stringify({ uid: user.id }), { headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
+  }
 
   const store = getStore({ name: 'limonapp', consistency: 'strong' });
   const key = 'u_' + String(user.id).replace(/[^a-zA-Z0-9-]/g, '');
