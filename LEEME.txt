@@ -1,22 +1,22 @@
-LIMONAPP v32 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+LIMONAPP v33 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
 
-QUE CAMBIA EN LA v32 (sobre la v31)
+QUE CAMBIA EN LA v33 (sobre la v31)
+  (La v32 tuvo un error: los dibujos del gato Limon salian rotos. La v33 es la v32 corregida. Si ya subiste la v32,
+  sube esta encima; si no, sube solo esta.)
   - Imagenes: en cada paciente > Imagenes, cada estudio acepta imagenes JPEG/PNG/foto (hasta 12). Se reducen y se
     guardan SOLO en el dispositivo donde las cargas (no se sincronizan, no van al respaldo, no se envian a colegas).
     En otro dispositivo se ve "Solo en otro dispositivo". Hay que tapar nombre, cedula y HC antes de cargarlas.
   - Lectura oficial: nuevo selector "Ya esta el informe" / "No leida aun". Si no esta leida, sale la etiqueta
-    "No leida aun" en la fila, en el resumen y en la entrega, y al llegar el informe se edita y se cambia el selector.
+    "No leida aun" en la fila, en el resumen y en la entrega detallada; al llegar el informe se edita y se cambia el selector.
   - Lecturas por especialidad: cada estudio puede tener varias lecturas (Ortopedia, Neurocirugia, etc.), cada una con
-    su especialidad y su hora. Se suman a la lectura oficial y a "Mis hallazgos". Estas lecturas son texto y si se sincronizan.
+    su especialidad y su hora. Se suman a la lectura oficial y a "Mis hallazgos". Son texto y si se sincronizan.
   - Las entradas de imagenes que ya existian se ven igual que antes.
-  - El servidor (carpeta netlify/functions) NO cambia respecto a la v31. Cambian: public/index.html, public/sw.js,
+  - El servidor (netlify/functions) NO cambia respecto a la v31. Cambian: public/index.html, public/sw.js,
     public/privacidad.html, package.json y este LEEME.
 
-COMO SUBIRLA (igual que la v31, por GitHub)
-  Copia el contenido del zip sobre la carpeta del repositorio, GitHub Desktop mostrara solo los archivos cambiados,
-  escribe "Version 32", Commit y Push. Netlify publica solo.
-  Recomendacion: sube la v32 despues de confirmar que el login de la v31 funciona, para no mezclar dos cambios.
-  Para volver atras: en GitHub Desktop > History > clic derecho en "Version 32" > Revert Changes in Commit > Push.
+COMO SUBIRLA (por GitHub Desktop)
+  Copia el contenido del zip sobre la carpeta del repositorio, escribe "Version 33", Commit y Push. Netlify publica solo.
+  Para volver atras: GitHub Desktop > History > clic derecho en el commit > Revert Changes in Commit > Push.
 
 QUE CAMBIO EN LA v31 RESPECTO A LA v30
   - El login ya no usa Netlify Identity: usa Supabase Auth con Google.
@@ -26,7 +26,7 @@ QUE CAMBIO EN LA v31 RESPECTO A LA v30
   - Nada de esto borra ni modifica datos existentes; al entrar solo se leen.
 
 CONTENIDO
-  public/                       la app: index.html, sw.js (cache limonapp-v32), privacidad, terminos, iconos
+  public/                       la app: index.html, sw.js (cache limonapp-v33), privacidad, terminos, iconos
   public/vendor/auth-js.supabase.js   libreria de login de Supabase (incluida, no depende de internet externo)
   netlify/functions/sync.mjs    guarda y devuelve los datos de cada usuario
   netlify/functions/social.mjs  perfiles, equipos, chat, pacientes compartidos
