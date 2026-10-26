@@ -1,11 +1,16 @@
-LIMONAPP v35 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+LIMONAPP v36 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+
+QUE CAMBIA EN LA v36 (sobre la v35)
+  - Plan: la ventana Plan solo muestra el plan escrito (y lo solicitado como texto).
+  - Pendientes: los paraclinicos e imagenes solicitados quedan como "Resultados pendientes" en la ventana Pendientes
+    (del paciente y la general). Ahi mismo se registra el resultado o se descarta; los descartados se pueden reabrir.
 
 QUE CAMBIA EN LA v35 (sobre la v34)
   - Las imagenes de Imagenes ahora se guardan tambien en tu cuenta (Netlify Blobs, funcion netlify/functions/img.mjs)
     y se ven en cualquier dispositivo con sesion iniciada. Las que ya cargaste antes se suben solas la primera vez que
     abras la app v35 con sesion en el dispositivo donde estan. Sin sesion siguen quedando solo en el dispositivo.
     No se comparten con colegas ni van al respaldo. Tope: 2000 archivos por cuenta (cada imagen son 2).
-  - Al subir la carpeta a GitHub incluye netlify/functions/img.mjs (archivo nuevo). Escribe "Version 35".
+  - Al subir la carpeta a GitHub incluye netlify/functions/img.mjs (archivo nuevo). Escribe "Version 36".
 
 QUE CAMBIA EN LA v34 (sobre la v33)
   - Evolucion con el formato del HUS: subjetivo, signos vitales (TA, PAM, FC, FR, T, SatO2, peso, glucometria,
