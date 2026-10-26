@@ -17,6 +17,7 @@ Importacion limpia (v11): dropNoise() quita consentimientos informados (CONSH/CO
 Lectura HUS (v12): pdfPages()->isHus()/husPage() lee cada pagina por su cabecera ('Pagina n/N', 'TITULO nFOLIO:', fecha de registro, paciente) y agrupa paginas del mismo folio; husKind() clasifica (ev/ic/in/ep/nt) y omite enfermeria, escalas, consentimientos, solicitudes; parseEvHUS (S/O/A/P por encabezados), parseIcHUS (servicio desde 'RESPUESTA A INTERCONSULTA POR X'), analyzeHus(). Formatos de otros hospitales siguen por analyzeAll. Tope EVMAX evoluciones al crear paciente.
 Privacidad: la app pide solo iniciales, edad, cama y 3 ultimos digitos de HC; avisa si detecta numeros largos.
 v31 (25-oct-2026) LOGIN CON SUPABASE: ya no se usa Netlify Identity. Proyecto Supabase 'Limonapp' (URL y clave publishable en SB_URL/SB_KEY, publicas por diseño; NUNCA guardar secret/service_role). Solo Google; correo y anonimo desactivados en Supabase. Cliente: SOLO @supabase/auth-js 2.117.2 empaquetado con esbuild en public/vendor/auth-js.supabase.js (expone window.LimonAuth.GoTrueClient; entrada: import {GoTrueClient} from '@supabase/auth-js'; window.LimonAuth={GoTrueClient}; npx esbuild --bundle --minify --format=iife). En el artifact (claude.ai) gAvail() es falso: no hay login ni carga la libreria. Flujo PKCE con redireccion completa; gOnSess() maneja INITIAL_SESSION/SIGNED_IN/SIGNED_OUT; sbUser() da u.id/u.email/u.jwt(forzar) como antes; gWho() pide /api/sync?whoami=1 para saber con que ID guarda el servidor los datos de la persona (G.uid) y asi gSt().uid de las cuentas anteriores no se reinicia. Servidor: netlify/functions/sync.mjs y social.mjs llevan el MISMO bloque AUTH (entre AUTH-BEGIN y AUTH-END): verifica el token ES256 con el JWKS del proyecto (WebCrypto, sin librerias), emisor, audiencia, vencimiento. Tabla LEGACY en ese bloque: huella SHA-256 del correo de Google verificado -> ID viejo de Netlify Identity (3 cuentas; el repositorio es publico, por eso no van los correos); quien no esta en la tabla usa su ID de Supabase (registro abierto). Para dar a alguien un ID existente hay que editar LEGACY en los dos archivos y desplegar. Llaves de datos no cambian: u_<id> (almacen limonapp), p_/t_/m_/e_/f_/sp_ (limonapp-social). Netlify Identity puede apagarse cuando todo funcione.
+v35 (25-oct-2026) IMAGENES EN LA CUENTA: netlify/functions/img.mjs (/api/img, misma verificacion AUTH, store de Blobs 'limonapp-img', claves i_<uid>_<id>_f|t, solo JPEG, 4 MB, tope 2000 archivos por usuario; GET/PUT/DELETE ?id=&k= y DELETE ?all=1). Cliente: imgPush/imgPull/imgBackfill; copia local sigue en IndexedDB; rot_imgup = IDs ya subidos; al ver una imagen que no esta local se baja. No se comparten con colegas ni van al respaldo.
 v32 (25-oct-2026) IMAGENES Y LECTURAS: entradas tipo img guardan data.imgs (IDs de JPEG), data.lecNo (1 = lectura oficial 'No leida aun', y se omite data.lec), data.lec (informe oficial, igual que antes), data.rd (lecturas por especialidad: [{s,t,at}]) y data.mia (mis hallazgos, igual que antes). Entradas antiguas con lec/mia se ven igual. Los JPEG NO van en rotaciones_v1 ni se sincronizan ni entran al respaldo: viven en IndexedDB 'limonapp-img' (almacen 'b', claves 'f:ID' imagen reducida a 2000 px y 't:ID' miniatura 320 px, ambas JPEG sin EXIF). En otro dispositivo se ve 'Solo en otro dispositivo'. Se borran al borrar la entrada, el paciente o todos los datos. Sin cambios en el servidor.
 -->
 <title>Limonapp</title>
@@ -886,7 +887,7 @@ function secHtml(p,k){
   if(k==='hx')return viewHx(p);
   if(k==='upd')return updCard(p);
   if(k==='lab')return trendsCards(p)+sepCard(p,'lab','Paraclínicos','Laboratorios y otros resultados. Cada resultado queda por fecha, aparte de la cronología.');
-  if(k==='img')return sepCard(p,'img','Imágenes y lecturas','RX, TAC, RMN, ecografía… con imágenes (JPEG), la lectura oficial —o “No leída aún”—, la lectura de cada especialidad y tus hallazgos. Las imágenes quedan solo en este dispositivo.');
+  if(k==='img')return sepCard(p,'img','Imágenes y lecturas','RX, TAC, RMN, ecografía… con imágenes (JPEG), la lectura oficial —o “No leída aún”—, la lectura de cada especialidad y tus hallazgos. Con sesión iniciada, las imágenes se guardan en tu cuenta y las ves en cualquier dispositivo; sin sesión quedan solo en este dispositivo.');
   if(k==='ic')return sepCard(p,'interconsulta','Interconsultas','Preguntas a otros servicios y sus respuestas. Las pendientes también salen en Pendientes del turno.');
   if(k==='task'){
     var tasks=pTasks(p.id);
@@ -3783,7 +3784,7 @@ AT.rnOut=function(el){var p=pat(el.dataset.id);if(!p)return;p.rnx=1;save();S.rn.
 AT.rnAll=function(el){activeOf(S.rn.sid).forEach(function(p){if(el.dataset.v==='1')delete p.rnx;else p.rnx=1;});save();S.rn.i=0;render();};
 
 
-/* ---------- imágenes JPEG de los estudios (v32): solo en este dispositivo (IndexedDB 'limonapp-img'), no se sincronizan ni van al respaldo ---------- */
+/* ---------- imágenes JPEG de los estudios (v32; v35: también en la cuenta). Copia local en IndexedDB 'limonapp-img'; con sesión iniciada se suben a /api/img y los otros dispositivos las bajan al verlas. No van al respaldo ni se comparten con colegas ---------- */
 var IMX={p:null,url:{},pend:{},v:null},IMG_MAX=12;
 var RD_SPECS=['Ortopedia','Neurocirugía','Cirugía general','Cirugía plástica','Cirugía pediátrica','Urología','Trauma / Urgencias','Medicina interna','Otorrinolaringología','Oftalmología','Anestesiología','Radiología (preliminar)','Radiología intervencionista','Oncología','Ginecología'];
 function imgDB(){
@@ -3795,9 +3796,38 @@ function imgTx(mode,fn){return imgDB().then(function(d){return new Promise(funct
 function imgPut(k,b){return imgTx('readwrite',function(st){return st.put(b,k);});}
 function imgGet(k){return imgTx('readonly',function(st){return st.get(k);});}
 function imgDel(k){return imgTx('readwrite',function(st){return st.delete(k);});}
+/* v35: copia en la cuenta (servidor). IMS.up = IDs ya subidos desde este dispositivo (localStorage rot_imgup). */
+var IMS={up:null,fly:{},bf:0,warn:0};
+function imgUpSet(){if(IMS.up)return IMS.up;var o={};try{o=JSON.parse(localStorage.getItem('rot_imgup')||'{}')||{};}catch(e){}IMS.up=o;return o;}
+function imgUpMark(id,on){var o=imgUpSet();if(on)o[id]=1;else delete o[id];try{localStorage.setItem('rot_imgup',JSON.stringify(o));}catch(e){}}
+function imgSrv(){return gOn()&&gAvail();}
+function imgApi(method,qs,body){return gTokenP().then(function(t){return fetch('/api/img?'+qs,{method:method,headers:{Authorization:'Bearer '+t},body:body});});}
+function imgPush(id){
+  if(!imgSrv())return Promise.resolve(false);
+  return Promise.all([imgGet('f:'+id),imgGet('t:'+id)]).then(function(a){
+    if(!a[0]||!a[1])return false;
+    var chk=function(r){if(!r.ok){var e=new Error('http');e.st=r.status;throw e;}return r;};
+    return imgApi('PUT','id='+id+'&k=t',a[1]).then(chk).then(function(){return imgApi('PUT','id='+id+'&k=f',a[0]);}).then(chk).then(function(){imgUpMark(id,true);return true;});
+  }).catch(function(e){if(e&&e.st===507&&!IMS.warn){IMS.warn=1;toast('Llegaste al tope de imágenes de tu cuenta. Borra algunas para subir más.');}return false;});
+}
+function imgPull(key){
+  if(!imgSrv())return Promise.resolve(null);
+  if(IMS.fly[key])return IMS.fly[key];
+  var p=key.split(':');
+  IMS.fly[key]=imgApi('GET','id='+p[1]+'&k='+p[0]).then(function(r){return r.ok?r.blob():null;}).then(function(b){
+    if(!b||!b.size)return null;
+    return imgPut(key,b).then(function(){imgUpMark(p[1],true);return b;},function(){return b;});
+  }).catch(function(){return null;}).then(function(b){delete IMS.fly[key];return b;});
+  return IMS.fly[key];
+}
+function imgBackfill(){
+  if(!imgSrv())return;
+  var ids=[];db.entries.forEach(function(e){if(e.type==='img'&&e.data&&e.data.imgs)e.data.imgs.forEach(function(id){if(!imgUpSet()[id])ids.push(id);});});
+  var i=0;(function next(){if(i>=ids.length)return;imgPush(ids[i++]).then(next);})();
+}
 function imgUrl(id,k){
   var key=k+':'+id;if(IMX.url[key])return Promise.resolve(IMX.url[key]);
-  return imgGet(key).then(function(b){if(!b)return '';IMX.url[key]=URL.createObjectURL(b);return IMX.url[key];}).catch(function(){return '';});
+  return imgGet(key).then(function(b){return b||imgPull(key);}).then(function(b){if(!b)return '';IMX.url[key]=URL.createObjectURL(b);return IMX.url[key];}).catch(function(){return '';});
 }
 function imgShrink(file,max,q){
   return new Promise(function(res,rej){
@@ -3823,7 +3853,7 @@ function rdRowHtml(r){
 }
 function imgFormPart(f,d){
   if(f[0]==='est')return '<label>'+f[1]+'<input id="e_est" value="'+esc(d.est||'')+'"></label>'+
-    '<div class="imgsec"><div class="small muted">Imágenes del estudio (JPEG, PNG o foto). Se guardan solo en este dispositivo.</div><div class="imgs" id="imgBox">'+edImgsHtml()+'</div>'+
+    '<div class="imgsec"><div class="small muted">Imágenes del estudio (JPEG, PNG o foto). Con sesión iniciada se guardan en tu cuenta y las ves en cualquier dispositivo; sin sesión, solo en este.</div><div class="imgs" id="imgBox">'+edImgsHtml()+'</div>'+
     '<label class="btn sm" style="cursor:pointer;justify-self:start">+ Agregar imagen<input type="file" id="imgIn" accept="image/*" multiple hidden></label>'+
     '<div class="note">Antes de cargarla, tapa nombre, cédula y número de HC: la app no puede quitarlos de la imagen.</div></div>';
   if(f[0]==='lec')return '<label>'+f[1]+'<select id="e_lecst"><option value="1"'+(d.lecNo?'':' selected')+'>Ya está el informe</option><option value="0"'+(d.lecNo?' selected':'')+'>No leída aún (la imagen salió, falta el informe)</option></select></label>'+
@@ -3851,7 +3881,7 @@ function imgCommit(p){
   IMX.pend={};if(!p.put.length&&!p.del.length)return;
   Promise.all(p.put.map(function(a){return imgPut('f:'+a[0],a[1].full).then(function(){return imgPut('t:'+a[0],a[1].thumb);});}))
     .then(function(){return Promise.all(p.del.map(function(id){return imgDel('f:'+id).then(function(){return imgDel('t:'+id);});}));})
-    .then(function(){imgHydrate();})
+    .then(function(){p.del.forEach(function(id){imgUpMark(id,false);if(imgSrv())imgApi('DELETE','id='+id).catch(function(){});});imgHydrate();if(imgSrv())p.put.forEach(function(a){imgPush(a[0]).then(function(ok){if(!ok&&imgSrv())toast('La imagen quedó en este dispositivo, pero no pude subirla a tu cuenta. Se reintenta sola.');});});})
     .catch(function(){toast('No pude guardar la imagen en este dispositivo (sin espacio o sin permiso del navegador).');});
 }
 function imgDiscard(){
@@ -3860,9 +3890,9 @@ function imgDiscard(){
 }
 function imgDelEntry(e){
   if(!e||e.type!=='img'||!e.data||!e.data.imgs)return;
-  e.data.imgs.forEach(function(id){['f','t'].forEach(function(k){var u=IMX.url[k+':'+id];if(u){try{URL.revokeObjectURL(u);}catch(x){}delete IMX.url[k+':'+id];}imgDel(k+':'+id).catch(function(){});});});
+  e.data.imgs.forEach(function(id){['f','t'].forEach(function(k){var u=IMX.url[k+':'+id];if(u){try{URL.revokeObjectURL(u);}catch(x){}delete IMX.url[k+':'+id];}imgDel(k+':'+id).catch(function(){});});imgUpMark(id,false);if(imgSrv())imgApi('DELETE','id='+id).catch(function(){});});
 }
-function imgWipe(){imgTx('readwrite',function(st){return st.clear();}).catch(function(){});IMX.url={};IMX.pend={};}
+function imgWipe(){imgTx('readwrite',function(st){return st.clear();}).catch(function(){});if(imgSrv())imgApi('DELETE','all=1').catch(function(){});IMS.up={};try{localStorage.removeItem('rot_imgup');}catch(e){}IMX.url={};IMX.pend={};}
 function imgAddFiles(files){
   var ed=S.editor;if(!ed||ed.type!=='img'||!ed.imgs)return;
   var room=IMG_MAX-ed.imgs.length;if(room<=0){toast('Máximo '+IMG_MAX+' imágenes por estudio.');return;}
@@ -3885,11 +3915,12 @@ function imgRmH(el){
   var b=document.getElementById('imgBox');if(b){b.innerHTML=edImgsHtml();imgHydrate();}
 }
 function imgHydrate(){
+  if(!imgSrv())IMS.bf=0;else if(!IMS.bf){IMS.bf=1;setTimeout(imgBackfill,1500);}
   Array.prototype.forEach.call(document.querySelectorAll('img[data-imt]'),function(im){
     if(im.getAttribute('src')||im.dataset.imBusy)return;im.dataset.imBusy='1';
     imgUrl(im.getAttribute('data-imt'),'t').then(function(u){
       if(!im.isConnected)return;
-      if(u){im.src=u;}else{var sp=document.createElement('span');sp.textContent='Solo en otro dispositivo';im.replaceWith(sp);}
+      if(u){im.src=u;}else{var sp=document.createElement('span');sp.textContent=imgSrv()?'No disponible ahora (sin conexión o aún no subida)':'Solo en otro dispositivo (inicia sesión para verla aquí)';im.replaceWith(sp);}
     });
   });
 }
@@ -3926,7 +3957,7 @@ function imgViewShow(){
   var v=IMX.v;if(!v)return;var id=v.ids[v.i],o=document.getElementById('imgView');
   if(!o){o=document.createElement('div');o.id='imgView';o.setAttribute('role','dialog');o.setAttribute('aria-label','Imagen del estudio');document.body.appendChild(o);}
   o.innerHTML='<div class="bar"><span class="mono small">'+(v.i+1)+' / '+v.ids.length+'</span><div class="row">'+(v.ids.length>1?'<button class="btn sm" data-a="imgPrev" aria-label="Anterior">◀</button><button class="btn sm" data-a="imgNext" aria-label="Siguiente">▶</button>':'')+'<button class="btn sm" data-a="imgClose">Cerrar</button></div></div><div id="imgWrap"><img id="imgBig" alt="Imagen del estudio"></div><div id="imgMsg"></div>';
-  imgUrl(id,'f').then(function(u){var im=document.getElementById('imgBig');if(!im||!IMX.v||IMX.v.ids[IMX.v.i]!==id)return;if(u)im.src=u;else document.getElementById('imgMsg').textContent='Esta imagen no está en este dispositivo (se cargó en otro).';});
+  imgUrl(id,'f').then(function(u){var im=document.getElementById('imgBig');if(!im||!IMX.v||IMX.v.ids[IMX.v.i]!==id)return;if(u)im.src=u;else document.getElementById('imgMsg').textContent=(imgSrv()?'No pude traer esta imagen de tu cuenta (sin conexión, o aún no se ha subido desde el dispositivo donde la cargaste).':'Esta imagen no está en este dispositivo (se cargó en otro). Inicia sesión para verla aquí.');});
 }
 document.addEventListener('click',function(e){if(e.target&&e.target.id==='imgBig')e.target.classList.toggle('zoom');});
 document.addEventListener('keydown',function(e){if(!IMX.v)return;if(e.key==='Escape')imgCloseH();else if(e.key==='ArrowRight')imgStep(1);else if(e.key==='ArrowLeft')imgStep(-1);});
