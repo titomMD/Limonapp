@@ -647,7 +647,7 @@ function evFormHtml(d){
   h+='<div class="evh">P · Plan</div><label>Plan (conducta, medicamentos, controles)<textarea id="e_p" rows="4">'+esc(d.p||'')+'</textarea></label>';
   h+='<label>Paraclínicos solicitados (uno por línea)<textarea id="e_ordl" rows="2" placeholder="Ej. Hemograma">'+esc(d.ordl||'')+'</textarea></label>';
   h+='<label>Imágenes solicitadas (una por línea)<textarea id="e_ordi" rows="2" placeholder="Ej. RX de tórax">'+esc(d.ordi||'')+'</textarea></label>';
-  h+='<div class="small muted">Lo que escribas en el plan y lo que solicites pasa solo a la sección Plan; lo solicitado queda “pendiente” hasta que registres el resultado.</div>';
+  h+='<div class="small muted">El plan que escribas pasa a la sección Plan. Lo que solicites queda en Pendientes hasta que registres el resultado.</div>';
   h+='<details class="addf"'+((d.rec||d.alarm)?' open':'')+'><summary class="btn sm">Recomendaciones generales y signos de alarma</summary><label>Recomendaciones generales<textarea id="e_rec" rows="3">'+esc(d.rec||'')+'</textarea></label><label>Signos de alarma<textarea id="e_alarm" rows="3">'+esc(d.alarm||'')+'</textarea></label></details>';
   return h;
 }
@@ -740,7 +740,7 @@ function refSelect(ed,d){
     if(o.k!==ed.type)return;
     if((!res[o.id]&&!o.x)||o.id===cur)opts.push('<option value="'+o.id+'"'+(o.id===cur?' selected':'')+'>'+esc(o.n)+' · pedido '+esc(dlong(pl.at))+'</option>');
   });});
-  return '<label>¿Responde a un pedido pendiente del Plan?<select id="e_ref"><option value="">No, es un resultado aparte</option>'+opts.join('')+'</select></label>'+(opts.length?'':'<div class="small muted" style="margin-top:-4px">No hay '+(ed.type==='lab'?'paraclínicos':'imágenes')+' pendientes en el Plan.</div>');
+  return '<label>¿Responde a un resultado pendiente?<select id="e_ref"><option value="">No, es un resultado aparte</option>'+opts.join('')+'</select></label>'+(opts.length?'':'<div class="small muted" style="margin-top:-4px">No hay '+(ed.type==='lab'?'paraclínicos':'imágenes')+' pendientes.</div>');
 }
 function ordBadge(o,res){
   if(res)return '<span class="pill estable">Resultado '+esc(dlong(res.at))+'</span>';
@@ -751,21 +751,21 @@ function ordRow(o,pl,res){
   return '<div class="task"><span class="chip" style="--c:var(--c-'+(o.k==='img'?'img':'lab')+')">'+(o.k==='img'?'Imagen':'Paraclínico')+'</span><span class="t">'+esc(o.n)+(o.cups?' <span class="muted small">CUPS '+esc(o.cups)+'</span>':'')+' '+ordBadge(o,res)+(pl?' <span class="muted small">pedido '+esc(dlong(pl.at))+'</span>':'')+'</span>'+
     (res?'<button class="btn sm ghost" data-a="goRes" data-id="'+res.id+'">Ver resultado</button>':(o.x?'<button class="btn sm ghost" data-a="ordUndo" data-id="'+o.id+'">Reabrir</button>':'<button class="btn sm primary" data-a="regOrd" data-id="'+o.id+'">Registrar resultado</button><button class="btn sm ghost" data-a="ordDrop" data-id="'+o.id+'" title="Ya no se hará">Descartar</button>'))+'</div>';
 }
+function ordPlain(o){return '<div class="task"><span class="chip" style="--c:var(--c-'+(o.k==='img'?'img':'lab')+')">'+(o.k==='img'?'Imagen':'Paraclínico')+'</span><span class="t">'+esc(o.n)+(o.cups?' <span class="muted small">CUPS '+esc(o.cups)+'</span>':'')+'</span></div>';}
 function planCard(pl){
   var d=pl.data||{},src=d.src?db.entries.filter(function(x){return x.id===d.src;})[0]:null,res=ordResults(pl.patientId);
   var from=src?('De la '+(src.type==='ingreso'?'nota de ingreso':'evolución')+' del '+dlong(src.at)):'Plan escrito aparte';
   return '<article class="entry" style="--c:var(--c-plan)"><div class="row spread"><div class="row"><span class="chip" style="--c:var(--c-plan)">Plan</span><span class="small muted">'+esc(from)+'</span></div><span class="mono small muted">'+fmt(pl.at)+'</span></div><dl>'+
     (d.plan?'<dt>Plan</dt><dd>'+rich(d.plan)+'</dd>':'')+
-    ((d.ord&&d.ord.length)?'<dt>Órdenes</dt><dd>'+d.ord.map(function(o){return ordRow(o,null,res[o.id]);}).join('')+'</dd>':'')+'</dl>'+
+    ((d.ord&&d.ord.length)?'<dt>Solicitado</dt><dd>'+d.ord.map(ordPlain).join('')+'</dd>':'')+'</dl>'+
     '<div class="row">'+(src?'<button class="btn sm" data-a="cronOpen" data-id="'+src.id+'">Ver nota de origen</button>':'<button class="btn sm" data-a="editEntry" data-id="'+pl.id+'">Editar</button>')+
     (S.confirm===pl.id?'<button class="btn sm danger" data-a="delEntry" data-id="'+pl.id+'">Confirmar: borrar</button>':'<button class="btn sm danger" data-a="askDelEntry" data-id="'+pl.id+'">Borrar</button>')+'</div></article>';
 }
 function planSection(p){
-  var pend=pendOrders(p.id),pls=planEntries(p.id),h='';
-  h+='<div class="card" style="border-color:var(--c-plan)"><div class="row spread"><h3>Pendiente de resultado'+(pend.length?' ('+pend.length+')':'')+'</h3><button class="btn sm primary" data-a="newEntry" data-t="plan">+ Plan</button></div>'+
-    (pend.length?pend.map(function(x){return ordRow(x.o,x.pl,null);}).join(''):'<div class="small muted">Nada pendiente. Lo que solicites en una evolución, un ingreso o un plan queda aquí hasta que registres su resultado en Paraclínicos o Imágenes.</div>')+'</div>';
+  var pls=planEntries(p.id),h='';
+  h+='<div class="row spread"><h3>Plan</h3><button class="btn sm primary" data-a="newEntry" data-t="plan">+ Plan</button></div>';
   if(!pls.length){var cand=db.entries.filter(function(x){return x.patientId===p.id&&((x.type==='evolucion'&&x.data.p)||(x.type==='ingreso'&&x.data.plan));});if(cand.length)h+='<div class="card"><div class="small muted">Este paciente tiene '+cand.length+' nota'+(cand.length===1?'':'s')+' con plan escrito antes de existir esta sección.</div><div class="row"><button class="btn sm" data-a="backfillPlans">Traer los planes de las últimas 5</button></div></div>';}
-  h+='<div><h3>Plan</h3></div><div class="tl">'+(pls.length?pls.map(planCard).join(''):'<div class="empty">'+art('sleep')+'Aún no hay planes. Se crean solos al guardar una evolución con plan, o con “+ Plan”.</div>')+'</div>';
+  h+='<div class="tl">'+(pls.length?pls.map(planCard).join(''):'<div class="empty">'+art('sleep')+'Aún no hay planes. Se crean solos al guardar una evolución con plan, o con “+ Plan”.</div>')+'</div>';
   return h;
 }
 
@@ -864,10 +864,10 @@ function secCount(p,k){
   if(k==='hx')return HXF.filter(function(f){return (p.hx||{})[f[0]];}).length;
   if(k==='cron')return pEntries(p.id).filter(function(e){var T=TYPES[e.type];return !(T&&(T.sep||T.own));}).length;
   if(k==='ic')return ofType(p,'interconsulta').length;
-  if(k==='plan')return pendOrders(p.id).length;
+  if(k==='plan')return 0;
   if(k==='lab')return ofType(p,'lab').length;
   if(k==='img')return ofType(p,'img').length;
-  if(k==='task')return pTasks(p.id).filter(function(t){return !t.done;}).length;
+  if(k==='task')return pTasks(p.id).filter(function(t){return !t.done;}).length+pendOrders(p.id).length;
   return 0;
 }
 function secSummary(p,k){
@@ -875,7 +875,7 @@ function secSummary(p,k){
   if(k==='hx')return n?n+(n===1?' sección':' secciones'):'vacía';
   if(k==='ic'){var pe=openICs(p.id).length;return n?n+(pe?' ('+pe+' pendiente'+(pe===1?'':'s')+')':''):'ninguna';}
   if(k==='task')return n?n+' pendiente'+(n===1?'':'s'):'nada pendiente';
-  if(k==='plan')return n?n+' sin resultado':'al día';
+  if(k==='plan'){var np=planEntries(p.id).length;return np?np+(np===1?' plan':' planes'):'ninguno';}
   if(k==='upd')return 'arrastra un PDF';
   return n?String(n):'ninguno';
 }
@@ -890,8 +890,10 @@ function secHtml(p,k){
   if(k==='img')return sepCard(p,'img','Imágenes y lecturas','RX, TAC, RMN, ecografía… con imágenes (JPEG), la lectura oficial —o “No leída aún”—, la lectura de cada especialidad y tus hallazgos. Con sesión iniciada, las imágenes se guardan en tu cuenta y las ves en cualquier dispositivo; sin sesión quedan solo en este dispositivo.');
   if(k==='ic')return sepCard(p,'interconsulta','Interconsultas','Preguntas a otros servicios y sus respuestas. Las pendientes también salen en Pendientes del turno.');
   if(k==='task'){
-    var tasks=pTasks(p.id);
-    return '<div class="card"><h3>Pendientes</h3>'+(tasks.length?tasks.map(taskRow).join(''):'<div class="small muted">Nada pendiente.</div>')+
+    var tasks=pTasks(p.id),po=pendOrders(p.id);
+    var rs0=ordResults(p.id),dis=[];planEntries(p.id).forEach(function(pl){(pl.data.ord||[]).forEach(function(o){if(o.x&&!rs0[o.id])dis.push({o:o,pl:pl});});});
+    return '<div class="card"><h3>Pendientes</h3>'+(tasks.length?tasks.map(taskRow).join(''):(po.length?'':'<div class="small muted">Nada pendiente.</div>'))+
+      (po.length?'<h3 style="margin-top:6px">Resultados pendientes ('+po.length+')</h3><div class="small muted">Lo que pediste en el plan. Al registrar el resultado aquí se guarda en Paraclínicos o Imágenes y el pendiente desaparece.</div>'+po.map(function(x){return ordRow(x.o,x.pl,null);}).join(''):'')+(dis.length?'<details class="addf"><summary class="btn sm">Descartados ('+dis.length+')</summary>'+dis.map(function(x){return ordRow(x.o,x.pl,null);}).join('')+'</details>':'')+
       '<div class="row"><div class="grow"><input id="newTask" placeholder="Ej. Revisar laboratorios de la mañana" data-enter="addTask" aria-label="Nuevo pendiente"></div><button class="btn sm primary" data-a="addTask">Agregar</button></div></div>';
   }
   var es=pEntries(p.id).filter(function(e){var T=TYPES[e.type];return !(T&&(T.sep||T.own));});
@@ -1114,7 +1116,7 @@ function saveEntry(){
     if(ed.type==='salida'){var p=pat(S.patientId);p.active=false;p.exitAt=at;}}
   if(saved)ensurePlan(saved);
   if(ed.type==='plan')S.sec='plan';
-  save();S.editor=null;S.warned=false;render();toast('Guardado.'+((saved&&saved.type==='evolucion'||saved&&saved.type==='ingreso')&&planOf(saved)?' El plan pasó a la sección Plan.':''));
+  save();S.editor=null;S.warned=false;render();toast('Guardado.'+((saved&&saved.type==='evolucion'||saved&&saved.type==='ingreso')&&planOf(saved)?' El plan pasó a la sección Plan'+(planOf(saved).data.ord&&planOf(saved).data.ord.length?' y lo solicitado a Pendientes.':'.'):''));
   if(imp)imgCommit(imp);
 }
 function copyText(txt,srcId){
@@ -2309,7 +2311,7 @@ function viewResumen(p){
   var im=ofType(p,'img')[0];
   if(im)h+='<div class="card"><h3>Última imagen o estudio</h3><div class="small muted">'+esc(im.data.est||'')+'</div><div>'+(im.data.lecNo?'<span class="pill vigilar">No leída aún</span>':rich(cut(im.data.lec||'',500)))+'</div>'+imgRdSummary(im)+'<button class="btn sm" data-a="goSec" data-k="img">Ver imágenes ('+cnt.img+')</button></div>';
   var po=pendOrders(p.id);
-  if(po.length)h+='<div class="card"><h3>Pendiente de resultado ('+po.length+')</h3>'+po.slice(0,8).map(function(x){return ordRow(x.o,x.pl,null);}).join('')+'<button class="btn sm" data-a="goSec" data-k="plan">Ir al Plan</button></div>';
+  if(po.length)h+='<div class="card"><h3>Pendiente de resultado ('+po.length+')</h3>'+po.slice(0,8).map(function(x){return ordRow(x.o,x.pl,null);}).join('')+'<button class="btn sm" data-a="goSec" data-k="task">Ir a Pendientes</button></div>';
   /* antecedentes y pendientes */
   if(p.hx&&p.hx.ant)h+='<div class="card"><h3>Antecedentes</h3><div>'+rich(cut(p.hx.ant,600))+'</div><button class="btn sm" data-a="goSec" data-k="hx">Ver historia</button></div>';
   if(tasksOpen.length||ics.length)h+='<div class="card"><h3>Pendientes</h3>'+tasksOpen.map(taskRow).join('')+ics.map(function(e){return '<div class="task"><span class="chip" style="--c:var(--c-interconsulta)">IC</span><span class="t">'+esc(e.data.serv||'Interconsulta')+'</span></div>';}).join('')+'</div>';
@@ -4008,7 +4010,7 @@ var A={
  backfillPlans:function(){var c=db.entries.filter(function(x){return x.patientId===S.patientId&&((x.type==='evolucion'&&x.data.p)||(x.type==='ingreso'&&x.data.plan));}).sort(function(a,b){return a.at<b.at?1:-1;}).slice(0,5);c.forEach(ensurePlan);save();render();toast('Listo: '+c.length+' plan'+(c.length===1?'':'es')+'.');},
  ciePick:function(el){ciePickInto(+el.dataset.i,el.closest('.cie'));},
  fillPdf:function(){var i=document.createElement('input');i.type='file';i.accept='application/pdf,.pdf';i.onchange=function(){if(i.files&&i.files[0])fillFromPdf(i.files[0]);};i.click();},
- regOrd:function(el){var r=ordById(el.dataset.id);if(!r)return;var go2=function(){S.editor={type:r.o.k,prefill:{est:r.o.n,ref:r.o.id}};S.sec=r.o.k;S.warned=false;render();window.scrollTo(0,0);};if(S.patientId!==r.pl.patientId||S.view!=='patient'){go('patient',{patientId:r.pl.patientId,serviceId:(pat(r.pl.patientId)||{}).serviceId});}go2();},
+ regOrd:function(el){var r=ordById(el.dataset.id);if(!r)return;var stay=(S.view==='patient'&&S.patientId===r.pl.patientId&&S.sec&&S.sec!=='plan')?S.sec:'task';var go2=function(){S.editor={type:r.o.k,prefill:{est:r.o.n,ref:r.o.id}};S.sec=stay;S.warned=false;render();window.scrollTo(0,0);};if(S.patientId!==r.pl.patientId||S.view!=='patient'){go('patient',{patientId:r.pl.patientId,serviceId:(pat(r.pl.patientId)||{}).serviceId});}go2();},
  ordDrop:function(el){var r=ordById(el.dataset.id);if(r){r.o.x=1;save();render();toast('Descartado: ya no queda pendiente.');}},
  ordUndo:function(el){var r=ordById(el.dataset.id);if(r){delete r.o.x;save();render();}},
  goRes:function(el){var e=db.entries.filter(function(x){return x.id===el.dataset.id;})[0];if(!e)return;S.sec=e.type;S.openId=e.id;render();setTimeout(function(){var d=document.getElementById('ce_'+e.id);if(d){d.open=true;d.scrollIntoView({block:'center'});}},50);},
