@@ -11,8 +11,9 @@ QUE CAMBIA EN LA v44 (sobre la v43)
   PASOS EN NETLIFY (Mac, una sola vez; la clave NUNCA se pega en el chat ni en GitHub):
     1. En https://aistudio.google.com crea la clave (Get API key > Create API key, en un proyecto con facturacion de Google Cloud).
        Cópiala solo para el paso 3.
-    2. En AI Studio > pestaña Spend (gasto) de ese proyecto pon un tope mensual de ~8 dolares (el tope tarda unos 10 min en aplicar).
-       En Google Cloud > Facturacion > Presupuestos y alertas crea un aviso a 5 dolares.
+    2. Plan gratuito de Google (sin facturacion): no se puede cobrar nada. Google puede usar los textos para mejorar sus productos (la casilla
+       y la politica lo dicen). Como el gasto estimado es ficticio, en Netlify pon AI_BUDGET_USD = 1000 para que no se pause sin motivo.
+       Si algun dia pasas a facturacion: en AI Studio > Spend pon un tope de ~8 dolares y en Google Cloud un aviso a 5 dolares.
     3. Netlify > tu sitio > Site configuration > Environment variables > Add a variable > "Add a single variable":
          GEMINI_API_KEY = (la clave)         marca "Contains secret values"
          AI_ADMIN_EMAIL = tu correo de Google en minusculas
