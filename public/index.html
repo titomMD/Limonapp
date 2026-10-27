@@ -17,6 +17,7 @@ Importacion limpia (v11): dropNoise() quita consentimientos informados (CONSH/CO
 Lectura HUS (v12): pdfPages()->isHus()/husPage() lee cada pagina por su cabecera ('Pagina n/N', 'TITULO nFOLIO:', fecha de registro, paciente) y agrupa paginas del mismo folio; husKind() clasifica (ev/ic/in/ep/nt) y omite enfermeria, escalas, consentimientos, solicitudes; parseEvHUS (S/O/A/P por encabezados), parseIcHUS (servicio desde 'RESPUESTA A INTERCONSULTA POR X'), analyzeHus(). Formatos de otros hospitales siguen por analyzeAll. Tope EVMAX evoluciones al crear paciente.
 Privacidad: la app pide solo iniciales, edad, cama y 3 ultimos digitos de HC; avisa si detecta numeros largos.
 v31 (25-oct-2026) LOGIN CON SUPABASE: ya no se usa Netlify Identity. Proyecto Supabase 'Limonapp' (URL y clave publishable en SB_URL/SB_KEY, publicas por diseño; NUNCA guardar secret/service_role). Solo Google; correo y anonimo desactivados en Supabase. Cliente: SOLO @supabase/auth-js 2.117.2 empaquetado con esbuild en public/vendor/auth-js.supabase.js (expone window.LimonAuth.GoTrueClient; entrada: import {GoTrueClient} from '@supabase/auth-js'; window.LimonAuth={GoTrueClient}; npx esbuild --bundle --minify --format=iife). En el artifact (claude.ai) gAvail() es falso: no hay login ni carga la libreria. Flujo PKCE con redireccion completa; gOnSess() maneja INITIAL_SESSION/SIGNED_IN/SIGNED_OUT; sbUser() da u.id/u.email/u.jwt(forzar) como antes; gWho() pide /api/sync?whoami=1 para saber con que ID guarda el servidor los datos de la persona (G.uid) y asi gSt().uid de las cuentas anteriores no se reinicia. Servidor: netlify/functions/sync.mjs y social.mjs llevan el MISMO bloque AUTH (entre AUTH-BEGIN y AUTH-END): verifica el token ES256 con el JWKS del proyecto (WebCrypto, sin librerias), emisor, audiencia, vencimiento. Tabla LEGACY en ese bloque: huella SHA-256 del correo de Google verificado -> ID viejo de Netlify Identity (3 cuentas; el repositorio es publico, por eso no van los correos); quien no esta en la tabla usa su ID de Supabase (registro abierto). Para dar a alguien un ID existente hay que editar LEGACY en los dos archivos y desplegar. Llaves de datos no cambian: u_<id> (almacen limonapp), p_/t_/m_/e_/f_/sp_ (limonapp-social). Netlify Identity puede apagarse cuando todo funcione.
+v37 (27-oct-2026) ORDEN Y NOMBRES: pestaña Respaldo -> Cuenta (la vista sigue siendo 'backup'); la seccion Historia se fusiona en Resumen (tarjeta desplegable 'Historia del ultimo ingreso', S.hxOpen; goSec k=hx redirige a res); nuevas secciones propias Ingreso, Evoluciones, Notas aclaratorias y Salida (typedSec, tope S.smax) y Cronologia queda solo como filtro/buscador de todo lo del paciente salvo plan (S.cord invierte el orden). La nota pasa a 'nota aclaratoria': data={ref,refT,refAt,tipo,campo,orig,txt}; las notas antiguas (solo txt) se siguen viendo y editando. Acciones nuevas: goFolio, aclarar, secMore, cronOrd. Se quitan addFold/addRow.
 v35 (25-oct-2026) IMAGENES EN LA CUENTA: netlify/functions/img.mjs (/api/img, misma verificacion AUTH, store de Blobs 'limonapp-img', claves i_<uid>_<id>_f|t, solo JPEG, 4 MB, tope 2000 archivos por usuario; GET/PUT/DELETE ?id=&k= y DELETE ?all=1). Cliente: imgPush/imgPull/imgBackfill; copia local sigue en IndexedDB; rot_imgup = IDs ya subidos; al ver una imagen que no esta local se baja. No se comparten con colegas ni van al respaldo.
 v32 (25-oct-2026) IMAGENES Y LECTURAS: entradas tipo img guardan data.imgs (IDs de JPEG), data.lecNo (1 = lectura oficial 'No leida aun', y se omite data.lec), data.lec (informe oficial, igual que antes), data.rd (lecturas por especialidad: [{s,t,at}]) y data.mia (mis hallazgos, igual que antes). Entradas antiguas con lec/mia se ven igual. Los JPEG NO van en rotaciones_v1 ni se sincronizan ni entran al respaldo: viven en IndexedDB 'limonapp-img' (almacen 'b', claves 'f:ID' imagen reducida a 2000 px y 't:ID' miniatura 320 px, ambas JPEG sin EXIF). En otro dispositivo se ve 'Solo en otro dispositivo'. Se borran al borrar la entrada, el paciente o todos los datos. Sin cambios en el servidor.
 -->
@@ -375,7 +376,7 @@ var TYPES={
  interconsulta:{label:'Interconsulta',own:1,f:[['serv','Servicio consultado',1],['preg','Pregunta clínica',3],['resp','Respuesta y recomendaciones',3]]},
  epicrisis:{label:'Epicrisis',hide:1,f:[['dxi','Diagnóstico de ingreso',2],['dxe','Diagnóstico de egreso',2],['res','Resumen de la evolución',5],['proc','Procedimientos',2],['cond','Condición al egreso',2],['ind','Indicaciones y controles',3]]},
  salida:{label:'Salida',f:[['tipo','Tipo de salida',0],['dest','Destino',1],['pend','Pendientes tras la salida',2]]},
- nota:{label:'Nota',f:[['txt','Nota',5]]},
+ nota:{label:'Nota aclaratoria',f:[['ref','Folio al que se refiere',0],['tipo','Tipo',0],['campo','Campo o fragmento',1],['orig','Texto original que se cita (opcional)',2],['txt','Aclaración o dato adicional',5]]},
  lab:{label:'Paraclínico',sep:1,f:[['est','Estudio o panel (ej. hemograma, química, gases)',1],['res','Resultados (valor y unidad)',6],['int','Interpretación: qué significa y qué cambia',3]]},
  img:{label:'Imagen',sep:1,f:[['est','Estudio y región (ej. RMN columna lumbar)',1],['lec','Lectura oficial (informe de radiología)',6],['mia','Mis hallazgos y correlación clínica',3]]}
 };
@@ -450,7 +451,7 @@ function toast(m){var t=document.getElementById('toast');t.textContent=m;t.hidde
 
 /* ---------- vistas ---------- */
 function renderTabs(){
-  var items=[['services','Servicios'],['tasks','Pendientes'],['handoff','Entrega'],['team','Equipo'],['backup','Respaldo']];
+  var items=[['services','Servicios'],['tasks','Pendientes'],['handoff','Entrega'],['team','Equipo'],['backup','Cuenta']];
   var cur=S.view==='service'||S.view==='patient'||S.view==='ronda'?'services':S.view;
   var n=allPending();
   document.getElementById('tabs').innerHTML=items.map(function(i){
@@ -514,7 +515,8 @@ function entryForm(){
   if(ed.type==='lab'||ed.type==='img')h+=refSelect(ed,d);
   if(ed.type==='evolucion')h+=evFormHtml(d);
   if(ed.type==='img')imgEdInit(ed,d);
-  if(ed.type!=='evolucion')h+=T.f.map(function(f){
+  if(ed.type==='nota')h+=notaFormHtml(d,e);
+  else if(ed.type!=='evolucion')h+=T.f.map(function(f){
     if(ed.type==='img'){var ih=imgFormPart(f,d);if(ih!==null)return ih;}
     if(ed.type==='salida'&&f[0]==='tipo')return '<label>'+f[1]+'<select id="e_tipo">'+SALIDAS.map(function(o){return '<option'+(d.tipo===o?' selected':'')+'>'+o+'</option>';}).join('')+'</select></label>';
     if(f[2]<=1)return '<label>'+f[1]+'<input id="e_'+f[0]+'" value="'+esc(d[f[0]]||'')+'"></label>';
@@ -758,7 +760,7 @@ function planCard(pl){
   return '<article class="entry" style="--c:var(--c-plan)"><div class="row spread"><div class="row"><span class="chip" style="--c:var(--c-plan)">Plan</span><span class="small muted">'+esc(from)+'</span></div><span class="mono small muted">'+fmt(pl.at)+'</span></div><dl>'+
     (d.plan?'<dt>Plan</dt><dd>'+rich(d.plan)+'</dd>':'')+
     ((d.ord&&d.ord.length)?'<dt>Solicitado</dt><dd>'+d.ord.map(ordPlain).join('')+'</dd>':'')+'</dl>'+
-    '<div class="row">'+(src?'<button class="btn sm" data-a="cronOpen" data-id="'+src.id+'">Ver nota de origen</button>':'<button class="btn sm" data-a="editEntry" data-id="'+pl.id+'">Editar</button>')+
+    '<div class="row">'+(src?'<button class="btn sm" data-a="goFolio" data-id="'+src.id+'">Ver nota de origen</button>':'<button class="btn sm" data-a="editEntry" data-id="'+pl.id+'">Editar</button>')+
     (S.confirm===pl.id?'<button class="btn sm danger" data-a="delEntry" data-id="'+pl.id+'">Confirmar: borrar</button>':'<button class="btn sm danger" data-a="askDelEntry" data-id="'+pl.id+'">Borrar</button>')+'</div></article>';
 }
 function planSection(p){
@@ -847,22 +849,27 @@ function viewHx(p){
   var hx=p.hx||{},filled=HXF.filter(function(f){return hx[f[0]];});
   if(S.hxEdit){
     var d=S.hxDraft||hx;
-    var h='<div class="card"><h3>Historia clínica</h3><div class="note">Pega aquí la historia de un colega y toca Organizar: la separo por secciones y tú revisas. Antes de pegar, quita nombres completos, cédulas y teléfonos.</div><label>Texto pegado<textarea id="hx_paste" rows="5" placeholder="Pega la historia clínica completa"></textarea></label><div class="row"><button class="btn" data-a="parseHx">Organizar texto pegado</button><button class="btn" data-a="tidyHx">Ordenar formato</button></div>';
+    var h='<div class="card"><h3>Historia del último ingreso</h3><div class="note">Pega aquí la historia de un colega y toca Organizar: la separo por secciones y tú revisas. Antes de pegar, quita nombres completos, cédulas y teléfonos.</div><label>Texto pegado<textarea id="hx_paste" rows="5" placeholder="Pega la historia clínica completa"></textarea></label><div class="row"><button class="btn" data-a="parseHx">Organizar texto pegado</button><button class="btn" data-a="tidyHx">Ordenar formato</button></div>';
     h+=HXF.map(function(f){return '<label>'+f[1]+'<textarea id="hx_'+f[0]+'" rows="'+f[2]+'">'+esc(d[f[0]]||'')+'</textarea></label>'+(f[0]==='dx'?cieBox('hx_dx'):'');}).join('');
     if(S.warned)h+='<div class="note bad">Detecté un número largo que podría ser una cédula o un teléfono. Revísalo; si es otro dato, toca Guardar otra vez.</div>';
     return h+'<div class="row"><button class="btn primary" data-a="saveHx">Guardar historia</button><button class="btn ghost" data-a="cancelHx">Cancelar</button></div></div>';
   }
-  var h2='<div class="card"><div class="row spread"><h3>Historia clínica</h3><div class="row">'+(filled.length?'<button class="btn sm" data-a="copyHx">Copiar</button>':'')+'<button class="btn sm primary" data-a="editHx">'+(filled.length?'Editar':'Llenar o pegar')+'</button></div></div>';
+  var h2='<div class="card"><div class="row spread"><h3>Historia del último ingreso</h3><div class="row">'+(filled.length?'<button class="btn sm" data-a="copyHx">Copiar</button>':'')+'<button class="btn sm primary" data-a="editHx">'+(filled.length?'Editar':'Llenar o pegar')+'</button></div></div>';
   h2+=filled.length?'<dl class="hxv" id="hxview">'+filled.map(function(f){return '<dt>'+esc(f[1].split(' (')[0])+'</dt><dd>'+rich(hx[f[0]])+'</dd>';}).join('')+'</dl>':'<div class="small muted">Aún sin historia. Puedes llenarla por secciones o pegar la de un colega.</div>';
   return h2+'</div>';
 }
 
 /* ---------- secciones del paciente: ocultar / abrir aparte ---------- */
-var SECS=[['res','Resumen'],['cron','Cronología'],['plan','Plan'],['hx','Historia'],['ic','Interconsultas'],['lab','Paraclínicos'],['img','Imágenes'],['task','Pendientes'],['upd','Importar PDF']];
+var SECS=[['res','Resumen'],['ingreso','Ingreso'],['evolucion','Evoluciones'],['plan','Plan'],['ic','Interconsultas'],['lab','Paraclínicos'],['img','Imágenes'],['task','Pendientes'],['nota','Notas aclaratorias'],['salida','Salida'],['cron','Cronología'],['upd','Importar PDF']];
+/* folios sobre los que se puede emitir una nota aclaratoria */
+var ANCH=['ingreso','evolucion','epicrisis','salida','lab','img','interconsulta'];
+function secOfType(t){return {ingreso:'ingreso',evolucion:'evolucion',nota:'nota',salida:'salida',epicrisis:'salida',interconsulta:'ic',lab:'lab',img:'img',plan:'plan'}[t]||'cron';}
 function ofType(p,t){return pEntries(p.id).filter(function(e){return e.type===t;});}
 function secCount(p,k){
   if(k==='hx')return HXF.filter(function(f){return (p.hx||{})[f[0]];}).length;
-  if(k==='cron')return pEntries(p.id).filter(function(e){var T=TYPES[e.type];return !(T&&(T.sep||T.own));}).length;
+  if(k==='cron')return pEntries(p.id).filter(function(e){return e.type!=='plan';}).length;
+  if(k==='ingreso'||k==='evolucion'||k==='nota')return ofType(p,k).length;
+  if(k==='salida')return ofType(p,'salida').length+ofType(p,'epicrisis').length;
   if(k==='ic')return ofType(p,'interconsulta').length;
   if(k==='plan')return 0;
   if(k==='lab')return ofType(p,'lab').length;
@@ -879,12 +886,16 @@ function secSummary(p,k){
   if(k==='upd')return 'arrastra un PDF';
   return n?String(n):'ninguno';
 }
-function secName(k){return SECS.filter(function(s){return s[0]===k;})[0][1];}
+function secName(k){var r=SECS.filter(function(s){return s[0]===k;})[0];return r?r[1]:k;}
 function secHtml(p,k){
   if(k==='res')return viewResumen(p);
   if(k==='cron')return viewCron(p);
   if(k==='plan')return planSection(p);
   if(k==='hx')return viewHx(p);
+  if(k==='ingreso')return typedSec(p,'ingreso','Ingreso','Historia clínica de ingreso: motivo de consulta, enfermedad actual, antecedentes, examen físico, impresión diagnóstica y plan inicial. El plan que escribas pasa a la sección Plan y lo solicitado a Pendientes.');
+  if(k==='evolucion')return typedSec(p,'evolucion','Evoluciones','Evolución médica de cada día, la más reciente primero. El plan que escribas pasa a la sección Plan y lo solicitado a Pendientes.');
+  if(k==='nota')return typedSec(p,'nota','Notas aclaratorias','Una nota aclaratoria corrige o agrega información a un folio ya emitido sin cambiarlo: queda anclada al folio y al campo al que se refiere. También puedes crearla con “Aclarar” en la tarjeta de cualquier folio.',{add:'+ Nota aclaratoria'});
+  if(k==='salida')return typedSec(p,'salida','Salida','Registra cómo salió el paciente (alta, remisión, traslado, muerte…). Al guardar la salida, el paciente pasa a Egresados.',{extra:['epicrisis']});
   if(k==='upd')return updCard(p);
   if(k==='lab')return trendsCards(p)+sepCard(p,'lab','Paraclínicos','Laboratorios y otros resultados. Cada resultado queda por fecha, aparte de la cronología.');
   if(k==='img')return sepCard(p,'img','Imágenes y lecturas','RX, TAC, RMN, ecografía… con imágenes (JPEG), la lectura oficial —o “No leída aún”—, la lectura de cada especialidad y tus hallazgos. Con sesión iniciada, las imágenes se guardan en tu cuenta y las ves en cualquier dispositivo; sin sesión quedan solo en este dispositivo.');
@@ -899,6 +910,13 @@ function secHtml(p,k){
   var es=pEntries(p.id).filter(function(e){var T=TYPES[e.type];return !(T&&(T.sep||T.own));});
   return '<div><h3>Cronología</h3></div><div class="tl">'+(es.length?es.map(entryCard).join(''):'<div class="empty">'+art('sleep')+'Aún no hay notas. Empieza con el ingreso.</div>')+'</div>';
 }
+function typedSec(p,type,title,hint,o){
+  o=o||{};
+  var es=pEntries(p.id).filter(function(e){return e.type===type||(o.extra&&o.extra.indexOf(e.type)>=0);});
+  var cap=S.smax||30,show=es.slice(0,cap);
+  return '<div class="card" style="border-color:var(--c-'+type+')"><div class="row spread"><h3>'+title+(es.length?' ('+es.length+')':'')+'</h3><div class="row">'+(es.length>1?'<button class="btn sm ghost" data-a="openAll" data-o="1">Desplegar todo</button><button class="btn sm ghost" data-a="openAll" data-o="0">Contraer todo</button>':'')+'<button class="btn sm" style="--c:var(--c-'+type+')" data-a="newEntry" data-t="'+type+'">'+(o.add||'+ Agregar')+'</button></div></div>'+
+    (es.length?show.map(entryRow).join('')+(es.length>cap?'<button class="btn" data-a="secMore">Mostrar '+Math.min(30,es.length-cap)+' más (quedan '+(es.length-cap)+')</button>':''):'<div class="small muted">'+hint+'</div>')+'</div>';
+}
 function foldWrap(p,k,html){
   var forced=(k==='hx'&&S.hxEdit)||(S.editor&&((k==='lab'&&S.editor.type==='lab')||(k==='img'&&S.editor.type==='img')||(k==='ic'&&S.editor.type==='interconsulta')));
   if(S.fold[k]&&!forced)
@@ -912,9 +930,6 @@ function subTabs(p){
     return '<button class="st" data-a="goSec" data-k="'+s[0]+'"'+(S.sec===s[0]?' aria-current="page"':'')+'><span>'+s[1]+'</span>'+(n?'<span class="n">'+n+'</span>':'')+'</button>';
   }).join('')+'</nav>';
 }
-function addRow(){
-  return '<div><h3>Agregar</h3><div class="types" style="margin-top:8px">'+Object.keys(TYPES).filter(function(k){return !TYPES[k].sep&&!TYPES[k].hide;}).map(function(k){return '<button class="btn sm" style="--c:var(--c-'+k+')" data-a="newEntry" data-t="'+k+'">'+TYPES[k].label+'</button>';}).join('')+'</div></div>';
-}
 function viewPatient(){
   var p=pat(S.patientId);if(!p){S.view='services';return viewServices();}
   var s=svc(p.serviceId);
@@ -922,7 +937,7 @@ function viewPatient(){
   var tabs=subTabs(p);
   if(S.sec!=='res'){
     var slim='<div class="card slim"><div class="row"><span class="bed">Cama '+esc(p.bed||'—')+'</span><strong>'+esc(p.ini)+'</strong><span class="muted small">'+esc(p.age)+' a · '+esc(p.sex)+'</span><span class="small dxs">'+esc(cut(p.dx||'Sin diagnóstico',70))+'</span></div></div>';
-    var body=(S.sec==='cron'?addFold():'')+(S.editor?entryForm():'')+secHtml(p,S.sec);
+    var body=(S.editor?entryForm():'')+secHtml(p,S.sec);
     return top+slim+tabs+'<div class="solo">'+body+'</div>';
   }
   var h='<div class="card"><div class="row"><span class="bed">Cama '+esc(p.bed||'—')+'</span><h2>'+esc(p.ini)+'</h2><span class="muted small">'+esc(p.age)+' a · '+esc(p.sex)+(p.hc?' · HC …'+esc(p.hc):'')+'</span></div><div class="dx">'+esc(p.dx||'Sin diagnóstico')+'</div><div class="row small muted"><span>Ingreso '+esc(p.adm)+'</span><span>·</span><span>'+(p.active?'Día '+hd(p):'Egresó, '+hd(p)+' días')+'</span></div>'+
@@ -943,12 +958,57 @@ function sepCard(p,type,title,hint){
 function taskRow(t){
   return '<div class="task'+(t.done?' done':'')+'"><input type="checkbox" data-a="toggleTask" data-id="'+t.id+'"'+(t.done?' checked':'')+' aria-label="Hecho"><span class="t">'+(t.r?'<span class="chip" style="--c:var(--c-interconsulta)">Ronda</span> ':'')+esc(t.text)+'</span><button class="btn sm ghost" data-a="delTask" data-id="'+t.id+'" aria-label="Borrar pendiente">✕</button></div>';
 }
+/* ---------- notas aclaratorias: ancladas a un folio ---------- */
+function notasDe(e){
+  if(e.type==='nota'||e.type==='plan')return '';
+  var ls=db.entries.filter(function(n){return n.type==='nota'&&n.data&&n.data.ref===e.id;}).sort(function(a,b){return a.at<b.at?-1:1;});
+  if(!ls.length)return '';
+  return '<div class="aclr small"><strong>Notas aclaratorias:</strong> '+ls.map(function(n){return '<button class="btn sm ghost" data-a="goFolio" data-id="'+n.id+'">'+esc((n.data.tipo||'Aclaración')+(n.data.campo?' · '+n.data.campo:'')+' · '+fmt(n.at))+'</button>';}).join(' ')+'</div>';
+}
+function notaBody(e){
+  var d=e.data||{},h='';
+  if(d.ref){
+    var re=db.entries.filter(function(x){return x.id===d.ref;})[0];
+    h+='<dt>Folio aclarado</dt><dd>'+(re?'<button class="btn sm" data-a="goFolio" data-id="'+re.id+'">'+esc(TYPES[re.type].label+' · '+fmt(re.at))+' ↗</button>':'<span class="muted">'+esc((d.refT&&TYPES[d.refT]?TYPES[d.refT].label:'Folio')+(d.refAt?' · '+fmt(d.refAt):''))+' (ese folio ya no está en este dispositivo)</span>')+'</dd>';
+  }
+  if(d.tipo)h+='<dt>Tipo</dt><dd>'+esc(d.tipo)+'</dd>';
+  if(d.campo)h+='<dt>Campo o fragmento</dt><dd>'+esc(d.campo)+'</dd>';
+  if(d.orig)h+='<dt>Texto original que se cita</dt><dd>'+rich(d.orig)+'</dd>';
+  if(d.txt)h+='<dt>'+(d.ref?'Aclaración':'Nota')+'</dt><dd>'+rich(d.txt)+'</dd>';
+  return h;
+}
+function campoList(t){
+  if(t==='evolucion')return ['Diagnósticos','S · Subjetivo','Signos vitales','Examen físico','Paraclínicos del día','A · Análisis','P · Plan','Recomendaciones y signos de alarma'];
+  var T=TYPES[t];
+  return T?T.f.map(function(f){return f[1].split(' (')[0];}):[];
+}
+function campoOpts(t,cur){
+  var l=['Todo el folio','Fecha u hora del folio'].concat(campoList(t),['Otro (lo explico en la cita)']);
+  return l.map(function(x){return '<option'+(cur===x?' selected':'')+'>'+esc(x)+'</option>';}).join('');
+}
+function notaFormHtml(d,e){
+  var ls=pEntries(S.patientId).filter(function(x){return ANCH.indexOf(x.type)>=0;});
+  var legacy=e&&!(e.data&&e.data.ref);
+  var cur=d.ref?db.entries.filter(function(x){return x.id===d.ref;})[0]:null;
+  var h='<div class="note">Un folio emitido no se cambia: lo que quieras corregir o agregar va aquí, indicando a qué folio y a qué parte se refiere.</div>';
+  h+='<label>Folio al que se refiere <span class="u">obligatorio</span><select id="e_ref"><option value="">'+(legacy?'(nota antigua, sin folio)':'Elige el folio…')+'</option>'+ls.map(function(x){return '<option value="'+x.id+'"'+(d.ref===x.id?' selected':'')+'>'+esc(fmt(x.at)+' · '+TYPES[x.type].label+' — '+cut(entPreview(x),46))+'</option>';}).join('')+'</select></label>';
+  h+='<label>Tipo<select id="e_tipo">'+['Corrección','Dato adicional'].map(function(o){return '<option'+(d.tipo===o?' selected':'')+'>'+o+'</option>';}).join('')+'</select></label>';
+  h+='<label>Campo o parte del folio<select id="e_campo">'+campoOpts(cur?cur.type:'',d.campo||'')+'</select></label>';
+  h+='<label>Texto original que se cita (opcional, copia el fragmento)<textarea id="e_orig" rows="2">'+esc(d.orig||'')+'</textarea></label>';
+  h+='<label>Aclaración o dato adicional<textarea id="e_txt" rows="5">'+esc(d.txt||'')+'</textarea></label>';
+  return h;
+}
+document.addEventListener('change',function(ev){
+  var t=ev.target;if(!t||t.id!=='e_ref')return;
+  var re=db.entries.filter(function(x){return x.id===t.value;})[0],sel=document.getElementById('e_campo');
+  if(sel)sel.innerHTML=campoOpts(re?re.type:'','');
+});
 function entryCard(e){
   var T=TYPES[e.type];
   if(e.type==='plan')return planCard(e);
-  var body=e.type==='img'?imgBody(e):e.type==='evolucion'?evBody(e):T.f.map(function(f){var v=e.data[f[0]];return v?'<dt>'+f[1]+'</dt><dd>'+rich(v)+'</dd>':'';}).join('');
+  var body=e.type==='img'?imgBody(e):e.type==='evolucion'?evBody(e):e.type==='nota'?notaBody(e):T.f.map(function(f){var v=e.data[f[0]];return v?'<dt>'+f[1]+'</dt><dd>'+rich(v)+'</dd>':'';}).join('');
   var ic=e.type==='interconsulta'?'<button class="btn sm" data-a="toggleIC" data-id="'+e.id+'">'+(e.status==='pendiente'?'Pendiente: marcar respondida':'Respondida: marcar pendiente')+'</button>':'';
-  return '<article class="entry" style="--c:var(--c-'+e.type+')"><div class="row spread"><div class="row"><span class="chip" style="--c:var(--c-'+e.type+')">'+T.label+'</span>'+(e.type==='interconsulta'?'<span class="pill '+(e.status==='pendiente'?'vigilar':'estable')+'">'+esc(e.status)+'</span>':'')+'</div><span class="mono small muted">'+fmt(e.at)+'</span></div><dl>'+(body||'<dd class="muted">Sin contenido.</dd>')+'</dl><div class="row">'+ic+'<button class="btn sm" data-a="editEntry" data-id="'+e.id+'">Editar</button>'+
+  return '<article class="entry" style="--c:var(--c-'+e.type+')"><div class="row spread"><div class="row"><span class="chip" style="--c:var(--c-'+e.type+')">'+T.label+'</span>'+(e.type==='interconsulta'?'<span class="pill '+(e.status==='pendiente'?'vigilar':'estable')+'">'+esc(e.status)+'</span>':'')+'</div><span class="mono small muted">'+fmt(e.at)+'</span></div><dl>'+(body||'<dd class="muted">Sin contenido.</dd>')+'</dl>'+notasDe(e)+'<div class="row">'+ic+(ANCH.indexOf(e.type)>=0?'<button class="btn sm" data-a="aclarar" data-id="'+e.id+'" title="Emitir una nota aclaratoria anclada a este folio">Aclarar</button>':'')+'<button class="btn sm" data-a="editEntry" data-id="'+e.id+'">Editar</button>'+
     (S.confirm===e.id?'<button class="btn sm danger" data-a="delEntry" data-id="'+e.id+'">Confirmar: borrar</button>':'<button class="btn sm danger" data-a="askDelEntry" data-id="'+e.id+'">Borrar</button>')+'</div></article>';
 }
 
@@ -1005,7 +1065,7 @@ function viewHandoff(){
 
 function viewBackup(){
   var ch=db.meta.changes||0;
-  var h='<h2>Respaldo</h2><div class="peek">'+art('peek','')+'</div>'+gCard();
+  var h='<h2>Cuenta</h2><div class="peek">'+art('peek','')+'</div>'+gCard();
   if(!storageOK)h+='<div class="note bad">Este navegador no permite guardar. Tus datos solo duran mientras esta pestaña esté abierta. Copia el respaldo seguido.</div>';
   else h+='<div class="note">Los datos viven solo en este navegador y no se sincronizan. Si borras los datos del navegador, se pierden. Para pasar al otro dispositivo, copia el respaldo y pégalo allá.'+(db.meta.lastBackup?' Último respaldo: '+fmt(db.meta.lastBackup)+'.':' Aún no has hecho un respaldo.')+' Cambios desde entonces: '+ch+'.</div>';
   h+='<div class="small muted" style="margin:6px 0">'+(persisted===true?'El navegador marcó estos datos como persistentes: no los borrará solo por falta de espacio.':'El navegador no confirmó almacenamiento persistente; haz respaldos con frecuencia.')+'</div>';
@@ -1018,8 +1078,8 @@ function viewBackup(){
 }
 
 var DE={
-'Servicios':'Stationen','Omitir consentimientos y datos administrativos':'Einwilligungen und Verwaltungsdaten auslassen','Limpiar':'Bereinigen','Pendientes':'Offene Aufgaben','Entrega':'Übergabe','Respaldo':'Datensicherung','Todo':'Alles','Historia':'Akte','Cronología':'Verlauf','Interconsultas':'Konsile','Imágenes':'Bildgebung','Importar PDF':'PDF-Import','Ocultar ▴':'Ausblenden ▴','Abrir aparte ↗':'Separat öffnen ↗','Ordenar formato':'Format ordnen','Limón supervisa tus rotaciones':'Limón überwacht deine Rotationen','Paraclínicos':'Laborbefunde','Paraclínico':'Laborbefund','Imágenes y lecturas':'Bildgebung und Befunde','Imagen':'Bildgebung','+ Agregar':'+ Hinzufügen',
-'Mis rotaciones':'Meine Rotationen','Equipo':'Team','Enviar a un colega':'An Kollegen senden','Mover de servicio':'Station wechseln','En turno':'Im Dienst','Descanso':'Pause','Fuera de turno':'Dienstfrei','Ver gráficas grandes en Paraclínicos':'Große Verlaufsdiagramme in den Befunden','Chat':'Chat','Grupo':'Gruppe','Enviar':'Senden','Únete a un equipo':'Einem Team beitreten','Unirme':'Beitreten','O crea uno nuevo':'Oder ein neues Team erstellen','Crear equipo':'Team erstellen','Copiar invitación':'Einladung kopieren','Salir del equipo':'Team verlassen','Confirmar: salir':'Bestätigen: verlassen','Editar perfil':'Profil bearbeiten','Guardar perfil':'Profil speichern','Crea tu perfil':'Profil erstellen','Elegir foto':'Foto wählen','Quitar foto':'Foto entfernen','Nombre completo':'Vollständiger Name','Cargo':'Funktion','Estado':'Status','Escribir':'Schreiben','Entendido':'Verstanden','Dejar de compartir conmigo':'Nicht mehr mit mir teilen','Entrar con Google':'Mit Google anmelden','Ir a Respaldo':'Zur Datensicherung','Reintentar':'Erneut versuchen','Cuenta y sincronización':'Konto und Synchronisierung','Cerrar sesión':'Abmelden','Sincronizar ahora':'Jetzt synchronisieren','Ver valores':'Werte anzeigen','Servicio nuevo':'Neue Station','Análisis':'Beurteilung','Ver completo en Cronología':'Vollständig im Verlauf ansehen','Ver todo en Cronología':'Alles im Verlauf ansehen','+ Agregar nota o evolución':'Notiz oder Verlaufsbericht hinzufügen','Actualizar desde PDF':'Aus PDF aktualisieren','Tipo de documento':'Dokumenttyp','Detectar solo':'Automatisch erkennen','Es solo de paraclínicos':'Nur Laborbefunde','Es solo de imágenes':'Nur Bildgebung','Es una respuesta de interconsulta':'Es ist eine Konsilantwort','Es una evolución':'Es ist ein Verlaufsbericht','Es historia clínica':'Es ist eine Krankenakte','Institución de donde sacas la historia':'Einrichtung, aus der die Akte stammt','Arrastra aquí el PDF':'PDF hierher ziehen','elige el archivo':'Datei auswählen','Política de privacidad':'Datenschutzerklärung','Términos de servicio':'Nutzungsbedingungen','Último registro clínico:':'Letzter klinischer Eintrag:','Cuenta y sincronización':'Konto und Synchronisierung','Pendientes (Tareas)':'Aufgaben','Nuevo pendiente':'Neue Aufgabe','Resumen':'Zusammenfassung','Ver tutorial':'Anleitung ansehen','Saltar':'Überspringen','Siguiente':'Weiter','Atrás':'Zurück','Listo':'Fertig','Estado actual':'Aktueller Stand','Lectura rápida':'Kurzüberblick','Lista de problemas':'Problemliste','Tendencias de laboratorio':'Laborverläufe','Hitos documentados':'Dokumentierte Meilensteine','Buscar':'Suchen','Mostrar más':'Mehr anzeigen','Solo en este dispositivo':'Nur auf diesem Gerät','Sin guardado local':'Nicht lokal gespeichert',
+'Servicios':'Stationen','Cuenta':'Konto','Evoluciones':'Verlaufsberichte','Notas aclaratorias':'Klärende Notizen','Nota aclaratoria':'Klärende Notiz','Salida':'Entlassung','Aclarar':'Klären','Omitir consentimientos y datos administrativos':'Einwilligungen und Verwaltungsdaten auslassen','Limpiar':'Bereinigen','Pendientes':'Offene Aufgaben','Entrega':'Übergabe','Respaldo':'Datensicherung','Todo':'Alles','Historia':'Akte','Cronología':'Verlauf','Interconsultas':'Konsile','Imágenes':'Bildgebung','Importar PDF':'PDF-Import','Ocultar ▴':'Ausblenden ▴','Abrir aparte ↗':'Separat öffnen ↗','Ordenar formato':'Format ordnen','Limón supervisa tus rotaciones':'Limón überwacht deine Rotationen','Paraclínicos':'Laborbefunde','Paraclínico':'Laborbefund','Imágenes y lecturas':'Bildgebung und Befunde','Imagen':'Bildgebung','+ Agregar':'+ Hinzufügen',
+'Mis rotaciones':'Meine Rotationen','Equipo':'Team','Enviar a un colega':'An Kollegen senden','Mover de servicio':'Station wechseln','En turno':'Im Dienst','Descanso':'Pause','Fuera de turno':'Dienstfrei','Ver gráficas grandes en Paraclínicos':'Große Verlaufsdiagramme in den Befunden','Chat':'Chat','Grupo':'Gruppe','Enviar':'Senden','Únete a un equipo':'Einem Team beitreten','Unirme':'Beitreten','O crea uno nuevo':'Oder ein neues Team erstellen','Crear equipo':'Team erstellen','Copiar invitación':'Einladung kopieren','Salir del equipo':'Team verlassen','Confirmar: salir':'Bestätigen: verlassen','Editar perfil':'Profil bearbeiten','Guardar perfil':'Profil speichern','Crea tu perfil':'Profil erstellen','Elegir foto':'Foto wählen','Quitar foto':'Foto entfernen','Nombre completo':'Vollständiger Name','Cargo':'Funktion','Estado':'Status','Escribir':'Schreiben','Entendido':'Verstanden','Dejar de compartir conmigo':'Nicht mehr mit mir teilen','Entrar con Google':'Mit Google anmelden','Ir a Cuenta':'Zur Datensicherung','Reintentar':'Erneut versuchen','Cuenta y sincronización':'Konto und Synchronisierung','Cerrar sesión':'Abmelden','Sincronizar ahora':'Jetzt synchronisieren','Ver valores':'Werte anzeigen','Servicio nuevo':'Neue Station','Análisis':'Beurteilung','Ver completo en Cronología':'Vollständig im Verlauf ansehen','Ver el folio completo':'Ganzen Eintrag ansehen','Invertir orden':'Reihenfolge umkehren','Ver todo en Cronología':'Alles im Verlauf ansehen','+ Agregar nota o evolución':'Notiz oder Verlaufsbericht hinzufügen','Actualizar desde PDF':'Aus PDF aktualisieren','Tipo de documento':'Dokumenttyp','Detectar solo':'Automatisch erkennen','Es solo de paraclínicos':'Nur Laborbefunde','Es solo de imágenes':'Nur Bildgebung','Es una respuesta de interconsulta':'Es ist eine Konsilantwort','Es una evolución':'Es ist ein Verlaufsbericht','Es historia clínica':'Es ist eine Krankenakte','Institución de donde sacas la historia':'Einrichtung, aus der die Akte stammt','Arrastra aquí el PDF':'PDF hierher ziehen','elige el archivo':'Datei auswählen','Política de privacidad':'Datenschutzerklärung','Términos de servicio':'Nutzungsbedingungen','Último registro clínico:':'Letzter klinischer Eintrag:','Cuenta y sincronización':'Konto und Synchronisierung','Pendientes (Tareas)':'Aufgaben','Nuevo pendiente':'Neue Aufgabe','Resumen':'Zusammenfassung','Ver tutorial':'Anleitung ansehen','Saltar':'Überspringen','Siguiente':'Weiter','Atrás':'Zurück','Listo':'Fertig','Estado actual':'Aktueller Stand','Lectura rápida':'Kurzüberblick','Lista de problemas':'Problemliste','Tendencias de laboratorio':'Laborverläufe','Hitos documentados':'Dokumentierte Meilensteine','Buscar':'Suchen','Mostrar más':'Mehr anzeigen','Solo en este dispositivo':'Nur auf diesem Gerät','Sin guardado local':'Nicht lokal gespeichert',
 'Nuevo servicio o rotación':'Neue Station oder Rotation','Agregar':'Hinzufügen','Guardar':'Speichern','Cancelar':'Abbrechen','Editar':'Bearbeiten','Borrar':'Löschen','Copiar':'Kopieren',
 'Datos del paciente':'Patientendaten','Nuevo paciente':'Neuer Patient','+ Paciente':'Patient','Editar datos':'Daten bearbeiten','Reactivar':'Reaktivieren','Borrar paciente':'Patient löschen','Confirmar: borrar paciente':'Bestätigen: Patient löschen',
 'Iniciales':'Initialen','HC (3 últimos)':'Akten-Nr. (letzte 3)','Edad':'Alter','Sexo':'Geschlecht','Cama':'Bett','Ingreso':'Aufnahme','Diagnóstico principal':'Hauptdiagnose','Gravedad':'Schweregrad',
@@ -1084,7 +1144,7 @@ function render0(){
   document.getElementById('app').innerHTML=html;
   applyDE();
 }
-function go(v,extra){S.view=v;S.confirm=null;S.warned=false;S.editor=null;S.editPatient=false;S.newPatient=false;S.hxEdit=false;S.hxDraft=null;S.imp=null;S.impP=null;S.pdfEv=null;S.upd=null;S.sec='res';if(extra)for(var k in extra)S[k]=extra[k];render();window.scrollTo(0,0);}
+function go(v,extra){S.view=v;S.confirm=null;S.warned=false;S.editor=null;S.editPatient=false;S.newPatient=false;S.hxEdit=false;S.hxOpen=false;S.smax=30;S.hxDraft=null;S.imp=null;S.impP=null;S.pdfEv=null;S.upd=null;S.sec='res';if(extra)for(var k in extra)S[k]=extra[k];render();window.scrollTo(0,0);}
 
 /* ---------- acciones ---------- */
 function val(id){var el=document.getElementById(id);return el?el.value:'';}
@@ -1101,9 +1161,16 @@ var LONGNUM=/\b\d{7,}\b|\b3\d{2}[ -]?\d{3}[ -]?\d{4}\b/;
 function saveEntry(){
   var ed=S.editor,T=TYPES[ed.type],data={},all='';
   if(ed.type==='evolucion'){data=evCollect();all=evText(data);}
-  else T.f.forEach(function(f){var v=val('e_'+f[0]).trim();if(v){data[f[0]]=v;all+=' '+v;}});
+  else T.f.forEach(function(f){var v=val('e_'+f[0]).trim();if(v){data[f[0]]=v;if(ed.type!=='nota'||(f[0]==='orig'||f[0]==='txt'))all+=' '+v;}});
   if(ed.type==='lab'||ed.type==='img'){var rf=val('e_ref');if(rf)data.ref=rf;}
   var oldE=ed.entryId?db.entries.filter(function(x){return x.id===ed.entryId;})[0]:null;
+  if(ed.type==='nota'){
+    var legacyNo=oldE&&!(oldE.data&&oldE.data.ref);
+    if(!data.ref&&!legacyNo){toast('Elige el folio al que se refiere la aclaración.');return;}
+    if(!data.txt){toast('Escribe la aclaración.');return;}
+    if(data.ref){var fe=db.entries.filter(function(x){return x.id===data.ref;})[0];if(fe){data.refT=fe.type;data.refAt=fe.at;}}
+    else{delete data.tipo;delete data.campo;}
+  }
   if(ed.type==='plan'){data.ord=mkOrd(oldE&&oldE.data&&oldE.data.ord,data.ordl,data.ordi);if(oldE&&oldE.data&&oldE.data.src)data.src=oldE.data.src;delete data.ordl;delete data.ordi;}
   var imx=null;if(ed.type==='img'){imx=imgCollect(data);all+=imx.text;}
   if(!all.trim()&&ed.type!=='salida'&&!(imx&&imx.extra)){toast('Escribe algo antes de guardar.');return;}
@@ -2275,7 +2342,7 @@ function viewResumen(p){
   var le=lastEv(p.id),tasksOpen=pTasks(p.id).filter(function(t){return !t.done;}),ics=openICs(p.id);
   var dates=es.filter(function(e){return !e.est;}).map(function(e){return e.at;}).sort();
   if(!es.length&&!Object.keys(p.hx||{}).length)
-    return '<div class="card"><h3>Resumen</h3><div class="small muted">Aún no hay información. Dos caminos: abre <strong>Importar PDF</strong> y suelta la historia clínica, o agrega el ingreso desde la <strong>Cronología</strong>.</div><div class="row"><button class="btn primary" data-a="goSec" data-k="upd">Importar PDF</button><button class="btn" data-a="goSec" data-k="cron">Ir a Cronología</button></div></div>';
+    return '<div class="card"><h3>Resumen</h3><div class="small muted">Aún no hay información. Dos caminos: abre <strong>Importar PDF</strong> y suelta la historia clínica, o agrega el <strong>Ingreso</strong> a mano.</div><div class="row"><button class="btn primary" data-a="goSec" data-k="upd">Importar PDF</button><button class="btn" data-a="goSec" data-k="ingreso">Ir a Ingreso</button></div></div>';
   /* estado actual */
   h+='<div class="card rs"><h3>Estado actual</h3>';
   var lc=es.filter(function(e){return e.type==='evolucion'||e.type==='epicrisis'||e.type==='ingreso';})[0];
@@ -2285,12 +2352,15 @@ function viewResumen(p){
     else if(lc.type==='epicrisis'){rows=[['Resumen',dd.res],['Condición al egreso',dd.cond],['Indicaciones',dd.ind]];}
     else rows=[['Motivo',dd.motivo],['Impresión',dd.imp],['Plan',dd.plan]];
     h+='<div class="small muted">Último registro clínico: <strong>'+KN[lc.type]+', '+esc(dlong(lc.at))+'</strong>'+(lc.est?' (fecha aproximada)':'')+'. Hace '+Math.max(0,Math.round((Date.now()-new Date(lc.at))/864e5))+' días.'+(le&&le.id!==lc.id?' La última evolución médica es del '+esc(dlong(le.at))+'.':'')+'</div>';
-    h+='<dl>'+rows.filter(function(r){return r[1];}).map(function(r){return '<dt>'+r[0]+'</dt><dd>'+rich(cut(r[1],900))+'</dd>';}).join('')+'</dl><button class="btn sm" data-a="cronOpen" data-id="'+lc.id+'">Ver completo en Cronología</button>';
+    h+='<dl>'+rows.filter(function(r){return r[1];}).map(function(r){return '<dt>'+r[0]+'</dt><dd>'+rich(cut(r[1],900))+'</dd>';}).join('')+'</dl><button class="btn sm" data-a="goFolio" data-id="'+lc.id+'">Ver el folio completo</button>';
   }else h+='<div class="small muted">No hay evoluciones guardadas todavía.</div>';
   h+='</div>';
+  /* historia del ultimo ingreso (antes seccion Historia) */
+  var hxn=HXF.filter(function(f){return (p.hx||{})[f[0]];}).length;
+  h+='<details class="addf hxd" id="hxcard" style="grid-column:1/-1"'+((S.hxEdit||S.hxOpen)?' open':'')+'><summary class="btn sm">Historia del último ingreso'+(hxn?' · '+hxn+(hxn===1?' sección':' secciones'):' · vacía')+'</summary>'+viewHx(p)+'</details>';
   /* lectura rápida */
   var rd=[];
-  var PL={evolucion:['evolución','evoluciones'],ingreso:['ingreso','ingresos'],interconsulta:['interconsulta','interconsultas'],lab:['paraclínico','paraclínicos'],img:['imagen','imágenes'],epicrisis:['epicrisis','epicrisis'],nota:['nota','notas'],plan:['plan','planes'],salida:['salida','salidas']},parts=[];
+  var PL={evolucion:['evolución','evoluciones'],ingreso:['ingreso','ingresos'],interconsulta:['interconsulta','interconsultas'],lab:['paraclínico','paraclínicos'],img:['imagen','imágenes'],epicrisis:['epicrisis','epicrisis'],nota:['nota aclaratoria','notas aclaratorias'],plan:['plan','planes'],salida:['salida','salidas']},parts=[];
   Object.keys(PL).forEach(function(t){if(cnt[t])parts.push(cnt[t]+' '+PL[t][cnt[t]===1?0:1]);});
   if(parts.length)rd.push('Contenido: '+parts.join(', ')+(dates.length?'. Registros fechados entre '+dlong(dates[0])+' y '+dlong(dates[dates.length-1])+'.':'.'));
   var trs=TRENDS.map(function(T){return trendRow(p,T);}).filter(Boolean);
@@ -2372,16 +2442,17 @@ function entryRow(e){
   return '<details class="ce" id="ce_'+e.id+'" data-who="'+esc(whoTxt(e))+'" style="--c:var(--c-'+e.type+')"'+(S.openId===e.id?' open':'')+'><summary><span class="chip" style="--c:var(--c-'+e.type+')">'+T.label+'</span>'+(e.type==='interconsulta'?'<span class="pill '+(e.status==='pendiente'?'vigilar':'estable')+'">'+esc(e.status||'')+'</span>':'')+(e.type==='img'&&e.data&&e.data.lecNo?'<span class="pill vigilar">No leída aún</span>':'')+'<span class="mono small muted">'+esc(fmt(e.at))+(e.est?' <span title="Fecha aproximada: el PDF no la traía clara">~</span>':'')+'</span><span class="who">'+whoHtml(e)+'</span><span class="pv2">'+esc(entPreview(e))+'</span></summary>'+entryCard(e)+'</details>';
 }
 function viewCron(p){
-  var all=pEntries(p.id).filter(function(e){var T=TYPES[e.type];return !(T&&(T.sep||T.own));});
+  var all=pEntries(p.id).filter(function(e){return e.type!=='plan';});
+  if(S.cord==='asc')all=all.slice().reverse();
   var q=norm(S.cq||''),f=S.cf||'',cnt={};
   all.forEach(function(e){cnt[e.type]=(cnt[e.type]||0)+1;});
   var es=all.filter(function(e){return (!f||e.type===f)&&(!q||norm(JSON.stringify(e.data)+' '+whoTxt(e)).indexOf(q)>=0);});
   var cap=q?Math.max(S.cmax||30,200):(S.cmax||30),show=es.slice(0,cap);
-  var h='<div><h3>Cronología</h3><div class="small muted">Lo más reciente primero. Toca una nota para abrirla.</div></div>';
+  var h='<div class="row spread"><div><h3>Cronología</h3><div class="small muted">Todo lo del paciente en orden de fecha ('+(S.cord==='asc'?'lo más antiguo primero':'lo más reciente primero')+'). Aquí solo se filtra y se busca; cada tipo de folio se crea en su propia sección.</div></div><button class="btn sm" data-a="cronOrd">⇅ Invertir orden</button></div>';
   h+='<div class="fchips">'+['']. concat(Object.keys(cnt)).map(function(t){var n=t?cnt[t]:all.length;return '<button class="fc" data-a="cronF" data-v="'+t+'"'+(f===t?' aria-current="true"':'')+'>'+(t?TYPES[t].label:'Todo')+' <span class="n">'+n+'</span></button>';}).join('')+'</div>';
   h+='<div class="row cqrow"><div class="grow"><input id="cq" value="'+esc(S.cq||'')+'" placeholder="Buscar en la cronología (ej. sonda, creatinina)" data-enter="cronQ" aria-label="Buscar"></div><button class="btn sm" data-a="cronQ">Buscar</button>'+(S.cq?'<span class="hlnav"><button class="btn sm" data-a="hlPrev" title="Anterior" aria-label="Coincidencia anterior">▲</button><span id="hlc" class="mono small"></span><button class="btn sm" data-a="hlNext" title="Siguiente" aria-label="Coincidencia siguiente">▼</button></span>':'')+''+(S.cq||f?'<button class="btn sm ghost" data-a="cronClear">Quitar filtros</button>':'')+'</div>';
-  if(!es.length)return h+'<div class="empty">'+art('sleep')+(all.length?'Nada coincide con ese filtro.':'Aún no hay notas. Empieza con el ingreso.')+'</div>';
-  h+='<div class="small muted">'+es.length+' de '+all.length+' notas'+(es.length>cap?' (mostrando '+cap+')':'')+'</div>';
+  if(!es.length)return h+'<div class="empty">'+art('sleep')+(all.length?'Nada coincide con ese filtro.':'Aún no hay folios. Empieza con el Ingreso.')+'</div>';
+  h+='<div class="small muted">'+es.length+' de '+all.length+' registros'+(es.length>cap?' (mostrando '+cap+')':'')+'</div>';
   var mon='';
   show.forEach(function(e){
     var k=ldk(e.at).slice(0,7);
@@ -2392,22 +2463,19 @@ function viewCron(p){
   if(es.length>cap)h+='<button class="btn" data-a="cronMore">Mostrar '+Math.min(30,es.length-cap)+' más (quedan '+(es.length-cap)+')</button>';
   return h;
 }
-function addFold(){
-  return '<details class="addf"><summary class="btn sm">+ Agregar nota o evolución</summary>'+addRow()+'</details>';
-}
 /* Tutorial guiado */
 var TOUR=[
  {t:'Bienvenido a Limonapp',x:'Aquí llevas tus rotaciones: servicios, pacientes, notas y pendientes. Este recorrido dura un minuto. Puedes saltarlo y volver a verlo cuando quieras con el botón “?” de arriba.'},
- {s:'#tabs',t:'Las cuatro pestañas',x:'Servicios: tus rotaciones y sus pacientes. Pendientes: lo que falta, de todos tus pacientes juntos. Entrega: texto listo para la entrega de turno. Respaldo: copia de seguridad de tus datos.'},
+ {s:'#tabs',t:'Las cuatro pestañas',x:'Servicios: tus rotaciones y sus pacientes. Pendientes: lo que falta, de todos tus pacientes juntos. Entrega: texto listo para la entrega de turno. Cuenta: tu sesión, la sincronización y el respaldo de tus datos.'},
  {s:'.pcard',t:'Servicios',x:'Cada rotación es un servicio (Urología, Cirugía pediátrica…). Toca uno para ver sus pacientes; abajo puedes crear servicios nuevos.'},
  {t:'Agregar un paciente',x:'Dentro de un servicio toca “+ Paciente”. Escribe solo iniciales, edad y cama (nunca nombre ni cédula), o suelta el PDF de la historia clínica del hospital y Limonapp la organiza sola.'},
- {t:'Primera pantalla: el Resumen',x:'Al abrir un paciente ves el Resumen: estado actual, lectura rápida, lista de problemas, tendencias de laboratorio, hitos y pendientes. Es una lectura automática; verifícala siempre con la historia original.'},
- {t:'Las demás secciones',x:'Cronología: todas las notas por mes, con filtros y buscador. Historia: ingreso y antecedentes. Interconsultas, Paraclínicos e Imágenes: cada una en su lugar. Pendientes. Importar PDF: suma documentos nuevos sin borrar nada.'},
+ {t:'Primera pantalla: el Resumen',x:'Al abrir un paciente ves el Resumen: estado actual, historia del último ingreso, lectura rápida, lista de problemas, tendencias de laboratorio, hitos y pendientes. Es una lectura automática; verifícala siempre con la historia original.'},
+ {t:'Las demás secciones',x:'Ingreso, Evoluciones, Plan, Interconsultas, Paraclínicos, Imágenes y Pendientes: cada uno en su sección. Notas aclaratorias: corrigen o agregan algo a un folio ya emitido, anclado a ese folio. Cronología: todo en orden de fecha, con filtros y buscador. Importar PDF: suma documentos nuevos sin borrar nada.'},
  {t:'Cómo se leen las fechas',x:'Cada registro usa la fecha en que se hizo, nunca la de impresión del PDF. Si la app no logra leerla, la marca con “~” para que la revises.'},
  {s:'#tourBtn',t:'Tutorial, tema, 8-bit y alemán',x:'El botón “Tutorial” vuelve a abrir esta guía cuando quieras. Junto a él puedes quitar o poner el estilo 8-bit, cambiar entre tema oscuro y claro, y mostrar o no los textos en alemán.'},
- {t:'Tus datos viven en este dispositivo',x:'Sin iniciar sesión, todo se guarda solo en este dispositivo. Haz un respaldo seguido en la pestaña Respaldo, sobre todo antes de borrar los datos del navegador.'},
+ {t:'Tus datos viven en este dispositivo',x:'Sin iniciar sesión, todo se guarda solo en este dispositivo. Haz un respaldo seguido en la pestaña Cuenta, sobre todo antes de borrar los datos del navegador.'},
  {t:'Equipo: perfil, colegas y chat',x:'Con tu cuenta iniciada, la pestaña Equipo te deja crear tu perfil (foto, nombre, cargo, servicio y si estás en turno), unirte a un equipo con un código de invitación, chatear con tus colegas y enviarles un paciente como resumen sin nombre ni cédula. Solo ven tu perfil las personas de tu equipo.'},
- {t:'Cuenta: entrar desde cualquier dispositivo',x:'En Respaldo → “Cuenta y sincronización” marca el aviso de datos y toca “Entrar con Google”. Desde ese momento tus datos se guardan en tu cuenta y se sincronizan solos unos segundos después de cada cambio. En otro celular o computador, entra con la misma cuenta y toca “Sincronizar ahora”.'},
+ {t:'Cuenta: entrar desde cualquier dispositivo',x:'En Cuenta → “Cuenta y sincronización” marca el aviso de datos y toca “Entrar con Google”. Desde ese momento tus datos se guardan en tu cuenta y se sincronizan solos unos segundos después de cada cambio. En otro celular o computador, entra con la misma cuenta y toca “Sincronizar ahora”.'},
  {t:'Cerrar sesión y compartir equipo',x:'“Cerrar sesión” (en la misma tarjeta) deja tus datos en tu cuenta y en este dispositivo. Si usas un equipo ajeno, cierra sesión al terminar. Nunca escribas nombres, cédulas ni teléfonos de pacientes.'},
  {s:'#helpFab',t:'Ayuda cuando te pierdas',x:'El botón “Ayuda” con el limón responde dudas de uso: cómo importar un PDF, hacer un respaldo, iniciar sesión… No es una IA: usa guías escritas de antemano. Escríbele con tus palabras.'}
 ];
@@ -2604,7 +2672,7 @@ var HELP=[
  {t:'Paraclínicos o imágenes vacíos',kw:['paraclinicos','imagenes','laboratorios','lab vacio','no salen','vacios','examenes'],a:'Los resultados se extraen de las evoluciones y notas del PDF. Si faltan, abre al paciente → “Importar PDF” y vuelve a subir el archivo (suma lo que falte sin duplicar). También puedes agregarlos a mano en Paraclínicos o Imágenes con “+ Agregar”.',go:[['Ir a Importar PDF','sec:upd'],['Ir a Paraclínicos','sec:lab']]},
  {t:'Fechas con ~ o fechas equivocadas',kw:['fecha','fechas','~','impresion','dia','hora'],a:'La app usa la fecha de registro de cada documento, nunca la de impresión del PDF. Una “~” significa que el PDF no traía una fecha clara y la app la estimó. Abre la nota, toca Editar y corrige la fecha.',go:[]},
  {t:'Qué es el Resumen',kw:['resumen','estado actual','lectura rapida','problemas','tendencias','hitos'],a:'Es la primera pantalla de cada paciente: el último registro clínico, una lectura rápida del contenido, la lista de problemas (CIE-10), tendencias de laboratorio (creatinina, hemoglobina…), hitos y pendientes. Se calcula automáticamente del texto del PDF: confírmalo siempre con la historia original.',go:[['Ir al Resumen','sec:res']]},
- {t:'Buscar o filtrar en la Cronología',kw:['cronologia','buscar','filtrar','filtro','encontrar','busqueda','nota antigua'],a:'En la Cronología usa los botones por tipo (Evolución, Ingreso…) y el buscador de arriba (por ejemplo “sonda” o “creatinina”). Las notas están agrupadas por mes; toca una para abrirla.',go:[['Ir a Cronología','sec:cron']]},
+ {t:'Buscar o filtrar en la Cronología',kw:['cronologia','buscar','filtrar','filtro','encontrar','busqueda','nota antigua'],a:'La Cronología reúne todo lo del paciente en orden de fecha. Usa los botones por tipo (Evolución, Ingreso, Paraclínico…) y el buscador de arriba (por ejemplo “sonda” o “creatinina”). Los registros están agrupados por mes; toca uno para abrirlo.',go:[['Ir a Cronología','sec:cron']]},
  {t:'Perfil y equipo',kw:['perfil','foto','equipo','colegas','codigo','invitacion','en turno','turno','usuario','cargo','servicio'],a:'En la pestaña Equipo (con sesión iniciada) creas tu perfil: foto, nombre, nombre de usuario, cargo, servicio y si estás en turno. Tu especialidad o rango (Est., Int., Res., MG…) es obligatoria y va al comienzo de tu nombre. Puedes crear o unirte a varios equipos con su código y cambiar entre ellos; solo las personas de cada equipo ven tu perfil y el chat de ese equipo.',go:[['Ir a Equipo','nav:team']]},
  {t:'Enviar un paciente a un colega',kw:['enviar paciente','pasar paciente','compartir paciente','colega','historia completa','sincronizar paciente','compartido'],a:'Abre el paciente y toca “Enviar a un colega”. Le llega con su historia, notas, paraclínicos y pendientes (sin nombre ni cédula). Al aceptarlo elige en qué servicio lo quiere. Desde entonces, los cambios que cualquiera haga se ven en ambos, y en la lista aparece “Compartido · actualizado por…”. Si no quieres seguir recibiendo cambios, usa “Dejar de compartir conmigo”.'},
  {t:'Mover un paciente de servicio',kw:['mover','mover paciente','cambiar de servicio','otro servicio','trasladar'],a:'En la ficha del paciente toca “Mover de servicio” y elige el servicio (o crea uno). Solo cambia dónde lo ves tú: tus colegas lo siguen viendo en su propio servicio, y la información clínica sigue sincronizada.'},
@@ -2618,23 +2686,23 @@ var HELP=[
  {t:'Número de historia clínica y buscador',kw:['numero de historia','historia clinica numero','cedula','buscar paciente','buscador','hc'],a:'En la ficha del paciente puedes guardar el número de historia clínica. Queda solo en tu dispositivo: no se comparte con colegas ni se envía en resúmenes. En el inicio, el buscador encuentra pacientes por ese número (mínimo 3 dígitos), por iniciales o por cama.'},
  {t:'PDF de la entrega de turno',kw:['pdf entrega','entrega pdf','descargar entrega','enviar entrega','pdf de entrega'],a:'En Entrega elige el servicio y toca Descargar PDF, Compartir o Enviar por el chat. Puedes incluir el número de historia clínica de cada paciente marcando la casilla.'},
  {t:'Actualizar la app en el iPhone',kw:['actualizar','refrescar','recargar','reiniciar','iphone','pantalla de inicio','no carga','version nueva'],a:'Toca el botón Actualizar (flecha circular) arriba: guarda tus datos, busca la versión nueva y recarga la app. Así no tienes que cerrarla y abrirla.'},
- {t:'La sesión se cierra o sale un error al entrar',kw:['sesion se cierra','se desconecta','error al entrar','error al iniciar','otro dispositivo sesion','simultanea'],a:'La sesión es independiente en cada dispositivo: iniciar sesión en el computador no debería cerrar la del celular. Si ves un error justo al iniciar, la app reintenta sola unos segundos. Si Google te abre una pestaña del navegador y no vuelves a la app instalada, cierra esa pestaña, abre la app instalada y toca de nuevo “Entrar con Google”. Si la sesión venció, ve a Respaldo → Cerrar sesión y entra de nuevo: tus datos locales no se pierden.'},
+ {t:'La sesión se cierra o sale un error al entrar',kw:['sesion se cierra','se desconecta','error al entrar','error al iniciar','otro dispositivo sesion','simultanea'],a:'La sesión es independiente en cada dispositivo: iniciar sesión en el computador no debería cerrar la del celular. Si ves un error justo al iniciar, la app reintenta sola unos segundos. Si Google te abre una pestaña del navegador y no vuelves a la app instalada, cierra esa pestaña, abre la app instalada y toca de nuevo “Entrar con Google”. Si la sesión venció, ve a Cuenta → Cerrar sesión y entra de nuevo: tus datos locales no se pierden.'},
  {t:'Interconsultas pendientes',kw:['interconsulta','interconsultas','respondida','pendiente interconsulta','ic'],a:'Las interconsultas están en su sección. Toca “Pendiente: marcar respondida” cuando llegue la respuesta. Las pendientes también aparecen en la pestaña Pendientes.',go:[['Ir a Interconsultas','sec:ic']]},
  {t:'Pendientes del turno',kw:['pendientes','tareas','por hacer','lista de tareas','turno'],a:'Dentro de cada paciente, la sección Pendientes guarda sus tareas. La pestaña Pendientes (arriba) reúne las de todos tus pacientes activos.',go:[['Ir a Pendientes','nav:tasks']]},
  {t:'Entrega de turno',kw:['entrega','entrega de turno','reporte','copiar entrega','handoff'],a:'En la pestaña Entrega se arma un texto con tus pacientes activos y sus pendientes. Elige el servicio y toca copiar para pegarlo donde lo necesites.',go:[['Ir a Entrega','nav:handoff']]},
- {t:'Respaldo y restaurar',kw:['respaldo','backup','copia de seguridad','restaurar','recuperar','exportar','guardar copia'],a:'En Respaldo toca “Generar respaldo” y copia el texto (guárdalo en tus notas o envíatelo). Para restaurar, pégalo en “Importar”: reemplaza lo que haya en ese dispositivo. Hazlo con frecuencia, sobre todo antes de borrar datos del navegador.',go:[['Ir a Respaldo','nav:backup']]},
- {t:'Iniciar sesión y sincronizar',kw:['login','logeo','sesion','iniciar sesion','entrar','cuenta','google','sincronizar','sincronizacion','correo','registrarme','registrar'],a:'Ve a Respaldo → “Cuenta y sincronización”. Marca el aviso de datos y toca “Entrar con Google”. Desde ahí tus datos se guardan en tu cuenta y se sincronizan solos unos segundos después de cada cambio. Funciona en el sitio publicado de Limonapp.',go:[['Ir a Respaldo','nav:backup']]},
- {t:'Mis datos no aparecen en otro dispositivo',kw:['otro dispositivo','otro celular','otro computador','no aparecen','no sincroniza','no se sincroniza','celular','computador'],a:'Entra al mismo sitio, ve a Respaldo e inicia sesión con la misma cuenta. Marca el aviso de datos y toca “Sincronizar ahora”. Si ese dispositivo tenía datos propios, la app los combina con los de tu cuenta sin borrar nada.',go:[['Ir a Respaldo','nav:backup']]},
- {t:'Cerrar sesión',kw:['cerrar sesion','salir','logout','desconectar'],a:'En Respaldo → “Cuenta y sincronización” toca “Cerrar sesión”. Tus datos siguen en ese dispositivo y en tu cuenta.',go:[['Ir a Respaldo','nav:backup']]},
+ {t:'Respaldo y restaurar',kw:['respaldo','backup','copia de seguridad','restaurar','recuperar','exportar','guardar copia'],a:'En Cuenta toca “Generar respaldo” y copia el texto (guárdalo en tus notas o envíatelo). Para restaurar, pégalo en “Importar”: reemplaza lo que haya en ese dispositivo. Hazlo con frecuencia, sobre todo antes de borrar datos del navegador.',go:[['Ir a Cuenta','nav:backup']]},
+ {t:'Iniciar sesión y sincronizar',kw:['login','logeo','sesion','iniciar sesion','entrar','cuenta','google','sincronizar','sincronizacion','correo','registrarme','registrar'],a:'Ve a Cuenta → “Cuenta y sincronización”. Marca el aviso de datos y toca “Entrar con Google”. Desde ahí tus datos se guardan en tu cuenta y se sincronizan solos unos segundos después de cada cambio. Funciona en el sitio publicado de Limonapp.',go:[['Ir a Cuenta','nav:backup']]},
+ {t:'Mis datos no aparecen en otro dispositivo',kw:['otro dispositivo','otro celular','otro computador','no aparecen','no sincroniza','no se sincroniza','celular','computador'],a:'Entra al mismo sitio, ve a Cuenta e inicia sesión con la misma cuenta. Marca el aviso de datos y toca “Sincronizar ahora”. Si ese dispositivo tenía datos propios, la app los combina con los de tu cuenta sin borrar nada.',go:[['Ir a Cuenta','nav:backup']]},
+ {t:'Cerrar sesión',kw:['cerrar sesion','salir','logout','desconectar'],a:'En Cuenta → “Cuenta y sincronización” toca “Cerrar sesión”. Tus datos siguen en ese dispositivo y en tu cuenta.',go:[['Ir a Cuenta','nav:backup']]},
  {t:'Instalar la app en el celular',kw:['instalar','pantalla de inicio','app movil','instalarla','icono','pwa'],a:'En Chrome (Android): menú ⋮ → “Instalar app”. En iPhone (Safari): botón Compartir → “Añadir a pantalla de inicio”. Se abre como una app normal.',go:[]},
  {t:'Tema, idioma y estilo 8-bit',kw:['tema','oscuro','claro','idioma','aleman','deutsch','8 bit','8-bit','estilo','letra'],a:'En la parte de arriba: ☾ cambia entre tema oscuro y claro, “DE” muestra u oculta el alemán junto al español, y el botón “8” activa o quita el estilo 8-bit si prefieres letra más sobria.',go:[]},
  {t:'Dar de alta o egresar a un paciente',kw:['egreso','egresar','alta','salida','dar de alta','egresado'],a:'Dentro del paciente toca “+ Agregar” → Salida, elige el tipo y el destino, y guarda: el paciente pasa a “Egresados”. Si fue un error, ábrelo y toca Reactivar.',go:[['Ir a Cronología','sec:cron']]},
- {t:'Copiar la evolución anterior',kw:['copiar evolucion','evolucion anterior','nueva evolucion','evolucion','copiar'],a:'En Cronología toca “+ Agregar nota o evolución” → Evolución, y en el formulario usa el botón para copiar la última evolución. Así solo editas lo que cambió.',go:[['Ir a Cronología','sec:cron']]},
- {t:'Editar o borrar una nota',kw:['editar','corregir','modificar','borrar nota','eliminar nota','cambiar nota'],a:'Abre la nota en la Cronología y usa Editar para corregirla o Borrar para quitarla (te pide confirmar).',go:[['Ir a Cronología','sec:cron']]},
+ {t:'Copiar la evolución anterior',kw:['copiar evolucion','evolucion anterior','nueva evolucion','evolucion','copiar'],a:'Abre la sección Evoluciones, toca “+ Agregar” y, en el formulario, usa “Partir de la evolución anterior”. Así solo editas lo que cambió.',go:[['Ir a Evoluciones','sec:evolucion']]},
+ {t:'Editar o borrar una nota',kw:['editar','corregir','modificar','borrar nota','eliminar nota','cambiar nota'],a:'Abre el registro en su sección (o en la Cronología) y usa Editar o Borrar (te pide confirmar). Para corregir o agregar algo a un folio ya emitido, toca “Aclarar” en su tarjeta: crea una nota aclaratoria anclada a ese folio.',go:[['Ir a Cronología','sec:cron'],['Ir a Notas aclaratorias','sec:nota']]},
  {t:'Editar los datos del paciente',kw:['editar paciente','cambiar cama','cambiar diagnostico','datos del paciente','gravedad','iniciales'],a:'En el Resumen del paciente toca “Editar datos” para cambiar iniciales, cama, ingreso, diagnóstico o gravedad.',go:[['Ir al Resumen','sec:res']]},
- {t:'Borrar un paciente o el ejemplo',kw:['borrar paciente','eliminar paciente','ejemplo','demo','borrar servicio'],a:'Para un paciente: abre su Resumen y toca “Borrar paciente” (pide confirmación). El paciente de ejemplo se quita desde Respaldo → “Borrar el ejemplo”.',go:[['Ir a Respaldo','nav:backup']]},
+ {t:'Borrar un paciente o el ejemplo',kw:['borrar paciente','eliminar paciente','ejemplo','demo','borrar servicio'],a:'Para un paciente: abre su Resumen y toca “Borrar paciente” (pide confirmación). El paciente de ejemplo se quita desde Cuenta → “Borrar el ejemplo”.',go:[['Ir a Cuenta','nav:backup']]},
  {t:'Privacidad: qué datos no poner',kw:['privacidad','datos','nombre','cedula','telefono','seguridad','confidencial','seguro'],a:'Escribe solo iniciales, edad, cama y los 3 últimos dígitos de la historia. Nunca nombre completo, cédula, teléfono ni dirección. Si inicias sesión, tus datos quedan en el servidor de la app ligados a tu cuenta; la política de privacidad está enlazada al pie de la página.',go:[]},
- {t:'Se me perdieron los datos',kw:['perdi','perdieron','desaparecio','borraron','sin datos','vacia','recuperar datos'],a:'Los datos viven en el navegador de cada dispositivo; si borras los datos del sitio o cambias de navegador, no aparecen. Si tenías sesión iniciada, entra otra vez y toca “Sincronizar ahora”. Si tienes un respaldo, pégalo en Respaldo → Importar.',go:[['Ir a Respaldo','nav:backup']]},
+ {t:'Se me perdieron los datos',kw:['perdi','perdieron','desaparecio','borraron','sin datos','vacia','recuperar datos'],a:'Los datos viven en el navegador de cada dispositivo; si borras los datos del sitio o cambias de navegador, no aparecen. Si tenías sesión iniciada, entra otra vez y toca “Sincronizar ahora”. Si tienes un respaldo, pégalo en Cuenta → Importar.',go:[['Ir a Cuenta','nav:backup']]},
  {t:'Qué significan mg/dL, g/dL y otras unidades',kw:['mg/dl','g/dl','unidades','creatinina','hemoglobina','que significa','pcr','bun'],a:'mg/dL son miligramos por decilitro (1 dL = 100 mL de sangre): mide cuánta sustancia hay en esa cantidad de sangre. g/dL, gramos por decilitro (se usa para la hemoglobina). ×10³/µL, miles de células por microlitro (para leucocitos y plaquetas). La creatinina es un residuo del músculo que filtra el riñón: sube si el riñón filtra menos.',go:[]},
  {t:'Ver el tutorial',kw:['tutorial','como funciona','guia','empezar','no entiendo','estoy perdido','perdido','ayuda'],a:'Puedo repetirte el recorrido paso a paso con ventanas emergentes.',go:[['Ver el tutorial','tour']]}
 ];
@@ -2855,7 +2923,7 @@ function viewTeam0(){
   var h='<h2>Equipo</h2>';
   if(!gAvail())return h+'<div class="card"><div class="small muted">Los perfiles, el equipo y el chat funcionan en el sitio publicado de Limonapp, con tu cuenta iniciada (no en esta vista previa).</div></div>';
   if(!gUser())return h+'<div class="card"><p>Para tener perfil, equipo y chat con tus colegas, inicia sesión.</p><div class="row"><button class="btn primary" data-a="gLogin"'+(G.ok?'':' disabled')+'>'+(G.ok?'Entrar con Google':'Cargando…')+'</button></div></div>';
-  if(!gCons())return h+'<div class="card"><p>Antes de usar el equipo, acepta el aviso de datos en Respaldo → Cuenta y sincronización.</p><div class="row"><button class="btn primary" data-a="nav" data-v="backup">Ir a Respaldo</button></div></div>';
+  if(!gCons())return h+'<div class="card"><p>Antes de usar el equipo, acepta el aviso de datos en la pestaña Cuenta (tarjeta “Cuenta y sincronización”).</p><div class="row"><button class="btn primary" data-a="nav" data-v="backup">Ir a Respaldo</button></div></div>';
   if(!T.loaded){setTimeout(tLoad,0);return h+'<div class="card"><div class="small muted">'+(T.err?esc(T.err)+' ':'Cargando…')+'</div>'+(T.err?'<div class="row"><button class="btn sm" data-a="tRetry">Reintentar</button></div>':'')+'</div>';}
   var m=T.me;
   h+='<div class="note small" id="tErr"'+(T.err?'':' hidden')+'>'+esc(T.err)+'</div>';
@@ -2950,7 +3018,7 @@ function tErrToast(e){toast(tErr(e));}
 var AT={
  ptSend:function(el){
    if(!gAvail()||!gOn()){toast('Para enviar pacientes inicia sesión en el sitio de Limonapp.');return;}
-   if(!gCons()){toast('Acepta primero el aviso de datos en Respaldo.');return;}
+   if(!gCons()){toast('Acepta primero el aviso de datos en Cuenta.');return;}
    var p=pat(el.dataset.id||S.patientId);if(!p)return;
    if(!T.loaded){tLoad().then(function(){if(!T.team){toast('Primero crea o únete a un equipo.');go('team');}else tModal(p);});return;}
    if(!T.team){toast('Primero crea o únete a un equipo.');go('team');return;}
@@ -3041,19 +3109,19 @@ document.addEventListener('input',function(e){if(e.target&&(e.target.id==='tpRan
 /* ---------- tutorial interactivo ---------- */
 TOUR=[
  {t:'Bienvenido a Limonapp',x:'Aquí llevas tus rotaciones: servicios, pacientes, notas y pendientes. Este recorrido te lleva por la app: puedes tocar “Siguiente” o hacer lo que pide cada paso. Lo saltas o repites cuando quieras con el botón “Tutorial”.'},
- {s:'#tabs',t:'Las cinco pestañas',x:'Servicios: tus rotaciones y sus pacientes. Pendientes: lo que falta, de todos tus pacientes juntos. Entrega: texto listo para la entrega de turno. Equipo: perfil, colegas y chat. Respaldo: copia de seguridad y cuenta.'},
+ {s:'#tabs',t:'Las cinco pestañas',x:'Servicios: tus rotaciones y sus pacientes. Pendientes: lo que falta, de todos tus pacientes juntos. Entrega: texto listo para la entrega de turno. Equipo: perfil, colegas y chat. Cuenta: tu sesión, la sincronización y el respaldo.'},
  {s:'.pcard[data-a=openService]',pre:'services',wait:'openService',t:'Servicios',x:'Cada rotación es un servicio (Urología, Cirugía pediátrica…). Toca uno para abrirlo y ver sus pacientes; abajo puedes crear servicios nuevos.'},
  {s:'[data-a=newPatient]',pre:'service',t:'Agregar un paciente',x:'Dentro de un servicio toca “+ Paciente”. Escribe solo iniciales, edad y cama (nunca nombre ni cédula), o suelta el PDF de la historia clínica del hospital y Limonapp la organiza sola.'},
  {s:'.pcard[data-a=openPatient]',pre:'service',wait:'openPatient',t:'Abrir un paciente',x:'Toca un paciente para abrir su ficha. Si un colega te lo compartió, aquí verás la marca “Compartido” y cuándo fue actualizado.'},
- {s:'.subtabs',pre:'patient',sec:'res',t:'Las secciones del paciente',x:'Resumen, Cronología, Historia, Interconsultas, Paraclínicos, Imágenes, Pendientes e Importar PDF. Se cambia de sección con estos botones.'},
- {s:'.subtabs [data-k=res]',pre:'patient',sec:'res',t:'Primera pantalla: el Resumen',x:'Estado actual, lectura rápida, lista de problemas, tendencias de laboratorio, hitos y pendientes. Es una lectura automática; verifícala siempre con la historia original.'},
- {s:'.subtabs [data-k=cron]',pre:'patient',sec:'res',wait:'goSec',t:'Cronología',x:'Toca “Cronología” (o Siguiente): todas las notas por mes, con filtros y un buscador que resalta las coincidencias y te deja ir adelante y atrás.'},
+ {s:'.subtabs',pre:'patient',sec:'res',t:'Las secciones del paciente',x:'Resumen, Ingreso, Evoluciones, Plan, Interconsultas, Paraclínicos, Imágenes, Pendientes, Notas aclaratorias, Salida, Cronología e Importar PDF. Se cambia de sección con estos botones.'},
+ {s:'.subtabs [data-k=res]',pre:'patient',sec:'res',t:'Primera pantalla: el Resumen',x:'Estado actual, historia del último ingreso, lectura rápida, lista de problemas, tendencias de laboratorio, hitos y pendientes. Es una lectura automática; verifícala siempre con la historia original.'},
+ {s:'.subtabs [data-k=cron]',pre:'patient',sec:'res',wait:'goSec',t:'Cronología',x:'Toca “Cronología” (o Siguiente): todo lo del paciente en orden de fecha, con filtros por tipo y un buscador que resalta las coincidencias y te deja ir adelante y atrás.'},
  {s:'.subtabs [data-k=lab]',pre:'patient',sec:'cron',t:'Paraclínicos y tendencias',x:'En Paraclínicos guardas los resultados por fecha y, arriba, ves las gráficas grandes de tendencia con la fecha y el valor de cada punto.'},
  {s:'[data-a=ptSend]',pre:'patient',sec:'res',t:'Enviar y mover pacientes',x:'“Enviar a un colega” comparte el paciente con su historia, y los dos lo ven actualizado. “Mover de servicio” cambia solo dónde lo tienes tú.'},
  {t:'Cómo se leen las fechas',x:'Cada registro usa la fecha en que se hizo, nunca la de impresión del PDF. Si la app no logra leerla, la marca con “~” para que la revises.'},
  {s:'#tourBtn',t:'Tutorial, tema, 8-bit y alemán',x:'El botón “Tutorial” vuelve a abrir esta guía. Junto a él puedes quitar o poner el estilo 8-bit, cambiar entre tema oscuro y claro, y mostrar o no los textos en alemán.'},
  {s:'#tabs [data-v=team]',t:'Equipo',x:'Con tu cuenta iniciada creas tu perfil (foto con encuadre, cargo, servicio y estado), te unes a un equipo con un código y chateas con tus colegas. El indicador de color arriba muestra si estás en turno (verde), en descanso (ámbar) o fuera de turno (rojo).'},
- {t:'Tus datos y tu cuenta',x:'Sin iniciar sesión todo queda solo en este dispositivo; haz respaldos seguido. En Respaldo → “Cuenta y sincronización” puedes entrar con Google para tener tus datos en cualquier dispositivo. Nunca escribas nombres, cédulas ni teléfonos de pacientes.'},
+ {t:'Tus datos y tu cuenta',x:'Sin iniciar sesión todo queda solo en este dispositivo; haz respaldos seguido. En Cuenta → “Cuenta y sincronización” puedes entrar con Google para tener tus datos en cualquier dispositivo. Nunca escribas nombres, cédulas ni teléfonos de pacientes.'},
  {s:'#helpFab',t:'Ayuda cuando te pierdas',x:'El botón “Ayuda” con el limón responde dudas de uso con guías escritas de antemano. Escríbele con tus palabras.'}
 ];
 var tourBusy=false;
@@ -3992,7 +4060,11 @@ var A={
  cronQ:function(){S.cq=val('cq').trim();S.cmax=30;S.hi=0;S.hgo=1;render();var f=document.getElementById('cq');if(f)f.focus();},
  cronClear:function(){S.cq='';S.cf='';S.cmax=30;render();},
  cronMore:function(){S.cmax=(S.cmax||30)+30;render();},
- cronOpen:function(el){S.openId=el.dataset.id;S.sec='cron';S.cf='';S.cq='';var ix=pEntries(S.patientId).filter(function(e){return !(TYPES[e.type].sep||TYPES[e.type].own);}).map(function(e){return e.id;}).indexOf(el.dataset.id);S.cmax=Math.max(30,ix+5);render();var d=document.getElementById('ce_'+el.dataset.id);if(d){d.scrollIntoView({block:'center'});}S.openId=null;},
+ goFolio:function(el){var e=db.entries.filter(function(x){return x.id===el.dataset.id;})[0];if(!e)return;S.sec=secOfType(e.type);S.cf='';S.cq='';S.openId=e.id;var sec=S.sec,ix=pEntries(S.patientId).filter(function(x){return secOfType(x.type)===sec&&(x.type===e.type||sec==='salida');}).map(function(x){return x.id;}).indexOf(e.id);S.smax=Math.max(30,ix+5);render();var d=document.getElementById('ce_'+e.id);if(d)d.scrollIntoView({block:'center'});S.openId=null;},
+ aclarar:function(el){S.sec='nota';S.smax=30;S.editor={type:'nota',prefill:{ref:el.dataset.id}};S.warned=false;render();window.scrollTo(0,0);},
+ secMore:function(){S.smax=(S.smax||30)+30;render();},
+ cronOrd:function(){S.cord=S.cord==='asc'?'desc':'asc';render();},
+ cronOpen:function(el){A.goFolio(el);},
  addService:function(){var n=val('newSvc').trim();if(!n)return;db.services.push({id:uid(),name:n});save();render();toast('Servicio agregado.');},
  openService:function(el){go('service',{serviceId:el.dataset.id,filter:'activos'});},
  filter:function(el){S.filter=el.dataset.v;S.newPatient=false;S.imp=null;S.impP=null;render();},
@@ -4037,7 +4109,7 @@ var A={
    try{var d=JSON.parse(val('backupIn'));if(!d||d.v!==1||!Array.isArray(d.services)||!Array.isArray(d.patients)||!Array.isArray(d.entries)||!Array.isArray(d.tasks))throw 0;d.meta=d.meta||{};d.meta.mod=new Date().toISOString();db=d;persist();S.confirm=null;S.backupText='';render();toast('Respaldo restaurado.');}
    catch(e){S.confirm=null;render();toast('El respaldo no es válido.');}
  },
- editHx:function(){S.hxEdit=true;S.hxDraft=null;S.warned=false;render();},
+ editHx:function(){S.hxOpen=true;S.hxEdit=true;S.hxDraft=null;S.warned=false;render();},
  cancelHx:function(){S.hxEdit=false;S.hxDraft=null;S.warned=false;render();},
  parseHx:function(){
    var cur={};HXF.forEach(function(f){cur[f[0]]=val('hx_'+f[0]).trim();});
@@ -4061,7 +4133,7 @@ var A={
   if(n)save();render();toast(n?'Quité '+n+' fragmento'+(n===1?'':'s')+' de consentimiento o datos administrativos.':'No encontré consentimientos ni datos administrativos.');},
  cancelUpd:function(){S.upd=null;render();},
  fold:function(el){S.fold[el.dataset.k]=S.fold[el.dataset.k]?0:1;try{localStorage.setItem('rot_fold',JSON.stringify(S.fold));}catch(e){}render();},
- goSec:function(el){S.sec=el.dataset.k;render();window.scrollTo(0,0);},
+ goSec:function(el){var k=el.dataset.k;S.smax=30;if(k==='hx'){S.sec='res';S.hxOpen=true;render();var h=document.getElementById('hxcard');if(h)h.scrollIntoView({block:'start'});return;}S.sec=k;render();window.scrollTo(0,0);},
  toggleTheme:function(){setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');},
  toggleBi:function(){S.bi=!S.bi;try{localStorage.setItem('rot_bi',S.bi?'1':'0');}catch(e){}render();},
  delDemo:function(){db.patients.filter(function(p){return p.demo;}).forEach(function(p){delPatientData(p.id);});save();render();toast('Ejemplo borrado.');},

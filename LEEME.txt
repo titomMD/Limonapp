@@ -1,4 +1,14 @@
-LIMONAPP v36 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+LIMONAPP v37 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+
+QUE CAMBIA EN LA v37 (sobre la v36)
+  - La pestana "Respaldo" ahora se llama "Cuenta" (sesion, sincronizacion y respaldo, todo ahi).
+  - "Historia" se fusiono con "Resumen": la historia del ultimo ingreso queda en una tarjeta desplegable dentro del Resumen.
+  - Ingreso y Evoluciones tienen su propia seccion (antes solo estaban dentro de Cronologia). Tambien Notas aclaratorias y Salida.
+  - Cronologia ahora solo filtra y busca: muestra todo lo del paciente (ingreso, evoluciones, paraclinicos, imagenes,
+    interconsultas, notas y salida) en orden de fecha, con boton para invertir el orden. Ya no se crean notas desde ahi.
+  - Las notas ahora son notas aclaratorias: cada una se ancla a un folio (ingreso, evolucion, paraclinico, imagen...) y a
+    un campo, y dice si es correccion o dato adicional. Boton "Aclarar" en la tarjeta de cada folio. Las notas antiguas se siguen viendo.
+  - Al subir la carpeta a GitHub escribe "Version 37". No cambia ningun archivo de netlify/functions.
 
 QUE CAMBIA EN LA v36 (sobre la v35)
   - Plan: la ventana Plan solo muestra el plan escrito (y lo solicitado como texto).
