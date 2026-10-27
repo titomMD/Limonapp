@@ -1,4 +1,27 @@
-LIMONAPP v43 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+LIMONAPP v44 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+
+QUE CAMBIA EN LA v44 (sobre la v43)
+  - IA compartida: Cuenta > Asistente de IA ahora ofrece "IA de Limonapp (sin clave)" (queda por defecto al iniciar sesion). Usa TU clave de
+    Gemini, que vive solo en Netlify (nunca en el codigo ni en el navegador). Solo la usan las personas que apruebes (tarjeta "usuarios
+    aprobados" en Cuenta, visible solo para ti). Topes: 15 usos al dia y 200 al mes por persona, 15 s de espera entre usos, texto maximo
+    4000 letras, respuesta maxima ~700 tokens, y un tope mensual estimado (AI_BUDGET_USD, por defecto 6 dolares) tras el cual la IA se pausa.
+  - Nuevo: netlify/functions/ai.mjs (/api/ai). Se puede seguir usando la clave propia (Claude/OpenAI/Gemini) como antes.
+  - Privacidad: el texto pasa por Limonapp y por Google; no se guarda. Se agrego la seccion 4 quinquies a la politica.
+
+  PASOS EN NETLIFY (Mac, una sola vez; la clave NUNCA se pega en el chat ni en GitHub):
+    1. En https://aistudio.google.com crea la clave (Get API key > Create API key, en un proyecto con facturacion de Google Cloud).
+       Cópiala solo para el paso 3.
+    2. En AI Studio > pestaña Spend (gasto) de ese proyecto pon un tope mensual de ~8 dolares (el tope tarda unos 10 min en aplicar).
+       En Google Cloud > Facturacion > Presupuestos y alertas crea un aviso a 5 dolares.
+    3. Netlify > tu sitio > Site configuration > Environment variables > Add a variable > "Add a single variable":
+         GEMINI_API_KEY = (la clave)         marca "Contains secret values"
+         AI_ADMIN_EMAIL = tu correo de Google en minusculas
+       Opcionales: AI_BUDGET_USD (6), AI_MODEL (gemini-2.5-flash-lite), AI_DAY (15), AI_MONTH (200), AI_OFF (1 = apagar para todos).
+    4. Deploys > Trigger deploy > Deploy site (las variables se leen en el siguiente despliegue).
+    5. Entra a la app con tu cuenta de Google > Cuenta > Asistente de IA: debe decir "Tienes acceso" y aparecer "usuarios aprobados".
+       Agrega los correos de Gmail de tus colegas.
+  OJO: los topes de Limonapp son una estimacion; el tope de gasto de Google (paso 2) es la proteccion real. Verifica en la politica de
+  datos de Gemini API de pago que tu uso es aceptable antes de aprobar a otras personas.
 
 QUE CAMBIA EN LA v43 (sobre la v42)
   - Asistente de IA con tu propia cuenta (opcional): Cuenta > Asistente de IA (proveedor Claude, OpenAI o Gemini, modelo, clave API,
