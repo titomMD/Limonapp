@@ -8,9 +8,10 @@ import { getStore } from '@netlify/blobs';
      AI_ADMIN_EMAIL   obligatoria para aprobar usuarios: tu correo de Google (en minúsculas).
      AI_OFF           opcional. Ponla en 1 para apagar la IA para todos (interruptor).
      AI_BUDGET_USD    opcional. Tope mensual estimado de esta función (por defecto 6).
-     AI_MODEL         opcional. Modelo (por defecto gemini-2.5-flash-lite).
+     AI_MODEL         opcional. Modelo (por defecto gemini-3.5-flash-lite).
      AI_DAY, AI_MONTH opcionales. Usos por persona al día y al mes (por defecto 15 y 200).
-     AI_PRICE_IN, AI_PRICE_OUT  opcionales. Dólares por millón de tokens (por defecto 0.30 y 2.50: cálculo prudente).
+     AI_THINK         opcional. Nivel de razonamiento en modelos 3.x (p. ej. minimal); si no la pones, no se envía.
+     AI_PRICE_IN, AI_PRICE_OUT  opcionales. Dólares por millón de tokens (por defecto 0.50 y 3.00: cálculo prudente).
    GET  /api/ai?whoami=1            -> estado: permitido, administrador, restantes, IA en pausa
    POST /api/ai {pre,text,cust?,extra?} -> {text, left}
    GET  /api/ai?admin=list · POST /api/ai?admin=add|remove {email}  (solo el administrador) */
@@ -83,9 +84,9 @@ async function authenticate(req) {
 const MONTH_BUDGET = () => Number(process.env.AI_BUDGET_USD || 6);
 const DAY_MAX = () => Number(process.env.AI_DAY || 15);
 const MONTH_MAX = () => Number(process.env.AI_MONTH || 200);
-const MODEL = () => process.env.AI_MODEL || 'gemini-2.5-flash-lite';
-const PIN = () => Number(process.env.AI_PRICE_IN || 0.30);
-const POUT = () => Number(process.env.AI_PRICE_OUT || 2.50);
+const MODEL = () => process.env.AI_MODEL || 'gemini-3.5-flash-lite';
+const PIN = () => Number(process.env.AI_PRICE_IN || 0.50);
+const POUT = () => Number(process.env.AI_PRICE_OUT || 3.00);
 const MAX_TEXT = 4000, MAX_OUT = 700, COOLDOWN_MS = 15000;
 
 const AIBASE = 'Eres un asistente para un estudiante de medicina en Colombia que escribe notas de rotación e historia clínica. Responde en español clínico claro y conciso. No inventes datos que no estén en el texto: si falta información, márcalo como [FALTA: ...]. No pidas ni repitas nombres, cédulas o teléfonos. Tus respuestas son sugerencias que el estudiante debe verificar con el médico tratante; no des órdenes definitivas. Solo ayudas con notas clínicas y de estudio de medicina; si el texto no tiene relación con eso, responde únicamente: "Solo puedo ayudar con notas clínicas y de estudio."';
@@ -174,6 +175,8 @@ export default async (req) => {
   const model = MODEL();
   const gen = { maxOutputTokens: MAX_OUT, temperature: 0.3 };
   if (/2\.5/.test(model)) gen.thinkingConfig = { thinkingBudget: 0 };
+  else { gen.maxOutputTokens = MAX_OUT * 2; /* modelos nuevos: dejo margen por si piensan un poco; el costo se calcula con lo que realmente gasten */
+    if (process.env.AI_THINK) gen.thinkingConfig = { thinkingLevel: String(process.env.AI_THINK).toLowerCase() }; }
   let r, j = null;
   try {
     r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(model) + ':generateContent', {

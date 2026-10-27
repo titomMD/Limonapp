@@ -16,7 +16,7 @@ QUE CAMBIA EN LA v44 (sobre la v43)
     3. Netlify > tu sitio > Site configuration > Environment variables > Add a variable > "Add a single variable":
          GEMINI_API_KEY = (la clave)         marca "Contains secret values"
          AI_ADMIN_EMAIL = tu correo de Google en minusculas
-       Opcionales: AI_BUDGET_USD (6), AI_MODEL (gemini-2.5-flash-lite), AI_DAY (15), AI_MONTH (200), AI_OFF (1 = apagar para todos).
+       Opcionales: AI_BUDGET_USD (6), AI_MODEL (gemini-3.5-flash-lite), AI_DAY (15), AI_MONTH (200), AI_OFF (1 = apagar para todos).
     4. Deploys > Trigger deploy > Deploy site (las variables se leen en el siguiente despliegue).
     5. Entra a la app con tu cuenta de Google > Cuenta > Asistente de IA: debe decir "Tienes acceso" y aparecer "usuarios aprobados".
        Agrega los correos de Gmail de tus colegas.

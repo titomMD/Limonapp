@@ -481,7 +481,7 @@ function lookCard(){
 }
 function lookUp(f){var L=lookGet();f(L);lookSet(L);applyLook();render();}
 /* ---------- v43: asistente de IA propio (clave del usuario; solo envía el texto que él elige) ---------- */
-var AIP={limon:{n:'IA de Limonapp (sin clave)',m:''},anthropic:{n:'Anthropic (Claude)',m:'claude-sonnet-5-5'},openai:{n:'OpenAI',m:'gpt-4o'},gemini:{n:'Google (Gemini)',m:'gemini-2.5-flash'}};
+var AIP={limon:{n:'IA de Limonapp (sin clave)',m:''},anthropic:{n:'Anthropic (Claude)',m:'claude-sonnet-5-5'},openai:{n:'OpenAI',m:'gpt-4o'},gemini:{n:'Google (Gemini)',m:'gemini-3.5-flash-lite'}};
 var AIBASE='Eres un asistente para un estudiante de medicina en Colombia que escribe notas de rotación e historia clínica. Responde en español clínico claro y conciso. No inventes datos que no estén en el texto: si falta información, márcalo como [FALTA: ...]. No pidas ni repitas nombres, cédulas o teléfonos. Tus respuestas son sugerencias que el estudiante debe verificar con el médico tratante; no des órdenes definitivas.';
 var AIPRE=[
  ['corregir','Corregir ortografía y redacción','Corrige ortografía, puntuación y redacción del texto conservando exactamente su contenido clínico y las abreviaturas estándar. No añadas información. Devuelve solo el texto corregido.'],
