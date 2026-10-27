@@ -1,4 +1,9 @@
-LIMONAPP v41 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+LIMONAPP v42 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+
+QUE CAMBIA EN LA v42 (sobre la v41)
+  - Logo nuevo (opcion 3): gato de linea amarillo limon con latido (ECG) y hoja verde. Ilustraciones, logo e iconos de la app
+    (icon-192.png, icon-512.png) unificados en ese estilo minimalista. El logo cambia de tono entre tema oscuro y claro.
+  - Si en el iPhone sigue viendose el icono viejo, quita el acceso directo de la pantalla de inicio y agregalo de nuevo.
 
 QUE CAMBIA EN LA v41 (sobre la v40)
   - Cuenta > Apariencia: color de acento (7 colores o uno libre), tipografia (5), tamano del texto (85% a 140%), esquinas
