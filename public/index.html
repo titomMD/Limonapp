@@ -368,6 +368,19 @@ html[data-theme="light"] .prof{color:#8a5a00;border-left-color:#c98a00;backgroun
 .vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px;margin:4px 0}.vg .u{font-size:11px;opacity:.7}.vg input,.vg select{min-width:0;width:100%}.gtot{font-family:var(--mono);font-size:18px;padding:6px 2px}
 .vtc{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}.vtc span{border:var(--bw,1px) solid var(--line);background:var(--field);border-radius:calc(8px*var(--rs,1));padding:3px 8px;font-size:13px}.vtc i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--muted);margin-right:4px}
 .entry dd .li{display:block}
+/* v51: ubicacion y lectura */
+.where{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;padding:7px 10px;margin:0 0 10px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;background:var(--surface);font-size:13px}
+.where.amb{border-left-color:var(--c-consulta)}.where .sep{color:var(--muted)}.where b{font-weight:600}
+.where .btn.on{background:color-mix(in srgb,var(--accent) 22%,transparent);border-color:var(--accent);font-weight:600}
+.entry dd,.hxv dd,.rs dd{font-size:15px;line-height:1.65;max-width:80ch}
+.entry dl,.rs dl{gap:12px}
+.entry dt,.rs dt{margin-top:2px;padding-top:8px;border-top:1px dashed var(--line)}
+.entry dl>dt:first-child,.rs dl>dt:first-child{border-top:0;padding-top:0}
+.entry dd .li,.rs dd .li{display:block;padding-left:18px;text-indent:-14px;margin:3px 0}
+.entry dd .li::before,.rs dd .li::before{content:'•';color:var(--accent);margin-right:7px}
+.entry dd .sh,.rs dd .sh{display:block;margin:12px 0 4px}
+.entry dd .pg,.rs dd .pg{height:10px}
+.pdt{font-family:var(--mono);font-size:12px;color:var(--muted);margin-right:6px;white-space:nowrap}
 .task .chip{flex:none}
 
 .wrap{zoom:var(--zm,1)}
@@ -717,7 +730,7 @@ function viewService(){
   var s=svc(S.serviceId);if(!s){S.view='services';return viewServices();}
   var all=db.patients.filter(function(p){return p.serviceId===s.id&&p.ctx!=='amb';});
   var list=all.filter(function(p){return S.filter==='activos'?p.active:!p.active;}).sort(function(a,b){return String(a.bed).localeCompare(String(b.bed),undefined,{numeric:true});});
-  var h='<div class="row spread"><button class="btn sm ghost" data-a="nav" data-v="services">‹ Servicios</button><h2>'+esc(s.name)+'</h2><button class="btn sm" data-a="rnStart" data-id="'+s.id+'">Ronda</button><button class="btn sm" data-a="censoOpen" data-id="'+s.id+'" title="Elige qué pacientes incluir y descarga un documento de Word con su última hospitalización">Exportar censo (Word)</button><button class="btn sm primary" data-a="newPatient">+ Paciente</button></div>';
+  var h=areaBar('hosp',s.name)+'<div class="row spread"><button class="btn sm ghost" data-a="nav" data-v="services">‹ Servicios</button><h2>'+esc(s.name)+'</h2><button class="btn sm" data-a="rnStart" data-id="'+s.id+'">Ronda</button><button class="btn sm" data-a="censoOpen" data-id="'+s.id+'" title="Elige qué pacientes incluir y descarga un documento de Word con su última hospitalización">Exportar censo (Word)</button><button class="btn sm primary" data-a="newPatient">+ Paciente</button></div>';
   h+='<div class="row"><button class="tab" data-a="filter" data-v="activos"'+(S.filter==='activos'?' aria-current="page"':'')+'>Activos ('+all.filter(function(p){return p.active;}).length+')</button><button class="tab" data-a="filter" data-v="egresados"'+(S.filter==='egresados'?' aria-current="page"':'')+'>Egresados ('+all.filter(function(p){return !p.active;}).length+')</button></div>';
   if(S.censo&&S.censo.sid===s.id)h+=censoPanel(list);
   if(S.newPatient)h+=patientForm();
@@ -1171,6 +1184,7 @@ function secSummary(p,k){
 function secName(k){var r=SECS.filter(function(s){return s[0]===k;})[0];return r?r[1]:k;}
 function secHtml(p,k){
   if(k==='res')return viewResumen(p);
+  if(k==='hosp')return hospPrev(p);
   if(k==='cron')return viewCron(p);
   if(k==='plan')return planSection(p);
   if(k==='hx')return viewHx(p);
@@ -1183,7 +1197,10 @@ function secHtml(p,k){
   if(k==='upd')return updCard(p);
   if(k==='lab')return trendsCards(p)+sepCard(p,'lab','Paraclínicos','Laboratorios y otros resultados. Cada resultado queda por fecha, aparte de la cronología.');
   if(k==='img')return sepCard(p,'img','Imágenes y lecturas','RX, TAC, RMN, ecografía… con imágenes (JPEG), la lectura oficial —o “No leída aún”—, la lectura de cada especialidad y tus hallazgos. Con sesión iniciada, las imágenes se guardan en tu cuenta y las ves en cualquier dispositivo; sin sesión quedan solo en este dispositivo.');
-  if(k==='ic')return sepCard(p,'interconsulta','Interconsultas','Preguntas a otros servicios y sus respuestas. Las pendientes también salen en Pendientes del turno.');
+  if(k==='ic'){
+    if(p.ctx==='amb')return sepCard(p,'interconsulta','Remisiones e interconsultas de consulta externa','Aquí van las remisiones e interconsultas pedidas desde la consulta externa.',function(e){return e.ctx==='amb';})+sepCard(p,'interconsulta','Interconsultas de estancias hospitalarias','Corresponden a las hospitalizaciones previas, no a consulta externa.',function(e){return e.ctx!=='amb';});
+    return sepCard(p,'interconsulta','Interconsultas','Preguntas a otros servicios y sus respuestas. Las pendientes también salen en Pendientes del turno.');
+  }
   if(k==='task'){
     var tasks=pTasks(p.id),po=pendOrders(p.id);
     var rs0=ordResults(p.id),dis=[];planEntries(p.id).forEach(function(pl){(pl.data.ord||[]).forEach(function(o){if(o.x&&!rs0[o.id])dis.push({o:o,pl:pl});});});
@@ -1194,8 +1211,14 @@ function secHtml(p,k){
   var es=pEntries(p.id).filter(function(e){var T=TYPES[e.type];return !(T&&(T.sep||T.own));});
   return '<div><h3>Cronología</h3></div><div class="tl">'+(es.length?es.map(entryCard).join(''):'<div class="empty">'+art('sleep')+'Aún no hay notas. Empieza con el ingreso.</div>')+'</div>';
 }
+function hospPrev(p){
+  var c=function(t){return pEntries(p.id).filter(function(e){return e.type===t;}).length;};
+  return '<div class="card"><h3>Hospitalización previa</h3><div class="small muted">Lo de las estancias hospitalarias de este paciente. No son visitas a consulta externa, por eso se resume aquí: abre cada parte para revisarla completa.</div><div class="row" style="margin-top:8px">'+
+    [['ingreso','Ingresos hospitalarios previos'],['evolucion','Evoluciones hospitalarias'],['plan','Planes hospitalarios'],['salida','Salidas y egresos']].map(function(x){var n=x[0]==='salida'?c('salida')+c('epicrisis'):c(x[0]);return '<button class="btn sm" data-a="goSec" data-k="'+x[0]+'">'+x[1]+' ('+n+')</button>';}).join('')+'</div></div>';
+}
 function typedSec(p,type,title,hint,o){
   o=o||{};
+  if(p&&p.ctx==='amb'){var AT={ingreso:'Ingresos hospitalarios previos',evolucion:'Evoluciones de la hospitalización',salida:'Salidas y egresos hospitalarios'};if(AT[type])title=AT[type];}
   var es=pEntries(p.id).filter(function(e){return e.type===type||(o.extra&&o.extra.indexOf(e.type)>=0);});
   var cap=S.smax||30,show=es.slice(0,cap);
   return '<div class="card" style="border-color:var(--c-'+type+')"><div class="row spread"><h3>'+title+(es.length?' ('+es.length+')':'')+'</h3><div class="row">'+(es.length>1?'<button class="btn sm ghost" data-a="openAll" data-o="1">Desplegar todo</button><button class="btn sm ghost" data-a="openAll" data-o="0">Contraer todo</button>':'')+'<button class="btn sm" style="--c:var(--c-'+type+')" data-a="newEntry" data-t="'+type+'">'+(o.add||'+ Agregar')+'</button></div></div>'+
@@ -1207,10 +1230,18 @@ function foldWrap(p,k,html){
     return '<div class="foldbar"><button class="fb" data-a="fold" data-k="'+k+'" aria-label="Mostrar"><span class="ar">▸</span><span class="nm">'+secName(k)+'</span><span class="sm">'+esc(secSummary(p,k))+'</span></button><button class="btn sm ghost" data-a="goSec" data-k="'+k+'" title="Abrir en página aparte" aria-label="Abrir aparte">↗</button></div>';
   return '<div class="foldtools"><button class="btn sm ghost" data-a="fold" data-k="'+k+'" title="Ocultar esta sección" aria-label="Ocultar">▴</button><button class="btn sm ghost" data-a="goSec" data-k="'+k+'" title="Abrir en página aparte" aria-label="Abrir aparte">↗</button></div>'+html;
 }
+var HOSPK=['ingreso','evolucion','plan','salida'];
+function hospCount(p){return pEntries(p.id).filter(function(e){return /^(ingreso|evolucion|epicrisis|salida|plan)$/.test(e.type);}).length;}
+function secsFor(p){
+  if(p.ctx!=='amb')return SECS;
+  var out=SECS.filter(function(s){return HOSPK.indexOf(s[0])<0||S.sec===s[0];}),i=out.map(function(s){return s[0];}).indexOf('ic');
+  out.splice(i<0?out.length:i,0,['hosp','Hospitalización previa']);
+  return out;
+}
 function subTabs(p){
-  var all=SECS.filter(function(s){var k=s[0];if(k==='triage')return p.ctx==='urg'||S.sec===k||secCount(p,k)>0;if(k==='consulta')return p.ctx==='amb'||S.sec===k||secCount(p,k)>0;return true;});
+  var all=secsFor(p).filter(function(s){var k=s[0];if(k==='triage')return p.ctx==='urg'||S.sec===k||secCount(p,k)>0;if(k==='consulta')return p.ctx==='amb'||S.sec===k||secCount(p,k)>0;return true;});
   return '<nav class="subtabs" aria-label="Secciones del paciente">'+all.map(function(s){
-    var n=s[0]==='res'||s[0]==='upd'||s[0]==='hx'?0:(s[0]==='ic'?openICs(p.id).length||secCount(p,'ic'):secCount(p,s[0]));
+    var n=s[0]==='res'||s[0]==='upd'||s[0]==='hx'?0:(s[0]==='hosp'?hospCount(p):s[0]==='ic'?openICs(p.id).length||secCount(p,'ic'):secCount(p,s[0]));
     return '<button class="st" data-a="goSec" data-k="'+s[0]+'"'+(S.sec===s[0]?' aria-current="page"':'')+'><span>'+s[1]+'</span>'+(n?'<span class="n">'+n+'</span>':'')+'</button>';
   }).join('')+'</nav>';
 }
@@ -1247,11 +1278,11 @@ function viewUrg(){
 function viewPatient(){
   var p=pat(S.patientId);if(!p){S.view='services';return viewServices();}
   var s=svc(p.serviceId);
-  var top='<div class="row spread"><button class="btn sm ghost" data-a="openService" data-id="'+p.serviceId+'">‹ '+esc(s?s.name:'Servicio')+'</button><span class="pill '+esc(p.sev)+'">'+esc(p.sev)+'</span></div>';
+  var top=whereBar(p,s);
   var tabs=subTabs(p);
   if(S.sec!=='res'){
     var slim='<div class="card slim"><div class="row"><span class="bed">Cama '+esc(p.bed||'—')+'</span><strong>'+esc(p.ini)+'</strong><span class="muted small">'+esc(p.age)+' a · '+esc(p.sex)+'</span><span class="small dxs">'+esc(cut(p.dx||'Sin diagnóstico',70))+'</span></div></div>';
-    var body=(S.editor?entryForm():'')+secHtml(p,S.sec);
+    var body=(S.editor?entryForm():'')+((p.ctx==='amb'&&HOSPK.indexOf(S.sec)>=0)?'<div class="note">Estás viendo la parte <strong>hospitalaria</strong> de este paciente (estancias previas). <button class="btn sm" data-a="goSec" data-k="consulta">Volver a sus consultas externas</button></div>':'')+secHtml(p,S.sec);
     return top+slim+tabs+'<div class="solo">'+body+'</div>';
   }
   var h='<div class="card"><div class="row"><span class="bed">Cama '+esc(p.bed||'—')+'</span><h2>'+esc(p.ini)+'</h2><span class="muted small">'+esc(p.age)+' a · '+esc(p.sex)+(p.hc?' · HC …'+esc(p.hc):'')+'</span></div><div class="dx">'+esc(p.dx||'Sin diagnóstico')+'</div>'+ctxLine(p)+'<div class="row small muted"><span>Ingreso '+esc(p.adm)+'</span><span>·</span><span>'+(p.active?'Día '+hd(p):'Egresó, '+hd(p)+' días')+'</span></div>'+
@@ -1264,8 +1295,18 @@ function viewPatient(){
   return top+tabs+'<div class="solo">'+h+'</div>';
 }
 
-function sepCard(p,type,title,hint){
-  var es=pEntries(p.id).filter(function(e){return e.type===type;});
+function whereBar(p,s){
+  var amb=p.ctx==='amb',urg=p.ctx==='urg',tr;
+  if(amb)tr='<span class="sep">›</span><b>Paciente '+esc(p.ini)+'</b>';
+  else if(urg)tr='<span class="sep">›</span><button class="btn sm ghost" data-a="nav" data-v="urg">Urgencias</button><span class="sep">›</span><b>'+esc(p.ini)+'</b>';
+  else tr='<span class="sep">›</span><button class="btn sm ghost" data-a="openService" data-id="'+p.serviceId+'" data-f="'+(p.active?'activos':'egresados')+'">'+esc(s?s.name:'Servicio')+(p.active?'':' · egresados')+'</button><span class="sep">›</span><b>'+(p.bed?'Cama '+esc(p.bed)+' · ':'')+esc(p.ini)+'</b>';
+  return '<div class="where'+(amb?' amb':'')+'" role="navigation" aria-label="Dónde estás"><button class="btn sm ghost" data-a="'+(amb?'toArea':urg?'nav':'openService')+'"'+(amb?' data-v="amb"':urg?' data-v="urg"':' data-id="'+p.serviceId+'" data-f="'+(p.active?'activos':'egresados')+'"')+' aria-label="Volver">‹</button><button class="btn sm ghost'+(!amb?' on':'')+'" data-a="toArea" data-v="hosp">Hospitalización</button><button class="btn sm ghost'+(amb?' on':'')+'" data-a="toArea" data-v="amb">Consulta externa</button>'+tr+'<span class="pill '+esc(p.sev)+'" style="margin-left:auto">'+esc(p.sev)+'</span></div>';
+}
+function areaBar(cur,name){
+  return '<div class="where'+(cur==='amb'?' amb':'')+'" role="navigation" aria-label="Dónde estás"><button class="btn sm ghost'+(cur!=='amb'?' on':'')+'" data-a="toArea" data-v="hosp">Hospitalización</button><button class="btn sm ghost'+(cur==='amb'?' on':'')+'" data-a="toArea" data-v="amb">Consulta externa</button>'+(name?'<span class="sep">›</span><b>'+esc(name)+'</b>':'')+'</div>';
+}
+function sepCard(p,type,title,hint,flt){
+  var es=pEntries(p.id).filter(function(e){return e.type===type&&(!flt||flt(e));});
   return '<div class="card" style="border-color:var(--c-'+type+')"><div class="row spread"><h3>'+title+(es.length?' ('+es.length+')':'')+'</h3><div class="row">'+(es.length>1?'<button class="btn sm ghost" data-a="openAll" data-o="1">Desplegar todo</button><button class="btn sm ghost" data-a="openAll" data-o="0">Contraer todo</button>':'')+(es.length?'<button class="btn sm ghost" data-a="cleanNoise" data-t="'+type+'" title="Quitar consentimientos y datos administrativos">Limpiar</button>':'')+'<button class="btn sm" style="--c:var(--c-'+type+')" data-a="newEntry" data-t="'+type+'">+ Agregar</button></div></div>'+
     (es.length?es.map(entryRow).join(''):'<div class="small muted">'+hint+'</div>')+'</div>';
 }
@@ -1525,7 +1566,7 @@ function saveEntry(){
   var imp=ed.type==='img'?imgPlan():null;
   var at=fromLocal(val('e_at'));
   var saved=null;
-  if(ed.entryId){var e=db.entries.filter(function(x){return x.id===ed.entryId;})[0];e.at=at;e.data=data;saved=e;}
+  if(ed.entryId){var e=db.entries.filter(function(x){return x.id===ed.entryId;})[0];if(!(e.at&&toLocal(e.at)===val('e_at')))e.at=at;e.data=data;saved=e;}
   else{var ne={id:uid(),patientId:S.patientId,type:ed.type,at:at,data:data,ctx:ctxOf(ed.type,pat(S.patientId))};if(ed.type==='interconsulta')ne.status='pendiente';db.entries.push(ne);saved=ne;
     if(ed.type==='salida'){var p=pat(S.patientId);p.active=false;p.exitAt=at;}}
   if(saved)ensurePlan(saved);
@@ -1535,7 +1576,7 @@ function saveEntry(){
     if(data.cama)pp.bed=data.cama;
   }
   if(ed.type==='plan')S.sec='plan';
-  save();S.editor=null;S.warned=false;render();toast('Guardado.'+((saved&&saved.type==='evolucion'||saved&&saved.type==='ingreso')&&planOf(saved)?' El plan pasó a la sección Plan'+(planOf(saved).data.ord&&planOf(saved).data.ord.length?' y lo solicitado a Pendientes.':'.'):''));
+  var wasEdit=!!ed.entryId;save();S.editor=null;S.warned=false;render();toast(wasEdit?'Corrección guardada en su lugar.':'Guardado.'+((saved&&saved.type==='evolucion'||saved&&saved.type==='ingreso')&&planOf(saved)?' El plan pasó a la sección Plan'+(planOf(saved).data.ord&&planOf(saved).data.ord.length?' y lo solicitado a Pendientes.':'.'):''));
   if(imp)imgCommit(imp);
 }
 function copyText(txt,srcId){
@@ -2174,6 +2215,31 @@ function parseIcReq(body){
 }
 function salTipo(dest){var n=norm2(dest||'');if(/FALLEC|MUERT|DEFUNC/.test(n))return 'Fallecimiento';if(/VOLUNTAR/.test(n))return 'Alta voluntaria';if(/REMIT/.test(n))return 'Remisión';if(/TRASLAD/.test(n))return 'Traslado';return 'Alta';}
 function coSpec(ls){var k=0,i,m,c;for(i=0;i<(ls||[]).length&&k<14;i++){var t=String(ls[i]).trim();if(!t)continue;k++;if((m=/^CONSULTA DE ([A-Z ]{4,40}?)(?:\s*[-–].*)?$/.exec(norm2(t)))&&(c=servCanon(m[1])))return c;}return '';}
+/* v51: folio de evolucion que en realidad es el INGRESO al servicio de UCI ("DIAGNOSTICO DE INGRESO A UCI") */
+function husUci(ls){
+  var i,n,hd=-1;
+  for(i=0;i<ls.length&&i<60;i++){n=norm2(ls[i]).replace(/\s*:\s*$/,'');if(/^DIAGNOSTICO DE INGRESO A UCI/.test(n)||/^INGRESO A UCI\b/.test(n)){hd=i;break;}}
+  if(hd<0)return null;
+  var SEC={res:/^RESUMEN DE LA HISTORIA/,ant:/^ANTECEDENTES\b/,ef:/^EXAMEN FISICO/,rs:/^REVISION POR SISTEMAS/,an:/^ANALISIS\b/,pl:/^(PLAN|CONDUCTA)\b/,dx:/^PACIENTE DE .* CON DIAGNOSTICO/,tend:/^TENDENCIAS/},cur='dx',B={dx:[],res:[],ant:[],ef:[],rs:[],an:[],pl:[],tend:[]};
+  for(i=hd+1;i<ls.length;i++){
+    var t=String(ls[i]).trim();if(!t)continue;n=norm2(t).replace(/\s*:\s*$/,'');
+    if(EV_END.test(n))break;
+    var hit=null;Object.keys(SEC).forEach(function(k){if(!hit&&SEC[k].test(n))hit=k;});
+    if(hit){cur=hit;if(hit==='dx'||hit==='ant'&&n.length>14)B[cur].push(t);continue;}
+    if(/^(INGRESO A UCI|DR |DRA |ESPECIALISTA)/.test(n)&&cur==='dx'&&B.dx.length===0)continue;
+    B[cur].push(t);
+  }
+  var res=unwrapL(B.res,false).map(fixCase).join(' ').replace(/\s+/g,' ').trim(),from='',m;
+  if((m=/(?:CONSULTA A|REMIT\w*\s+(?:DE|DESDE)|PROVIENE DE)\s+((?:HOSPITAL|CLINICA|E\.?S\.?E\.?|CENTRO)[A-ZÁÉÍÓÚÑa-záéíóúñ .]{3,40}?)(?=\s+(?:LA |EL |POR |CON |PARA |DONDE|,|\.)|[,.]|$)/i.exec(res)))from=tcase(m[1]);
+  var d={motivo:'Ingreso a UCI'+(from?'. Remitido desde '+from:'')};
+  if(res)d.ea=res;
+  var dx=unwrapL(B.dx,false).map(fixCase).filter(Boolean);if(dx.length)d.imp=dx.join('\n');
+  var ant=B.ant.map(fixCase).join('\n').trim();if(ant)d.ant=ant;
+  var ef=B.ef.map(fixCase).join('\n').trim();if(ef)d.ef=ef;
+  var an=unwrapL(B.an,false).map(fixCase).join('\n').trim();if(an)d.imp=(d.imp?d.imp+'\n\n':'')+'Análisis:\n'+an;
+  var pl=B.pl.map(fixCase).join('\n').trim();if(pl)d.plan=pl;
+  return Object.keys(d).length>1?d:null;
+}
 function ambSv(sub){return servCanon(sub)||capFix(sentence(sub));}
 function husCons(ls){
   var B={m:[],ea:[],ros:[],ant:[],vit:[],ef:[],a:[],p:[],dx:[],ord:[]},sec='pre',i,t,n,m,d={};
@@ -2267,12 +2333,13 @@ function ssItems(txt){
     seg.split(/\s*[,;]\s*|\s+y\s+(?=[a-záéíóúñ])/i).forEach(function(it){
       it=it.replace(/\s+con resultados?$/i,'').trim();
       if(it.length<3||it.length>90||/^(valoraci|control|cita|interconsulta|paciente|el |la |se |en |con |para )/i.test(it))return;
-      if(/^junta\b/i.test(it)){var m2=/\bde\s+([a-záéíóúñ]+)/i.exec(it);put('proc',capFix('Junta '+(m2?'de '+m2[1].toLowerCase():'médica')));return;}
+      if(/^junta\b/i.test(it))return;
       put(IMGRX.test(norm2(it))?'img':'lab',nice(it));
     });
   }
-  var rj=/(?:^|[.\n]\s*|se (?:cita|env[ií]a|remite|presenta) (?:a |para )?)junta (?:de|con|m[eé]dica)\s*([a-záéíóúñ]{0,25})/gi;
-  while((m=rj.exec(txt))){var sp=(m[1]||'').trim();put('proc',capFix('Junta '+(sp&&!/^(con|resultados)$/i.test(sp)?'de '+sp.toLowerCase():'médica')));}
+  var rj=/(?:^|[.\n;]\s*|(?:ss|se (?:cita|env[ií]a|remite|presenta|solicita)n?)\s+(?:a |para |en |una )?)junta\b(?:\s+(?:de|del)\s+([a-záéíóúñ]{4,25}))?/gim,gen=0,spc={};
+  while((m=rj.exec(txt))){var sp=(m[1]||'').trim().toLowerCase();if(sp&&!/^(propuesta|resultados?|manejo|cirugia|cirug[ií]a|decision|decisi[oó]n|casos?|especialistas?)$/.test(sp)){if(!spc[sp]){spc[sp]=1;put('proc',capFix('Junta de '+sp));}}else gen=1;}
+  if(gen&&!Object.keys(spc).length)put('proc','Junta médica');
   return out;
 }
 function ssMerge(d,fields){
@@ -2301,7 +2368,7 @@ function husKind(title){
   if(/^EVOLUCION/.test(n))return 'ev';
   if(/INTERCONSULTA/.test(n)&&/^(RESPUESTA|NOTA)/.test(n))return 'ic';
   if(/^CONSULTA (EXTERNA|PREANESTESICA)/.test(n))return 'ev';
-  if(/^(CONSULTA URGENCIAS|INGRESO A HOSPITALIZACION)/.test(n))return 'in';
+  if(/^(CONSULTA URGENCIAS|INGRESO A HOSPITALIZACION|INGRESO UCI)/.test(n))return 'in';
   if(/^EGRESO HOSPITALARIO MEDICO/.test(n))return 'eg';
   if(/^SOLICITUD DE PROCEDIMIENTOS/.test(n))return 'so';
   if(/^NOTA DESCRIPCION PROCEDIMIENTOS/.test(n))return 'np';
@@ -2653,13 +2720,14 @@ function analyzeHus(pages){
     if(pg.at)ctx.last=pg.at;
     cur={key:key,title:pg.title,sub:pg.sub,at:pg.at||ctx.last,est:!pg.at,body:pg.body.slice()};recs.push(cur);
   });
-  var items=[],hx={},firstIn=null,sex='',dxLine='',seenX={},hospSeen=0,coSeen=0,f0=0;
+  var huc,items=[],hx={},firstIn=null,sex='',dxLine='',seenX={},hospSeen=0,coSeen=0,f0=0;
   recs.forEach(function(r){
     var k=husKind(r.title);
     if(!k){skipped++;return;}
     var ls=husLines(r.body,c,nameSet),at=r.at||(/^\d{4}-\d{2}-\d{2}/.test(meta.adm||'')?new Date(meta.adm.slice(0,10)+'T12:00:00').toISOString():new Date().toISOString()),it=null,d,title=sentence(r.title),hPara='';
     if(!sex){var sm=/\bPACIENTE\s+(FEMENINA|MASCULINO)\b/i.exec(ls.join(' '));if(sm)sex=/^f/i.test(sm[1])?'F':'M';}
     if(k==='ev'&&/^CONSULTA (EXTERNA|PREANESTESICA)/.test(norm2(r.title))){coSeen=1;var hco=husCons(ls);if(hco.have)it={k:'co',at:at,data:hco.d,v:2,ctx:'amb',sub:'Consulta externa'};}
+    else if(k==='in'&&/^INGRESO UCI/.test(norm2(r.title))&&(huc=husUci(ls))){hospSeen=1;ssMerge(huc,['plan','ea']);if(!firstIn||at<firstIn.at)firstIn={at:at,hx:{motivo:huc.motivo,ea:huc.ea,ant:huc.ant,ef:huc.ef,dx:huc.imp,plan:huc.plan}};it={k:'in',at:at,data:huc,v:2,sub:'UCI',uci:1};}
     else if(k==='ev'||k==='eg'){
       hospSeen=1;var he=husEv(ls,k);ssMerge(he.d,['s','a','p']);if(Object.keys(he.d).length)it={k:'ev',at:at,data:he.d,ext:he.ext,v:2,sub:/^CONSULTA/i.test(r.title)?'Consulta externa':''};
       if(k==='eg'){var dst=(he.ext&&he.ext.dest)||'';items.push({k:'sa',at:at,v:2,data:{tipo:salTipo(dst),dest:dst},svc:'Egreso médico',by:husWho(ls,r.body)});}
@@ -2688,7 +2756,7 @@ function analyzeHus(pages){
       if(Object.keys(d).length)it={k:'in',at:at,data:d,sub:r.sub?sentence(r.sub):title};
     }
     else{var txt=ls.join('\n').trim();if(txt.length>15)it={k:'nt',at:at,data:{txt:title+'\n'+txt},sub:title};}
-    if(it){if(!it.v)Object.keys(it.data).forEach(function(q){if(typeof it.data[q]==='string')it.data[q]=cleanEmpty(cleanTpl(it.data[q]));});it.svc=(it.k==='ic'&&it.data.serv)?'Interconsulta · '+it.data.serv:husRole(r.title,r.sub);if(it.k==='co'&&it.svc==='Consulta externa'){var csp=coSpec(ls);if(csp)it.svc='Consulta externa · '+csp;}it.by=husWho(ls,r.body);if(!it.v)tidyObj(it.data);if(r.est)it.est=1;items.push(it);}
+    if(it){if(!it.v)Object.keys(it.data).forEach(function(q){if(typeof it.data[q]==='string')it.data[q]=cleanEmpty(cleanTpl(it.data[q]));});it.svc=(it.k==='ic'&&it.data.serv)?'Interconsulta · '+it.data.serv:it.uci?'Ingreso a UCI':husRole(r.title,r.sub);if(it.k==='co'&&it.svc==='Consulta externa'){var csp=coSpec(ls);if(csp)it.svc='Consulta externa · '+csp;}it.by=husWho(ls,r.body);if(!it.v)tidyObj(it.data);if(r.est)it.est=1;items.push(it);}
     if(k!=='so'&&k!=='np'&&(k!=='nt'||/PROCEDIMIENTO|JUNTA|ACLARATORIA/i.test(r.title)))husExtract(k==='eg'?unwrapL(ls,false):ls,at,items,seenX);
     if(hPara.replace(/\s/g,'').length>8)items.push({k:'lab',at:at,data:{est:'Paraclínicos del ingreso (de otra institución) · '+at.slice(0,10).split('-').reverse().join('/'),res:labAbbr(hPara.trim())}});
   });
@@ -2710,6 +2778,9 @@ function analyzeHus(pages){
     if(q){q.taken=1;x.data.serv=q.data.serv;x.svc='Interconsulta · '+q.data.serv;if(q.data.preg&&!x.data.preg)x.data.preg=q.data.preg;q.drop=1;q.pend=0;}
   });
   items=items.filter(function(i){return !i.drop;});
+  /* v51: interconsultas/remisiones pedidas el mismo dia de una consulta externa (sin actividad hospitalaria ese dia) son de consulta externa */
+  var coDays={},hoDays={};items.forEach(function(i){var d=i.at.slice(0,10);if(i.k==='co')coDays[d]=1;else if(/^(ev|in|sa)$/.test(i.k))hoDays[d]=1;});
+  items.forEach(function(i){if(i.k==='ic'){var d=i.at.slice(0,10);if(coDays[d]&&!hoDays[d])i.ctx='amb';}});
   /* egreso: si el último evento hospitalario es una salida, el paciente queda egresado */
   var exit=null,sas=items.filter(function(i){return i.k==='sa';}).sort(function(a,b){return a.at<b.at?1:-1;})[0];
   if(sas&&!items.some(function(i){return /^(ev|in|ic|pl)$/.test(i.k)&&i!==sas&&!i.pend&&i.at.slice(0,10)>sas.at.slice(0,10);}))exit={at:sas.at,tipo:sas.data.tipo,dest:sas.data.dest};
@@ -2859,6 +2930,20 @@ function problemList(p){
   }
   return out;
 }
+function fmtD(iso){var d=new Date(iso);return isNaN(d)?'':String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear();}
+function problemListD(p){
+  var es=pEntries(p.id),cons=es.filter(function(e){return e.type==='consulta'&&e.data&&e.data.dx&&!/preanest/i.test(e.svc||'');})[0],le=lastEv(p.id),src=null,lines=[];
+  if(p.ctx==='amb'&&cons){src=cons;lines=cons.data.dx.split('\n');}
+  else if(le&&le.data.dx){src=le;lines=le.data.dx.split('\n');}
+  else if(le&&le.data.a){var m=/Diagnósticos \(CIE-10\):\n((?:- [^\n]+\n?)+)/.exec(le.data.a);if(m){src=le;lines=m[1].split('\n');}}
+  if(!src&&cons){src=cons;lines=cons.data.dx.split('\n');}
+  var asc=es.filter(function(e){return /^(evolucion|ingreso|consulta|epicrisis)$/.test(e.type);}).slice().sort(function(a,b){return a.at<b.at?-1:1;});
+  return lines.map(function(l){return l.replace(/^- /,'').trim();}).filter(Boolean).map(function(l){
+    var cm=/^([A-Z]\d{2,3}[A-Z0-9]?)\b/.exec(l),at=src.at;
+    if(cm){var f=asc.filter(function(e){return JSON.stringify(e.data||{}).indexOf(cm[1])>=0;})[0];if(f)at=f.at;}
+    return {t:l,at:at};
+  });
+}
 function hitos(p){
   var out=[];
   pEntries(p.id).forEach(function(e){
@@ -2878,36 +2963,37 @@ function viewResumen(p){
   var dates=es.filter(function(e){return !e.est;}).map(function(e){return e.at;}).sort();
   if(!es.length&&!Object.keys(p.hx||{}).length)
     return '<div class="card"><h3>Resumen</h3><div class="small muted">Aún no hay información. Dos caminos: abre <strong>Importar PDF</strong> y suelta la historia clínica, o agrega el <strong>Ingreso</strong> a mano.</div><div class="row"><button class="btn primary" data-a="goSec" data-k="upd">Importar PDF</button><button class="btn" data-a="goSec" data-k="ingreso">Ir a Ingreso</button></div></div>';
-  /* estado actual */
-  h+='<div class="card rs"><h3>Estado actual</h3>';
-  var lc=es.filter(function(e){return e.type==='evolucion'||e.type==='epicrisis'||e.type==='ingreso'||e.type==='consulta';})[0];
-  if(lc){
+  /* estado actual / al egreso / ultima consulta (v51) */
+  var amb=p.ctx==='amb',egr=!p.active&&!amb;
+  function estCard(title,lead,lc,more){
     var dd=lc.data,KN={evolucion:'Evolución',epicrisis:'Egreso hospitalario',ingreso:'Ingreso',consulta:'Consulta externa'},rows=[];
     if(lc.type==='evolucion'){rows=[['Análisis',dd.a||dd.s],['Plan',dd.p]];}
     else if(lc.type==='epicrisis'){rows=[['Resumen',dd.res],['Condición al egreso',dd.cond],['Indicaciones',dd.ind]];}
     else if(lc.type==='consulta')rows=[['Motivo',dd.motivo],['Diagnósticos',dd.dx],['Plan',dd.plan]];
     else rows=[['Motivo',dd.motivo],['Impresión',dd.imp],['Plan',dd.plan]];
-    h+='<div class="small muted">Último registro clínico: <strong>'+KN[lc.type]+', '+esc(dlong(lc.at))+'</strong>'+(lc.est?' (fecha aproximada)':'')+'. Hace '+Math.max(0,Math.round((Date.now()-new Date(lc.at))/864e5))+' días.'+(le&&le.id!==lc.id?' La última evolución médica es del '+esc(dlong(le.at))+'.':'')+'</div>';
-    h+='<dl>'+rows.filter(function(r){return r[1];}).map(function(r){return '<dt>'+r[0]+'</dt><dd>'+rich(cut(r[1],900))+'</dd>';}).join('')+'</dl><button class="btn sm" data-a="goFolio" data-id="'+lc.id+'">Ver el folio completo</button>';
-  }else h+='<div class="small muted">No hay evoluciones guardadas todavía.</div>';
-  h+='</div>';
+    return '<div class="card rs"><h3>'+title+'</h3><div class="small muted">'+lead+' <strong>'+KN[lc.type]+(lc.svc?' · '+esc(lc.svc):'')+', '+esc(dlong(lc.at))+'</strong>'+(lc.est?' (fecha aproximada)':'')+'. Hace '+Math.max(0,Math.round((Date.now()-new Date(lc.at))/864e5))+' días.'+(more||'')+'</div>'+
+      '<dl>'+rows.filter(function(r){return r[1];}).map(function(r){return '<dt>'+r[0]+'</dt><dd>'+rich(cut(r[1],900))+'</dd>';}).join('')+'</dl><button class="btn sm" data-a="goFolio" data-id="'+lc.id+'">Ver el folio completo</button></div>';
+  }
+  var HK=/^(evolucion|epicrisis|ingreso)$/;
+  if(amb){
+    var lcc=es.filter(function(e){return e.type==='consulta'&&!/preanest/i.test(e.svc||'');})[0]||es.filter(function(e){return e.type==='consulta';})[0];
+    h+=lcc?estCard('Última consulta externa','Último registro:',lcc,''):'<div class="card rs"><h3>Última consulta externa</h3><div class="small muted">Aún no hay consultas externas guardadas.</div></div>';
+    var lch=es.filter(function(e){return HK.test(e.type);})[0];
+    if(lch)h+=estCard('Estado al egreso de la última hospitalización','Último registro hospitalario:',lch,' Es del pasado: no es el estado actual.');
+  }else{
+    var lc=es.filter(function(e){return e.type==='evolucion'||e.type==='epicrisis'||e.type==='ingreso'||e.type==='consulta';})[0];
+    if(lc)h+=estCard(egr?'Estado del paciente al egreso':'Estado actual',egr?'Último registro clínico antes del egreso:':'Último registro clínico:',lc,(le&&le.id!==lc.id?' La última evolución médica es del '+esc(dlong(le.at))+'.':''));
+    else h+='<div class="card rs"><h3>'+(egr?'Estado del paciente al egreso':'Estado actual')+'</h3><div class="small muted">No hay evoluciones guardadas todavía.</div></div>';
+  }
   /* historia del ultimo ingreso (antes seccion Historia) */
   var hxn=HXF.filter(function(f){return (p.hx||{})[f[0]];}).length;
-  h+='<details class="addf hxd" id="hxcard" style="grid-column:1/-1"'+((S.hxEdit||S.hxOpen)?' open':'')+'><summary class="btn sm">Historia del último ingreso'+(hxn?' · '+hxn+(hxn===1?' sección':' secciones'):' · vacía')+'</summary>'+viewHx(p)+'</details>';
-  /* lectura rápida */
-  var rd=[];
-  var PL={consulta:['consulta externa','consultas externas'],triage:['triage','triages'],traslado:['paso a hospitalización','pasos a hospitalización'],evolucion:['evolución','evoluciones'],ingreso:['ingreso','ingresos'],interconsulta:['interconsulta','interconsultas'],lab:['paraclínico','paraclínicos'],img:['imagen','imágenes'],epicrisis:['epicrisis','epicrisis'],nota:['nota aclaratoria','notas aclaratorias'],plan:['plan','planes'],salida:['salida','salidas']},parts=[];
-  Object.keys(PL).forEach(function(t){if(cnt[t])parts.push(cnt[t]+' '+PL[t][cnt[t]===1?0:1]);});
-  if(parts.length)rd.push('Contenido: '+parts.join(', ')+(dates.length?'. Registros fechados entre '+dlong(dates[0])+' y '+dlong(dates[dates.length-1])+'.':'.'));
+  h+='<details class="addf hxd" id="hxcard" style="grid-column:1/-1"'+((S.hxEdit||S.hxOpen)?' open':'')+'><summary class="btn sm">'+(amb?'Historia de la última hospitalización':'Historia del último ingreso')+(hxn?' · '+hxn+(hxn===1?' sección':' secciones'):' · vacía')+'</summary>'+viewHx(p)+'</details>';
   var trs=TRENDS.map(function(T){return trendRow(p,T);}).filter(Boolean);
-  trs.forEach(function(t){rd.push(t.txt+'.');});
-  if(ics.length)rd.push(ics.length+' interconsulta'+(ics.length===1?'':'s')+' sin respuesta marcada.');
   var nest=es.filter(function(e){return e.est;}).length;
-  if(nest)rd.push(nest+' registro'+(nest===1?'':'s')+' sin fecha clara en el PDF (marcados con ~): la fecha es aproximada.');
-  h+='<div class="card"><h3>Lectura rápida</h3><ul class="li2">'+rd.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul><div class="small muted">Lectura automática del texto del PDF: confírmala siempre con la historia original.</div></div>';
+  if(nest)h+='<div class="note" style="grid-column:1/-1">'+nest+' registro'+(nest===1?'':'s')+' sin fecha clara en el PDF (marcados con ~): la fecha es aproximada. Confirma siempre con la historia original.</div>';
   /* problemas */
-  var pr=problemList(p);
-  if(pr.length||p.dx)h+='<div class="card"><h3>Lista de problemas</h3>'+(pr.length?'<ul class="li2">'+pr.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul><div class="small muted">Tomada del último análisis médico (CIE-10).</div>':'<div>'+esc(p.dx)+'</div>')+'</div>';
+  var pr=problemListD(p);
+  if(pr.length||p.dx)h+='<div class="card"><h3>Lista de problemas</h3>'+(pr.length?'<ul class="li2">'+pr.map(function(x){return '<li>'+(x.at?'<span class="pdt">'+esc(fmtD(x.at))+'</span>':'')+esc(x.t)+'</li>';}).join('')+'</ul><div class="small muted">Tomada del último análisis médico o consulta (CIE-10). La fecha es la del primer registro donde aparece.</div>':'<div>'+esc(p.dx)+'</div>')+'</div>';
   /* tendencias */
   if(trs.length)h+='<div class="card"><h3>Tendencias de laboratorio</h3><div class="trs">'+trs.map(function(t){return t.html;}).join('')+'</div><div class="row"><button class="btn sm" data-a="goSec" data-k="lab">Ver gráficas grandes en Paraclínicos</button></div><div class="small muted">Se toman de la sección Paraclínicos. mg/dL son miligramos por decilitro (1 dL = 100 mL de sangre); g/dL, gramos por decilitro; ×10³/µL, miles de células por microlitro.</div></div>';
   /* hitos */
@@ -2917,10 +3003,10 @@ function viewResumen(p){
   var im=ofType(p,'img')[0];
   if(im)h+='<div class="card"><h3>Última imagen o estudio</h3><div class="small muted">'+esc(im.data.est||'')+'</div><div>'+(im.data.lecNo?'<span class="pill vigilar">No leída aún</span>':rich(cut(im.data.lec||'',500)))+'</div>'+imgRdSummary(im)+'<button class="btn sm" data-a="goSec" data-k="img">Ver imágenes ('+cnt.img+')</button></div>';
   var po=pendOrders(p.id);
-  if(po.length)h+='<div class="card"><h3>Pendiente de resultado ('+po.length+')</h3>'+po.slice(0,8).map(function(x){return ordRow(x.o,x.pl,null);}).join('')+'<button class="btn sm" data-a="goSec" data-k="task">Ir a Pendientes</button></div>';
+  if(po.length)h+='<div class="card"><h3>'+(p.active?'Pendiente de resultado':'No documentado al egreso')+' ('+po.length+')</h3>'+(p.active?'':'<div class="small muted">Se pidió durante la hospitalización y no quedó el resultado documentado. Si lo tienes, regístralo ahora.</div>')+po.slice(0,8).map(function(x){return ordRow(x.o,x.pl,null);}).join('')+'<button class="btn sm" data-a="goSec" data-k="task">Ir a Pendientes</button></div>';
   /* antecedentes y pendientes */
   if(p.hx&&p.hx.ant)h+='<div class="card"><h3>Antecedentes</h3><div>'+rich(cut(p.hx.ant,600))+'</div><button class="btn sm" data-a="goSec" data-k="hx">Ver historia</button></div>';
-  if(tasksOpen.length||ics.length)h+='<div class="card"><h3>Pendientes</h3>'+tasksOpen.map(taskRow).join('')+ics.map(function(e){return '<div class="task"><span class="chip" style="--c:var(--c-interconsulta)">IC</span><span class="t">'+esc(e.data.serv||'Interconsulta')+'</span></div>';}).join('')+'</div>';
+  if(tasksOpen.length||ics.length)h+='<div class="card"><h3>'+(p.active?'Pendientes':'No documentado al egreso')+'</h3>'+(p.active?'':'<div class="small muted">Quedó pendiente y no se documentó antes del egreso.</div>')+tasksOpen.map(taskRow).join('')+ics.map(function(e){return '<div class="task"><span class="chip" style="--c:var(--c-interconsulta)">IC</span><span class="t">'+esc(e.data.serv||'Interconsulta')+'</span></div>';}).join('')+'</div>';
   return '<div class="cols rsg">'+h+'</div>';
 }
 /* Cronología navegable */
@@ -3008,7 +3094,7 @@ var TOUR=[
  {s:'#tabs',t:'Las cuatro pestañas',x:'Servicios: tus rotaciones y sus pacientes. Pendientes: lo que falta, de todos tus pacientes juntos. Entrega: texto listo para la entrega de turno. Cuenta: tu sesión, la sincronización y el respaldo de tus datos.'},
  {s:'.pcard',t:'Servicios',x:'Cada rotación es un servicio (Urología, Cirugía pediátrica…). Toca uno para ver sus pacientes; abajo puedes crear servicios nuevos.'},
  {t:'Agregar un paciente',x:'Dentro de un servicio toca “+ Paciente”. Escribe solo iniciales, edad y cama (nunca nombre ni cédula), o suelta el PDF de la historia clínica del hospital y Limonapp la organiza sola.'},
- {t:'Primera pantalla: el Resumen',x:'Al abrir un paciente ves el Resumen: estado actual, historia del último ingreso, lectura rápida, lista de problemas, tendencias de laboratorio, hitos y pendientes. Es una lectura automática; verifícala siempre con la historia original.'},
+ {t:'Primera pantalla: el Resumen',x:'Al abrir un paciente ves el Resumen: estado actual, historia del último ingreso, lista de problemas, tendencias de laboratorio, hitos y pendientes. Es una lectura automática; verifícala siempre con la historia original.'},
  {t:'Las demás secciones',x:'Ingreso, Evoluciones, Plan, Interconsultas, Paraclínicos, Imágenes y Pendientes: cada uno en su sección. Notas aclaratorias: corrigen o agregan algo a un folio ya emitido, anclado a ese folio. Cronología: todo en orden de fecha, con filtros y buscador. Importar PDF: suma documentos nuevos sin borrar nada.'},
  {t:'Cómo se leen las fechas',x:'Cada registro usa la fecha en que se hizo, nunca la de impresión del PDF. Si la app no logra leerla, la marca con “~” para que la revises.'},
  {s:'#tourBtn',t:'Tutorial, tema, 8-bit y alemán',x:'El botón “Tutorial” vuelve a abrir esta guía cuando quieras. Junto a él puedes quitar o poner el estilo 8-bit, cambiar entre tema oscuro y claro, y mostrar o no los textos en alemán.'},
@@ -3210,7 +3296,7 @@ var HELP=[
  {t:'El PDF no se lee o no reconoce nada',kw:['no lee','no reconoce','escaneado','foto','vacio','no funciona pdf','error pdf','no detecta','sin texto'],a:'La app solo lee PDF con texto (los que genera el software del hospital). Un escaneo o una foto no trae texto y no se puede leer. Si el PDF sí tiene texto y no reconoce nada, en “Importar PDF” del paciente elige el tipo de documento en la lista en vez de “Detectar solo”. Si sigue fallando, cuéntaselo a quien administra la app.',go:[]},
  {t:'Paraclínicos o imágenes vacíos',kw:['paraclinicos','imagenes','laboratorios','lab vacio','no salen','vacios','examenes'],a:'Los resultados se extraen de las evoluciones y notas del PDF. Si faltan, abre al paciente → “Importar PDF” y vuelve a subir el archivo (suma lo que falte sin duplicar). También puedes agregarlos a mano en Paraclínicos o Imágenes con “+ Agregar”.',go:[['Ir a Importar PDF','sec:upd'],['Ir a Paraclínicos','sec:lab']]},
  {t:'Fechas con ~ o fechas equivocadas',kw:['fecha','fechas','~','impresion','dia','hora'],a:'La app usa la fecha de registro de cada documento, nunca la de impresión del PDF. Una “~” significa que el PDF no traía una fecha clara y la app la estimó. Abre la nota, toca Editar y corrige la fecha.',go:[]},
- {t:'Qué es el Resumen',kw:['resumen','estado actual','lectura rapida','problemas','tendencias','hitos'],a:'Es la primera pantalla de cada paciente: el último registro clínico, una lectura rápida del contenido, la lista de problemas (CIE-10), tendencias de laboratorio (creatinina, hemoglobina…), hitos y pendientes. Se calcula automáticamente del texto del PDF: confírmalo siempre con la historia original.',go:[['Ir al Resumen','sec:res']]},
+ {t:'Qué es el Resumen',kw:['resumen','estado actual','problemas','tendencias','hitos'],a:'Es la primera pantalla de cada paciente: el último registro clínico, la lista de problemas (CIE-10), tendencias de laboratorio (creatinina, hemoglobina…), hitos y pendientes. Se calcula automáticamente del texto del PDF: confírmalo siempre con la historia original.',go:[['Ir al Resumen','sec:res']]},
  {t:'Buscar o filtrar en la Cronología',kw:['cronologia','buscar','filtrar','filtro','encontrar','busqueda','nota antigua'],a:'La Cronología reúne todo lo del paciente en orden de fecha. Usa los botones por tipo (Evolución, Ingreso, Paraclínico…) y el buscador de arriba (por ejemplo “sonda” o “creatinina”). Los registros están agrupados por mes; toca uno para abrirlo.',go:[['Ir a Cronología','sec:cron']]},
  {t:'Perfil y equipo',kw:['perfil','foto','equipo','colegas','codigo','invitacion','en turno','turno','usuario','cargo','servicio'],a:'En la pestaña Equipo (con sesión iniciada) creas tu perfil: foto, nombre, nombre de usuario, cargo, servicio y si estás en turno. Tu especialidad o rango (Est., Int., Res., MG…) es obligatoria y va al comienzo de tu nombre. Puedes crear o unirte a varios equipos con su código y cambiar entre ellos; solo las personas de cada equipo ven tu perfil y el chat de ese equipo.',go:[['Ir a Equipo','nav:team']]},
  {t:'Enviar un paciente a un colega',kw:['enviar paciente','pasar paciente','compartir paciente','colega','historia completa','sincronizar paciente','compartido'],a:'Abre el paciente y toca “Enviar a un colega”. Le llega con su historia, notas, paraclínicos y pendientes (sin nombre ni cédula). Al aceptarlo elige en qué servicio lo quiere. Desde entonces, los cambios que cualquiera haga se ven en ambos, y en la lista aparece “Compartido · actualizado por…”. Si no quieres seguir recibiendo cambios, usa “Dejar de compartir conmigo”.'},
@@ -3658,7 +3744,7 @@ TOUR=[
  {s:'[data-a=newPatient]',pre:'service',t:'Agregar un paciente',x:'Dentro de un servicio toca “+ Paciente”. Escribe solo iniciales, edad y cama (nunca nombre ni cédula), o suelta el PDF de la historia clínica del hospital y Limonapp la organiza sola.'},
  {s:'.pcard[data-a=openPatient]',pre:'service',wait:'openPatient',t:'Abrir un paciente',x:'Toca un paciente para abrir su ficha. Si un colega te lo compartió, aquí verás la marca “Compartido” y cuándo fue actualizado.'},
  {s:'.subtabs',pre:'patient',sec:'res',t:'Las secciones del paciente',x:'Resumen, Ingreso, Evoluciones, Plan, Interconsultas, Paraclínicos, Imágenes, Pendientes, Notas aclaratorias, Salida, Cronología e Importar PDF. Se cambia de sección con estos botones.'},
- {s:'.subtabs [data-k=res]',pre:'patient',sec:'res',t:'Primera pantalla: el Resumen',x:'Estado actual, historia del último ingreso, lectura rápida, lista de problemas, tendencias de laboratorio, hitos y pendientes. Es una lectura automática; verifícala siempre con la historia original.'},
+ {s:'.subtabs [data-k=res]',pre:'patient',sec:'res',t:'Primera pantalla: el Resumen',x:'Estado actual, historia del último ingreso, lista de problemas, tendencias de laboratorio, hitos y pendientes. Es una lectura automática; verifícala siempre con la historia original.'},
  {s:'.subtabs [data-k=cron]',pre:'patient',sec:'res',wait:'goSec',t:'Cronología',x:'Toca “Cronología” (o Siguiente): todo lo del paciente en orden de fecha, con filtros por tipo y un buscador que resalta las coincidencias y te deja ir adelante y atrás.'},
  {s:'.subtabs [data-k=lab]',pre:'patient',sec:'cron',t:'Paraclínicos y tendencias',x:'En Paraclínicos guardas los resultados por fecha y, arriba, ves las gráficas grandes de tendencia con la fecha y el valor de cada punto.'},
  {s:'[data-a=ptSend]',pre:'patient',sec:'res',t:'Enviar y mover pacientes',x:'“Enviar a un colega” comparte el paciente con su historia, y los dos lo ven actualizado. “Mover de servicio” cambia solo dónde lo tienes tú.'},
@@ -4754,7 +4840,8 @@ var A={
  cronOrd:function(){S.cord=S.cord==='asc'?'desc':'asc';render();},
  cronOpen:function(el){A.goFolio(el);},
  addService:function(){var n=val('newSvc').trim();if(!n)return;db.services.push({id:uid(),name:n});save();render();toast('Servicio agregado.');},
- openService:function(el){go('service',{serviceId:el.dataset.id,filter:'activos'});},
+ openService:function(el){go('service',{serviceId:el.dataset.id,filter:el.dataset.f||'activos'});},
+ toArea:function(el){go('services',{area:el.dataset.v});},
  filter:function(el){S.filter=el.dataset.v;S.newPatient=false;S.imp=null;S.impP=null;render();},
  newPatient:function(){S.newPatient=!S.newPatient;if(!S.newPatient){S.imp=null;S.impP=null;}render();if(S.newPatient){var f=document.getElementById('f_ini');if(f)f.focus();}},
  cancelPatient:function(){S.newPatient=false;S.editPatient=false;S.imp=null;S.impP=null;render();},

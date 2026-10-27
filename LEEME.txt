@@ -1,6 +1,15 @@
-LIMONAPP v50 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+LIMONAPP v51 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
 
-QUE CAMBIA EN LA v50 (sobre la v49)
+QUE CAMBIA EN LA v51 (sobre la v50)
+- Letrero de ubicacion (Hospitalizacion / Consulta externa > servicio > paciente) arriba de cada paciente y de cada servicio; el boton ‹ vuelve a donde entraste (activos, egresados o consulta externa) y se puede saltar de un area a la otra.
+- Paciente egresado: 'Estado del paciente al egreso' y 'No documentado al egreso' (lo pendiente sin resultado), con opcion de documentarlo.
+- Consulta externa: 'Ultima consulta externa' y aparte 'Estado al egreso de la ultima hospitalizacion'; lo hospitalario queda en 'Hospitalizacion previa' (ingresos hospitalarios previos, evoluciones, planes, salidas); interconsultas separadas (consulta externa / estancias hospitalarias).
+- Se elimina 'Lectura rapida'. Lista de problemas con fecha del primer registro.
+- Importador: 'JUNTA' detectada en 'SS ...' y 'se envia a junta'; folio 'INGRESO UCI' se guarda como Ingreso al servicio de UCI (con remitido desde).
+- Editar una nota (incluso con IA) la deja en su fecha y lugar.
+- Texto mas legible: separadores, vinetas y espacios en las notas.
+
+QUE CAMBIO EN LA v50 (sobre la v49)
 - Al importar un PDF con varios episodios, el diagnostico y el contexto salen de lo MAS RECIENTE (p. ej. una consulta posterior a la hospitalizacion), no de la hospitalizacion vieja.
 - La especialidad de la consulta se lee del encabezado ('CONSULTA DE UROLOGIA').
 - Boton 'Que la IA revise el diagnostico y el motivo' en la vista previa de importacion (usa el asistente de IA).
