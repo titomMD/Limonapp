@@ -17,6 +17,7 @@ Importacion limpia (v11): dropNoise() quita consentimientos informados (CONSH/CO
 Lectura HUS (v12): pdfPages()->isHus()/husPage() lee cada pagina por su cabecera ('Pagina n/N', 'TITULO nFOLIO:', fecha de registro, paciente) y agrupa paginas del mismo folio; husKind() clasifica (ev/ic/in/ep/nt) y omite enfermeria, escalas, consentimientos, solicitudes; parseEvHUS (S/O/A/P por encabezados), parseIcHUS (servicio desde 'RESPUESTA A INTERCONSULTA POR X'), analyzeHus(). Formatos de otros hospitales siguen por analyzeAll. Tope EVMAX evoluciones al crear paciente.
 Privacidad: la app pide solo iniciales, edad, cama y 3 ultimos digitos de HC; avisa si detecta numeros largos.
 v31 (25-oct-2026) LOGIN CON SUPABASE: ya no se usa Netlify Identity. Proyecto Supabase 'Limonapp' (URL y clave publishable en SB_URL/SB_KEY, publicas por diseño; NUNCA guardar secret/service_role). Solo Google; correo y anonimo desactivados en Supabase. Cliente: SOLO @supabase/auth-js 2.117.2 empaquetado con esbuild en public/vendor/auth-js.supabase.js (expone window.LimonAuth.GoTrueClient; entrada: import {GoTrueClient} from '@supabase/auth-js'; window.LimonAuth={GoTrueClient}; npx esbuild --bundle --minify --format=iife). En el artifact (claude.ai) gAvail() es falso: no hay login ni carga la libreria. Flujo PKCE con redireccion completa; gOnSess() maneja INITIAL_SESSION/SIGNED_IN/SIGNED_OUT; sbUser() da u.id/u.email/u.jwt(forzar) como antes; gWho() pide /api/sync?whoami=1 para saber con que ID guarda el servidor los datos de la persona (G.uid) y asi gSt().uid de las cuentas anteriores no se reinicia. Servidor: netlify/functions/sync.mjs y social.mjs llevan el MISMO bloque AUTH (entre AUTH-BEGIN y AUTH-END): verifica el token ES256 con el JWKS del proyecto (WebCrypto, sin librerias), emisor, audiencia, vencimiento. Tabla LEGACY en ese bloque: huella SHA-256 del correo de Google verificado -> ID viejo de Netlify Identity (3 cuentas; el repositorio es publico, por eso no van los correos); quien no esta en la tabla usa su ID de Supabase (registro abierto). Para dar a alguien un ID existente hay que editar LEGACY en los dos archivos y desplegar. Llaves de datos no cambian: u_<id> (almacen limonapp), p_/t_/m_/e_/f_/sp_ (limonapp-social). Netlify Identity puede apagarse cuando todo funcione.
+v39 (27-oct-2026) CENSO EN WORD: docxBuild/zipStore (ZIP sin compresion + CRC32, sin librerias) arma un .docx en el navegador; dlToWord convierte el HTML dt/dd de evBody/imgBody/notaBody/T.f en parrafos; acciones censoSvc (lista activa/egresada del servicio: tabla de camas + un paciente por pagina) y censoPt. Orden cronologico ascendente, sin planes derivados (data.src), con pendientes abiertos al final. No incluye las fotos (IndexedDB).
 v38 (27-oct-2026) CONSULTA EXTERNA Y URGENCIAS: p.ctx ('hosp' por defecto|'urg'|'amb'), p.urgAt, p.hospAt; entry.ctx se estampa al crear (consulta=amb, triage/traslado=urg, el resto el p.ctx del paciente; sin ctx = hospitalizacion). Tipos nuevos: consulta (vez, medico, historia, dx CIE-10, plan y ordenes -> ensurePlan), triage (nivel I-V, llegada, vitales) y traslado (hide, paso a hospitalizacion). Vista S.view='urg' (viewUrg): lista por nivel de triage y tiempo en observacion, casillas S.urgSel y A.urgHosp (paso masivo con servicio de destino); servicio 'Urgencias' se crea solo (ensureUrgSvc). Secciones triage/consulta aparecen en el paciente solo si corresponden. Cronologia con filtro por atencion (S.cc).
 v37 (27-oct-2026) ORDEN Y NOMBRES: pestaña Respaldo -> Cuenta (la vista sigue siendo 'backup'); la seccion Historia se fusiona en Resumen (tarjeta desplegable 'Historia del ultimo ingreso', S.hxOpen; goSec k=hx redirige a res); nuevas secciones propias Ingreso, Evoluciones, Notas aclaratorias y Salida (typedSec, tope S.smax) y Cronologia queda solo como filtro/buscador de todo lo del paciente salvo plan (S.cord invierte el orden). La nota pasa a 'nota aclaratoria': data={ref,refT,refAt,tipo,campo,orig,txt}; las notas antiguas (solo txt) se siguen viendo y editando. Acciones nuevas: goFolio, aclarar, secMore, cronOrd. Se quitan addFold/addRow.
 v35 (25-oct-2026) IMAGENES EN LA CUENTA: netlify/functions/img.mjs (/api/img, misma verificacion AUTH, store de Blobs 'limonapp-img', claves i_<uid>_<id>_f|t, solo JPEG, 4 MB, tope 2000 archivos por usuario; GET/PUT/DELETE ?id=&k= y DELETE ?all=1). Cliente: imgPush/imgPull/imgBackfill; copia local sigue en IndexedDB; rot_imgup = IDs ya subidos; al ver una imagen que no esta local se baja. No se comparten con colegas ni van al respaldo.
@@ -511,7 +512,7 @@ function viewService(){
   var s=svc(S.serviceId);if(!s){S.view='services';return viewServices();}
   var all=db.patients.filter(function(p){return p.serviceId===s.id;});
   var list=all.filter(function(p){return S.filter==='activos'?p.active:!p.active;}).sort(function(a,b){return String(a.bed).localeCompare(String(b.bed),undefined,{numeric:true});});
-  var h='<div class="row spread"><button class="btn sm ghost" data-a="nav" data-v="services">‹ Servicios</button><h2>'+esc(s.name)+'</h2><button class="btn sm" data-a="rnStart" data-id="'+s.id+'">Ronda</button><button class="btn sm primary" data-a="newPatient">+ Paciente</button></div>';
+  var h='<div class="row spread"><button class="btn sm ghost" data-a="nav" data-v="services">‹ Servicios</button><h2>'+esc(s.name)+'</h2><button class="btn sm" data-a="rnStart" data-id="'+s.id+'">Ronda</button><button class="btn sm" data-a="censoSvc" data-id="'+s.id+'" title="Descarga un documento de Word con todos los pacientes de esta lista">Exportar censo (Word)</button><button class="btn sm primary" data-a="newPatient">+ Paciente</button></div>';
   h+='<div class="row"><button class="tab" data-a="filter" data-v="activos"'+(S.filter==='activos'?' aria-current="page"':'')+'>Activos ('+all.filter(function(p){return p.active;}).length+')</button><button class="tab" data-a="filter" data-v="egresados"'+(S.filter==='egresados'?' aria-current="page"':'')+'>Egresados ('+all.filter(function(p){return !p.active;}).length+')</button></div>';
   if(S.newPatient)h+=patientForm();
   h+=list.length?'<div class="cols">'+list.map(function(p){
@@ -994,7 +995,7 @@ function viewPatient(){
   }
   var h='<div class="card"><div class="row"><span class="bed">Cama '+esc(p.bed||'—')+'</span><h2>'+esc(p.ini)+'</h2><span class="muted small">'+esc(p.age)+' a · '+esc(p.sex)+(p.hc?' · HC …'+esc(p.hc):'')+'</span></div><div class="dx">'+esc(p.dx||'Sin diagnóstico')+'</div>'+ctxLine(p)+'<div class="row small muted"><span>Ingreso '+esc(p.adm)+'</span><span>·</span><span>'+(p.active?'Día '+hd(p):'Egresó, '+hd(p)+' días')+'</span></div>'+
      (p.cont?'<div class="note"><strong>Si pasa X, hacer Y.</strong> '+esc(p.cont)+'</div>':'')+
-     '<div class="row"><button class="btn sm" data-a="editPatient">Editar datos</button>'+ctxBtns(p)+'<button class="btn sm" data-a="ptSend" data-id="'+p.id+'">Enviar a un colega</button><button class="btn sm" data-a="mvOpen" data-id="'+p.id+'">Mover de servicio</button>'+(p.active?'':'<button class="btn sm" data-a="reactivate">Reactivar</button>')+
+     '<div class="row"><button class="btn sm" data-a="editPatient">Editar datos</button>'+ctxBtns(p)+'<button class="btn sm" data-a="ptSend" data-id="'+p.id+'">Enviar a un colega</button><button class="btn sm" data-a="censoPt" data-id="'+p.id+'">Exportar HC (Word)</button><button class="btn sm" data-a="mvOpen" data-id="'+p.id+'">Mover de servicio</button>'+(p.active?'':'<button class="btn sm" data-a="reactivate">Reactivar</button>')+
      (S.confirm==='pat'?'<button class="btn sm danger" data-a="delPatient">Confirmar: borrar paciente</button>':'<button class="btn sm danger" data-a="askDelPatient">Borrar paciente</button>')+'</div></div>';
   if(S.editPatient)h+=patientForm(p);
   if(S.editor)h+=entryForm();
@@ -1130,7 +1131,7 @@ function viewBackup(){
 }
 
 var DE={
-'Servicios':'Stationen','Triage':'Triage','Consulta':'Sprechstunde','Consulta externa':'Ambulante Sprechstunde','Triage y observación':'Triage und Beobachtung','Urgencias · observación':'Notaufnahme · Beobachtung','Pasar a hospitalización':'Stationär aufnehmen','Paso a hospitalización':'Stationäre Aufnahme','Servicio de destino':'Zielstation','Atención':'Versorgungsart','Médico que atiende':'Behandelnder Arzt','Tipo de consulta':'Art der Konsultation','Primera vez':'Erstkonsultation','Control':'Kontrolle','Nivel de triage':'Triage-Stufe','Forma de llegada':'Art der Ankunft','+ Paciente a urgencias':'+ Patient in die Notaufnahme','Cuenta':'Konto','Evoluciones':'Verlaufsberichte','Notas aclaratorias':'Klärende Notizen','Nota aclaratoria':'Klärende Notiz','Salida':'Entlassung','Aclarar':'Klären','Omitir consentimientos y datos administrativos':'Einwilligungen und Verwaltungsdaten auslassen','Limpiar':'Bereinigen','Pendientes':'Offene Aufgaben','Entrega':'Übergabe','Respaldo':'Datensicherung','Todo':'Alles','Historia':'Akte','Cronología':'Verlauf','Interconsultas':'Konsile','Imágenes':'Bildgebung','Importar PDF':'PDF-Import','Ocultar ▴':'Ausblenden ▴','Abrir aparte ↗':'Separat öffnen ↗','Ordenar formato':'Format ordnen','Limón supervisa tus rotaciones':'Limón überwacht deine Rotationen','Paraclínicos':'Laborbefunde','Paraclínico':'Laborbefund','Imágenes y lecturas':'Bildgebung und Befunde','Imagen':'Bildgebung','+ Agregar':'+ Hinzufügen',
+'Servicios':'Stationen','Exportar censo (Word)':'Zensus exportieren (Word)','Exportar HC (Word)':'Akte exportieren (Word)','Triage':'Triage','Consulta':'Sprechstunde','Consulta externa':'Ambulante Sprechstunde','Triage y observación':'Triage und Beobachtung','Urgencias · observación':'Notaufnahme · Beobachtung','Pasar a hospitalización':'Stationär aufnehmen','Paso a hospitalización':'Stationäre Aufnahme','Servicio de destino':'Zielstation','Atención':'Versorgungsart','Médico que atiende':'Behandelnder Arzt','Tipo de consulta':'Art der Konsultation','Primera vez':'Erstkonsultation','Control':'Kontrolle','Nivel de triage':'Triage-Stufe','Forma de llegada':'Art der Ankunft','+ Paciente a urgencias':'+ Patient in die Notaufnahme','Cuenta':'Konto','Evoluciones':'Verlaufsberichte','Notas aclaratorias':'Klärende Notizen','Nota aclaratoria':'Klärende Notiz','Salida':'Entlassung','Aclarar':'Klären','Omitir consentimientos y datos administrativos':'Einwilligungen und Verwaltungsdaten auslassen','Limpiar':'Bereinigen','Pendientes':'Offene Aufgaben','Entrega':'Übergabe','Respaldo':'Datensicherung','Todo':'Alles','Historia':'Akte','Cronología':'Verlauf','Interconsultas':'Konsile','Imágenes':'Bildgebung','Importar PDF':'PDF-Import','Ocultar ▴':'Ausblenden ▴','Abrir aparte ↗':'Separat öffnen ↗','Ordenar formato':'Format ordnen','Limón supervisa tus rotaciones':'Limón überwacht deine Rotationen','Paraclínicos':'Laborbefunde','Paraclínico':'Laborbefund','Imágenes y lecturas':'Bildgebung und Befunde','Imagen':'Bildgebung','+ Agregar':'+ Hinzufügen',
 'Mis rotaciones':'Meine Rotationen','Equipo':'Team','Enviar a un colega':'An Kollegen senden','Mover de servicio':'Station wechseln','En turno':'Im Dienst','Descanso':'Pause','Fuera de turno':'Dienstfrei','Ver gráficas grandes en Paraclínicos':'Große Verlaufsdiagramme in den Befunden','Chat':'Chat','Grupo':'Gruppe','Enviar':'Senden','Únete a un equipo':'Einem Team beitreten','Unirme':'Beitreten','O crea uno nuevo':'Oder ein neues Team erstellen','Crear equipo':'Team erstellen','Copiar invitación':'Einladung kopieren','Salir del equipo':'Team verlassen','Confirmar: salir':'Bestätigen: verlassen','Editar perfil':'Profil bearbeiten','Guardar perfil':'Profil speichern','Crea tu perfil':'Profil erstellen','Elegir foto':'Foto wählen','Quitar foto':'Foto entfernen','Nombre completo':'Vollständiger Name','Cargo':'Funktion','Estado':'Status','Escribir':'Schreiben','Entendido':'Verstanden','Dejar de compartir conmigo':'Nicht mehr mit mir teilen','Entrar con Google':'Mit Google anmelden','Ir a Cuenta':'Zur Datensicherung','Reintentar':'Erneut versuchen','Cuenta y sincronización':'Konto und Synchronisierung','Cerrar sesión':'Abmelden','Sincronizar ahora':'Jetzt synchronisieren','Ver valores':'Werte anzeigen','Servicio nuevo':'Neue Station','Análisis':'Beurteilung','Ver completo en Cronología':'Vollständig im Verlauf ansehen','Ver el folio completo':'Ganzen Eintrag ansehen','Invertir orden':'Reihenfolge umkehren','Ver todo en Cronología':'Alles im Verlauf ansehen','+ Agregar nota o evolución':'Notiz oder Verlaufsbericht hinzufügen','Actualizar desde PDF':'Aus PDF aktualisieren','Tipo de documento':'Dokumenttyp','Detectar solo':'Automatisch erkennen','Es solo de paraclínicos':'Nur Laborbefunde','Es solo de imágenes':'Nur Bildgebung','Es una respuesta de interconsulta':'Es ist eine Konsilantwort','Es una evolución':'Es ist ein Verlaufsbericht','Es historia clínica':'Es ist eine Krankenakte','Institución de donde sacas la historia':'Einrichtung, aus der die Akte stammt','Arrastra aquí el PDF':'PDF hierher ziehen','elige el archivo':'Datei auswählen','Política de privacidad':'Datenschutzerklärung','Términos de servicio':'Nutzungsbedingungen','Último registro clínico:':'Letzter klinischer Eintrag:','Cuenta y sincronización':'Konto und Synchronisierung','Pendientes (Tareas)':'Aufgaben','Nuevo pendiente':'Neue Aufgabe','Resumen':'Zusammenfassung','Ver tutorial':'Anleitung ansehen','Saltar':'Überspringen','Siguiente':'Weiter','Atrás':'Zurück','Listo':'Fertig','Estado actual':'Aktueller Stand','Lectura rápida':'Kurzüberblick','Lista de problemas':'Problemliste','Tendencias de laboratorio':'Laborverläufe','Hitos documentados':'Dokumentierte Meilensteine','Buscar':'Suchen','Mostrar más':'Mehr anzeigen','Solo en este dispositivo':'Nur auf diesem Gerät','Sin guardado local':'Nicht lokal gespeichert',
 'Nuevo servicio o rotación':'Neue Station oder Rotation','Agregar':'Hinzufügen','Guardar':'Speichern','Cancelar':'Abbrechen','Editar':'Bearbeiten','Borrar':'Löschen','Copiar':'Kopieren',
 'Datos del paciente':'Patientendaten','Nuevo paciente':'Neuer Patient','+ Paciente':'Patient','Editar datos':'Daten bearbeiten','Reactivar':'Reaktivieren','Borrar paciente':'Patient löschen','Confirmar: borrar paciente':'Bestätigen: Patient löschen',
@@ -2767,6 +2768,7 @@ var HELP=[
  {t:'Editar los datos del paciente',kw:['editar paciente','cambiar cama','cambiar diagnostico','datos del paciente','gravedad','iniciales'],a:'En el Resumen del paciente toca “Editar datos” para cambiar iniciales, cama, ingreso, diagnóstico o gravedad.',go:[['Ir al Resumen','sec:res']]},
  {t:'Urgencias: triage, observación y paso a hospitalización',kw:['urgencias','triage','observacion','hospitalizar','hospitalizacion','pasar a hospitalizacion','ingreso urgencias'],a:'En Servicios toca “Urgencias · observación” y luego “+ Paciente a urgencias”: guardas los datos y se abre el Triage; después registras el Ingreso y las Evoluciones de la observación. Para hospitalizar, marca a los pacientes en la lista de Urgencias, elige el servicio y toca “Pasar a hospitalización”, o usa ese botón dentro de un paciente.',go:[['Ir a Urgencias','nav:urg']]},
  {t:'Consulta externa (primera vez o control)',kw:['consulta','consulta externa','primera vez','control','ambulatoria','ambulatorio'],a:'Dentro de un paciente toca “+ Consulta externa” (o crea el paciente con atención “Consulta externa”). Eliges si es primera vez o control, escribes el médico que atiende y la historia. Queda en la Cronología marcada como consulta externa, junto con urgencias y hospitalización; ahí puedes filtrar por tipo de atención.'},
+ {t:'Exportar el censo a Word',kw:['censo','word','docx','exportar','imprimir','descargar historia'],a:'En un servicio toca “Exportar censo (Word)”: descarga un documento con una tabla de camas y, por paciente, todo en orden cronológico (ingreso, evoluciones, consultas, interconsultas, paraclínicos, imágenes, notas aclaratorias y pendientes). Dentro de un paciente, “Exportar HC (Word)” baja solo su historia. Lleva solo iniciales y los últimos 3 dígitos de la HC. Las fotos de las imágenes no van en el documento, solo sus lecturas.'},
  {t:'Borrar un paciente o el ejemplo',kw:['borrar paciente','eliminar paciente','ejemplo','demo','borrar servicio'],a:'Para un paciente: abre su Resumen y toca “Borrar paciente” (pide confirmación). El paciente de ejemplo se quita desde Cuenta → “Borrar el ejemplo”.',go:[['Ir a Cuenta','nav:backup']]},
  {t:'Privacidad: qué datos no poner',kw:['privacidad','datos','nombre','cedula','telefono','seguridad','confidencial','seguro'],a:'Escribe solo iniciales, edad, cama y los 3 últimos dígitos de la historia. Nunca nombre completo, cédula, teléfono ni dirección. Si inicias sesión, tus datos quedan en el servidor de la app ligados a tu cuenta; la política de privacidad está enlazada al pie de la página.',go:[]},
  {t:'Se me perdieron los datos',kw:['perdi','perdieron','desaparecio','borraron','sin datos','vacia','recuperar datos'],a:'Los datos viven en el navegador de cada dispositivo; si borras los datos del sitio o cambias de navegador, no aparecen. Si tenías sesión iniciada, entra otra vez y toca “Sincronizar ahora”. Si tienes un respaldo, pégalo en Cuenta → Importar.',go:[['Ir a Cuenta','nav:backup']]},
@@ -3632,6 +3634,129 @@ function pdfDownload(blob,name){
 function b64Blob(b){var bin=atob(b),u=new Uint8Array(bin.length),i;for(i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return new Blob([u],{type:'application/pdf'});}
 function blobB64(bl){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(){res(String(r.result).split(',')[1]||'');};r.onerror=rej;r.readAsDataURL(bl);});}
 
+/* ---------- v39: censo en Word (.docx) generado en el navegador, sin librerías ---------- */
+var CRCT=null;
+function crc32(u){if(!CRCT){CRCT=[];for(var n=0,c,k;n<256;n++){c=n;for(k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;CRCT[n]=c>>>0;}}var c2=0xFFFFFFFF;for(var i=0;i<u.length;i++)c2=CRCT[(c2^u[i])&255]^(c2>>>8);return (c2^0xFFFFFFFF)>>>0;}
+function zipStore(files){
+  var enc=new TextEncoder(),parts=[],cd=[],off=0;
+  function w16(a,v){a.push(v&255,(v>>>8)&255);}
+  function w32(a,v){a.push(v&255,(v>>>8)&255,(v>>>16)&255,(v>>>24)&255);}
+  files.forEach(function(f){
+    var nm=enc.encode(f.name),d=enc.encode(f.text),crc=crc32(d),h=[];
+    w32(h,0x04034b50);w16(h,20);w16(h,0x0800);w16(h,0);w16(h,0);w16(h,0x5A21);w32(h,crc);w32(h,d.length);w32(h,d.length);w16(h,nm.length);w16(h,0);
+    parts.push(new Uint8Array(h),nm,d);
+    var c=[];w32(c,0x02014b50);w16(c,20);w16(c,20);w16(c,0x0800);w16(c,0);w16(c,0);w16(c,0x5A21);w32(c,crc);w32(c,d.length);w32(c,d.length);w16(c,nm.length);w16(c,0);w16(c,0);w16(c,0);w16(c,0);w32(c,0);w32(c,off);
+    cd.push(new Uint8Array(c),nm);
+    off+=h.length+nm.length+d.length;
+  });
+  var cdl=0;cd.forEach(function(x){cdl+=x.length;});
+  var e=[];w32(e,0x06054b50);w16(e,0);w16(e,0);w16(e,files.length);w16(e,files.length);w32(e,cdl);w32(e,off);w16(e,0);
+  return new Blob(parts.concat(cd,[new Uint8Array(e)]),{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+}
+function wx(s){return String(s==null?'':s).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function wRun(t,o){o=o||{};return '<w:r><w:rPr>'+(o.b?'<w:b/>':'')+(o.i?'<w:i/>':'')+(o.c?'<w:color w:val="'+o.c+'"/>':'')+(o.sz?'<w:sz w:val="'+o.sz+'"/>':'')+'</w:rPr><w:t xml:space="preserve">'+wx(t)+'</w:t></w:r>';}
+function wPar(runs,o){o=o||{};var pp=(o.st?'<w:pStyle w:val="'+o.st+'"/>':'')+(o.keep?'<w:keepNext/>':'')+(o.br?'<w:pageBreakBefore/>':'')+(o.ind?'<w:ind w:left="'+o.ind+'" w:hanging="'+(o.hang||0)+'"/>':'');return '<w:p><w:pPr>'+pp+'</w:pPr>'+(typeof runs==='string'?wRun(runs):runs.join(''))+'</w:p>';}
+/* Convierte el HTML <dt>/<dd> que ya usa la app en párrafos de Word */
+function dlToWord(html){
+  var box=document.createElement('div');box.innerHTML=html;var out=[];
+  function paras(node){
+    var ps=[],cur=[];
+    function flush(){var t=cur.map(function(r){return r.t;}).join('').trim();if(t)ps.push(cur);cur=[];}
+    (function walk(n,b){
+      Array.prototype.forEach.call(n.childNodes,function(c){
+        if(c.nodeType===3){c.textContent.split(/\n/).forEach(function(ln,li){if(li>0)flush();cur.push({t:ln,b:b});});return;}
+        if(c.nodeType!==1)return;
+        var cl=c.className||'',tag=c.tagName;
+        if(tag==='BUTTON'||tag==='IMG'||tag==='SCRIPT')return;
+        if(/\bimgs\b/.test(cl))return;
+        var blk=/\b(li|sh|pg|vtc)\b/.test(cl)||tag==='BR'||tag==='DIV'||tag==='P';
+        if(blk)flush();
+        if(/\bli\b/.test(cl))cur.push({t:'• ',b:false});
+        if(tag==='BR'){flush();return;}
+        if(/\bvtc\b/.test(cl)){Array.prototype.forEach.call(c.children,function(s){cur.push({t:s.textContent.replace(/\s+/g,' ').trim()+'   ',b:false});});flush();return;}
+        walk(c,b||tag==='B'||tag==='STRONG'||/\b(lbl|sh)\b/.test(cl));
+        if(blk)flush();
+      });
+    })(node,false);
+    flush();return ps;
+  }
+  var kids=Array.prototype.slice.call(box.querySelectorAll('dt, dd'));
+  for(var i=0;i<kids.length;i++){
+    var k=kids[i];
+    if(k.tagName==='DT'){
+      var nx=kids[i+1],ps=nx&&nx.tagName==='DD'?paras(nx):[];
+      if(!ps.length){if(nx&&nx.tagName==='DD')i++;continue;}
+      out.push(wPar([wRun(k.textContent.trim(),{b:1,c:'1F5F52'})],{keep:1,st:'Lbl'}));
+      ps.forEach(function(r){var bul=r[0]&&r[0].t==='• ';out.push(wPar(r.map(function(x){return wRun(x.t,{b:x.b});}),bul?{ind:360,hang:200}:{}));});
+      i++;
+    }
+  }
+  return out.join('');
+}
+function censoEntryHtml(e){
+  var T=TYPES[e.type],d=e.data||{};
+  if(e.type==='plan'){return (d.plan?'<dt>Plan</dt><dd>'+rich(d.plan)+'</dd>':'')+((d.ord&&d.ord.length)?'<dt>Solicitado</dt><dd>'+d.ord.map(function(o){return '<span class="li">'+esc(o.n||'')+'</span>';}).join('')+'</dd>':'');}
+  if(e.type==='img')return imgBody(e);
+  if(e.type==='evolucion')return evBody(e);
+  if(e.type==='nota')return notaBody(e);
+  return T.f.map(function(f){var v=d[f[0]];return v?'<dt>'+f[1]+'</dt><dd>'+rich(v)+'</dd>':'';}).join('');
+}
+function censoPatient(p,brk){
+  var x=[],ctxn=p.ctx&&p.ctx!=='hosp'?' · '+CTXL[p.ctx]:'';
+  x.push(wPar([wRun('Cama '+(p.bed||'—')+'  ·  '+p.ini+'  ·  '+p.age+' a '+p.sex+(p.hc?'  ·  HC …'+p.hc:''))],{st:'Heading1',br:brk}));
+  x.push(wPar([wRun('Diagnóstico: ',{b:1}),wRun(p.dx||'Sin diagnóstico')]));
+  x.push(wPar([wRun('Ingreso: ',{b:1}),wRun(p.adm||'—'),wRun('   ·   '+(p.active?'Día '+hd(p):'Egresó, '+hd(p)+' días')+ctxn+'   ·   Estado: '+(p.sev||'—'))]));
+  if(p.cont)x.push(wPar([wRun('Si pasa X, hacer Y: ',{b:1}),wRun(p.cont)]));
+  var es=pEntries(p.id).slice().reverse().filter(function(e){return !(e.type==='plan'&&e.data&&e.data.src);});
+  x.push(wPar('Historia clínica en orden cronológico ('+es.length+' registro'+(es.length===1?'':'s')+')',{st:'Heading2'}));
+  if(!es.length)x.push(wPar([wRun('Sin registros.',{i:1})]));
+  es.forEach(function(e){
+    var ex=e.type==='interconsulta'?' · '+(e.status==='pendiente'?'pendiente':'respondida'):'';
+    var cx=e.ctx&&e.ctx!=='hosp'?' · '+CTXL[e.ctx]:'';
+    x.push(wPar([wRun(fmtL(e.at),{b:1}),wRun('   '+TYPES[e.type].label.toUpperCase()+ex+cx,{b:1,c:'1F5F52'})],{st:'Heading3',keep:1}));
+    x.push(dlToWord(censoEntryHtml(e)));
+  });
+  var ts=openTasks(p.id),po=pendOrders(p.id),ic=openICs(p.id);
+  if(ts.length||po.length||ic.length){
+    x.push(wPar('Pendientes abiertos',{st:'Heading2'}));
+    ts.forEach(function(t){x.push(wPar('• '+t.text,{ind:360,hang:200}));});
+    po.forEach(function(o){x.push(wPar('• Resultado pendiente: '+o.o.n,{ind:360,hang:200}));});
+    ic.forEach(function(e){x.push(wPar('• Interconsulta '+(e.data.serv||'')+': '+(e.data.preg||''),{ind:360,hang:200}));});
+  }
+  return x.join('');
+}
+function fmtL(iso){try{return new Date(iso).toLocaleString('es-CO',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});}catch(e){return iso;}}
+function docxBuild(title,sub,pats,idx){
+  var body=[wPar(title,{st:'Title'}),wPar([wRun(sub,{c:'5A6A66'})])];
+  if(idx&&pats.length){
+    var cell=function(t,w,h){return '<w:tc><w:tcPr><w:tcW w:w="'+w+'" w:type="dxa"/>'+(h?'<w:shd w:val="clear" w:color="auto" w:fill="DCEFE9"/>':'')+'</w:tcPr>'+wPar([wRun(t,{b:h,sz:19})])+'</w:tc>';};
+    var W=[800,900,1000,5100,1200];
+    var rows=[['Cama','Iniciales','Edad/sexo','Diagnóstico','Día']].concat(pats.map(function(p){return [p.bed||'—',p.ini,p.age+' a '+p.sex,p.dx||'—',String(hd(p))];}));
+    body.push('<w:tbl><w:tblPr><w:tblW w:w="9000" w:type="dxa"/><w:tblBorders>'+['top','left','bottom','right','insideH','insideV'].map(function(s){return '<w:'+s+' w:val="single" w:sz="4" w:space="0" w:color="9DB1AB"/>';}).join('')+'</w:tblBorders></w:tblPr>'+
+      rows.map(function(r,ri){return '<w:tr>'+r.map(function(t,ci){return cell(t,W[ci],ri===0);}).join('')+'</w:tr>';}).join('')+'</w:tbl>');
+  }
+  pats.forEach(function(p,i){body.push(censoPatient(p,idx||i>0));});
+  body.push(wPar([wRun('Generado con Limonapp el '+fmtL(new Date().toISOString())+'. Solo iniciales y los últimos 3 dígitos de la historia clínica.',{i:1,c:'5A6A66',sz:16})]));
+  var NS='xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"';
+  var sty='<w:styles '+NS+'><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:cs="Calibri"/><w:sz w:val="21"/><w:lang w:val="es-CO"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:after="60" w:line="259" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults>'+
+   '<w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/></w:style>'+
+   '<w:style w:type="paragraph" w:styleId="Title"><w:name w:val="Title"/><w:basedOn w:val="Normal"/><w:pPr><w:spacing w:after="80"/></w:pPr><w:rPr><w:b/><w:sz w:val="40"/><w:color w:val="1F5F52"/></w:rPr></w:style>'+
+   '<w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:basedOn w:val="Normal"/><w:next w:val="Normal"/><w:pPr><w:keepNext/><w:spacing w:before="240" w:after="80"/><w:pBdr><w:bottom w:val="single" w:sz="8" w:space="2" w:color="1F5F52"/></w:pBdr><w:outlineLvl w:val="0"/></w:pPr><w:rPr><w:b/><w:sz w:val="30"/></w:rPr></w:style>'+
+   '<w:style w:type="paragraph" w:styleId="Heading2"><w:name w:val="heading 2"/><w:basedOn w:val="Normal"/><w:next w:val="Normal"/><w:pPr><w:keepNext/><w:spacing w:before="200" w:after="60"/><w:outlineLvl w:val="1"/></w:pPr><w:rPr><w:b/><w:sz w:val="25"/><w:color w:val="1F5F52"/></w:rPr></w:style>'+
+   '<w:style w:type="paragraph" w:styleId="Heading3"><w:name w:val="heading 3"/><w:basedOn w:val="Normal"/><w:next w:val="Normal"/><w:pPr><w:keepNext/><w:spacing w:before="180" w:after="40"/><w:pBdr><w:top w:val="single" w:sz="4" w:space="3" w:color="C9D6D2"/></w:pBdr><w:outlineLvl w:val="2"/></w:pPr><w:rPr><w:sz w:val="21"/></w:rPr></w:style>'+
+   '<w:style w:type="paragraph" w:styleId="Lbl"><w:name w:val="Etiqueta"/><w:basedOn w:val="Normal"/><w:pPr><w:keepNext/><w:spacing w:before="60" w:after="10"/></w:pPr><w:rPr><w:sz w:val="19"/></w:rPr></w:style></w:styles>';
+  var doc='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document '+NS+'><w:body>'+body.join('')+'<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134" w:header="567" w:footer="567" w:gutter="0"/></w:sectPr></w:body></w:document>';
+  var R='http://schemas.openxmlformats.org/';
+  return zipStore([
+   {name:'[Content_Types].xml',text:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="'+R+'package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/></Types>'},
+   {name:'_rels/.rels',text:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="'+R+'package/2006/relationships"><Relationship Id="rId1" Type="'+R+'officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>'},
+   {name:'word/_rels/document.xml.rels',text:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="'+R+'package/2006/relationships"><Relationship Id="rId1" Type="'+R+'officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>'},
+   {name:'word/styles.xml',text:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+sty},
+   {name:'word/document.xml',text:doc}
+  ]);
+}
+function fnSafe(s){return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^A-Za-z0-9]+/g,'_').replace(/^_|_$/g,'')||'x';}
+
 /* ---------- PDF de la entrega de turno ---------- */
 function handPdf(){
   var sv=db.services.filter(function(s){return S.hand==='all'||s.id===S.hand;}),now=new Date();
@@ -4183,6 +4308,8 @@ var A={
  delTask:function(el){db.tasks=db.tasks.filter(function(x){return x.id!==el.dataset.id;});save();render();},
  handSel:function(el){S.hand=el.value;render();},
  copyHand:function(){copyText(handoffText(),'outbox');},
+ censoSvc:function(el){var sv=svc(el.dataset.id);if(!sv)return;var ps=db.patients.filter(function(p){return p.serviceId===sv.id&&(S.filter==='activos'?p.active:!p.active);}).sort(function(a,b){return String(a.bed).localeCompare(String(b.bed),undefined,{numeric:true});});if(!ps.length){toast('No hay pacientes en esta lista.');return;}var d=today();try{pdfDownload(docxBuild('Censo · '+sv.name,(S.filter==='activos'?'Pacientes activos':'Pacientes egresados')+' · '+ps.length+' · '+d,ps,true),'Censo_'+fnSafe(sv.name)+'_'+d+'.docx');toast('Censo descargado.');}catch(e){toast('No pude crear el documento.');}},
+ censoPt:function(el){var p=pat(el.dataset.id);if(!p)return;var d=today();try{pdfDownload(docxBuild('Historia clínica · '+p.ini,'Cama '+(p.bed||'—')+' · '+d,[p],false),'HC_'+fnSafe(p.ini)+'_'+d+'.docx');toast('Documento descargado.');}catch(e){toast('No pude crear el documento.');}},
  makeBackup:function(){S.backupText=JSON.stringify(db);db.meta.lastBackup=new Date().toISOString();db.meta.changes=0;persist();render();},
  copyBackup:function(){copyText(S.backupText,'backupOut');},
  restore:function(){
