@@ -482,7 +482,7 @@ function lookCard(){
 function lookUp(f){var L=lookGet();f(L);lookSet(L);applyLook();render();}
 /* ---------- v43: asistente de IA propio (clave del usuario; solo envía el texto que él elige) ---------- */
 var AIP={limon:{n:'IA de Limonapp (sin clave)',m:''},anthropic:{n:'Anthropic (Claude)',m:'claude-sonnet-5-5'},openai:{n:'OpenAI',m:'gpt-4o'},gemini:{n:'Google (Gemini)',m:'gemini-3.5-flash-lite'}};
-var AIBASE='Eres un asistente para un estudiante de medicina en Colombia que escribe notas de rotación e historia clínica. Responde en español clínico claro y conciso. No inventes datos que no estén en el texto: si falta información, márcalo como [FALTA: ...]. No pidas ni repitas nombres, cédulas o teléfonos. Tus respuestas son sugerencias que el estudiante debe verificar con el médico tratante; no des órdenes definitivas.';
+var AIBASE='Eres un asistente para un estudiante de medicina en Colombia que escribe notas de rotación e historia clínica. Responde en español clínico claro y conciso. No inventes datos que no estén en el texto: si falta información, márcalo como [FALTA: ...]. No pidas ni repitas nombres, cédulas o teléfonos. Tus respuestas son sugerencias que el estudiante debe verificar con el médico tratante; no des órdenes definitivas.'+" Si el texto viene dividido en secciones con encabezados '### Nombre': si la tarea se refiere a una sola sección, responde solo con el texto de esa sección, sin encabezado; si afecta a varias o a toda la nota, devuelve cada sección con su mismo encabezado '### Nombre', sin omitir ninguna ni quitar nada de lo que estaba escrito.";
 var AIPRE=[
  ['corregir','Corregir ortografía y redacción','Corrige ortografía, puntuación y redacción del texto conservando exactamente su contenido clínico y las abreviaturas estándar. No añadas información. Devuelve solo el texto corregido.'],
  ['soap','Ordenar como evolución (S, O, A, P)','Reorganiza el texto como evolución con las secciones S (subjetivo), O (objetivo), A (análisis) y P (plan), usando solo lo que está escrito. Lo que no aparezca, márcalo como [FALTA]. Devuelve solo la nota reorganizada.'],
@@ -555,24 +555,47 @@ function aiFetch(sys,text,cfg){
   }).catch(function(e){if(e&&e.name==='AbortError')throw new Error('Tardó demasiado (60 s).');if(e instanceof TypeError)throw new Error('No pude conectar con el proveedor (sin internet o bloqueado).');throw e;}).then(function(v){clearTimeout(tm);return v;},function(e){clearTimeout(tm);throw e;});
 }
 function aiRedact(t){return String(t).replace(/\b\d{7,}\b|\b3\d{2}[ -]?\d{3}[ -]?\d{4}\b/g,'[número]');}
+var AIS=null;
+function aiNorm(t){return String(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+function aiFields(){var o=[];document.querySelectorAll('[id^="e_"]').forEach(function(el){var tg=el.tagName;if(!(tg==='TEXTAREA'||(tg==='INPUT'&&(!el.type||el.type==='text'||el.type==='search'))))return;var lb=el.closest('label');if(!lb||lb.hidden||el.closest('[hidden]'))return;var c=lb.cloneNode(true);c.querySelectorAll('.de,.u,textarea,input,select').forEach(function(x){x.remove();});var lab=c.textContent.replace(/\s+/g,' ').trim().replace(/\s*\(.*$/,'');if(!lab)lab=el.getAttribute('aria-label')||el.id;o.push({id:el.id,lab:lab,v:el.value});});return o;}
+function aiScopeText(sc){
+  if(!AIS)return '';
+  if(sc==='all')return AIS.fields.filter(function(f){return f.v.trim();}).map(function(f){return '### '+f.lab+'\n'+f.v.trim();}).join('\n\n');
+  if(sc==='sel')return AIS.sel?AIS.sel.t:'';
+  var f=AIS.fields.filter(function(x){return x.id===sc;})[0];return f?f.v:'';
+}
+function aiGuess(inst){
+  var n=aiNorm(inst||''),best=null,bl=0;
+  AIS.fields.forEach(function(f){var l=aiNorm(f.lab);if(l.length>bl&&n.indexOf(l)>=0){best=f;bl=l.length;}});
+  if(!best){var w=AIL&&AIS.fields.filter(function(f){return f.id===AIL.id;})[0];best=w||AIS.fields.filter(function(f){return f.v.trim();})[0]||AIS.fields[0];}
+  return best?best.id:'';
+}
+function aiSetVal(id,v){var f=document.getElementById(id);if(!f)return false;AIS.undo.push({id:id,old:f.value});f.value=v;try{f.dispatchEvent(new Event('input',{bubbles:true}));}catch(e){}return true;}
 function aiOpen(){
   var cfg=aiCfg();
   if(!aiReady()){toast(aiProv(cfg)==='limon'?'Primero acepta las condiciones en Cuenta > Asistente de IA.':'Primero guarda tu clave en Cuenta > Asistente de IA.');S.view='backup';S.editor=S.editor;render();return;}
   var txt='',tg=null,f=AIL&&document.getElementById(AIL.id);
   if(f){var v=f.value,s=AIL.s,e=AIL.e;if(typeof s==='number'&&typeof e==='number'&&e>s){txt=v.slice(s,e);tg={id:AIL.id,s:s,e:e};}else{txt=v;tg={id:AIL.id,s:0,e:v.length};}}
+  var hasSel=!!(f&&typeof AIL.s==='number'&&typeof AIL.e==='number'&&AIL.e>AIL.s);
+  var flds=aiFields();
+  AIS={fields:flds,sel:hasSel?{id:AIL.id,s:AIL.s,e:AIL.e,t:txt}:null,undo:[],sc:''};
+  if(flds.length){AIS.sc=hasSel?'sel':'all';if(!hasSel){txt=aiScopeText('all');tg=null;}}
   AIT=tg;
   var old=document.getElementById('aiModal');if(old)old.remove();
   var d=document.createElement('div');d.id='aiModal';d.className='tmodal';
   d.innerHTML='<div class="tbox" role="dialog" aria-modal="true" aria-label="Asistente de IA"><div class="row spread"><h3>Asistente de IA · '+esc(AIP[aiProv(cfg)].n)+'</h3><button class="btn sm ghost" data-a="aiClose" aria-label="Cerrar">✕</button></div>'+
    '<label>¿Qué necesitas?<select id="ai_pre">'+AIPRE.map(function(p){return '<option value="'+p[0]+'">'+esc(p[1])+'</option>';}).join('')+'</select></label>'+
    '<label id="ai_cwrap" hidden>Tu instrucción<textarea id="ai_cust" rows="2" placeholder="Ej. Hazme 3 preguntas de repaso sobre este caso"></textarea></label>'+
+   (AIS.fields.length?'<label>¿Sobre qué parte de la nota?<select id="ai_scope">'+(AIS.sel?'<option value="sel"'+(AIS.sc==='sel'?' selected':'')+'>Solo el texto que seleccioné</option>':'')+'<option value="all"'+(AIS.sc==='all'?' selected':'')+'>Toda la nota ('+AIS.fields.filter(function(x){return x.v.trim();}).length+' secciones con texto)</option>'+AIS.fields.map(function(x){return '<option value="'+esc(x.id)+'">Solo: '+esc(x.lab)+'</option>';}).join('')+'</select></label>':'')+
    '<label>Texto que se enviará (solo esto sale de tu dispositivo; edítalo o bórralo)<textarea id="ai_txt" rows="8">'+esc(txt)+'</textarea></label>'+
    '<div class="row"><button class="btn primary" data-a="aiSend" id="ai_go">Enviar</button><button class="btn ghost" data-a="aiClose">Cerrar</button></div>'+
-   '<div id="ai_st" class="small muted"></div><div id="ai_out" hidden><h3>Respuesta</h3><div id="ai_res" style="white-space:pre-wrap;overflow-wrap:anywhere" class="lk-sample"></div><div class="row" style="margin-top:8px"><button class="btn sm" data-a="aiCopy">Copiar</button>'+(tg?'<button class="btn sm" data-a="aiRepl">Reemplazar el texto del campo</button><button class="btn sm" data-a="aiAppend">Agregar al final del campo</button>':'')+'</div><div class="small muted" style="margin-top:6px">Generado por IA: puede tener errores. Revísalo antes de usarlo; la responsabilidad clínica es tuya y no sustituye el criterio del médico tratante.</div></div></div>';
+   '<div id="ai_st" class="small muted"></div><div id="ai_out" hidden><h3>Respuesta</h3><div id="ai_res" style="white-space:pre-wrap;overflow-wrap:anywhere" class="lk-sample"></div><div class="row" style="margin-top:8px"><button class="btn sm" data-a="aiCopy">Copiar</button>'+((tg||AIS.fields.length)?'<span id="ai_tgtw" hidden><label>Si la respuesta no trae secciones, ponerla en:<select id="ai_tgt">'+AIS.fields.map(function(x){return '<option value="'+esc(x.id)+'">'+esc(x.lab)+'</option>';}).join('')+'</select></label></span><button class="btn sm" data-a="aiRepl">Aplicar en la nota</button><button class="btn sm" data-a="aiAppend">Agregar al final del campo</button><button class="btn sm ghost" data-a="aiUndo" id="ai_undo" hidden>Deshacer</button>':'')+'</div><div class="small muted" style="margin-top:6px">Generado por IA: puede tener errores. Revísalo antes de usarlo; la responsabilidad clínica es tuya y no sustituye el criterio del médico tratante.</div></div></div>';
   document.body.appendChild(d);
   var sel=document.getElementById('ai_pre');sel.addEventListener('change',function(){document.getElementById('ai_cwrap').hidden=sel.value!=='custom';});
+  var scs=document.getElementById('ai_scope');if(scs)scs.addEventListener('change',function(){var v=scs.value;AIS.sc=v;document.getElementById('ai_txt').value=aiScopeText(v);if(v==='all'){AIT=null;}else if(v==='sel'){AIT={id:AIS.sel.id,s:AIS.sel.s,e:AIS.sel.e};}else{var ff=document.getElementById(v);AIT={id:v,s:0,e:ff?ff.value.length:0};}});
   if(aiProv(cfg)==='limon'){if(!gUser()){aiStatus('Inicia sesión con Google (Cuenta) para usar la IA de Limonapp.',1);}else{aiApi('?whoami=1').then(function(w){AIW=Object.assign(AIW||{},w);aiStatus(w.paused?'La IA de Limonapp está en pausa por ahora.':!w.allowed?'Tu cuenta aún no tiene acceso. Pídeselo al administrador.':aiLeftTxt(w),w.paused||!w.allowed);}).catch(function(){});}}
 }
+function aiAfter(inst){var tw=document.getElementById('ai_tgtw'),tt=document.getElementById('ai_tgt');if(!AIS||!AIS.fields.length)return;if(tt)tt.value=aiGuess(inst);if(tw)tw.hidden=AIS.sc!=='all';var u=document.getElementById('ai_undo');if(u)u.hidden=true;}
 function aiStatus(m,bad){var s=document.getElementById('ai_st');if(s){s.textContent=m;s.className='small '+(bad?'':'muted');s.style.color=bad?'var(--bad)':'';}}
 function aiField(){var f=AIT&&document.getElementById(AIT.id);return f||null;}
 function initArt(){
@@ -4527,20 +4550,21 @@ var A={
    var red=aiRedact(txt);if(red!==txt){document.getElementById('ai_txt').value=red;txt=red;aiStatus('Taparé los números largos antes de enviar: revisa el texto y vuelve a tocar Enviar.',1);return;}
    var inst=pre==='custom'?(val('ai_cust')||'').trim():pr[2];if(!inst){aiStatus('Escribe tu instrucción.',1);return;}
    if(aiProv(c)==='limon'){
-     if(txt.length>4000){aiStatus('El texto es demasiado largo (máximo 4000 letras). Elige un fragmento más corto.',1);return;}
+     if(txt.length>12000){aiStatus('El texto es demasiado largo (máximo 12000 letras). Elige una parte más corta de la nota.',1);return;}
      var b0=document.getElementById('ai_go');if(b0)b0.disabled=true;aiStatus('Enviando…');document.getElementById('ai_out').hidden=true;
-     aiApi('',{method:'POST',body:JSON.stringify({pre:pre,text:txt,cust:pre==='custom'?inst:'',extra:c.extra||''})}).then(function(j){document.getElementById('ai_res').textContent=j.text;document.getElementById('ai_out').hidden=false;AIW=Object.assign(AIW||{},{left:j.left});aiStatus(aiLeftTxt(j));}).catch(function(e){if(e.left)AIW=Object.assign(AIW||{},{left:e.left});aiStatus(e.message,1);}).then(function(){if(b0)b0.disabled=false;});
+     aiApi('',{method:'POST',body:JSON.stringify({pre:pre,text:txt,cust:pre==='custom'?inst:'',extra:c.extra||''})}).then(function(j){document.getElementById('ai_res').textContent=j.text;document.getElementById('ai_out').hidden=false;aiAfter(pre==='custom'?inst:'');AIW=Object.assign(AIW||{},{left:j.left});aiStatus(aiLeftTxt(j));}).catch(function(e){if(e.left)AIW=Object.assign(AIW||{},{left:e.left});aiStatus(e.message,1);}).then(function(){if(b0)b0.disabled=false;});
      return;
    }
    var sys=AIBASE+'\n\nTarea: '+inst+(c.extra?'\n\nInstrucción adicional del usuario: '+c.extra:'');
    var b=document.getElementById('ai_go');if(b)b.disabled=true;aiStatus('Enviando…');document.getElementById('ai_out').hidden=true;
-   aiFetch(sys,txt,c).then(function(out){document.getElementById('ai_res').textContent=out;document.getElementById('ai_out').hidden=false;aiStatus('');}).catch(function(e){aiStatus(e.message,1);}).then(function(){if(b)b.disabled=false;});
+   aiFetch(sys,txt,c).then(function(out){document.getElementById('ai_res').textContent=out;document.getElementById('ai_out').hidden=false;aiAfter(pre==='custom'?inst:'');aiStatus('');}).catch(function(e){aiStatus(e.message,1);}).then(function(){if(b)b.disabled=false;});
  },
  aiAdmAdd:function(){var e=(val('ai_adm')||'').trim();if(!e)return;aiApi('?admin=add',{method:'POST',body:JSON.stringify({email:e})}).then(function(j){AIW.list=j.users||[];toast('Aprobado.');render();}).catch(function(x){toast(x.message);});},
  aiAdmDel:function(el){aiApi('?admin=remove',{method:'POST',body:JSON.stringify({email:el.dataset.e})}).then(function(j){AIW.list=j.users||[];toast('Quitado.');render();}).catch(function(x){toast(x.message);});},
  aiCopy:function(){var t=(document.getElementById('ai_res')||{}).textContent||'';try{navigator.clipboard.writeText(t).then(function(){toast('Copiado.');},function(){toast('No pude copiar.');});}catch(e){toast('No pude copiar.');}},
- aiRepl:function(){var f=aiField(),t=(document.getElementById('ai_res')||{}).textContent||'';if(!f||!AIT){toast('El campo ya no está abierto.');return;}var v=f.value,orig=v.slice(AIT.s,AIT.e),lw=(/^\s*/.exec(orig)||[''])[0],tw=(/\s*$/.exec(orig)||[''])[0],nt=lw+t+tw;f.value=v.slice(0,AIT.s)+nt+v.slice(AIT.e);AIT.e=AIT.s+nt.length;try{f.dispatchEvent(new Event('input',{bubbles:true}));}catch(e){}toast('Texto reemplazado en el campo.');},
- aiAppend:function(){var f=aiField(),t=(document.getElementById('ai_res')||{}).textContent||'';if(!f){toast('El campo ya no está abierto.');return;}f.value=(f.value.trim()?f.value.replace(/\s+$/,'')+'\n':'')+t;try{f.dispatchEvent(new Event('input',{bubbles:true}));}catch(e){}toast('Agregado al final del campo.');},
+ aiRepl:function(){if(AIS&&AIS.sc==='all'){var t0=(document.getElementById('ai_res')||{}).textContent||'',parts=t0.split(/^###[ \t]*/m),n=0;AIS.undo=[];parts.forEach(function(p){if(!p.trim())return;var i=p.indexOf('\n'),h=aiNorm(p.slice(0,i<0?p.length:i).trim()),b=i<0?'':p.slice(i+1).trim();var fl=AIS.fields.filter(function(x){return aiNorm(x.lab)===h;})[0];if(fl&&b&&aiSetVal(fl.id,b))n++;});if(!n){var tg0=val('ai_tgt');if(!tg0||!aiSetVal(tg0,t0.trim())){toast('No encontré dónde ponerlo.');return;}n=1;}var u=document.getElementById('ai_undo');if(u)u.hidden=false;toast(n===1?'Aplicado en 1 sección.':'Aplicado en '+n+' secciones.');return;}var f=aiField(),t=(document.getElementById('ai_res')||{}).textContent||'';if(!f||!AIT){toast('El campo ya no está abierto.');return;}var v=f.value,orig=v.slice(AIT.s,AIT.e),lw=(/^\s*/.exec(orig)||[''])[0],tw=(/\s*$/.exec(orig)||[''])[0],nt=lw+t+tw;f.value=v.slice(0,AIT.s)+nt+v.slice(AIT.e);AIT.e=AIT.s+nt.length;try{f.dispatchEvent(new Event('input',{bubbles:true}));}catch(e){}toast('Texto reemplazado en el campo.');},
+ aiUndo:function(){if(!AIS||!AIS.undo.length)return;AIS.undo.slice().reverse().forEach(function(u){var f=document.getElementById(u.id);if(f){f.value=u.old;try{f.dispatchEvent(new Event('input',{bubbles:true}));}catch(e){}}});AIS.undo=[];var u2=document.getElementById('ai_undo');if(u2)u2.hidden=true;toast('Deshecho.');},
+ aiAppend:function(){if(AIS&&AIS.sc==='all'){var tg1=val('ai_tgt'),f1=document.getElementById(tg1),t1=(document.getElementById('ai_res')||{}).textContent||'';if(!f1){toast('Elige el campo.');return;}AIS.undo=[];aiSetVal(tg1,(f1.value.trim()?f1.value.replace(/\s+$/,'')+'\n':'')+t1);var u3=document.getElementById('ai_undo');if(u3)u3.hidden=false;toast('Agregado al final del campo.');return;}var f=aiField(),t=(document.getElementById('ai_res')||{}).textContent||'';if(!f){toast('El campo ya no está abierto.');return;}f.value=(f.value.trim()?f.value.replace(/\s+$/,'')+'\n':'')+t;try{f.dispatchEvent(new Event('input',{bubbles:true}));}catch(e){}toast('Agregado al final del campo.');},
  lookAcc:function(el){lookUp(function(L){L.acc=el.dataset.v==='teal'?'':el.dataset.v;});},
  lookCol:function(){var v=(document.getElementById('lk_col')||{}).value;if(!/^#[0-9a-f]{6}$/i.test(v||''))return;lookUp(function(L){L.acc=v;});},
  lookFont:function(el){lookUp(function(L){L.font=el.dataset.v==='plex'?'':el.dataset.v;});},

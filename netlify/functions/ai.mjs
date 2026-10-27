@@ -87,9 +87,9 @@ const MONTH_MAX = () => Number(process.env.AI_MONTH || 200);
 const MODEL = () => process.env.AI_MODEL || 'gemini-3.5-flash-lite';
 const PIN = () => Number(process.env.AI_PRICE_IN || 0.50);
 const POUT = () => Number(process.env.AI_PRICE_OUT || 3.00);
-const MAX_TEXT = 4000, MAX_OUT = 700, COOLDOWN_MS = 15000;
+const MAX_TEXT = 12000, MAX_OUT = 1500, COOLDOWN_MS = 15000;
 
-const AIBASE = 'Eres un asistente para un estudiante de medicina en Colombia que escribe notas de rotación e historia clínica. Responde en español clínico claro y conciso. No inventes datos que no estén en el texto: si falta información, márcalo como [FALTA: ...]. No pidas ni repitas nombres, cédulas o teléfonos. Tus respuestas son sugerencias que el estudiante debe verificar con el médico tratante; no des órdenes definitivas. Solo ayudas con notas clínicas y de estudio de medicina; si el texto no tiene relación con eso, responde únicamente: "Solo puedo ayudar con notas clínicas y de estudio."';
+const AIBASE = 'Eres un asistente para un estudiante de medicina en Colombia que escribe notas de rotación e historia clínica. Responde en español clínico claro y conciso. No inventes datos que no estén en el texto: si falta información, márcalo como [FALTA: ...]. No pidas ni repitas nombres, cédulas o teléfonos. Tus respuestas son sugerencias que el estudiante debe verificar con el médico tratante; no des órdenes definitivas. Solo ayudas con notas clínicas y de estudio de medicina; si el texto no tiene relación con eso, responde únicamente: "Solo puedo ayudar con notas clínicas y de estudio."' + " Si el texto viene dividido en secciones con encabezados '### Nombre': si la tarea se refiere a una sola sección, responde solo con el texto de esa sección, sin encabezado; si afecta a varias o a toda la nota, devuelve cada sección con su mismo encabezado '### Nombre', sin omitir ninguna ni quitar nada de lo que estaba escrito.";
 const PRE = {
   corregir: 'Corrige ortografía, puntuación y redacción del texto conservando exactamente su contenido clínico y las abreviaturas estándar. No añadas información. Devuelve solo el texto corregido.',
   soap: 'Reorganiza el texto como evolución con las secciones S (subjetivo), O (objetivo), A (análisis) y P (plan), usando solo lo que está escrito. Lo que no aparezca, márcalo como [FALTA]. Devuelve solo la nota reorganizada.',
