@@ -3,9 +3,9 @@ LIMONAPP v40 - proyecto para Netlify (login con Supabase + Google + imagenes y l
 QUE CAMBIA EN LA v40 (sobre la v39)
   - Procedimientos: casilla abierta "Procedimientos solicitados" (uno por linea) en Plan, Ingreso, Evolucion y Consulta externa.
     Se ven en la tarjeta del Plan, en la historia y en el censo de Word.
-  - Buscador de catalogo (codigo CUPS o nombre, con filtro por categoria) que lee vendor/cups.txt, formato: codigo|categoria|nombre.
-    Ese archivo AUN NO esta incluido (falta cargar la lista oficial CUPS 2026, Res. 2706 de 2025). Mientras tanto el buscador avisa
-    y se escribe a mano. Cuando exista el archivo, agregarlo tambien a FILES en sw.js.
+  - Buscador del catalogo CUPS 2026 (Resolucion 2706 de 2025 del Ministerio de Salud, Anexo Tecnico 2 "Lista tabular", 9459 codigos):
+    por codigo o nombre, con filtro por capitulo. Archivo public/vendor/cups.txt (codigo|capitulo|nombre|grupo), ya incluido en sw.js.
+    Si algo no aparece, se escribe a mano en la casilla; se guarda igual.
 
 QUE CAMBIA EN LA v39 (sobre la v38)
   - Boton "Exportar censo (Word)" en cada servicio: descarga un .docx con la tabla de camas y, por paciente, TODO en orden
