@@ -628,7 +628,7 @@ function snapList(cb){snapDb(function(d){if(!d){cb([]);return;}try{var rq=d.tran
 function snapGet(t,cb){snapDb(function(d){if(!d){cb(null);return;}try{var rq=d.transaction('s').objectStore('s').get(t);rq.onsuccess=function(){d.close();cb(rq.result||null);};rq.onerror=function(){d.close();cb(null);};}catch(e){cb(null);}});}
 persist();
 
-var S={sec:'res',fold:{upd:1},imp:null,impP:null,pdfEv:null,view:'services',serviceId:null,patientId:null,filter:'activos',editor:null,editPatient:false,newPatient:false,confirm:null,warned:false,hand:'all',msg:null,backupText:'',area:'hosp',pf:'all',pt:'all',censo:null,snaps:undefined};
+var S={sec:'res',fold:{upd:1},imp:null,impP:null,pdfEv:null,view:'services',serviceId:null,patientId:null,filter:'activos',editor:null,editPatient:false,newPatient:false,confirm:null,warned:false,hand:'all',msg:null,backupText:'',area:'hosp',pf:'all',pt:'all',pp:'all',pd:'all',censo:null,snaps:undefined};
 try{var _f=JSON.parse(localStorage.getItem('rot_fold')||'null');if(_f)S.fold=_f;}catch(e){}
 try{S.bi=localStorage.getItem('rot_bi')!=='0';}catch(e){S.bi=true;}
 
@@ -969,6 +969,8 @@ function evBody(e){
 }
 document.addEventListener('change',function(ev){
   var t=ev.target;if(!t||!t.id)return;
+  if(t.id==='pfPat'){S.pp=t.value;render();return;}
+  if(t.id==='pfDate'){S.pd=t.value;render();return;}
   if(t.id==='e_v_go'||t.id==='e_v_gv'||t.id==='e_v_gm'){var el=document.getElementById('e_gtot');if(el)el.textContent=glasgowTot({go:val('e_v_go'),gv:val('e_v_gv'),gm:val('e_v_gm')})||'—';}
   if(t.id==='e_ref'){ /* al vincular un resultado con un pedido, se sugiere el nombre del estudio */
     var o=ordById(t.value),est=document.getElementById('e_est');
@@ -1327,6 +1329,12 @@ function entryCard(e){
 function ordRowC(o,pl){
   return '<div class="prow"><span class="chip" style="--c:var(--c-'+(o.k==='img'?'img':'lab')+')">'+(o.k==='img'?'Imagen':'Lab')+'</span><span class="t">'+esc(o.n)+(pl?' <span class="muted small">· pedido '+esc(dlong(pl.at))+'</span>':'')+'</span><button class="btn xs primary" data-a="regOrd" data-id="'+o.id+'">Registrar</button><button class="btn xs ghost" data-a="ordDrop" data-id="'+o.id+'" title="Ya no se hará" aria-label="Descartar">✕</button></div>';
 }
+var PDATES=[['all','Cualquier fecha'],['today','Hoy'],['7','Últimos 7 días'],['30','Últimos 30 días'],['old','Más de 30 días']];
+function pdOk(iso){
+  if(S.pd==='all')return true;if(!iso)return true;
+  var d=(Date.now()-new Date(iso).getTime())/864e5;
+  return S.pd==='today'?d<1:S.pd==='7'?d<=7:S.pd==='30'?d<=30:d>30;
+}
 function viewTasks(){
   var groups=db.services.map(function(sv){return {id:sv.id,name:sv.name,ps:activeOf(sv.id).filter(function(p){return pendCount(p.id)>0;})};}).filter(function(g){return g.ps.length;});
   var amb=db.patients.filter(function(p){return p.active&&p.ctx==='amb'&&pendCount(p.id)>0;});
@@ -1338,13 +1346,16 @@ function viewTasks(){
   var tot=groups.reduce(function(a,g){return a+cnt(g);},0);
   h+='<div class="pfil">'+[{id:'all',name:'Todos',n:tot}].concat(groups.map(function(g){return {id:g.id,name:g.name,n:cnt(g)};})).map(function(g){return '<button class="tab" data-a="pfSvc" data-v="'+esc(g.id)+'"'+(S.pf===g.id?' aria-current="page"':'')+'>'+esc(g.name)+' ('+g.n+')</button>';}).join('')+'</div>';
   h+='<div class="pfil">'+[['all','Todo'],['res','Resultados'],['task','Tareas'],['ic','Interconsultas']].map(function(t){return '<button class="tab sm" data-a="pfType" data-v="'+t[0]+'"'+(S.pt===t[0]?' aria-current="page"':'')+'>'+t[1]+'</button>';}).join('')+'</div>';
+  var allp=[];groups.forEach(function(g){if(S.pf==='all'||S.pf===g.id)g.ps.forEach(function(p){allp.push(p);});});
+  if(S.pp!=='all'&&!allp.some(function(p){return p.id===S.pp;}))S.pp='all';
+  h+='<div class="pfil"><select id="pfPat" data-a="pfPat" aria-label="Filtrar por paciente"><option value="all">Todos los pacientes</option>'+allp.map(function(p){return '<option value="'+p.id+'"'+(S.pp===p.id?' selected':'')+'>'+esc(p.ini)+(p.bed?' · cama '+esc(p.bed):'')+' ('+pendCount(p.id)+')</option>';}).join('')+'</select><select id="pfDate" data-a="pfDate" aria-label="Filtrar por fecha">'+PDATES.map(function(d){return '<option value="'+d[0]+'"'+(S.pd===d[0]?' selected':'')+'>'+d[1]+'</option>';}).join('')+'</select></div>';
   h+='<div class="cols">';var shown=false;
   groups.filter(function(g){return S.pf==='all'||S.pf===g.id;}).forEach(function(g){
-    var body=g.ps.map(function(p){
+    var body=g.ps.filter(function(p){return S.pp==='all'||S.pp===p.id;}).map(function(p){
       var rows='';
-      if(S.pt==='all'||S.pt==='task')rows+=openTasks(p.id).map(taskRow).join('');
-      if(S.pt==='all'||S.pt==='res')rows+=pendOrders(p.id).map(function(x){return ordRowC(x.o,x.pl);}).join('');
-      if(S.pt==='all'||S.pt==='ic')rows+=openICs(p.id).map(function(e){return '<div class="prow"><span class="chip" style="--c:var(--c-interconsulta)">IC</span><span class="t">'+esc(e.data.serv||'Interconsulta')+(e.data.preg?' <span class="muted small">· '+esc(cut(e.data.preg,110))+'</span>':'')+'</span><button class="btn xs" data-a="toggleIC" data-id="'+e.id+'">Respondida</button></div>';}).join('');
+      if(S.pt==='all'||S.pt==='task')rows+=openTasks(p.id).filter(function(t){return pdOk(t.at);}).map(taskRow).join('');
+      if(S.pt==='all'||S.pt==='res')rows+=pendOrders(p.id).filter(function(x){return pdOk(x.pl&&x.pl.at);}).map(function(x){return ordRowC(x.o,x.pl);}).join('');
+      if(S.pt==='all'||S.pt==='ic')rows+=openICs(p.id).filter(function(e){return pdOk(e.at);}).map(function(e){return '<div class="prow"><span class="chip" style="--c:var(--c-interconsulta)">IC</span><span class="t">'+esc(e.data.serv||'Interconsulta')+(e.data.preg?' <span class="muted small">· '+esc(cut(e.data.preg,110))+'</span>':'')+'</span><button class="btn xs" data-a="toggleIC" data-id="'+e.id+'">Respondida</button></div>';}).join('');
       if(!rows)return '';
       return '<div class="pgrp"><div class="row">'+(p.bed?'<span class="bed">Cama '+esc(p.bed)+'</span>':'')+'<button class="btn sm ghost" data-a="openPatient" data-id="'+p.id+'"><strong>'+esc(p.ini)+'</strong>'+(p.ctx==='amb'?'':' · día '+hd(p))+' ›</button></div>'+rows+'</div>';
     }).join('');
@@ -1352,7 +1363,7 @@ function viewTasks(){
     h+='<div class="card"><h3>'+esc(g.name)+'</h3>'+body+'</div>';
   });
   h+='</div>';
-  if(!shown)h+='<div class="empty">'+art('sleep')+'No hay pendientes de este tipo.</div>';
+  if(!shown)h+='<div class="empty">'+art('sleep')+'No hay pendientes con esos filtros.</div>';
   return h;
 }
 
@@ -2726,7 +2737,9 @@ function applyPdfNew(r){
   var evs=r.items.filter(function(i){return i.k==='ev';}).sort(function(a,b){return a.at<b.at?1:-1;});
   var olds=evs.slice(1,EVMAX);
   var saMax=r.items.filter(function(i){return i.k==='sa';}).reduce(function(m,i){return i.at>m?i.at:m;},'').slice(0,10),newest=r.items.reduce(function(m,i){return i.at>m?i.at:m;},''),cut30=newest?new Date(new Date(newest).getTime()-30*864e5).toISOString():'';
-  var extra=r.items.filter(function(i){return i.k!=='ev';}).concat(olds).map(function(i){var o={type:KTYPE[i.k],at:i.at,data:i.data},old=(cut30&&i.at<cut30)||(saMax&&i.at.slice(0,10)<=saMax);if(i.est)o.est=1;if(i.by)o.by=i.by;if(i.svc)o.svc=i.svc;if(i.k==='ic')o.status=i.pend?'pendiente':'respondida';if(i.ctx)o.ctx=i.ctx;
+  var extra=r.items.filter(function(i){return i.k!=='ev';}).concat(olds).map(function(i){var o={type:KTYPE[i.k],at:i.at,data:i.data},old=((cut30&&i.at<cut30)||(saMax&&i.at.slice(0,10)<=saMax))&&i.k!=='co';if(i.est)o.est=1;if(i.by)o.by=i.by;if(i.svc)o.svc=i.svc;if(i.k==='ic')o.status=i.pend?'pendiente':'respondida';if(i.ctx)o.ctx=i.ctx;
+    if(o.type==='consulta'){var nw=r.items.some(function(j){return j.k==='co'&&j.svc===i.svc&&j.at>i.at;});old=nw;}
+    else if(r.ctx==='amb')old=false;
     if(old&&/^(consulta|ingreso|evolucion)$/.test(o.type))o.stale=1;
     if(old&&o.type==='plan'&&i.data&&i.data.ord)o.data=Object.assign({},i.data,{ord:i.data.ord.map(function(q){return Object.assign({},q,{x:1});})});
     return o;});
@@ -4773,7 +4786,9 @@ var A={
  handSel:function(el){S.hand=el.value;render();},
  copyHand:function(){copyText(handoffText(),'outbox');},
  area:function(el){S.area=el.dataset.v;render();},
- pfSvc:function(el){S.pf=el.dataset.v;render();},
+ pfSvc:function(el){S.pf=el.dataset.v;S.pp='all';render();},
+ pfPat:function(el){S.pp=el.value;render();},
+ pfDate:function(el){S.pd=el.value;render();},
  pfType:function(el){S.pt=el.dataset.v;render();},
  newAmb:function(){var sel=val('ambSvc')||(db.services[0]&&db.services[0].id);if(!sel){toast('Primero crea un servicio.');return;}S.serviceId=sel;S.view='service';S.newPatient=true;S.newCtx='amb';S.imp=null;S.impP=null;render();},
  censoOpen:function(el){var sv=svc(el.dataset.id);if(!sv)return;var sel={};db.patients.filter(function(p){return p.serviceId===sv.id&&p.ctx!=='amb'&&(S.filter==='activos'?p.active:!p.active);}).forEach(function(p){sel[p.id]=1;});S.censo={sid:sv.id,sel:sel};render();},
