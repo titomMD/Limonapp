@@ -668,6 +668,66 @@ var AIPRE=[
  ['explicar','Explicar el razonamiento para estudiar','Explica el razonamiento clínico detrás del texto: primero la fisiopatología y la intuición, luego el detalle. Distingue qué proviene de guías o evidencia y qué es interpretación. Señala qué debería aprender el estudiante de este caso.'],
  ['custom','Instrucción propia','']
 ];
+/* v55: Gemini lee la HC (diagnóstico actual, contexto, egreso, motivo). El texto de las historias lo copia la app tal cual;
+   la IA solo decide lo que el lector básico suele confundir, y cada dato se acepta SOLO si su cita literal está en el PDF. */
+function aiNz(t){return aiNorm(t).replace(/[^a-z0-9]+/g,' ').trim();}
+function aiCapDocs(docs){
+  var ds=docs.slice().sort(function(a,b){return a.at<b.at?-1:a.at>b.at?1:a.i-b.i;}),cap=2400,out;
+  function mk(){return ds.map(function(d){var x=d.x||'';if(x.length>cap)x=x.slice(0,Math.floor(cap*.75))+'\n[…]\n'+x.slice(-Math.floor(cap*.25));return {i:d.i,t:d.t,s:d.s,at:d.at,x:x};});}
+  out=mk();while(cap>400&&out.reduce(function(a,d){return a+d.x.length;},0)>85000){cap=Math.floor(cap*.75);out=mk();}
+  return out;
+}
+function aiRead(r){
+  if(!(r&&r.hus&&r.docs&&r.docs.length&&gAvail()&&gUser()))return Promise.resolve(r);
+  var c=aiCfg();
+  if(!c.consent){
+    var okc=false;try{okc=confirm('Para leer mejor las historias clínicas, Limonapp envía el texto clínico del PDF (sin nombre, cédula ni teléfono) a Gemini, de Google. No se guarda en Limonapp. ¿Quieres usarlo?\n\nSi cancelas, la app usa el lector básico.');}catch(e){}
+    c.consent=okc;aiSet(c);
+    if(!okc){r.aiErr='Elegiste no usar la IA.';return Promise.resolve(r);}
+  }
+  toast('Leyendo con IA…');
+  var tm=new Promise(function(res,rej){setTimeout(function(){rej(new Error('La IA tardó demasiado.'));},40000);});
+  return Promise.race([aiApi('?hc=1',{method:'POST',body:JSON.stringify({docs:aiCapDocs(r.docs)})}),tm]).then(function(j){return aiMerge(r,j&&j.data);}).catch(function(e){r.aiErr=(e&&e.message)||'No pude usar la IA.';return r;});
+}
+function aiMerge(r,a){
+  if(!a||typeof a!=='object')return r;
+  var full=aiNz(r.docs.map(function(d){return d.x;}).join(' ')),used=[];
+  function ok(o){return !!(o&&typeof o.cita==='string'&&o.cita.length>=8&&full.indexOf(aiNz(o.cita))>=0);}
+  function clean(t,n){return String(t||'').replace(/\s+/g,' ').replace(/^[A-Z]\d+[A-Z0-9]?\s*[-–]\s*/,'').trim().slice(0,n);}
+  var dx=a.diagnostico_actual;
+  if(ok(dx)&&clean(dx.texto,140).length>=3){r.dx=clean(dx.texto,140);r.dxAi=1;used.push('diagnóstico actual');}
+  var mo=a.motivo_ingreso_actual;
+  if(ok(mo)&&clean(mo.texto,600).length>=3){r.hx=r.hx||{};r.hx.motivo=clean(mo.texto,600);used.push('motivo de ingreso');}
+  var fi=/^\d{4}-\d{2}-\d{2}$/.test(a.fecha_ingreso_actual||'')?a.fecha_ingreso_actual:'';
+  if(fi&&fi<=today()&&r.f){r.f.adm=fi;used.push('fecha de ingreso');}
+  var cx=a.contexto_actual,eg=a.egreso;
+  if(cx==='egresado'){
+    var ed=ok(eg)&&/^\d{4}-\d{2}-\d{2}$/.test(eg.fecha||'')?eg.fecha:'';
+    if(ed){var dest=clean(eg.destino||eg.cita,80);r.exit={at:new Date(ed+'T12:00:00').toISOString(),tipo:salTipo(dest),dest:dest};r.ctx='hosp';used.push('egreso');}
+  }else if(cx==='consulta_externa'){
+    r.ctx='amb';r.exit=null;if(r.items.some(function(i){return /^(ev|in)$/.test(i.k);}))r.dxNew=1;used.push('contexto: consulta externa');
+  }else if(cx==='hospitalizado'||cx==='urgencias'){
+    r.ctx=cx==='urgencias'?'urg':'hosp';r.exit=null;used.push('contexto: '+(cx==='urgencias'?'urgencias':'hospitalizado'));
+  }
+  r.ai={used:used,notas:(Array.isArray(a.notas)?a.notas:[]).slice(0,3).map(function(n){return clean(n,200);}).filter(Boolean)};
+  return r;
+}
+function aiNote(i){
+  if(i.ai&&i.ai.used.length)return '<div class="note">Gemini ayudó a identificar: '+esc(i.ai.used.join(', '))+'. Revisa que esté bien antes de guardar.'+(i.ai.notas.length?'<br><span class="small muted">Dudas de la IA: '+esc(i.ai.notas.join(' · '))+'</span>':'')+'</div>';
+  if(i.aiErr)return '<div class="note small">'+esc(i.aiErr)+' Leí con el lector básico.</div>';
+  return '';
+}
+/* panel privado de uso por persona (solo lo ve el administrador; el servidor lo exige) */
+function usoCard(){
+  if(!gAvail()||!gUser())return '';
+  aiWho();
+  if(!AIW||!AIW.admin||!AIW.use)return '';
+  var u=AIW.use,rows=u.rows||[],fm=function(n){n=+n||0;return '$'+(n>0&&n<0.01?n.toFixed(4):n.toFixed(2));},ft=function(n){n=+n||0;return n>=1000?(n/1000).toFixed(1)+' mil':String(n);};
+  return '<div class="card"><h3>Uso de la IA por persona</h3><div class="small muted">Solo tú ves esto. Mes '+esc(u.month)+' · modelo '+esc(u.model)+'. El gasto es una estimación con precios de pago ($'+u.price.in+' entrada y $'+u.price.out+' salida por millón de tokens); con el plan gratuito de Google no se cobra. Se cuenta cada HC leída con IA; el texto nunca se guarda.</div>'+
+   '<div class="small"><strong>Total del mes:</strong> '+((u.global&&u.global.n)||0)+' HC · '+fm(u.global&&u.global.usd)+' estimados (tope '+fm(u.budget)+'). Límite por persona: '+u.dayMax+' HC al día y '+u.monthMax+' al mes.</div>'+
+   (rows.length?rows.map(function(x){return '<div class="lk-sample" style="margin:6px 0"><strong>'+esc(x.e)+'</strong><div class="small">Hoy '+x.today+' · mes '+x.month.n+' HC ('+x.month.f+' con error) · '+ft(x.month.tin+x.month.tout)+' tokens · '+fm(x.month.usd)+' est. · total '+x.total.n+' HC, '+fm(x.total.usd)+' est.</div></div>';}).join(''):'<div class="small muted">Aún nadie ha usado el lector con IA.</div>')+
+   '<div class="row"><button class="btn sm" data-a="usoRef">Actualizar</button><button class="btn sm" data-a="usoCopy">Copiar resumen</button></div></div>';
+}
 function aiCfg(){var o={};try{o=JSON.parse(localStorage.getItem('rot_ai')||'{}')||{};}catch(e){}return o;}
 function aiSet(o){try{localStorage.setItem('rot_ai',JSON.stringify(o));return true;}catch(e){return false;}}
 function aiClean(){var c=aiCfg();if(c.key||c.prov||c.model){delete c.key;delete c.prov;delete c.model;aiSet(c);}}
@@ -676,7 +736,7 @@ function aiReady(){return !!aiCfg().consent;}
 /* v44: IA compartida de Limonapp (la clave vive en el servidor; /api/ai pone topes y aprobación) */
 var AIW,AIWL=0,AIWT=0;
 function aiApi(path,opt){return gTokenP().then(function(t){opt=opt||{};opt.headers=Object.assign({Authorization:'Bearer '+t,'content-type':'application/json'},opt.headers||{});return fetch('/api/ai'+path,opt);}).then(function(r){return r.text().then(function(tx){var j=null;try{j=JSON.parse(tx);}catch(e){}if(!r.ok){var er=new Error((j&&j.error)||('Error '+r.status));er.code=j&&j.code;er.left=j&&j.left;throw er;}return j||{};});});}
-function aiWho(force){if(!gAvail()||!gUser())return;if(AIW!==undefined&&!force&&Date.now()-AIWT<60000)return;if(AIWL)return;AIWL=1;AIWT=Date.now();aiApi('?whoami=1').then(function(j){AIW=j;if(j.admin)return aiApi('?admin=list').then(function(l){AIW.list=l.users||[];AIW.reqs=l.reqs||[];});}).catch(function(){AIW=null;}).then(function(){AIWL=0;if(S.view==='backup')render();});}
+function aiWho(force){if(!gAvail()||!gUser())return;if(AIW!==undefined&&!force&&Date.now()-AIWT<60000)return;if(AIWL)return;AIWL=1;AIWT=Date.now();aiApi('?whoami=1').then(function(j){AIW=j;if(j.admin)return aiApi('?admin=usage').then(function(l){AIW.use=l;});}).catch(function(){AIW=null;}).then(function(){AIWL=0;if(S.view==='backup')render();});}
 function aiLeftTxt(w){return w&&w.left?'Te quedan '+w.left.day+' usos hoy y '+w.left.month+' este mes.':'';}
 function aiAdminCard(){
   if(!AIW||!AIW.admin)return '';
@@ -911,7 +971,7 @@ function entryForm(){
   var d=ed.prefill||(e&&e.data)||{};
   if(ed.type==='consulta'&&!e&&!d.medico){try{var lm=localStorage.getItem('rot_med');if(lm){d=Object.assign({},d,{medico:lm});}}catch(x){}}
   if(ed.type==='plan'&&!ed.prefill&&e){d={plan:e.data.plan||'',ordl:(e.data.ord||[]).filter(function(o){return o.k==='lab';}).map(function(o){return o.n;}).join('\n'),ordi:(e.data.ord||[]).filter(function(o){return o.k==='img';}).map(function(o){return o.n;}).join('\n'),proc:e.data.proc||''};}
-  var h='<div class="card" style="border-color:var(--c-'+ed.type+')"><div class="row spread"><span class="chip" style="--c:var(--c-'+ed.type+')">'+T.label+'</span><div class="row">'+(ed.type==='evolucion'&&!e?'<button class="btn sm" data-a="copyLastEv">Partir de la evolución anterior</button>':'')+'<button class="btn sm" data-a="aiOpen" title="Revisa con tu propia IA el texto que elijas">Asistente IA</button>'+(ed.type==='triage'||ed.type==='traslado'?'':'<button class="btn sm" data-a="fillPdf" title="Se lee en tu dispositivo; nada se sube">Llenar desde PDF</button>')+'</div></div>';
+  var h='<div class="card" style="border-color:var(--c-'+ed.type+')"><div class="row spread"><span class="chip" style="--c:var(--c-'+ed.type+')">'+T.label+'</span><div class="row">'+(ed.type==='evolucion'&&!e?'<button class="btn sm" data-a="copyLastEv">Partir de la evolución anterior</button>':'')+''+(ed.type==='triage'||ed.type==='traslado'?'':'<button class="btn sm" data-a="fillPdf" title="Se lee en tu dispositivo; nada se sube">Llenar desde PDF</button>')+'</div></div>';
   h+='<label>Fecha y hora<input id="e_at" type="datetime-local" value="'+esc(ed.at?ed.at:(e?toLocal(e.at):nowLocal()))+'"></label>';
   if(ed.type==='lab'||ed.type==='img')h+=refSelect(ed,d);
   if(ed.type==='evolucion')h+=evFormHtml(d);
@@ -1613,7 +1673,7 @@ function viewBackup(){
   else h+='<div class="note">'+(gOn()?'Tus datos se guardan en tu cuenta de Google. Si pierdes la conexión, la app guarda copias de seguridad en este dispositivo y las borra cuando vuelve a sincronizar.':'Tus datos viven solo en este dispositivo. Inicia sesión con Google para guardarlos también en tu cuenta. Mientras tanto la app guarda copias automáticas de seguridad.')+'</div>';
   h+='<div class="cols">';
   h+=lookCard();
-  h+=aiCard();
+  h+=usoCard();
   if(S.snaps===undefined){S.snaps=[];snapList(function(a){S.snaps=a;if(S.view==='backup')render();});}
   h+='<details class="card"><summary><h3 style="display:inline">Avanzado</h3></summary><div class="small muted" style="margin:8px 0">Respaldo manual y copias automáticas. Normalmente no lo necesitas.</div>'+
      '<h4>Exportar</h4><div class="row"><button class="btn" data-a="makeBackup">Generar respaldo</button></div>'+(S.backupText?'<textarea id="backupOut" rows="6" readonly>'+esc(S.backupText)+'</textarea><div class="row"><button class="btn" data-a="copyBackup">Copiar</button></div>':'')+
@@ -2883,11 +2943,12 @@ function analyzeHus(pages){
     if(pg.at)ctx.last=pg.at;
     cur={key:key,title:pg.title,sub:pg.sub,at:pg.at||ctx.last,est:!pg.at,body:pg.body.slice()};recs.push(cur);
   });
-  var huc,items=[],hx={},firstIn=null,sex='',dxLine='',seenX={},hospSeen=0,coSeen=0,f0=0;
+  var huc,docs=[],items=[],hx={},firstIn=null,sex='',dxLine='',seenX={},hospSeen=0,coSeen=0,f0=0;
   recs.forEach(function(r){
     var k=husKind(r.title);
     if(!k){skipped++;return;}
     var ls=husLines(r.body,c,nameSet),at=r.at||(/^\d{4}-\d{2}-\d{2}/.test(meta.adm||'')?new Date(meta.adm.slice(0,10)+'T12:00:00').toISOString():new Date().toISOString()),it=null,d,title=sentence(r.title),hPara='';
+    docs.push({i:docs.length,t:title,s:r.sub||'',at:at,x:ls.join('\n')});
     if(!sex){var sm=/\bPACIENTE\s+(FEMENINA|MASCULINO)\b/i.exec(ls.join(' '));if(sm)sex=/^f/i.test(sm[1])?'F':'M';}
     if(k==='ev'&&/^CONSULTA (EXTERNA|PREANESTESICA)/.test(norm2(r.title))){coSeen=1;var hco=husCons(ls);if(hco.have)it={k:'co',at:at,data:hco.d,v:2,ctx:'amb',sub:'Consulta externa'};}
     else if(k==='in'&&/^INGRESO UCI/.test(norm2(r.title))&&(huc=husUci(ls))){hospSeen=1;ssMerge(huc,['plan','ea']);if(!firstIn||at<firstIn.at)firstIn={at:at,hx:{motivo:huc.motivo,ea:huc.ea,ant:huc.ant,ef:huc.ef,dx:huc.imp,plan:huc.plan}};it={k:'in',at:at,data:huc,v:2,sub:'UCI',uci:1};}
@@ -2960,7 +3021,7 @@ function analyzeHus(pages){
     dxLine=nco.data.dx.split('\n')[0].replace(/^[A-Z]\d+[A-Z0-9]?\s*-\s*/,'');dxNew=1;pctx='amb';exit=null;meta.adm=nco.at.slice(0,10);meta.bed='';
   }
   var f={ini:meta.ini,age:meta.age,bed:meta.bed,hc:meta.hc,sex:sex,adm:meta.adm};
-  return {f:f,hx:hx,items:items,red:c.n,skip:skipped,dx:dxLine,dxNew:dxNew,hus:true,exit:exit,ctx:pctx};
+  return {f:f,hx:hx,items:items,red:c.n,skip:skipped,dx:dxLine,dxNew:dxNew,hus:true,exit:exit,ctx:pctx,docs:docs};
 }
 
 function importPdf(file,mode){
@@ -2971,7 +3032,7 @@ function importPdf(file,mode){
   pdfPages(file).then(function(pages){
     if(pages.join('').replace(/\s/g,'').length<40){toast('Este PDF no tiene texto (parece una foto o escaneo). Por ahora no leo imágenes.');return;}
     var r=((forced==='auto'||forced==='lab')&&labRep(pages))||((forced==='auto'&&isHus(pages))?analyzeHus(pages):analyzeAll(stripRepeats(pages),forced));
-    if(mode==='new')applyPdfNew(r);else applyPdfUpd(r);
+    if(mode==='new')aiRead(r).then(applyPdfNew);else applyPdfUpd(r);
   }).catch(function(e){toast(e&&e.message==='offline'?'La primera vez necesito internet para cargar el lector de PDF.':'No pude leer ese PDF.');});
 }
 function applyPdfNew(r){
@@ -2986,9 +3047,9 @@ function applyPdfNew(r){
     return o;});
   if(!Object.keys(r.hx).length&&!evs.length&&!extra.length){toast('No reconocí secciones de historia clínica en ese PDF.');return;}
   var cur={};['ini','hc','age','sex','bed','adm','dx','sev','cont'].forEach(function(k){var v=val('f_'+k);if(v!=='')cur[k]=v;});if(cur.adm===today())delete cur.adm;
-  var dh=r.hx.dx?dxFromHx(r.hx.dx):'',dx=r.dxNew?cut(r.dx,140):(dh&&dh.length<=100)?dh:(r.dx?cut(r.dx,140):dh||'');
+  var dh=r.hx.dx?dxFromHx(r.hx.dx):'',dx=(r.dxNew||r.dxAi)?cut(r.dx,140):(dh&&dh.length<=100)?dh:(r.dx?cut(r.dx,140):dh||'');
   S.impP={ini:cur.ini||r.f.ini||'',hc:cur.hc||r.f.hc||'',age:cur.age||r.f.age||'',sex:r.f.sex||cur.sex||'M',bed:cur.bed||r.f.bed||'',adm:cur.adm||r.f.adm||today(),dx:cur.dx||dx,sev:cur.sev||'estable',cont:cur.cont||'',ctx:r.ctx||''};
-  S.imp={hx:r.hx,ev:evs[0]||null,extra:extra,nev:evs.length,olds:olds.length,red:r.red,skip:r.skip,exit:r.exit||null,evOld:!!(evs[0]&&((cut30&&evs[0].at<cut30)||(saMax&&evs[0].at.slice(0,10)<=saMax)))};S.newPatient=true;render();
+  S.imp={hx:r.hx,ev:evs[0]||null,extra:extra,nev:evs.length,olds:olds.length,red:r.red,skip:r.skip,ai:r.ai||null,aiErr:r.aiErr||'',exit:r.exit||null,evOld:!!(evs[0]&&((cut30&&evs[0].at<cut30)||(saMax&&evs[0].at.slice(0,10)<=saMax)))};S.newPatient=true;render();
   toast('PDF leído. Revisa los datos y toca Guardar.');
 }
 function applyPdfUpd(r){
@@ -3006,7 +3067,7 @@ function instNote(){
 }
 document.addEventListener('change',function(ev){var t=ev.target;if(t&&t.classList&&t.classList.contains('instSel')){try{localStorage.setItem('rot_inst',t.value);}catch(e){}}});
 function dropZone(mode){
-  return '<div class="drop" data-mode="'+mode+'">'+instNote()+'<strong>Arrastra aquí el PDF</strong><span class="small muted">o <button type="button" class="btn sm" data-a="pickPdf" data-mode="'+mode+'">elige el archivo</button></span><span class="small muted">Se lee en tu dispositivo, no se sube a ningún lado.</span><label style="flex-direction:row;align-items:center;gap:6px"><input type="checkbox" class="noiseOn" checked style="width:auto"> Omitir consentimientos y datos administrativos</label></div>';
+  return '<div class="drop" data-mode="'+mode+'">'+instNote()+'<strong>Arrastra aquí el PDF</strong><span class="small muted">o <button type="button" class="btn sm" data-a="pickPdf" data-mode="'+mode+'">elige el archivo</button></span><span class="small muted">El PDF se lee en tu dispositivo y no se sube. Si iniciaste sesión, el texto clínico (sin nombre ni cédula) se envía a Gemini para identificar el diagnóstico actual y el contexto.</span><label style="flex-direction:row;align-items:center;gap:6px"><input type="checkbox" class="noiseOn" checked style="width:auto"> Omitir consentimientos y datos administrativos</label></div>';
 }
 function impNote(){
   if(!S.imp)return '';
@@ -3015,7 +3076,7 @@ function impNote(){
   if(x)parts.push(x+' registro'+(x===1?'':'s')+' (interconsultas, ingresos, evoluciones anteriores, notas y otros)');
   if(i.ev)parts.push('evolución del '+fmt(i.ev.at).replace(/\.$/,''));
   var tx=parts.length>1?parts.slice(0,-1).join(', ')+' y '+parts[parts.length-1]:parts[0];
-  return '<div class="note">PDF leído: '+tx+'. Se guardará con el paciente. Quité las líneas de nombre, cédula y teléfono'+(i.red?' y '+i.red+' número'+(i.red===1?'':'s')+' largo'+(i.red===1?'':'s'):'')+'.'+(i.skip?' Omití '+i.skip+' fragmento'+(i.skip===1?'':'s')+' de consentimiento o datos administrativos.':'')+'</div>'+(gAvail()&&gUser()?'<div class="row" style="margin:6px 0"><button class="btn sm" data-a="aiImp" id="aiImpB">Que la IA revise el diagnóstico y el motivo</button><span class="small muted" id="aiImpS"></span></div>':'');
+  return '<div class="note">PDF leído: '+tx+'. Se guardará con el paciente. Quité las líneas de nombre, cédula y teléfono'+(i.red?' y '+i.red+' número'+(i.red===1?'':'s')+' largo'+(i.red===1?'':'s'):'')+'.'+(i.skip?' Omití '+i.skip+' fragmento'+(i.skip===1?'':'s')+' de consentimiento o datos administrativos.':'')+'</div>'+aiNote(i);
 }
 function updCard(p){
   var h='<div class="card"><h3>Actualizar desde PDF</h3><div class="small muted">Sirve para un PDF completo o solo una parte (evolución, respuesta de interconsulta, laboratorios, imagen). Lo nuevo se agrega: no se borra ni se reemplaza nada de lo que ya tienes.</div>'+
@@ -3489,7 +3550,7 @@ var HELP=[
  {t:'Consulta externa (primera vez o control)',kw:['consulta','consulta externa','primera vez','control','ambulatoria','ambulatorio'],a:'Dentro de un paciente toca “+ Consulta externa” (o crea el paciente con atención “Consulta externa”). Eliges si es primera vez o control, escribes el médico que atiende y la historia. Queda en la Cronología marcada como consulta externa, junto con urgencias y hospitalización; ahí puedes filtrar por tipo de atención.'},
  {t:'Exportar el censo a Word',kw:['censo','word','docx','exportar','imprimir','descargar historia'],a:'En un servicio toca “Exportar censo (Word)”: descarga un documento con una tabla de camas y, por paciente, todo en orden cronológico (ingreso, evoluciones, consultas, interconsultas, paraclínicos, imágenes, notas aclaratorias y pendientes). Dentro de un paciente, “Exportar HC (Word)” baja solo su historia. Lleva solo iniciales y los últimos 3 dígitos de la HC. Las fotos de las imágenes no van en el documento, solo sus lecturas.'},
  {t:'Procedimientos en el plan',kw:['procedimiento','procedimientos','cups','cirugia','solicitar procedimiento'],a:'En el Plan, el Ingreso, las Evoluciones y la Consulta hay una casilla “Procedimientos solicitados”: escribe uno por línea. Debajo puedes buscar en el catálogo (código CUPS o nombre) y tocar el resultado para añadirlo. Si no aparece, déjalo escrito a mano; se guarda igual y sale en el censo en Word.'},
- {t:'Asistente de IA de Limonapp',kw:['ia','inteligencia artificial','gemini','asistente','acceso','solicitar'],a:'Las funciones avanzadas de IA son un servicio de Limonapp con cupos limitados. En Cuenta > Asistente de IA, si aún no tienes acceso, escribe tu nombre y un contacto y toca “Solicitar acceso” (y “Avisarle por correo” si quieres escribirle además). Cuando el creador te apruebe, marca la casilla de aceptación, guarda, y usa el botón “Asistente IA” al escribir una nota: envía toda la nota o solo la parte que elijas (tope: 15 usos al día y 200 al mes). El texto pasa por el servidor de Limonapp y por Google, y no se guarda. No envíes nombres, cédulas ni teléfonos.'},
+ {t:'Lector de historias con IA',kw:['ia','inteligencia artificial','gemini','pdf','historia','importar','diagnostico'],a:'Si iniciaste sesión, al subir un PDF de historia clínica Limonapp usa Gemini (de Google) para identificar el diagnóstico actual, el contexto (hospitalizado, consulta externa o egresado) y el motivo de ingreso. La primera vez te pide aceptar. Se envía solo el texto clínico, sin nombre, cédula ni teléfono, y no se guarda. Cada dato que propone la IA se acepta solo si su cita está en el PDF, y siempre puedes corregirlo antes de guardar. Si la IA falla o llegas al límite del día, la app usa el lector básico.'},
  {t:'Borrar un paciente o el ejemplo',kw:['borrar paciente','eliminar paciente','ejemplo','demo','borrar servicio'],a:'Para un paciente: abre su Resumen y toca “Borrar paciente” (pide confirmación). El paciente de ejemplo se quita desde Cuenta → “Borrar el ejemplo”.',go:[['Ir a Cuenta','nav:backup']]},
  {t:'Privacidad: qué datos no poner',kw:['privacidad','datos','nombre','cedula','telefono','seguridad','confidencial','seguro'],a:'Escribe solo iniciales, edad, cama y los 3 últimos dígitos de la historia. Nunca nombre completo, cédula, teléfono ni dirección. Si inicias sesión, tus datos quedan en el servidor de la app ligados a tu cuenta; la política de privacidad está enlazada al pie de la página.',go:[]},
  {t:'Se me perdieron los datos',kw:['perdi','perdieron','desaparecio','borraron','sin datos','vacia','recuperar datos'],a:'Los datos viven en el navegador de cada dispositivo; si borras los datos del sitio o cambias de navegador, no aparecen. Si tenías sesión iniciada, entra otra vez y toca “Sincronizar ahora”. Si tienes un respaldo, pégalo en Cuenta → Importar.',go:[['Ir a Cuenta','nav:backup']]},
@@ -5110,6 +5171,8 @@ var A={
  censoGo:function(){var c=S.censo,sv=c&&svc(c.sid);if(!sv)return;var ps=db.patients.filter(function(p){return c.sel[p.id];}).sort(function(a,b){return String(a.bed).localeCompare(String(b.bed),undefined,{numeric:true});});if(!ps.length){toast('Elige al menos un paciente.');return;}var d=today();try{pdfDownload(docxBuild('Censo · '+sv.name,ps.length+' paciente'+(ps.length===1?'':'s')+' · última hospitalización · '+d,ps,true),'Censo_'+fnSafe(sv.name)+'_'+d+'.docx');toast('Censo descargado.');S.censo=null;render();}catch(e){toast('No pude crear el documento.');}},
  censoSvc:function(el){var sv=svc(el.dataset.id);if(!sv)return;var ps=db.patients.filter(function(p){return p.serviceId===sv.id&&(S.filter==='activos'?p.active:!p.active);}).sort(function(a,b){return String(a.bed).localeCompare(String(b.bed),undefined,{numeric:true});});if(!ps.length){toast('No hay pacientes en esta lista.');return;}var d=today();try{pdfDownload(docxBuild('Censo · '+sv.name,(S.filter==='activos'?'Pacientes activos':'Pacientes egresados')+' · '+ps.length+' · '+d,ps,true),'Censo_'+fnSafe(sv.name)+'_'+d+'.docx');toast('Censo descargado.');}catch(e){toast('No pude crear el documento.');}},
  censoPt:function(el){var p=pat(el.dataset.id);if(!p)return;var d=today();try{pdfDownload(docxBuild('Historia clínica · '+p.ini,'Cama '+(p.bed||'—')+' · '+d,[p],false),'HC_'+fnSafe(p.ini)+'_'+d+'.docx');toast('Documento descargado.');}catch(e){toast('No pude crear el documento.');}},
+ usoRef:function(){aiApi('?admin=usage').then(function(l){if(AIW)AIW.use=l;render();toast('Actualizado.');}).catch(function(e){toast(e.message||'No pude actualizar.');});},
+ usoCopy:function(){var u=AIW&&AIW.use;if(!u)return;var t='Uso de la IA · '+u.month+'\n'+u.rows.map(function(x){return x.e+': hoy '+x.today+', mes '+x.month.n+' HC, '+(x.month.tin+x.month.tout)+' tokens, $'+(+x.month.usd).toFixed(4)+' est., total '+x.total.n+' HC';}).join('\n');try{navigator.clipboard.writeText(t).then(function(){toast('Copiado.');},function(){toast('No pude copiar.');});}catch(e){toast('No pude copiar.');}},
  aiOpen:aiOpen,
  aiClose:function(){var m=document.getElementById('aiModal');if(m)m.remove();},
  aiSave:function(){var c0=aiCfg();c0.consent=!!(document.getElementById('ai_consent')||{}).checked;c0.extra=(val('ai_extra')||'').trim().slice(0,200);if(!aiSet(c0)){toast('Este navegador no deja guardar la configuración.');return;}toast(c0.consent?'Guardado.':'Marca la casilla para poder usarla.');render();},
