@@ -1,6 +1,11 @@
-LIMONAPP v49 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+LIMONAPP v50 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
 
-QUE CAMBIA EN LA v49 (sobre la v48)
+QUE CAMBIA EN LA v50 (sobre la v49)
+- Al importar un PDF con varios episodios, el diagnostico y el contexto salen de lo MAS RECIENTE (p. ej. una consulta posterior a la hospitalizacion), no de la hospitalizacion vieja.
+- La especialidad de la consulta se lee del encabezado ('CONSULTA DE UROLOGIA').
+- Boton 'Que la IA revise el diagnostico y el motivo' en la vista previa de importacion (usa el asistente de IA).
+
+QUE CAMBIO EN LA v49 (sobre la v48)
 - Pendientes: filtro por paciente y por fecha (hoy, 7 dias, 30 dias, mas de 30).
 - Pedidos de consulta externa quedan pendientes hasta que los registres (solo la consulta mas reciente de cada especialidad).
 
