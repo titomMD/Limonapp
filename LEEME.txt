@@ -1,4 +1,10 @@
-LIMONAPP v38 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+LIMONAPP v39 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+
+QUE CAMBIA EN LA v39 (sobre la v38)
+  - Boton "Exportar censo (Word)" en cada servicio: descarga un .docx con la tabla de camas y, por paciente, TODO en orden
+    cronologico (ingreso, evoluciones, consultas, triage, interconsultas, paraclinicos, imagenes, notas aclaratorias, salida
+    y pendientes abiertos). Boton "Exportar HC (Word)" dentro de cada paciente. Solo iniciales y ultimos 3 digitos de HC.
+  - Las fotos de las imagenes no van dentro del Word (solo sus lecturas). Sin cambios en netlify/functions.
 
 QUE CAMBIA EN LA v38 (sobre la v37)
   - Consulta externa: formato nuevo (primera vez o control, medico que atiende, historia, diagnosticos CIE-10, plan y
