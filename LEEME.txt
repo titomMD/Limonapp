@@ -1,6 +1,10 @@
-LIMONAPP v48 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+LIMONAPP v49 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
 
-QUE CAMBIA EN LA v48 (sobre la v47)
+QUE CAMBIA EN LA v49 (sobre la v48)
+- Pendientes: filtro por paciente y por fecha (hoy, 7 dias, 30 dias, mas de 30).
+- Pedidos de consulta externa quedan pendientes hasta que los registres (solo la consulta mas reciente de cada especialidad).
+
+QUE CAMBIO EN LA v48 (sobre la v47)
 - Importar PDF: entiende "SS" / "se solicita" escrito en el texto (motivo, enfermedad actual, plan, analisis). Lo que se pide (paraclinicos, imagenes, juntas) queda como pedido pendiente, sin duplicar lo que ya venia en la tabla de examenes.
 
 QUE CAMBIO EN LA v47 (sobre la v46)
