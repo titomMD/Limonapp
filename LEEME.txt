@@ -1,4 +1,13 @@
-LIMONAPP v42 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+LIMONAPP v43 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+
+QUE CAMBIA EN LA v43 (sobre la v42)
+  - Asistente de IA con tu propia cuenta (opcional): Cuenta > Asistente de IA (proveedor Claude, OpenAI o Gemini, modelo, clave API,
+    instruccion extra, Probar conexion, Quitar la clave). En el editor de notas, boton "Asistente IA": envia solo el texto que
+    seleccionaste (o el campo donde estabas), que ves y puedes editar antes de enviar. Instrucciones predispuestas: corregir,
+    ordenar en SOAP, revisar coherencia, pendientes y signos de alarma, resumen de entrega, alemán clinico, explicar el razonamiento
+    e instruccion propia. La respuesta se copia, reemplaza el texto elegido o se agrega al final.
+  - Privacidad: la clave (rot_ai) vive solo en el dispositivo; no va a Limonapp, ni al respaldo, ni a la sincronizacion, y la app
+    llama directo al proveedor, sin servidor intermedio. Se tapan numeros largos antes de enviar. Sin cambios en netlify/functions.
 
 QUE CAMBIA EN LA v42 (sobre la v41)
   - Logo nuevo (opcion 3): gato de linea amarillo limon con latido (ECG) y hoja verde. Ilustraciones, logo e iconos de la app
