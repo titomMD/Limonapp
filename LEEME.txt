@@ -1,3 +1,14 @@
+LIMONAPP v55 - proyecto para Netlify (login con Supabase + Google + Gemini como lector de historias)
+
+QUE CAMBIA EN LA v55 (sobre la v54)
+- GEMINI LEE LAS HISTORIAS: al subir un PDF del HUS (con sesion iniciada), la app lo lee en el dispositivo como antes y ademas envia el texto clinico (sin nombre ni cedula) a Gemini, que identifica el diagnostico ACTUAL, el contexto (hospitalizado / urgencias / consulta externa / egresado), el motivo de ingreso actual, la fecha de ingreso y el egreso. Los textos de las evoluciones, interconsultas, etc. los sigue copiando la app tal cual.
+- Seguridad: cada dato de la IA se acepta SOLO si trae una cita literal que aparezca en el PDF; si no, se descarta. Si la IA falla, esta en pausa, se pasa de cupo o no hay sesion, la app usa el lector basico (nadie se queda sin importar). La primera vez pide aceptar el envio a Google.
+- Instrucciones fijas con abreviaturas clinicas (SS = se solicita, SS 0.9% = solucion salina, IC, EV, ING, Dx, UCI, etc.) en netlify/functions/ai.mjs (constante SYS_HC). Si ves una abreviatura que lee mal, avisame y la agrego.
+- Ya NO hay boton de IA por usuario, ni solicitudes de acceso, ni aprobacion: cualquier persona con Google verificado puede usar el lector, con tope por persona (AI_DAY=10 HC al dia, AI_MONTH=200 al mes, 4 s entre HC).
+- PANEL PRIVADO DE USO (Cuenta > Uso de la IA por persona, solo lo ves tu): por correo, cuantas HC hoy / este mes / total, tokens y gasto ESTIMADO en dolares (precios de pago; con el plan gratuito no se cobra). Boton "Copiar resumen". Solo se guardan conteos, nunca el texto.
+- Netlify: no hay que cambiar nada si ya tienes GEMINI_API_KEY, AI_ADMIN_EMAIL y AI_BUDGET_USD. Si quieres, AI_DAY y AI_MONTH ajustan los topes; AI_OFF=1 apaga la IA para todos.
+- Privacidad actualizada (seccion 4 quinquies).
+
 LIMONAPP v52 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
 
 QUE CAMBIA EN LA v52 (sobre la v51)
