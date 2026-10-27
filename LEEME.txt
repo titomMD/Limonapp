@@ -1,6 +1,13 @@
-LIMONAPP v45 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+LIMONAPP v46 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
 
-QUE CAMBIA EN LA v45 (sobre la v44)
+QUE CAMBIA EN LA v46 (sobre la v45)
+- Importar PDF del HUS: ahora lee las SOLICITUDES de interconsulta (especialidad y motivo), las une con su respuesta o las deja pendientes, y detecta mejor la especialidad de las respuestas.
+- Consulta externa: se importa como "Consulta externa" (motivo, enfermedad actual, antecedentes, examen, diagnostico, plan, ordenes), no como evolucion de hospitalizacion.
+- Egresos: se crea la "Salida" con fecha y destino y el paciente queda egresado si no hay actividad posterior.
+- Ordenes importadas: se usa el nombre del examen; las de hospitalizaciones anteriores o muy antiguas no quedan como pendientes.
+- Corregido "Urologiia" (doble acento).
+
+QUE CAMBIO EN LA v45 (sobre la v44)
   - Fondo: las huellas pasan a ser iconos medicos (cruz, pastilla, ECG, estetoscopio, jeringa, termometro, tabla clinica, gota, limon) y el
     fondo ya no se corta en franjas lisas cuando la pagina se desborda a los lados. Imagen mas liviana (de 73 KB a ~6 KB entre los dos temas).
   - Asistente de IA: queda SOLO la IA de Limonapp (se quitan Claude/OpenAI/Gemini con clave propia; si alguien tenia una clave guardada, la
