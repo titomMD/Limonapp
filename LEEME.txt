@@ -1,4 +1,10 @@
-LIMONAPP v40 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+LIMONAPP v41 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+
+QUE CAMBIA EN LA v41 (sobre la v40)
+  - Cuenta > Apariencia: color de acento (7 colores o uno libre), tipografia (5), tamano del texto (85% a 140%), esquinas
+    (rectas, suaves, redondeadas), grosor de bordes, estilo 8-bit y fondo decorado, con vista previa y boton Restablecer.
+    Se guarda solo en cada dispositivo (clave rot_look); no toca los datos. Esquinas y bordes se ven en el estilo limpio.
+  - Aun no incluye el logo nuevo (viene en la siguiente version).
 
 QUE CAMBIA EN LA v40 (sobre la v39)
   - Procedimientos: casilla abierta "Procedimientos solicitados" (uno por linea) en Plan, Ingreso, Evolucion y Consulta externa.
