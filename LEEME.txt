@@ -1,4 +1,14 @@
-LIMONAPP v37 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+LIMONAPP v38 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+
+QUE CAMBIA EN LA v38 (sobre la v37)
+  - Consulta externa: formato nuevo (primera vez o control, medico que atiende, historia, diagnosticos CIE-10, plan y
+    ordenes). Boton "+ Consulta externa" dentro de cada paciente, o crea el paciente con Atencion = Consulta externa.
+  - Urgencias: tarjeta "Urgencias · observacion" en Servicios. "+ Paciente a urgencias" abre el Triage; despues el Ingreso
+    y las Evoluciones de la observacion. La lista ordena por nivel de triage y tiempo en observacion.
+  - Hospitalizar: marca pacientes en la lista de Urgencias, elige el servicio de destino y "Pasar a hospitalizacion"
+    (tambien se puede desde dentro de un paciente). Queda un registro de "Paso a hospitalizacion".
+  - Cronologia: filtro por tipo de atencion (hospitalizacion, urgencias, consulta externa); lo anterior cuenta como hospitalizacion.
+  - Al subir la carpeta a GitHub escribe "Version 38". No cambia ningun archivo de netlify/functions.
 
 QUE CAMBIA EN LA v37 (sobre la v36)
   - La pestana "Respaldo" ahora se llama "Cuenta" (sesion, sincronizacion y respaldo, todo ahi).
