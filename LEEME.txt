@@ -1,6 +1,13 @@
-LIMONAPP v46 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+LIMONAPP v47 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
 
-QUE CAMBIA EN LA v46 (sobre la v45)
+QUE CAMBIA EN LA v47 (sobre la v46)
+- Servicios: ahora hay dos apartados, Hospitalizacion (con sus servicios) y Consulta externa (pacientes de consulta, por servicio o especialidad).
+- La pestana "Entrega" se llama "Entrega de turno".
+- Pendientes: filtro por servicio (y Consulta externa) y por tipo (resultados, tareas, interconsultas); filas compactas.
+- Censo (Word): al exportar eliges que pacientes incluir y cada uno trae solo su ultima hospitalizacion (sin consultas ni hospitalizaciones anteriores).
+- Respaldo: se quita el aviso y el "!" de Cuenta. La app guarda copias automaticas en el dispositivo mientras los cambios no esten sincronizados con tu cuenta y las borra al sincronizar. El respaldo manual queda en Cuenta > Avanzado.
+
+QUE CAMBIO EN LA v46 (sobre la v45)
 - Importar PDF del HUS: ahora lee las SOLICITUDES de interconsulta (especialidad y motivo), las une con su respuesta o las deja pendientes, y detecta mejor la especialidad de las respuestas.
 - Consulta externa: se importa como "Consulta externa" (motivo, enfermedad actual, antecedentes, examen, diagnostico, plan, ordenes), no como evolucion de hospitalizacion.
 - Egresos: se crea la "Salida" con fecha y destino y el paciente queda egresado si no hay actividad posterior.
