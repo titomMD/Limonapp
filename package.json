@@ -1,7 +1,7 @@
 {
   "name": "limonapp",
   "private": true,
-  "version": "53.0.0",
+  "version": "54.0.0",
   "dependencies": {
     "@netlify/blobs": "^8.1.0"
   }
