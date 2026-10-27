@@ -12,9 +12,10 @@ import { getStore } from '@netlify/blobs';
      AI_DAY, AI_MONTH opcionales. Usos por persona al día y al mes (por defecto 15 y 200).
      AI_THINK         opcional. Nivel de razonamiento en modelos 3.x (p. ej. minimal); si no la pones, no se envía.
      AI_PRICE_IN, AI_PRICE_OUT  opcionales. Dólares por millón de tokens (por defecto 0.50 y 3.00: cálculo prudente).
-   GET  /api/ai?whoami=1            -> estado: permitido, administrador, restantes, IA en pausa
+   GET  /api/ai?whoami=1            -> estado: permitido, administrador, restantes, IA en pausa, solicitud enviada
+   POST /api/ai?req=1 {name,contact,note} -> una persona con sesión solicita acceso (queda en la lista del administrador)
    POST /api/ai {pre,text,cust?,extra?} -> {text, left}
-   GET  /api/ai?admin=list · POST /api/ai?admin=add|remove {email}  (solo el administrador) */
+   GET  /api/ai?admin=list · POST /api/ai?admin=add|remove|deny {email}  (solo el administrador) */
 
 /* ===== AUTH-BEGIN: idéntico en sync.mjs y social.mjs (si lo cambias, cámbialo en los dos) =====
    Verifica la sesión de Supabase Auth (Google) sin librerías: firma ES256 con la clave pública del proyecto
@@ -118,22 +119,44 @@ export default async (req) => {
   const now = new Date(), mo = ymd(now).slice(0, 7), dy = ymd(now);
   const uid = String(a.user.id).replace(/[^a-zA-Z0-9-]/g, '');
 
+  /* ---- solicitudes de acceso (cualquier persona con sesión y correo verificado) ---- */
+  if (q.get('req')) {
+    if (req.method !== 'POST') return J({ error: 'Método no permitido' }, 405);
+    if (!verified) return J({ error: 'Tu cuenta de Google no tiene el correo verificado.' }, 403);
+    const allow0 = await getJ(store, 'allow', {});
+    if (isAdmin || Object.prototype.hasOwnProperty.call(allow0, await sha256(email))) return J({ ok: true, already: true });
+    let b = {}; try { b = await req.json(); } catch (e) {}
+    const clip = (v, n) => String(v || '').replace(/[\r\n\t]+/g, ' ').trim().slice(0, n);
+    const name = clip(b.name || um.full_name || um.name, 80), contact = clip(b.contact, 80), note = clip(b.note, 200);
+    if (!contact) return J({ error: 'Escribe un teléfono o correo para contactarte.' }, 400);
+    const reqs = await getJ(store, 'reqs', {});
+    const h = await sha256(email);
+    if (!reqs[h] && Object.keys(reqs).length >= 100) return J({ error: 'Hay demasiadas solicitudes pendientes. Intenta más tarde.' }, 429);
+    reqs[h] = { e: email, n: name, c: contact, t: note, at: now.toISOString() };
+    await store.setJSON('reqs', reqs);
+    return J({ ok: true });
+  }
+
   /* ---- administración de usuarios aprobados ---- */
   const adm = q.get('admin');
   if (adm) {
     if (!isAdmin) return J({ error: 'No autorizado' }, 403);
     const allow = await getJ(store, 'allow', {});
-    if (adm === 'list') return J({ users: Object.keys(allow).map((h) => ({ h, e: allow[h].e })).sort((x, y) => x.e.localeCompare(y.e)) });
+    const reqs = await getJ(store, 'reqs', {});
+    const listU = () => Object.keys(allow).map((x) => ({ h: x, e: allow[x].e })).sort((x, y) => x.e.localeCompare(y.e));
+    const listR = () => Object.keys(reqs).map((x) => ({ h: x, e: reqs[x].e, n: reqs[x].n, c: reqs[x].c, t: reqs[x].t, at: reqs[x].at })).sort((x, y) => String(x.at).localeCompare(String(y.at)));
+    if (adm === 'list') return J({ users: listU(), reqs: listR() });
     if (req.method !== 'POST') return J({ error: 'Método no permitido' }, 405);
     let b = {}; try { b = await req.json(); } catch (e) {}
     const em = String(b.email || '').trim().toLowerCase();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em) || em.length > 120) return J({ error: 'Correo no válido' }, 400);
     const h = await sha256(em);
-    if (adm === 'add') { if (Object.keys(allow).length >= 200) return J({ error: 'Demasiados usuarios' }, 400); allow[h] = { e: em, at: now.toISOString() }; }
+    if (adm === 'add') { if (Object.keys(allow).length >= 200) return J({ error: 'Demasiados usuarios' }, 400); allow[h] = { e: em, at: now.toISOString() }; delete reqs[h]; }
     else if (adm === 'remove') delete allow[h];
+    else if (adm === 'deny') delete reqs[h];
     else return J({ error: 'Acción no válida' }, 400);
-    await store.setJSON('allow', allow);
-    return J({ ok: true, users: Object.keys(allow).map((x) => ({ h: x, e: allow[x].e })).sort((x, y) => x.e.localeCompare(y.e)) });
+    await store.setJSON('allow', allow); await store.setJSON('reqs', reqs);
+    return J({ ok: true, users: listU(), reqs: listR() });
   }
 
   const off = process.env.AI_OFF === '1' || !process.env.GEMINI_API_KEY;
@@ -145,7 +168,9 @@ export default async (req) => {
   const um2 = await getJ(store, 'u_' + uid + '_' + mo, { n: 0 });
   const left = { day: Math.max(0, DAY_MAX() - ud.n), month: Math.max(0, MONTH_MAX() - um2.n) };
 
-  if (req.method === 'GET') return J({ allowed, admin: isAdmin, paused, left });
+  let requested = false;
+  if (req.method === 'GET' && !allowed && verified) { const rq = await getJ(store, 'reqs', {}); requested = Object.prototype.hasOwnProperty.call(rq, await sha256(email)); }
+  if (req.method === 'GET') return J({ allowed, admin: isAdmin, paused, left, requested });
   if (req.method !== 'POST') return J({ error: 'Método no permitido' }, 405);
 
   /* ---- uso ---- */

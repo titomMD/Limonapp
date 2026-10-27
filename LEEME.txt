@@ -1,4 +1,12 @@
-LIMONAPP v44 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+LIMONAPP v45 - proyecto para Netlify (login con Supabase + Google + imagenes y lecturas por especialidad)
+
+QUE CAMBIA EN LA v45 (sobre la v44)
+  - Asistente de IA: queda SOLO la IA de Limonapp (se quitan Claude/OpenAI/Gemini con clave propia; si alguien tenia una clave guardada, la
+    app la borra de su dispositivo al abrir).
+  - Sin acceso: Cuenta > Asistente de IA muestra "Solicita acceso al creador": nombre, telefono o correo de contacto y mensaje. "Solicitar acceso"
+    guarda la solicitud (se borra al aprobar/descartar) y "Avisarle por correo" abre el correo de la persona con todo escrito, dirigido a ti.
+  - Administrador: en la misma tarjeta ves "Solicitudes pendientes" con Aprobar / Descartar, ademas de aprobar por correo y quitar.
+  - netlify/functions/ai.mjs: nuevas rutas POST /api/ai?req=1 y ?admin=deny; whoami devuelve "requested". Sin variables nuevas.
 
 QUE CAMBIA EN LA v44 (sobre la v43)
   - IA compartida: Cuenta > Asistente de IA ahora ofrece "IA de Limonapp (sin clave)" (queda por defecto al iniciar sesion). Usa TU clave de
