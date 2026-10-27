@@ -2173,6 +2173,7 @@ function parseIcReq(body){
   return out.map(function(q){var rs=unwrapL(q.reason.filter(Boolean),false).map(fixCase).join(' ').replace(/\s+/g,' ').trim();return {serv:servCanon(q.serv)||capFix(sentence(q.serv)),preg:rs};});
 }
 function salTipo(dest){var n=norm2(dest||'');if(/FALLEC|MUERT|DEFUNC/.test(n))return 'Fallecimiento';if(/VOLUNTAR/.test(n))return 'Alta voluntaria';if(/REMIT/.test(n))return 'Remisión';if(/TRASLAD/.test(n))return 'Traslado';return 'Alta';}
+function coSpec(ls){var k=0,i,m,c;for(i=0;i<(ls||[]).length&&k<14;i++){var t=String(ls[i]).trim();if(!t)continue;k++;if((m=/^CONSULTA DE ([A-Z ]{4,40}?)(?:\s*[-–].*)?$/.exec(norm2(t)))&&(c=servCanon(m[1])))return c;}return '';}
 function ambSv(sub){return servCanon(sub)||capFix(sentence(sub));}
 function husCons(ls){
   var B={m:[],ea:[],ros:[],ant:[],vit:[],ef:[],a:[],p:[],dx:[],ord:[]},sec='pre',i,t,n,m,d={};
@@ -2687,7 +2688,7 @@ function analyzeHus(pages){
       if(Object.keys(d).length)it={k:'in',at:at,data:d,sub:r.sub?sentence(r.sub):title};
     }
     else{var txt=ls.join('\n').trim();if(txt.length>15)it={k:'nt',at:at,data:{txt:title+'\n'+txt},sub:title};}
-    if(it){if(!it.v)Object.keys(it.data).forEach(function(q){if(typeof it.data[q]==='string')it.data[q]=cleanEmpty(cleanTpl(it.data[q]));});it.svc=(it.k==='ic'&&it.data.serv)?'Interconsulta · '+it.data.serv:husRole(r.title,r.sub);it.by=husWho(ls,r.body);if(!it.v)tidyObj(it.data);if(r.est)it.est=1;items.push(it);}
+    if(it){if(!it.v)Object.keys(it.data).forEach(function(q){if(typeof it.data[q]==='string')it.data[q]=cleanEmpty(cleanTpl(it.data[q]));});it.svc=(it.k==='ic'&&it.data.serv)?'Interconsulta · '+it.data.serv:husRole(r.title,r.sub);if(it.k==='co'&&it.svc==='Consulta externa'){var csp=coSpec(ls);if(csp)it.svc='Consulta externa · '+csp;}it.by=husWho(ls,r.body);if(!it.v)tidyObj(it.data);if(r.est)it.est=1;items.push(it);}
     if(k!=='so'&&k!=='np'&&(k!=='nt'||/PROCEDIMIENTO|JUNTA|ACLARATORIA/i.test(r.title)))husExtract(k==='eg'?unwrapL(ls,false):ls,at,items,seenX);
     if(hPara.replace(/\s/g,'').length>8)items.push({k:'lab',at:at,data:{est:'Paraclínicos del ingreso (de otra institución) · '+at.slice(0,10).split('-').reverse().join('/'),res:labAbbr(hPara.trim())}});
   });
@@ -2718,8 +2719,14 @@ function analyzeHus(pages){
   if(lastEv&&lastEv.data.dx){dxLine=lastEv.data.dx.split('\n')[0].replace(/^[A-Z]\d+[A-Z0-9]?\s*-\s*/,'');}
   else if(lastEv&&lastEv.data.a){var dm=/Diagnósticos \(CIE-10\):\n- ([^\n]+)/.exec(lastEv.data.a);if(dm)dxLine=dm[1].replace(/^[A-Z]\d+[A-Z0-9]?\s*-\s*/,'');}
   if(!dxLine){var lco=items.filter(function(i){return i.k==='co'&&i.data.dx;}).sort(function(a,b){return a.at<b.at?1:-1;})[0];if(lco)dxLine=lco.data.dx.split('\n')[0].replace(/^[A-Z]\d+[A-Z0-9]?\s*-\s*/,'');}
+  /* v50: si la consulta externa mas reciente (con diagnostico, no preanestesica) es POSTERIOR a la ultima hospitalizacion, esa es la situacion actual */
+  var dxNew=0,hEnd=items.filter(function(i){return /^(ev|in|ic|pl|sa)$/.test(i.k)&&!i.pend;}).reduce(function(m,i){return i.at>m?i.at:m;},'');
+  var nco=items.filter(function(i){return i.k==='co'&&i.data.dx&&!/preanest/i.test(i.svc||'');}).sort(function(a,b){return a.at<b.at?1:-1;})[0];
+  if(hospSeen&&nco&&(!hEnd||nco.at.slice(0,10)>hEnd.slice(0,10))){
+    dxLine=nco.data.dx.split('\n')[0].replace(/^[A-Z]\d+[A-Z0-9]?\s*-\s*/,'');dxNew=1;pctx='amb';exit=null;meta.adm=nco.at.slice(0,10);meta.bed='';
+  }
   var f={ini:meta.ini,age:meta.age,bed:meta.bed,hc:meta.hc,sex:sex,adm:meta.adm};
-  return {f:f,hx:hx,items:items,red:c.n,skip:skipped,dx:dxLine,hus:true,exit:exit,ctx:pctx};
+  return {f:f,hx:hx,items:items,red:c.n,skip:skipped,dx:dxLine,dxNew:dxNew,hus:true,exit:exit,ctx:pctx};
 }
 
 function importPdf(file,mode){
@@ -2738,14 +2745,14 @@ function applyPdfNew(r){
   var olds=evs.slice(1,EVMAX);
   var saMax=r.items.filter(function(i){return i.k==='sa';}).reduce(function(m,i){return i.at>m?i.at:m;},'').slice(0,10),newest=r.items.reduce(function(m,i){return i.at>m?i.at:m;},''),cut30=newest?new Date(new Date(newest).getTime()-30*864e5).toISOString():'';
   var extra=r.items.filter(function(i){return i.k!=='ev';}).concat(olds).map(function(i){var o={type:KTYPE[i.k],at:i.at,data:i.data},old=((cut30&&i.at<cut30)||(saMax&&i.at.slice(0,10)<=saMax))&&i.k!=='co';if(i.est)o.est=1;if(i.by)o.by=i.by;if(i.svc)o.svc=i.svc;if(i.k==='ic')o.status=i.pend?'pendiente':'respondida';if(i.ctx)o.ctx=i.ctx;
-    if(o.type==='consulta'){var nw=r.items.some(function(j){return j.k==='co'&&j.svc===i.svc&&j.at>i.at;});old=nw;}
-    else if(r.ctx==='amb')old=false;
+    if(o.type==='consulta'){var nw=r.items.some(function(j){return j.k==='co'&&j.svc===i.svc&&j.at>i.at;});var mxA=r.items.reduce(function(m,j){return(j.at>m&&!/preanest/i.test(j.svc||''))?j.at:m;},'');old=nw||(mxA&&i.at<new Date(new Date(mxA).getTime()-90*864e5).toISOString());}
+    else if(r.ctx==='amb'&&!r.dxNew)old=false;
     if(old&&/^(consulta|ingreso|evolucion)$/.test(o.type))o.stale=1;
     if(old&&o.type==='plan'&&i.data&&i.data.ord)o.data=Object.assign({},i.data,{ord:i.data.ord.map(function(q){return Object.assign({},q,{x:1});})});
     return o;});
   if(!Object.keys(r.hx).length&&!evs.length&&!extra.length){toast('No reconocí secciones de historia clínica en ese PDF.');return;}
   var cur={};['ini','hc','age','sex','bed','adm','dx','sev','cont'].forEach(function(k){var v=val('f_'+k);if(v!=='')cur[k]=v;});if(cur.adm===today())delete cur.adm;
-  var dh=r.hx.dx?dxFromHx(r.hx.dx):'',dx=(dh&&dh.length<=100)?dh:(r.dx?cut(r.dx,140):dh||'');
+  var dh=r.hx.dx?dxFromHx(r.hx.dx):'',dx=r.dxNew?cut(r.dx,140):(dh&&dh.length<=100)?dh:(r.dx?cut(r.dx,140):dh||'');
   S.impP={ini:cur.ini||r.f.ini||'',hc:cur.hc||r.f.hc||'',age:cur.age||r.f.age||'',sex:r.f.sex||cur.sex||'M',bed:cur.bed||r.f.bed||'',adm:cur.adm||r.f.adm||today(),dx:cur.dx||dx,sev:cur.sev||'estable',cont:cur.cont||'',ctx:r.ctx||''};
   S.imp={hx:r.hx,ev:evs[0]||null,extra:extra,nev:evs.length,olds:olds.length,red:r.red,skip:r.skip,exit:r.exit||null,evOld:!!(evs[0]&&((cut30&&evs[0].at<cut30)||(saMax&&evs[0].at.slice(0,10)<=saMax)))};S.newPatient=true;render();
   toast('PDF leído. Revisa los datos y toca Guardar.');
@@ -2774,7 +2781,7 @@ function impNote(){
   if(x)parts.push(x+' registro'+(x===1?'':'s')+' (interconsultas, ingresos, evoluciones anteriores, notas y otros)');
   if(i.ev)parts.push('evolución del '+fmt(i.ev.at).replace(/\.$/,''));
   var tx=parts.length>1?parts.slice(0,-1).join(', ')+' y '+parts[parts.length-1]:parts[0];
-  return '<div class="note">PDF leído: '+tx+'. Se guardará con el paciente. Quité las líneas de nombre, cédula y teléfono'+(i.red?' y '+i.red+' número'+(i.red===1?'':'s')+' largo'+(i.red===1?'':'s'):'')+'.'+(i.skip?' Omití '+i.skip+' fragmento'+(i.skip===1?'':'s')+' de consentimiento o datos administrativos.':'')+'</div>';
+  return '<div class="note">PDF leído: '+tx+'. Se guardará con el paciente. Quité las líneas de nombre, cédula y teléfono'+(i.red?' y '+i.red+' número'+(i.red===1?'':'s')+' largo'+(i.red===1?'':'s'):'')+'.'+(i.skip?' Omití '+i.skip+' fragmento'+(i.skip===1?'':'s')+' de consentimiento o datos administrativos.':'')+'</div>'+(gAvail()&&gUser()?'<div class="row" style="margin:6px 0"><button class="btn sm" data-a="aiImp" id="aiImpB">Que la IA revise el diagnóstico y el motivo</button><span class="small muted" id="aiImpS"></span></div>':'');
 }
 function updCard(p){
   var h='<div class="card"><h3>Actualizar desde PDF</h3><div class="small muted">Sirve para un PDF completo o solo una parte (evolución, respuesta de interconsulta, laboratorios, imagen). Lo nuevo se agrega: no se borra ni se reemplaza nada de lo que ya tienes.</div>'+
@@ -4787,6 +4794,20 @@ var A={
  copyHand:function(){copyText(handoffText(),'outbox');},
  area:function(el){S.area=el.dataset.v;render();},
  pfSvc:function(el){S.pf=el.dataset.v;S.pp='all';render();},
+ aiImp:function(){
+  var i=S.imp,st=document.getElementById('aiImpS'),b=document.getElementById('aiImpB');if(!i)return;
+  var rows=(i.extra||[]).filter(function(e){return e.type==='consulta'||e.type==='ingreso'||e.type==='salida';}).sort(function(a,c){return a.at<c.at?1:-1;}).slice(0,12).map(function(e){var d=e.data||{};return e.at.slice(0,10)+' | '+(e.svc||e.type)+' | Dx: '+String(d.dx||d.dxi||'').replace(/\s+/g,' ').slice(0,200)+' | Motivo/análisis: '+String(d.motivo||d.ea||d.a||'').replace(/\s+/g,' ').slice(0,420);});
+  var h=i.hx||{};var tx=(rows.join('\n')+'\nHospitalización más reciente: '+String(h.dx||'').slice(0,200)+' | '+String(h.motivo||'').slice(0,200)+(i.ev?'\nÚltima evolución ('+i.ev.at.slice(0,10)+'): '+String(i.ev.data&&(i.ev.data.a||i.ev.data.s)||'').replace(/\s+/g,' ').slice(0,400):'')).slice(0,9000);
+  var inst='Con esta línea de tiempo (de más reciente a más antigua) dime cuál es el diagnóstico principal ACTUAL y el motivo por el que el paciente está ahora en este servicio. Responde SOLO un JSON: {"dx":"diagnóstico corto en español, máx 90 caracteres","motivo":"una frase","contexto":"hosp o amb"}';
+  if(b)b.disabled=true;if(st)st.textContent=' Pensando…';
+  aiApi('',{method:'POST',body:JSON.stringify({pre:'custom',cust:inst,text:tx})}).then(function(j){
+    var m=/\{[\s\S]*\}/.exec(j.text||''),o=null;try{o=JSON.parse(m&&m[0]);}catch(e){}
+    if(!o||!o.dx){if(st)st.textContent=' La IA no devolvió un diagnóstico claro; revisa a mano.';if(b)b.disabled=false;return;}
+    var f=document.getElementById('f_dx');if(f)f.value=String(o.dx).slice(0,120);
+    if(S.impP){S.impP.dx=String(o.dx).slice(0,120);}
+    if(st)st.textContent=' Sugerencia: '+(o.motivo||'')+' (puedes editarla).';if(b)b.disabled=false;
+  }).catch(function(x){if(st)st.textContent=' '+(x.message||'No se pudo usar la IA.');if(b)b.disabled=false;});
+ },
  pfPat:function(el){S.pp=el.value;render();},
  pfDate:function(el){S.pd=el.value;render();},
  pfType:function(el){S.pt=el.dataset.v;render();},
