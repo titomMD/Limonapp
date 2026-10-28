@@ -25,6 +25,24 @@ details.card.rxg,details.card.rxs{padding:0!important}.rxg>summary,.rxs>summary{
 .rxit{display:flex;flex-direction:column;gap:8px}.rxit>div{display:flex;flex-direction:column;font-size:14px;border-top:1px solid var(--line);padding-top:6px}.rxit>div:first-child{border-top:0;padding-top:0}.rxit span{color:var(--muted)}
 .rxet{font-size:13.5px;background:var(--field);border-radius:12px;padding:9px 12px;margin-top:8px}.rxun{font-size:13.5px;margin:8px 0}.rxalr{margin:4px 0}.rxalr>summary{cursor:pointer;list-style:none}.rxalr>summary::-webkit-details-marker{display:none}.rxalb{font-size:12.5px}
 .rxcalc{margin-top:4px;font-size:13px;font-weight:600;color:var(--ink);background:var(--accent-soft);border-radius:10px;padding:5px 9px;display:inline-block}
+
+:root{--cb:#1d4ed8}:root[data-theme=dark]{--cb:#8fb0ff}@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--cb:#8fb0ff}}
+#cbFab{position:fixed;left:max(14px,env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:900;display:flex;align-items:center;gap:8px;padding:9px 16px 9px 10px;border-radius:99px;border:2px solid #fff;background:#1d4ed8;color:#fff;font:700 14px/1 inherit;cursor:pointer;box-shadow:0 6px 18px -6px rgba(29,78,216,.8)}
+#cbFab[hidden]{display:none}.cbcross{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;color:#1d4ed8;font-size:18px;line-height:1;font-weight:800}
+@media(max-width:899px){#cbFab{bottom:calc(92px + env(safe-area-inset-bottom,0px))!important;left:14px!important}}
+.cbtabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.cbtab{padding:11px 4px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font-weight:650;font-size:14px;cursor:pointer;min-width:0}.cbtab.on{background:#1d4ed8;border-color:#1d4ed8;color:#fff}
+@media(max-width:520px){.cbtabs{grid-template-columns:repeat(2,1fr)}}
+.cbtim{border:2px solid #1d4ed8}.cbgrid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}.cbgrid3 span,.cbline span{font-size:12px;color:var(--muted);display:block}.cbgrid3 b{font-size:30px;font-variant-numeric:tabular-nums;line-height:1.15;display:block}.cbgrid3 i{font-style:normal}
+
+.cbmini{position:sticky;top:var(--cbtop,0px);z-index:15;display:flex;justify-content:space-around;gap:6px;background:#1d4ed8;color:#fff;border-radius:12px;padding:6px 8px;margin:8px 0;text-align:center}.cbmini span{display:block;font-size:11px;opacity:.85}.cbmini b{font-size:20px;font-variant-numeric:tabular-nums}.cbmini .cbamb{color:#ffd98a}.cbmini .cbred{color:#ffb4b4}
+#cbCycBox.flash{background:#1d4ed8;color:#fff;border-radius:12px}#cbCycBox.flash span{color:#fff}
+.cbline{display:flex;justify-content:space-between;align-items:baseline;gap:10px;border-top:1px solid var(--line);padding-top:8px}.cbline b{font-size:22px;font-variant-numeric:tabular-nums}.cbamb{color:#b45309}.cbred{color:#c62828}
+.cbbtns{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.cbb{min-height:52px;border-radius:12px;border:2px solid var(--line);background:var(--field);color:var(--ink);font-weight:700;font-size:15px;cursor:pointer;padding:6px 8px}
+.cbb.go{grid-column:1/-1;background:#1d4ed8;border-color:#1d4ed8;color:#fff;min-height:60px;font-size:17px}.cbb.shock{background:#c62828;border-color:#c62828;color:#fff}.cbb.ok{background:#15803d;border-color:#15803d;color:#fff}.cbb.ghost{background:transparent;font-weight:600;font-size:13px;min-height:40px;grid-column:1/-1}
+.cbol{margin:0;padding-left:1.5em;display:flex;flex-direction:column;gap:9px;font-size:16px;line-height:1.45}.cbol li::marker{font-weight:800;color:var(--cb)}.cbul li{font-size:15px;line-height:1.45;margin:4px 0}
+.cbhyt{display:grid;grid-template-columns:1fr 1fr;gap:10px}.cbhyt h4{margin:0 0 2px;font-size:16px;color:var(--cb)}
+.cbl{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:4px;font-size:14px;font-variant-numeric:tabular-nums}
+.cbdosebox .rxtb td:first-child{white-space:normal}
 </style></head><body>
 <!--
 NOTAS PARA RETOMAR ESTA APP EN UN CHAT NUEVO (v12, 21-oct-2026)
@@ -1792,7 +1810,7 @@ function applyDE(){
     var em=document.createElement('em');em.className='de';em.textContent=de;sp.appendChild(em);p.replaceChild(sp,n);
   });
 }
-function render(){render0();try{hlApply();}catch(e){}try{tPost();}catch(e){}try{imgHydrate();}catch(e){}}
+function render(){render0();try{cbFab();}catch(e){}try{hlApply();}catch(e){}try{tPost();}catch(e){}try{imgHydrate();}catch(e){}}
 function render0(){
   if(!window.__mdx){window.__mdx=1;try{migDx();}catch(e){}}
   renderTabs();
@@ -1806,6 +1824,7 @@ function render0(){
   else if(v==='handoff')html=viewHandoff();
   else if(v==='calc')html=viewCalc();
   else if(v==='rx')html=viewRx();
+  else if(v==='cb')html=viewCb();
   else if(v==='team')html=viewTeam();
   else html=viewBackup();
   document.getElementById('app').innerHTML=html;
@@ -6145,6 +6164,185 @@ AT.rxOpen=function(el){S.rxsc=window.scrollY||0;S.rxd=el.dataset.id;render();win
 AT.rxBack=function(){S.rxd=null;render();window.scrollTo(0,S.rxsc||0);};
 
 ensureBase();
+/* ===== v63: Código azul (AHA/AAP 2025) ===== */
+var CB={pop:'a',kg:'',age:'',ageU:'a',run:false,t0:0,c0:0,end:0,cyc:0,sh:0,ep:0,epAt:0,log:[],tm:null,conf:0,prev:'services'};
+var CBP=[['a','Adulto'],['p','Pediátrico'],['e','Embarazada'],['r','Recién nacido']];
+var CBSRC={
+ a:[['AHA 2025, algoritmo de paro cardíaco en adulto','https://cpr.heart.org/-/media/CPR-Files/CPR-Guidelines-Files/2025-Accessible/Algorithm-ACLS-CA-LngDscrp-250725-Ed.pdf'],['AHA 2025, cuidados tras el paro (adulto)','https://cpr.heart.org/-/media/CPR-Files/CPR-Guidelines-Files/2025-Accessible/Algorithm-ACLS-PCAC-LngDscrp-250726-Ed.pdf']],
+ p:[['AHA/AAP 2025, algoritmo de paro cardíaco pediátrico','https://cpr.heart.org/-/media/CPR-Files/CPR-Guidelines-Files/2025-Algorithms/Algorithm-PALS-CA-250123.pdf']],
+ e:[['AHA 2025, paro cardíaco en el embarazo (soporte vital básico)','https://cpr.heart.org/-/media/CPR-Files/CPR-Guidelines-Files/2025-Accessible/Algorithm-BLS-in-Pregnancy-LngDscrp-250725-Ed.pdf'],['AHA, paro cardíaco en el embarazo en el hospital (soporte vital avanzado)','https://cpr.Heart.Org/-/media/CPR-Files/CPR-Guidelines-Files/Algorithms/Text-Descriptions/AlgorithmACLS_CA_in_Pregnancy_InHospital_LngDsrcp_200921_Ed.pdf']],
+ r:[['AHA/AAP 2025, parte 5: reanimación neonatal','https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/neonatal-resuscitation']]
+};
+var CBC={
+ a:{
+  ya:["Confirma el paro: no responde, no respira o solo jadea, sin pulso en 10 s o menos.","Pide ayuda, activa el código azul y trae el carro de paro y el desfibrilador.","Empieza compresiones ya, sin esperar el equipo.","Conecta el monitor o los parches y analiza el ritmo."],
+  rcp:["Compresiones de al menos 5 cm de profundidad, a 100 a 120 por minuto.","Deja que el tórax suba por completo entre compresiones.","Interrumpe lo menos posible.","Cambia de compresor cada 2 min, o antes si se cansa.","Sin vía aérea avanzada: 30 compresiones y 2 ventilaciones.","Con vía aérea avanzada: compresiones continuas y 1 ventilación cada 6 s (10 por minuto).","Capnografía continua: si el CO₂ espirado baja o decrece, revisa la calidad de la RCP."],
+  des:["Choque. Bifásico: la dosis del fabricante (por ejemplo 120 a 200 J); si no la conoces, usa la máxima. Monofásico: 360 J.","RCP 2 min y consigue acceso IV/IO. Revisa el ritmo.","Si sigue desfibrilable: segundo choque.","RCP 2 min con epinefrina 1 mg cada 3 a 5 min. Considera vía aérea avanzada y capnografía. Revisa el ritmo.","Si sigue desfibrilable: tercer choque.","RCP 2 min con amiodarona 300 mg (segunda dosis 150 mg) o lidocaína 1 a 1,5 mg/kg (segunda dosis 0,5 a 0,75 mg/kg). Trata las causas reversibles."],
+  nodes:["Epinefrina 1 mg IV/IO lo antes posible. Repite cada 3 a 5 min.","RCP 2 min con acceso IV/IO. Considera vía aérea avanzada y capnografía.","Trata las causas reversibles.","Revisa el ritmo cada 2 min: si es desfibrilable, pasa al esquema de arriba."],
+  fx:[["Epinefrina","1 mg IV/IO cada 3 a 5 min"],["Amiodarona","300 mg; segunda dosis 150 mg"],["Lidocaína (alternativa)","1 a 1,5 mg/kg; segunda dosis 0,5 a 0,75 mg/kg"]],
+  no:"No de rutina en paro sin causa clara: bicarbonato, calcio, magnesio ni esteroides. Sí cuando hay indicación específica, como hiperpotasemia, hipomagnesemia o tóxicos.",
+  hyt:[["Hipovolemia","Hipoxia","Acidosis (hidrogeniones)","Hipo o hiperpotasemia","Hipotermia"],["Neumotórax a tensión","Taponamiento cardíaco","Tóxicos","Trombosis pulmonar","Trombosis coronaria"]],
+  rosc:["Vía aérea: confirma la posición y usa vía aérea avanzada si hace falta.","FiO₂ 100 % hasta poder medir. Luego SpO₂ 90 a 98 % (PaO₂ 60 a 105 mmHg) y PaCO₂ 35 a 45 mmHg.","Presión arterial media de 65 mmHg o más.","ECG de 12 derivaciones e imágenes (TC, ecografía) si hacen falta.","Trata la causa. Considera angiografía coronaria urgente si hay elevación persistente del ST, choque cardiogénico, arritmias ventriculares recurrentes o isquemia grave.","Evita la hipoglucemia (menos de 70 mg/dL).","Si no obedece órdenes sin sedación: control deliberado de temperatura entre 32 y 37,5 °C, y EEG.","Pronóstico multimodal, no antes de 72 h desde el ROSC o de alcanzar la normotermia."]
+ },
+ p:{
+  ya:["Confirma el paro: no responde, no respira o solo jadea, sin pulso en 10 s o menos (braquial en lactante).","Frecuencia cardíaca menor de 60 con mala perfusión pese a oxígeno y ventilación: empieza compresiones.","Pide ayuda, activa el código azul y trae el carro de paro pediátrico y el desfibrilador.","Ventila con bolsa-mascarilla y oxígeno. Conecta el monitor."],
+  rcp:["Profundidad de al menos un tercio del tórax (unos 4 cm en lactante y 5 cm en niño), a 100 a 120 por minuto.","Tórax que sube por completo y pocas interrupciones.","Cambia de compresor cada 2 min, o antes si se cansa.","Sin vía aérea avanzada: 15:2 con dos rescatistas antes de la pubertad; 30:2 si es un solo rescatista o después de la pubertad.","Con vía aérea avanzada: compresiones continuas y 1 ventilación cada 2 a 3 s.","Capnografía y, si hay línea arterial, presión diastólica."],
+  des:["Choque: 2 J/kg.","RCP 2 min con acceso IV/IO. Revisa el ritmo.","Si sigue desfibrilable: choque de 4 J/kg.","RCP 2 min con epinefrina cada 3 a 5 min. Considera vía aérea avanzada y capnografía. Revisa el ritmo.","Choques siguientes de 4 J/kg o más, hasta 10 J/kg o la dosis de adulto.","RCP 2 min con amiodarona o lidocaína. Trata las causas reversibles."],
+  nodes:["Epinefrina IV/IO lo antes posible. Repite cada 3 a 5 min.","RCP 2 min con acceso IV/IO. Considera vía aérea avanzada y capnografía.","Trata las causas reversibles.","Revisa el ritmo cada 2 min: si es desfibrilable, pasa al esquema de arriba."],
+  hyt:[["Hipovolemia","Hipoxia","Acidosis (hidrogeniones)","Hipoglucemia","Hipo o hiperpotasemia","Hipotermia"],["Neumotórax a tensión","Taponamiento cardíaco","Tóxicos","Trombosis pulmonar","Trombosis coronaria"]],
+  rosc:["Sigue la lista de cuidados tras el paro del algoritmo pediátrico de la AHA y la AAP (enlace en Fuente)."]
+ },
+ e:{
+  ya:["Confirma el paro y pide ayuda: activa el código azul y el equipo de paro materno (obstetricia, anestesia, neonatología, cuidados intensivos).","Empieza RCP de alta calidad igual que en adulto.","Desplaza el útero a la izquierda de forma continua con las manos si el fondo uterino llega al ombligo o más arriba.","Desfibrila cuando esté indicado y usa los mismos fármacos de soporte vital avanzado, como epinefrina."],
+  rcp:["Calidad de RCP y energías del choque: las mismas del adulto.","El desplazamiento uterino a la izquierda alivia la compresión de la vena cava y la aorta y hace más efectivas las compresiones.","Vía aérea temprana, a cargo del más experimentado: la vía aérea difícil es frecuente en el embarazo. Confirma con capnografía.","Con vía aérea avanzada: 1 ventilación cada 6 s con compresiones continuas. Oxígeno al 100 % sin hiperventilar."],
+  matern:["Vía venosa por encima del diafragma.","Si recibe sulfato de magnesio: suspéndelo y da calcio (cloruro o gluconato).","Retira los monitores fetales.","Si sospechas embolia de líquido amniótico: activa el protocolo de transfusión masiva."],
+  parto:["Meta: que el parto ocurra a los 5 min del paro si no hay ROSC.","Prepara la cesárea perimortem junto a la cabeza de la cama, mientras sigue la RCP.","Cuando el fondo uterino está a nivel del ombligo o más arriba, la cesárea puede mejorar la reanimación de la madre.","Recibe al recién nacido con el equipo de neonatología: pasa a la pestaña Recién nacido."],
+  causas:["Anestesia: complicaciones","Hemorragia (bleeding)","Cardiovascular","Fármacos","Embolia (líquido amniótico o pulmonar)","Fiebre","General: las H y las T","Hipertensión (preeclampsia)"],
+  rosc:["Sigue los cuidados tras el paro del adulto, con el útero desplazado a la izquierda si el embarazo es avanzado.","Coordina con obstetricia y neonatología."]
+ },
+ r:{
+  ya:["Llévalo al calor radiante. Seca. Si no respira o no tiene buen tono, estimula secando y frotando la espalda y las plantas.","Aspira solo si hay un obstáculo visible en la vía aérea.","Pon el oxímetro en la mano o muñeca derecha. Para la frecuencia cardíaca usa monitor de ECG.","Pinzamiento del cordón de al menos 60 s si no necesita reanimación inmediata.","Mantén la temperatura entre 36,5 y 37,5 °C."],
+  vent:["Si jadea, no respira o la frecuencia cardíaca es menor de 100 a los 60 s: ventila.","30 a 60 ventilaciones por minuto, presión inspiratoria inicial de 20 a 30 cmH₂O, tiempo inspiratorio de 0,5 a 1 s.","Verifica que el tórax se mueva. Si no, corrige la técnica de ventilación.","Oxígeno inicial: 35 semanas o más, 21 %; 32 a 34+6 semanas, 21 a 30 %; menos de 32 semanas, 30 a 100 %. Ajusta según la saturación.","En prematuro que respira con dificultad: CPAP.","Mascarilla laríngea razonable desde las 34 semanas."],
+  comp:["Frecuencia cardíaca menor de 60 tras 30 s de ventilación que mueve el tórax: compresiones.","Dos pulgares rodeando el tórax, sobre el tercio inferior del esternón, hundiendo un tercio del diámetro anteroposterior.","Relación 3:1 (90 compresiones y 30 ventilaciones por minuto). Oxígeno al 100 % durante las compresiones.","Cambia de compresor cada 2 a 5 min."],
+  epi:["Si la frecuencia sigue por debajo de 60 tras 60 s de compresiones y ventilación efectiva: epinefrina.","Acceso preferido: catéter venoso umbilical; el acceso intraóseo es una opción.","Epinefrina IV o intraósea: 0,01 a 0,03 mg/kg, y luego 3 mL de suero salino.","Por el tubo endotraqueal solo mientras consigues el acceso: 0,05 a 0,1 mg/kg.","Repite cada 3 a 5 min si la frecuencia sigue por debajo de 60.","Si hay pérdida de sangre sospechada y no responde: expansión de volumen con suero salino o sangre."],
+  fin:"Si no hay latido a los 20 min de reanimación completa y de calidad, se puede hablar de redirigir el cuidado con la familia.",
+  rosc:["Sigue la lista de cuidados posreanimación neonatal del algoritmo (enlace en Fuente)."]
+ }
+};
+function cbFmt(ms){ms=Math.max(0,Math.round(ms/1000));var m=Math.floor(ms/60),s=ms%60;return (m<10?'0':'')+m+':'+(s<10?'0':'')+s;}
+function cbLen(){return CB.pop==='r'?30000:120000;}
+function cbClock(t){var d=new Date(t),p=function(n){return (n<10?'0':'')+n;};return p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds());}
+function cbLog(tx){CB.log.push({at:Date.now(),tx:tx});}
+function cbKg(){var w=parseFloat(String(CB.kg||'').replace(',','.'));return w>0&&w<200?w:0;}
+function cbEst(){var e=parseFloat(String(CB.age||'').replace(',','.'));if(!(e>=0))return 0;if(CB.ageU==='m')return e<12?e/2+4:0;if(e<1)return e*12/2+4;if(e<=5)return e*2+8;if(e<=12)return e*3+7;return 0;}
+function cbNum(x,d){return String(cR(x,d==null?1:d)).replace('.',',');}
+function cbBeep(){try{var C=window.AudioContext||window.webkitAudioContext;if(!C)return;if(!CB.ac)CB.ac=new C();var o=CB.ac.createOscillator(),g=CB.ac.createGain();o.frequency.value=880;g.gain.value=.25;o.connect(g);g.connect(CB.ac.destination);o.start();o.stop(CB.ac.currentTime+.35);}catch(e){}try{if(navigator.vibrate)navigator.vibrate([200,100,200]);}catch(e){}}
+function cbTick(){
+  if(!CB.run)return;var now=Date.now(),L=cbLen();
+  while(now-CB.c0>=L){CB.c0+=L;CB.cyc++;cbLog(CB.pop==='r'?'30 s: revalorar frecuencia cardíaca':'Fin del ciclo '+CB.cyc+': revisar ritmo');cbBeep();var f=document.getElementById('cbCycBox');if(f){f.classList.add('flash');setTimeout(function(){var g=document.getElementById('cbCycBox');if(g)g.classList.remove('flash');},1500);}var lg=document.getElementById('cbLog');if(lg)lg.innerHTML=cbLogHtml();}
+  var a=document.getElementById('cbTot');if(a)a.textContent=cbFmt(now-CB.t0);
+  var b=document.getElementById('cbCyc');if(b)b.textContent=cbFmt(L-(now-CB.c0));var a2=document.getElementById('cbTot2');if(a2)a2.textContent=cbFmt(now-CB.t0);var b2=document.getElementById('cbCyc2');if(b2)b2.textContent=cbFmt(L-(now-CB.c0));var e2=document.getElementById('cbEpi2');if(e2){e2.textContent=CB.epAt?cbFmt(now-CB.epAt):'--:--';e2.className=CB.epAt&&now-CB.epAt>=300000?'cbred':(CB.epAt&&now-CB.epAt>=180000?'cbamb':'');}
+  var n=document.getElementById('cbCycN');if(n)n.textContent=String(CB.cyc+1);
+  var e=document.getElementById('cbEpi');if(e){if(CB.epAt){var d=now-CB.epAt;e.textContent=cbFmt(d);e.className=d>=300000?'cbred':(d>=180000?'cbamb':'');}else e.textContent='--:--';}
+  var p=document.getElementById('cbPart');if(p){var q=now-CB.t0;p.textContent=cbFmt(q);p.className=q>=300000?'cbred':(q>=240000?'cbamb':'');}
+}
+function cbTimerHtml(){
+  var r=CB.pop==='r',now=Date.now(),L=cbLen(),tot=CB.run?now-CB.t0:(CB.end?CB.end-CB.t0:0),cy=CB.run?L-(now-CB.c0):L;
+  var h='<div class="card cbtim"><div class="cbgrid3">'+
+   '<div><span>Tiempo total</span><b id="cbTot">'+cbFmt(tot)+'</b></div>'+
+   '<div id="cbCycBox"><span>'+(r?'Revalorar en':'Ciclo '+'<i id="cbCycN">'+(CB.cyc+1)+'</i>')+'</span><b id="cbCyc">'+cbFmt(cy)+'</b></div>'+
+   (r?'<div><span>Choques</span><b>no aplica</b></div>':'<div><span>Choques</span><b id="cbSh">'+CB.sh+'</b></div>')+'</div>';
+  if(CB.pop==='e')h+='<div class="cbline"><span>Tiempo hasta el parto (meta 5 min)</span><b id="cbPart" class="'+(tot>=300000?'cbred':(tot>=240000?'cbamb':''))+'">'+cbFmt(tot)+'</b></div>';
+  h+='<div class="cbline"><span>Desde la última epinefrina'+(CB.ep?' (dosis '+CB.ep+')':'')+'</span><b id="cbEpi">'+(CB.epAt?cbFmt((CB.run?now:CB.end||now)-CB.epAt):'--:--')+'</b></div>';
+  h+='<div class="cbbtns">';
+  if(!CB.run&&!CB.end)h+='<button class="cbb go" data-a="cbStart">Iniciar reloj</button>';
+  else if(CB.run){
+    if(!r)h+='<button class="cbb shock" data-a="cbShock">Choque dado</button>';
+    h+='<button class="cbb" data-a="cbEpi">Epinefrina dada</button>';
+    if(!r&&CB.pop!=='r')h+='<button class="cbb" data-a="cbAnti">Amiodarona o lidocaína</button>';
+    h+='<button class="cbb" data-a="cbCyc">Reiniciar ciclo</button><button class="cbb ok" data-a="cbRosc">Recupera pulso (ROSC)</button>';
+  }
+  h+='<button class="cbb ghost" data-a="cbReset">'+(CB.conf>Date.now()?'Toca otra vez para borrar todo':'Borrar y empezar de nuevo')+'</button></div></div>';
+  return h;
+}
+function cbMiniHtml(){
+  if(!CB.run)return '';var now=Date.now(),L=cbLen(),r=CB.pop==='r';
+  return '<div class="cbmini" id="cbMini"><div><span>Total</span><b id="cbTot2">'+cbFmt(now-CB.t0)+'</b></div><div><span>'+(r?'Revalorar':'Ciclo')+'</span><b id="cbCyc2">'+cbFmt(L-(now-CB.c0))+'</b></div>'+(r?'':'<div><span>Choques</span><b>'+CB.sh+'</b></div>')+'<div><span>Epinefrina</span><b id="cbEpi2">'+(CB.epAt?cbFmt(now-CB.epAt):'--:--')+'</b></div></div>';
+}
+function cbLogHtml(){
+  if(!CB.log.length)return '<div class="small muted">Aquí se anota la hora de cada choque, dosis y ciclo.</div>';
+  return '<ul class="cbl">'+CB.log.map(function(x){return '<li><b>'+cbFmt(x.at-CB.t0)+'</b> · '+cbClock(x.at)+' · '+esc(x.tx)+'</li>';}).join('')+'</ul>';
+}
+function cbList(a,cls){return '<ol class="cbol'+(cls?' '+cls:'')+'">'+a.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ol>';}
+function cbUl(a){return '<ul class="rxul cbul">'+a.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';}
+function cbSec(t,body,open){return '<details class="card rxs cbs"'+(open===false?'':' open')+'><summary>'+esc(t)+'</summary><div class="rxsb">'+body+'</div></details>';}
+function cbDoseHtml(){
+  var w=cbKg(),h='';
+  if(CB.pop==='p'){
+    if(!w)return '<div class="note warn">Escribe el peso para calcular las dosis. Si no lo sabes, pon la edad y usa el estimado.</div>';
+    var ep=Math.min(w*.01,1);
+    h='<table class="rxtb"><tbody>'+
+     '<tr><td>Choque 1.º</td><td>'+cbNum(2*w,0)+' J (2 J/kg)</td></tr>'+
+     '<tr><td>Choque 2.º</td><td>'+cbNum(4*w,0)+' J (4 J/kg)</td></tr>'+
+     '<tr><td>Choques siguientes</td><td>'+cbNum(4*w,0)+' J o más, hasta '+cbNum(10*w,0)+' J (10 J/kg) o la dosis de adulto</td></tr>'+
+     '<tr><td>Epinefrina IV/IO</td><td>'+cbNum(ep,3)+' mg = '+cbNum(ep*10,2)+' mL de la solución de 0,1 mg/mL (1:10 000). Máximo 1 mg. Cada 3 a 5 min</td></tr>'+
+     '<tr><td>Amiodarona</td><td>'+cbNum(Math.min(5*w,300),0)+' mg (5 mg/kg, máximo 300 mg)</td></tr>'+
+     '<tr><td>Lidocaína (alternativa)</td><td>'+cbNum(w,1)+' mg (1 mg/kg)</td></tr></tbody></table>';
+  }else if(CB.pop==='r'){
+    if(!w)return '<div class="note warn">Escribe el peso (kg) para calcular las dosis.</div>';
+    h='<table class="rxtb"><tbody>'+
+     '<tr><td>Epinefrina IV o intraósea</td><td>'+cbNum(.01*w,3)+' a '+cbNum(.03*w,3)+' mg = '+cbNum(.1*w,2)+' a '+cbNum(.3*w,2)+' mL de la solución de 0,1 mg/mL, y luego 3 mL de suero salino</td></tr>'+
+     '<tr><td>Epinefrina por el tubo (mientras consigues acceso)</td><td>'+cbNum(.05*w,3)+' a '+cbNum(.1*w,3)+' mg = '+cbNum(.5*w,2)+' a '+cbNum(w,2)+' mL de la solución de 0,1 mg/mL</td></tr>'+
+     '<tr><td>Expansión de volumen</td><td>'+cbNum(10*w,0)+' mL (10 mL/kg) de suero salino o sangre en 5 a 10 min. Dosis de la guía 2020; la guía 2025 no da la cifra en el texto que revisé</td></tr></tbody></table>';
+  }
+  return h;
+}
+function cbKgBox(){
+  var est=cbEst(),pe=CB.pop==='p';
+  return '<div class="card"><div class="grid"><label>Peso (kg)<input id="cbKg" inputmode="decimal" value="'+esc(CB.kg)+'" placeholder="Ej. 18"></label>'+
+   (pe?'<label>Si no sabes el peso: edad<div class="row" style="gap:6px"><input id="cbAge" inputmode="decimal" value="'+esc(CB.age)+'" placeholder="Edad" class="grow"><select id="cbAgeU"><option value="a"'+(CB.ageU==='a'?' selected':'')+'>años</option><option value="m"'+(CB.ageU==='m'?' selected':'')+'>meses</option></select></div></label>':'')+'</div>'+
+   (pe?'<div class="small" id="cbEst">'+cbEstHtml()+'</div>':'')+'<div id="cbDose">'+cbDoseHtml()+'</div></div>';
+}
+function cbEstHtml(){var e=cbEst();return e>0?'Peso estimado (APLS): <b>'+cbNum(e,1)+' kg</b>. Es una estimación: pesa al niño apenas puedas. <button class="btn sm" data-a="cbUseEst">Usar este peso</button>':'<span class="muted">El estimado sirve de 0 a 12 años.</span>';}
+function viewCb(){
+  var P=CB.pop,C=CBC[P],h='<div class="row spread"><button class="btn sm ghost" data-a="cbBack">‹ Volver</button><h2 style="color:var(--cb)">Código azul</h2><span class="small muted">AHA 2025</span></div>';
+  h+='<div class="cbtabs">'+CBP.map(function(x){return '<button class="cbtab'+(P===x[0]?' on':'')+'" data-a="cbPop" data-p="'+x[0]+'">'+x[1]+'</button>';}).join('')+'</div>';
+  h+='<div class="note warn" style="margin:8px 0"><strong>Resumen de apoyo, no reemplaza tu entrenamiento ni el protocolo de tu institución.</strong> Basado en las guías AHA y AAP de 2025 (enlaces al final).</div>';
+  h+=cbMiniHtml()+cbTimerHtml();
+  if(P==='p'||P==='r')h+=cbKgBox().replace('<div class="card">','<div class="card cbdosebox">');
+  h+=cbSec('1. Haz esto ya',cbList(C.ya));
+  if(P==='a'){
+    h+=cbSec('2. Calidad de la RCP',cbUl(C.rcp));
+    h+=cbSec('3. Ritmo desfibrilable (FV o TV sin pulso)',cbList(C.des,'cbdes'));
+    h+=cbSec('4. Ritmo no desfibrilable (asistolia o AESP)',cbList(C.nodes));
+    h+=cbSec('Fármacos y dosis','<table class="rxtb"><tbody>'+C.fx.map(function(x){return '<tr><td>'+esc(x[0])+'</td><td>'+esc(x[1])+'</td></tr>';}).join('')+'</tbody></table><div class="small" style="margin-top:8px">'+esc(C.no)+'</div>');
+  }
+  if(P==='p'){
+    h+=cbSec('2. Calidad de la RCP',cbUl(C.rcp));
+    h+=cbSec('3. Ritmo desfibrilable (FV o TV sin pulso)',cbList(C.des,'cbdes'));
+    h+=cbSec('4. Ritmo no desfibrilable (asistolia o AESP)',cbList(C.nodes));
+  }
+  if(P==='e'){
+    h+=cbSec('2. Calidad de la RCP y vía aérea',cbUl(C.rcp));
+    h+=cbSec('3. Intervenciones en la madre',cbUl(C.matern));
+    h+=cbSec('4. Parto de reanimación (cesárea perimortem)',cbUl(C.parto));
+  }
+  if(P==='r'){
+    h+=cbSec('2. Ventilación',cbList(C.vent));
+    h+=cbSec('3. Compresiones',cbList(C.comp));
+    h+=cbSec('4. Epinefrina y volumen',cbList(C.epi));
+    h+=cbSec('Cuándo replantear',cbUl([C.fin]),false);
+  }
+  if(P==='a'||P==='p')h+=cbSec('Causas reversibles (las H y las T)','<div class="cbhyt"><div><h4>H</h4>'+cbUl(C.hyt[0])+'</div><div><h4>T</h4>'+cbUl(C.hyt[1])+'</div></div>');
+  if(P==='e')h+=cbSec('Causas del paro en el embarazo','<div class="small muted" style="margin-bottom:4px">Piensa también en las H y las T del adulto.</div>'+cbUl(C.causas));
+  h+=cbSec('Si recupera el pulso (ROSC)',cbUl(C.rosc),false);
+  h+='<div class="card"><h3>Registro</h3><div id="cbLog">'+cbLogHtml()+'</div>'+(CB.log.length?'<div class="row"><button class="btn sm" data-a="cbCopy">Copiar registro</button></div>':'')+'</div>';
+  h+=cbSec('Fuente',cbUl(CBSRC[P].map(function(s){return s[0]+': '+s[1];})).replace(/(https:\/\/[^<\s]+)/g,'<a href="$1" target="_blank" rel="noopener">enlace</a>'),false);
+  return h;
+}
+function cbFab(){
+  var f=document.getElementById('cbFab');
+  if(!f){f=document.createElement('button');f.id='cbFab';f.setAttribute('data-a','cbOpen');f.setAttribute('aria-label','Abrir código azul');f.innerHTML='<span class="cbcross">+</span><span>Código azul</span>';document.body.appendChild(f);}
+  f.hidden=S.view==='cb';
+  try{var hd=document.querySelector('header.top'),mob=window.matchMedia('(max-width:899px)').matches;document.documentElement.style.setProperty('--cbtop',(mob&&hd?hd.offsetHeight:0)+'px');}catch(e){}
+}
+AT.cbOpen=function(){if(S.view!=='cb')CB.prev=S.view;S.view='cb';render();window.scrollTo(0,0);};
+AT.cbBack=function(){S.view=CB.prev&&CB.prev!=='cb'?CB.prev:'services';render();};
+AT.cbPop=function(el){CB.pop=el.dataset.p;render();};
+AT.cbStart=function(){var n=Date.now();CB.run=true;CB.t0=n;CB.c0=n;CB.end=0;CB.cyc=0;cbLog('Inicio del reloj');cbBeep();if(!CB.tm)CB.tm=setInterval(cbTick,250);render();};
+AT.cbCyc=function(){CB.c0=Date.now();cbLog('Ciclo reiniciado a mano');render();};
+AT.cbShock=function(){CB.sh++;CB.c0=Date.now();cbLog('Choque '+CB.sh);render();};
+AT.cbEpi=function(){CB.ep++;CB.epAt=Date.now();cbLog('Epinefrina, dosis '+CB.ep);render();};
+AT.cbAnti=function(){cbLog('Amiodarona o lidocaína');render();};
+AT.cbRosc=function(){cbLog('Recupera pulso (ROSC)');CB.run=false;CB.end=Date.now();render();};
+AT.cbReset=function(){if(CB.conf>Date.now()){CB.run=false;CB.t0=0;CB.c0=0;CB.end=0;CB.cyc=0;CB.sh=0;CB.ep=0;CB.epAt=0;CB.log=[];CB.conf=0;render();return;}CB.conf=Date.now()+4000;render();setTimeout(function(){if(CB.conf&&Date.now()>=CB.conf){CB.conf=0;if(S.view==='cb')render();}},4100);};
+AT.cbUseEst=function(){var e=cbEst();if(e>0){CB.kg=String(cR(e,1));render();}};
+AT.cbCopy=function(){var t='Código azul ('+(CBP.filter(function(x){return x[0]===CB.pop;})[0][1])+')\n'+CB.log.map(function(x){return cbFmt(x.at-CB.t0)+' · '+cbClock(x.at)+' · '+x.tx;}).join('\n');copyText(t,'cbLog');};
+document.addEventListener('input',function(e){var el=e.target;if(!el)return;
+  if(el.id==='cbKg'){CB.kg=el.value;var d=document.getElementById('cbDose');if(d)d.innerHTML=cbDoseHtml();}
+  else if(el.id==='cbAge'){CB.age=el.value;var s=document.getElementById('cbEst');if(s)s.innerHTML=cbEstHtml();}});
+document.addEventListener('change',function(e){var el=e.target;if(el&&el.id==='cbAgeU'){CB.ageU=el.value;var s=document.getElementById('cbEst');if(s)s.innerHTML=cbEstHtml();}});
+
 for(var k_ in AT)A[k_]=AT[k_];
 document.addEventListener('click',function(e){var el=e.target.closest('[data-a]');if(!el||el.tagName==='SELECT')return;var f=A[el.dataset.a];if(f){if(el.type==='checkbox'){f(el);}else f(el);}});
 document.addEventListener('change',function(e){var el=e.target;if(el.id==='handSel'){A.handSel(el);}
@@ -6162,7 +6360,7 @@ document.addEventListener('drop',function(e){
 });
 document.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.dataset&&e.target.dataset.enter){e.preventDefault();A[e.target.dataset.enter]();}});
 pxApply();brandInit();initArt();
-render();helpRender();
+render();helpRender();cbFab();
 gBoot();
 try{if(!localStorage.getItem('rot_tour_done'))setTimeout(function(){tourStart(true);},600);}catch(e){}
 })();

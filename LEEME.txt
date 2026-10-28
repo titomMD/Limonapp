@@ -6,6 +6,11 @@ QUE CAMBIA EN LA v63 (sobre la v62, que queda incluida)
   - Cada farmaco abre una ficha completa: mecanismo, farmacocinetica, indicaciones y dosis (adulto y pediatrico con calculo por
     peso), ajustes (renal, hepatico, embarazo, lactancia, adulto mayor), seguridad, interacciones, monitoreo, presentaciones,
     perlas clinicas, glosario de unidades y fuentes. Las fichas se descargan al abrirlas y quedan en cache para uso sin red.
+  - Fichas con mejor estructura: los textos largos se ordenan en listas y tablas (por ejemplo, el ajuste renal), con la sangria de
+    Seguridad corregida. Marcado simple en los datos: lineas separadas, "- " viñeta, " | " celdas de tabla.
+  - Codigo azul (boton azul fijo en toda la app): cuatro pestañas separadas (adulto, pediatrico, embarazada, recien nacido) segun las
+    guias AHA/AAP 2025, con reloj de ciclos de 2 min, registro de choques y dosis, y dosis por peso en pediatria y recien nacido.
+    Resumen de apoyo: no reemplaza el protocolo de la institucion.
   - Nivel de verificacion por bloque (dosis, farmacologia, seguridad): 0 Borrador, 1 Contrastado con fuente, 2 Confirmado por Esteban.
   - 86 farmacos: los 68 anteriores migrados (nuevos campos en BORRADOR, escritos sin contrastar) y 18 de urologia contrastados con
     etiquetas oficiales (drugs.com): tamsulosina, finasterida, dutasterida, oxibutinina, solifenacina, mirabegron, fenazopiridina,
