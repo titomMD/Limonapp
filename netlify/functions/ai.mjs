@@ -9,10 +9,11 @@ import { getStore } from '@netlify/blobs';
      AI_ADMIN_EMAIL   tu correo de Google en minusculas (para ver el panel de uso).
      AI_OFF           opcional. 1 = apagar para todos (la app usa el lector basico).
      AI_BUDGET_USD    opcional. Tope mensual ESTIMADO de la funcion (por defecto 6; con plan gratuito pon 1000).
-     AI_MODEL         opcional. Modelo (por defecto gemini-3.5-flash-lite).
+     AI_MODEL         opcional. Modelo principal (por defecto gemini-3.6-flash).
+     AI_MODEL2        opcional. Modelo de respaldo si el principal se queda sin cuota o falla (por defecto gemini-3.5-flash-lite).
      AI_DAY, AI_MONTH opcionales. HC por persona al dia y al mes (por defecto 10 y 200).
      AI_THINK         opcional. Nivel de razonamiento en modelos 3.x (por defecto minimal).
-     AI_PRICE_IN, AI_PRICE_OUT  opcionales. Dolares por millon de tokens para el gasto ESTIMADO (por defecto 0.50 y 3.00).
+     AI_PRICE_IN, AI_PRICE_OUT  opcionales. Dolares por millon de tokens para el gasto ESTIMADO (por defecto, segun el modelo: 3.6/3.8 Flash 0.75 y 3.75; Flash Lite 0.30 y 2.50).
    GET  /api/ai?whoami=1   -> {admin, paused, left}
    POST /api/ai?hc=1 {docs}-> {data, left}   (Gemini lee la HC y devuelve diagnostico actual, contexto, egreso, motivo)
    GET  /api/ai?admin=usage (solo administrador) -> uso por persona */
@@ -85,9 +86,10 @@ async function authenticate(req) {
 const MONTH_BUDGET = () => Number(process.env.AI_BUDGET_USD || 6);
 const DAY_MAX = () => Number(process.env.AI_DAY || 10);
 const MONTH_MAX = () => Number(process.env.AI_MONTH || 200);
-const MODEL = () => process.env.AI_MODEL || 'gemini-3.5-flash-lite';
-const PIN = () => Number(process.env.AI_PRICE_IN || 0.50);
-const POUT = () => Number(process.env.AI_PRICE_OUT || 3.00);
+const MODEL = () => process.env.AI_MODEL || 'gemini-3.6-flash';
+const MODEL2 = () => (process.env.AI_MODEL2 === undefined ? 'gemini-3.5-flash-lite' : process.env.AI_MODEL2);
+const PIN = (m) => Number(process.env.AI_PRICE_IN || (/lite/.test(m || '') ? 0.30 : 0.75));
+const POUT = (m) => Number(process.env.AI_PRICE_OUT || (/lite/.test(m || '') ? 2.50 : 3.75));
 const MAX_DOCS_CHARS = 60000, MAX_OUT = 1500, COOLDOWN_MS = 4000;
 
 /* Instrucciones fijas del lector de HC. El texto de la HC llega ya sin nombre ni cedula (se quitan en el dispositivo). */
@@ -96,7 +98,20 @@ const SYS_HC = `Eres el lector de historias clínicas (HC) de Limonapp, una app 
 REGLAS
 1. No inventes nada. Cada dato que devuelvas debe estar escrito en el texto. Para cada dato incluye "cita": una frase LITERAL (copiada exacta, máx. 140 caracteres) del documento de donde lo sacaste, y "doc": el número del documento. Si no encuentras el dato, devuelve null. Es mejor null que adivinar.
 2. "Actual" significa lo más reciente por FECHA del documento (no por su posición en el PDF). Un PDF puede juntar varios episodios (hospitalizaciones, urgencias, consultas externas); manda el episodio más reciente.
-3. El diagnóstico actual es el diagnóstico principal del documento clínico más reciente que lo contenga (evolución, consulta externa, junta médica, egreso). Escríbelo corto, en español, sin código CIE-10. Un diagnóstico de una consulta externa anterior NO reemplaza a uno más reciente de una hospitalización, ni al revés.
+3. DIAGNÓSTICO PRINCIPAL ACTUAL. Es la enfermedad que motiva la atención en curso: por la que el paciente está ingresado, será operado, se discute en junta o se sigue con el especialista. Decídelo con estos pasos:
+   a) Primero llena "candidatos": hasta 4 diagnósticos distintos que veas en los documentos más recientes, cada uno con "dx" (corto), "doc", "fuente" y "rol".
+      "fuente" = el servicio que lo escribe (urología, cirugía, oncología, nefrología, anestesiología, medicina interna...).
+      "rol" = "motivo" (la enfermedad por la que se atiende, se opera o se discute en junta), "comorbilidad" (HTA, DM2, cardiopatía, EPOC, ERC, hipotiroidismo, obesidad... que acompañan), "consecuencia" (una complicación de la enfermedad principal, p. ej. ERC por litiasis, anemia por sangrado) u "otro_proceso" (un procedimiento programado por otro motivo, p. ej. una endoscopia).
+   b) Elige como diagnóstico_actual un candidato con rol "motivo". NUNCA elijas "comorbilidad" ni "consecuencia", aunque su código CIE-10 aparezca en el documento más reciente.
+   c) Las valoraciones preanestésicas, preoperatorias y de cardiología o medicina interna casi siempre listan comorbilidades y sus códigos CIE-10 no definen el diagnóstico principal. El código CIE-10 de la última línea del PDF no es automáticamente el principal.
+   d) Si hay varios con rol "motivo", elige el del servicio que ha pedido la junta o el procedimiento, o el más repetido en los documentos de ese servicio.
+   e) Si el diagnóstico solo está como sospecha, probable, posible, "en estudio" o "a descartar" en el servicio tratante, devuélvelo con "certeza":"sospecha". Si hay una confirmación posterior (patología, imagen, cirugía), "certeza":"confirmado" y el diagnóstico más reciente reemplaza al anterior (p. ej. un "tumor de comportamiento incierto" antes de la biopsia se reemplaza por "cáncer de próstata" cuando sale la patología).
+   f) Escríbelo corto, en español, sin código CIE-10. En "cita" copia una línea literal donde aparezca ese diagnóstico, de preferencia del servicio tratante.
+   Ejemplos (casos inventados):
+   - Paciente que ingresó por colecistitis aguda; el último documento es una valoración preanestésica que lista HTA y fibrilación auricular. candidatos: colecistitis aguda (motivo), HTA (comorbilidad), fibrilación auricular (comorbilidad). Respuesta: colecistitis aguda.
+   - Paciente con tumor de colon en seguimiento por oncología; el último documento es de cardiología con "I255 cardiomiopatía isquémica". Respuesta: tumor de colon (el diagnóstico de cardiología es comorbilidad).
+   - Paciente con obstrucción ureteral por cálculo, ERC estadio 2 en control con nefrología, junta de urología pedida por el cálculo. Respuesta: cálculo ureteral con obstrucción (la ERC es consecuencia).
+   - Paciente referido por sospecha de masa pulmonar, estudio en curso, sin patología. Respuesta: "masa pulmonar en estudio" con certeza "sospecha".
 4. Contexto actual: "hospitalizado" (aún internado), "urgencias" (en observación de urgencias), "consulta_externa" (se sigue de forma ambulatoria, o el último documento es una consulta externa posterior a cualquier hospitalización) o "egresado" (el último evento es un egreso/salida y no hay actividad hospitalaria posterior).
 5. Un ingreso a UCI o a otro servicio es un INGRESO a ese servicio, no una evolución.
 6. El motivo de ingreso actual es por qué ingresó al episodio actual (por ejemplo, remitido de otra institución por X, o ingreso por urgencias por Y). Búscalo en el documento de ingreso; si no hay uno, en la primera evolución o nota del episodio, que a veces lo cuenta en el texto.
@@ -113,13 +128,15 @@ ABREVIATURAS Y FORMAS DE ESCRIBIR (los médicos abrevian; interprétalas por el 
 - Si una sigla tiene varios significados, elige el que encaje con el contexto; si no puedes decidir, no la uses como fundamento del dato y avisa en "notas".
 
 SALIDA: responde SOLO un JSON válido, sin texto adicional ni markdown, con exactamente estas claves:
-{"contexto_actual":"hospitalizado|urgencias|consulta_externa|egresado|null",
- "diagnostico_actual":{"texto":"...","doc":0,"cita":"..."}|null,
+{"candidatos":[{"dx":"...","doc":0,"fuente":"...","rol":"motivo|comorbilidad|consecuencia|otro_proceso"}],
+ "contexto_actual":"hospitalizado|urgencias|consulta_externa|egresado|null",
+ "diagnostico_actual":{"texto":"...","doc":0,"cita":"...","certeza":"confirmado|sospecha"}|null,
  "motivo_ingreso_actual":{"texto":"...","doc":0,"cita":"..."}|null,
  "fecha_ingreso_actual":"AAAA-MM-DD"|null,
  "egreso":{"fecha":"AAAA-MM-DD"|null,"destino":"...","doc":0,"cita":"..."}|null,
  "notas":["..."]}
-"egreso" solo si el paciente fue egresado y no hay actividad hospitalaria posterior; si no, null.`;
+"egreso" solo si el paciente fue egresado y no hay actividad hospitalaria posterior; si no, null.
+"fecha_ingreso_actual" solo si el paciente está hospitalizado o en urgencias ahora; en consulta_externa va null. En consulta_externa, "motivo_ingreso_actual" es el motivo de consulta de la última consulta. Cierra bien todos los corchetes y llaves: cada objeto se cierra antes de pasar a la siguiente clave.`;
 
 const H = { 'cache-control': 'no-store', 'content-type': 'application/json; charset=utf-8' };
 const J = (o, s) => new Response(JSON.stringify(o), { status: s || 200, headers: H });
@@ -180,35 +197,53 @@ export default async (req) => {
   await store.setJSON('u_' + uid + '_' + dy, ud);
   await store.setJSON('u_' + uid + '_' + mo, um2);
 
-  const model = MODEL();
-  const gen = { maxOutputTokens: MAX_OUT * 2, temperature: 0.1, responseMimeType: 'application/json' };
-  if (/2\.5/.test(model)) gen.thinkingConfig = { thinkingBudget: 0 };
-  else gen.thinkingConfig = { thinkingLevel: String(process.env.AI_THINK || 'minimal').toLowerCase() };
-  const call = async (cfg) => {
+  /* Modelo principal y, si se queda sin cuota (429), falla o se pasa de tiempo, un modelo de respaldo. Netlify corta a los 10 s:
+     el principal tiene 6 s y el respaldo solo se intenta si quedan al menos 2,5 s. */
+  const t0 = Date.now();
+  const models = [MODEL()]; if (MODEL2() && MODEL2() !== models[0]) models.push(MODEL2());
+  const mkGen = (model) => {
+    const gen = { maxOutputTokens: MAX_OUT * 2, temperature: 0.1, responseMimeType: 'application/json' };
+    if (/2\.5/.test(model)) gen.thinkingConfig = { thinkingBudget: 0 };
+    else gen.thinkingConfig = { thinkingLevel: String(process.env.AI_THINK || 'minimal').toLowerCase() };
+    return gen;
+  };
+  const call = async (model, cfg, ms) => {
     const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(model) + ':generateContent', {
       method: 'POST',
       headers: { 'content-type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
       body: JSON.stringify({ systemInstruction: { parts: [{ text: SYS_HC }] }, contents: [{ role: 'user', parts: [{ text: body }] }], generationConfig: cfg }),
-      signal: AbortSignal.timeout(8000), /* Netlify corta las funciones a los 10 s: mejor responder un error legible que un 502 */
+      signal: AbortSignal.timeout(ms),
     });
     const tx = await r.text(); let j = null; try { j = JSON.parse(tx); } catch (e) {}
     return { r, j };
   };
-  let res, fail = '';
-  try {
-    res = await call(gen);
-    if (!res.r.ok && res.r.status === 400) { const g2 = Object.assign({}, gen); delete g2.thinkingConfig; res = await call(g2); }
-  } catch (e) { fail = (e && (e.name === 'TimeoutError' || e.name === 'AbortError')) ? 'La IA tardó demasiado.' : 'No pude conectar con la IA.'; }
-  if (!fail && !res.r.ok) fail = 'La IA no respondió (' + res.r.status + ').';
-  const um3 = (res && res.j && res.j.usageMetadata) || {};
-  const tin = um3.promptTokenCount || Math.ceil(body.length / 3), tout = (um3.candidatesTokenCount || 0) + (um3.thoughtsTokenCount || 0);
-  const usd = (tin * PIN() + (tout || (fail ? 0 : MAX_OUT)) * POUT()) / 1e6;
-  let data = null;
-  if (!fail) {
+  const readOut = (res) => {
     const out = ((res.j && res.j.candidates && res.j.candidates[0] && res.j.candidates[0].content && res.j.candidates[0].content.parts) || []).map((p) => p.text || '').join('').trim();
     const mm = /\{[\s\S]*\}/.exec(out);
-    try { data = JSON.parse(mm ? mm[0] : out); } catch (e) { data = null; }
-    if (!data || typeof data !== 'object') fail = 'La IA no devolvió un resultado legible.';
+    try { const d = JSON.parse(mm ? mm[0] : out); return d && typeof d === 'object' ? d : null; } catch (e) { return null; }
+  };
+  let res = null, fail = '', data = null, used = '', tin = 0, tout = 0, usd = 0;
+  for (let k = 0; k < models.length; k++) {
+    const left_ms = (k === 0 ? 6000 : 9000 - (Date.now() - t0));
+    if (k > 0 && left_ms < 2500) break;
+    const model = models[k]; fail = ''; res = null; data = null;
+    try {
+      res = await call(model, mkGen(model), Math.min(left_ms, 6500));
+      if (!res.r.ok && res.r.status === 400) { const g2 = mkGen(model); delete g2.thinkingConfig; res = await call(model, g2, Math.max(1500, Math.min(9000 - (Date.now() - t0), 6500))); }
+    } catch (e) { fail = (e && (e.name === 'TimeoutError' || e.name === 'AbortError')) ? 'La IA tardó demasiado.' : 'No pude conectar con la IA.'; }
+    if (!fail && !res.r.ok) fail = 'La IA no respondió (' + res.r.status + ').';
+    const um3 = (res && res.j && res.j.usageMetadata) || {};
+    const tin1 = um3.promptTokenCount || Math.ceil(body.length / 3), tout1 = (um3.candidatesTokenCount || 0) + (um3.thoughtsTokenCount || 0);
+    if (res && (!fail || um3.promptTokenCount)) { tin += tin1; tout += tout1; usd += (tin1 * PIN(model) + (tout1 || (fail ? 0 : MAX_OUT)) * POUT(model)) / 1e6; }
+    if (!fail) { data = readOut(res); if (!data) fail = 'La IA no devolvió un resultado legible.'; }
+    if (!fail) { used = model; break; }
+  }
+  if (!fail && data) {
+    /* los modelos a veces escriben "cite" o "citation" en vez de "cita": se normaliza para que la cita se pueda verificar */
+    ['diagnostico_actual', 'motivo_ingreso_actual', 'egreso'].forEach((k) => {
+      const o = data[k]; if (o && typeof o === 'object' && (o.cita === undefined || o.cita === null)) { const alt = o.cite || o.citation || o.cita_textual; if (typeof alt === 'string') o.cita = alt; }
+    });
+    delete data.candidatos;
   }
   /* contabilidad: global del mes y por persona (solo conteos, nunca el texto) */
   g.usd = Math.round((g.usd + usd) * 1e6) / 1e6; g.n += 1;
@@ -225,7 +260,7 @@ export default async (req) => {
     await store.setJSON('usage', use);
   } catch (e) {}
   if (fail) return J({ error: fail + ' Uso el lector básico.', code: 'ai' }, 502);
-  return J({ data, left: { day: Math.max(0, DAY_MAX() - ud.n), month: Math.max(0, MONTH_MAX() - um2.n) } });
+  return J({ data, model: used, left: { day: Math.max(0, DAY_MAX() - ud.n), month: Math.max(0, MONTH_MAX() - um2.n) } });
 };
 
 export const config = { path: '/api/ai' };
