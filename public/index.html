@@ -31,7 +31,7 @@ details.card.rxg,details.card.rxs{padding:0!important}.rxg>summary,.rxs>summary{
 #cbFab[hidden]{display:none}.cbcross{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;color:#1d4ed8;font-size:18px;line-height:1;font-weight:800}
 @media(max-width:899px){#cbFab{bottom:calc(92px + env(safe-area-inset-bottom,0px))!important;left:14px!important}}
 .cbtabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.cbtab{padding:11px 4px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font-weight:650;font-size:14px;cursor:pointer;min-width:0}.cbtab.on{background:#1d4ed8;border-color:#1d4ed8;color:#fff}
-@media(max-width:520px){.cbtabs{grid-template-columns:repeat(2,1fr)}}.cbrem{border:2px solid var(--cb);border-radius:14px;padding:10px 12px;margin:8px 0;background:var(--surface)}.cbrem h3{margin:0 0 6px;font-size:.95rem;color:var(--cb)}.cbrr{margin:6px 0}.cbrl{font:700 11.5px var(--font);letter-spacing:.03em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}.cbrf{display:flex;flex-wrap:wrap;align-items:center;gap:4px 5px}.cbrc{padding:4px 9px;border-radius:999px;background:var(--bg,#f7f5f0);border:1px solid var(--line);font-size:13px;line-height:1.25;font-weight:600}.cbrc.sh{border-color:var(--cb)}.cbra{color:var(--muted);font-size:13px}.cbrft{margin-top:8px;padding-top:6px;border-top:1px dashed var(--line);font-size:12.5px;line-height:1.4;color:var(--muted)}
+@media(max-width:520px){.cbtabs{grid-template-columns:repeat(2,1fr)}}a.btn{text-decoration:none;color:var(--ink);display:inline-block}a.btn.primary{color:var(--accent-ink)}.aiepig{display:grid;grid-template-columns:1fr;gap:6px}.aiepil{display:block;text-align:left;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 14px var(--font);text-decoration:none;cursor:pointer}@media(min-width:700px){.aiepig{grid-template-columns:1fr 1fr}}.cbrem{border:2px solid var(--cb);border-radius:14px;padding:10px 12px;margin:8px 0;background:var(--surface)}.cbrem h3{margin:0 0 6px;font-size:.95rem;color:var(--cb)}.cbrr{margin:6px 0}.cbrl{font:700 11.5px var(--font);letter-spacing:.03em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}.cbrf{display:flex;flex-wrap:wrap;align-items:center;gap:4px 5px}.cbrc{padding:4px 9px;border-radius:999px;background:var(--bg,#f7f5f0);border:1px solid var(--line);font-size:13px;line-height:1.25;font-weight:600}.cbrc.sh{border-color:var(--cb)}.cbra{color:var(--muted);font-size:13px}.cbrft{margin-top:8px;padding-top:6px;border-top:1px dashed var(--line);font-size:12.5px;line-height:1.4;color:var(--muted)}
 .cbtim{border:2px solid #1d4ed8}.cbgrid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}.cbgrid3 span,.cbline span{font-size:12px;color:var(--muted);display:block}.cbgrid3 b{font-size:30px;font-variant-numeric:tabular-nums;line-height:1.15;display:block}.cbgrid3 i{font-style:normal}
 
 .cbmini{position:sticky;top:var(--cbtop,0px);z-index:15;display:flex;justify-content:space-around;gap:6px;background:#1d4ed8;color:#fff;border-radius:12px;padding:6px 8px;margin:8px 0;text-align:center}.cbmini span{display:block;font-size:11px;opacity:.85}.cbmini b{font-size:20px;font-variant-numeric:tabular-nums}.cbmini .cbamb{color:#ffd98a}.cbmini .cbred{color:#ffb4b4}
@@ -1019,7 +1019,7 @@ function viewServices0(){
   var np=allPending();
   var h='<section class="hero2"><div class="hrow"><div class="hi">'+greet()+'</div>'+GEMPILL+'</div><h2 class="hl">¿Qué vamos a <em>revisar</em> hoy?</h2>'+
     '<button class="cmdbar" data-a="cmdk">'+ICSEARCH+'<span>Buscar paciente, cama o ir a…</span><kbd>⌘K</kbd></button>'+
-    '<div class="chips2"><button data-a="nav" data-v="tasks">Pendientes'+(np?' · '+np:'')+'</button><button data-a="nav" data-v="handoff">Entrega de turno</button><button data-a="toArea" data-v="amb">Consulta externa</button><button data-a="nav" data-v="urg">Urgencias</button><button data-a="toCalc">Calculadoras</button>'+(rxOn()?'<button data-a="toRx">Recetario</button>':'')+'</div></section>';
+    '<div class="chips2"><button data-a="nav" data-v="tasks">Pendientes'+(np?' · '+np:'')+'</button><button data-a="nav" data-v="handoff">Entrega de turno</button><button data-a="toArea" data-v="amb">Consulta externa</button><button data-a="nav" data-v="urg">Urgencias</button><button data-a="toCalc">Calculadoras</button><button data-a="toAiepi">AIEPI</button>'+(rxOn()?'<button data-a="toRx">Recetario</button>':'')+'</div></section>';
   if(demo)h+='<div class="note warn">Hay un paciente de ejemplo en Neurocirugía. Bórralo desde su ficha cuando termines de probar.</div>';
   var nAmb=db.patients.filter(function(p){return p.ctx==='amb';}).length;
   h+='<div class="seg" style="margin:6px 0"><button class="tab" data-a="area" data-v="hosp"'+(S.area!=='amb'?' aria-current="page"':'')+'>Hospitalización</button><button class="tab" data-a="area" data-v="amb"'+(S.area==='amb'?' aria-current="page"':'')+'>Consulta externa ('+nAmb+')</button></div>';
@@ -1825,6 +1825,7 @@ function render0(){
   else if(v==='calc')html=viewCalc();
   else if(v==='rx')html=viewRx();
   else if(v==='cb')html=viewCb();
+  else if(v==='aiepi')html=viewAiepi();
   else if(v==='team')html=viewTeam();
   else html=viewBackup();
   document.getElementById('app').innerHTML=html;
@@ -4383,6 +4384,7 @@ function ckBuild(q){
   db.services.forEach(function(sv){cmds.push({g:'Servicios',t:sv.name,sb:activeOf(sv.id).length+' activos',run:function(){go('service',{serviceId:sv.id,filter:'activos'});}});cmds.push({g:'Acciones',t:'Nuevo paciente en '+sv.name,run:function(){go('service',{serviceId:sv.id,filter:'activos'});S.newPatient=true;render();}});cmds.push({g:'Acciones',t:'Iniciar ronda en '+sv.name,run:function(){S.rn.sid=sv.id;S.rn.i=0;go('ronda');}});});
   cmds.push({g:'Acciones',t:'Cambiar entre tema claro y oscuro',run:function(){A.toggleTheme();}});
   cmds.push({g:'Ir a',t:'Calculadoras',run:function(){AT.toCalc();}});
+  cmds.push({g:'Ir a',t:'AIEPI (Herramienta Clínica Primera Infancia)',run:function(){AT.toAiepi();}});
   if(rxOn())cmds.push({g:'Ir a',t:'Recetario (borrador)',run:function(){AT.toRx();}});
   cmds.push({g:'Acciones',t:'Ver el tutorial',run:function(){tourStart();}});
   var pts=[];
@@ -6413,6 +6415,20 @@ function cbRemHtml(){
     return '<div class="cbrr"><div class="cbrl">'+esc(r[0])+'</div><div class="cbrf">'+r[1].map(function(x,i){return (i?'<span class="cbra" aria-hidden="true">›</span>':'')+'<span class="cbrc'+(sh.indexOf(i)>=0?' sh':'')+'">'+esc(x)+'</span>';}).join('')+'</div></div>';
   }).join('')+'<div class="cbrft">'+esc(R.f)+'</div></div>';
 }
+var AIEPI_BASE='https://herramientaclinicaprimerainfancia.minsalud.gov.co/';
+var AIEPI_MODS=[['modulo-1/','1. Clasificación inicial, menor de 3 meses'],['modulo-2/','2. Clasificación, de 3 meses a 5 años'],['modulo-3/','3. Valoración antropométrica'],['modulo-4/','4. Niño o niña menor de 3 meses'],['modulo-5/enfermedad-febril/','5. Fiebre, ETV y zoonosis'],['modulo-6/','6. Infección respiratoria aguda'],['modulo-7/','7. Enfermedad diarreica aguda'],['modulo-8/','8. Desnutrición aguda'],['modulo-9/','9. Salud bucal'],['modulo-10/','10. Cáncer infantil'],['modulo-11/','11. Epilepsia'],['modulo-12/','12. Salud mental y desarrollo'],['modulo-13n/','13. Sospecha de violencias'],['modulo-14/','14. Información en salud'],['modulo-15/','15. Cuidado y crianza'],['modulo16/','16. Recién nacidos']];
+var AIEPI_CALC=[['plped','Plan de líquidos pediátrico'],['oms','Rehidratación en diarrea (planes A, B y C de la OMS)'],['hs','Líquidos de mantenimiento (Holliday-Segar)'],['deshid','Déficit por deshidratación'],['dkaped','Cetoacidosis diabética pediátrica'],['kiv','Reposición intravenosa de potasio'],['sc','Superficie corporal']];
+function viewAiepi(){
+  var h='<div class="row spread"><button class="btn sm ghost" data-a="aiepiBack">‹ Volver</button><h2>AIEPI</h2><span class="small muted">MinSalud</span></div>';
+  h+='<div class="card"><h3>Herramienta Clínica de Primera Infancia</h3><div class="small">Es la actualización del AIEPI clínico del Ministerio de Salud y Protección Social de Colombia, para niños de 0 a 6 años. Tiene 16 módulos con los cuadros de clasificación, las alarmas y el plan de cuidado, y una calculadora de dosis propia.</div><div class="small muted" style="margin-top:6px">Los cuadros no se copian aquí: son del Ministerio y tienen derechos reservados. Así los consultas siempre en su versión vigente.</div><div class="row" style="margin-top:8px"><a class="btn primary" href="'+AIEPI_BASE+'" target="_blank" rel="noopener">Abrir la herramienta</a><a class="btn" href="'+AIEPI_BASE+'calculadora-de-dosis/" target="_blank" rel="noopener">Calculadora de dosis</a></div></div>';
+  h+='<div class="card"><h3>Ir directo a un módulo</h3><div class="aiepig">'+AIEPI_MODS.map(function(m){return '<a class="aiepil" href="'+AIEPI_BASE+m[0]+'" target="_blank" rel="noopener">'+esc(m[1])+'</a>';}).join('')+'</div></div>';
+  h+='<div class="card"><h3>Calculadoras de Limonapp para niños</h3><div class="small muted" style="margin-bottom:6px">Cada una muestra de dónde sale su fórmula.</div><div class="aiepig">'+AIEPI_CALC.map(function(c){return '<button class="aiepil" data-a="aiepiCalc" data-id="'+c[0]+'">'+esc(c[1])+'</button>';}).join('')+'</div><div class="row" style="margin-top:8px"><button class="btn" data-a="cbOpen">Código azul pediátrico</button></div></div>';
+  h+='<div class="note small">Necesita internet. El sitio ofrece la opción “Instalar la app” en su menú. Las orientaciones del Ministerio son para el ejercicio profesional de trabajadores de la salud; revisa sus <a href="'+AIEPI_BASE+'terminos-y-condiciones-de-uso/" target="_blank" rel="noopener">términos de uso</a>. Es una ayuda: no reemplaza el criterio clínico ni el protocolo de tu institución.</div>';
+  return h;
+}
+AT.toAiepi=function(){go('aiepi');};
+AT.aiepiBack=function(){go('services');};
+AT.aiepiCalc=function(el){AT.toCalc();AT.calcOpen({dataset:{id:el.dataset.id}});};
 function cbFab(){
   var f=document.getElementById('cbFab');
   if(!f){f=document.createElement('button');f.id='cbFab';f.setAttribute('data-a','cbOpen');f.setAttribute('aria-label','Abrir código azul');f.innerHTML='<span class="cbcross">+</span><span>Código azul</span>';document.body.appendChild(f);}

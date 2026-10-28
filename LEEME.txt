@@ -23,6 +23,8 @@ QUE CAMBIA EN LA v63 (sobre la v62, que queda incluida)
     correccion excesiva). Las calculadoras de insulina y de liquidos del adulto se contrastaron con los textos originales (ADA 2026, consenso 2024,
     ISPAD 2022 cap. 11, NICE CG174) y se corrigieron: dosis diaria 0,3 a 0,6 U/kg/dia, insulina de CAD baja a 0,05 U/kg/h con glucemia menor de 250.
   - Codigo azul recien nacido: tabla de saturacion preductal objetivo (2 a 10 min) y ECG antes de compresiones, segun los aspectos destacados AHA 2025.
+  - AIEPI: boton en Servicios con acceso directo a la Herramienta Clinica de Primera Infancia del Ministerio de Salud (16 modulos y su
+    calculadora de dosis) y a las calculadoras pediatricas de Limonapp. Los cuadros NO se copian: tienen derechos reservados del Ministerio.
   - Codigo azul pediatrico: metas despues del paro agregadas (PA sobre percentil 10, evitar fiebre, diastolica 25/30 durante la RCP, CO2 espirado > 20).
   - Nivel de verificacion por bloque (dosis, farmacologia, seguridad): 0 Borrador, 1 Contrastado con fuente, 2 Confirmado por Esteban.
   - 86 farmacos: los 68 anteriores migrados (nuevos campos en BORRADOR, escritos sin contrastar) y 18 de urologia contrastados con
