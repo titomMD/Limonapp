@@ -41,8 +41,13 @@
  "ind": [
   {
    "i": "Cólico abdominal, biliar o renal; espasmo y dolor abdominal de origen digestivo, biliar y genitourinario",
-   "a": "VO: 10 a 20 mg por dosis, 3 a 5 veces al día. IV: 20 mg en dosis lenta, diluida y en no menos de 1 min (dosis única clásica de 20 a 40 mg). IM: 20 mg, repetible a los 30 min si hace falta. Máximo 100 mg al día por cualquier vía. Dosis tomadas de la síntesis de MediSearch sobre fichas técnicas europeas (documento original no revisado): confirma con el registro INVIMA.",
-   "p": "8 a 17 años: 10 mg VO por dosis; en un ensayo aleatorizado (236 niños en urgencias) tuvo una eficacia analgésica igual a la del paracetamol de 15 mg/kg en dolor cólico abdominal inespecífico. Menores de 6 años: fuera de indicación en la mayoría de los prospectos europeos. Verifica el registro INVIMA del producto."
+   "a": "Ficha de Sanofi México (Buscapina solución inyectable 20 mg/mL, registro mexicano; no es el insert INVIMA): adultos y mayores de 12 años, 20 a 40 mg (1 a 2 ampollas) IV o IM, lentamente, varias veces al día; máximo 100 mg al día. VO: 10 a 20 mg por dosis, 3 a 5 veces al día (otras fuentes). No debe usarse a diario ni por periodos largos sin investigar la causa del dolor. Con anticoagulantes, evita la vía IM por el riesgo de hematoma y usa la IV. Debe inyectarse lento; el INVIMA (2017) advierte por taquicardia y problemas cardiacos con la vía inyectable.",
+   "p": "Ficha de Sanofi México: lactantes y preescolares en casos graves, 0,3 a 0,6 mg/kg IV o IM, lentamente, varias veces al día; máximo 1,5 mg/kg al día. 8 a 17 años: 10 mg VO por dosis; en un ensayo aleatorizado (236 niños en urgencias) tuvo una eficacia analgésica igual a la del paracetamol de 15 mg/kg en dolor cólico abdominal inespecífico.",
+   "k": {
+    "lo": 0.3,
+    "hi": 0.6,
+    "int": "IV o IM lento, varias veces al día, solo en casos graves en lactantes y preescolares (ficha Sanofi México)"
+   }
   },
   {
    "i": "Premedicación en estudios diagnósticos (colonoscopia, enema de bario, resonancia abdominal)",
@@ -68,8 +73,8 @@
  "aj": {
   "r": "No hay guía estandarizada de ajuste. Hay un reporte de lesión renal aguda con medazepam más hioscina en una paciente anciana, que se normalizó al suspender: precaución en función renal comprometida.",
   "h": "Sin datos sólidos de ajuste; precaución en hepatopatía grave.",
-  "e": "No hay estudios controlados en humanas. Primer trimestre: no está establecida la seguridad; solo si el beneficio supera claramente el riesgo.",
-  "l": "Se desconoce si pasa a la leche; por precaución, evítala o interrumpe la lactancia durante el tratamiento (según MediSearch).",
+  "e": "La ficha de Sanofi México dice que hay evidencia limitada en humanas y que, por precaución, se prefiere evitarla; en animales no mostró efectos reproductivos nocivos directos.",
+  "l": "No hay información suficiente sobre su paso a la leche; por precaución se prefiere evitarla (ficha Sanofi México).",
   "g": "Mayor riesgo de retención urinaria y confusión (otras fuentes)."
  },
  "ci": [
@@ -80,7 +85,9 @@
   "Hipertrofia prostática con retención urinaria",
   "Obstrucción mecánica gastrointestinal",
   "Hipersensibilidad a la hioscina o a otros anticolinérgicos",
-  "Taquiarritmias previas"
+  "Taquiarritmias previas",
+  "Vía intramuscular con anticoagulantes (riesgo de hematoma); usa la IV (ficha Sanofi México)",
+  "Íleo paralítico u obstructivo y megacolon (ficha Sanofi México)"
  ],
  "fr": [
   "Boca seca",
@@ -114,6 +121,18 @@
   [
    "Medazepam (benzodiacepina)",
    "Un caso de lesión renal aguda en combinación"
+  ],
+  [
+   "Antidepresivos tri y tetracíclicos, antihistamínicos, antipsicóticos, quinidina, amantadina, disopiramida, tiotropio, ipratropio",
+   "Suman el efecto anticolinérgico (ficha Sanofi México)"
+  ],
+  [
+   "Metoclopramida",
+   "Se oponen: pueden disminuir el efecto de ambos fármacos en el tubo digestivo (ficha Sanofi México)"
+  ],
+  [
+   "Agonistas beta",
+   "Puede potenciarse el efecto en la frecuencia cardiaca (ficha Sanofi México)"
   ]
  ],
  "mon": [
@@ -141,11 +160,16 @@
   "Las dosis que figuran en la ficha vienen de un resumen de fichas europeas (MediSearch); el inserto aportado por Esteban es la alerta de seguridad del INVIMA y no trae dosis. Confirma la dosis con el inserto del producto del hospital."
  ],
  "v": {
-  "d": 0,
+  "d": 1,
   "f": 1,
   "s": 1
  },
  "src": [
+  {
+   "t": "Buscapina solución inyectable (Sanofi México, Opella, vía medicamentosplm.com; registro COFEPRIS 39650 SSA IV; sin fecha visible)",
+   "u": "https://www.medicamentosplm.com/home/productos/buscapina-solucion-inyectable/3037/101/81592/162",
+   "b": "dosis en adultos y niños, máximo diario, contraindicaciones, interacciones, embarazo y lactancia"
+  },
   {
    "t": "INVIMA: alerta sobre butilbromuro de hioscina inyectable (22-jun-2017), basada en la alerta de la MHRA (PDF aportado por Esteban)",
    "u": "https://www.gov.uk/drug-safety-update/hyoscine-butylbromide-buscopan-injection-risk-of-serious-adverse-effects-in-patients-with-underlying-cardiac-disease",

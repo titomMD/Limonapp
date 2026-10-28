@@ -53,6 +53,12 @@ QUE CAMBIA EN LA v63 (sobre la v62, que queda incluida)
     fenobarbital: la etiqueta no recomienda esta presentacion con alcohol bencilico en menores de 1 mes.
     Siguen sin fuente: dosis pediatrica de eritromicina como procinetico, concentracion maxima de magnesio y dosis pediatrica del antidoto (faltan BNFc/Harriet Lane),
     tope diario pediatrico de potasio. Levofloxacino sigue con farmacologia sin contrastar (solo drugs.com).
+  - Tutorial reescrito (26 pasos): redaccion mas fina, y ahora cubre consulta externa y urgencias, AIEPI, codigo azul, recetario, modo ronda y censo en Word,
+    la barra de arriba (buscar, actualizar, tema) y la instalacion en el inicio del iPhone (Safari: Compartir, Añadir a pantalla de inicio) y de Android
+    (Chrome: menu de tres puntos, Instalar app). La respuesta de Ayuda "Instalar la app en el celular" trae los mismos pasos.
+  - Fuentes nuevas (28-oct): levofloxacino contrastado con la etiqueta DailyMed (tabletas e inyectable; dosis pediatrica solo para antrax y plaga);
+    dipirona con la ficha tecnica de la AEMPS de Espana (nov 2024) y Pediamecum, no con insert INVIMA; hioscina con la ficha de Sanofi Mexico (no INVIMA);
+    sales de rehidratacion con la declaracion OMS/UNICEF de 2002 (composicion). Siguen sin insert INVIMA original: dipirona e hioscina.
   - 91 farmacos (86 anteriores + 5 nuevos): los 68 anteriores migrados (65 ya contrastados, ver arriba) y 18 de urologia contrastados con
     etiquetas oficiales (drugs.com): tamsulosina, finasterida, dutasterida, oxibutinina, solifenacina, mirabegron, fenazopiridina,
     fosfomicina, amikacina, ertapenem, cefepima, hidroclorotiazida, citrato de potasio, alopurinol, tadalafilo, desmopresina,

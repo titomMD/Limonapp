@@ -45,24 +45,30 @@
   {
    "i": "Infección urinaria complicada y pielonefritis",
    "a": "750 mg VO o IV una vez al día por 5 días, o 250 mg al día por 10 días.",
-   "p": "La etiqueta restringe su uso en niños por riesgo osteomuscular (verificar indicaciones específicas)."
+   "p": "La etiqueta de EE. UU. no autoriza levofloxacino en menores de 18 años para infección urinaria. En niños de 6 meses o más solo lo indica para profilaxis posexposición de ántrax por inhalación y para plaga (porque en animales jóvenes dañó el cartílago): menos de 50 kg, 8 mg/kg cada 12 h (máximo 250 mg por dosis); 50 kg o más, 500 mg una vez al día. Duración: 60 días en ántrax y 10 a 14 días en plaga.",
+   "k": {
+    "lo": 8,
+    "hi": 8,
+    "int": "VO o IV cada 12 h, solo ántrax posexposición o plaga en menores de 50 kg (etiqueta FDA)",
+    "maxd": "250 mg"
+   }
   },
   {
    "i": "Infección urinaria no complicada",
    "a": "250 mg VO una vez al día por 3 días. Reservar para quien no tenga alternativa.",
-   "p": "Verificar."
+   "p": "No indicado en menores de 18 años (etiqueta)."
   },
   {
    "i": "Prostatitis bacteriana crónica",
    "a": "500 mg VO una vez al día por 28 días.",
-   "p": "No aplica."
+   "p": "No indicado en menores de 18 años (etiqueta)."
   }
  ],
  "aj": {
   "r": "Ajuste según la depuración de creatinina (mL/min):\nDepuración | Si usas 750 mg | Si usas 500 mg\n20 a 49 | 750 mg cada 48 h | 500 mg de carga y luego 250 mg al día\n10 a 19 | 750 mg y luego 500 mg cada 48 h | 500 mg de carga y luego 250 mg cada 48 h\nVerifica la tabla completa en la etiqueta.",
   "h": "Sin ajuste.",
-  "e": "Evitar salvo que no haya alternativa.",
-  "l": "No recomendada; esperar 2 días tras la última dosis para amamantar.",
+  "e": "Evitar salvo que no haya alternativa; la etiqueta resume que no fue teratogénico en ratas a dosis altas, pero no hay estudios adecuados en embarazadas.",
+  "l": "Etiqueta: no se recomienda amamantar durante el tratamiento; la madre puede extraerse la leche y desecharla durante el tratamiento y 2 días después de la última dosis.",
   "g": "Más riesgo de tendinopatía, delirio y QT largo; ajustar por función renal."
  },
  "ci": [
@@ -131,17 +137,26 @@
  "pe": [
   "Su buena penetración en la próstata la hace útil en prostatitis, pero las advertencias de la FDA piden reservarla cuando no hay alternativa.",
   "Separa de lácteos, antiácidos y suplementos con minerales.",
-  "Pregunta siempre por tendinopatía previa, corticoides y miastenia.",
-  "El mecanismo y la farmacocinética de esta ficha vienen de conocimiento general, no del extracto de etiqueta consultado: por eso el bloque de farmacología sigue en borrador."
+  "Pregunta siempre por tendinopatía previa, corticoides y miastenia."
  ],
  "v": {
   "d": 1,
-  "f": 0,
+  "f": 1,
   "s": 1
  },
  "src": [
   {
-   "t": "Etiqueta de Levaquin (drugs.com)",
+   "t": "Etiqueta de levofloxacino tabletas (DailyMed, PD-Rx Pharmaceuticals, setid b8defac4, oct 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=b8defac4-9deb-433b-928e-0ef4ee0123a2",
+   "b": "dosis por indicación, ajuste renal, pediatría (ántrax y plaga), mecanismo, farmacocinética (biodisponibilidad 99%, vida media 6 a 8 h, excreción renal sin cambios), lactancia, contraindicaciones"
+  },
+  {
+   "t": "Etiqueta de levofloxacino inyectable (DailyMed, WG Critical Care, setid 9020cdeb, sep 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=9020cdeb-65fe-458f-bbbd-69265a49906e",
+   "b": "presentación y uso IV"
+  },
+  {
+   "t": "Etiqueta de Levaquin (drugs.com), consultada antes de la etiqueta oficial",
    "u": "https://www.drugs.com/pro/levaquin.html",
    "b": "dosis, seguridad"
   }

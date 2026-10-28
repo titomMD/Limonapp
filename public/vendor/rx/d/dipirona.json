@@ -42,12 +42,12 @@
  "ind": [
   {
    "i": "Dolor agudo intenso (postoperatorio, cólico, traumático) cuando otros analgésicos fallaron; dolor oncológico intenso",
-   "a": "Segunda línea según la EMA, no para dolor leve o moderado con alternativas. VO: 500 a 1.000 mg hasta 4 veces al día (máximo 4.000 mg al día). IV lenta: 1.000 a 2.500 mg por dosis en no menos de 15 min (máximo 5.000 mg al día). IM: 1.000 a 2.000 mg (máximo 5.000 mg al día). Prefiere la vía oral. Dosis tomadas de la síntesis de MediSearch sobre fichas técnicas europeas (documento original no revisado): confirma con el registro INVIMA del producto. En Colombia está aprobada para dolor y fiebre y se dispensa solo con fórmula médica (INVIMA 2024). El INVIMA recomienda tratamientos cortos, de 7 días como máximo, y a la dosis mínima eficaz. En UCI, el riesgo de lesión renal aguda sube con más gramos IV al día (corte de 2,5 g al día).",
-   "p": "Menores de 3 meses o de menos de 5 kg: contraindicada según los prospectos europeos. 1 a 6 años: 10 a 20 mg/kg IV por dosis (la exposición con 10 mg/kg fue 29 % menor que la del adulto en un estudio farmacocinético). Lactantes de menos de 1 año (fuera de indicación): 5 mg/kg IV por dosis. Mayores de 6 años: similar al adulto por peso. Datos de MediSearch; el estudio original no se revisó.",
+   "a": "Ficha técnica de la AEMPS (España, Metamizol 500 mg/mL, texto de nov 2024; no es el insert INVIMA): adultos y mayores de 15 años con más de 53 kg, dosis única de 500 a 1.000 mg, que puede subirse a 2.500 mg si hace falta; hasta 4 dosis al día cada 6 a 8 h; máximo diario 2.000 a 4.000 mg, hasta 5.000 mg si es necesario. La vía oral suele bastar: usa IV o IM solo si la oral no sirve (vómito, no traga). IV muy lenta, no más de 500 mg por minuto, y no se da por vía parenteral con hipotensión o inestabilidad hemodinámica. Es de segunda línea (EMA): no para dolor leve o moderado con alternativas. En Colombia está aprobada para dolor y fiebre y se dispensa solo con fórmula médica; el INVIMA recomienda tratamientos cortos, de 7 días como máximo, y a la dosis mínima eficaz. En UCI, el riesgo de lesión renal aguda sube con más gramos IV al día (corte de 2,5 g al día).",
+   "p": "AEMPS: dosis única de 8 a 16 mg/kg (en fiebre, unos 10 mg/kg), IV o IM. Por peso: 5 a 8 kg (3 a 11 meses), 50 a 100 mg por dosis y 200 a 400 mg al día como máximo; 9 a 15 kg (1 a 3 años), 100 a 250 mg y 400 a 1.000 mg al día; 16 a 23 kg (4 a 6 años), 150 a 400 mg y 600 a 1.600 mg; 24 a 30 kg (7 a 9 años), 200 a 500 mg y 800 a 2.000 mg; 31 a 45 kg (10 a 12 años), 250 a 700 mg y 1.000 a 2.800 mg; 46 a 53 kg (13 a 14 años), 400 a 900 mg y 1.600 a 3.600 mg. No se usa en menores de 3 meses o de menos de 5 kg. Pediamecum (Asociación Española de Pediatría, abr 2025): 8 a 16 mg/kg cada 6 a 8 h; el metamizol sódico parenteral no debe usarse en menores de 12 meses.",
    "k": {
-    "lo": 10,
-    "hi": 20,
-    "int": "IV, cada 6 a 8 h (niños de 1 a 6 años; otras fuentes)"
+    "lo": 8,
+    "hi": 16,
+    "int": "IV lenta (máximo 500 mg por minuto) o IM, cada 6 a 8 h; fiebre, unos 10 mg/kg (ficha AEMPS)"
    }
   },
   {
@@ -59,8 +59,8 @@
  "aj": {
   "r": "En UCI, el uso IV se asoció con lesión renal aguda de forma dependiente de la dosis: 1,6 veces más por cada gramo IV adicional al día, con corte de riesgo en más de 2,5 g al día (estudio de cohorte de 500 pacientes). Reduce la dosis, monitoriza la función renal y evítala en insuficiencia renal grave.",
   "h": "En cirrosis, el paracetamol se considera más seguro: la dipirona redujo prostaglandinas vasodilatadoras renales y un paciente con ascitis desarrolló insuficiencia renal. Evita dosis altas y uso prolongado en hepatopatía importante.",
-  "e": "Tercer trimestre: contraindicada. Primer y segundo trimestre: evita; solo si es estrictamente necesario. MediSearch la reporta como contraindicada en el primer trimestre; confirma con el registro INVIMA.",
-  "l": "Los metabolitos pasan a la leche. MediSearch la reporta como contraindicada en lactancia; otras fuentes sugieren suspender la lactancia unas 48 h.",
+  "e": "Tercer trimestre: contraindicada (AEMPS). Primer y segundo trimestre: en general no se recomienda; solo si es estrictamente necesario. La contraindicación en el primer trimestre que dio MediSearch no está en la ficha de la AEMPS ni en el informe INVIMA.",
+  "l": "Los metabolitos pasan a la leche: evita el uso repetido; tras una dosis única, la AEMPS recomienda extraer y desechar la leche durante 48 h.",
   "g": "Dosis menor y vigilancia renal (otras fuentes)."
  },
  "ci": [
@@ -72,7 +72,9 @@
   "Hipersensibilidad a metamizol, pirazolonas o pirazolidinas",
   "Síndrome de broncoespasmo por analgésicos (aspirina y AINE)",
   "Menores de 3 meses o de menos de 5 kg",
-  "Tercer trimestre del embarazo"
+  "Tercer trimestre del embarazo",
+  "Asma o intolerancia (urticaria y angioedema) a analgésicos como paracetamol, AAS o AINE (AEMPS)",
+  "Inyección intraarterial; hipotensión o inestabilidad hemodinámica en la vía parenteral (AEMPS)"
  ],
  "fr": [
   "Hipotensión con la inyección IV rápida",
@@ -90,16 +92,12 @@
    "Más agranulocitosis mortal (OR 5,18; IC 95 %: 3,06 a 8,78 en EudraVigilance; metotrexato presente en 39,5 % de los casos mortales suizos). La EMA y Swissmedic recomiendan evitar la combinación"
   ],
   [
-   "Ciclosporina",
-   "Puede bajar sus niveles; monitoriza (ficha técnica europea, según MediSearch)"
+   "Bupropión, efavirenz, metadona, valproato, ciclosporina, tacrólimus y sertralina",
+   "Induce CYP2B6 y CYP3A4 y puede bajar sus concentraciones; monitoriza clínica o niveles (ficha AEMPS)"
   ],
   [
    "Clorpromazina",
    "Hipotermia grave (ficha técnica europea, según MediSearch)"
-  ],
-  [
-   "Bupropión",
-   "Posible reducción de sus niveles por inducción del CYP2B6 (según MediSearch)"
   ],
   [
    "Warfarina (otras fuentes)",
@@ -112,6 +110,10 @@
   [
    "Alcohol y otros depresores del SNC (otras fuentes)",
    "Suman sedación"
+  ],
+  [
+   "Ácido acetilsalicílico en dosis bajas",
+   "Puede reducir su efecto antiagregante (ficha AEMPS)"
   ]
  ],
  "mon": [
@@ -122,7 +124,7 @@
   "Función renal si la dosis IV es alta o hay riesgo renal"
  ],
  "ant": "No hay antídoto específico; soporte.",
- "pre": "Reacción rara pero grave: agranulocitosis (en EudraVigilance 1985 a 2017: 1.448 casos, ≈16 % mortales, mediana de 13 días hasta la aparición, 34,7 % en la primera semana, y más rápido si ya había recibido el fármaco: mediana de 6 contra 15 días). La proporción mortal en Suiza bajó de 13,5 % (2014 a 2018) a 5,8 % (2019 a 2023). La EMA exige administración IV lenta y vigilar presión y frecuencia cardíaca. En Colombia, ajústate al registro sanitario INVIMA del producto. El informe INVIMA 356-2024 pide no formularla a quien ya tuvo agranulocitosis por pirazolonas o tiene problemas de médula ósea, limitar el tratamiento a 7 días y reportar toda sospecha de reacción adversa al Programa Nacional de Farmacovigilancia.",
+ "pre": "Reacción rara pero grave: agranulocitosis (en EudraVigilance 1985 a 2017: 1.448 casos, ≈16 % mortales, mediana de 13 días hasta la aparición, 34,7 % en la primera semana, y más rápido si ya había recibido el fármaco: mediana de 6 contra 15 días). La proporción mortal en Suiza bajó de 13,5 % (2014 a 2018) a 5,8 % (2019 a 2023). La EMA exige administración IV lenta y vigilar presión y frecuencia cardíaca. En Colombia, ajústate además al registro sanitario INVIMA del producto. El informe INVIMA 356-2024 pide no formularla a quien ya tuvo agranulocitosis por pirazolonas o tiene problemas de médula ósea, limitar el tratamiento a 7 días y reportar toda sospecha de reacción adversa al Programa Nacional de Farmacovigilancia.",
  "pres": [
   "Ampolla 1 g/2 mL",
   "Gotas 500 mg/mL",
@@ -136,14 +138,25 @@
   "En Colombia está aprobada para dolor y fiebre, con fórmula médica obligatoria; el INVIMA dice que los beneficios siguen superando los riesgos si se cumplen las medidas de seguridad.",
   "El INVIMA no recomienda hemogramas de control de rutina; lo que dispara la alarma es el síntoma. Enseña esos síntomas al paciente.",
   "Pasa la IV lenta: la inyección rápida produce hipotensión.",
-  "El informe INVIMA 356-2024 no menciona el embarazo: la contraindicación en el primer trimestre que dio MediSearch sigue sin verificar (el tercer trimestre sí está contraindicado según fichas europeas)."
+  "Las dosis de esta ficha vienen de la ficha técnica de la AEMPS (España), no del insert INVIMA; la página del producto Procaps en Colombia (registro INVIMA 2008M-0008780) no trae posología. MSF cita 500 mg cada 8 h como dosis de adultos, más baja que la AEMPS.",
+  "La ficha AEMPS advierte que puede dar valores falsamente bajos en pruebas basadas en la reacción de Trinder (por ejemplo, creatinina, colesterol, glucosa en algunos métodos)."
  ],
  "v": {
-  "d": 0,
+  "d": 1,
   "f": 0,
   "s": 1
  },
  "src": [
+  {
+   "t": "Ficha técnica Metamizol Basi 500 mg/mL solución inyectable (AEMPS, España, texto de nov 2024)",
+   "u": "https://cima.aemps.es/cima/pdfs/ft/88872/FT_88872.pdf",
+   "b": "dosis en adultos y niños por peso, velocidad IV, contraindicaciones, embarazo y lactancia, interacciones, agranulocitosis"
+  },
+  {
+   "t": "Pediamecum: metamizol (Asociación Española de Pediatría, abr 2025)",
+   "u": "https://www.aeped.es/pediamecum/generatepdf/api?n=83655",
+   "b": "dosis pediátrica por edad y peso"
+  },
   {
    "t": "INVIMA: Informe de seguridad No. 356-2024 (18-nov-2024), recordatorio sobre agranulocitosis por dipirona (PDF aportado por Esteban)",
    "u": "https://www.invima.gov.co/",
@@ -173,6 +186,11 @@
    "t": "MediSearch: ficha clínica de dipirona (síntesis de fichas técnicas europeas y literatura, 28-oct-2026)",
    "u": "https://medisearch.io/share/hECgGaV5w5L9quPe27FpTk",
    "b": "dosis, contraindicaciones, embarazo, interacciones (documento original de la ficha técnica no revisado)"
+  },
+  {
+   "t": "MSF: metamizol/dipirona inyectable (guías médicas, sin fecha)",
+   "u": "https://medicalguidelines.msf.org/es/viewport/EssDr/spanish/metamizol-dipirona-noramidopirina-inyectable-22284520.html",
+   "b": "adultos 500 mg cada 8 h; contraindicada en embarazo y lactancia"
   }
  ],
  "rev": "2026-10-28",
