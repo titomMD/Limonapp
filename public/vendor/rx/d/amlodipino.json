@@ -1,1 +1,162 @@
-{"id":"amlodipino","n":"Amlodipino","g":["Amlodipino","Norvasc"],"atc":["C08CA01"],"cl":"Calcioantagonista","mc":"ca_dhp","us":["hta"],"es":["medint","cardio","nefro"],"via":["vo"],"al":[],"et":"El sufijo «-dipino» identifica a las dihidropiridinas; «calcioantagonista» describe su efecto sobre los canales de calcio.","mech":"Dihidropiridina de acción larga: bloquea los canales de calcio tipo L del músculo liso vascular. Con menos calcio entrando, el músculo se relaja y las arteriolas se dilatan, lo que baja la resistencia periférica. Tiene poco efecto sobre el corazón (a diferencia del verapamilo y el diltiazem), por eso casi no afecta la frecuencia ni la conducción.","pk":{"abs":"Oral 60 a 65 %","vm":"30 a 50 h","met":"Hepático (CYP3A4)","el":"Renal (metabolitos inactivos)"},"ind":[{"i":"Hipertensión y angina","a":"5 a 10 mg VO una vez al día.","p":"0,06 a 0,3 mg/kg al día (máximo 10 mg) (verificar)."}],"aj":{"r":"Sin ajuste.","h":"Empezar con 2,5 mg.","e":"Datos limitados; se usa si es necesario.","l":"Probablemente compatible.","g":"Empezar con 2,5 mg."},"ci":["Estenosis aórtica grave","Choque cardiogénico","Hipersensibilidad a dihidropiridinas"],"fr":["Edema de miembros inferiores","Cefalea","Rubor","Mareo"],"gr":["Hipotensión","Angina paradójica al iniciar (raro)"],"it":[["Simvastatina","Límite de 20 mg/día por mayor niveles"],["Inhibidores de CYP3A4 (claritromicina, azoles)","Sube niveles"],["Ciclosporina","Sube niveles"]],"mon":["Presión arterial","Edema"],"ant":"Gluconato de calcio, vasopresores y glucagón en intoxicación.","pre":"Edema periférico. Ajustar en hepatopatía.","pres":["Tabletas 5 y 10 mg"],"com":["Norvasc"],"pe":["El edema no responde a diuréticos porque viene de dilatación arteriolar sin dilatación venosa, no de retención de agua."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["C08CA01"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":33,"np":285,"pres":["Tableta 5 mg","Tableta 10 mg","Tableta cubierta con pelicula 16 mg","Tableta de liberación modificada 5 mg","Tableta de liberación modificada 1,5 mg","Tableta 2,5 mg","Tableta recubierta 10 mg","Tableta cubierta con pelicula 13,87 mg","Tableta recubierta 5 mg","Tableta recubierta 32 mg","Tableta cubierta con pelicula 5 mg","Tableta 6,9 mg","Tableta 13,8 mg"],"m":["Norvas ® 10 mg tabletas (Aspen Colombiana)","Norvas® tabletas 5 mg (Aspen Colombiana)","Natrixam ® 1.5 mg / 5 mg (Les Laboratoires Servier)","Alidona® 10 mg tabletas (Novamed)","Candam® 10/16 mg tabletas (Laboratorio Franco Colombiano - Lafrancol)","Candam® 5/32 mg tabletas (Laboratorio Franco Colombiano - Lafrancol)","Alidona® 5 mg (Novamed)","Candam® 5/16 mg tabletas (Laboratorio Franco Colombiano - Lafrancol)","Abalpin® (Labquifar)","Amdipin® comprimidos 5 mg (Laboratorio Franco Colombiano - Lafrancol)","Artamlo® (Msn Laboratories Private)","Alencal®2.5 mg (Closter Pharma)"],"mas":16,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "amlodipino",
+ "n": "Amlodipino",
+ "g": [
+  "Amlodipino",
+  "Norvasc"
+ ],
+ "atc": [
+  "C08CA01"
+ ],
+ "cl": "Calcioantagonista",
+ "mc": "ca_dhp",
+ "us": [
+  "hta"
+ ],
+ "es": [
+  "medint",
+  "cardio",
+  "nefro"
+ ],
+ "via": [
+  "vo"
+ ],
+ "al": [],
+ "et": "El sufijo «-dipino» identifica a las dihidropiridinas; «calcioantagonista» describe su efecto sobre los canales de calcio.",
+ "mech": "Dihidropiridina de acción larga: bloquea los canales de calcio tipo L del músculo liso vascular. Con menos calcio entrando, el músculo se relaja y las arteriolas se dilatan, lo que baja la resistencia periférica. Tiene poco efecto sobre el corazón (a diferencia del verapamilo y el diltiazem), por eso casi no afecta la frecuencia ni la conducción.",
+ "pk": {
+  "abs": "Oral: biodisponibilidad absoluta 64 a 90 %, no cambia con los alimentos; pico en 6 a 12 h",
+  "vm": "Eliminación terminal de unas 30 a 50 h (56 h con insuficiencia hepática)",
+  "met": "Hepático (≈90 %) a metabolitos inactivos; CYP3A",
+  "el": "Renal: 10 % como fármaco sin cambios y 60 % como metabolitos"
+ },
+ "ind": [
+  {
+   "i": "Hipertensión",
+   "a": "Inicio 5 mg una vez al día; máximo 10 mg una vez al día. Pacientes pequeños, frágiles, ancianos o con insuficiencia hepática: iniciar con 2,5 mg. Espera 7 a 14 días entre ajustes (más rápido si la clínica lo exige y se vigila).",
+   "p": "De 6 a 17 años: 2,5 a 5 mg una vez al día. No se han estudiado dosis mayores de 5 mg al día. Efecto desconocido en menores de 6 años."
+  },
+  {
+   "i": "Angina crónica estable o vasoespástica; enfermedad coronaria documentada sin falla cardiaca ni fracción de eyección <40 %",
+   "a": "5 a 10 mg una vez al día; en ancianos y con insuficiencia hepática, la dosis menor. La mayoría necesita 10 mg.",
+   "p": "No hay indicación pediátrica en angina."
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste de dosis en la etiqueta (otras fuentes: no es dializable).",
+  "h": "Inicia con 2,5 mg; la semivida llega a 56 h. Titula despacio en insuficiencia hepática grave.",
+  "e": "Los datos de uso en embarazadas son insuficientes para estimar el riesgo; en animales no hubo efectos adversos del desarrollo. La hipertensión mal controlada en el embarazo es un riesgo propio.",
+  "l": "Está presente en la leche humana (dosis relativa estimada del lactante: 4,2 %). No se observaron efectos adversos en lactantes.",
+  "g": "Inicia con 2,5 mg y escoge la dosis con cautela, desde el extremo bajo."
+ },
+ "ci": [
+  "Hipersensibilidad conocida al amlodipino"
+ ],
+ "fr": [
+  "Edema periférico (relacionado con la dosis)",
+  "Fatiga",
+  "Náuseas y dolor abdominal",
+  "Somnolencia",
+  "Mareo, rubor, palpitaciones"
+ ],
+ "gr": [
+  "Hipotensión sintomática, sobre todo con estenosis aórtica grave",
+  "Aumento de angina o infarto al iniciar o subir la dosis, en coronariopatía grave",
+  "Elevación de enzimas hepáticas (raro)"
+ ],
+ "it": [
+  [
+   "Inhibidores moderados o fuertes de CYP3A (claritromicina, ketoconazol, itraconazol, diltiazem)",
+   "Suben la exposición al amlodipino: puede requerirse reducir la dosis; vigila hipotensión y edema"
+  ],
+  [
+   "Simvastatina",
+   "Limita la simvastatina a 20 mg al día"
+  ],
+  [
+   "Ciclosporina y tacrolimus",
+   "Pueden subir sus niveles: vigila los valles"
+  ],
+  [
+   "Sildenafilo",
+   "Vigila la hipotensión"
+  ],
+  [
+   "Inductores de CYP3A (rifampicina, carbamazepina, fenitoína)",
+   "Pueden bajar el efecto; controla la presión"
+  ]
+ ],
+ "mon": [
+  "Presión arterial",
+  "Edema periférico",
+  "Frecuencia de angina",
+  "Enzimas hepáticas si hay síntomas"
+ ],
+ "ant": "Gluconato de calcio, vasopresores y glucagón en intoxicación.",
+ "pre": "Puede causar hipotensión sintomática (más al inicio, y con estenosis aórtica grave). Raramente aumenta la angina o provoca infarto al iniciar. En insuficiencia hepática, inicia con 2,5 mg. El choque cardiogénico y la estenosis aórtica grave son situaciones de precaución (otras fuentes).",
+ "pres": [
+  "Tabletas 2,5, 5 y 10 mg",
+  "Suspensión oral (otras formulaciones)"
+ ],
+ "com": [
+  "Norvasc"
+ ],
+ "pe": [
+  "El edema periférico viene de dilatación arteriolar sin dilatación venosa, no de retención de agua, así que no responde a los diuréticos.",
+  "Una vez al día a cualquier hora: no necesita ajustar por comida.",
+  "Con simvastatina no pases de 20 mg al día."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de amlodipino besilato (tabletas) (DailyMed, Rising Pharma Holdings, Inc., Oct 23, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=4f42d132-9a8d-4cd4-ae94-318205fb870e",
+   "b": "dosis en adultos y niños, contraindicaciones, interacciones, embarazo, lactancia, insuficiencia hepática"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "C08CA01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 33,
+  "np": 285,
+  "pres": [
+   "Tableta 5 mg",
+   "Tableta 10 mg",
+   "Tableta cubierta con pelicula 16 mg",
+   "Tableta de liberación modificada 5 mg",
+   "Tableta de liberación modificada 1,5 mg",
+   "Tableta 2,5 mg",
+   "Tableta recubierta 10 mg",
+   "Tableta cubierta con pelicula 13,87 mg",
+   "Tableta recubierta 5 mg",
+   "Tableta recubierta 32 mg",
+   "Tableta cubierta con pelicula 5 mg",
+   "Tableta 6,9 mg",
+   "Tableta 13,8 mg"
+  ],
+  "m": [
+   "Norvas ® 10 mg tabletas (Aspen Colombiana)",
+   "Norvas® tabletas 5 mg (Aspen Colombiana)",
+   "Natrixam ® 1.5 mg / 5 mg (Les Laboratoires Servier)",
+   "Alidona® 10 mg tabletas (Novamed)",
+   "Candam® 10/16 mg tabletas (Laboratorio Franco Colombiano - Lafrancol)",
+   "Candam® 5/32 mg tabletas (Laboratorio Franco Colombiano - Lafrancol)",
+   "Alidona® 5 mg (Novamed)",
+   "Candam® 5/16 mg tabletas (Laboratorio Franco Colombiano - Lafrancol)",
+   "Abalpin® (Labquifar)",
+   "Amdipin® comprimidos 5 mg (Laboratorio Franco Colombiano - Lafrancol)",
+   "Artamlo® (Msn Laboratories Private)",
+   "Alencal®2.5 mg (Closter Pharma)"
+  ],
+  "mas": 16,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

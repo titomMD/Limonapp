@@ -1,1 +1,176 @@
-{"id":"labetalol","n":"Labetalol","g":["Labetalol","Trandate"],"atc":["C07AG01"],"cl":"Betabloqueador","mc":"alfa_beta","us":["hta","obstetricia"],"es":["gineco","cardio","medint","uci","anest"],"via":["iv","vo"],"al":["hepatotox"],"mech":"Bloqueador no selectivo de receptores β1 y β2 y bloqueador selectivo de α1 (relación β:α ≈ 3:1 oral, 7:1 IV). El bloqueo α1 vasodilata las arterias y baja la resistencia periférica, y el bloqueo β controla la frecuencia cardíaca, por lo que baja la presión sin la taquicardia refleja. No atraviesa mucho la placenta, y por eso es de primera línea en emergencia hipertensiva del embarazo.","pk":{"abs":"Oral 25 % (primer paso)","vm":"6 a 8 h","met":"Hepático (glucuronidación)","el":"Renal"},"ind":[{"i":"Crisis hipertensiva en el embarazo (según protocolo)","a":"20 mg IV, luego 40 mg y 80 mg cada 10 min si es necesario; máximo 300 mg acumulados.","p":""}],"aj":{"r":"Sin ajuste.","h":"Reducir dosis; puede causar hepatotoxicidad.","e":"Primera línea en preeclampsia severa.","l":"Compatible.","g":"Dosis menor."},"ci":["Asma o EPOC grave","Bradicardia sintomática","Bloqueo AV de 2.º o 3.er grado","Insuficiencia cardíaca descompensada","Choque cardiogénico"],"fr":["Mareo","Hormigueo en el cuero cabelludo","Fatiga","Hipotensión postural"],"gr":["Bradicardia","Broncoespasmo","Hepatotoxicidad","Bloqueo AV"],"it":[["Verapamilo y diltiazem","Bradicardia y bloqueo"],["Insulina e hipoglucemiantes","Enmascara síntomas de hipoglucemia"],["Cimetidina","Sube niveles"]],"mon":["Presión arterial y frecuencia cardíaca","Función hepática en uso prolongado"],"ant":"Glucagón, atropina y vasopresores.","pre":"Asma, bradicardia, insuficiencia cardíaca descompensada.","pres":["Ampolla 100 mg/20 mL","Tabletas 100 y 200 mg"],"com":["Trandate"],"pe":["En emergencia hipertensiva del embarazo: 20 mg IV y luego 40 a 80 mg cada 10 min hasta máx. 300 mg."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["C07AG01"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":5,"np":15,"pres":["Solucion inyectable 100 mg","Solucion inyectable 5 mg"],"m":["Trandate® labetalol clorhidrato 100 mg solucion inyectable (Kern Pharma S.L)","Labetalol clorhidrato 100mg / 20mlsolucion inyectable (Laboratorios Ryan De Colombia)","Duobloq 100 mg / 20 ml (Liminal Therapeutics)","Presequil (Laboratorios Blaskov)","Diblorec (Medyseh)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "labetalol",
+ "n": "Labetalol",
+ "g": [
+  "Labetalol",
+  "Trandate"
+ ],
+ "atc": [
+  "C07AG01"
+ ],
+ "cl": "Betabloqueador",
+ "mc": "alfa_beta",
+ "us": [
+  "hta",
+  "obstetricia"
+ ],
+ "es": [
+  "gineco",
+  "cardio",
+  "medint",
+  "uci",
+  "anest"
+ ],
+ "via": [
+  "iv",
+  "vo"
+ ],
+ "al": [
+  "hepatotox"
+ ],
+ "mech": "Bloqueador no selectivo de receptores β1 y β2 y bloqueador selectivo de α1 (relación β:α ≈ 3:1 oral, 7:1 IV). El bloqueo α1 vasodilata las arterias y baja la resistencia periférica, y el bloqueo β controla la frecuencia cardíaca, por lo que baja la presión sin la taquicardia refleja. No atraviesa mucho la placenta, y por eso es de primera línea en emergencia hipertensiva del embarazo.",
+ "pk": {
+  "abs": "IV: inmediata; oral ≈25 % (primer paso hepático, otras fuentes)",
+  "vm": "IV ≈5,5 h; oral 6 a 8 h",
+  "met": "Hepático, sobre todo conjugación con glucurónido",
+  "el": "Renal y biliar (como metabolitos)"
+ },
+ "ind": [
+  {
+   "i": "Hipertensión grave (inyectable, hospitalizados y en decúbito)",
+   "a": "Bolos repetidos: 20 mg IV lento en 2 min; mide la presión antes y a los 5 y 10 min. Luego 40 u 80 mg cada 10 min hasta lograr la presión buscada o un total de 300 mg. El efecto máximo suele llegar a los 5 min. Infusión continua: 200 mg en 200 mL (1 mg/mL) a 2 mL/min, o en 250 mL (≈2 mg/3 mL) a 3 mL/min, ajustando según la presión; la dosis eficaz total suele estar entre 50 y 200 mg. Mantén al paciente en decúbito y comprueba que tolera estar de pie antes de dejarlo caminar.",
+   "p": "La seguridad y eficacia en niños no se han establecido (etiqueta)."
+  },
+  {
+   "i": "Hipertensión crónica (tabletas)",
+   "a": "Inicio 100 mg dos veces al día; sube en pasos de 100 mg dos veces al día cada 2 a 3 días. Mantenimiento habitual 200 a 400 mg dos veces al día; en hipertensión grave 1.200 a 2.400 mg al día. Ancianos: muchos requieren solo 100 a 200 mg dos veces al día. Después del IV: 200 mg y otra de 200 a 400 mg 6 a 12 h después.",
+   "p": "No se han establecido en niños."
+  },
+  {
+   "i": "Urgencia hipertensiva en el embarazo o la preeclampsia (uso habitual)",
+   "a": "Los protocolos obstétricos usan el mismo esquema IV (20 mg y luego 40 y 80 mg cada 10 min, con tope total en 220 a 300 mg según el protocolo; otras fuentes, no contrastado aquí). La etiqueta no trae indicación específica en el embarazo.",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "Sin cambio en la vida media con insuficiencia renal; ajusta según la presión.",
+  "h": "La vida media no cambia, pero la biodisponibilidad oral sube por menor primer paso. Puede causar daño hepático grave (raro): suspende si hay ictericia o lesión hepática de laboratorio.",
+  "e": "No se vieron malformaciones en animales; la etiqueta la clasifica como categoría C (sin estudios adecuados en embarazadas). Usada en hipertensión del embarazo no pareció afectar el curso del trabajo de parto. Vigila hipotensión, bradicardia e hipoglucemia neonatales (otras fuentes). Es de primera línea en la hipertensión grave del embarazo (otras fuentes).",
+  "l": "Pasan pequeñas cantidades a la leche (≈0,004 % de la dosis materna). Precaución.",
+  "g": "Empieza con 100 mg dos veces al día; muchos ancianos lo controlan con menos dosis (100 a 200 mg dos veces al día)."
+ },
+ "ci": [
+  "Asma bronquial o antecedente de enfermedad obstructiva de las vías aéreas",
+  "Insuficiencia cardiaca manifiesta",
+  "Bloqueo AV mayor de primer grado",
+  "Choque cardiogénico",
+  "Bradicardia grave",
+  "Otras condiciones asociadas con hipotensión grave y prolongada",
+  "Hipersensibilidad a cualquier componente"
+ ],
+ "fr": [
+  "Hipotensión postural (58 % si se pasa a vertical dentro de 3 h de la dosis IV)",
+  "Mareo y fatiga",
+  "Náuseas",
+  "Cosquilleo en el cuero cabelludo",
+  "Sudoración y rubor"
+ ],
+ "gr": [
+  "Lesión hepatocelular grave, a veces con necrosis y muerte (raro)",
+  "Insuficiencia cardiaca",
+  "Bradicardia y bloqueo AV",
+  "Broncoespasmo",
+  "Hipotensión excesiva con caída rápida de la presión",
+  "Respuesta hipertensiva paradójica en feocromocitoma"
+ ],
+ "it": [
+  [
+   "Verapamilo y otros antagonistas del calcio similares",
+   "Bradicardia y bloqueo AV: precaución"
+  ],
+  [
+   "Halotano (anestesia)",
+   "Sinergia: no uses concentraciones ≥3 % de halotano durante hipotensión controlada con labetalol"
+  ],
+  [
+   "Nitroglicerina",
+   "El labetalol frena la taquicardia refleja pero no su efecto hipotensor; efecto antihipertensivo adicional"
+  ],
+  [
+   "Cimetidina",
+   "Sube la biodisponibilidad oral del labetalol"
+  ],
+  [
+   "Agonistas beta-2 (salbutamol)",
+   "El betabloqueo disminuye el efecto broncodilatador"
+  ],
+  [
+   "Antidepresivos tricíclicos",
+   "Más temblor (2,3 % frente a 0,7 %)"
+  ],
+  [
+   "Furosemida y otros fármacos alcalinos por la misma vía",
+   "Forman precipitado: no los pases por la misma línea. No compatible con bicarbonato al 5 %"
+  ]
+ ],
+ "mon": [
+  "Presión arterial supina y de pie, antes y después de cada dosis IV",
+  "Frecuencia cardiaca",
+  "Pruebas hepáticas periódicas y si hay síntomas",
+  "En embarazadas: feto y neonato (otras fuentes)"
+ ],
+ "ant": "Glucagón, atropina y vasopresores.",
+ "pre": "Contraindicado en asma y enfermedad obstructiva de las vías aéreas. Tras la dosis IV, la hipotensión postural es frecuente: mantén al paciente en decúbito. Daño hepático raro pero grave. Evita caídas rápidas de la presión. La concentración habitual es 5 mg/mL.",
+ "pres": [
+  "Ampolla o vial 100 mg/20 mL (5 mg/mL)",
+  "Tabletas 100 y 200 mg"
+ ],
+ "com": [
+  "Trandate"
+ ],
+ "pe": [
+  "Es un alfa y betabloqueador: baja la presión sin taquicardia refleja.",
+  "No lo mezcles con bicarbonato ni lo pases por la misma línea que la furosemida.",
+  "Después de la respuesta IV, pasa a labetalol oral."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de labetalol clorhidrato (tabletas e inyectable) (DailyMed, Coupler Llc, Oct 21, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=5e31f49d-51a1-c509-e063-6294a90a741c",
+   "b": "dosis oral e IV, bolos e infusión, contraindicaciones, hepatotoxicidad, interacciones, embarazo, lactancia"
+  },
+  {
+   "t": "Etiqueta de labetalol inyectable (DailyMed, Hospira, Inc., Sep 14, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=abfc6b75-1ed5-41f1-0484-4597488237bc",
+   "b": "dosis IV en hipertensión grave, bolos e infusión"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "C07AG01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 5,
+  "np": 15,
+  "pres": [
+   "Solucion inyectable 100 mg",
+   "Solucion inyectable 5 mg"
+  ],
+  "m": [
+   "Trandate® labetalol clorhidrato 100 mg solucion inyectable (Kern Pharma S.L)",
+   "Labetalol clorhidrato 100mg / 20mlsolucion inyectable (Laboratorios Ryan De Colombia)",
+   "Duobloq 100 mg / 20 ml (Liminal Therapeutics)",
+   "Presequil (Laboratorios Blaskov)",
+   "Diblorec (Medyseh)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

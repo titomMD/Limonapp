@@ -1,1 +1,159 @@
-{"id":"heparina-no-fraccionada","n":"Heparina no fraccionada","g":["Heparina no fraccionada"],"atc":["B01AB01"],"cl":"Anticoagulante","mc":"hnf","us":["anticoag"],"es":["uci","cirugia","cardio","medint","nefro"],"via":["iv","sc"],"al":["sangrado","alto_riesgo","hiperk"],"mech":"Mezcla de cadenas largas de mucopolisacáridos que potencian la antitrombina, la cual inactiva trombina (IIa) y factor Xa a la vez. Las cadenas largas (≥18 sacáridos) son las que unen antitrombina y trombina formando un complejo ternario. Por eso la heparina no fraccionada tiene respuesta menos predecible (se une a proteínas, plaquetas y endotelio) y exige monitoreo, pero se revierte con protamina y no depende del riñón.","pk":{"abs":"IV inmediata; SC variable","vm":"1 a 2 h (dosis dependiente)","met":"Sistema reticuloendotelial","el":"Renal (a dosis altas)"},"ind":[{"i":"Profilaxis de trombosis venosa","a":"5.000 UI SC cada 8 a 12 h.","p":""},{"i":"Tratamiento de trombosis venosa o embolia","a":"Bolo de 80 UI/kg IV y luego infusión de 18 UI/kg/h, ajustando por TTPa según el protocolo local.","p":"Bolo de 75 UI/kg y luego 20 UI/kg/h, ajustado por protocolo (verificar)."}],"aj":{"r":"Sin ajuste (preferida en falla renal grave).","h":"Precaución.","e":"Segura (no cruza la placenta).","l":"Compatible.","g":"Mayor riesgo de sangrado."},"ci":["Sangrado activo","Trombocitopenia inducida por heparina","Hipersensibilidad"],"fr":["Hematomas","Elevación de transaminasas"],"gr":["Sangrado","Trombocitopenia inducida por heparina (TIH)","Osteoporosis con uso prolongado","Hiperpotasemia"],"it":[["Antiagregantes, trombolíticos, AINE","Más sangrado"],["Nitroglicerina IV","Puede reducir su efecto"]],"mon":["TTP o anti-Xa según protocolo (cada 6 h al inicio)","Plaquetas (día 5 a 10)","Hemoglobina"],"ant":"Sulfato de protamina (1 mg por cada 100 U de heparina reciente).","pre":"Sangrado, trombocitopenia inducida por heparina. Vigilar plaquetas.","pres":["Vial 5.000 UI/mL (5 mL)"],"com":[],"pe":["Es un medicamento de alto riesgo: la confusión entre concentraciones ha causado muertes; pide doble chequeo.","La TIH aparece a los 5 a 10 días con caída de plaquetas >50 %."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["B01AB01"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":4,"np":9,"pres":["Solucion inyectable 5000 UI","Solucion inyectable 5000 IU","Solucion inyectable 25000 UI"],"m":["Sumimed hepamax-s ® (Blau Farmaceutica)","Heparina sodica 25.000 ui inyectable (Comercial Medica)","Heparina sodica 5000 ui/ml (Laboratorio Sanderson)","Heparina sodica inyectable5.000u.i. / ml (B.Braun Melsungen Ag)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "heparina-no-fraccionada",
+ "n": "Heparina no fraccionada",
+ "g": [
+  "Heparina no fraccionada"
+ ],
+ "atc": [
+  "B01AB01"
+ ],
+ "cl": "Anticoagulante",
+ "mc": "hnf",
+ "us": [
+  "anticoag"
+ ],
+ "es": [
+  "uci",
+  "cirugia",
+  "cardio",
+  "medint",
+  "nefro"
+ ],
+ "via": [
+  "iv",
+  "sc"
+ ],
+ "al": [
+  "sangrado",
+  "alto_riesgo",
+  "hiperk"
+ ],
+ "mech": "Mezcla de cadenas largas de mucopolisacáridos que potencian la antitrombina, la cual inactiva trombina (IIa) y factor Xa a la vez. Las cadenas largas (≥18 sacáridos) son las que unen antitrombina y trombina formando un complejo ternario. Por eso la heparina no fraccionada tiene respuesta menos predecible (se une a proteínas, plaquetas y endotelio) y exige monitoreo, pero se revierte con protamina y no depende del riñón.",
+ "pk": {
+  "abs": "No se absorbe por vía oral; IV inmediata, SC con inicio más lento",
+  "vm": "≈1/2 h tras una dosis IV (otras fuentes: 1 a 2 h según la dosis; es dosis dependiente)",
+  "met": "No sufre degradación enzimática; captación por el sistema reticuloendotelial y el hígado",
+  "el": "Aclaramiento bifásico: rápido saturable y lento renal; la eliminación renal aumenta con dosis altas"
+ },
+ "ind": [
+  {
+   "i": "Profilaxis y tratamiento de trombosis venosa y embolia pulmonar; fibrilación auricular con embolización; embolia arterial periférica; coagulación intravascular diseminada; cirugía arterial y cardiaca",
+   "a": "Dosis completa (para 68 kg; ajusta por laboratorio): IV intermitente, inicio 10.000 U y luego 5.000 a 10.000 U cada 4 a 6 h; IV continua, 5.000 U de bolo y 20.000 a 40.000 U por 24 h en 1.000 mL de solución salina; SC profunda (intragrasa), 5.000 U IV y luego 10.000 a 20.000 U SC, y después 8.000 a 10.000 U cada 8 h o 15.000 a 20.000 U cada 12 h. Esquema por peso (otras fuentes; no contrastado aquí): bolo 80 U/kg IV y luego 18 U/kg/h, ajustado por TTPa. Nunca IM.",
+   "p": "Dosis inicial 75 a 100 U/kg IV en bolo en 10 min. Mantenimiento: lactantes 25 a 30 U/kg/h (los menores de 2 meses requieren más, en promedio 28 U/kg/h); niños mayores de 1 año 18 a 20 U/kg/h (los mayores pueden requerir menos, similar al adulto). Ajusta para un TTPa de 60 a 85 s (anti-Xa 0,35 a 0,70). Usa heparina sin conservante (sin alcohol bencílico) en neonatos y lactantes."
+  },
+  {
+   "i": "Profilaxis con dosis bajas del tromboembolismo posoperatorio",
+   "a": "5.000 U SC 2 h antes de la cirugía y luego 5.000 U cada 8 a 12 h durante 7 días o hasta que el paciente camine, lo que dure más. Inyección SC profunda (intragrasa) con aguja fina de calibre 25 a 26.",
+   "p": "—"
+  },
+  {
+   "i": "Cirugía cardiaca con circulación extracorpórea",
+   "a": "Dosis inicial no menor de 150 U/kg; con frecuencia 300 U/kg para procedimientos de menos de 60 min y 400 U/kg para los más largos.",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste de dosis; se prefiere en insuficiencia renal grave (otras fuentes).",
+  "h": "Sin ajuste en la etiqueta; vigila el sangrado (otras fuentes).",
+  "e": "No cruza la placenta (otras fuentes). En informes publicados no aumentó el riesgo materno ni fetal. En animales hubo muerte embrionaria temprana. Usa heparina sin conservante.",
+  "l": "Se recomienda heparina sin conservante (el alcohol bencílico pasa a la leche). Sin datos sobre el paso de la heparina a la leche.",
+  "g": "Mayor riesgo de sangrado, sobre todo en mujeres mayores de 60 años; usa la dosis menor y vigila."
+ },
+ "ci": [
+  "Antecedente de trombocitopenia inducida por heparina o con trombosis",
+  "Hipersensibilidad conocida a la heparina o a productos porcinos",
+  "Cuando no es posible realizar pruebas de coagulación adecuadas con los intervalos necesarios (en dosis completas)",
+  "Hemorragia activa no controlable, salvo en coagulopatía de consumo (otras fuentes)"
+ ],
+ "fr": [
+  "Hemorragia",
+  "Trombocitopenia leve y transitoria",
+  "Reacciones locales en el sitio de inyección, hematoma",
+  "Elevación de transaminasas"
+ ],
+ "gr": [
+  "Hemorragia grave",
+  "Trombocitopenia inducida por heparina con o sin trombosis (suele aparecer en 5 a 10 días, con caída de plaquetas >50 %)",
+  "Síndrome de gasping en neonatos con viales con alcohol bencílico",
+  "Resistencia a la heparina",
+  "Hiperpotasemia por hipoaldosteronismo (otras fuentes)",
+  "Osteoporosis con uso prolongado (otras fuentes)"
+ ],
+ "it": [
+  [
+   "Antiagregantes y AINE (aspirina, ibuprofeno, clopidogrel, dipiridamol, inhibidores de GP IIb/IIIa), dextrano, hidroxicloroquina",
+   "Interfieren con las plaquetas: más sangrado; reduce la dosis de alguno de los dos"
+  ],
+  [
+   "Warfarina y dicumarol",
+   "Alargan el tiempo de protrombina: espera ≥5 h tras la última dosis IV o 24 h tras la SC para medir el INR"
+  ],
+  [
+   "Nitroglicerina IV",
+   "Puede acortar el TTPa y reducir el efecto de la heparina"
+  ],
+  [
+   "Digital, tetraciclinas, nicotina y antihistamínicos",
+   "Pueden contrarrestar parcialmente su acción anticoagulante"
+  ],
+  [
+   "Trombolíticos",
+   "Más sangrado"
+  ]
+ ],
+ "mon": [
+  "TTPa o anti-Xa según el protocolo (cada 6 h al inicio de la infusión continua, otras fuentes)",
+  "Plaquetas basales y entre el día 5 y el día 10",
+  "Hemoglobina",
+  "Potasio con uso prolongado (otras fuentes)",
+  "Signos de sangrado"
+ ],
+ "ant": "Sulfato de protamina (1 mg por cada 100 U de heparina reciente).",
+ "pre": "Medicamento de alto riesgo: confirma la concentración del vial (los viales de 1 mL y los de lavado de catéter se han confundido; ha habido muertes). No lo des IM por el riesgo de hematoma. Los viales con alcohol bencílico no deben usarse en neonatos ni lactantes. Si hay sangrado grave, el antídoto es la protamina (dosis según la heparina de las últimas 2 a 3 h, otras fuentes).",
+ "pres": [
+  "Vial 5.000 UI/mL (5 mL, 25.000 UI)",
+  "Vial 1.000 UI/mL",
+  "Jeringa prellenada y bolsas premezcladas"
+ ],
+ "com": [],
+ "pe": [
+  "Verifica siempre la concentración en UI/mL y haz doble chequeo antes de infundir.",
+  "La trombocitopenia inducida por heparina aparece a los 5 a 10 días con caída de plaquetas mayor de 50 %.",
+  "Con infusión continua, invierte la bolsa varias veces para mezclar."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de heparina sódica (inyectable) (DailyMed, Hikma Pharmaceuticals Usa Inc., Oct 26, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=7014808d-cec9-4b2c-8eb5-940493e356ab",
+   "b": "dosis en adultos y niños, profilaxis con dosis bajas, cirugía cardiovascular, contraindicaciones, interacciones, embarazo, lactancia"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "B01AB01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 4,
+  "np": 9,
+  "pres": [
+   "Solucion inyectable 5000 UI",
+   "Solucion inyectable 5000 IU",
+   "Solucion inyectable 25000 UI"
+  ],
+  "m": [
+   "Sumimed hepamax-s ® (Blau Farmaceutica)",
+   "Heparina sodica 25.000 ui inyectable (Comercial Medica)",
+   "Heparina sodica 5000 ui/ml (Laboratorio Sanderson)",
+   "Heparina sodica inyectable5.000u.i. / ml (B.Braun Melsungen Ag)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

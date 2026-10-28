@@ -1,1 +1,151 @@
-{"id":"nifedipino","n":"Nifedipino","g":["Nifedipino","Adalat"],"atc":["C08CA05"],"cl":"Calcioantagonista","mc":"ca_dhp","us":["hta","obstetricia"],"es":["gineco","cardio","medint"],"via":["vo","sl"],"al":[],"mech":"Dihidropiridina de acción corta que bloquea los canales de calcio tipo L del músculo liso vascular y uterino. Relaja las arteriolas (baja la presión) y el miometrio (tocolítico). La presentación de liberación inmediata puede causar caídas bruscas de presión y taquicardia refleja; las preparaciones de liberación prolongada son más seguras en hipertensión crónica.","pk":{"abs":"Oral rápida (liberación inmediata)","vm":"2 a 5 h (liberación inmediata)","met":"Hepático (CYP3A4)","el":"Renal"},"ind":[{"i":"Crisis hipertensiva en el embarazo (según protocolo)","a":"10 mg VO (liberación inmediata) y repetir a los 20 min según respuesta, hasta 3 veces.","p":""}],"aj":{"r":"Sin ajuste.","h":"Reducir dosis.","e":"Se usa en hipertensión del embarazo y como tocolítico.","l":"Compatible.","g":"Dosis menor."},"ci":["Estenosis aórtica grave","Choque cardiogénico","Hipotensión grave"],"fr":["Cefalea","Rubor","Edema","Taquicardia refleja"],"gr":["Hipotensión grave","Isquemia miocárdica por hipotensión brusca"],"it":[["Sulfato de magnesio","Hipotensión y bloqueo neuromuscular"],["Inhibidores de CYP3A4 (claritromicina, azoles)","Sube niveles"],["Betabloqueadores","Hipotensión"]],"mon":["Presión arterial cada 10 a 20 min en emergencia hipertensiva","Frecuencia cardíaca"],"ant":"Gluconato de calcio, vasopresores.","pre":"Hipotensión, taquicardia refleja.","pres":["Tabletas 10 mg (liberación inmediata)","Tabletas 30 y 60 mg (liberación prolongada)"],"com":["Adalat"],"pe":["La administración sublingual de cápsulas de liberación inmediata ya no se recomienda: la presión puede caer demasiado rápido."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["C08CA05"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":5,"np":102,"pres":["Capsula de liberacion prolongada 30 mg","Tableta de liberacion prolongada 30 mg","Tableta de liberacion prolongada 60 mg"],"m":["Cardiosol® 30 mg (Procaps)","Cardiosol® 60 mg (Procaps)","Beclazone30 mg cápsulas de liberación controlada 12 horas (C.I. Farmacapsulas)","Nifedipino 30 mg capsulas de liberacion controlada (Novamed)","Nifedipino 30 mg capsulas (Laboratorios Richmond Colombia)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "nifedipino",
+ "n": "Nifedipino",
+ "g": [
+  "Nifedipino",
+  "Adalat"
+ ],
+ "atc": [
+  "C08CA05"
+ ],
+ "cl": "Calcioantagonista",
+ "mc": "ca_dhp",
+ "us": [
+  "hta",
+  "obstetricia"
+ ],
+ "es": [
+  "gineco",
+  "cardio",
+  "medint"
+ ],
+ "via": [
+  "vo",
+  "sl"
+ ],
+ "al": [],
+ "mech": "Dihidropiridina de acción corta que bloquea los canales de calcio tipo L del músculo liso vascular y uterino. Relaja las arteriolas (baja la presión) y el miometrio (tocolítico). La presentación de liberación inmediata puede causar caídas bruscas de presión y taquicardia refleja; las preparaciones de liberación prolongada son más seguras en hipertensión crónica.",
+ "pk": {
+  "abs": "Se absorbe por completo; la forma de liberación prolongada alcanza una meseta a las 6 h",
+  "vm": "≈2 h (vida media de eliminación); la forma prolongada da niveles estables en 24 h",
+  "met": "Hepático (CYP3A4)",
+  "el": "Menos del 0,1 % sin cambios por la orina; el resto como metabolitos por heces y orina"
+ },
+ "ind": [
+  {
+   "i": "Angina vasoespástica, angina crónica estable e hipertensión (etiqueta: tabletas de liberación prolongada)",
+   "a": "Inicio 30 o 60 mg una vez al día, tragadas enteras (no partir ni masticar). Titula en 7 a 14 días. Dosis mayores de 120 mg no se recomiendan; en angina, más de 90 mg se usan con cautela. Evita el jugo de toronja. Si hay que suspenderlo, baja la dosis de forma gradual.",
+   "p": "La seguridad y eficacia en pediatría no se han establecido (etiqueta)."
+  },
+  {
+   "i": "Urgencia hipertensiva en el embarazo (uso habitual, no figura en las etiquetas FDA)",
+   "a": "10 mg VO de liberación inmediata; si la presión sigue alta a los 20 min, repetir 10 a 20 mg, con tope y esquema según el protocolo (otras fuentes; no contrastado aquí). La forma de liberación prolongada no se usa en la urgencia.",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "La farmacocinética no cambia de forma importante con la insuficiencia renal ni con la diálisis.",
+  "h": "La eliminación es hepática: inicia con dosis menor y vigila (otras fuentes).",
+  "e": "En animales produjo malformaciones (anomalías de dedos) y toxicidad fetal; no hay estudios adecuados en embarazadas. Úsalo en el embarazo solo si el beneficio lo justifica (en práctica obstétrica se usa de primera línea en hipertensión grave, otras fuentes).",
+  "l": "Pasa a la leche; úsalo solo si el beneficio justifica el riesgo (etiqueta).",
+  "g": "Empieza con la dosis menor y titula despacio."
+ },
+ "ci": [
+  "Hipersensibilidad conocida al nifedipino"
+ ],
+ "fr": [
+  "Edema periférico (relacionado con la dosis)",
+  "Cefalea",
+  "Rubor y mareo",
+  "Náuseas, estreñimiento",
+  "Palpitaciones"
+ ],
+ "gr": [
+  "Hipotensión excesiva",
+  "Aumento de angina o infarto al iniciar o subir la dosis",
+  "Insuficiencia cardiaca en combinación con betabloqueadores (informes ocasionales)",
+  "Hipotensión grave y taquicardia refleja con la forma de liberación inmediata (otras fuentes)",
+  "Elevación de enzimas hepáticas (raro)"
+ ],
+ "it": [
+  [
+   "Betabloqueadores",
+   "Generalmente bien tolerado, pero se han descrito casos de falla cardiaca, hipotensión grave o más angina"
+  ],
+  [
+   "Digoxina",
+   "Puede subir los niveles de digoxina: monitorea"
+  ],
+  [
+   "Jugo de toronja",
+   "Duplica el AUC y la Cmax del nifedipino: evítalo"
+  ],
+  [
+   "Inhibidores de CYP3A4 (claritromicina, ketoconazol, itraconazol, ritonavir)",
+   "Suben los niveles del nifedipino"
+  ],
+  [
+   "Inductores de CYP3A4 (rifampicina, carbamazepina, fenitoína)",
+   "Bajan los niveles del nifedipino"
+  ],
+  [
+   "Sulfato de magnesio",
+   "Posible hipotensión y bloqueo neuromuscular (otras fuentes)"
+  ]
+ ],
+ "mon": [
+  "Presión arterial (en urgencia hipertensiva, cada 10 a 20 min)",
+  "Frecuencia cardiaca",
+  "Edema periférico",
+  "Niveles de digoxina si se combinan"
+ ],
+ "ant": "Gluconato de calcio, vasopresores.",
+ "pre": "La etiqueta corresponde a las tabletas de liberación prolongada para hipertensión y angina: no se debe usar en la urgencia hipertensiva. Para la urgencia en embarazo se usa la forma de liberación inmediata por vía oral, no sublingual. Hipotensión y taquicardia refleja. Traga las tabletas de liberación prolongada enteras.",
+ "pres": [
+  "Tabletas 10 mg (liberación inmediata)",
+  "Tabletas 30 y 60 mg (liberación prolongada)"
+ ],
+ "com": [
+  "Adalat"
+ ],
+ "pe": [
+  "La cápsula de liberación inmediata sublingual ya no se recomienda: la presión puede caer demasiado rápido (otras fuentes).",
+  "El nifedipino de liberación prolongada y el de liberación inmediata no son equivalentes: confirma la presentación."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de nifedipino (tabletas de liberación prolongada) (DailyMed, Cardinal Health 107, Llc, Oct 19, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=593d8ca3-c303-4512-96a6-d4860e02cd83",
+   "b": "dosis en angina e hipertensión, contraindicaciones, interacciones, embarazo, lactancia"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "C08CA05"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 5,
+  "np": 102,
+  "pres": [
+   "Capsula de liberacion prolongada 30 mg",
+   "Tableta de liberacion prolongada 30 mg",
+   "Tableta de liberacion prolongada 60 mg"
+  ],
+  "m": [
+   "Cardiosol® 30 mg (Procaps)",
+   "Cardiosol® 60 mg (Procaps)",
+   "Beclazone30 mg cápsulas de liberación controlada 12 horas (C.I. Farmacapsulas)",
+   "Nifedipino 30 mg capsulas de liberacion controlada (Novamed)",
+   "Nifedipino 30 mg capsulas (Laboratorios Richmond Colombia)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

@@ -1,1 +1,140 @@
-{"id":"noradrenalina","n":"Noradrenalina","g":["Noradrenalina","Levophed"],"atc":["C01CA03"],"cl":"Vasopresor","mc":"adrenergico","us":["choque"],"es":["uci","anest","cardio","medint"],"via":["iv"],"al":["alto_riesgo","extravasacion"],"et":"El prefijo «nor-» viene del alemán N-ohne-Radikal («nitrógeno sin radical»): la noradrenalina es la adrenalina sin el grupo metilo en el nitrógeno. «Norepinefrina» es el mismo fármaco con el nombre griego (epi nephros, «sobre el riñón»).","mech":"Agonista de α1 (potente) y β1: causa vasoconstricción arterial y venosa, sube la resistencia vascular sistémica y la presión arterial, y refuerza ligeramente la contractilidad. Es el vasopresor de primera elección en el choque séptico porque corrige la vasodilatación sin causar tanta taquicardia como la dopamina.","pk":{"abs":"Solo IV","vm":"2 a 3 min","met":"MAO y COMT","el":"Renal (metabolitos)"},"ind":[{"i":"Choque séptico y otros choques vasodilatados","a":"Iniciar con 0,05 a 0,1 mcg/kg/min por vía central y titular según presión arterial media; dosis habituales hasta 1 a 2 mcg/kg/min.","p":"0,05 a 2 mcg/kg/min titulados."}],"aj":{"r":"Sin ajuste.","h":"Sin ajuste.","e":"Solo si hay indicación vital.","l":"No aplica en el contexto agudo.","g":"Sin ajuste; vigilar isquemia."},"ci":["Hipovolemia no corregida (primero reponer volumen)","Trombosis mesentérica o vascular periférica (relativa)"],"fr":["Hipertensión","Bradicardia refleja","Arritmias","Cefalea"],"gr":["Necrosis por extravasación","Isquemia mesentérica y periférica","Arritmias"],"it":[["IMAO, antidepresivos tricíclicos","Respuesta exagerada"],["Anestésicos halogenados","Arritmias"],["Oxitócicos","Hipertensión grave"]],"mon":["Presión arterial invasiva ideal","Perfusión periférica, lactato y diuresis","Sitio de infusión"],"ant":"Fentolamina local infiltrada en extravasación.","pre":"Extravasación (necrosis). Corregir el volumen antes.","pres":["Ampolla 4 mg/4 mL"],"com":["Levophed"],"pe":["Idealmente por vía central; si es periférica, de corta duración y vigilando el sitio.","Se titula por efecto (PAM ≥65), no por dosis fija."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["C01CA03"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":4,"np":13,"pres":["Solucion inyectable 4 mg","Solucion inyectable 1 mg"],"m":["Ads-noltron® solucion inyectable 4 mg/4 ml (Ads Pharma)","Pridam® 4mg / 4ml solución inyectable (Pisa Farmacéutica De Colombia)","Nadrifarko® solución inyectable 4mg/4ml (Representaciones Farmaceuticas De Colombia -Reprefarco)","Norepinefrina 4 mg/4ml (Laboratorios Ryan De Colombia)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "noradrenalina",
+ "n": "Noradrenalina",
+ "g": [
+  "Noradrenalina",
+  "Levophed"
+ ],
+ "atc": [
+  "C01CA03"
+ ],
+ "cl": "Vasopresor",
+ "mc": "adrenergico",
+ "us": [
+  "choque"
+ ],
+ "es": [
+  "uci",
+  "anest",
+  "cardio",
+  "medint"
+ ],
+ "via": [
+  "iv"
+ ],
+ "al": [
+  "alto_riesgo",
+  "extravasacion"
+ ],
+ "et": "El prefijo «nor-» viene del alemán N-ohne-Radikal («nitrógeno sin radical»): la noradrenalina es la adrenalina sin el grupo metilo en el nitrógeno. «Norepinefrina» es el mismo fármaco con el nombre griego (epi nephros, «sobre el riñón»).",
+ "mech": "Agonista de α1 (potente) y β1: causa vasoconstricción arterial y venosa, sube la resistencia vascular sistémica y la presión arterial, y refuerza ligeramente la contractilidad. Es el vasopresor de primera elección en el choque séptico porque corrige la vasodilatación sin causar tanta taquicardia como la dopamina.",
+ "pk": {
+  "abs": "Solo IV; el estado estable plasmático se alcanza en 5 min (etiqueta)",
+  "vm": "≈2,4 min (etiqueta)",
+  "met": "Hepático y otros tejidos: MAO y COMT",
+  "el": "Renal (metabolitos)"
+ },
+ "ind": [
+  {
+   "i": "Restablecer la presión arterial en hipotensión aguda grave (adultos), incluido el choque vasodilatado",
+   "a": "Inicio 8 a 12 mcg/min IV en infusión, ajustando para mantener la presión suficiente para perfundir los órganos vitales. Mantenimiento habitual: 2 a 4 mcg/min. Mide la presión cada 2 min hasta el efecto buscado y luego cada 5 min. Infunde en una vena grande y retira gradualmente. Dosis por peso (otras fuentes; no contrastadas aquí): 0,05 a 0,1 mcg/kg/min al inicio, con titulación según la presión arterial media (meta habitual ≥65 mmHg) y dosis habituales hasta 1 a 2 mcg/kg/min.",
+   "p": "La etiqueta indica que la seguridad y eficacia en pediatría no se han establecido. En práctica pediátrica se usan 0,05 a 2 mcg/kg/min titulados (otras fuentes; no contrastado aquí)."
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste en la etiqueta; vigila la diuresis (la hipovolemia no corregida reduce la perfusión renal).",
+  "h": "Sin ajuste en la etiqueta.",
+  "e": "Los datos publicados no muestran mayor riesgo de malformaciones ni de resultados adversos. Los riesgos de la hipotensión grave y del choque séptico superan a los del fármaco; puede reducir la perfusión uterina.",
+  "l": "No hay datos en leche humana. No se espera exposición relevante del lactante por su vida media corta y su mala biodisponibilidad oral.",
+  "g": "Sin ajuste en la etiqueta; vigila isquemia y evita las venas de la pierna."
+ },
+ "ci": [
+  "La etiqueta no declara contraindicaciones; corrige primero la hipovolemia (puede causar isquemia visceral y periférica si se administra con hipovolemia)"
+ ],
+ "fr": [
+  "Hipertensión",
+  "Bradicardia",
+  "Cefalea y ansiedad",
+  "Dificultad respiratoria"
+ ],
+ "gr": [
+  "Isquemia tisular periférica y visceral, sobre todo con hipovolemia",
+  "Necrosis por extravasación",
+  "Hipotensión marcada si se suspende de golpe",
+  "Arritmias",
+  "Edema pulmonar",
+  "Acidosis láctica"
+ ],
+ "it": [
+  [
+   "IMAO (incluido linezolid) y antidepresivos tricíclicos",
+   "Hipertensión grave y prolongada"
+  ],
+  [
+   "Antidiabéticos",
+   "Menor sensibilidad a la insulina: sube la glucemia"
+  ],
+  [
+   "Anestésicos halogenados y ciclopropano",
+   "Más irritabilidad cardiaca y arritmias"
+  ],
+  [
+   "Sales de hierro, álcalis o agentes oxidantes",
+   "Incompatibles: evita el contacto"
+  ]
+ ],
+ "mon": [
+  "Presión arterial cada 2 min hasta el efecto y luego cada 5 min (ideal invasiva)",
+  "Perfusión periférica, lactato y diuresis",
+  "Sitio de infusión: palidez, frío, extravasación",
+  "Ritmo cardiaco"
+ ],
+ "ant": "Fentolamina local infiltrada en extravasación.",
+ "pre": "Corrige la hipovolemia antes de iniciar (si no hay respuesta, sospecha hipovolemia oculta). Infunde en una vena grande (idealmente central); si la vía es periférica, de corta duración y con el sitio vigilado. Evita las venas de la pierna en ancianos o en vasculopatía oclusiva. Ante extravasación infiltra fentolamina (5 a 10 mg en 10 a 15 mL de solución salina en adultos) pronto. No suspendas de golpe.",
+ "pres": [
+  "Ampolla 4 mg/4 mL (1 mg/mL)",
+  "Bolsa lista para usar 4 mg/250 mL (16 mcg/mL)"
+ ],
+ "com": [
+  "Levophed"
+ ],
+ "pe": [
+  "Se titula por efecto sobre la presión arterial, no por una dosis fija.",
+  "Las etiquetas de EE. UU. dan mcg/min; en nuestra práctica se prescribe en mcg/kg/min (otras fuentes).",
+  "Mezcla en dextrosa o solución salina según el protocolo del hospital, y confirma la concentración de la bomba."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de noradrenalina (norepinefrina) infusión IV (DailyMed, Wg Critical Care, Llc, Oct 19, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=ddbef60d-c20a-4ada-928f-e87074c08a54",
+   "b": "dosis de inicio y mantenimiento, advertencias, interacciones, embarazo, lactancia, pediatría"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "C01CA03"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 4,
+  "np": 13,
+  "pres": [
+   "Solucion inyectable 4 mg",
+   "Solucion inyectable 1 mg"
+  ],
+  "m": [
+   "Ads-noltron® solucion inyectable 4 mg/4 ml (Ads Pharma)",
+   "Pridam® 4mg / 4ml solución inyectable (Pisa Farmacéutica De Colombia)",
+   "Nadrifarko® solución inyectable 4mg/4ml (Representaciones Farmaceuticas De Colombia -Reprefarco)",
+   "Norepinefrina 4 mg/4ml (Laboratorios Ryan De Colombia)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

@@ -1,1 +1,140 @@
-{"id":"atropina","n":"Atropina","g":["Atropina"],"atc":["A03BA01"],"cl":"Anticolinérgico","mc":"antimuscarinico","us":["paro","sedacion"],"es":["anest","uci","cardio","medint"],"via":["iv","im","sc"],"al":["anticolinergico"],"et":"«Atropina» viene de Atropos, la Moira griega que cortaba el hilo de la vida, por el veneno de la belladona (Atropa belladonna) de donde se extrae.","mech":"Antagonista competitivo de los receptores muscarínicos. Bloquea el tono vagal sobre el nódulo sinusal y AV, lo que aumenta la frecuencia cardíaca y facilita la conducción; también reduce secreciones salivales y bronquiales, dilata la pupila y relaja el músculo liso. A dosis menores de 0,5 mg puede producir bradicardia paradójica.","pk":{"abs":"IV inmediata","vm":"2 a 4 h","met":"Hepático","el":"Renal"},"ind":[{"i":"Bradicardia sintomática","a":"1 mg IV; puede repetirse cada 3 a 5 min hasta 3 mg (según el protocolo vigente).","p":"0,02 mg/kg IV (mínimo 0,1 mg).","k":{"lo":0.02,"hi":0.02,"int":"IV","maxd":"dosis mínima 0,1 mg"}}],"aj":{"r":"Sin ajuste.","h":"Sin ajuste.","e":"Se usa si es necesario.","l":"Compatible en dosis únicas.","g":"Mayor riesgo de confusión."},"ci":["Glaucoma de ángulo cerrado (en uso crónico)","Obstrucción intestinal","Taquicardia"],"fr":["Boca seca","Taquicardia","Visión borrosa","Retención urinaria"],"gr":["Delirium","Taquiarritmias","Hipertermia"],"it":[["Otros anticolinérgicos","Efectos sumados"],["Neostigmina","Se usa para contrarrestar sus efectos muscarínicos"]],"mon":["Frecuencia cardíaca","Estado mental"],"ant":"Fisostigmina en intoxicación grave con síntomas centrales.","pre":"Taquicardia, glaucoma de ángulo cerrado.","pres":["Ampolla 1 mg/mL","Solución oftálmica"],"com":[],"pe":["Bradicardia sintomática: 1 mg IV (guía ACLS clásica); dosis menores de 0,5 mg pueden empeorar la bradicardia.","Intoxicación por organofosforados: dosis altas hasta secar las secreciones."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["A03BA01"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":3,"np":7,"pres":["Solucion inyectable 1 mg"],"m":["Atropina sulfato solucion inyectable 1mg/ml (Laboratorio Biosano)","Atropina sulfato 1mg/ 1ml solucion inyectable (Laboratorios Sanderson)","Atropina sulfato solucion inyectable 1 mg / ml (Laboratorios Ryan De Colombia)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "atropina",
+ "n": "Atropina",
+ "g": [
+  "Atropina"
+ ],
+ "atc": [
+  "A03BA01"
+ ],
+ "cl": "Anticolinérgico",
+ "mc": "antimuscarinico",
+ "us": [
+  "paro",
+  "sedacion"
+ ],
+ "es": [
+  "anest",
+  "uci",
+  "cardio",
+  "medint"
+ ],
+ "via": [
+  "iv",
+  "im",
+  "sc"
+ ],
+ "al": [
+  "anticolinergico"
+ ],
+ "et": "«Atropina» viene de Atropos, la Moira griega que cortaba el hilo de la vida, por el veneno de la belladona (Atropa belladonna) de donde se extrae.",
+ "mech": "Antagonista competitivo de los receptores muscarínicos. Bloquea el tono vagal sobre el nódulo sinusal y AV, lo que aumenta la frecuencia cardíaca y facilita la conducción; también reduce secreciones salivales y bronquiales, dilata la pupila y relaja el músculo liso. A dosis menores de 0,5 mg puede producir bradicardia paradójica.",
+ "pk": {
+  "abs": "IV inmediata; la IM absorbe más con el ejercicio",
+  "vm": "Más del doble en menores de 2 años (etiqueta); en adultos unas 2 a 4 h (otras fuentes)",
+  "met": "Hepático (parte); farmacocinética no lineal entre 0,5 y 4 mg IV",
+  "el": "Renal (parte sin cambios)"
+ },
+ "ind": [
+  {
+   "i": "Bloqueo de efectos muscarínicos graves: antisialagogo y antivagal, antídoto de organofosforados o setas muscarínicas, y paro bradiasistólico",
+   "a": "Antisialagogo o antivagal: 0,5 a 1 mg IV, repetible cada 1 a 2 h. Organofosforados o setas muscarínicas: 2 a 3 mg IV, repetible cada 20 a 30 min hasta controlar secreciones. Paro bradiasistólico: 1 mg IV, repetible cada 3 a 5 min, máximo 3 mg en total. Con coronariopatía limita el total a 0,03 a 0,04 mg/kg. Bradicardia sintomática: 1 mg IV cada 3 a 5 min hasta 3 mg (guías ACLS; otras fuentes). Titula según frecuencia cardiaca, intervalo PR, presión y síntomas.",
+   "p": "Dosis inicial habitual 0,01 a 0,03 mg/kg (la etiqueta aclara que no está bien estudiada en pediatría). En PALS se usa 0,02 mg/kg (mínimo 0,1 mg, máximo 0,5 mg por dosis) en bradicardia (otras fuentes; no contrastado aquí).",
+   "k": {
+    "lo": 0.01,
+    "hi": 0.03,
+    "int": "IV (rango de la etiqueta; PALS usa 0,02 mg/kg con mínimo 0,1 mg)",
+    "maxd": "dosis mínima 0,1 mg"
+   }
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste en la etiqueta.",
+  "h": "Sin ajuste en la etiqueta.",
+  "e": "Los datos son insuficientes para evaluar el riesgo; los eventos muscarínicos graves no tratados son un riesgo para la madre y el feto. Se usa si hay indicación.",
+  "l": "Se han detectado trazas en la leche tras dosis orales. La semivida se duplica en menores de 2 años: para reducir la exposición, evita dar el pecho justo tras la dosis (según indica la etiqueta).",
+  "g": "Elige la dosis con cautela, empezando por el extremo bajo del rango; más riesgo de confusión y retención urinaria."
+ },
+ "ci": [
+  "La etiqueta no declara contraindicaciones; usa con cautela en glaucoma, estenosis pilórica, retención urinaria y taquicardia"
+ ],
+ "fr": [
+  "Sequedad de boca",
+  "Visión borrosa y fotofobia",
+  "Taquicardia",
+  "Anhidrosis con intolerancia al calor",
+  "Estreñimiento y dificultad para orinar, sobre todo en ancianos"
+ ],
+ "gr": [
+  "Glaucoma agudo",
+  "Taquicardia con aumento del consumo de oxígeno miocárdico (coronariopatía)",
+  "Obstrucción pilórica completa",
+  "Retención urinaria completa en hipertrofia prostática",
+  "Tapones bronquiales espesos en enfermedad pulmonar crónica",
+  "Reacciones de hipersensibilidad (rash que puede descamar)"
+ ],
+ "it": [
+  [
+   "Mexiletina",
+   "Retrasa su absorción"
+  ],
+  [
+   "Otros anticolinérgicos (antihistamínicos, antidepresivos tricíclicos, antipsicóticos)",
+   "Efectos anticolinérgicos sumados (otras fuentes)"
+  ],
+  [
+   "Neostigmina y fisostigmina",
+   "Se oponen: la atropina corrige los efectos muscarínicos de la neostigmina (otras fuentes)"
+  ]
+ ],
+ "mon": [
+  "Frecuencia cardiaca, intervalo PR y presión arterial",
+  "Estado mental",
+  "Diuresis (retención) y temperatura",
+  "En organofosforados: secreciones bronquiales, broncoespasmo y frecuencia cardiaca como metas"
+ ],
+ "ant": "Fisostigmina en intoxicación grave con síntomas centrales.",
+ "pre": "Puede precipitar glaucoma agudo, convertir una estenosis pilórica parcial en completa y causar retención urinaria completa. Con coronariopatía, limita la dosis total (0,03 a 0,04 mg/kg) para evitar taquicardia. Dos concentraciones en el mercado (0,4 y 1 mg/mL): verifica la ampolla.",
+ "pres": [
+  "Ampolla 1 mg/mL y 0,4 mg/mL",
+  "Solución oftálmica 1 %"
+ ],
+ "com": [],
+ "pe": [
+  "En organofosforados se titulan dosis altas hasta secar las secreciones bronquiales; el límite de 3 mg no aplica a ese uso.",
+  "Dosis muy bajas (menos de 0,5 mg) pueden causar bradicardia paradójica (otras fuentes).",
+  "No corrige el bloqueo AV de segundo grado tipo Mobitz II ni el de tercer grado de forma fiable (otras fuentes)."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de atropina sulfato inyectable (DailyMed, Accord Healthcare Inc., Oct 22, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=d5e07279-48ca-4f83-9633-299e65a7f821",
+   "b": "dosis en bradicardia, paro, antivagal y organofosforados, advertencias, embarazo, lactancia"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "A03BA01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 3,
+  "np": 7,
+  "pres": [
+   "Solucion inyectable 1 mg"
+  ],
+  "m": [
+   "Atropina sulfato solucion inyectable 1mg/ml (Laboratorio Biosano)",
+   "Atropina sulfato 1mg/ 1ml solucion inyectable (Laboratorios Sanderson)",
+   "Atropina sulfato solucion inyectable 1 mg / ml (Laboratorios Ryan De Colombia)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}
