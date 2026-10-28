@@ -27,10 +27,18 @@ QUE CAMBIA EN LA v63 (sobre la v62, que queda incluida)
     calculadora de dosis) y a las calculadoras pediatricas de Limonapp. Los cuadros NO se copian: tienen derechos reservados del Ministerio.
   - Codigo azul pediatrico: metas despues del paro agregadas (PA sobre percentil 10, evitar fiebre, diastolica 25/30 durante la RCP, CO2 espirado > 20).
   - Nivel de verificacion por bloque (dosis, farmacologia, seguridad): 0 Borrador, 1 Contrastado con fuente, 2 Confirmado por Esteban.
-  - 86 farmacos: los 68 anteriores migrados (nuevos campos en BORRADOR, escritos sin contrastar) y 18 de urologia contrastados con
+  - Recetario contrastado con etiquetas oficiales de la FDA (DailyMed, via la API publica; cada ficha cita la etiqueta y su fecha en
+    "Verificacion y fuentes"): de los 68 borradores, 65 pasaron a nivel 1 (contrastado) en cuatro tandas: antimicrobianos (21);
+    analgesicos, sedantes y opioides (9); cardiovasculares, anticoagulantes y reanimacion (15); gastro, corticoides, respiratorio,
+    SNC, electrolitos, obstetricia y vitamina K (22). Lo que la etiqueta no trae (esquemas de guias como CRASH-2/WOMAN, AHA, ACOG,
+    crup, asma, EPOC, choque septico, dosis pediatricas por peso fuera de etiqueta) queda escrito en la ficha con "otras fuentes" o
+    "no contrastado aqui". El potasio IV se contrasto con la monografia ASHP (cap. 227). Nada esta en nivel 2: eso solo lo confirma Esteban.
+  - Siguen en BORRADOR (nivel 0) por no tener etiqueta en DailyMed: dipirona (metamizol), hioscina butilbromuro y sales de rehidratacion
+    oral. Levofloxacino sigue con farmacologia sin contrastar (solo drugs.com). Hay que cubrirlos con otra fuente (INVIMA, guia OMS, ficha del fabricante).
+  - 86 farmacos: los 68 anteriores migrados (65 ya contrastados, ver arriba) y 18 de urologia contrastados con
     etiquetas oficiales (drugs.com): tamsulosina, finasterida, dutasterida, oxibutinina, solifenacina, mirabegron, fenazopiridina,
     fosfomicina, amikacina, ertapenem, cefepima, hidroclorotiazida, citrato de potasio, alopurinol, tadalafilo, desmopresina,
-    bicalutamida y levofloxacino. Siguen pendientes de confirmacion (dosis, ajuste renal, pediatria, disponibilidad en Colombia).
+    bicalutamida y levofloxacino. Siguen pendientes de confirmacion por Esteban (dosis, ajuste renal, pediatria, disponibilidad en Colombia).
   - Archivos: public/vendor/rx/index.json (indice liviano), tax.json (clasificaciones), d/<id>.json (una ficha por farmaco).
     Para agregar o editar un farmaco se edita su d/<id>.json y se corre: python3 tools/rx_index.py (valida y regenera el indice).
   - Disponibilidad en Colombia: cada ficha muestra los registros y presentaciones vigentes del Codigo Unico de Medicamentos (CUM) del
