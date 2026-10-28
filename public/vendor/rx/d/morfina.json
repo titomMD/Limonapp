@@ -1,1 +1,155 @@
-{"id":"morfina","n":"Morfina","g":["Morfina"],"atc":["N02AA01"],"cl":"Opioide","mc":"opioide_mu","us":["dolor"],"es":["cirugia","ortopedia","uci","urologia","medint","anest"],"via":["iv","sc","im","vo"],"al":["depresor_snc","alto_riesgo","ajuste_renal"],"et":"«Morfina» se llama así por Morfeo, el dios griego de los sueños (Friedrich Sertürner, 1804, la nombró «morphium»).","mech":"Agonista puro del receptor opioide μ. Al activar el receptor cierra canales de calcio presinápticos, abre canales de potasio postsinápticos e hiperpolariza la neurona, lo que reduce la transmisión del dolor en la médula y su percepción en el cerebro. El mismo mecanismo explica la depresión respiratoria, el estreñimiento, la miosis y las náuseas.","pk":{"abs":"Oral con gran primer paso hepático (≈25 %)","vm":"2 a 3 h","met":"Hepático: glucuronidación a M3G y M6G (M6G es activo)","el":"Renal"},"ind":[{"i":"Dolor intenso","a":"2 a 5 mg IV cada 4 h titulando según respuesta, o 5 a 10 mg VO cada 4 h.","p":"0,05 a 0,1 mg/kg IV por dosis cada 4 h titulando.","k":{"lo":0.05,"hi":0.1,"int":"IV cada 4 h"}}],"aj":{"r":"Los metabolitos activos se acumulan en insuficiencia renal: reducir dosis y espaciar, o preferir fentanilo o hidromorfona.","h":"Reducir dosis; riesgo de encefalopatía.","e":"Usar solo si es necesario; riesgo de abstinencia neonatal.","l":"Compatible en dosis breves y bajas.","g":"Empezar con dosis bajas."},"ci":["Depresión respiratoria significativa","Íleo paralítico","Asma aguda grave","Hipersensibilidad"],"fr":["Náuseas y vómito","Estreñimiento","Somnolencia","Prurito","Retención urinaria"],"gr":["Depresión respiratoria","Hipotensión","Delirium"],"it":[["Benzodiacepinas, alcohol, gabapentinoides","Depresión respiratoria"],["IMAO","Reacciones graves"],["Otros opioides","Efectos sumados"]],"mon":["Frecuencia respiratoria y sedación (escala de Ramsay o RASS)","Dolor","Diuresis y tránsito intestinal"],"ant":"Naloxona IV en pequeñas dosis; vida media corta (puede volver la sedación).","pre":"Depresión respiratoria, insuficiencia renal (metabolitos activos), uso con otros depresores.","pres":["Ampolla 10 mg/mL","Solución oral","Tabletas"],"com":[],"pe":["Asocia siempre laxante preventivo al iniciar opioide.","En insuficiencia renal la M6G se acumula y puede causar sedación prolongada."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["N02AA01"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":2,"np":3,"pres":["Solucion inyectable 10 mg","Solucion oral 30 mg"],"m":["Morfina clorhidrato 10 mg / ml (Fondo Nacional De Estupefacientes- Ministerio De Salud Y Proteccion Social)","Morfina clorhidrato al 3% solución oral (Fondo Nacional De Estupefacientes - Hidromorfona Clorhidrato 2 Mg/Ml)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "morfina",
+ "n": "Morfina",
+ "g": [
+  "Morfina"
+ ],
+ "atc": [
+  "N02AA01"
+ ],
+ "cl": "Opioide",
+ "mc": "opioide_mu",
+ "us": [
+  "dolor"
+ ],
+ "es": [
+  "cirugia",
+  "ortopedia",
+  "uci",
+  "urologia",
+  "medint",
+  "anest"
+ ],
+ "via": [
+  "iv",
+  "sc",
+  "im",
+  "vo"
+ ],
+ "al": [
+  "depresor_snc",
+  "alto_riesgo",
+  "ajuste_renal"
+ ],
+ "et": "«Morfina» se llama así por Morfeo, el dios griego de los sueños (Friedrich Sertürner, 1804, la nombró «morphium»).",
+ "mech": "Agonista puro del receptor opioide μ. Al activar el receptor cierra canales de calcio presinápticos, abre canales de potasio postsinápticos e hiperpolariza la neurona, lo que reduce la transmisión del dolor en la médula y su percepción en el cerebro. El mismo mecanismo explica la depresión respiratoria, el estreñimiento, la miosis y las náuseas.",
+ "pk": {
+  "abs": "IV: biodisponibilidad total. Oral con gran primer paso hepático (≈25 %, otras fuentes)",
+  "vm": "2 a 3 h",
+  "met": "Hepático: glucuronidación a M3G (inactivo) y M6G (activo)",
+  "el": "Renal; los metabolitos se acumulan en falla renal"
+ },
+ "ind": [
+  {
+   "i": "Dolor lo bastante intenso como para requerir un opioide y en el que otras opciones no bastan",
+   "a": "IV directa lenta: 0,1 a 0,2 mg/kg cada 4 h según necesidad, usando la dosis mínima eficaz (etiqueta). Titula según respuesta y reevalúa el dolor, la sedación y la frecuencia respiratoria. Otras vías y dosis habituales (otras fuentes; no contrastado aquí): IV 2 a 5 mg cada 4 h titulando; SC o IM 5 a 10 mg cada 4 h; VO liberación inmediata 5 a 10 mg cada 4 h.",
+   "p": "La etiqueta indica que la seguridad y eficacia en menores de 18 años no están establecidas. En práctica pediátrica se usan 0,05 a 0,1 mg/kg IV por dosis cada 4 h titulando (otras fuentes; no contrastado aquí)."
+  }
+ ],
+ "aj": {
+  "r": "La etiqueta advierte que M3G y M6G pueden acumularse a niveles mucho más altos en falla renal. Reduce la dosis y espacia el intervalo, o prefiere fentanilo o hidromorfona (otras fuentes para la elección).",
+  "h": "En cirrosis baja la depuración y sube la semivida; no hay estudios en hepatopatía grave. Reduce la dosis (otras fuentes).",
+  "e": "El uso prolongado en el embarazo puede causar síndrome de abstinencia neonatal. En el trabajo de parto puede causar depresión respiratoria neonatal: ten naloxona disponible.",
+  "l": "La morfina pasa a la leche (relación leche/plasma del área bajo la curva 2,5:1 en un estudio). Vigila sedación y problemas de respiración o de alimentación del lactante; usa la dosis más baja y por poco tiempo.",
+  "g": "Mayor sensibilidad: empieza por el extremo bajo del rango. La depresión respiratoria es el riesgo principal."
+ },
+ "ci": [
+  "Depresión respiratoria significativa",
+  "Asma aguda o grave en un entorno sin monitoreo ni equipo de reanimación",
+  "Obstrucción digestiva conocida o sospechada, incluido el íleo paralítico",
+  "Uso de IMAO o dentro de los 14 días previos",
+  "Hipersensibilidad a la morfina"
+ ],
+ "fr": [
+  "Náuseas y vómito",
+  "Estreñimiento",
+  "Somnolencia, mareo",
+  "Prurito y sudoración (liberación de histamina)",
+  "Hipotensión",
+  "Retención urinaria"
+ ],
+ "gr": [
+  "Depresión respiratoria potencialmente mortal (advertencia en recuadro)",
+  "Dependencia, abuso y mal uso (recuadro)",
+  "Hipotensión grave y shock",
+  "Síndrome de abstinencia neonatal",
+  "Convulsiones",
+  "Insuficiencia suprarrenal",
+  "Aumento de la presión intracraneal en trauma craneal o alteración de conciencia",
+  "Espasmo del esfínter de Oddi y pancreatitis"
+ ],
+ "it": [
+  [
+   "Benzodiacepinas, alcohol, gabapentinoides, otros depresores del SNC",
+   "Sedación profunda, depresión respiratoria, coma y muerte; limita dosis y duración"
+  ],
+  [
+   "IMAO",
+   "Contraindicado: reacciones graves de excitación o depresión del SNC"
+  ],
+  [
+   "Fármacos serotoninérgicos",
+   "Riesgo de síndrome serotoninérgico"
+  ],
+  [
+   "Otros opioides",
+   "Efectos sumados; los agonistas parciales (buprenorfina) pueden precipitar abstinencia"
+  ],
+  [
+   "Relajantes musculares, diuréticos, anticolinérgicos",
+   "Más bloqueo neuromuscular o retención urinaria y estreñimiento"
+  ]
+ ],
+ "mon": [
+  "Frecuencia respiratoria, saturación y nivel de sedación (escala de Ramsay o RASS)",
+  "Dolor",
+  "Presión arterial",
+  "Diuresis y tránsito intestinal",
+  "Naloxona disponible en el sitio"
+ ],
+ "ant": "Naloxona IV en pequeñas dosis; vida media corta (puede volver la sedación).",
+ "pre": "Advertencia en recuadro: adicción, depresión respiratoria potencialmente mortal, síndrome de abstinencia neonatal y riesgo con benzodiacepinas. Las ampollas existen en varias concentraciones: verifica mg frente a mL para evitar sobredosis. Prescríbela solo si sabes manejar opioides.",
+ "pres": [
+  "Ampolla 10 mg/mL",
+  "Cartuchos de 2, 4, 5, 8 y 10 mg/mL (según fabricante)",
+  "Solución oral y tabletas (otras presentaciones)"
+ ],
+ "com": [],
+ "pe": [
+  "Asocia laxante preventivo al empezar un opioide.",
+  "En falla renal el metabolito M6G se acumula y causa sedación prolongada.",
+  "Evita en shock circulatorio: puede causar hipotensión grave."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de morfina sulfato inyectable (IV) (DailyMed, Hospira, Inc., Oct 16, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=be420e8b-bcb0-49b5-bb4d-1df8b9959809",
+   "b": "dosis IV inicial, contraindicaciones, advertencias, interacciones, embarazo, lactancia, pediatría"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "N02AA01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 2,
+  "np": 3,
+  "pres": [
+   "Solucion inyectable 10 mg",
+   "Solucion oral 30 mg"
+  ],
+  "m": [
+   "Morfina clorhidrato 10 mg / ml (Fondo Nacional De Estupefacientes- Ministerio De Salud Y Proteccion Social)",
+   "Morfina clorhidrato al 3% solución oral (Fondo Nacional De Estupefacientes - Hidromorfona Clorhidrato 2 Mg/Ml)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

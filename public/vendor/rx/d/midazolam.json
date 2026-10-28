@@ -1,1 +1,194 @@
-{"id":"midazolam","n":"Midazolam","g":["Midazolam","Dormicum"],"atc":["N05CD08"],"cl":"Benzodiacepina","mc":"gaba_a","us":["sedacion","conv"],"es":["anest","uci","pediatria","medint","cirugia"],"via":["iv","im","vo","rectal"],"al":["depresor_snc","alto_riesgo","cyp"],"mech":"Benzodiacepina de acción corta. Se une al receptor GABA-A y aumenta la apertura del canal de cloro cuando se une el GABA, lo que hiperpolariza la neurona. Produce sedación, amnesia anterógrada y ansiólisis rápidas; en dosis altas relaja el músculo y deprime la respiración. Por su inicio rápido y su corta duración es el fármaco de elección para sedación procedimental y premedicación.","pk":{"abs":"IV inmediata; IM 15 min","vm":"1,5 a 3 h (más en obesos, ancianos y hepatopatía)","met":"Hepático (CYP3A4) a alfa-hidroxi-midazolam","el":"Renal (metabolitos)"},"ind":[{"i":"Sedación, convulsión activa","a":"Sedación: 1 a 2,5 mg IV titulando. Convulsión: 10 mg IM si pesa más de 40 kg.","p":"Convulsión: 0,2 mg/kg IM (máximo 10 mg); 5 mg IM si pesa de 13 a 40 kg."}],"aj":{"r":"Acumulación de metabolito activo en falla renal: reducir dosis en infusión prolongada.","h":"Reducir dosis; efecto prolongado.","e":"Evitar si es posible.","l":"Compatible en dosis únicas.","g":"Dosis mucho menores (30 a 50 %)."},"ci":["Glaucoma de ángulo cerrado","Insuficiencia respiratoria grave sin soporte","Choque (relativa)"],"fr":["Somnolencia","Hipotensión","Amnesia"],"gr":["Depresión respiratoria y apnea","Hipotensión","Delirium paradójico"],"it":[["Inhibidores de CYP3A4 (claritromicina, fluconazol, diltiazem)","Efecto muy prolongado"],["Opioides y propofol","Sinergia depresora"],["Inductores de CYP3A4","Menor efecto"]],"mon":["Saturación de O₂ y frecuencia respiratoria","Presión arterial","Nivel de sedación (RASS)"],"ant":"Flumazenilo.","pre":"Depresión respiratoria; efecto prolongado en hepatopatía y mayores.","pres":["Ampolla 5 mg/5 mL y 15 mg/3 mL","Tabletas 7,5 mg"],"com":["Dormicum"],"pe":["Requiere monitoreo continuo, equipo de ventilación y personal capaz de manejar vía aérea."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["N05CD08"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":20,"np":52,"pres":["Solucion inyectable 5 mg","Solucion inyectable 15 mg","Solucion inyectable 1 mg","Solucion inyectable 50 mg"],"m":["Dormicum ® ampollas 5 mg/5 ml (Laboratorios Siegfried)","Benzosed® 5mg/ml solución inyectable (Troikaa Pharmaceuticals)","Relacum® solucion inyectable (Laboratorios Pisa De C.V)","Dormicum® ampollas 15mg/3ml (Laboratorios Siegfried)","Relacum® 5mg/5ml (1mg/ml) solucion inyectable (Laboratorios Pisa De C.V)","Midufarko ® solución inyectable 5mg/ml (Representaciones Farmaceuticas De Colombia)","Midasedan®15 mg /3ml solucion inyectable (Laboratorios Blaskov)","Midasedan ® solucion inyectable (Laboratorios Blaskov)","Midazolam 15 mg/3 ml solucion inyectable (Laboratorio Biosano)","Midazolam 50 mg/10 ml solución inyectable (Laboratorios Biosano)","Midazolam 5mg/5ml (Laboratorios Sanderson)","Serraclinics (Laboratorios Serra Pamies)"],"mas":8,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "midazolam",
+ "n": "Midazolam",
+ "g": [
+  "Midazolam",
+  "Dormicum"
+ ],
+ "atc": [
+  "N05CD08"
+ ],
+ "cl": "Benzodiacepina",
+ "mc": "gaba_a",
+ "us": [
+  "sedacion",
+  "conv"
+ ],
+ "es": [
+  "anest",
+  "uci",
+  "pediatria",
+  "medint",
+  "cirugia"
+ ],
+ "via": [
+  "iv",
+  "im",
+  "vo",
+  "rectal"
+ ],
+ "al": [
+  "depresor_snc",
+  "alto_riesgo",
+  "cyp"
+ ],
+ "mech": "Benzodiacepina de acción corta. Se une al receptor GABA-A y aumenta la apertura del canal de cloro cuando se une el GABA, lo que hiperpolariza la neurona. Produce sedación, amnesia anterógrada y ansiólisis rápidas; en dosis altas relaja el músculo y deprime la respiración. Por su inicio rápido y su corta duración es el fármaco de elección para sedación procedimental y premedicación.",
+ "pk": {
+  "abs": "IV: inmediata; IM: inicio en 15 min y pico a los 30 a 60 min (etiqueta)",
+  "vm": "1,8 a 6,4 h (media ≈3 h); más en obesos, ancianos, hepatopatía e insuficiencia renal aguda",
+  "met": "Hepático (CYP3A4) a metabolitos hidroxilados que se conjugan; el alfa-hidroxi-midazolam es activo",
+  "el": "Renal (metabolitos conjugados)"
+ },
+ "ind": [
+  {
+   "i": "Sedación, ansiolisis y amnesia para procedimientos (IV)",
+   "a": "Adultos sanos <60 años: titula lento, algunos responden a 1 mg. No más de 2,5 mg en al menos 2 min; espera 2 min o más antes de otra dosis. Dosis total mayor de 5 mg rara vez hace falta. Con opioides se necesita ≈30 % menos. Mayores de 60 años, debilitados o con enfermedad crónica: no más de 1,5 mg en al menos 2 min; incrementos de 1 mg en 2 min; total >3,5 mg rara vez hace falta; con otros depresores, al menos 50 % menos. Mantenimiento: 25 % de la dosis que logró la sedación.",
+   "p": "Se dosifica en mg/kg y se titula lento (2 a 3 min, esperar 2 a 3 min más). 6 meses a 5 años: inicial 0,05 a 0,1 mg/kg; total hasta 0,6 mg/kg, por lo común no más de 6 mg. 6 a 12 años: inicial 0,025 a 0,05 mg/kg; total hasta 0,4 mg/kg, no más de 10 mg. 12 a 16 años: dosis de adulto (total por lo común ≤10 mg). Menores de 6 meses: la información es limitada; titula con incrementos muy pequeños. En niños obesos usa el peso ideal.",
+   "k": {
+    "lo": 0.05,
+    "hi": 0.1,
+    "int": "IV dosis inicial, solo de 6 meses a 5 años (otras edades en el texto)",
+    "maxd": "total habitual 6 mg"
+   }
+  },
+  {
+   "i": "Premedicación IM (sedación, ansiolisis, amnesia antes de cirugía)",
+   "a": "Adultos sanos <60 años: 0,07 a 0,08 mg/kg IM (≈5 mg), hasta 1 h antes de la cirugía. Mayores de 60 años o de riesgo: 2 a 3 mg (0,02 a 0,05 mg/kg); a veces 1 mg basta. Inyección profunda en un músculo grande.",
+   "p": "Niños: 0,1 a 0,15 mg/kg IM; hasta 0,5 mg/kg en más ansiosos; total habitual ≤10 mg.",
+   "k": {
+    "lo": 0.1,
+    "hi": 0.15,
+    "int": "IM, premedicación",
+    "maxd": "total habitual 10 mg"
+   }
+  },
+  {
+   "i": "Inducción de anestesia general",
+   "a": "Sin premedicación y <55 años: 0,3 a 0,35 mg/kg en 20 a 30 s; hasta 0,6 mg/kg en casos resistentes. Con premedicación: 0,15 a 0,35 mg/kg (0,25 mg/kg en promedio). Mayores de 55 años o enfermos graves: dosis menores (0,15 a 0,3 mg/kg).",
+   "p": "—"
+  },
+  {
+   "i": "Sedación continua en cuidados intensivos (paciente intubado)",
+   "a": "Dosis de carga IV lenta (en al menos 2 a 3 min) y luego infusión; la velocidad se ajusta en incrementos o decrementos del 25 %. Las dosis de infusión en adultos son de otras fuentes (no contrastadas aquí).",
+   "p": "No neonatos: carga 0,05 a 0,2 mg/kg en al menos 2 a 3 min y luego 0,06 a 0,12 mg/kg/h (1 a 2 mcg/kg/min). Neonatos intubados: sin dosis de carga; 0,03 mg/kg/h (0,5 mcg/kg/min) si <32 semanas y 0,06 mg/kg/h (1 mcg/kg/min) si >32 semanas. Nunca en bolo rápido en neonatos.",
+   "k": {
+    "lo": 0.05,
+    "hi": 0.2,
+    "int": "IV de carga lenta en intubado (no neonatos); luego infusión de 0,06 a 0,12 mg/kg/h"
+   }
+  },
+  {
+   "i": "Convulsión activa (uso habitual, no está en esta etiqueta)",
+   "a": "10 mg IM si pesa más de 40 kg (otras fuentes; no contrastado aquí).",
+   "p": "0,2 mg/kg IM (máximo 10 mg); 5 mg IM si pesa de 13 a 40 kg (otras fuentes; no contrastado aquí)."
+  }
+ ],
+ "aj": {
+  "r": "En insuficiencia renal aguda la semivida se alarga y la recuperación se retrasa. En infusión prolongada el metabolito activo puede acumularse: reduce la dosis.",
+  "h": "Menor depuración y efecto prolongado: reduce la dosis y titula despacio.",
+  "e": "Los recién nacidos de madres que lo usaron al final del embarazo pueden tener sedación o abstinencia neonatal. Evítalo si puedes; pasa a la leche (otras fuentes).",
+  "l": "Pasa a la leche en pequeñas cantidades; en dosis únicas se considera compatible (otras fuentes).",
+  "g": "Mayores de 60 años: dosis menores, incrementos más pequeños e inyección más lenta; los mayores de 70 años pueden ser más sensibles."
+ },
+ "ci": [
+  "Hipersensibilidad conocida al midazolam",
+  "Glaucoma agudo de ángulo estrecho (en glaucoma de ángulo abierto, solo con tratamiento adecuado)"
+ ],
+ "fr": [
+  "Disminución de la frecuencia respiratoria o del volumen corriente (hasta 23 % tras IV)",
+  "Apnea (15 % tras IV, en el estudio de la etiqueta)",
+  "Variaciones de la presión arterial y el pulso",
+  "Hipo, náuseas y vómito",
+  "Dolor en el sitio de inyección"
+ ],
+ "gr": [
+  "Depresión respiratoria, apnea y paro cardiorrespiratorio (recuadro)",
+  "Hipotensión, sobre todo en neonatos, críticos y con opioides",
+  "Reacciones paradójicas (agitación, movimientos involuntarios, hiperactividad, agresividad)",
+  "Convulsiones en neonatos tras inyección rápida",
+  "Dependencia y abstinencia (recuadro)",
+  "Sedación prolongada"
+ ],
+ "it": [
+  [
+   "Opioides (morfina, fentanilo, meperidina)",
+   "Más depresión respiratoria y sedación: baja la dosis de ambos (≥30 % menos de midazolam)"
+  ],
+  [
+   "Inhibidores de CYP3A4 (eritromicina, diltiazem, verapamilo, ketoconazol, itraconazol, cimetidina)",
+   "Sube y alarga el efecto del midazolam"
+  ],
+  [
+   "Otros depresores del SNC (propofol, barbitúricos, droperidol, alcohol)",
+   "Sinergia depresora"
+  ],
+  [
+   "Inductores de CYP3A4 (rifampicina, carbamazepina, fenitoína)",
+   "Menor efecto (otras fuentes)"
+  ]
+ ],
+ "mon": [
+  "Monitoreo continuo de saturación (oximetría), frecuencia respiratoria y presión arterial",
+  "Nivel de sedación (escala OAA/S o RASS)",
+  "Equipo de vía aérea y reanimación disponible, y personal capaz de usarlo",
+  "En niños con sedación profunda, un observador dedicado solo a vigilar"
+ ],
+ "ant": "Flumazenilo.",
+ "pre": "Advertencia en recuadro: depresión respiratoria y paro cardiorrespiratorio; solo con monitoreo continuo, equipo de reanimación y personal capaz de manejar la vía aérea. Inyección IV lenta (nunca bolo rápido, sobre todo en neonatos). Tres o cuatro veces más potente por mg que el diazepam. Peligroso con shock, enfermedad pulmonar crónica o insuficiencia respiratoria grave sin soporte (otras fuentes). Evita la inyección intraarterial y la extravasación.",
+ "pres": [
+  "Ampolla 5 mg/5 mL, 15 mg/3 mL y 2 mg/2 mL (1 mg/mL)",
+  "Tabletas 7,5 mg"
+ ],
+ "com": [
+  "Dormicum"
+ ],
+ "pe": [
+  "Titula despacio: el pico del efecto tarda 3 a 5 min, así que espera entre dosis.",
+  "En niños se dosifica por mg/kg; en obesos pediátricos usa el peso ideal.",
+  "Con un opioide asociado, reduce la dosis de ambos."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de midazolam clorhidrato inyectable (DailyMed, Heritage Pharmaceuticals Inc. D/B/A Avet Pharmaceuticals Inc., Aug 31, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8b690f5c-2923-4c34-a8f7-11af5f546b62",
+   "b": "dosis IV e IM en adultos y niños, infusión en cuidados intensivos, neonatos, contraindicaciones, advertencia en recuadro"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "N05CD08"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 20,
+  "np": 52,
+  "pres": [
+   "Solucion inyectable 5 mg",
+   "Solucion inyectable 15 mg",
+   "Solucion inyectable 1 mg",
+   "Solucion inyectable 50 mg"
+  ],
+  "m": [
+   "Dormicum ® ampollas 5 mg/5 ml (Laboratorios Siegfried)",
+   "Benzosed® 5mg/ml solución inyectable (Troikaa Pharmaceuticals)",
+   "Relacum® solucion inyectable (Laboratorios Pisa De C.V)",
+   "Dormicum® ampollas 15mg/3ml (Laboratorios Siegfried)",
+   "Relacum® 5mg/5ml (1mg/ml) solucion inyectable (Laboratorios Pisa De C.V)",
+   "Midufarko ® solución inyectable 5mg/ml (Representaciones Farmaceuticas De Colombia)",
+   "Midasedan®15 mg /3ml solucion inyectable (Laboratorios Blaskov)",
+   "Midasedan ® solucion inyectable (Laboratorios Blaskov)",
+   "Midazolam 15 mg/3 ml solucion inyectable (Laboratorio Biosano)",
+   "Midazolam 50 mg/10 ml solución inyectable (Laboratorios Biosano)",
+   "Midazolam 5mg/5ml (Laboratorios Sanderson)",
+   "Serraclinics (Laboratorios Serra Pamies)"
+  ],
+  "mas": 8,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}
