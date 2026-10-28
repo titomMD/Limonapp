@@ -708,7 +708,7 @@ function aiMerge(r,a){
     var ed=ok(eg)&&/^\d{4}-\d{2}-\d{2}$/.test(eg.fecha||'')?eg.fecha:'';
     if(ed){var dest=clean(eg.destino||eg.cita,80);r.exit={at:new Date(ed+'T12:00:00').toISOString(),tipo:salTipo(dest),dest:dest};r.ctx='hosp';used.push('egreso');}
   }else if(cx==='consulta_externa'){
-    r.ctx='amb';r.exit=null;if(r.items.some(function(i){return /^(ev|in)$/.test(i.k);}))r.dxNew=1;used.push('contexto: consulta externa');
+    r.ctx='amb';r.exit=null;if(r.f)r.f.bed='';if(r.items.some(function(i){return /^(ev|in)$/.test(i.k);}))r.dxNew=1;used.push('contexto: consulta externa');
   }else if(cx==='hospitalizado'||cx==='urgencias'){
     r.ctx=cx==='urgencias'?'urg':'hosp';r.exit=null;used.push('contexto: '+(cx==='urgencias'?'urgencias':'hospitalizado'));
   }
