@@ -1,3 +1,11 @@
+LIMONAPP v60 - la junta medica pedida en la historia queda en Pendientes
+
+QUE CAMBIA EN LA v60 (sobre la v59)
+  - Al guardar un paciente leido desde un PDF, si la historia pide una junta medica (CUPS 890502 o "SS junta" / "junta de urologia
+    con resultados") y no hay una nota de junta posterior, se crea el pendiente "Junta medica pendiente · Urologia (pedida 7 jul 2026)".
+    Antes quedaba escrita en Procedimientos solicitados pero no contaba como pendiente (Pendientes solo contaba lab, imagenes e interconsultas).
+  - El recuadro "Dudas de la IA" ahora se llama "Notas de la IA" (casi siempre son observaciones, no dudas).
+
 LIMONAPP v59 - la IA lee con Gemini 3.6 Flash y, si se acaba su cuota, con Flash Lite
 
 QUE CAMBIA EN LA v59 (sobre la v58, que queda incluida)

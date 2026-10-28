@@ -716,7 +716,7 @@ function aiMerge(r,a){
   return r;
 }
 function aiNote(i){
-  if(i.ai&&i.ai.used.length)return '<div class="note">Gemini ayudó a identificar: '+esc(i.ai.used.join(', '))+'. Revisa que esté bien antes de guardar.'+(i.ai.notas.length?'<br><span class="small muted">Dudas de la IA: '+esc(i.ai.notas.join(' · '))+'</span>':'')+'</div>';
+  if(i.ai&&i.ai.used.length)return '<div class="note">Gemini ayudó a identificar: '+esc(i.ai.used.join(', '))+'. Revisa que esté bien antes de guardar.'+(i.ai.notas.length?'<br><span class="small muted">Notas de la IA: '+esc(i.ai.notas.join(' · '))+'</span>':'')+'</div>';
   if(i.aiErr)return '<div class="note small">'+esc(i.aiErr)+' Leí con el lector básico.</div>';
   return '';
 }
@@ -1763,11 +1763,28 @@ function savePatientForm(id){
   var o={ini:val('f_ini').trim().toUpperCase(),hcn:val('f_hcn').replace(/\D/g,'').slice(0,14),hc:val('f_hcn').replace(/\D/g,'').slice(-3),age:val('f_age').replace(/\D/g,''),sex:val('f_sex'),bed:val('f_bed').trim(),adm:val('f_adm')||today(),dx:val('f_dx').trim(),sev:val('f_sev'),cont:val('f_cont').trim(),ctx:val('f_ctx')||'hosp'};
   if(!o.ini){toast('Escribe las iniciales.');return;}
   if(id){var p=pat(id);if(!o.hcn){o.hc=p.hc||'';o.hcn=p.hcn||'';}for(var k in o)p[k]=o[k];if(p.ctx==='urg'&&!p.urgAt)p.urgAt=new Date().toISOString();}
-  else{o.id=uid();o.serviceId=(o.ctx==='urg'&&!S.imp)?ensureUrgSvc().id:S.serviceId;if(o.ctx==='urg')o.urgAt=new Date().toISOString();o.active=true;if(S.imp&&S.imp.exit){o.active=false;o.exitAt=S.imp.exit.at;}if(S.imp&&Object.keys(S.imp.hx).length)o.hx=S.imp.hx;db.patients.push(o);S.patientId=o.id;var staleE=[];if(S.imp&&S.imp.ev){var evE={id:uid(),patientId:o.id,type:'evolucion',at:S.imp.ev.at,data:S.imp.ev.data,est:S.imp.ev.est?1:undefined,by:S.imp.ev.by,svc:S.imp.ev.svc};db.entries.push(evE);if(S.imp.evOld)staleE.push(evE);}if(S.imp&&S.imp.extra)S.imp.extra.forEach(function(x){var n={id:uid(),patientId:o.id,type:x.type,at:x.at,data:x.data};if(x.status)n.status=x.status;if(x.est)n.est=1;if(x.by)n.by=x.by;if(x.svc)n.svc=x.svc;if(x.ctx)n.ctx=x.ctx;if(x.stale)staleE.push(n);db.entries.push(n);});ensurePlans(o.id);staleE.forEach(function(e){var pl=planOf(e);if(pl&&pl.data.ord)pl.data.ord.forEach(function(q){q.x=1;});});S.imp=null;S.impP=null;}
+  else{o.id=uid();o.serviceId=(o.ctx==='urg'&&!S.imp)?ensureUrgSvc().id:S.serviceId;if(o.ctx==='urg')o.urgAt=new Date().toISOString();o.active=true;if(S.imp&&S.imp.exit){o.active=false;o.exitAt=S.imp.exit.at;}if(S.imp&&Object.keys(S.imp.hx).length)o.hx=S.imp.hx;db.patients.push(o);S.patientId=o.id;var staleE=[];if(S.imp&&S.imp.ev){var evE={id:uid(),patientId:o.id,type:'evolucion',at:S.imp.ev.at,data:S.imp.ev.data,est:S.imp.ev.est?1:undefined,by:S.imp.ev.by,svc:S.imp.ev.svc};db.entries.push(evE);if(S.imp.evOld)staleE.push(evE);}if(S.imp&&S.imp.extra)S.imp.extra.forEach(function(x){var n={id:uid(),patientId:o.id,type:x.type,at:x.at,data:x.data};if(x.status)n.status=x.status;if(x.est)n.est=1;if(x.by)n.by=x.by;if(x.svc)n.svc=x.svc;if(x.ctx)n.ctx=x.ctx;if(x.stale)staleE.push(n);db.entries.push(n);});ensurePlans(o.id);staleE.forEach(function(e){var pl=planOf(e);if(pl&&pl.data.ord)pl.data.ord.forEach(function(q){q.x=1;});});juntaTask(o,staleE);S.imp=null;S.impP=null;}
   var openNew=!id&&!wasImp&&(o.ctx==='urg'||o.ctx==='amb');
   save();S.newPatient=false;S.editPatient=false;
   if(!id){S.view='patient';S.serviceId=o.serviceId;S.sec='res';if(openNew){S.sec=o.ctx==='urg'?'triage':'consulta';S.editor={type:S.sec};}}
   render();toast('Paciente guardado.');
+}
+/* v60: una junta médica pedida en la historia (CUPS 890502 o "SS junta") queda como pendiente del paciente, porque Pendientes solo cuenta lab, imágenes e interconsultas */
+function juntaTask(o,stale){
+  if(!o||!o.active)return;
+  var byId={};db.entries.forEach(function(x){byId[x.id]=x;});
+  var es=db.entries.filter(function(e){
+    if(e.patientId!==o.id||!e.data||!/\bjunta\b/i.test(norm(String(e.data.proc||''))))return false;
+    if(e.type==='plan')return !!e.data.src&&stale.indexOf(byId[e.data.src])<0;
+    return /^(evolucion|ingreso|consulta)$/.test(e.type)&&stale.indexOf(e)<0;
+  }).sort(function(a,b){return a.at<b.at?1:-1;});
+  if(!es.length)return;
+  var e=es[0],src=e.type==='plan'?byId[e.data.src]:e;
+  if(db.entries.some(function(x){return x.patientId===o.id&&x.at>e.at&&x.type==='nota'&&/junta/i.test(String((x.data&&x.data.txt)||'').split('\n')[0]);}))return;
+  var sp=String((src&&src.svc)||'').replace(/^consulta externa\s*[·\-:]\s*/i,'').trim(),
+      lab='Junta médica pendiente'+(sp&&!/preanest/i.test(sp)?' · '+sp.charAt(0).toUpperCase()+sp.slice(1).toLowerCase():'')+' (pedida '+dlong(e.at)+')';
+  if(db.tasks.some(function(t){return t.patientId===o.id&&/junta m[ée]dica pendiente/i.test(t.text||'');}))return;
+  db.tasks.push({id:uid(),patientId:o.id,text:lab,done:false,at:new Date().toISOString()});
 }
 var LONGNUM=/\b\d{7,}\b|\b3\d{2}[ -]?\d{3}[ -]?\d{4}\b/;
 function saveEntry(){
