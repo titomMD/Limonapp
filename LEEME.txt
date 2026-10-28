@@ -1,3 +1,43 @@
+LIMONAPP v62 - servicios fijos, datos por especialidad, calculadoras, entrega con formatos y recetario (borrador)
+
+QUE CAMBIA EN LA v62 (sobre la v61 y la v60, que quedan incluidas)
+  - Servicios predeterminados: Cirugia general, Medicina interna, Pediatria, Ginecologia y obstetricia, Ortopedia y traumatologia
+    y Cuidados intensivos ya vienen creados y no se pueden renombrar ni borrar. Si ya tenias uno con ese nombre, la app lo reconoce
+    y conserva tus pacientes (no cambia ningun dato). Se agregan otras 24 especialidades desde una lista, o un nombre propio.
+  - Datos por especialidad en la ficha del paciente (opcionales): cirugia (procedimiento, fecha, drenajes, via oral; muestra POP),
+    ortopedia, neurocirugia, medicina interna, pediatria (peso, talla), ginecologia (G P C A, FUM, semanas), UCI, oncologia.
+    Aparecen como etiquetas en la tarjeta, la ficha, la ronda y la entrega de turno.
+  - Gemini con pistas por especialidad (APAGADO por defecto): 31 pistas breves en netlify/functions/ai.mjs (ESPH) que ayudan a
+    decidir cual diagnostico es el motivo en cada servicio y a interpretar siglas (IRA, ERC, RTU-P, G/P/C/A...). La app manda
+    esp=<clave> segun el servicio del paciente nuevo. Solo se usan si en Netlify existe la variable AI_ESP=1. Sin ella todo
+    funciona igual que antes. Probar primero con casos reales y recien despues activar.
+  - Pendientes tipicos por especialidad: lista de sugerencias generales (sin dosis) que se agregan con un toque.
+  - 84 calculadoras y escalas por especialidad (funciones renales, NEWS2, SOFA, CURB-65, Wells, CHA2DS2-VASc, Child-Pugh, MELD,
+    Parkland, Glasgow, Apgar, Bishop, NIHSS, etc.). Cada una explica la formula y la fuente. Desde la ficha precargan edad y sexo.
+  - Entrega de turno con formatos: corto (una linea por paciente), normal o detallado; orden por cama o por gravedad.
+  - Borrador de resumen de egreso: se arma con lo que ya esta en la ficha, para revisar y completar.
+  - Recetario (BORRADOR SIN VERIFICAR): 68 medicamentos con dosis por indicacion, adulto y pediatrico, y calculo de mg segun el peso.
+    Viene APAGADO. Se activa en Cuenta > Recetario. No activarlo para otros usuarios hasta confirmar cada dosis con la fuente oficial.
+  - Sin cambios en las instrucciones de Gemini ni en el servidor.
+
+LIMONAPP v61 - tutorial renovado y sello "Potenciado con Gemini"
+
+QUE CAMBIA EN LA v61 (sobre la v60, que queda incluida)
+  - Tutorial: pantalla de bienvenida con el limon latiendo y el ECG animado, pasos con icono, categoria, barra de progreso,
+    tarjeta con animacion, aro que pulsa sobre lo que se explica, consejos destacados y pantalla final con confeti.
+    Dos pasos nuevos: Gemini (la IA lee la historia) y Pendientes que se arman solos. Respeta "reducir movimiento" del sistema
+    y los temas claro, oscuro y 8-bit. Las flechas del teclado ya no saltan dos pasos (habia dos controladores duplicados).
+  - Pagina principal: pastilla discreta "Potenciado con Gemini" (estrella propia en los colores de la app, no el logo oficial
+    de Google). Al tocarla abre el tutorial en el paso de Gemini.
+
+LIMONAPP v60 - la junta medica pedida en la historia queda en Pendientes
+
+QUE CAMBIA EN LA v60 (sobre la v59)
+  - Al guardar un paciente leido desde un PDF, si la historia pide una junta medica (CUPS 890502 o "SS junta" / "junta de urologia
+    con resultados") y no hay una nota de junta posterior, se crea el pendiente "Junta medica pendiente · Urologia (pedida 7 jul 2026)".
+    Antes quedaba escrita en Procedimientos solicitados pero no contaba como pendiente (Pendientes solo contaba lab, imagenes e interconsultas).
+  - El recuadro "Dudas de la IA" ahora se llama "Notas de la IA" (casi siempre son observaciones, no dudas).
+
 LIMONAPP v59 - la IA lee con Gemini 3.6 Flash y, si se acaba su cuota, con Flash Lite
 
 QUE CAMBIA EN LA v59 (sobre la v58, que queda incluida)
