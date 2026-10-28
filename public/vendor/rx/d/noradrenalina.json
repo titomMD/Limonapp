@@ -39,6 +39,11 @@
    "i": "Restablecer la presión arterial en hipotensión aguda grave (adultos), incluido el choque vasodilatado",
    "a": "Inicio 8 a 12 mcg/min IV en infusión, ajustando para mantener la presión suficiente para perfundir los órganos vitales. Mantenimiento habitual: 2 a 4 mcg/min. Mide la presión cada 2 min hasta el efecto buscado y luego cada 5 min. Infunde en una vena grande y retira gradualmente. Dosis por peso (otras fuentes; no contrastadas aquí): 0,05 a 0,1 mcg/kg/min al inicio, con titulación según la presión arterial media (meta habitual ≥65 mmHg) y dosis habituales hasta 1 a 2 mcg/kg/min.",
    "p": "La etiqueta indica que la seguridad y eficacia en pediatría no se han establecido. En práctica pediátrica se usan 0,05 a 2 mcg/kg/min titulados (otras fuentes; no contrastado aquí)."
+  },
+  {
+   "i": "Choque séptico en adultos (SSC 2021)",
+   "a": "La noradrenalina es el vasopresor de primera línea (fuerte, evidencia alta), por encima de dopamina, vasopresina, adrenalina, selepresina y angiotensina II. Meta inicial: PAM de 65 mmHg (fuerte). Inicia por vía periférica sin esperar la vía central (débil). Si la PAM no alcanza, agrega vasopresina en lugar de subir más la noradrenalina (débil; suele darse a dosis fija de 0,03 U/min), y si aún no alcanza, agrega adrenalina. Con disfunción cardiaca y mala perfusión a pesar de volumen y presión adecuados, agrega dobutamina o usa adrenalina sola. Se sugiere monitoreo invasivo de la presión arterial apenas sea posible. Antes de vasopresores: al menos 30 mL/kg de cristaloide IV en las primeras 3 h (débil). Las dosis por mcg/kg/min no las da la guía.",
+   "p": "Esta guía es solo para adultos. Para niños, la etiqueta no establece seguridad."
   }
  ],
  "aj": {
@@ -113,6 +118,11 @@
    "t": "Etiqueta de noradrenalina (norepinefrina) infusión IV (DailyMed, Wg Critical Care, Llc, Oct 19, 2026)",
    "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=ddbef60d-c20a-4ada-928f-e87074c08a54",
    "b": "dosis de inicio y mantenimiento, advertencias, interacciones, embarazo, lactancia, pediatría"
+  },
+  {
+   "t": "Surviving Sepsis Campaign 2021, Crit Care Med 2021;49:e1063 (PDF aportado por Esteban)",
+   "u": "https://doi.org/10.1097/CCM.0000000000005337",
+   "b": "noradrenalina de primera línea, PAM 65, vasopresina y adrenalina como adición, inicio periférico (rec. 5, 9, 37 a 41, 44; pp. e1065 a e1069)"
   }
  ],
  "rev": "2026-10-28",

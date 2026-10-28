@@ -42,7 +42,7 @@
  "ind": [
   {
    "i": "Anafilaxia (reacción alérgica tipo I)",
-   "a": "Adultos y niños de 30 kg o más: 0,3 a 0,5 mg IM o SC en la cara anterolateral del muslo, máximo 0,5 mg por inyección, repetible cada 5 a 10 min si hace falta. No repitas en el mismo sitio. Con ≥65 años considera empezar con una dosis menor.",
+   "a": "Adultos y niños de 30 kg o más: 0,3 a 0,5 mg IM o SC en la cara anterolateral del muslo, máximo 0,5 mg por inyección, repetible cada 5 a 10 min si hace falta. No repitas en el mismo sitio. Con ≥65 años considera empezar con una dosis menor. GINA 2026: si hay anafilaxia además de asma, da primero adrenalina IM y luego el broncodilatador inhalado.",
    "p": "Menos de 30 kg: 0,01 mg/kg IM o SC en el muslo, hasta 0,3 mg por inyección, repetible cada 5 a 10 min si hace falta (solución sin diluir 1 mg/mL: 0,01 mL/kg).",
    "k": {
     "lo": 0.01,
@@ -53,7 +53,7 @@
   },
   {
    "i": "Hipotensión asociada con choque séptico (adultos)",
-   "a": "Diluye 1 mg (1 mL) en 1.000 mL de dextrosa al 5 % (1 mcg/mL); la solución salina sola no se recomienda. Infusión IV a 0,05 a 2 mcg/kg/min en una vena grande, titulada a la presión arterial media buscada; ajusta cada 10 a 15 min en pasos de 0,05 a 0,2 mcg/kg/min. Retira de forma gradual (por ejemplo, bajando cada 10 min).",
+   "a": "Diluye 1 mg (1 mL) en 1.000 mL de dextrosa al 5 % (1 mcg/mL); la solución salina sola no se recomienda. Infusión IV a 0,05 a 2 mcg/kg/min en una vena grande, titulada a la presión arterial media buscada; ajusta cada 10 a 15 min en pasos de 0,05 a 0,2 mcg/kg/min. Retira de forma gradual (por ejemplo, bajando cada 10 min). SSC 2021: la noradrenalina es de primera línea; la adrenalina se agrega si la PAM sigue baja a pesar de noradrenalina y vasopresina (rec. 39), o se usa sola con disfunción cardiaca y mala perfusión (rec. 41).",
    "p": "No se ha establecido seguridad ni eficacia en pediatría con choque séptico. Se usan 0,05 a 0,3 mcg/kg/min en la práctica (otras fuentes; no contrastado aquí)."
   },
   {
@@ -156,6 +156,16 @@
    "t": "Crup: una perspectiva actual (Pediatr Clin North Am 1999)",
    "u": "https://pubmed.ncbi.nlm.nih.gov/10629679/",
    "b": "Adrenalina nebulizada L-epinefrina 5 mL 1:1000 o racémica 0,5 mL"
+  },
+  {
+   "t": "Surviving Sepsis Campaign 2021, Crit Care Med 2021;49:e1063 (PDF aportado por Esteban)",
+   "u": "https://doi.org/10.1097/CCM.0000000000005337",
+   "b": "adrenalina como tercer vasopresor (rec. 39 y 41)"
+  },
+  {
+   "t": "GINA 2026 Strategy Report (PDF aportado por Esteban): Box 9-4 p.181, Box 9-6 p.186, texto pp.178-190, Box 12-4 p.220",
+   "u": "https://ginasthma.org/reports/",
+   "b": "adrenalina primero si hay anafilaxia y asma (pp.178, 185)"
   }
  ],
  "rev": "2026-10-28",

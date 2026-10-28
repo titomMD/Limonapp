@@ -42,8 +42,8 @@
  "ind": [
   {
    "i": "Estatus epiléptico y crisis recurrentes graves",
-   "a": "5 a 10 mg (preferible IV lento), repetible cada 10 a 15 min hasta un máximo de 30 mg. Si hace falta, puede repetirse el tratamiento a las 2 a 4 h, teniendo en cuenta los metabolitos activos. IM solo si no hay vía IV. Precaución extrema en enfermedad pulmonar crónica o inestabilidad cardiovascular.",
-   "p": "De 3 meses a 17 años: 0,2 mg/kg (máximo 8 mg) IV lento en 1 min; si hace falta, a los 5 min una segunda dosis de 0,1 mg/kg (máximo 4 mg). Por vía rectal 0,5 mg/kg (otras fuentes).",
+   "a": "5 a 10 mg (preferible IV lento), repetible cada 10 a 15 min hasta un máximo de 30 mg. Si hace falta, puede repetirse el tratamiento a las 2 a 4 h, teniendo en cuenta los metabolitos activos. IM solo si no hay vía IV. Precaución extrema en enfermedad pulmonar crónica o inestabilidad cardiovascular. AES 2016 (nivel A): 0,15 a 0,2 mg/kg IV, máximo 10 mg por dosis, repetible una vez; es una de las tres primeras opciones (con lorazepam IV y midazolam IM), a los 5 minutos de crisis.",
+   "p": "De 3 meses a 17 años: 0,2 mg/kg (máximo 8 mg) IV lento en 1 min; si hace falta, a los 5 min una segunda dosis de 0,1 mg/kg (máximo 4 mg). Por vía rectal 0,5 mg/kg (otras fuentes). AES 2016 (nivel A): 0,15 a 0,2 mg/kg IV, máximo 10 mg, repetible una vez. Por vía rectal, 0,2 a 0,5 mg/kg, máximo 20 mg, en dosis única (nivel B) si no hay vía IV.",
    "k": {
     "lo": 0.2,
     "hi": 0.2,
@@ -148,6 +148,11 @@
    "t": "Etiqueta de diazepam inyectable (DailyMed, Fresenius Kabi Usa, Llc, Oct 22, 2026)",
    "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=ae52866a-0b9a-4baf-af1b-f9d5e00c0e56",
    "b": "dosis IV e IM por indicación, estatus epiléptico en adultos y niños, contraindicaciones, interacciones, embarazo, pediatría"
+  },
+  {
+   "t": "AES: guía de estatus epiléptico convulsivo, Epilepsy Curr 2016;16:48 (PDF aportado por Esteban), Figura 1 p.58",
+   "u": "https://doi.org/10.5698/1535-7597-16.1.48",
+   "b": "diazepam IV 0,15 a 0,2 mg/kg (máx. 10 mg) y rectal 0,2 a 0,5 mg/kg (máx. 20 mg)"
   }
  ],
  "rev": "2026-10-28",

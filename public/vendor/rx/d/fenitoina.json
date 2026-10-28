@@ -41,7 +41,7 @@
  "ind": [
   {
    "i": "Estatus epiléptico tonicoclónico generalizado y prevención y tratamiento de convulsiones en neurocirugía",
-   "a": "Carga de 10 a 15 mg/kg IV, a no más de 50 mg/min (unos 20 min en 70 kg), con monitoreo continuo de ECG y presión y vigilancia de la respiración. Luego mantenimiento de 100 mg VO o IV cada 6 a 8 h. En la práctica se usa carga de 15 a 20 mg/kg en estatus (otras fuentes; no contrastado aquí). Mide niveles séricos.",
+   "a": "Carga de 10 a 15 mg/kg IV, a no más de 50 mg/min (unos 20 min en 70 kg), con monitoreo continuo de ECG y presión y vigilancia de la respiración. Luego mantenimiento de 100 mg VO o IV cada 6 a 8 h. En la práctica se usa carga de 15 a 20 mg/kg en estatus (otras fuentes; no contrastado aquí). Mide niveles séricos. AES 2016: en estatus que no cede con benzodiacepina (segunda línea, 20 a 40 min) la opción es la fosfenitoína, 20 mg PE/kg (máximo 1.500 mg PE), nivel U; la fenitoína es una alternativa aceptable si no hay fosfenitoína (nivel B). La fenitoína dio más dolor en el sitio de infusión que la fosfenitoína (17 % contra 2 %).",
    "p": "Carga de 15 a 20 mg/kg IV, a no más de 1 a 3 mg/kg/min o 50 mg/min, la más lenta; da concentraciones totales de 10 a 20 mcg/mL. Mantenimiento 5 a 8 mg/kg al día (otras fuentes; no contrastado aquí).",
    "k": {
     "lo": 15,
@@ -146,6 +146,11 @@
    "t": "Etiqueta de fenitoína cápsulas de liberación prolongada (DailyMed, Major Pharmaceuticals, Sep 02, 2026)",
    "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=46d5c0d1-a97b-46d9-8cf4-994780673337",
    "b": "presentación y uso oral"
+  },
+  {
+   "t": "AES: guía de estatus epiléptico convulsivo, Epilepsy Curr 2016;16:48 (PDF aportado por Esteban), Figura 1 p.58",
+   "u": "https://doi.org/10.5698/1535-7597-16.1.48",
+   "b": "segunda línea: fosfenitoína 20 mg PE/kg (máx. 1.500 mg PE); fenitoína como alternativa"
   }
  ],
  "rev": "2026-10-28",

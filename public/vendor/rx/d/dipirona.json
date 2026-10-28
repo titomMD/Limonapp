@@ -42,7 +42,7 @@
  "ind": [
   {
    "i": "Dolor agudo intenso (postoperatorio, cólico, traumático) cuando otros analgésicos fallaron; dolor oncológico intenso",
-   "a": "Segunda línea según la EMA, no para dolor leve o moderado con alternativas. VO: 500 a 1.000 mg hasta 4 veces al día (máximo 4.000 mg al día). IV lenta: 1.000 a 2.500 mg por dosis en no menos de 15 min (máximo 5.000 mg al día). IM: 1.000 a 2.000 mg (máximo 5.000 mg al día). Prefiere la vía oral. Dosis tomadas de la síntesis de MediSearch sobre fichas técnicas europeas (documento original no revisado): confirma con el registro INVIMA del producto. En UCI, el riesgo de lesión renal aguda sube con más gramos IV al día (corte de 2,5 g al día).",
+   "a": "Segunda línea según la EMA, no para dolor leve o moderado con alternativas. VO: 500 a 1.000 mg hasta 4 veces al día (máximo 4.000 mg al día). IV lenta: 1.000 a 2.500 mg por dosis en no menos de 15 min (máximo 5.000 mg al día). IM: 1.000 a 2.000 mg (máximo 5.000 mg al día). Prefiere la vía oral. Dosis tomadas de la síntesis de MediSearch sobre fichas técnicas europeas (documento original no revisado): confirma con el registro INVIMA del producto. En Colombia está aprobada para dolor y fiebre y se dispensa solo con fórmula médica (INVIMA 2024). El INVIMA recomienda tratamientos cortos, de 7 días como máximo, y a la dosis mínima eficaz. En UCI, el riesgo de lesión renal aguda sube con más gramos IV al día (corte de 2,5 g al día).",
    "p": "Menores de 3 meses o de menos de 5 kg: contraindicada según los prospectos europeos. 1 a 6 años: 10 a 20 mg/kg IV por dosis (la exposición con 10 mg/kg fue 29 % menor que la del adulto en un estudio farmacocinético). Lactantes de menos de 1 año (fuera de indicación): 5 mg/kg IV por dosis. Mayores de 6 años: similar al adulto por peso. Datos de MediSearch; el estudio original no se revisó.",
    "k": {
     "lo": 10,
@@ -64,7 +64,8 @@
   "g": "Dosis menor y vigilancia renal (otras fuentes)."
  },
  "ci": [
-  "Agranulocitosis previa por dipirona u otras pirazolonas",
+  "Agranulocitosis previa por dipirona u otras pirazolonas o pirazolidinas (INVIMA 2024)",
+  "Problemas de médula ósea o una afección que altere la formación o la función de las células sanguíneas (INVIMA 2024)",
   "Leucopenia por cualquier causa",
   "Porfiria hepática aguda",
   "Déficit de glucosa-6-fosfato deshidrogenasa (hemólisis)",
@@ -78,7 +79,7 @@
   "Rash"
  ],
  "gr": [
-  "Agranulocitosis: muy rara, idiosincrática y potencialmente mortal; puede aparecer semanas después de la última dosis, sin relación con dosis ni duración",
+  "Agranulocitosis: muy rara pero grave y potencialmente mortal; puede aparecer en cualquier momento del tratamiento o después de suspenderlo, de forma impredecible. El INVIMA la describe como dependiente de la dosis y de mecanismo inmunológico; otras fuentes la consideran idiosincrática: no la descartes con dosis bajas.",
   "Anafilaxia y reacciones cutáneas graves",
   "Hipotensión grave con inyección IV rápida, sobre todo en pacientes febriles, hipovolémicos o inestables",
   "Lesión renal aguda con dosis IV altas en UCI"
@@ -114,13 +115,14 @@
   ]
  ],
  "mon": [
-  "Pide al paciente avisar fiebre, dolor al tragar, úlceras bucales, fatiga o infecciones: ante cualquiera, hemograma diferencial inmediato y suspender el fármaco",
-  "Hemograma diferencial periódico en tratamientos largos (la frecuencia no tiene consenso)",
+  "Educa al paciente: ante fiebre, escalofríos, dolor de garganta o llagas dolorosas en mucosas (boca, nariz, garganta, región genital o anal), durante o poco después del tratamiento, debe dejar el fármaco y consultar de inmediato (INVIMA 2024)",
+  "Si hay esos síntomas: cuadro hemático completo de inmediato y suspender la dipirona mientras llega el resultado (INVIMA 2024)",
+  "No se recomienda hacer hemogramas de control de rutina: no se ha demostrado que detecten la agranulocitosis a tiempo (INVIMA 2024)",
   "Presión arterial y frecuencia cardíaca durante la infusión IV",
   "Función renal si la dosis IV es alta o hay riesgo renal"
  ],
  "ant": "No hay antídoto específico; soporte.",
- "pre": "Reacción rara pero grave: agranulocitosis (en EudraVigilance 1985 a 2017: 1.448 casos, ≈16 % mortales, mediana de 13 días hasta la aparición, 34,7 % en la primera semana, y más rápido si ya había recibido el fármaco: mediana de 6 contra 15 días). La proporción mortal en Suiza bajó de 13,5 % (2014 a 2018) a 5,8 % (2019 a 2023). La EMA exige administración IV lenta y vigilar presión y frecuencia cardíaca. En Colombia, ajústate al registro sanitario INVIMA del producto.",
+ "pre": "Reacción rara pero grave: agranulocitosis (en EudraVigilance 1985 a 2017: 1.448 casos, ≈16 % mortales, mediana de 13 días hasta la aparición, 34,7 % en la primera semana, y más rápido si ya había recibido el fármaco: mediana de 6 contra 15 días). La proporción mortal en Suiza bajó de 13,5 % (2014 a 2018) a 5,8 % (2019 a 2023). La EMA exige administración IV lenta y vigilar presión y frecuencia cardíaca. En Colombia, ajústate al registro sanitario INVIMA del producto. El informe INVIMA 356-2024 pide no formularla a quien ya tuvo agranulocitosis por pirazolonas o tiene problemas de médula ósea, limitar el tratamiento a 7 días y reportar toda sospecha de reacción adversa al Programa Nacional de Farmacovigilancia.",
  "pres": [
   "Ampolla 1 g/2 mL",
   "Gotas 500 mg/mL",
@@ -131,9 +133,10 @@
   "Conmel"
  ],
  "pe": [
-  "Está restringida o retirada en varios países (por ejemplo, EE. UU.) por el riesgo de agranulocitosis; en Colombia sigue en uso.",
-  "No tiene un intervalo de monitoreo de hemograma validado: lo que dispara la alarma es el síntoma. Enseña esos síntomas al paciente.",
-  "Pasa la IV lenta: la inyección rápida produce hipotensión."
+  "En Colombia está aprobada para dolor y fiebre, con fórmula médica obligatoria; el INVIMA dice que los beneficios siguen superando los riesgos si se cumplen las medidas de seguridad.",
+  "El INVIMA no recomienda hemogramas de control de rutina; lo que dispara la alarma es el síntoma. Enseña esos síntomas al paciente.",
+  "Pasa la IV lenta: la inyección rápida produce hipotensión.",
+  "El informe INVIMA 356-2024 no menciona el embarazo: la contraindicación en el primer trimestre que dio MediSearch sigue sin verificar (el tercer trimestre sí está contraindicado según fichas europeas)."
  ],
  "v": {
   "d": 0,
@@ -141,6 +144,16 @@
   "s": 1
  },
  "src": [
+  {
+   "t": "INVIMA: Informe de seguridad No. 356-2024 (18-nov-2024), recordatorio sobre agranulocitosis por dipirona (PDF aportado por Esteban)",
+   "u": "https://www.invima.gov.co/",
+   "b": "uso en Colombia, duración máxima, a quién no darla, vigilancia (no tengo el enlace directo al documento)"
+  },
+  {
+   "t": "EMA: medidas para minimizar el riesgo grave de agranulocitosis con metamizol (6-sep-2024), citada en el informe INVIMA",
+   "u": "https://www.ema.europa.eu/en/news/ema-recommends-measures-minimise-serious-outcomes-known-side-effect-painkiller-metamizole",
+   "b": "conclusión de la evaluación europea"
+  },
   {
    "t": "Metamizol y agranulocitosis: utilización, señales de farmacovigilancia y minimización de riesgo en Suiza (Swiss Med Wkly 2026)",
    "u": "https://pubmed.ncbi.nlm.nih.gov/42371928/",

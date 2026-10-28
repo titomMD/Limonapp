@@ -38,8 +38,15 @@ QUE CAMBIA EN LA v63 (sobre la v62, que queda incluida)
     y contraindicaciones vienen de un resumen de fichas tecnicas europeas, NO del documento original; siguen con dosis en nivel 0 y hay que
     confirmar con el registro INVIMA (en especial: MediSearch dice que dipirona esta contraindicada en el primer trimestre; sin verificar).
   - Tambien se agregaron con PubMed: acido tranexamico (CRASH-2 y WOMAN), dexametasona en crup (tope 8 mg VO/IM, 12 mg IV) y adrenalina nebulizada en crup.
-  - Sin responder por MediSearch (hay que pedirlos uno a uno): crisis asmatica (GINA), EPOC (GOLD), choque septico (SSC 2021), crisis suprarrenal,
-    HDA con IBP IV, estado epileptico, potasio IV pediatrico e hipomagnesemia. Levofloxacino sigue con farmacologia sin contrastar (solo drugs.com).
+  - Guias aportadas por Esteban (28-oct-2026) y cargadas con pagina citada: GINA 2026 (salbutamol, ipratropio, prednisona, dexametasona, magnesio),
+    Surviving Sepsis 2021 (noradrenalina, hidrocortisona, adrenalina), Endocrine Society 2016 y ESE 2024 (hidrocortisona en crisis suprarrenal),
+    ACG 2021 (omeprazol, pantoprazol, metoclopramida), AES 2016 (midazolam, diazepam, fenitoina, levetiracetam).
+    El PDF de GOLD es un resumen de terceros (1aria.com), no el informe oficial: solo da secuencia (SABA/SAMA, corticoide hasta 5 dias, antibiotico 5 dias);
+    la dosis de prednisona 40 mg en EPOC sigue como "otras fuentes". Los dos documentos INVIMA (dipirona 356-2024 y alerta de hioscina inyectable 2017)
+    son alertas de seguridad sin dosis: actualizan advertencias (dipirona: maximo 7 dias, sin hemogramas de rutina; hioscina: cardiopatia y taquicardia).
+    Las dosis de dipirona e hioscina siguen sin documento original: falta el inserto del producto del hospital o la ficha del registro INVIMA.
+  - Pendientes sin guia: potasio IV pediatrico e hipomagnesemia (falta capitulo pediatrico o Tintinalli). No hay ficha de lorazepam, valproato ni fenobarbital (AES);
+    ni de vasopresina ni eritromicina (SSC y ACG). Levofloxacino sigue con farmacologia sin contrastar (solo drugs.com).
   - 86 farmacos: los 68 anteriores migrados (65 ya contrastados, ver arriba) y 18 de urologia contrastados con
     etiquetas oficiales (drugs.com): tamsulosina, finasterida, dutasterida, oxibutinina, solifenacina, mirabegron, fenazopiridina,
     fosfomicina, amikacina, ertapenem, cefepima, hidroclorotiazida, citrato de potasio, alopurinol, tadalafilo, desmopresina,

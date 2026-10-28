@@ -37,9 +37,9 @@
    "p": "2 a 12 años: 2,5 mg tres o cuatro veces al día si pesan 15 kg o más. Si pesan menos de 15 kg y necesitan menos de 2,5 mg, usa la solución al 0,5 % diluida (no el vial de 0,083 %). Menores de 2 años: seguridad y eficacia no establecidas en la etiqueta."
   },
   {
-   "i": "Crisis asmática moderada o grave en urgencias (esquema habitual, no figura en la etiqueta)",
-   "a": "Inhalador de 100 mcg con aerocámara: 4 a 8 inhalaciones cada 20 min durante la primera hora. Nebulizado: 2,5 a 5 mg cada 20 min por 3 dosis (otras fuentes; no contrastado aquí).",
-   "p": "Inhalador con aerocámara: 4 a 8 inhalaciones cada 20 min por 1 hora. Nebulizado: 0,15 mg/kg por dosis (mínimo 2,5 mg) (otras fuentes; no contrastado aquí)."
+   "i": "Crisis asmática (esquema GINA 2026; no figura en la etiqueta)",
+   "a": "Mayores de 5 años (GINA 2026, Box 9-4 y 9-6): leve, 4 inhalaciones de 100 mcg con aerocámara, repetible una vez a los 30 a 60 min. Moderada, 4 a 6 inhalaciones, o 2,5 mg nebulizados, hasta 3 veces cada 20 a 30 min. Grave, 6 a 10 inhalaciones, o 5 mg nebulizados, hasta 3 veces cada 20 a 30 min. Aerocámara con una inhalación a la vez; el inhalador con aerocámara es tan eficaz como el nebulizador y se prefiere. En moderada y grave se agrega ipratropio. Si hay anafilaxia además del asma, da primero adrenalina IM. No uses salbutamol IV de rutina. Vigila toxicidad por SABA (taquicardia, temblor, hipopotasemia, acidosis láctica).",
+   "p": "Hasta 5 años (GINA 2026, Box 12-4 p.220): 4 o más inhalaciones de 100 mcg con aerocámara (con mascarilla si hace falta; una inhalación a la vez, 5 a 6 respiraciones por cada una), o 2,5 mg nebulizados. En crisis moderada o grave se repite cada 20 min hasta 3 veces y luego se reevalúa. En 6 a 11 años usa el esquema de los mayores."
   },
   {
    "i": "Mantenimiento o alivio de síntomas con inhalador (esquema habitual)",
@@ -125,6 +125,11 @@
    "t": "Etiqueta de albuterol (salbutamol) solución para nebulizar 0,083 % (DailyMed, Nephron Pharmaceuticals Corporation, Oct 21, 2026)",
    "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=574824f3-51cc-4b94-9c10-e3204d8b19f8",
    "b": "indicación, dosis nebulizada, pediatría, contraindicaciones, interacciones, embarazo, efectos adversos"
+  },
+  {
+   "t": "GINA 2026 Strategy Report (PDF aportado por Esteban): Box 9-4 p.181, Box 9-6 p.186, texto pp.178-190, Box 12-4 p.220",
+   "u": "https://ginasthma.org/reports/",
+   "b": "dosis de salbutamol por gravedad en adultos, adolescentes y niños de 6 a 11 años (Box 9-4, 9-6) y de 5 años o menos (Box 12-4)"
   }
  ],
  "rev": "2026-10-28",

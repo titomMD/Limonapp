@@ -63,9 +63,9 @@
    "p": "—"
   },
   {
-   "i": "Hemorragia digestiva alta o profilaxis de úlcera de estrés por vía IV (uso habitual en Colombia, sin presentación IV aprobada por la FDA)",
-   "a": "40 mg IV una vez al día o cada 12 h (otras fuentes; no contrastado aquí).",
-   "p": "0,7 a 1 mg/kg IV al día, máximo 40 mg (otras fuentes; no contrastado aquí)."
+   "i": "Hemorragia digestiva alta por úlcera, después de la hemostasia endoscópica (ACG 2021; no figura en la etiqueta)",
+   "a": "ACG 2021, rec. 13 (fuerte, evidencia moderada a alta): IBP en dosis altas (80 mg al día o más) durante 3 días después de una hemostasia endoscópica exitosa. Continuo: 80 mg IV en bolo y luego 8 mg/h (la mejor evidencia). Intermitente: 80 mg en bolo y luego 40 mg dos a cuatro veces al día, oral o IV (la dosis óptima no es segura; en Occidente se prefieren las dosis totales mayores). Rec. 14 (débil): en pacientes de alto riesgo, sigue con IBP dos veces al día hasta 2 semanas después de la endoscopia. Rec. 4: no hay recomendación a favor ni en contra del IBP antes de la endoscopia. El esquema de 40 mg IV una o dos veces al día que se usa como profilaxis de úlcera de estrés no es el de la guía.",
+   "p": "La guía ACG es para adultos. En niños: 0,7 a 1 mg/kg IV al día, máximo 40 mg (otras fuentes; no contrastado aquí)."
   }
  ],
  "aj": {
@@ -159,6 +159,11 @@
    "t": "Etiqueta de omeprazol (cápsulas de liberación retardada) (DailyMed, Proficient Rx Lp, Sep 01, 2026)",
    "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=c5e3a37a-f6e3-43d4-a8a9-54db6c271908",
    "b": "dosis en adultos y niños, ajuste hepático, contraindicaciones, interacciones, embarazo, lactancia"
+  },
+  {
+   "t": "ACG: guía de hemorragia digestiva alta y úlcera, Am J Gastroenterol 2021;116:899 (PDF aportado por Esteban)",
+   "u": "https://doi.org/10.14309/ajg.0000000000001245",
+   "b": "IBP en dosis altas tras hemostasia endoscópica (rec. 4, 13 y 14; pp.911 a 912)"
   }
  ],
  "rev": "2026-10-28",

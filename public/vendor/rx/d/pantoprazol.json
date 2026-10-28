@@ -45,8 +45,8 @@
    "p": "—"
   },
   {
-   "i": "Hemorragia digestiva alta (uso habitual; la etiqueta de la FDA dice que su eficacia no está establecida)",
-   "a": "80 mg IV en bolo y luego 40 mg IV cada 12 h, o infusión continua (otras fuentes; no contrastado aquí).",
+   "i": "Hemorragia digestiva alta por úlcera, después de la hemostasia endoscópica (ACG 2021; la etiqueta de la FDA dice que su eficacia no está establecida)",
+   "a": "ACG 2021, rec. 13 (fuerte): IBP en dosis altas por 3 días tras hemostasia endoscópica exitosa. Continuo: 80 mg IV en bolo y luego 8 mg/h. Intermitente: 80 mg en bolo y luego 40 mg dos a cuatro veces al día (oral o IV); 40 mg IV cada 12 h es la forma más baja de ese rango. Rec. 14 (débil): en alto riesgo, IBP dos veces al día hasta 2 semanas después de la endoscopia. Sin recomendación para IBP antes de la endoscopia (rec. 4). Los ensayos de la guía usaron sobre todo omeprazol, esomeprazol y pantoprazol como clase de IBP.",
    "p": "—"
   },
   {
@@ -145,6 +145,11 @@
    "t": "Etiqueta de pantoprazol IV (Protonix I.V.) (DailyMed, Cardinal Health 107, Llc, Apr 06, 2026)",
    "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=50802e19-72d3-4130-8d14-eb94361b38e7",
    "b": "dosis IV, indicaciones y límites de uso"
+  },
+  {
+   "t": "ACG: guía de hemorragia digestiva alta y úlcera, Am J Gastroenterol 2021;116:899 (PDF aportado por Esteban)",
+   "u": "https://doi.org/10.14309/ajg.0000000000001245",
+   "b": "IBP en dosis altas tras hemostasia endoscópica (rec. 4, 13 y 14; pp.911 a 912)"
   }
  ],
  "rev": "2026-10-28",

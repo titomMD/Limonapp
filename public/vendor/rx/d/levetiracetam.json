@@ -57,9 +57,15 @@
    "p": "6 a menos de 16 años: 10 mg/kg dos veces al día hasta 30 mg/kg dos veces al día."
   },
   {
-   "i": "Estatus epiléptico (uso habitual, no figura en la etiqueta)",
-   "a": "60 mg/kg IV (máximo 4.500 mg) en 10 a 15 min (otras fuentes; no contrastado aquí). La vía IV es temporal cuando no se puede usar la oral, con la misma dosis total diaria que la oral.",
-   "p": "60 mg/kg IV (máximo 4.500 mg) (otras fuentes; no contrastado aquí). La etiqueta del inyectable solo cubre mayores de 16 años."
+   "i": "Estatus epiléptico convulsivo, segunda línea (AES 2016; no figura en la etiqueta)",
+   "a": "AES 2016 (nivel U, sin evidencia que prefiera una opción): 60 mg/kg IV en dosis única, máximo 4.500 mg, cuando la crisis sigue a los 20 minutos tras la benzodiacepina. Otras opciones de segunda línea: fosfenitoína 20 mg PE/kg (máx. 1.500 mg PE) o ácido valproico 40 mg/kg (máx. 3.000 mg, nivel B). El ensayo ESETT, que la guía anticipaba, no está en el documento aportado. La etiqueta del inyectable solo cubre mayores de 16 años.",
+   "p": "AES 2016: 60 mg/kg IV en dosis única, máximo 4.500 mg (la guía no separa niños de adultos).",
+   "k": {
+    "lo": 60,
+    "hi": 60,
+    "int": "IV, dosis única en estatus epiléptico (AES 2016, nivel U)",
+    "maxd": "4.500 mg"
+   }
   }
  ],
  "aj": {
@@ -134,6 +140,11 @@
    "t": "Etiqueta de levetiracetam inyectable en solución salina (DailyMed, Somerset Therapeutics, Llc, Apr 20, 2026)",
    "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=2b37c579-ebe7-4ce1-8a34-03e974a77439",
    "b": "uso IV y pediatría"
+  },
+  {
+   "t": "AES: guía de estatus epiléptico convulsivo, Epilepsy Curr 2016;16:48 (PDF aportado por Esteban), Figura 1 p.58",
+   "u": "https://doi.org/10.5698/1535-7597-16.1.48",
+   "b": "segunda línea: levetiracetam 60 mg/kg IV (máx. 4.500 mg)"
   }
  ],
  "rev": "2026-10-28",

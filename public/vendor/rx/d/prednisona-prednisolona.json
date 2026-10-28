@@ -53,14 +53,14 @@
    "p": "Útil para limitar la supresión del crecimiento."
   },
   {
-   "i": "Exacerbación de EPOC (uso habitual, no figura en la etiqueta)",
-   "a": "40 mg VO al día por 5 días (otras fuentes; no contrastado aquí).",
+   "i": "Exacerbación de EPOC (GOLD 2026; no figura en la etiqueta)",
+   "a": "Los corticoides sistémicos mejoran el FEV1 y la oxigenación y acortan la recuperación y la estancia; la duración no debe pasar de 5 días (evidencia A, resumen de GOLD 2026). La dosis de 40 mg VO al día por 5 días viene de otras fuentes (el informe oficial de GOLD); no está en el resumen aportado.",
    "p": "—"
   },
   {
-   "i": "Exacerbación de asma (uso habitual, no figura en la etiqueta)",
-   "a": "40 a 60 mg VO al día por 5 a 7 días (otras fuentes; no contrastado aquí).",
-   "p": "1 a 2 mg/kg al día (máximo 40 a 60 mg) por 3 a 5 días (otras fuentes; no contrastado aquí)."
+   "i": "Exacerbación de asma (GINA 2026; no figura en la etiqueta)",
+   "a": "Prednisona o prednisolona 1 mg/kg al día hasta un máximo de 50 mg, por 5 a 7 días (GINA 2026, p.180; al alta, 40 a 50 mg al día por 5 a 7 días, Box 9-5). Dala pronto en crisis moderada o grave. Antibióticos solo si hay infección clara.",
+   "p": "6 a 11 años: 1 a 2 mg/kg al día, máximo 40 mg, por 3 a 5 días. Hasta 5 años: 1 a 2 mg/kg, máximo 20 mg si tiene menos de 2 años y 30 mg si tiene 2 a 5 años (Box 12-4). Alternativa: dexametasona oral 0,3 a 0,6 mg/kg (máximo 12 mg) por 1 a 2 días (ver ficha de dexametasona)."
   }
  ],
  "aj": {
@@ -152,6 +152,16 @@
    "t": "Etiqueta de prednisona tabletas (DailyMed, Bryant Ranch Prepack, Oct 22, 2026)",
    "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=2bb5bba8-60ae-4789-90eb-2d4a43e7a14b",
    "b": "indicaciones, dosis inicial, esclerosis múltiple, terapia en días alternos, interacciones, embarazo, pediatría"
+  },
+  {
+   "t": "GINA 2026 Strategy Report (PDF aportado por Esteban): Box 9-4 p.181, Box 9-6 p.186, texto pp.178-190, Box 12-4 p.220",
+   "u": "https://ginasthma.org/reports/",
+   "b": "prednisona en crisis asmática: adultos y niños (p.180, Box 9-5, Box 12-4)"
+  },
+  {
+   "t": "Resumen de manejo básico de EPOC adaptado de GOLD 2026 (1aria.com; PDF aportado por Esteban). Es un resumen de terceros, no el informe oficial",
+   "u": "https://goldcopd.org/2026-gold-report-and-pocket-guide/",
+   "b": "corticoides sistémicos en exacerbación de EPOC (máximo 5 días)"
   }
  ],
  "rev": "2026-10-28",

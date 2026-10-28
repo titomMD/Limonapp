@@ -150,7 +150,8 @@
  "pe": [
   "Máximo 12 semanas, sin excepción; en gastroparesia, evita superar 12 semanas en total.",
   "Inyecta lento (1 a 2 min): la inyección rápida produce inquietud intensa (acatisia).",
-  "Se usa mucho en urgencias, pero en menores de edad la etiqueta recomienda evitarlo."
+  "Se usa mucho en urgencias, pero en menores de edad la etiqueta recomienda evitarlo.",
+  "En hemorragia digestiva alta, la ACG 2021 no encontró evidencia que apoye la metoclopramida antes de la endoscopia; sugiere eritromicina 250 mg IV en 20 a 30 min, de 20 a 90 min antes de la endoscopia."
  ],
  "v": {
   "d": 1,
@@ -167,6 +168,11 @@
    "t": "Etiqueta de metoclopramida tabletas (DailyMed, Ani Pharmaceuticals, Inc., May 18, 2026)",
    "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=797aad80-0597-42f8-99d5-39de180c3b5a",
    "b": "dosis oral, tope diario, ajustes, advertencia de discinesia tardía"
+  },
+  {
+   "t": "ACG: guía de hemorragia digestiva alta y úlcera, Am J Gastroenterol 2021;116:899 (PDF aportado por Esteban)",
+   "u": "https://doi.org/10.14309/ajg.0000000000001245",
+   "b": "procinético antes de endoscopia en HDA (rec. 3)"
   }
  ],
  "rev": "2026-10-28",

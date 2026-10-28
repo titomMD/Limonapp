@@ -73,13 +73,14 @@
   "g": "Mayor riesgo de retención urinaria y confusión (otras fuentes)."
  },
  "ci": [
+  "Taquicardia (contraindicación para la vía inyectable según INVIMA 2017)",
   "Glaucoma de ángulo cerrado",
   "Miastenia gravis",
   "Megacolon tóxico",
   "Hipertrofia prostática con retención urinaria",
   "Obstrucción mecánica gastrointestinal",
-  "Taquiarritmias previas",
-  "Hipersensibilidad a la hioscina o a otros anticolinérgicos"
+  "Hipersensibilidad a la hioscina o a otros anticolinérgicos",
+  "Taquiarritmias previas"
  ],
  "fr": [
   "Boca seca",
@@ -88,7 +89,7 @@
   "Estreñimiento"
  ],
  "gr": [
-  "Taquicardia dependiente de la dosis con la vía IV; reportes de casos de hipotensión grave e isquemia miocárdica, y de taquicardia supraventricular por reentrada nodal con hipotensión refractaria tras 20 mg IV",
+  "Reacciones cardiovasculares graves con la vía inyectable: la MHRA recibió ocho notificaciones de muerte (la mayoría infarto agudo de miocardio o paro cardiaco), sobre todo en cardiopatía; también taquicardia, hipotensión y anafilaxia, que es más probable que sea mortal con enfermedad coronaria (INVIMA 2017). Además, reportes de caso de taquicardia supraventricular con hipotensión refractaria tras 20 mg IV.",
   "Retención urinaria aguda",
   "Glaucoma agudo",
   "Psicosis (reporte de caso en una niña de 9 años)"
@@ -116,14 +117,15 @@
   ]
  ],
  "mon": [
+  "Antes de la vía inyectable: antecedentes de cardiopatía y frecuencia cardíaca basal (INVIMA 2017)",
   "Frecuencia cardíaca y presión arterial durante la vía IV",
-  "ECG si hay cardiopatía o factores de riesgo",
   "Diuresis y retención urinaria",
   "Disponibilidad de adenosina o cardioversión si hay TSV con la vía IV",
-  "Respuesta del dolor"
+  "Respuesta del dolor",
+  "ECG si hay cardiopatía o factores de riesgo"
  ],
  "ant": "Fisostigmina en intoxicación grave con síntomas centrales (poco usada).",
- "pre": "La vía IV produce solo taquicardia (a diferencia de la atropina, sin bradicardia inicial), con una curva dosis-respuesta más plana: monitoriza frecuencia cardíaca y presión. No es lo mismo que la escopolamina base: el butilbromuro no cruza bien la barrera hematoencefálica y no sirve para náuseas posoperatorias ni cinetosis.",
+ "pre": "Antes de usar la vía inyectable, el INVIMA pide revisar los antecedentes cardiacos (insuficiencia cardiaca, enfermedad coronaria, arritmia, síndrome coronario agudo, angina, insuficiencia ventricular izquierda no controlada, arritmias ventriculares recientes, hipertensión) y usarla con precaución en cardiopatía; está contraindicada en taquicardia (INVIMA 2017). La vía IV produce solo taquicardia (a diferencia de la atropina), con una curva dosis-respuesta más plana. No es lo mismo que la escopolamina base: el butilbromuro no cruza bien la barrera hematoencefálica y no sirve para náuseas posoperatorias ni cinetosis.",
  "pres": [
   "Ampolla 20 mg/mL",
   "Tabletas 10 mg",
@@ -135,14 +137,20 @@
  "pe": [
   "Es el antiespasmódico clásico del cólico renal y biliar, pero no sustituye el AINE ni el opioide para el dolor.",
   "Con la vía IV, vigila el corazón: se han descrito arritmias e hipotensión.",
-  "No confundas el butilbromuro (Buscapina) con la escopolamina base."
+  "No confundas el butilbromuro (Buscapina) con la escopolamina base.",
+  "Las dosis que figuran en la ficha vienen de un resumen de fichas europeas (MediSearch); el inserto aportado por Esteban es la alerta de seguridad del INVIMA y no trae dosis. Confirma la dosis con el inserto del producto del hospital."
  ],
  "v": {
   "d": 0,
   "f": 1,
-  "s": 0
+  "s": 1
  },
  "src": [
+  {
+   "t": "INVIMA: alerta sobre butilbromuro de hioscina inyectable (22-jun-2017), basada en la alerta de la MHRA (PDF aportado por Esteban)",
+   "u": "https://www.gov.uk/drug-safety-update/hyoscine-butylbromide-buscopan-injection-risk-of-serious-adverse-effects-in-patients-with-underlying-cardiac-disease",
+   "b": "ocho muertes notificadas a la MHRA tras la vía inyectable; precaución en cardiopatía; contraindicada con taquicardia"
+  },
   {
    "t": "Hioscina butilbromuro: revisión de su uso en cólico y dolor abdominal (Drugs 2007)",
    "u": "https://pubmed.ncbi.nlm.nih.gov/17547475/",
