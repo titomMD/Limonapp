@@ -1,3 +1,21 @@
+LIMONAPP v62 - servicios fijos, datos por especialidad, calculadoras, entrega con formatos y recetario (borrador)
+
+QUE CAMBIA EN LA v62 (sobre la v61 y la v60, que quedan incluidas)
+  - Servicios predeterminados: Cirugia general, Medicina interna, Pediatria, Ginecologia y obstetricia, Ortopedia y traumatologia
+    y Cuidados intensivos ya vienen creados y no se pueden renombrar ni borrar. Si ya tenias uno con ese nombre, la app lo reconoce
+    y conserva tus pacientes (no cambia ningun dato). Se agregan otras 24 especialidades desde una lista, o un nombre propio.
+  - Datos por especialidad en la ficha del paciente (opcionales): cirugia (procedimiento, fecha, drenajes, via oral; muestra POP),
+    ortopedia, neurocirugia, medicina interna, pediatria (peso, talla), ginecologia (G P C A, FUM, semanas), UCI, oncologia.
+    Aparecen como etiquetas en la tarjeta, la ficha, la ronda y la entrega de turno.
+  - Pendientes tipicos por especialidad: lista de sugerencias generales (sin dosis) que se agregan con un toque.
+  - 84 calculadoras y escalas por especialidad (funciones renales, NEWS2, SOFA, CURB-65, Wells, CHA2DS2-VASc, Child-Pugh, MELD,
+    Parkland, Glasgow, Apgar, Bishop, NIHSS, etc.). Cada una explica la formula y la fuente. Desde la ficha precargan edad y sexo.
+  - Entrega de turno con formatos: corto (una linea por paciente), normal o detallado; orden por cama o por gravedad.
+  - Borrador de resumen de egreso: se arma con lo que ya esta en la ficha, para revisar y completar.
+  - Recetario (BORRADOR SIN VERIFICAR): 68 medicamentos con dosis por indicacion, adulto y pediatrico, y calculo de mg segun el peso.
+    Viene APAGADO. Se activa en Cuenta > Recetario. No activarlo para otros usuarios hasta confirmar cada dosis con la fuente oficial.
+  - Sin cambios en las instrucciones de Gemini ni en el servidor.
+
 LIMONAPP v61 - tutorial renovado y sello "Potenciado con Gemini"
 
 QUE CAMBIA EN LA v61 (sobre la v60, que queda incluida)

@@ -1,4 +1,19 @@
-<!doctype html><html><head><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#f7f5f0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Limonapp"><link rel="apple-touch-icon" href="icon-192.png"><link rel="icon" type="image/png" href="icon-192.png"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#f7f5f0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Limonapp"><link rel="apple-touch-icon" href="icon-192.png"><link rel="icon" type="image/png" href="icon-192.png"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}/* v62 */
+.espc{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}.espc span{font-size:12px;font-weight:550;color:var(--ink);background:var(--accent-soft);border-radius:99px;padding:3px 10px}
+.espbox{border:1px dashed var(--line,rgba(127,127,127,.35));border-radius:14px;padding:10px 12px;margin:10px 0}
+.cgrid{display:grid;gap:10px;margin:12px 0}
+@media(min-width:700px){.cgrid{grid-template-columns:1fr 1fr}}
+.ccheck{flex-direction:row!important;align-items:flex-start;gap:10px}.ccheck input{width:20px;height:20px;flex:none;margin-top:2px}
+.cres{background:var(--accent-soft);border-radius:16px;padding:14px 16px;margin:12px 0}
+.cval{font:700 1.9rem var(--serif,inherit);line-height:1.15;word-break:break-word}.cval span{font:600 .95rem var(--font);color:var(--muted)}
+.cint{margin-top:6px;font-size:14.5px;line-height:1.45}
+.cgh{margin:16px 0 8px!important}.ccard{text-align:left}.ccard strong{display:block;margin-bottom:3px}
+.cref{margin:8px 0}.cref summary{cursor:pointer;color:var(--muted)}
+.rxflag{display:inline-block;font-size:11.5px;font-weight:650;color:#7a4b00;background:#ffe9b8;border-radius:99px;padding:2px 9px;margin:6px 0}
+[data-theme=dark] .rxflag{color:#ffd98a;background:#4a3600}
+.rxi{border-top:1px solid var(--line,rgba(127,127,127,.2));padding:8px 0}.rxh{font-weight:650;font-size:14px;margin-bottom:2px}
+.rxcalc{margin-top:4px;font-size:13px;font-weight:600;color:var(--ink);background:var(--accent-soft);border-radius:10px;padding:5px 9px;display:inline-block}
+</style></head><body>
 <!--
 NOTAS PARA RETOMAR ESTA APP EN UN CHAT NUEVO (v12, 21-oct-2026)
 App: "Limonapp" (antes Mis rotaciones) - notas por paciente/servicio, pendientes, entrega de turno, respaldo, historia clinica, UI español + aleman simultaneo (boton DE).
@@ -933,7 +948,7 @@ var NAVIC={
 };
 function renderTabs(){
   var items=[['services','Servicios'],['tasks','Pendientes'],['handoff','Entrega de turno'],['team','Equipo'],['backup','Cuenta']];
-  var cur=S.view==='service'||S.view==='patient'||S.view==='ronda'||S.view==='urg'?'services':S.view;
+  var cur=S.view==='service'||S.view==='patient'||S.view==='ronda'||S.view==='urg'||S.view==='calc'||S.view==='rx'?'services':S.view;
   var n=allPending();
   document.getElementById('tabs').innerHTML=items.map(function(i){
     var badge=i[0]==='team'&&T.unread?'<span class="n">'+T.unread+'</span>':i[0]==='tasks'&&n?'<span class="n">'+n+'</span>':'';
@@ -973,19 +988,19 @@ function viewServices0(){
   var np=allPending();
   var h='<section class="hero2"><div class="hrow"><div class="hi">'+greet()+'</div>'+GEMPILL+'</div><h2 class="hl">¿Qué vamos a <em>revisar</em> hoy?</h2>'+
     '<button class="cmdbar" data-a="cmdk">'+ICSEARCH+'<span>Buscar paciente, cama o ir a…</span><kbd>⌘K</kbd></button>'+
-    '<div class="chips2"><button data-a="nav" data-v="tasks">Pendientes'+(np?' · '+np:'')+'</button><button data-a="nav" data-v="handoff">Entrega de turno</button><button data-a="toArea" data-v="amb">Consulta externa</button><button data-a="nav" data-v="urg">Urgencias</button></div></section>';
+    '<div class="chips2"><button data-a="nav" data-v="tasks">Pendientes'+(np?' · '+np:'')+'</button><button data-a="nav" data-v="handoff">Entrega de turno</button><button data-a="toArea" data-v="amb">Consulta externa</button><button data-a="nav" data-v="urg">Urgencias</button><button data-a="toCalc">Calculadoras</button>'+(rxOn()?'<button data-a="toRx">Recetario</button>':'')+'</div></section>';
   if(demo)h+='<div class="note warn">Hay un paciente de ejemplo en Neurocirugía. Bórralo desde su ficha cuando termines de probar.</div>';
   var nAmb=db.patients.filter(function(p){return p.ctx==='amb';}).length;
   h+='<div class="seg" style="margin:6px 0"><button class="tab" data-a="area" data-v="hosp"'+(S.area!=='amb'?' aria-current="page"':'')+'>Hospitalización</button><button class="tab" data-a="area" data-v="amb"'+(S.area==='amb'?' aria-current="page"':'')+'>Consulta externa ('+nAmb+')</button></div>';
   if(S.area==='amb')return h+ambArea();
   var nu=db.patients.filter(function(p){return p.active&&p.ctx==='urg';}).length;
   h+='<button class="pcard" data-a="nav" data-v="urg" style="margin-bottom:10px"><div class="row spread"><h2>Urgencias · observación</h2><span class="muted">›</span></div><div class="row small muted"><span>'+nu+(nu===1?' paciente':' pacientes')+' en observación</span></div></button>';
-  h+='<div class="cols">'+db.services.map(function(s){
+  h+='<div class="cols">'+svcList().map(function(s){
     var act=activeOf(s.id);var pend=act.reduce(function(a,p){return a+pendCount(p.id);},0);
     return '<button class="pcard" data-a="openService" data-id="'+s.id+'"><div class="row spread"><h2>'+esc(s.name)+'</h2><span class="muted">›</span></div><div class="row small muted"><span>'+act.length+' pacientes activos</span><span>·</span><span>'+pend+' pendientes</span></div></button>';
   }).join('')+'</div>';
   h+=lobbyTools();
-  h+='<div class="card"><h3>Nuevo servicio o rotación</h3><div class="row"><div class="grow"><input id="newSvc" placeholder="Ej. Cirugía general, UCI" data-enter="addService" aria-label="Nombre del servicio"></div><button class="btn primary" data-a="addService">Agregar</button></div></div>';
+  h+=svcAddCard();
   return h;
 }
 
@@ -1001,7 +1016,7 @@ function patientForm(p){
    '<label>Atención<select id="f_ctx">'+[['hosp','Hospitalización'],['urg','Urgencias (observación)'],['amb','Consulta externa']].map(function(o){return '<option value="'+o[0]+'"'+((p.ctx||S.newCtx||'hosp')===o[0]?' selected':'')+'>'+o[1]+'</option>';}).join('')+'</select></label></div>'+
    '<label>Diagnóstico principal<input id="f_dx" value="'+esc(p.dx)+'"></label>'+cieBox('f_dx')+
    '<label>Gravedad<select id="f_sev">'+SEV.map(function(s){return '<option value="'+s+'"'+(p.sev===s?' selected':'')+'>'+s+'</option>';}).join('')+'</select></label>'+
-   '<label>Si pasa X, hacer Y (para la entrega de turno)<textarea id="f_cont" rows="2">'+esc(p.cont||'')+'</textarea></label>'+
+   espForm(p)+'<label>Si pasa X, hacer Y (para la entrega de turno)<textarea id="f_cont" rows="2">'+esc(p.cont||'')+'</textarea></label>'+
    '<div class="row"><button class="btn primary" data-a="savePatient"'+(p.id?' data-id="'+p.id+'"':'')+'>Guardar</button><button class="btn ghost" data-a="cancelPatient">Cancelar</button></div></div>';
 }
 
@@ -1015,9 +1030,9 @@ function viewService(){
   if(S.newPatient)h+=patientForm();
   h+=list.length?'<div class="cols">'+list.map(function(p){
     var pc=pendCount(p.id);
-    return '<button class="pcard" data-a="openPatient" data-id="'+p.id+'"><div class="row spread"><div class="row"><span class="bed">Cama '+esc(p.bed||'—')+'</span><strong>'+esc(p.ini)+'</strong><span class="muted small">'+esc(p.age)+' a · '+esc(p.sex)+(p.hc?' · HC …'+esc(p.hc):'')+'</span></div><span class="pill '+esc(p.sev)+'">'+esc(p.sev)+'</span></div><div class="dx">'+esc(p.dx||'Sin diagnóstico')+'</div><div class="row small muted"><span>Día '+hd(p)+'</span>'+(pc?'<span>·</span><span>'+pc+' pendientes</span>':'')+(p.sh?'<span>·</span><span class="shr'+(p.sh.upd?' upd':'')+'">Compartido'+(p.sh.upd?' · actualizado por '+esc(p.sh.upd.by||'un colega'):'')+'</span>':'')+'</div></button>';
+    return '<button class="pcard" data-a="openPatient" data-id="'+p.id+'"><div class="row spread"><div class="row"><span class="bed">Cama '+esc(p.bed||'—')+'</span><strong>'+esc(p.ini)+'</strong><span class="muted small">'+esc(p.age)+' a · '+esc(p.sex)+(p.hc?' · HC …'+esc(p.hc):'')+'</span></div><span class="pill '+esc(p.sev)+'">'+esc(p.sev)+'</span></div><div class="dx">'+esc(p.dx||'Sin diagnóstico')+'</div>'+espHtml(p)+'<div class="row small muted"><span>Día '+hd(p)+'</span>'+(pc?'<span>·</span><span>'+pc+' pendientes</span>':'')+(p.sh?'<span>·</span><span class="shr'+(p.sh.upd?' upd':'')+'">Compartido'+(p.sh.upd?' · actualizado por '+esc(p.sh.upd.by||'un colega'):'')+'</span>':'')+'</div></button>';
   }).join('')+'</div>':'<div class="empty">'+art('sleep')+(S.filter==='activos'?'Sin pacientes activos. Agrega el primero con “+ Paciente”.':'Aún no hay pacientes egresados.')+'</div>';
-  h+='<div class="card"><h3>Servicio</h3><div class="row"><div class="grow"><input id="renSvc" value="'+esc(s.name)+'" aria-label="Renombrar servicio"></div><button class="btn sm" data-a="renameService">Renombrar</button>'+
+  if(!svFixed(s))h+='<div class="card"><h3>Servicio</h3><div class="row"><div class="grow"><input id="renSvc" value="'+esc(s.name)+'" aria-label="Renombrar servicio"></div><button class="btn sm" data-a="renameService">Renombrar</button>'+
      (S.confirm==='svc'?'<button class="btn sm danger" data-a="delService">Confirmar: borrar servicio y todo su contenido</button>':'<button class="btn sm danger" data-a="askDelService">Borrar servicio</button>')+'</div></div>';
   return h;
 }
@@ -1564,12 +1579,14 @@ function viewPatient(){
     var body=(S.editor?entryForm():'')+((p.ctx==='amb'&&HOSPK.indexOf(S.sec)>=0)?'<div class="note">Estás viendo la parte <strong>hospitalaria</strong> de este paciente (estancias previas). <button class="btn sm" data-a="goSec" data-k="consulta">Volver a sus consultas externas</button></div>':'')+secHtml(p,S.sec);
     return top+slim+tabs+'<div class="solo">'+body+'</div>';
   }
-  var h='<div class="card"><div class="row"><span class="bed">Cama '+esc(p.bed||'—')+'</span><h2>'+esc(p.ini)+'</h2><span class="muted small">'+esc(p.age)+' a · '+esc(p.sex)+(p.hc?' · HC …'+esc(p.hc):'')+'</span></div><div class="dx">'+esc(p.dx||'Sin diagnóstico')+'</div>'+ctxLine(p)+'<div class="row small muted"><span>Ingreso '+esc(p.adm)+'</span><span>·</span><span>'+(p.active?'Día '+hd(p):'Egresó, '+hd(p)+' días')+'</span></div>'+
+  var h='<div class="card"><div class="row"><span class="bed">Cama '+esc(p.bed||'—')+'</span><h2>'+esc(p.ini)+'</h2><span class="muted small">'+esc(p.age)+' a · '+esc(p.sex)+(p.hc?' · HC …'+esc(p.hc):'')+'</span></div><div class="dx">'+esc(p.dx||'Sin diagnóstico')+'</div>'+espHtml(p)+ctxLine(p)+'<div class="row small muted"><span>Ingreso '+esc(p.adm)+'</span><span>·</span><span>'+(p.active?'Día '+hd(p):'Egresó, '+hd(p)+' días')+'</span></div>'+
      (p.cont?'<div class="note"><strong>Si pasa X, hacer Y.</strong> '+esc(p.cont)+'</div>':'')+
-     '<div class="row"><button class="btn sm" data-a="editPatient">Editar datos</button>'+ctxBtns(p)+'<button class="btn sm" data-a="ptSend" data-id="'+p.id+'">Enviar a un colega</button><button class="btn sm" data-a="censoPt" data-id="'+p.id+'">Exportar HC (Word)</button><button class="btn sm" data-a="mvOpen" data-id="'+p.id+'">Mover de servicio</button>'+(p.active?'':'<button class="btn sm" data-a="reactivate">Reactivar</button>')+
+     '<div class="row"><button class="btn sm" data-a="editPatient">Editar datos</button>'+espBtns(p)+ctxBtns(p)+'<button class="btn sm" data-a="ptSend" data-id="'+p.id+'">Enviar a un colega</button><button class="btn sm" data-a="censoPt" data-id="'+p.id+'">Exportar HC (Word)</button><button class="btn sm" data-a="mvOpen" data-id="'+p.id+'">Mover de servicio</button>'+(p.active?'':'<button class="btn sm" data-a="reactivate">Reactivar</button>')+
      (S.confirm==='pat'?'<button class="btn sm danger" data-a="delPatient">Confirmar: borrar paciente</button>':'<button class="btn sm danger" data-a="askDelPatient">Borrar paciente</button>')+'</div></div>';
   if(S.editPatient)h+=patientForm(p);
   if(S.editor)h+=entryForm();
+  if(S.espT)h+=espTasksPanel(p);
+  if(S.epi)h+=epiPanel(p);
   h+=viewResumen(p);
   return top+tabs+'<div class="solo">'+h+'</div>';
 }
@@ -1688,38 +1705,9 @@ function viewTasks(){
 }
 
 function cut(s,n){s=String(s||'').replace(/\s+/g,' ').trim();return s.length>n?s.slice(0,n-1)+'…':s;}
-function handoffText(){
-  var sv=db.services.filter(function(s){return S.hand==='all'||s.id===S.hand;});
-  var d=new Date().toLocaleString('es-CO',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
-  var out=[b('ENTREGA DE TURNO','SCHICHTÜBERGABE')+' · '+d,''];
-  sv.forEach(function(s){
-    var ps=activeOf(s.id).sort(function(a,b){return String(a.bed).localeCompare(String(b.bed),undefined,{numeric:true});});
-    out.push('== '+s.name.toUpperCase()+' ('+ps.length+') ==');
-    if(!ps.length)out.push(b('Sin pacientes activos.','Keine aktiven Patienten.'));
-    ps.forEach(function(p){
-      var es=pEntries(p.id);
-      var ev=es.filter(function(e){return e.type==='evolucion';})[0];
-      var ing=es.filter(function(e){return e.type==='ingreso';})[0];
-      var pl=es.filter(function(e){return e.type==='plan';})[0];
-      var res=ev&&ev.data.a?ev.data.a:(ing&&ing.data.imp?ing.data.imp:'');
-      var plan=ev&&ev.data.p?ev.data.p:(pl&&pl.data.plan?pl.data.plan:(ing&&ing.data.plan?ing.data.plan:''));
-      out.push(b('Cama','Bett')+' '+(p.bed||'—')+' · '+p.ini+' · '+p.age+b('a','J.')+' '+p.sex+' · '+b('día','Tag')+' '+hd(p)+' · ['+p.sev.toUpperCase()+(S.bi?' / '+(DE[p.sev]||'').toUpperCase():'')+']');
-      out.push(b('Dx','Diagnose')+': '+(p.dx||'—'));
-      if(res)out.push(b('Resumen','Zusammenfassung')+': '+cut(res,280));
-      if(plan)out.push('Plan: '+cut(plan,280));
-      var po=pendOrders(p.id);if(po.length)out.push(b('Resultados pendientes','Ausstehende Befunde')+': '+po.map(function(x){return x.o.n;}).join('; '));
-      var ts=openTasks(p.id).map(function(t){return '- '+t.text;});
-      var ics=openICs(p.id).map(function(e){return '- '+b('IC','Konsil')+' '+(e.data.serv||'')+': '+cut(e.data.preg,120);});
-      if(ts.length||ics.length){out.push(b('Pendientes','Offene Aufgaben')+':');out=out.concat(ts,ics);}
-      if(p.cont)out.push(b('Si pasa X, hacer Y','Wenn X, dann Y')+': '+cut(p.cont,200));
-      out.push('');
-    });
-  });
-  return out.join('\n');
-}
 function viewHandoff(){
   var opts='<option value="all">Todos los servicios</option>'+db.services.map(function(s){return '<option value="'+s.id+'"'+(S.hand===s.id?' selected':'')+'>'+esc(s.name)+'</option>';}).join('');
-  return '<h2>Entrega de turno</h2><div class="peek">'+art('peek','')+'</div><div class="card"><label>Servicio<select id="handSel" data-a="handSel">'+opts+'</select></label><pre class="out" id="outbox">'+esc(handoffText())+'</pre><div class="row"><button class="btn primary" data-a="copyHand">Copiar texto</button></div>'+handExtra()+'</div>';
+  return '<h2>Entrega de turno</h2><div class="peek">'+art('peek','')+'</div><div class="card"><label>Servicio<select id="handSel" data-a="handSel">'+opts+'</select></label>'+handOpts()+'<pre class="out" id="outbox">'+esc(handoffText())+'</pre><div class="row"><button class="btn primary" data-a="copyHand">Copiar texto</button></div>'+handExtra()+'</div>';
 }
 
 function viewBackup(){
@@ -1730,6 +1718,7 @@ function viewBackup(){
   h+='<div class="cols">';
   h+=lookCard();
   h+=usoCard();
+  h+=rxCard();
   if(S.snaps===undefined){S.snaps=[];snapList(function(a){S.snaps=a;if(S.view==='backup')render();});}
   h+='<details class="card"><summary><h3 style="display:inline">Avanzado</h3></summary><div class="small muted" style="margin:8px 0">Respaldo manual y copias automáticas. Normalmente no lo necesitas.</div>'+
      '<h4>Exportar</h4><div class="row"><button class="btn" data-a="makeBackup">Generar respaldo</button></div>'+(S.backupText?'<textarea id="backupOut" rows="6" readonly>'+esc(S.backupText)+'</textarea><div class="row"><button class="btn" data-a="copyBackup">Copiar</button></div>':'')+
@@ -1802,12 +1791,14 @@ function render0(){
   else if(v==='tasks')html=viewTasks();
   else if(v==='ronda')html=viewRonda();
   else if(v==='handoff')html=viewHandoff();
+  else if(v==='calc')html=viewCalc();
+  else if(v==='rx')html=viewRx();
   else if(v==='team')html=viewTeam();
   else html=viewBackup();
   document.getElementById('app').innerHTML=html;
   applyDE();
 }
-function go(v,extra){if(v==='backup')S.snaps=undefined;S.newCtx=null;S.view=v;S.confirm=null;S.warned=false;S.editor=null;S.editPatient=false;S.newPatient=false;S.hxEdit=false;S.hxOpen=false;S.smax=30;S.hxDraft=null;S.imp=null;S.impP=null;S.pdfEv=null;S.upd=null;S.sec='res';if(extra)for(var k in extra)S[k]=extra[k];render();window.scrollTo(0,0);}
+function go(v,extra){if(v==='backup')S.snaps=undefined;S.newCtx=null;S.view=v;S.confirm=null;S.warned=false;S.editor=null;S.editPatient=false;S.newPatient=false;S.espT=false;S.epi=false;S.hxEdit=false;S.hxOpen=false;S.smax=30;S.hxDraft=null;S.imp=null;S.impP=null;S.pdfEv=null;S.upd=null;S.sec='res';if(extra)for(var k in extra)S[k]=extra[k];render();window.scrollTo(0,0);}
 
 /* ---------- acciones ---------- */
 function val(id){var el=document.getElementById(id);return el?el.value:'';}
@@ -1815,6 +1806,7 @@ function savePatientForm(id){
   var wasImp=!!S.imp;
   var o={ini:val('f_ini').trim().toUpperCase(),hcn:val('f_hcn').replace(/\D/g,'').slice(0,14),hc:val('f_hcn').replace(/\D/g,'').slice(-3),age:val('f_age').replace(/\D/g,''),sex:val('f_sex'),bed:val('f_bed').trim(),adm:val('f_adm')||today(),dx:val('f_dx').trim(),sev:val('f_sev'),cont:val('f_cont').trim(),ctx:val('f_ctx')||'hosp'};
   if(!o.ini){toast('Escribe las iniciales.');return;}
+  var exE=espRead(id?pat(id).serviceId:S.serviceId);if(exE)o.esp=exE;
   if(id){var p=pat(id);if(!o.hcn){o.hc=p.hc||'';o.hcn=p.hcn||'';}for(var k in o)p[k]=o[k];if(p.ctx==='urg'&&!p.urgAt)p.urgAt=new Date().toISOString();}
   else{o.id=uid();o.serviceId=(o.ctx==='urg'&&!S.imp)?ensureUrgSvc().id:S.serviceId;if(o.ctx==='urg')o.urgAt=new Date().toISOString();o.active=true;if(S.imp&&S.imp.exit){o.active=false;o.exitAt=S.imp.exit.at;}if(S.imp&&Object.keys(S.imp.hx).length)o.hx=S.imp.hx;db.patients.push(o);S.patientId=o.id;var staleE=[];if(S.imp&&S.imp.ev){var evE={id:uid(),patientId:o.id,type:'evolucion',at:S.imp.ev.at,data:S.imp.ev.data,est:S.imp.ev.est?1:undefined,by:S.imp.ev.by,svc:S.imp.ev.svc};db.entries.push(evE);if(S.imp.evOld)staleE.push(evE);}if(S.imp&&S.imp.extra)S.imp.extra.forEach(function(x){var n={id:uid(),patientId:o.id,type:x.type,at:x.at,data:x.data};if(x.status)n.status=x.status;if(x.est)n.est=1;if(x.by)n.by=x.by;if(x.svc)n.svc=x.svc;if(x.ctx)n.ctx=x.ctx;if(x.stale)staleE.push(n);db.entries.push(n);});ensurePlans(o.id);staleE.forEach(function(e){var pl=planOf(e);if(pl&&pl.data.ord)pl.data.ord.forEach(function(q){q.x=1;});});juntaTask(o,staleE);S.imp=null;S.impP=null;}
   var openNew=!id&&!wasImp&&(o.ctx==='urg'||o.ctx==='amb');
@@ -3496,8 +3488,8 @@ function gSync(manual){
       return manual?'Todo al día.':'';
     }
     try{localStorage.setItem(KEY+'_antes',JSON.stringify(db));}catch(e){}
-    if(!ls&&!lm){db=rd;db.meta=db.meta||{};db.meta.mod=rm;persist();gSet({last:rm});return 'Traje tus datos desde tu cuenta.';}   /* dispositivo sin ediciones propias */
-    if(ls&&lm<=ls){db=rd;db.meta=db.meta||{};db.meta.mod=rm;persist();gSet({last:rm});return 'Traje los cambios hechos en otro dispositivo.';}
+    if(!ls&&!lm){db=rd;db.meta=db.meta||{};db.meta.mod=rm;persist();ensureBase();gSet({last:rm});return 'Traje tus datos desde tu cuenta.';}   /* dispositivo sin ediciones propias */
+    if(ls&&lm<=ls){db=rd;db.meta=db.meta||{};db.meta.mod=rm;persist();ensureBase();gSet({last:rm});return 'Traje los cambios hechos en otro dispositivo.';}
     mergeDb(db,rd);db.meta.mod=new Date().toISOString();persist();
     return push().then(function(){return 'Había cambios en los dos lados: los combiné (no se perdió nada; lo borrado en un lado puede reaparecer).';});
   }).then(function(m){G.busy=false;G.tries=0;gSet({when:new Date().toISOString()});gUi('ok','');if(m)toast(m);render();if(G.again){G.again=false;gAuto();}})
@@ -3872,11 +3864,12 @@ function ptSummary(p){
   var res=ev&&ev.data.a?ev.data.a:(ing&&ing.data.imp?ing.data.imp:'');
   var plan=ev&&ev.data.p?ev.data.p:(pl&&pl.data.plan?pl.data.plan:(ing&&ing.data.plan?ing.data.plan:''));
   var ts=openTasks(p.id).map(function(t){return t.text;}),ics=openICs(p.id).map(function(e){return 'Interconsulta '+(e.data.serv||'')+': '+cut(e.data.preg,120);});
-  return {ini:p.ini,age:p.age,sex:p.sex,bed:p.bed,dx:p.dx||'',sev:p.sev,day:hd(p),res:cut(res,500),plan:cut(plan,500),tasks:ts.concat(ics).slice(0,15),cont:p.cont||''};
+  return {ini:p.ini,age:p.age,sex:p.sex,bed:p.bed,dx:p.dx||'',esp:espLine(p),sev:p.sev,day:hd(p),res:cut(res,500),plan:cut(plan,500),tasks:ts.concat(ics).slice(0,15),cont:p.cont||''};
 }
 function ptScrub(s){return String(s||'').replace(/\b\d{7,}\b/g,'[número omitido]');}
 function ptText(s){
   var o=['Cama '+(s.bed||'—')+' · '+s.ini+' · '+s.age+' a '+s.sex+' · día '+s.day+' · ['+String(s.sev||'').toUpperCase()+']','Dx: '+(s.dx||'—')];
+  if(s.esp)o.push('Datos: '+s.esp);
   if(s.res)o.push('Resumen: '+s.res);if(s.plan)o.push('Plan: '+s.plan);
   if(s.tasks.length){o.push('Pendientes:');s.tasks.forEach(function(t){o.push('- '+t);});}
   if(s.cont)o.push('Si pasa X, hacer Y: '+cut(s.cont,200));
@@ -4034,6 +4027,7 @@ TOUR=[
  {s:'[data-a=newPatient]',pre:'service',ic:'plus',k:'Pacientes',t:'Agregar un *paciente*',x:'Dentro de un servicio toca “+ Paciente”. Escribe solo iniciales, edad y cama, o suelta el PDF de la historia clínica del hospital y Limonapp la organiza sola.',tip:'Nunca escribas nombre, cédula ni teléfono.'},
  {s:'.pgem',pre:'services',ic:'spark',k:'Potenciado con Gemini',t:'*Gemini* lee la historia contigo',x:'Con tu cuenta iniciada, al importar el PDF Gemini identifica el diagnóstico principal, el contexto (hospitalizado, consulta externa o egreso) y el motivo. El resto lo ordena el lector de la app, y una cita literal respalda cada dato que propone la IA.',tip:'Solo viaja texto sin nombre ni cédula. Revisa siempre antes de guardar.'},
  {s:'#tabs [data-v=tasks]',pre:'services',ic:'check',k:'Pendientes',t:'Pendientes que se *arman solos*',x:'Laboratorios e imágenes pedidos, interconsultas sin respuesta y juntas médicas solicitadas quedan en Pendientes, agrupados por servicio, hasta que los resuelvas.'},
+ {s:'[data-a=toCalc]',pre:'services',ic:'chart',k:'Herramientas',t:'*Calculadoras* y datos por especialidad',x:'Los servicios básicos (cirugía, medicina interna, pediatría, ginecología, ortopedia y cuidados intensivos) ya vienen creados. Cada especialidad tiene sus propios datos en la ficha y más de 80 calculadoras y escalas. Cada una muestra cómo se calcula.'},
  {s:'.pcard[data-a=openPatient]',pre:'service',wait:'openPatient',ic:'file',k:'Pacientes',t:'Abre la *ficha*',x:'Toca un paciente para abrir su ficha. Si un colega te lo compartió, verás la marca “Compartido” y cuándo fue actualizado.'},
  {s:'.subtabs',pre:'patient',sec:'res',ic:'layers',k:'La ficha',t:'Todo en *secciones*',x:'Resumen, Ingreso, Evoluciones, Plan, Interconsultas, Paraclínicos, Imágenes, Pendientes, Notas aclaratorias, Salida, Cronología e Importar PDF. Se cambia de sección con estos botones.'},
  {s:'.subtabs [data-k=res]',pre:'patient',sec:'res',ic:'eye',k:'La ficha',t:'Empieza por el *Resumen*',x:'Estado actual, historia del último ingreso, lista de problemas, tendencias de laboratorio, hitos y pendientes. Es una lectura automática: verifícala siempre con la historia original.'},
@@ -4356,6 +4350,8 @@ function ckBuild(q){
   cmds.push({g:'Ir a',t:'Hospitalización',run:function(){go('services',{area:'hosp'});}});
   db.services.forEach(function(sv){cmds.push({g:'Servicios',t:sv.name,sb:activeOf(sv.id).length+' activos',run:function(){go('service',{serviceId:sv.id,filter:'activos'});}});cmds.push({g:'Acciones',t:'Nuevo paciente en '+sv.name,run:function(){go('service',{serviceId:sv.id,filter:'activos'});S.newPatient=true;render();}});cmds.push({g:'Acciones',t:'Iniciar ronda en '+sv.name,run:function(){S.rn.sid=sv.id;S.rn.i=0;go('ronda');}});});
   cmds.push({g:'Acciones',t:'Cambiar entre tema claro y oscuro',run:function(){A.toggleTheme();}});
+  cmds.push({g:'Ir a',t:'Calculadoras',run:function(){AT.toCalc();}});
+  if(rxOn())cmds.push({g:'Ir a',t:'Recetario (borrador)',run:function(){AT.toRx();}});
   cmds.push({g:'Acciones',t:'Ver el tutorial',run:function(){tourStart();}});
   var pts=[];
   if(n){try{pts=gMatch(q)||[];}catch(e){pts=[];}}
@@ -4445,7 +4441,7 @@ function rnText(p,mode){
 }
 function rnCard(p){
   var mode=S.rn.mode,ts=pTasksAll(p);
-  return '<div class="card rnc" id="rn_'+p.id+'"><div class="row spread"><div class="row"><span class="bed">Cama '+esc(p.bed||'—')+'</span><strong class="rni">'+esc(p.ini)+'</strong><span class="muted small">'+esc(p.age)+' a · '+esc(p.sex)+' · día '+hd(p)+'</span></div><span class="pill '+esc(p.sev)+'">'+esc(p.sev)+'</span></div>'+
+  return '<div class="card rnc" id="rn_'+p.id+'"><div class="row spread"><div class="row"><span class="bed">Cama '+esc(p.bed||'—')+'</span><strong class="rni">'+esc(p.ini)+'</strong><span class="muted small">'+esc(p.age)+' a · '+esc(p.sex)+' · día '+hd(p)+'</span></div><span class="pill '+esc(p.sev)+'">'+esc(p.sev)+'</span></div>'+espHtml(p)+
    (p.sh&&p.sh.upd?'<div class="note warn small">Actualizado por '+esc(p.sh.upd.by||'un colega')+' ('+p.sh.upd.n+' cambio'+(p.sh.upd.n===1?'':'s')+').</div>':'')+
    rnSecs(p,mode).map(function(s){return '<div class="rns"><div class="rnh">'+esc(s[0])+'</div><div class="rnt">'+esc(s[1])+'</div></div>';}).join('')+
    '<div class="rns rnp"><div class="rnh">Pendientes'+(ts.length?' ('+ts.length+')':'')+'</div>'+(ts.length?ts.map(function(t){return t.k==='t'?'<div class="task"><input type="checkbox" data-a="toggleTask" data-id="'+t.id+'" aria-label="Hecho"><span class="t">'+(t.r?'<span class="chip" style="--c:var(--c-interconsulta)">Ronda</span> ':'')+esc(t.text)+'</span></div>':'<div class="task"><span class="chip" style="--c:var(--c-interconsulta)">IC</span><span class="t">'+esc(t.text)+'</span></div>';}).join(''):'<div class="small muted">Ninguno.</div>')+
@@ -4688,19 +4684,20 @@ function fnSafe(s){return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').
 
 /* ---------- PDF de la entrega de turno ---------- */
 function handPdf(){
-  var sv=db.services.filter(function(s){return S.hand==='all'||s.id===S.hand;}),now=new Date();
+  var sv=svcList().filter(function(s){return S.hand==='all'||s.id===S.hand;}),now=new Date();
   var d=now.toLocaleString('es-CO',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
   var items=[{k:'title',t:'Entrega de turno'},{k:'sub',t:d+(sv.length===1?' · '+sv[0].name:' · Todos los servicios')+(T.me&&T.me.name?' · Preparó: '+tDisp(T.me):'')},{k:'sp',h:4},{k:'note',t:'Documento con información clínica de pacientes: manéjalo con confidencialidad y no lo reenvíes fuera del equipo de atención.'}];
   sv.forEach(function(s){
-    var ps=activeOf(s.id).sort(bedSort);
+    var ps=handPs(s);
     items.push({k:'h2',t:s.name+' ('+ps.length+' paciente'+(ps.length===1?'':'s')+')'});
     if(!ps.length)items.push({k:'p',t:'Sin pacientes activos.'});
     ps.forEach(function(p){
       var sm=ptSummary(p),ts=pTasksAll(p);
       items.push({k:'pt',t:'Cama '+(p.bed||'—')+' · '+p.ini+' · '+p.age+' a '+p.sex+' · día '+hd(p)+' · '+String(p.sev).toUpperCase()+(S.handHc&&p.hcn?' · HC '+p.hcn:'')});
       items.push({k:'p',t:'Dx: '+(p.dx||'—')});
-      if(sm.res)items.push({k:'p',t:'Resumen: '+sm.res});
-      if(sm.plan)items.push({k:'p',t:'Plan: '+sm.plan});
+      var ecP=espLine(p);if(ecP&&hf().len!=='corto')items.push({k:'p',t:'Datos: '+ecP});
+      if(sm.res&&hf().len!=='corto')items.push({k:'p',t:'Resumen: '+sm.res});
+      if(sm.plan&&hf().len!=='corto')items.push({k:'p',t:'Plan: '+sm.plan});
       if(ts.length){items.push({k:'lab',t:'Pendientes:'});ts.forEach(function(t){items.push({k:'li',t:(t.r?'(Ronda) ':'')+t.text});});}
       if(p.cont)items.push({k:'p',t:'Si pasa X, hacer Y: '+cut(p.cont,300)});
       items.push({k:'sp',h:8});
@@ -5304,10 +5301,10 @@ var A={
  lookReset:function(){try{localStorage.removeItem('rot_look');}catch(e){}applyLook();render();toast('Apariencia restablecida.');},
  makeBackup:function(){S.backupText=JSON.stringify(db);db.meta.lastBackup=new Date().toISOString();db.meta.changes=0;persist();render();},
  copyBackup:function(){copyText(S.backupText,'backupOut');},
- snapRestore:function(el){var t=+el.dataset.t;if(S.confirm!=='snap'+t){S.confirm='snap'+t;render();return;}snapGet(t,function(x){try{var d=JSON.parse(x.data);if(!dbOk(d))throw 0;d.meta=d.meta||{};d.meta.mod=new Date().toISOString();db=d;persist();S.confirm=null;S.snaps=undefined;render();toast('Copia restaurada.');}catch(e){S.confirm=null;render();toast('No pude restaurar esa copia.');}});},
+ snapRestore:function(el){var t=+el.dataset.t;if(S.confirm!=='snap'+t){S.confirm='snap'+t;render();return;}snapGet(t,function(x){try{var d=JSON.parse(x.data);if(!dbOk(d))throw 0;d.meta=d.meta||{};d.meta.mod=new Date().toISOString();db=d;persist();ensureBase();S.confirm=null;S.snaps=undefined;render();toast('Copia restaurada.');}catch(e){S.confirm=null;render();toast('No pude restaurar esa copia.');}});},
  restore:function(){
    if(S.confirm!=='restore'){S.confirm='restore';render();return;}
-   try{var d=JSON.parse(val('backupIn'));if(!d||d.v!==1||!Array.isArray(d.services)||!Array.isArray(d.patients)||!Array.isArray(d.entries)||!Array.isArray(d.tasks))throw 0;d.meta=d.meta||{};d.meta.mod=new Date().toISOString();db=d;persist();S.confirm=null;S.backupText='';render();toast('Respaldo restaurado.');}
+   try{var d=JSON.parse(val('backupIn'));if(!d||d.v!==1||!Array.isArray(d.services)||!Array.isArray(d.patients)||!Array.isArray(d.entries)||!Array.isArray(d.tasks))throw 0;d.meta=d.meta||{};d.meta.mod=new Date().toISOString();db=d;persist();ensureBase();S.confirm=null;S.backupText='';render();toast('Respaldo restaurado.');}
    catch(e){S.confirm=null;render();toast('El respaldo no es válido.');}
  },
  editHx:function(){S.hxOpen=true;S.hxEdit=true;S.hxDraft=null;S.warned=false;render();},
@@ -5339,9 +5336,640 @@ var A={
  toggleBi:function(){S.bi=!S.bi;try{localStorage.setItem('rot_bi',S.bi?'1':'0');}catch(e){}render();},
  delDemo:function(){db.patients.filter(function(p){return p.demo;}).forEach(function(p){delPatientData(p.id);});save();render();toast('Ejemplo borrado.');},
  askWipe:function(){S.confirm='wipe';render();},
- wipe:function(){try{imgWipe();}catch(x){}db={v:1,meta:{changes:0,lastBackup:null,mod:new Date().toISOString()},services:[],patients:[],entries:[],tasks:[]};persist();S.confirm=null;go('services');toast('Todo borrado.');}
+ wipe:function(){try{imgWipe();}catch(x){}db={v:1,meta:{changes:0,lastBackup:null,mod:new Date().toISOString()},services:[],patients:[],entries:[],tasks:[]};persist();ensureBase();S.confirm=null;go('services');toast('Todo borrado.');}
 };
 
+/* ===== v62: calculadoras ===== */
+var CALC_AREAS=[['gen','Generales'],['cir','Cirugía'],['med','Medicina interna'],['card','Cardiología'],['neum','Neumología'],['nef','Nefrología y líquidos'],['gas','Gastro y hepatología'],['endo','Endocrinología'],['inf','Infectología'],['onc','Oncología y hematología'],['ped','Pediatría y neonatología'],['gin','Ginecología y obstetricia'],['ort','Ortopedia, trauma y quemados'],['neu','Neurología y neurocirugía'],['uro','Urología'],['uci','Cuidados intensivos'],['ane','Anestesiología'],['psi','Psiquiatría'],['orl','ORL y oftalmología'],['ger','Geriatría']];
+function cR(x,d){var m=Math.pow(10,d==null?1:d);return Math.round(x*m)/m;}
+function cN(id,l,u,def,min,max,st,pf){return {k:'n',id:id,l:l,u:u||'',def:def==null?'':def,min:min,max:max,st:st||'any',pf:pf||''};}
+function cS(id,l,o,pf,def){return {k:'s',id:id,l:l,o:o,pf:pf||'',def:def};}
+function cC(id,l,p){return {k:'c',id:id,l:l,p:p==null?1:p};}
+function cSex(){return cS('sex','Sexo',[['Hombre','M'],['Mujer','F']],'sex');}
+function cAge(){return cN('age','Edad','años','',0,120,1,'age');}
+function cOk(){for(var i=0;i<arguments.length;i++){if(typeof arguments[i]!=='number'||isNaN(arguments[i]))return false;}return true;}
+function cScore(id,n,g,items,interp,ref,d){
+  return {id:id,n:n,g:g,d:d||'',ref:ref||'',f:items,run:function(v){
+    var t=0,miss=0;items.forEach(function(it){if(it.k==='c'){if(v[it.id])t+=it.p;}else if(it.k==='s'){var x=parseFloat(v[it.id]);if(isNaN(x))miss++;else t+=x;}});
+    var r=interp(t,v);return {v:String(t),u:'puntos',t:r+(miss?' (Faltan '+miss+(miss===1?' ítem':' ítems')+' por elegir: el total es parcial.)':'')};
+  }};
+}
+var CALCS=[
+{id:'imc',n:'Índice de masa corporal (IMC)',g:['gen','endo','cir'],d:'Peso dividido entre la talla al cuadrado.',ref:'IMC = kg / m². Categorías de la OMS para adultos.',f:[cN('w','Peso','kg','',1,500,0.1),cN('h','Talla','cm','',30,250,0.1)],run:function(v){
+  if(!cOk(v.w,v.h))return null;var b=v.w/Math.pow(v.h/100,2);var t=b<18.5?'Bajo peso':b<25?'Peso normal':b<30?'Sobrepeso':b<35?'Obesidad grado I':b<40?'Obesidad grado II':'Obesidad grado III';return {v:cR(b,1),u:'kg/m²',t:t+' (criterios de adultos)'};}},
+{id:'sc',n:'Superficie corporal (Mosteller)',g:['gen','onc','ped'],d:'Se usa para dosis de quimioterapia y algunos fármacos pediátricos.',ref:'SC = raíz cuadrada de (talla cm × peso kg / 3600).',f:[cN('w','Peso','kg','',0.3,500,0.1),cN('h','Talla','cm','',30,250,0.1)],run:function(v){
+  if(!cOk(v.w,v.h))return null;return {v:cR(Math.sqrt(v.h*v.w/3600),2),u:'m²',t:'Mosteller'};}},
+{id:'ideal',n:'Peso ideal (Devine)',g:['gen','ane','uci'],d:'Peso ideal según talla y sexo, para adultos de más de 152 cm.',ref:'Hombre: 50 + 2,3 × (pulgadas sobre 60). Mujer: 45,5 + 2,3 × (pulgadas sobre 60).',f:[cSex(),cN('h','Talla','cm','',140,250,0.1)],run:function(v){
+  if(!cOk(v.h))return null;var inch=v.h/2.54;var w=(v.sex==='F'?45.5:50)+2.3*(inch-60);return {v:cR(w,1),u:'kg',t:v.h<152?'Por debajo de 152 cm la fórmula pierde validez.':'Peso ideal (Devine)'};}},
+{id:'cg',n:'Depuración de creatinina (Cockcroft-Gault)',g:['nef','gen','med','ger'],d:'Estima la depuración de creatinina; se usa mucho para ajustar medicamentos.',ref:'((140 − edad) × peso) / (72 × creatinina), × 0,85 si es mujer. Usa creatinina estable, no en lesión renal aguda.',f:[cAge(),cSex(),cN('w','Peso','kg','',1,400,0.1),cN('cr','Creatinina sérica','mg/dL','',0.1,20,0.01)],run:function(v){
+  if(!cOk(v.age,v.w,v.cr))return null;var c=(140-v.age)*v.w/(72*v.cr)*(v.sex==='F'?0.85:1);return {v:cR(c,0),u:'mL/min',t:c>=90?'≥ 90':c>=60?'60 a 89':c>=30?'30 a 59: ajusta varios fármacos':c>=15?'15 a 29: ajuste importante':'< 15: función renal muy baja'};}},
+{id:'ckd',n:'Filtración glomerular (CKD-EPI 2021)',g:['nef','gen','med','uro'],d:'Estima la filtración glomerular y la etapa de enfermedad renal crónica por creatinina.',ref:'CKD-EPI 2021 sin raza: 142 × min(Cr/κ,1)^α × max(Cr/κ,1)^−1,200 × 0,9938^edad × 1,012 si es mujer. Solo con creatinina estable.',f:[cAge(),cSex(),cN('cr','Creatinina sérica','mg/dL','',0.1,20,0.01)],run:function(v){
+  if(!cOk(v.age,v.cr))return null;var F=v.sex==='F',k=F?0.7:0.9,a=F?-0.241:-0.302;var e=142*Math.pow(Math.min(v.cr/k,1),a)*Math.pow(Math.max(v.cr/k,1),-1.2)*Math.pow(0.9938,v.age)*(F?1.012:1);
+  var st=e>=90?'G1':e>=60?'G2':e>=45?'G3a':e>=30?'G3b':e>=15?'G4':'G5';return {v:cR(e,0),u:'mL/min/1,73 m²',t:'Categoría '+st+' (KDIGO). Para llamarla enfermedad renal crónica debe persistir más de 3 meses.'};}},
+{id:'kdigo',n:'Lesión renal aguda (KDIGO por creatinina)',g:['nef','med','uci'],d:'Clasifica la lesión renal aguda comparando la creatinina actual con la basal.',ref:'Estadio 1: 1,5 a 1,9 veces la basal o aumento ≥ 0,3 mg/dL en 48 h. Estadio 2: 2,0 a 2,9 veces. Estadio 3: ≥ 3,0 veces, creatinina ≥ 4,0 mg/dL o terapia de reemplazo renal. No incluye diuresis.',f:[cN('b','Creatinina basal','mg/dL','',0.1,20,0.01),cN('a','Creatinina actual','mg/dL','',0.1,30,0.01),cC('rrt','Está en terapia de reemplazo renal',1)],run:function(v){
+  if(!cOk(v.b,v.a))return null;var r=v.a/v.b,s=0;if(v.rrt||r>=3||v.a>=4)s=3;else if(r>=2)s=2;else if(r>=1.5||v.a-v.b>=0.3)s=1;return {v:s?('Estadio '+s):'No cumple criterios',u:'',t:'Relación '+cR(r,2)+' veces la basal. El aumento de 0,3 mg/dL cuenta solo si ocurrió en 48 h.'};}},
+{id:'crcl24',n:'Depuración de creatinina en orina de 24 h',g:['nef','uro'],d:'Con creatinina en orina recolectada.',ref:'Creatinina en orina × volumen / (creatinina sérica × minutos de recolección).',f:[cN('uc','Creatinina en orina','mg/dL','',1,1000,0.1),cN('vol','Volumen recolectado','mL','',50,10000,1),cN('pc','Creatinina sérica','mg/dL','',0.1,20,0.01),cN('hr','Horas de recolección','h',24,1,48,0.5)],run:function(v){
+  if(!cOk(v.uc,v.vol,v.pc,v.hr))return null;var c=v.uc*v.vol/(v.pc*v.hr*60);return {v:cR(c,0),u:'mL/min',t:'Sin ajustar por superficie corporal. Una recolección incompleta subestima el resultado.'};}},
+{id:'fena',n:'Fracción excretada de sodio (FeNa)',g:['nef','med','uci'],d:'Ayuda a distinguir causa prerrenal de necrosis tubular en lesión renal aguda.',ref:'(Na urinario × Cr sérica) / (Na sérico × Cr urinaria) × 100. Poco confiable con diuréticos: allí se usa la FeUrea.',f:[cN('una','Sodio urinario','mEq/L','',1,300,1),cN('pcr','Creatinina sérica','mg/dL','',0.1,20,0.01),cN('pna','Sodio sérico','mEq/L','',100,180,1),cN('ucr','Creatinina urinaria','mg/dL','',1,1000,0.1)],run:function(v){
+  if(!cOk(v.una,v.pcr,v.pna,v.ucr))return null;var f=v.una*v.pcr/(v.pna*v.ucr)*100;return {v:cR(f,2),u:'%',t:f<1?'< 1 %: sugiere causa prerrenal':f>2?'> 2 %: sugiere necrosis tubular':'Zona intermedia: interprétalo con el contexto clínico'};}},
+{id:'feurea',n:'Fracción excretada de urea (FeUrea)',g:['nef','med'],d:'Alternativa a la FeNa cuando el paciente recibe diuréticos.',ref:'(Urea urinaria × Cr sérica) / (Urea sérica × Cr urinaria) × 100. Menos de 35 % sugiere causa prerrenal.',f:[cN('uu','Urea urinaria','mg/dL','',1,5000,1),cN('pcr','Creatinina sérica','mg/dL','',0.1,20,0.01),cN('pu','Urea sérica','mg/dL','',1,500,1),cN('ucr','Creatinina urinaria','mg/dL','',1,1000,0.1)],run:function(v){
+  if(!cOk(v.uu,v.pcr,v.pu,v.ucr))return null;var f=v.uu*v.pcr/(v.pu*v.ucr)*100;return {v:cR(f,1),u:'%',t:f<35?'< 35 %: sugiere causa prerrenal':f>50?'> 50 %: sugiere causa renal':'Zona intermedia'};}},
+{id:'ag',n:'Brecha aniónica y delta-delta',g:['nef','med','uci','gen'],d:'Brecha aniónica con corrección por albúmina.',ref:'Brecha = Na − Cl − HCO₃. Corregida = brecha + 2,5 × (4,0 − albúmina g/dL). Delta-delta = (brecha − 12) / (24 − HCO₃). El valor normal depende de tu laboratorio (aprox. 8 a 12 sin potasio).',f:[cN('na','Sodio','mEq/L','',100,180,1),cN('cl','Cloro','mEq/L','',60,150,1),cN('hco3','Bicarbonato','mEq/L','',2,50,0.1),cN('alb','Albúmina (opcional)','g/dL','',0.5,6,0.1)],run:function(v){
+  if(!cOk(v.na,v.cl,v.hco3))return null;var ag=v.na-v.cl-v.hco3,c=cOk(v.alb)?ag+2.5*(4-v.alb):ag,t='Brecha '+cR(ag,1)+(cOk(v.alb)?' · corregida '+cR(c,1):'')+'.';
+  if(v.hco3<24){var dd=(c-12)/(24-v.hco3);t+=' Delta-delta '+cR(dd,2)+': '+(dd<0.4?'acidosis hiperclorémica':dd<0.8?'mixta (con y sin brecha)':dd<=2?'acidosis con brecha pura':'acidosis con brecha más alcalosis metabólica concomitante o previa')+'.';}
+  return {v:cR(c,1),u:'mEq/L',t:t};}},
+{id:'osm',n:'Osmolaridad sérica y brecha osmolar',g:['nef','med','uci'],d:'Osmolaridad calculada y comparación con la medida.',ref:'2 × Na + glucosa/18 + BUN/2,8. Brecha osmolar = medida − calculada (más de 10 sugiere osmoles no medidos, como tóxicos alcohólicos).',f:[cN('na','Sodio','mEq/L','',100,180,1),cN('glu','Glucosa','mg/dL','',10,2000,1),cN('bun','BUN (nitrógeno ureico)','mg/dL','',1,300,1),cN('om','Osmolaridad medida (opcional)','mOsm/kg','',200,500,1)],run:function(v){
+  if(!cOk(v.na,v.glu,v.bun))return null;var o=2*v.na+v.glu/18+v.bun/2.8;var t='Calculada.';if(cOk(v.om)){var g=v.om-o;t='Brecha osmolar '+cR(g,1)+(g>10?': elevada.':': normal.');}return {v:cR(o,0),u:'mOsm/kg',t:t};}},
+{id:'nacorr',n:'Sodio corregido por glucosa',g:['nef','endo','med'],d:'Corrige el sodio cuando la glucosa está alta.',ref:'Na + 1,6 × (glucosa − 100)/100 (factor clásico) o 2,4 (propuesto por Hillier). Muestra ambos.',f:[cN('na','Sodio medido','mEq/L','',100,180,1),cN('glu','Glucosa','mg/dL','',10,2000,1)],run:function(v){
+  if(!cOk(v.na,v.glu))return null;var d=(v.glu-100)/100;return {v:cR(v.na+1.6*d,1),u:'mEq/L',t:'Con factor 2,4: '+cR(v.na+2.4*d,1)+' mEq/L.'};}},
+{id:'cacorr',n:'Calcio corregido por albúmina',g:['endo','nef','med','onc'],d:'Corrige el calcio total cuando la albúmina está baja.',ref:'Ca + 0,8 × (4,0 − albúmina g/dL). Con hipoalbuminemia grave o en críticos, mide el calcio iónico.',f:[cN('ca','Calcio total','mg/dL','',2,20,0.1),cN('alb','Albúmina','g/dL','',0.5,6,0.1)],run:function(v){
+  if(!cOk(v.ca,v.alb))return null;var c=v.ca+0.8*(4-v.alb);return {v:cR(c,1),u:'mg/dL',t:c<8.5?'Bajo':c>10.5?'Alto':'Dentro del rango habitual (8,5 a 10,5)'};}},
+{id:'dwater',n:'Déficit de agua libre (hipernatremia)',g:['nef','med','uci'],d:'Estima el agua que falta cuando el sodio está alto.',ref:'Agua corporal total × (Na/140 − 1). La corrección debe ser lenta, por lo general no más de 10 a 12 mEq/L en 24 h.',f:[cS('f','Tipo de paciente',[['Hombre adulto (0,6)','0.6'],['Mujer adulta u hombre anciano (0,5)','0.5'],['Mujer anciana (0,45)','0.45'],['Niño (0,6)','0.6']]),cN('w','Peso','kg','',1,300,0.1),cN('na','Sodio actual','mEq/L','',145,200,1)],run:function(v){
+  if(!cOk(v.w,v.na))return null;var f=parseFloat(v.f),d=f*v.w*(v.na/140-1);return {v:cR(d,1),u:'L',t:'Ritmo de corrección: no más de 10 a 12 mEq/L al día. Incluye las pérdidas continuas aparte.'};}},
+{id:'hs',n:'Líquidos de mantenimiento (Holliday-Segar)',g:['ped','gen','nef'],d:'Necesidad diaria de líquidos por peso.',ref:'100 mL/kg los primeros 10 kg, 50 mL/kg los siguientes 10 kg y 20 mL/kg por cada kg adicional. Equivale a la regla 4-2-1 por hora.',f:[cN('w','Peso','kg','',0.5,200,0.1)],run:function(v){
+  if(!cOk(v.w))return null;var w=v.w,ml=w<=10?w*100:w<=20?1000+(w-10)*50:1500+(w-20)*20;return {v:cR(ml,0),u:'mL/día',t:'≈ '+cR(ml/24,0)+' mL/h. Es una base: ajusta por fiebre, pérdidas y función renal.'};}},
+{id:'deshid',n:'Déficit de líquidos por deshidratación',g:['ped','nef'],d:'Déficit estimado por el porcentaje de peso perdido.',ref:'Peso (kg) × % de deshidratación × 10 = mL de déficit. Se suma al mantenimiento y a las pérdidas continuas.',f:[cN('w','Peso actual','kg','',0.5,200,0.1),cN('p','Deshidratación estimada','%','',1,15,0.5)],run:function(v){
+  if(!cOk(v.w,v.p))return null;return {v:cR(v.w*v.p*10,0),u:'mL',t:'Déficit estimado. La estimación clínica del porcentaje es aproximada.'};}},
+{id:'parkland',n:'Quemados: fórmula de Parkland',g:['ort','cir','uci','ped'],d:'Líquidos de reanimación de las primeras 24 h tras la quemadura.',ref:'4 mL × kg × % de superficie quemada (segundo y tercer grado), con Ringer lactato. La mitad en las primeras 8 h contadas desde la quemadura y la otra mitad en las 16 h siguientes. Es un punto de partida: se ajusta por diuresis.',f:[cN('w','Peso','kg','',1,300,0.1),cN('sc','Superficie quemada','%','',1,100,1),cN('fac','Factor (mL/kg/%)','',4,2,4,0.5),cN('hr','Horas ya transcurridas desde la quemadura','h',0,0,8,0.5)],run:function(v){
+  if(!cOk(v.w,v.sc,v.fac))return null;var tot=v.fac*v.w*v.sc,h=cOk(v.hr)?v.hr:0,first=tot/2,rest8=Math.max(0.5,8-h);var t='Primeras 8 h desde la quemadura: '+cR(first,0)+' mL (≈ '+cR(first/rest8,0)+' mL/h en el tiempo que queda de ese tramo). Siguientes 16 h: '+cR(tot/2,0)+' mL (≈ '+cR(tot/2/16,0)+' mL/h).';return {v:cR(tot,0),u:'mL en 24 h',t:t};}},
+{id:'nueves',n:'Superficie quemada (regla de los nueves, adulto)',g:['ort','cir','uci'],d:'Suma el porcentaje de cada región afectada. Para niños los valores cambian.',ref:'Cabeza 9 %, cada brazo 9 %, tronco anterior 18 %, tronco posterior 18 %, cada pierna 18 %, genitales 1 %. Escribe qué porcentaje de cada región está quemado.',f:[cN('c','Cabeza y cuello (9 %) · % quemado de la región','%',0,0,100,5),cN('ta','Tronco anterior (18 %) · % quemado','%',0,0,100,5),cN('tp','Tronco posterior (18 %) · % quemado','%',0,0,100,5),cN('bd','Brazo derecho (9 %) · % quemado','%',0,0,100,5),cN('bi','Brazo izquierdo (9 %) · % quemado','%',0,0,100,5),cN('pd','Pierna derecha (18 %) · % quemado','%',0,0,100,5),cN('pi','Pierna izquierda (18 %) · % quemado','%',0,0,100,5),cN('g','Genitales (1 %) · % quemado','%',0,0,100,5)],run:function(v){
+  var s=0,w={c:9,ta:18,tp:18,bd:9,bi:9,pd:18,pi:18,g:1};for(var k in w){var x=cOk(v[k])?v[k]:0;s+=w[k]*x/100;}return {v:cR(s,1),u:'% de superficie',t:'Solo cuentan quemaduras de segundo y tercer grado. Verifícalo con un diagrama de Lund-Browder si es posible.'};}},
+{id:'gcs',n:'Escala de coma de Glasgow',g:['neu','ort','uci','cir','gen'],d:'Nivel de conciencia.',ref:'Apertura ocular (1 a 4) + respuesta verbal (1 a 5) + respuesta motora (1 a 6). Si está intubado, anota la verbal como “T” y no sumes.',f:[cS('e','Apertura ocular',[['4 · Espontánea','4'],['3 · Al llamarlo','3'],['2 · Al dolor','2'],['1 · Ninguna','1']]),cS('vb','Respuesta verbal',[['5 · Orientado','5'],['4 · Confuso','4'],['3 · Palabras inapropiadas','3'],['2 · Sonidos incomprensibles','2'],['1 · Ninguna','1']]),cS('m','Respuesta motora',[['6 · Obedece órdenes','6'],['5 · Localiza el dolor','5'],['4 · Retira al dolor','4'],['3 · Flexión anormal (decorticación)','3'],['2 · Extensión (descerebración)','2'],['1 · Ninguna','1']])],run:function(v){
+  var e=parseInt(v.e),vb=parseInt(v.vb),m=parseInt(v.m);if(!cOk(e,vb,m))return null;var t=e+vb+m;return {v:String(t),u:'/ 15',t:(t>=13?'Trauma craneoencefálico leve (13 a 15)':t>=9?'Moderado (9 a 12)':'Grave (3 a 8)')+'. Componentes: O'+e+' V'+vb+' M'+m+'.'};}},
+{id:'rts',n:'Revised Trauma Score (RTS)',g:['ort','cir','uci'],d:'Gravedad fisiológica en trauma.',ref:'Se codifica Glasgow, presión sistólica y frecuencia respiratoria de 0 a 4. RTS ponderado = 0,9368 × GCS + 0,7326 × PAS + 0,2908 × FR. El RTS triage es la suma simple (0 a 12): menos de 11 sugiere centro de trauma.',f:[cN('gcs','Glasgow','',15,3,15,1),cN('sbp','Presión sistólica','mmHg','',0,300,1),cN('rr','Frecuencia respiratoria','/min','',0,80,1)],run:function(v){
+  if(!cOk(v.gcs,v.sbp,v.rr))return null;var g=v.gcs>=13?4:v.gcs>=9?3:v.gcs>=6?2:v.gcs>=4?1:0,s=v.sbp>89?4:v.sbp>=76?3:v.sbp>=50?2:v.sbp>=1?1:0,r=(v.rr>=10&&v.rr<=29)?4:v.rr>29?3:v.rr>=6?2:v.rr>=1?1:0;
+  var w=0.9368*g+0.7326*s+0.2908*r;return {v:cR(w,2),u:'ponderado (máx. 7,84)',t:'RTS triage: '+(g+s+r)+' de 12 (códigos '+g+', '+s+', '+r+'). '+((g+s+r)<11?'Menos de 11: considera centro de trauma.':'11 o más.')};}},
+{id:'shock',n:'Índice de choque',g:['ort','cir','gin','uci','gen'],d:'Frecuencia cardíaca dividida entre presión sistólica.',ref:'Normal 0,5 a 0,7. Más de 0,9 a 1,0 sugiere inestabilidad hemodinámica y, en obstetricia, hemorragia significativa.',f:[cN('hr','Frecuencia cardíaca','/min','',20,250,1),cN('sbp','Presión sistólica','mmHg','',30,300,1)],run:function(v){
+  if(!cOk(v.hr,v.sbp))return null;var s=v.hr/v.sbp;return {v:cR(s,2),u:'',t:s<0.7?'Normal':s<1?'Alerta: vigila':s<1.4?'Elevado: probable hipoperfusión':'Muy elevado'};}},
+{id:'pam',n:'Presión arterial media',g:['uci','gen','med','ane'],d:'Presión media a partir de sistólica y diastólica.',ref:'(sistólica + 2 × diastólica) / 3. Meta frecuente en shock: ≥ 65 mmHg.',f:[cN('s','Sistólica','mmHg','',30,300,1),cN('d','Diastólica','mmHg','',10,200,1)],run:function(v){
+  if(!cOk(v.s,v.d))return null;var m=(v.s+2*v.d)/3;return {v:cR(m,0),u:'mmHg',t:m<65?'Menor de 65 mmHg':'≥ 65 mmHg'};}},
+{id:'ldose',n:'Dosis máxima de anestésico local',g:['ane','cir','ort','gen'],d:'Volumen máximo según peso y concentración.',ref:'Dosis máximas habituales: lidocaína 4,5 mg/kg (7 con epinefrina), bupivacaína 2 mg/kg (2,5 con epinefrina), ropivacaína 3 mg/kg, mepivacaína 4,5 mg/kg (7 con epinefrina). 1 % = 10 mg/mL. Usa el peso ideal en obesos. Confirma con tu protocolo.',f:[cS('d','Anestésico',[['Lidocaína sola','4.5'],['Lidocaína con epinefrina','7'],['Bupivacaína sola','2'],['Bupivacaína con epinefrina','2.5'],['Ropivacaína','3'],['Mepivacaína sola','4.5'],['Mepivacaína con epinefrina','7']]),cN('w','Peso','kg','',1,250,0.1),cN('c','Concentración','%',1,0.05,5,0.05)],run:function(v){
+  if(!cOk(v.w,v.c))return null;var d=parseFloat(v.d)*v.w;return {v:cR(d/(v.c*10),1),u:'mL',t:'Equivale a '+cR(d,0)+' mg como máximo en total. Es un límite, no la dosis recomendada.'};}},
+{id:'ebl',n:'Pérdida sanguínea permitida',g:['ane','cir','gin','ort'],d:'Volumen de sangre que se puede perder antes de llegar al hematocrito mínimo aceptado.',ref:'Volumen sanguíneo estimado × (Hto inicial − Hto mínimo) / Hto promedio. Volumen sanguíneo: hombre 70 mL/kg, mujer 65, niño 75, recién nacido 85 a 90, prematuro 95.',f:[cN('w','Peso','kg','',0.5,300,0.1),cS('ev','Volumen sanguíneo estimado',[['Hombre adulto (70 mL/kg)','70'],['Mujer adulta (65 mL/kg)','65'],['Niño (75 mL/kg)','75'],['Recién nacido (85 mL/kg)','85'],['Prematuro (95 mL/kg)','95']]),cN('h0','Hematocrito inicial','%','',10,70,0.5),cN('h1','Hematocrito mínimo aceptado','%',25,10,50,0.5)],run:function(v){
+  if(!cOk(v.w,v.h0,v.h1))return null;var ev=parseFloat(v.ev)*v.w,avg=(v.h0+v.h1)/2;var ml=ev*(v.h0-v.h1)/avg;return {v:cR(ml,0),u:'mL',t:'Con un volumen sanguíneo de ≈ '+cR(ev,0)+' mL. Si el hematocrito mínimo es mayor que el inicial, el resultado no aplica.'};}},
+{id:'asa',n:'Clasificación ASA',g:['ane','cir'],d:'Estado físico preoperatorio.',ref:'Clasificación ASA de la Sociedad Americana de Anestesiólogos. Agrega “E” si es urgencia.',f:[cS('a','Estado del paciente',[['I · Sano','1'],['II · Enfermedad sistémica leve','2'],['III · Enfermedad sistémica grave','3'],['IV · Enfermedad grave con amenaza constante para la vida','4'],['V · Moribundo, no se espera que sobreviva sin la cirugía','5'],['VI · Donante de órganos con muerte cerebral','6']])],run:function(v){
+  var a=parseInt(v.a);if(!cOk(a))return null;return {v:'ASA '+['','I','II','III','IV','V','VI'][a],u:'',t:'Agrega “E” si la cirugía es de urgencia.'};}},
+{id:'rcri',n:'Riesgo cardíaco perioperatorio (RCRI)',g:['ane','cir','card','med'],d:'Riesgo de complicaciones cardíacas mayores en cirugía no cardíaca.',ref:'Lee 1999. Riesgo de evento cardíaco mayor: 0 puntos ≈ 0,4 %; 1 ≈ 0,9 %; 2 ≈ 6,6 %; 3 o más ≈ 11 %. Las cifras provienen de la cohorte original y pueden subestimar el riesgo actual.',f:[cC('hr','Cirugía de alto riesgo (intraperitoneal, intratorácica o vascular suprainguinal)'),cC('cad','Cardiopatía isquémica'),cC('hf','Insuficiencia cardíaca'),cC('cva','Enfermedad cerebrovascular'),cC('ins','Diabetes tratada con insulina'),cC('cr','Creatinina > 2 mg/dL')],run:function(v){
+  var t=0;['hr','cad','hf','cva','ins','cr'].forEach(function(k){if(v[k])t++;});var r=['0,4 %','0,9 %','6,6 %','11 %'][Math.min(t,3)];return {v:String(t),u:'puntos',t:'Riesgo estimado de evento cardíaco mayor: ≈ '+r+' (cohorte original).'};}}
+];
+
+CALCS.push(
+cScore('news2','NEWS2 (alerta temprana)',['med','uci','gen','cir'],[
+ cS('rr','Frecuencia respiratoria',[['12 a 20','0'],['9 a 11','1'],['21 a 24','2'],['≤ 8','3'],['≥ 25','3']]),
+ cS('sp','Saturación de oxígeno (escala 1)',[['≥ 96 %','0'],['94 a 95 %','1'],['92 a 93 %','2'],['≤ 91 %','3']]),
+ cS('o2','Oxígeno suplementario',[['Aire ambiente','0'],['Con oxígeno','2']]),
+ cS('sbp','Presión sistólica',[['111 a 219','0'],['101 a 110','1'],['91 a 100','2'],['≤ 90','3'],['≥ 220','3']]),
+ cS('hr','Frecuencia cardíaca',[['51 a 90','0'],['41 a 50','1'],['91 a 110','1'],['111 a 130','2'],['≤ 40','3'],['≥ 131','3']]),
+ cS('cn','Conciencia',[['Alerta','0'],['Confusión nueva, respuesta a la voz, al dolor o sin respuesta','3']]),
+ cS('t','Temperatura',[['36,1 a 38,0','0'],['35,1 a 36,0','1'],['38,1 a 39,0','1'],['≥ 39,1','2'],['≤ 35,0','3']])
+],function(t,v){var any3=['rr','sp','sbp','hr','cn','t'].some(function(k){return parseFloat(v[k])===3;});return t>=7?'Riesgo alto: respuesta de emergencia.':t>=5?'Riesgo medio: valoración urgente por médico.':any3?'Un parámetro en 3: revisión urgente aunque el total sea bajo.':t>=1?'Riesgo bajo.':'Riesgo bajo.';},'Royal College of Physicians, 2017. La escala 2 de saturación (EPOC con falla ventilatoria hipercápnica) no está incluida.'),
+cScore('qsofa','qSOFA',['med','inf','uci','gen'],[cC('rr','Frecuencia respiratoria ≥ 22/min'),cC('cn','Alteración del estado mental'),cC('pas','Presión sistólica ≤ 100 mmHg')],function(t){return t>=2?'2 o más: mayor riesgo de mala evolución por sepsis. Busca disfunción orgánica.':'Menos de 2: no descarta sepsis.';},'Sepsis-3. Es una herramienta de alerta, no de diagnóstico.'),
+cScore('sirs','Criterios de SIRS',['med','inf','uci','gen'],[cC('t','Temperatura > 38 °C o < 36 °C'),cC('hr','Frecuencia cardíaca > 90/min'),cC('rr','Frecuencia respiratoria > 20/min o PaCO₂ < 32 mmHg'),cC('wbc','Leucocitos > 12.000 o < 4.000/µL, o > 10 % de bandas')],function(t){return t>=2?'2 o más criterios: SIRS presente (no es específico de infección).':'Menos de 2 criterios.';},'ACCP/SCCM 1992.'),
+{id:'sofa',n:'SOFA',g:['uci','inf','med'],d:'Disfunción orgánica secuencial.',ref:'Puntaje de 0 a 24. Un aumento de 2 o más puntos sobre la base indica disfunción orgánica (Sepsis-3). Elige el peor valor de las últimas 24 h.',f:[
+ cS('r','Respiratorio (PaO₂/FiO₂)',[['≥ 400','0'],['< 400','1'],['< 300','2'],['< 200 con soporte ventilatorio','3'],['< 100 con soporte ventilatorio','4']]),
+ cS('c','Coagulación (plaquetas /µL)',[['≥ 150.000','0'],['< 150.000','1'],['< 100.000','2'],['< 50.000','3'],['< 20.000','4']]),
+ cS('h','Hígado (bilirrubina mg/dL)',[['< 1,2','0'],['1,2 a 1,9','1'],['2,0 a 5,9','2'],['6,0 a 11,9','3'],['≥ 12','4']]),
+ cS('cv','Cardiovascular',[['PAM ≥ 70','0'],['PAM < 70','1'],['Dopamina ≤ 5 o dobutamina','2'],['Dopamina > 5, adrenalina ≤ 0,1 o noradrenalina ≤ 0,1','3'],['Dopamina > 15, adrenalina > 0,1 o noradrenalina > 0,1','4']]),
+ cS('n','Neurológico (Glasgow)',[['15','0'],['13 a 14','1'],['10 a 12','2'],['6 a 9','3'],['< 6','4']]),
+ cS('k','Renal (creatinina mg/dL o diuresis)',[['< 1,2','0'],['1,2 a 1,9','1'],['2,0 a 3,4','2'],['3,5 a 4,9 o diuresis < 500 mL/día','3'],['≥ 5 o diuresis < 200 mL/día','4']])
+ ],run:function(v){var t=0,n=0;['r','c','h','cv','n','k'].forEach(function(k){var x=parseFloat(v[k]);if(!isNaN(x)){t+=x;n++;}});if(n<6)return null;return {v:String(t),u:'/ 24',t:t>=2?'2 o más puntos sobre la base indican disfunción orgánica.':'Menos de 2 puntos.'};}},
+cScore('curb65','CURB-65 (neumonía)',['med','neum','inf'],[cC('c','Confusión nueva'),cC('u','Urea > 43 mg/dL (BUN > 19 mg/dL)'),cC('r','Frecuencia respiratoria ≥ 30/min'),cC('b','Presión sistólica < 90 o diastólica ≤ 60 mmHg'),cC('a','Edad ≥ 65 años')],function(t){return t<=1?'0 a 1: riesgo bajo, valora manejo ambulatorio según el contexto.':t===2?'2: riesgo intermedio, considera hospitalización.':'3 a 5: riesgo alto, considera cuidados intensivos si es 4 o 5.';},'Lim 2003. No reemplaza el criterio clínico.'),
+cScore('heart','Puntaje HEART (dolor torácico)',['card','med','gen'],[
+ cS('h','Historia',[['Poco sospechosa','0'],['Moderadamente sospechosa','1'],['Muy sospechosa','2']]),
+ cS('e','Electrocardiograma',[['Normal','0'],['Alteración inespecífica de la repolarización','1'],['Desviación significativa del ST','2']]),
+ cS('a','Edad',[['< 45 años','0'],['45 a 64 años','1'],['≥ 65 años','2']]),
+ cS('r','Factores de riesgo',[['Ninguno conocido','0'],['1 o 2 factores','1'],['≥ 3 factores o enfermedad aterosclerótica conocida','2']]),
+ cS('t','Troponina',[['≤ límite normal','0'],['1 a 3 veces el límite','1'],['> 3 veces el límite','2']])
+],function(t){return t<=3?'Bajo (≈ 1,7 % de eventos a 6 semanas): considera alta temprana según el protocolo.':t<=6?'Intermedio (≈ 16,6 %): observación y estudio adicional.':'Alto (≈ 50 %): manejo como síndrome coronario agudo.';},'Six 2008, Backus 2013. Los porcentajes son de las cohortes originales.'),
+cScore('chads','CHA₂DS₂-VASc (fibrilación auricular)',['card','med','neu'],[cC('chf','Insuficiencia cardíaca o disfunción ventricular',1),cC('htn','Hipertensión',1),cC('a2','Edad ≥ 75 años',2),cC('dm','Diabetes',1),cC('st','Ictus, AIT o tromboembolia previos',2),cC('vas','Enfermedad vascular (infarto previo, enfermedad arterial periférica, placa aórtica)',1),cC('a1','Edad 65 a 74 años',1),cC('sex','Sexo femenino',1)],function(t,v){return t===0?'Riesgo bajo.':t===1?'Riesgo intermedio: considera anticoagulación según el sexo y el contexto.':'Riesgo alto: se recomienda anticoagulación oral salvo contraindicación.';},'Lip 2010. Marca solo una de las dos casillas de edad.'),
+cScore('hasbled','HAS-BLED (riesgo de sangrado)',['card','med'],[cC('h','Hipertensión no controlada (sistólica > 160)'),cC('r','Función renal anormal (diálisis, trasplante o Cr > 2,26 mg/dL)'),cC('l','Función hepática anormal (cirrosis o bilirrubina > 2× con transaminasas > 3×)'),cC('s','Ictus previo'),cC('b','Sangrado previo o predisposición'),cC('i','INR lábil'),cC('e','Edad > 65 años'),cC('d','Fármacos (antiagregantes, AINE)'),cC('al','Alcohol (≥ 8 tragos por semana)')],function(t){return t>=3?'3 o más: riesgo alto de sangrado. No contraindica por sí solo la anticoagulación: corrige los factores modificables y vigila.':'Menos de 3: riesgo menor.';},'Pisters 2010.'),
+cScore('wellspe','Wells para embolia pulmonar',['med','neum','uci','cir'],[cC('d','Signos clínicos de trombosis venosa profunda',3),cC('p','Embolia pulmonar es el diagnóstico más probable',3),cC('h','Frecuencia cardíaca > 100/min',1.5),cC('i','Inmovilización o cirugía en las últimas 4 semanas',1.5),cC('pr','Embolia o trombosis venosa previa',1.5),cC('hm','Hemoptisis',1),cC('c','Cáncer activo',1)],function(t){return (t>6?'Probabilidad alta':t>=2?'Probabilidad moderada':'Probabilidad baja')+' (3 niveles). En 2 niveles: '+(t>4?'probable (> 4)':'improbable (≤ 4)')+'.';},'Wells 2000. Con probabilidad improbable se usa dímero D; con probable, imagen.'),
+cScore('wellstvp','Wells para trombosis venosa profunda',['med','cir','ort'],[cC('c','Cáncer activo'),cC('par','Parálisis, paresia o inmovilización reciente de la pierna'),cC('bed','Encamado > 3 días o cirugía mayor en las últimas 12 semanas'),cC('tend','Dolor localizado a lo largo del sistema venoso profundo'),cC('leg','Toda la pierna hinchada'),cC('cal','Pantorrilla > 3 cm más gruesa que la contralateral'),cC('pit','Edema con fóvea en la pierna sintomática'),cC('col','Venas superficiales colaterales'),cC('prev','Trombosis venosa profunda previa'),cC('alt','Otro diagnóstico al menos tan probable',-2)],function(t){return t>=3?'Probabilidad alta':t>=1?'Probabilidad moderada':'Probabilidad baja';},'Wells 2003.'),
+cScore('perc','Regla PERC (descartar embolia pulmonar)',['med','neum','uci'],[cC('a','Edad ≥ 50 años'),cC('h','Frecuencia cardíaca ≥ 100/min'),cC('s','Saturación < 95 %'),cC('hm','Hemoptisis'),cC('e','Uso de estrógenos'),cC('t','Antecedente de trombosis venosa o embolia'),cC('l','Hinchazón unilateral de la pierna'),cC('x','Cirugía o trauma que requirió hospitalización en las últimas 4 semanas')],function(t){return t===0?'PERC negativo: en pacientes con probabilidad baja se puede descartar embolia pulmonar sin más pruebas.':'PERC positivo: no se puede descartar con la regla; continúa el estudio.';},'Solo se aplica si la probabilidad clínica es baja. Marca los criterios que el paciente presenta.'),
+cScore('alvarado','Puntaje de Alvarado (apendicitis)',['cir','ped','gin'],[cC('m','Dolor que migra a la fosa ilíaca derecha'),cC('a','Anorexia'),cC('n','Náuseas o vómito'),cC('t','Dolor a la palpación en fosa ilíaca derecha',2),cC('r','Dolor al rebote'),cC('f','Temperatura elevada (≥ 37,3 °C)'),cC('l','Leucocitosis (> 10.000/µL)',2),cC('s','Desviación a la izquierda (neutrófilos > 75 %)')],function(t){return t<=3?'0 a 3: apendicitis poco probable.':t<=6?'4 a 6: posible; considera imagen u observación.':t<=8?'7 a 8: probable.':'9 a 10: muy probable.';},'Alvarado 1986. Rinde menos en mujeres y niños.'),
+cScore('bisap','BISAP (pancreatitis aguda)',['cir','gas','med'],[cC('b','BUN > 25 mg/dL'),cC('i','Alteración del estado mental'),cC('s','SIRS (2 o más criterios)'),cC('a','Edad > 60 años'),cC('p','Derrame pleural')],function(t){return t>=3?'3 o más: mayor riesgo de mortalidad y falla orgánica.':'Menos de 3: riesgo menor.';},'Wu 2008. Se mide en las primeras 24 h.'),
+{id:'blatch',n:'Glasgow-Blatchford (hemorragia digestiva alta)',g:['gas','cir','med'],d:'Necesidad de intervención en hemorragia digestiva alta.',ref:'Blatchford 2000. Un puntaje de 0 (o ≤ 1 según guías) identifica pacientes de muy bajo riesgo candidatos a manejo ambulatorio.',f:[
+ cN('bun','BUN','mg/dL','',1,300,1),cSex(),cN('hb','Hemoglobina','g/dL','',2,20,0.1),cN('sbp','Presión sistólica','mmHg','',40,260,1),
+ cC('hr','Frecuencia cardíaca ≥ 100/min'),cC('mel','Melena'),cC('syn','Síncope',2),cC('liv','Enfermedad hepática',2),cC('card','Insuficiencia cardíaca',2)],run:function(v){
+  if(!cOk(v.bun,v.hb,v.sbp))return null;var t=0,b=v.bun;t+=b>=70?6:b>=28?4:b>=22.4?3:b>=18.2?2:0;var h=v.hb;if(v.sex==='F')t+=h<10?6:h<12?1:0;else t+=h<10?6:h<12?3:h<13?1:0;t+=v.sbp<90?3:v.sbp<100?2:v.sbp<110?1:0;if(v.hr)t+=1;if(v.mel)t+=1;if(v.syn)t+=2;if(v.liv)t+=2;if(v.card)t+=2;
+  return {v:String(t),u:'puntos (0 a 23)',t:t===0?'Riesgo muy bajo: puede considerarse manejo ambulatorio.':t<=1?'Riesgo bajo.':'Requiere valoración hospitalaria y probable endoscopia.'};}},
+{id:'cpugh',n:'Child-Pugh (cirrosis)',g:['gas','cir','med'],d:'Gravedad de la enfermedad hepática crónica.',ref:'Clase A: 5 a 6 puntos. B: 7 a 9. C: 10 a 15.',f:[
+ cS('b','Bilirrubina total (mg/dL)',[['< 2','1'],['2 a 3','2'],['> 3','3']]),cS('a','Albúmina (g/dL)',[['> 3,5','1'],['2,8 a 3,5','2'],['< 2,8','3']]),cS('i','INR',[['< 1,7','1'],['1,7 a 2,3','2'],['> 2,3','3']]),
+ cS('as','Ascitis',[['Ausente','1'],['Leve o controlada con diuréticos','2'],['Moderada a grave o refractaria','3']]),cS('e','Encefalopatía hepática',[['Ausente','1'],['Grado 1 a 2 (o controlada)','2'],['Grado 3 a 4 (o refractaria)','3']])],
+ run:function(v){var t=0;['b','a','i','as','e'].forEach(function(k){t+=parseInt(v[k])||0;});var ok=['b','a','i','as','e'].every(function(k){return v[k]!==''&&v[k]!=null;});if(!ok)return null;return {v:String(t),u:'puntos',t:'Clase '+(t<=6?'A (compensada)':t<=9?'B (compromiso significativo)':'C (descompensada)')};}},
+{id:'meld',n:'MELD y MELD-Na',g:['gas','cir','med'],d:'Gravedad de la cirrosis y prioridad de trasplante hepático.',ref:'MELD = 3,78 × ln(bilirrubina) + 11,2 × ln(INR) + 9,57 × ln(creatinina) + 6,43. Los valores menores de 1 se llevan a 1; la creatinina máxima es 4 (y 4 si hay diálisis). MELD-Na = MELD + 1,32 × (137 − Na) − 0,033 × MELD × (137 − Na), con Na entre 125 y 137.',f:[cN('b','Bilirrubina total','mg/dL','',0.1,50,0.1),cN('i','INR','',"",0.5,10,0.01),cN('c','Creatinina','mg/dL','',0.1,15,0.01),cN('na','Sodio (para MELD-Na)','mEq/L','',100,160,1),cC('d','Diálisis ≥ 2 veces en la última semana',1)],run:function(v){
+  if(!cOk(v.b,v.i,v.c))return null;var b=Math.max(1,v.b),i=Math.max(1,v.i),c=v.d?4:Math.min(4,Math.max(1,v.c));var m=3.78*Math.log(b)+11.2*Math.log(i)+9.57*Math.log(c)+6.43;m=Math.round(m);var t='MELD '+m+'.';
+  if(cOk(v.na)){var na=Math.min(137,Math.max(125,v.na));var mn=m+1.32*(137-na)-0.033*m*(137-na);t+=' MELD-Na '+Math.round(mn)+'.';}return {v:String(m),u:'MELD',t:t+' Cálculo con la fórmula clásica.'};}},
+{id:'fib4',n:'FIB-4 (fibrosis hepática)',g:['gas','med'],d:'Estima la fibrosis en hepatopatía crónica.',ref:'(edad × AST) / (plaquetas ×10⁹/L × raíz cuadrada de ALT). Menos de 1,3 descarta fibrosis avanzada (2,0 en mayores de 65); más de 2,67 la sugiere.',f:[cAge(),cN('ast','AST','U/L','',1,5000,1),cN('alt','ALT','U/L','',1,5000,1),cN('plt','Plaquetas','×10⁹/L (miles/µL)','',5,1000,1)],run:function(v){
+  if(!cOk(v.age,v.ast,v.alt,v.plt))return null;var f=v.age*v.ast/(v.plt*Math.sqrt(v.alt));var lo=v.age>=65?2:1.3;return {v:cR(f,2),u:'',t:f<lo?'Bajo: descarta fibrosis avanzada.':f>2.67?'Alto: sugiere fibrosis avanzada.':'Indeterminado: requiere otra prueba (elastografía).'};}},
+{id:'saag',n:'Gradiente de albúmina suero-ascitis (SAAG)',g:['gas','med'],d:'Orienta la causa de la ascitis.',ref:'Albúmina sérica − albúmina del líquido ascítico. ≥ 1,1 g/dL indica hipertensión portal.',f:[cN('s','Albúmina sérica','g/dL','',0.5,6,0.1),cN('a','Albúmina del líquido ascítico','g/dL','',0,5,0.1)],run:function(v){
+  if(!cOk(v.s,v.a))return null;var g=v.s-v.a;return {v:cR(g,1),u:'g/dL',t:g>=1.1?'≥ 1,1: ascitis por hipertensión portal (cirrosis, falla cardíaca, síndrome de Budd-Chiari).':'< 1,1: sin hipertensión portal (carcinomatosis peritoneal, tuberculosis, pancreatitis).'};}},
+{id:'maddrey',n:'Función discriminante de Maddrey',g:['gas','med'],d:'Gravedad de la hepatitis alcohólica.',ref:'4,6 × (TP del paciente − TP control) + bilirrubina (mg/dL). Mayor o igual a 32 indica hepatitis alcohólica grave.',f:[cN('tp','Tiempo de protrombina del paciente','s','',5,100,0.1),cN('tc','Tiempo de protrombina control','s','',5,40,0.1),cN('b','Bilirrubina total','mg/dL','',0.1,50,0.1)],run:function(v){
+  if(!cOk(v.tp,v.tc,v.b))return null;var d=4.6*(v.tp-v.tc)+v.b;return {v:cR(d,1),u:'',t:d>=32?'≥ 32: hepatitis alcohólica grave; valora corticoides.':'< 32'};}},
+{id:'charlson',n:'Índice de comorbilidad de Charlson',g:['med','ger','onc','cir'],d:'Carga de enfermedades crónicas y supervivencia estimada a 10 años.',ref:'Charlson 1987, con ajuste por edad. Supervivencia a 10 años = 0,983 elevado a e^(0,9 × índice). Es una estimación poblacional.',f:[cAge(),cC('mi','Infarto de miocardio previo'),cC('chf','Insuficiencia cardíaca'),cC('pvd','Enfermedad vascular periférica'),cC('cvd','Enfermedad cerebrovascular'),cC('dem','Demencia'),cC('copd','Enfermedad pulmonar crónica'),cC('ctd','Enfermedad del tejido conectivo'),cC('pud','Enfermedad ulcerosa péptica'),cC('liv1','Hepatopatía leve'),cC('dm1','Diabetes sin daño de órgano blanco'),cC('hemi','Hemiplejía',2),cC('ren','Enfermedad renal moderada o grave',2),cC('dm2','Diabetes con daño de órgano blanco',2),cC('tum','Tumor sólido sin metástasis',2),cC('leu','Leucemia',2),cC('lym','Linfoma',2),cC('liv2','Hepatopatía moderada o grave',3),cC('met','Tumor sólido metastásico',6),cC('aids','VIH/sida',6)],run:function(v){
+  var t=0;this.f.forEach(function(it){if(it.k==='c'&&v[it.id])t+=it.p;});var ap=0;if(cOk(v.age))ap=v.age>=80?4:v.age>=70?3:v.age>=60?2:v.age>=50?1:0;var tot=t+ap;var s=Math.pow(0.983,Math.exp(0.9*tot));return {v:String(tot),u:'puntos',t:'Comorbilidad '+t+' + edad '+ap+'. Supervivencia estimada a 10 años: ≈ '+cR(s*100,0)+' %.'};}},
+cScore('braden','Escala de Braden (úlceras por presión)',['ger','med','cir','uci'],[
+ cS('p','Percepción sensorial',[['1 · Completamente limitada','1'],['2 · Muy limitada','2'],['3 · Ligeramente limitada','3'],['4 · Sin limitaciones','4']]),
+ cS('m','Humedad',[['1 · Constantemente húmeda','1'],['2 · Muy húmeda','2'],['3 · Ocasionalmente húmeda','3'],['4 · Raramente húmeda','4']]),
+ cS('a','Actividad',[['1 · En cama','1'],['2 · En silla','2'],['3 · Camina ocasionalmente','3'],['4 · Camina con frecuencia','4']]),
+ cS('mo','Movilidad',[['1 · Completamente inmóvil','1'],['2 · Muy limitada','2'],['3 · Ligeramente limitada','3'],['4 · Sin limitaciones','4']]),
+ cS('n','Nutrición',[['1 · Muy pobre','1'],['2 · Probablemente inadecuada','2'],['3 · Adecuada','3'],['4 · Excelente','4']]),
+ cS('f','Fricción y deslizamiento',[['1 · Problema','1'],['2 · Problema potencial','2'],['3 · Sin problema aparente','3']])
+],function(t){return t<=9?'Riesgo muy alto':t<=12?'Riesgo alto':t<=14?'Riesgo moderado':t<=18?'Riesgo leve':'Sin riesgo';},'Bergstrom 1987. Menor puntaje, mayor riesgo.'),
+{id:'ecog',n:'ECOG y equivalente de Karnofsky',g:['onc','med','ger'],d:'Estado funcional del paciente oncológico.',ref:'ECOG 0 ≈ Karnofsky 90 a 100; 1 ≈ 70 a 80; 2 ≈ 50 a 60; 3 ≈ 30 a 40; 4 ≈ 10 a 20.',f:[cS('e','ECOG',[['0 · Asintomático, actividad normal','0'],['1 · Síntomas leves, ambulatorio; limita el esfuerzo intenso','1'],['2 · Ambulatorio, cuida de sí mismo, en cama menos del 50 % del día','2'],['3 · Cuidado limitado, en cama o silla más del 50 % del día','3'],['4 · Totalmente incapacitado, en cama o silla todo el día','4'],['5 · Fallecido','5']])],run:function(v){
+  var e=parseInt(v.e);if(!cOk(e))return null;var k=['90 a 100','70 a 80','50 a 60','30 a 40','10 a 20','0'][e];return {v:'ECOG '+e,u:'',t:'Equivale a Karnofsky ≈ '+k+'.'+(e>=3?' Suele limitar la quimioterapia sistémica.':'')};}},
+{id:'anc',n:'Neutrófilos absolutos (RAN)',g:['onc','inf','med','ped'],d:'Recuento absoluto de neutrófilos.',ref:'Leucocitos × (% segmentados + % bandas) / 100. Neutropenia: < 1.500/µL; moderada < 1.000; grave < 500.',f:[cN('w','Leucocitos totales','/µL','',100,500000,10),cN('n','Segmentados','%','',0,100,1),cN('b','Bandas','%',0,0,100,1)],run:function(v){
+  if(!cOk(v.w,v.n))return null;var a=v.w*(v.n+(cOk(v.b)?v.b:0))/100;return {v:cR(a,0),u:'/µL',t:a<500?'Neutropenia grave (< 500)':a<1000?'Neutropenia moderada (500 a 999)':a<1500?'Neutropenia leve (1.000 a 1.499)':'Sin neutropenia'};}},
+{id:'calvert',n:'Dosis de carboplatino (Calvert)',g:['onc'],d:'Dosis de carboplatino por área bajo la curva objetivo.',ref:'Dosis (mg) = AUC objetivo × (filtración glomerular + 25). Muchas guías limitan la filtración a 125 mL/min para evitar sobredosis. Confirma con el protocolo y la farmacia oncológica.',f:[cN('auc','AUC objetivo','mg/mL·min',5,1,10,0.5),cN('gfr','Filtración glomerular (o depuración)','mL/min','',5,300,1)],run:function(v){
+  if(!cOk(v.auc,v.gfr))return null;var g=Math.min(v.gfr,125);return {v:cR(v.auc*(g+25),0),u:'mg',t:v.gfr>125?'Se limitó la filtración a 125 mL/min.':'Con la filtración ingresada.'};}},
+cScore('khorana','Puntaje de Khorana (tromboembolia en cáncer)',['onc','med'],[
+ cS('s','Sitio del tumor',[['Otro','0'],['Pulmón, linfoma, ginecológico, vejiga o testículo (alto)','1'],['Estómago o páncreas (muy alto)','2']]),cC('p','Plaquetas ≥ 350.000/µL'),cC('h','Hemoglobina < 10 g/dL o uso de eritropoyetina'),cC('l','Leucocitos > 11.000/µL'),cC('b','IMC ≥ 35')
+],function(t){return t===0?'Riesgo bajo':t<=2?'Riesgo intermedio':'Riesgo alto (≥ 3): se puede considerar tromboprofilaxis ambulatoria.';},'Khorana 2008. Se aplica a pacientes que van a iniciar quimioterapia.')
+);
+
+CALCS.push(
+{id:'aa',n:'Gradiente alvéolo-arterial y PaO₂/FiO₂',g:['neum','uci','med','ane'],d:'Oxigenación a partir de la gasometría arterial.',ref:'PAFI = PaO₂ / FiO₂. Gradiente A-a = [FiO₂ × (Patm − 47) − PaCO₂/0,8] − PaO₂. Patm a nivel del mar 760 mmHg; en Bucaramanga (≈ 960 m) es aproximadamente 680 mmHg. Normal del gradiente ≈ edad/4 + 4.',f:[cN('pao2','PaO₂','mmHg','',20,600,1),cN('paco2','PaCO₂','mmHg','',10,150,1),cN('fio2','FiO₂','% (21 a 100)',21,21,100,1),cN('pb','Presión atmosférica','mmHg',680,400,800,1),cAge()],run:function(v){
+  if(!cOk(v.pao2,v.paco2,v.fio2,v.pb))return null;var f=v.fio2/100,pf=v.pao2/f,aa=f*(v.pb-47)-v.paco2/0.8-v.pao2;var t='PAFI '+cR(pf,0)+(pf<100?': hipoxemia grave.':pf<200?': moderada a grave.':pf<300?': leve a moderada.':': sin hipoxemia significativa.');if(cOk(v.age))t+=' Gradiente esperado ≈ '+cR(v.age/4+4,0)+'.';return {v:cR(aa,0),u:'mmHg (gradiente A-a)',t:t};}},
+{id:'pbw',n:'Peso predicho y volumen corriente (ARDSNet)',g:['uci','neum','ane'],d:'Volumen corriente protector según talla.',ref:'Peso predicho: hombre 50 + 0,91 × (talla cm − 152,4); mujer 45,5 + 0,91 × (talla cm − 152,4). Volumen corriente 6 mL/kg (rango 4 a 8) de peso predicho.',f:[cSex(),cN('h','Talla','cm','',120,230,0.5)],run:function(v){
+  if(!cOk(v.h))return null;var p=(v.sex==='F'?45.5:50)+0.91*(v.h-152.4);return {v:cR(p,1),u:'kg (peso predicho)',t:'Volumen corriente: 6 mL/kg = '+cR(p*6,0)+' mL (rango de 4 a 8 mL/kg: '+cR(p*4,0)+' a '+cR(p*8,0)+' mL).'};}},
+{id:'infus',n:'Velocidad de infusión por peso (mcg/kg/min)',g:['uci','ane','med','ped'],d:'Convierte una dosis en mcg/kg/min a mL/h, y viceversa.',ref:'mL/h = dosis (mcg/kg/min) × peso (kg) × 60 / concentración (mcg/mL). Verifica siempre la concentración de la preparación y la bomba.',f:[cN('d','Dosis','mcg/kg/min','',0,500,0.01),cN('w','Peso','kg','',0.3,300,0.1),cN('c','Concentración de la mezcla','mcg/mL','',1,100000,1)],run:function(v){
+  if(!cOk(v.d,v.w,v.c))return null;return {v:cR(v.d*v.w*60/v.c,2),u:'mL/h',t:'Doble verificación recomendada antes de programar la bomba.'};}},
+{id:'dosekg',n:'Dosis por peso',g:['ped','gen','ane','med'],d:'Dosis total y volumen a partir de mg/kg. Úsala solo con la dosis que ya confirmaste.',ref:'Dosis (mg) = mg/kg × kg. Volumen = dosis / concentración. No incluye topes máximos ni ajuste renal: revisa la dosis máxima del medicamento.',f:[cN('d','Dosis indicada','mg/kg','',0,1000,0.01),cN('w','Peso','kg','',0.3,300,0.1),cN('c','Concentración (opcional)','mg/mL','',0.01,1000,0.01),cN('n','Número de dosis al día (opcional)','',"",1,24,1)],run:function(v){
+  if(!cOk(v.d,v.w))return null;var mg=v.d*v.w,t='Por dosis.';if(cOk(v.c))t='Volumen por dosis: '+cR(mg/v.c,2)+' mL.';if(cOk(v.n))t+=' Total al día: '+cR(mg*v.n,1)+' mg.';return {v:cR(mg,2),u:'mg por dosis',t:t};}},
+{id:'gold',n:'EPOC: relación VEF1/CVF y estadio GOLD',g:['neum','med'],d:'Confirma la obstrucción y clasifica su gravedad.',ref:'Obstrucción: VEF1/CVF posbroncodilatador < 0,70. GOLD 1: VEF1 ≥ 80 % del predicho; 2: 50 a 79 %; 3: 30 a 49 %; 4: < 30 %.',f:[cN('fev','VEF1','L','',0.1,8,0.01),cN('fvc','CVF','L','',0.1,10,0.01),cN('p','VEF1 en % del predicho','%','',5,200,1)],run:function(v){
+  if(!cOk(v.fev,v.fvc))return null;var r=v.fev/v.fvc,t=r<0.7?'Obstrucción presente (< 0,70).':'Sin obstrucción por este criterio.';if(r<0.7&&cOk(v.p))t+=' GOLD '+(v.p>=80?'1 (leve)':v.p>=50?'2 (moderada)':v.p>=30?'3 (grave)':'4 (muy grave)')+'.';return {v:cR(r,2),u:'VEF1/CVF',t:t};}},
+{id:'packyr',n:'Paquetes-año de tabaquismo',g:['neum','med','onc','gen'],d:'Exposición acumulada al cigarrillo.',ref:'(Cigarrillos al día / 20) × años fumando. Un criterio común de tamizaje de cáncer de pulmón con tomografía de baja dosis es ≥ 20 a 30 paquetes-año (según la guía vigente).',f:[cN('c','Cigarrillos por día','',"",0,200,1),cN('y','Años fumando','',"",0,80,0.5)],run:function(v){
+  if(!cOk(v.c,v.y))return null;return {v:cR(v.c/20*v.y,1),u:'paquetes-año',t:''};}},
+{id:'edadcorr',n:'Edad corregida del prematuro',g:['ped'],d:'Edad para evaluar desarrollo y crecimiento en prematuros.',ref:'Edad cronológica − (40 − edad gestacional al nacer en semanas). Se suele usar hasta los 2 años.',f:[cN('eg','Edad gestacional al nacer','semanas','',22,42,1),cN('ec','Edad cronológica','semanas','',0,200,1)],run:function(v){
+  if(!cOk(v.eg,v.ec))return null;var c=v.ec-(40-v.eg);return {v:c<0?'Aún no llega a término':cR(c,0)+' sem',u:'',t:c<0?'La edad cronológica es menor que la que le faltaba para el término.':'≈ '+cR(c/4.345,1)+' meses de edad corregida.'};}},
+{id:'pesoped',n:'Peso estimado en pediatría (APLS)',g:['ped','uci'],d:'Estimación cuando no se puede pesar al niño en una emergencia.',ref:'Lactante: (meses / 2) + 4. De 1 a 5 años: (edad × 2) + 8. De 6 a 12 años: (edad × 3) + 7. Es una estimación: pesa al niño apenas sea posible.',f:[cS('t','Edad expresada en',[['Meses (menor de 1 año)','m'],['Años','a']]),cN('e','Edad','',"",0,12,0.5)],run:function(v){
+  if(!cOk(v.e))return null;var w;if(v.t==='m')w=v.e/2+4;else w=v.e<1?v.e*12/2+4:v.e<=5?v.e*2+8:v.e*3+7;return {v:cR(w,1),u:'kg',t:'Estimación aproximada.'};}},
+{id:'tet',n:'Tubo endotraqueal pediátrico',g:['ped','uci','ane'],d:'Tamaño del tubo y profundidad según edad.',ref:'Sin balón: edad/4 + 4. Con balón: edad/4 + 3,5. Profundidad (en boca) ≈ 3 × el número del tubo. Para menores de 1 año el uso del balón y la talla dependen del protocolo. Ten siempre un tubo mayor y uno menor disponibles.',f:[cN('e','Edad','años','',1,16,0.5)],run:function(v){
+  if(!cOk(v.e))return null;var s=v.e/4+4,c=v.e/4+3.5;return {v:cR(c,1),u:'mm (con balón)',t:'Sin balón: '+cR(s,1)+' mm. Profundidad aproximada con balón: '+cR(c*3,1)+' cm.'};}},
+{id:'gir',n:'Tasa de infusión de glucosa (GIR)',g:['ped','uci'],d:'Aporte de glucosa en neonatos y lactantes.',ref:'GIR (mg/kg/min) = velocidad (mL/h) × concentración de dextrosa (%) / (6 × peso en kg).',f:[cN('r','Velocidad de infusión','mL/h','',0.1,500,0.1),cN('d','Dextrosa','%',10,2.5,50,0.5),cN('w','Peso','kg','',0.4,100,0.01)],run:function(v){
+  if(!cOk(v.r,v.d,v.w))return null;return {v:cR(v.r*v.d/(6*v.w),1),u:'mg/kg/min',t:'Neonato a término: aporte habitual de 4 a 8 mg/kg/min.'};}},
+cScore('apgar','Puntaje de Apgar',['ped','gin'],[
+ cS('a','Aspecto (color)',[['Cianosis o palidez generalizada','0'],['Cuerpo rosado, extremidades azules','1'],['Completamente rosado','2']]),
+ cS('p','Pulso (frecuencia cardíaca)',[['Ausente','0'],['< 100/min','1'],['≥ 100/min','2']]),
+ cS('g','Gesticulación (respuesta a estímulos)',[['Sin respuesta','0'],['Mueca','1'],['Llanto, tos o estornudo','2']]),
+ cS('t','Actividad (tono muscular)',[['Flácido','0'],['Alguna flexión de extremidades','1'],['Movimiento activo','2']]),
+ cS('r','Respiración',[['Ausente','0'],['Débil o irregular','1'],['Llanto fuerte','2']])
+],function(t){return t>=7?'7 a 10: normal.':t>=4?'4 a 6: moderadamente deprimido.':'0 a 3: gravemente deprimido.';},'Se registra al minuto 1 y 5 (y cada 5 min si es menor de 7).'),
+{id:'westley',n:'Puntaje de Westley (crup)',g:['ped','orl'],d:'Gravedad del crup viral.',ref:'Suma de cinco componentes. ≤ 2: leve; 3 a 5: moderado; 6 a 11: grave; ≥ 12: falla respiratoria inminente.',f:[
+ cS('s','Estridor',[['Ninguno','0'],['Con la agitación','1'],['En reposo','2']]),cS('r','Retracciones',[['Ninguna','0'],['Leves','1'],['Moderadas','2'],['Graves','3']]),cS('a','Entrada de aire',[['Normal','0'],['Disminuida','1'],['Muy disminuida','2']]),cS('c','Cianosis',[['Ninguna','0'],['Con la agitación','4'],['En reposo','5']]),cS('n','Nivel de conciencia',[['Normal','0'],['Alterado (desorientado)','5']])],
+ run:function(v){var t=0;var ok=['s','r','a','c','n'].every(function(k){var x=parseFloat(v[k]);if(isNaN(x))return false;t+=x;return true;});if(!ok)return null;return {v:String(t),u:'puntos',t:t<=2?'Leve':t<=5?'Moderado':t<=11?'Grave':'Falla respiratoria inminente'};}},
+{id:'naegele',n:'Fecha probable de parto y edad gestacional',g:['gin'],d:'Por fecha de última menstruación (FUM).',ref:'Regla de Naegele: FUM + 280 días. La edad gestacional es la diferencia entre hoy y la FUM. Si la ecografía del primer trimestre difiere más de 5 a 7 días de la FUM, se suele usar la fecha corregida por ecografía.',f:[cD('fum','Fecha de última menstruación')],run:function(v){
+  if(!v.fum)return null;var f=new Date(v.fum+'T00:00');if(isNaN(f))return null;var fpp=new Date(f.getTime()+280*864e5),h=new Date();h=new Date(h.getFullYear(),h.getMonth(),h.getDate());var d=Math.round((h-f)/864e5);var s=Math.floor(d/7),dd=d%7;
+  var fm=function(x){return x.toLocaleDateString('es-CO',{day:'numeric',month:'long',year:'numeric'});};return {v:fm(fpp),u:'FPP',t:d<0?'La FUM está en el futuro.':'Hoy: '+s+' semanas y '+dd+' días ('+d+' días desde la FUM).'};}},
+{id:'egeco',n:'Edad gestacional por ecografía',g:['gin'],d:'Edad gestacional de hoy a partir de una ecografía previa.',ref:'Edad gestacional en la ecografía + días transcurridos desde esa ecografía.',f:[cD('fe','Fecha de la ecografía'),cN('s','Semanas en la ecografía','',"",4,42,1),cN('dd','Días adicionales','',0,0,6,1)],run:function(v){
+  if(!v.fe||!cOk(v.s))return null;var f=new Date(v.fe+'T00:00'),h=new Date();h=new Date(h.getFullYear(),h.getMonth(),h.getDate());var days=v.s*7+(cOk(v.dd)?v.dd:0)+Math.round((h-f)/864e5);var fpp=new Date(h.getTime()+(280-days)*864e5);
+  return {v:Math.floor(days/7)+'+'+(days%7),u:'semanas+días',t:'FPP por ecografía: '+fpp.toLocaleDateString('es-CO',{day:'numeric',month:'long',year:'numeric'})+'.'};}},
+{id:'bishop',n:'Puntaje de Bishop',g:['gin'],d:'Favorabilidad del cuello uterino para la inducción.',ref:'Dilatación, borramiento, estación, consistencia y posición. Un puntaje ≥ 8 predice buena respuesta a la inducción; ≤ 5 sugiere cuello desfavorable (maduración).',f:[
+ cS('d','Dilatación',[['Cerrado','0'],['1 a 2 cm','1'],['3 a 4 cm','2'],['≥ 5 cm','3']]),cS('b','Borramiento',[['0 a 30 %','0'],['40 a 50 %','1'],['60 a 70 %','2'],['≥ 80 %','3']]),cS('e','Estación',[['−3','0'],['−2','1'],['−1 o 0','2'],['+1 o +2','3']]),cS('c','Consistencia',[['Firme','0'],['Intermedia','1'],['Blanda','2']]),cS('p','Posición',[['Posterior','0'],['Central','1'],['Anterior','2']])],
+ run:function(v){var t=0;var ok=['d','b','e','c','p'].every(function(k){var x=parseFloat(v[k]);if(isNaN(x))return false;t+=x;return true;});if(!ok)return null;return {v:String(t),u:'/ 13',t:t>=8?'Favorable (≥ 8)':t>=6?'Intermedio':'Desfavorable (≤ 5): considera maduración cervical'};}},
+{id:'ila',n:'Índice de líquido amniótico (ILA)',g:['gin'],d:'Suma de la bolsa vertical mayor de los cuatro cuadrantes.',ref:'< 5 cm: oligohidramnios. 5 a 24 cm: normal. ≥ 25 cm: polihidramnios (los umbrales varían un poco entre guías).',f:[cN('a','Cuadrante 1','cm','',0,15,0.1),cN('b','Cuadrante 2','cm','',0,15,0.1),cN('c','Cuadrante 3','cm','',0,15,0.1),cN('d','Cuadrante 4','cm','',0,15,0.1)],run:function(v){
+  if(!cOk(v.a,v.b,v.c,v.d))return null;var s=v.a+v.b+v.c+v.d;return {v:cR(s,1),u:'cm',t:s<5?'Oligohidramnios':s>=25?'Polihidramnios':'Normal'};}},
+{id:'iom',n:'Ganancia de peso recomendada en el embarazo',g:['gin'],d:'Rango total de ganancia según el IMC previo al embarazo.',ref:'Institute of Medicine 2009, embarazo único. Bajo peso 12,5 a 18 kg; normal 11,5 a 16; sobrepeso 7 a 11,5; obesidad 5 a 9. En Colombia se usan también las curvas de Atalah; confirma con la guía local.',f:[cN('w','Peso pregestacional','kg','',30,200,0.1),cN('h','Talla','cm','',120,210,0.5)],run:function(v){
+  if(!cOk(v.w,v.h))return null;var b=v.w/Math.pow(v.h/100,2);var r=b<18.5?['Bajo peso','12,5 a 18']:b<25?['Peso normal','11,5 a 16']:b<30?['Sobrepeso','7 a 11,5']:['Obesidad','5 a 9'];return {v:r[1],u:'kg en total',t:'IMC pregestacional '+cR(b,1)+' ('+r[0]+').'};}},
+cScore('nihss','NIHSS (ictus)',['neu','med'],[
+ cS('1a','1a. Nivel de conciencia',[['0 · Alerta','0'],['1 · Somnoliento','1'],['2 · Estuporoso','2'],['3 · Coma','3']]),cS('1b','1b. Preguntas (mes y edad)',[['0 · Ambas correctas','0'],['1 · Una correcta','1'],['2 · Ninguna','2']]),cS('1c','1c. Órdenes (abrir y cerrar ojos, mano)',[['0 · Ambas','0'],['1 · Una','1'],['2 · Ninguna','2']]),
+ cS('2','2. Mirada conjugada',[['0 · Normal','0'],['1 · Parálisis parcial','1'],['2 · Desviación forzada','2']]),cS('3','3. Campos visuales',[['0 · Sin pérdida','0'],['1 · Hemianopsia parcial','1'],['2 · Hemianopsia completa','2'],['3 · Ceguera bilateral','3']]),cS('4','4. Parálisis facial',[['0 · Normal','0'],['1 · Leve','1'],['2 · Parcial','2'],['3 · Completa','3']]),
+ cS('5a','5a. Brazo izquierdo',[['0 · Sin caída','0'],['1 · Caída antes de 10 s','1'],['2 · Algún esfuerzo contra gravedad','2'],['3 · Sin esfuerzo contra gravedad','3'],['4 · Sin movimiento','4']]),cS('5b','5b. Brazo derecho',[['0 · Sin caída','0'],['1 · Caída antes de 10 s','1'],['2 · Algún esfuerzo contra gravedad','2'],['3 · Sin esfuerzo contra gravedad','3'],['4 · Sin movimiento','4']]),
+ cS('6a','6a. Pierna izquierda',[['0 · Sin caída','0'],['1 · Caída antes de 5 s','1'],['2 · Algún esfuerzo contra gravedad','2'],['3 · Sin esfuerzo contra gravedad','3'],['4 · Sin movimiento','4']]),cS('6b','6b. Pierna derecha',[['0 · Sin caída','0'],['1 · Caída antes de 5 s','1'],['2 · Algún esfuerzo contra gravedad','2'],['3 · Sin esfuerzo contra gravedad','3'],['4 · Sin movimiento','4']]),
+ cS('7','7. Ataxia de extremidades',[['0 · Ausente','0'],['1 · En una extremidad','1'],['2 · En dos extremidades','2']]),cS('8','8. Sensibilidad',[['0 · Normal','0'],['1 · Pérdida leve a moderada','1'],['2 · Pérdida grave o total','2']]),cS('9','9. Lenguaje',[['0 · Normal','0'],['1 · Afasia leve a moderada','1'],['2 · Afasia grave','2'],['3 · Mutismo o afasia global','3']]),cS('10','10. Disartria',[['0 · Normal','0'],['1 · Leve a moderada','1'],['2 · Grave','2']]),cS('11','11. Extinción e inatención',[['0 · Ninguna','0'],['1 · En una modalidad','1'],['2 · En más de una','2']])
+],function(t){return t===0?'Sin déficit':t<=4?'Ictus leve':t<=15?'Ictus moderado':t<=20?'Moderado a grave':'Ictus grave';},'Brott 1989. Aplicarla bien requiere entrenamiento; esta calculadora solo suma.'),
+cScore('abcd2','ABCD² (riesgo tras ataque isquémico transitorio)',['neu','med'],[cC('a','Edad ≥ 60 años'),cC('b','Presión ≥ 140/90 mmHg al llegar'),cS('c','Síntomas',[['Otros','0'],['Alteración del habla sin debilidad','1'],['Debilidad unilateral','2']]),cS('d','Duración',[['< 10 min','0'],['10 a 59 min','1'],['≥ 60 min','2']]),cC('dm','Diabetes')],function(t){return t<=3?'Riesgo bajo de ictus a 2 días (≈ 1 %)':t<=5?'Riesgo moderado (≈ 4 %)':'Riesgo alto (≈ 8 %)';},'Johnston 2007. Las guías actuales prefieren estudiar a todo paciente con AIT sin importar el puntaje.'),
+{id:'ich',n:'Puntaje ICH y volumen del hematoma (ABC/2)',g:['neu','uci'],d:'Pronóstico de la hemorragia intracerebral.',ref:'Volumen ≈ A × B × C / 2 (cm), donde A es el diámetro mayor, B el perpendicular y C el número de cortes × grosor. Puntaje ICH: Glasgow 3 a 4 (2), 5 a 12 (1); volumen ≥ 30 mL (1); hemorragia intraventricular (1); infratentorial (1); edad ≥ 80 (1). Mortalidad a 30 días: 0 → 0 %; 1 → 13 %; 2 → 26 %; 3 → 72 %; 4 → 97 %; 5 a 6 → 100 %.',f:[cN('a','A: diámetro mayor','cm','',0.1,15,0.1),cN('b','B: diámetro perpendicular','cm','',0.1,15,0.1),cN('c','C: altura (cortes × grosor)','cm','',0.1,15,0.1),cS('g','Glasgow al ingreso',[['13 a 15','0'],['5 a 12','1'],['3 a 4','2']]),cC('iv','Hemorragia intraventricular'),cC('inf','Origen infratentorial'),cC('age','Edad ≥ 80 años')],run:function(v){
+  if(!cOk(v.a,v.b,v.c))return null;var vol=v.a*v.b*v.c/2,g=parseFloat(v.g);if(isNaN(g))return {v:cR(vol,1),u:'mL',t:'Elige el Glasgow para calcular el puntaje ICH.'};var t=g+(vol>=30?1:0)+(v.iv?1:0)+(v.inf?1:0)+(v.age?1:0);return {v:cR(vol,1),u:'mL',t:'Puntaje ICH '+t+': mortalidad a 30 días ≈ '+['0','13','26','72','97','100','100'][t]+' % (cohorte original).'};}},
+{id:'sah',n:'Hemorragia subaracnoidea: Hunt-Hess y Fisher modificada',g:['neu'],d:'Gravedad clínica y radiológica.',ref:'Hunt-Hess: I asintomático o cefalea leve; II cefalea moderada o intensa, rigidez de nuca, sin déficit salvo pares craneales; III somnolencia, confusión o déficit focal leve; IV estupor o hemiparesia moderada a grave; V coma. Fisher modificada 0 a 4: ver opciones.',f:[cS('h','Hunt-Hess',[['I','1'],['II','2'],['III','3'],['IV','4'],['V','5']]),cS('f','Fisher modificada',[['0 · Sin hemorragia subaracnoidea ni intraventricular','0'],['1 · HSA delgada, sin hemorragia intraventricular','1'],['2 · HSA delgada, con hemorragia intraventricular','2'],['3 · HSA gruesa, sin hemorragia intraventricular','3'],['4 · HSA gruesa, con hemorragia intraventricular','4']])],run:function(v){
+  var h=parseInt(v.h),f=parseInt(v.f);if(!cOk(h,f))return null;return {v:'HH '+['','I','II','III','IV','V'][h]+' · mFisher '+f,u:'',t:(h>=4?'Mal grado clínico. ':h<=2?'Buen grado clínico. ':'Grado intermedio. ')+(f>=3?'Mayor riesgo de vasoespasmo.':'Menor riesgo de vasoespasmo.')};}},
+{id:'ipss',n:'IPSS (síntomas prostáticos)',g:['uro'],d:'Gravedad de los síntomas del tracto urinario inferior.',ref:'Siete preguntas de 0 a 5 puntos. 0 a 7 leves; 8 a 19 moderados; 20 a 35 graves. La pregunta de calidad de vida va de 0 a 6.',f:[
+ cS('1','Sensación de vaciado incompleto',[['0 · Nunca','0'],['1 · < 1 de cada 5','1'],['2 · < la mitad','2'],['3 · Cerca de la mitad','3'],['4 · > la mitad','4'],['5 · Casi siempre','5']]),cS('2','Orinar de nuevo en menos de 2 horas',[['0 · Nunca','0'],['1 · < 1 de cada 5','1'],['2 · < la mitad','2'],['3 · Cerca de la mitad','3'],['4 · > la mitad','4'],['5 · Casi siempre','5']]),cS('3','Chorro intermitente',[['0 · Nunca','0'],['1 · < 1 de cada 5','1'],['2 · < la mitad','2'],['3 · Cerca de la mitad','3'],['4 · > la mitad','4'],['5 · Casi siempre','5']]),cS('4','Dificultad para aguantar la orina (urgencia)',[['0 · Nunca','0'],['1 · < 1 de cada 5','1'],['2 · < la mitad','2'],['3 · Cerca de la mitad','3'],['4 · > la mitad','4'],['5 · Casi siempre','5']]),cS('5','Chorro débil',[['0 · Nunca','0'],['1 · < 1 de cada 5','1'],['2 · < la mitad','2'],['3 · Cerca de la mitad','3'],['4 · > la mitad','4'],['5 · Casi siempre','5']]),cS('6','Esfuerzo para iniciar la micción',[['0 · Nunca','0'],['1 · < 1 de cada 5','1'],['2 · < la mitad','2'],['3 · Cerca de la mitad','3'],['4 · > la mitad','4'],['5 · Casi siempre','5']]),cS('7','Veces que se levanta a orinar por la noche',[['0 · Ninguna','0'],['1 · Una','1'],['2 · Dos','2'],['3 · Tres','3'],['4 · Cuatro','4'],['5 · Cinco o más','5']]),cS('q','Calidad de vida con estos síntomas',[['0 · Encantado','0'],['1 · Muy satisfecho','1'],['2 · Mayormente satisfecho','2'],['3 · Mixto','3'],['4 · Mayormente insatisfecho','4'],['5 · Infeliz','5'],['6 · Fatal','6']])],
+ run:function(v){var t=0,ok=true;['1','2','3','4','5','6','7'].forEach(function(k){var x=parseFloat(v[k]);if(isNaN(x))ok=false;else t+=x;});if(!ok)return null;var q=parseFloat(v.q);return {v:String(t),u:'/ 35',t:(t<=7?'Síntomas leves':t<=19?'Síntomas moderados':'Síntomas graves')+(isNaN(q)?'':'. Calidad de vida: '+q+' de 6.')};}},
+{id:'prost',n:'Volumen prostático y densidad de PSA',g:['uro','onc'],d:'Volumen por ecografía o resonancia y densidad del antígeno prostático.',ref:'Volumen (elipsoide) = largo × ancho × alto × 0,52. Densidad de PSA = PSA / volumen. Más de 0,15 ng/mL² se considera mayor riesgo de cáncer clínicamente significativo.',f:[cN('l','Diámetro longitudinal','cm','',1,15,0.1),cN('a','Diámetro transverso','cm','',1,15,0.1),cN('h','Diámetro anteroposterior','cm','',1,15,0.1),cN('psa','PSA total (opcional)','ng/mL','',0,2000,0.01)],run:function(v){
+  if(!cOk(v.l,v.a,v.h))return null;var vol=v.l*v.a*v.h*0.52,t='Normal en adulto joven ≈ 20 a 25 mL.';if(cOk(v.psa))t='Densidad de PSA '+cR(v.psa/vol,3)+' ng/mL² ('+(v.psa/vol>0.15?'> 0,15: mayor sospecha':'≤ 0,15')+').';return {v:cR(vol,1),u:'mL',t:t};}},
+{id:'gleason',n:'Gleason y grupo de grado ISUP',g:['uro','onc'],d:'Convierte el patrón de Gleason en grupo de grado.',ref:'3+3 = grupo 1; 3+4 = 2; 4+3 = 3; 4+4, 3+5 y 5+3 = 4; suma 9 a 10 = 5. Un 3+3 no equivale a un grupo menor “de riesgo”, es el grupo 1.',f:[cS('p','Patrón primario',[['3','3'],['4','4'],['5','5']]),cS('s','Patrón secundario',[['3','3'],['4','4'],['5','5']])],run:function(v){
+  var p=parseInt(v.p),s=parseInt(v.s);if(!cOk(p,s))return null;var t=p+s,g=t<=6?1:(p===3&&s===4)?2:(p===4&&s===3)?3:t===8?4:t>=9?5:1;return {v:'Grupo '+g,u:'ISUP',t:'Gleason '+p+'+'+s+' = '+t+'.'};}},
+cScore('phq9','PHQ-9 (depresión)',['psi','med'],(function(){var o=[['0 · Nunca','0'],['1 · Varios días','1'],['2 · Más de la mitad de los días','2'],['3 · Casi todos los días','3']];var q=['Poco interés o placer en hacer las cosas','Sentirse deprimido, sin esperanza','Problemas para dormir o dormir demasiado','Cansancio o poca energía','Poco apetito o comer en exceso','Sentirse mal consigo mismo o fracasado','Dificultad para concentrarse','Moverse o hablar muy lento o inquieto','Pensamientos de que estaría mejor muerto o de hacerse daño'];return q.map(function(t,i){return cS('q'+(i+1),(i+1)+'. '+t,o);});})(),function(t,v){var s=t<=4?'Mínima':t<=9?'Leve':t<=14?'Moderada':t<=19?'Moderadamente grave':'Grave';var i9=parseFloat(v.q9);return s+(i9>0?'. La pregunta 9 es positiva: valora el riesgo suicida de inmediato y activa el protocolo de la institución.':'');},'Kroenke 2001. Es una herramienta de tamizaje y seguimiento, no un diagnóstico.'),
+cScore('gad7','GAD-7 (ansiedad)',['psi','med'],(function(){var o=[['0 · Nunca','0'],['1 · Varios días','1'],['2 · Más de la mitad de los días','2'],['3 · Casi todos los días','3']];var q=['Sentirse nervioso o al límite','No poder parar o controlar la preocupación','Preocuparse demasiado por distintas cosas','Dificultad para relajarse','Tan inquieto que es difícil estar quieto','Irritarse o enojarse con facilidad','Sentir miedo como si algo malo fuera a pasar'];return q.map(function(t,i){return cS('q'+(i+1),(i+1)+'. '+t,o);});})(),function(t){return t<=4?'Mínima':t<=9?'Leve':t<=14?'Moderada':'Grave';},'Spitzer 2006. Un puntaje ≥ 10 es el punto de corte habitual para estudio adicional.'),
+cScore('centor','Centor/McIsaac (faringitis)',['orl','ped','med','inf'],[cC('e','Exudado o hinchazón amigdalina'),cC('n','Adenopatías cervicales anteriores dolorosas'),cC('f','Fiebre (≥ 38 °C)'),cC('c','Ausencia de tos'),cS('a','Edad',[['15 a 44 años','0'],['3 a 14 años','1'],['≥ 45 años','-1']])],function(t){return t<=0?'0 o menos: riesgo muy bajo de estreptococo; sin prueba ni antibiótico.':t<=1?'1: riesgo bajo; sin prueba ni antibiótico.':t<=3?'2 a 3: considera prueba rápida o cultivo y tratar si es positiva.':'4 o más: riesgo alto; prueba o tratamiento según el contexto.';},'McIsaac 2004.'),
+{id:'logmar',n:'Agudeza visual: Snellen, decimal y logMAR',g:['orl'],d:'Convierte entre las escalas de agudeza visual.',ref:'logMAR = log10(denominador / numerador). Decimal = numerador / denominador. Ejemplo: 20/40 = 0,50 = logMAR 0,30.',f:[cN('n','Numerador (distancia de prueba)','pies',20,1,40,1),cN('d','Denominador','',"",5,2000,1)],run:function(v){
+  if(!cOk(v.n,v.d))return null;return {v:cR(Math.log10(v.d/v.n),2),u:'logMAR',t:'Decimal: '+cR(v.n/v.d,2)+'. Snellen en metros equivalente: 6/'+cR(v.d/v.n*6,0)+'.'};}},
+{id:'homa',n:'HOMA-IR (resistencia a la insulina)',g:['endo','med'],d:'Índice de resistencia a la insulina en ayunas.',ref:'Glucosa (mg/dL) × insulina (µU/mL) / 405. Los puntos de corte dependen de la población; valores > 2,5 suelen sugerir resistencia.',f:[cN('g','Glucosa en ayunas','mg/dL','',20,600,1),cN('i','Insulina en ayunas','µU/mL','',0.5,500,0.1)],run:function(v){
+  if(!cOk(v.g,v.i))return null;var h=v.g*v.i/405;return {v:cR(h,2),u:'',t:h>2.5?'Sugiere resistencia a la insulina (> 2,5).':'Por debajo de 2,5'};}},
+{id:'a1c',n:'HbA1c y glucosa promedio estimada',g:['endo','med'],d:'Convierte entre hemoglobina glucosilada y glucosa media.',ref:'Glucosa promedio (mg/dL) = 28,7 × HbA1c − 46,7. Es una estimación poblacional.',f:[cN('a','HbA1c','%','',3,18,0.1)],run:function(v){
+  if(!cOk(v.a))return null;return {v:cR(28.7*v.a-46.7,0),u:'mg/dL promedio',t:v.a<5.7?'Rango normal':v.a<6.5?'Rango de prediabetes (5,7 a 6,4)':'≥ 6,5: rango diagnóstico de diabetes (confírmalo)'};}},
+{id:'ottawa',n:'Reglas de Ottawa para tobillo y pie',g:['ort','med','gen'],d:'Decide si se necesita radiografía tras un esguince.',ref:'Radiografía de tobillo si hay dolor maleolar y alguno de estos: dolor óseo en el borde posterior o la punta de un maléolo (6 cm distales) o incapacidad para dar 4 pasos. Radiografía de pie si hay dolor en la zona media del pie y alguno de: dolor óseo en la base del quinto metatarsiano o el navicular, o incapacidad para dar 4 pasos.',f:[cC('mal','Dolor en la zona de los maléolos'),cC('mid','Dolor en la zona media del pie'),cC('pt','Dolor a la palpación del borde posterior o punta del maléolo (6 cm distales)'),cC('m5','Dolor a la palpación de la base del quinto metatarsiano'),cC('nav','Dolor a la palpación del navicular'),cC('wk','Incapacidad para dar 4 pasos (en el momento y en urgencias)')],run:function(v){
+  var ank=v.mal&&(v.pt||v.wk),ft=v.mid&&(v.m5||v.nav||v.wk);if(!v.mal&&!v.mid)return null;return {v:(ank||ft)?'Pedir radiografía':'No requiere radiografía',u:'',t:(ank?'Criterio de tobillo positivo. ':'')+(ft?'Criterio de pie positivo. ':'')+'No se aplica en menores de 5 años con exploración poco fiable, intoxicados o con lesiones múltiples.'};}},
+cScore('nexus','NEXUS (columna cervical)',['ort','cir','uci','gen'],[cC('m','Dolor a la palpación en la línea media cervical'),cC('f','Déficit neurológico focal'),cC('a','Alteración del estado de alerta'),cC('i','Intoxicación'),cC('d','Lesión dolorosa que distrae')],function(t){return t===0?'Ningún criterio: cumple el criterio de bajo riesgo y se podría prescindir de imagen.':'Al menos un criterio positivo: se recomienda imagen cervical.';},'Hoffman 2000. Los cinco criterios deben estar ausentes para considerar bajo riesgo.'),
+{id:'compart',n:'Presión de perfusión del compartimiento',g:['ort','cir','uci'],d:'Apoyo al diagnóstico de síndrome compartimental.',ref:'ΔP = presión diastólica − presión del compartimiento. Un ΔP ≤ 30 mmHg sugiere fasciotomía en el contexto clínico adecuado. El diagnóstico es clínico.',f:[cN('d','Presión diastólica','mmHg','',20,150,1),cN('c','Presión del compartimiento','mmHg','',0,200,1)],run:function(v){
+  if(!cOk(v.d,v.c))return null;var p=v.d-v.c;return {v:String(cR(p,0)),u:'mmHg (ΔP)',t:p<=30?'≤ 30 mmHg: alta sospecha de síndrome compartimental.':'> 30 mmHg'};}}
+);
+function cD(id,l){return {k:'d',id:id,l:l};}
+
+/* ===== v62: catálogo de especialidades, servicios fijos y datos por especialidad ===== */
+var FAM={
+ surg:{t:'Cirugía',f:[{id:'proc',l:'Procedimiento realizado',t:'t'},{id:'cxf',l:'Fecha de la cirugía',t:'d'},{id:'dren',l:'Drenajes, sondas o catéteres',t:'t'},{id:'via',l:'Dieta, vía oral o tránsito intestinal',t:'t'}],
+  chips:function(e){var c=[],pop=espDays(e.cxf);if(pop!=null)c.push('POP '+pop);if(e.proc)c.push(cut(e.proc,34));if(e.dren)c.push('Dren: '+cut(e.dren,24));return c;},
+  tasks:['Valorar tolerancia a la vía oral y la dieta','Revisar herida quirúrgica y drenajes (gasto y aspecto)','Verificar profilaxis antitrombótica','Revisar analgesia y escala del dolor','Movilización temprana','Revisar paraclínicos de control (hemoglobina, leucocitos)','Definir criterios de egreso y controles'],
+  ai:'Servicio quirúrgico. En el resumen resalta el procedimiento realizado y su fecha, los drenajes o dispositivos y los pendientes posoperatorios que estén escritos en la historia.'},
+ ort:{t:'Ortopedia y trauma',f:[{id:'seg',l:'Segmento y lateralidad',t:'t'},{id:'proc',l:'Procedimiento o tratamiento',t:'t'},{id:'cxf',l:'Fecha de la cirugía',t:'d'},{id:'inm',l:'Inmovilización y carga',t:'t'},{id:'nv',l:'Estado neurovascular distal',t:'t'}],
+  chips:function(e){var c=[],pop=espDays(e.cxf);if(e.seg)c.push(cut(e.seg,26));if(pop!=null)c.push('POP '+pop);if(e.inm)c.push(cut(e.inm,24));return c;},
+  tasks:['Control neurovascular distal','Revisar radiografía de control','Aclarar inmovilización e indicaciones de carga','Verificar profilaxis antitrombótica','Analgesia y manejo del edema','Solicitar valoración por fisioterapia'],
+  ai:'Servicio de ortopedia y trauma. Resalta segmento y lateralidad, el procedimiento, la fecha de cirugía y el estado neurovascular si aparecen escritos.'},
+ neuro:{t:'Neurocirugía',f:[{id:'gcs',l:'Glasgow actual',t:'n'},{id:'pup',l:'Pupilas',t:'t'},{id:'def',l:'Déficit neurológico',t:'t'},{id:'proc',l:'Procedimiento',t:'t'},{id:'cxf',l:'Fecha de la cirugía',t:'d'}],
+  chips:function(e){var c=[],pop=espDays(e.cxf);if(e.gcs)c.push('Glasgow '+e.gcs);if(e.pup)c.push('Pupilas '+cut(e.pup,16));if(pop!=null)c.push('POP '+pop);if(e.proc)c.push(cut(e.proc,28));return c;},
+  tasks:['Control neurológico (Glasgow y pupilas)','Revisar imagen de control','Verificar si hay indicación de profilaxis antiepiléptica','Cabecera elevada y medidas para presión intracraneal si aplica','Revisar herida y drenajes'],
+  ai:'Servicio de neurocirugía. Resalta Glasgow, pupilas, déficit neurológico, procedimiento y fecha si están escritos.'},
+ med:{t:'Medicina interna',f:[{id:'comor',l:'Comorbilidades principales',t:'t'},{id:'meta',l:'Meta de la hospitalización',t:'t'},{id:'alerg',l:'Alergias',t:'t'},{id:'aisl',l:'Aislamiento',t:'s',o:['Ninguno','Contacto','Gotas','Aéreo','Protector']}],
+  chips:function(e){var c=[];if(e.alerg)c.push('Alergia: '+cut(e.alerg,24));if(e.aisl&&e.aisl!=='Ninguno')c.push('Aislamiento '+e.aisl.toLowerCase());if(e.meta)c.push('Meta: '+cut(e.meta,30));return c;},
+  tasks:['Conciliación de medicamentos','Revisar paraclínicos pendientes','Balance hídrico y diuresis','Verificar profilaxis antitrombótica','Definir metas del día y criterios de egreso','Revisar interconsultas pendientes'],
+  ai:'Servicio de medicina. Resalta comorbilidades, alergias, aislamiento y la meta de la hospitalización si están escritos.'},
+ ped:{t:'Pediatría',f:[{id:'peso',l:'Peso',t:'n',u:'kg'},{id:'talla',l:'Talla',t:'n',u:'cm'},{id:'mes',l:'Edad en meses (si es menor de 2 años)',t:'n'},{id:'eg',l:'Edad gestacional al nacer (semanas)',t:'n'},{id:'alerg',l:'Alergias',t:'t'}],
+  chips:function(e){var c=[];if(e.peso)c.push(e.peso+' kg');if(e.mes)c.push(e.mes+' meses');if(e.alerg)c.push('Alergia: '+cut(e.alerg,24));return c;},
+  tasks:['Verificar peso y dosis por kilo','Controlar hidratación y diuresis (mL/kg/h)','Valorar tolerancia a la vía oral','Educación y signos de alarma al cuidador','Revisar esquema de vacunación'],
+  ai:'Servicio de pediatría. Resalta peso, edad (en meses si es lactante), alergias y signos de alarma explicados si están escritos.'},
+ gin:{t:'Ginecología y obstetricia',f:[{id:'g',l:'Gestaciones (G)',t:'n'},{id:'p',l:'Partos vaginales (P)',t:'n'},{id:'c',l:'Cesáreas (C)',t:'n'},{id:'a',l:'Abortos (A)',t:'n'},{id:'fum',l:'Fecha de última menstruación',t:'d'},{id:'rh',l:'Grupo sanguíneo y Rh',t:'t'}],
+  chips:function(e){var c=[];if(e.g||e.p||e.c||e.a)c.push('G'+(e.g||0)+'P'+(e.p||0)+'C'+(e.c||0)+'A'+(e.a||0));var d=espDays(e.fum);if(d!=null&&d<=300)c.push(Math.floor(d/7)+'+'+(d%7)+' sem');if(e.rh)c.push(e.rh);return c;},
+  tasks:['Registrar signos vitales y, si aplica, dinámica uterina y frecuencia cardíaca fetal','Verificar grupo Rh y si requiere inmunoglobulina','Controlar sangrado y loquios','Lactancia y planificación familiar','Revisar paraclínicos prenatales'],
+  ai:'Servicio de ginecología y obstetricia. Resalta antecedentes obstétricos (G, P, C, A), semanas de gestación o fecha de última menstruación y grupo Rh si están escritos.'},
+ icu:{t:'Cuidados intensivos',f:[{id:'vm',l:'Soporte respiratorio',t:'s',o:['Sin soporte','Cánula nasal / máscara','Alto flujo','Ventilación no invasiva','Ventilación mecánica invasiva']},{id:'vaso',l:'Vasopresores y sedación',t:'t'},{id:'acc',l:'Accesos y dispositivos',t:'t'},{id:'meta',l:'Metas del día',t:'t'}],
+  chips:function(e){var c=[];if(e.vm&&e.vm!=='Sin soporte')c.push(e.vm==='Ventilación mecánica invasiva'?'VM invasiva':e.vm);if(e.vaso)c.push(cut(e.vaso,28));return c;},
+  tasks:['Revisar ventilación y metas de oxigenación','Valoración diaria de sedación y analgesia','Verificar profilaxis de úlcera por estrés y de trombosis','Retirar dispositivos innecesarios (sondas y catéteres)','Balance hídrico acumulado','Valorar si está listo para extubación o destete'],
+  ai:'Cuidados intensivos. Resalta soporte ventilatorio, vasopresores, sedación, dispositivos y balance si están escritos.'},
+ onc:{t:'Oncología',f:[{id:'ecog',l:'ECOG',t:'s',o:['0','1','2','3','4']},{id:'esq',l:'Esquema y ciclo',t:'t'},{id:'tox',l:'Toxicidad relevante',t:'t'}],
+  chips:function(e){var c=[];if(e.ecog)c.push('ECOG '+e.ecog);if(e.esq)c.push(cut(e.esq,30));return c;},
+  tasks:['Revisar hemograma y función renal y hepática antes del ciclo','Revisar toxicidad del ciclo anterior','Control de náuseas y dolor','Definir próxima cita y ciclo'],
+  ai:'Servicio de oncología. Resalta esquema y ciclo, ECOG y toxicidades si están escritos.'}
+};
+var ESP=[
+ ['cirugia','Cirugía general',1,'surg',['cir','gas','gen'],'^cirugia( general)?$'],
+ ['medint','Medicina interna',1,'med',['med','card','neum','nef','endo','gas','inf','ger'],'^(medicina interna|medicina general|internista)$'],
+ ['pediatria','Pediatría',1,'ped',['ped','gen'],'^pediatria( general)?$'],
+ ['gineco','Ginecología y obstetricia',1,'gin',['gin','ane'],'^(ginecologia( y obstetricia)?|gineco obstetricia|ginecobstetricia|obstetricia|gineco)$'],
+ ['ortopedia','Ortopedia y traumatología',1,'ort',['ort','ane','cir'],'^(ortopedia( y traumatologia| y trauma)?|traumatologia)$'],
+ ['uci','Cuidados intensivos',1,'icu',['uci','neum','ane'],'^(uci|ucip|ucin|cuidados intensivos|cuidado intensivo|unidad de cuidados intensivos)$'],
+ ['neurocx','Neurocirugía',0,'neuro',['neu','uci','ort'],'^neurocirugia$'],
+ ['urologia','Urología',0,'surg',['uro','nef','onc'],'^urologia$'],
+ ['cxped','Cirugía pediátrica',0,'surg',['ped','cir'],'^cirugia pediatrica$'],
+ ['plastica','Cirugía plástica y quemados',0,'surg',['ort','cir'],'^cirugia plastica( y quemados)?$'],
+ ['cxvasc','Cirugía vascular',0,'surg',['cir','card'],'^cirugia vascular$'],
+ ['cxtorax','Cirugía de tórax',0,'surg',['cir','neum'],'^cirugia de torax$'],
+ ['cxonc','Cirugía oncológica',0,'surg',['cir','onc'],'^cirugia oncologica$'],
+ ['orl','Otorrinolaringología',0,'surg',['orl'],'^(otorrinolaringologia|orl)$'],
+ ['oft','Oftalmología',0,'surg',['orl'],'^oftalmologia$'],
+ ['anest','Anestesiología',0,'surg',['ane','uci'],'^(anestesiologia|anestesia)$'],
+ ['cardio','Cardiología',0,'med',['card','med'],'^cardiologia$'],
+ ['neuro','Neurología',0,'med',['neu','med'],'^neurologia$'],
+ ['nefro','Nefrología',0,'med',['nef','med'],'^nefrologia$'],
+ ['gastro','Gastroenterología',0,'med',['gas','med'],'^(gastroenterologia|gastro)$'],
+ ['neumo','Neumología',0,'med',['neum','med'],'^neumologia$'],
+ ['infecto','Infectología',0,'med',['inf','med'],'^(infectologia|enfermedades infecciosas)$'],
+ ['endo','Endocrinología',0,'med',['endo','med'],'^endocrinologia$'],
+ ['reuma','Reumatología',0,'med',['med'],'^reumatologia$'],
+ ['onco','Oncología',0,'onc',['onc','med'],'^oncologia( clinica)?$'],
+ ['hemato','Hematología',0,'onc',['onc','med'],'^hematologia$'],
+ ['psiq','Psiquiatría',0,'med',['psi','med'],'^psiquiatria$'],
+ ['derma','Dermatología',0,'med',['gen','ort'],'^dermatologia$'],
+ ['geria','Geriatría',0,'med',['ger','med'],'^geriatria$'],
+ ['neonato','Neonatología',0,'ped',['ped'],'^neonatologia$'],
+ ['famil','Medicina familiar',0,'med',['med','gen'],'^medicina familiar$']
+].map(function(a){return {k:a[0],n:a[1],base:!!a[2],fam:a[3],ca:a[4],re:new RegExp(a[5])};});
+function espBy(k){for(var i=0;i<ESP.length;i++)if(ESP[i].k===k)return ESP[i];return null;}
+function espByName(nm){var n=norm(nm);for(var i=0;i<ESP.length;i++)if(ESP[i].re.test(n))return ESP[i];return null;}
+function svFixed(s){var e=s&&s.k&&espBy(s.k);return !!(e&&e.base);}
+function svEsp(s){return s&&s.k?espBy(s.k):null;}
+function svFam(s){var e=svEsp(s);return e?FAM[e.fam]:null;}
+function ensureBase(){
+  var ch=false,have={};
+  db.services.forEach(function(s){if(!s.k){var e=espByName(s.name);if(e&&!have[e.k]){s.k=e.k;ch=true;}}if(s.k)have[s.k]=s;});
+  ESP.forEach(function(e){
+    if(!e.base)return;
+    if(have[e.k])return;
+    var s={id:'b_'+e.k,name:e.n,k:e.k};db.services.push(s);have[e.k]=s;ch=true;
+  });
+  /* si dos dispositivos crearon el mismo servicio fijo, deja el de id estable y pasa los pacientes a él */
+  ESP.forEach(function(e){
+    var same=db.services.filter(function(s){return s.k===e.k;});
+    if(same.length<2)return;
+    var keep=same.filter(function(s){return s.id==='b_'+e.k;})[0];if(!keep)return;
+    same.forEach(function(s){if(s===keep)return;db.patients.forEach(function(p){if(p.serviceId===s.id)p.serviceId=keep.id;});db.services=db.services.filter(function(x){return x!==s;});ch=true;});
+  });
+  if(ch)persist();
+  return ch;
+}
+function svcList(){
+  var base=[],rest=[];
+  db.services.forEach(function(s){(svFixed(s)?base:rest).push(s);});
+  base.sort(function(a,b){return ESP.indexOf(espBy(a.k))-ESP.indexOf(espBy(b.k));});
+  return base.concat(rest);
+}
+function espDays(iso){
+  if(!iso)return null;var d=new Date(iso+'T00:00');if(isNaN(d))return null;var t=new Date();t=new Date(t.getFullYear(),t.getMonth(),t.getDate());var n=Math.round((t-d)/864e5);return n<0?null:n;
+}
+function espChips(p){
+  var f=svFam(svc(p.serviceId));if(!f||!p.esp)return [];
+  try{return f.chips(p.esp,p).filter(Boolean);}catch(e){return [];}
+}
+function espLine(p){return espChips(p).join(' · ');}
+function espHtml(p){var c=espChips(p);return c.length?'<div class="espc">'+c.map(function(x){return '<span>'+esc(x)+'</span>';}).join('')+'</div>':'';}
+function espForm(p){
+  var sv=svc(p.serviceId||S.serviceId),f=svFam(sv);if(!f)return '';
+  var e=p.esp||{};
+  return '<div class="espbox"><div class="small muted"><strong>Datos de '+esc(f.t.toLowerCase())+'</strong> · opcionales, aparecen en la tarjeta y en la entrega de turno</div><div class="grid">'+f.f.map(function(x){
+    var id='f_e_'+x.id,v=e[x.id]==null?'':e[x.id];
+    if(x.t==='s')return '<label>'+esc(x.l)+'<select id="'+id+'"><option value="">—</option>'+x.o.map(function(o){return '<option'+(v===o?' selected':'')+'>'+esc(o)+'</option>';}).join('')+'</select></label>';
+    if(x.t==='d')return '<label>'+esc(x.l)+'<input id="'+id+'" type="date" value="'+esc(v)+'"></label>';
+    if(x.t==='n')return '<label>'+esc(x.l)+(x.u?' ('+esc(x.u)+')':'')+'<input id="'+id+'" inputmode="decimal" maxlength="6" value="'+esc(v)+'"></label>';
+    return '<label>'+esc(x.l)+'<input id="'+id+'" maxlength="80" value="'+esc(v)+'"></label>';
+  }).join('')+'</div></div>';
+}
+function espRead(sid){
+  var f=svFam(svc(sid));if(!f)return null;var o={};
+  f.f.forEach(function(x){var el=document.getElementById('f_e_'+x.id);if(!el)return;var v=String(el.value||'').trim();if(x.t==='n')v=v.replace(',','.').replace(/[^0-9.]/g,'');if(v)o[x.id]=v;});
+  return o;
+}
+function espBtns(p){
+  var sv=svc(p.serviceId),f=svFam(sv);
+  return '<button class="btn sm" data-a="calcFor" data-id="'+p.id+'">Calculadoras</button>'+(f?'<button class="btn sm" data-a="espTasks">Pendientes típicos</button>':'')+'<button class="btn sm" data-a="epiOpen">Borrador de resumen de egreso</button>';
+}
+function espTasksPanel(p){
+  var f=svFam(svc(p.serviceId));if(!f)return '';
+  var have={};pTasks(p.id).forEach(function(t){if(!t.done)have[norm(t.text)]=1;});
+  return '<div class="card"><h3>Pendientes típicos de '+esc(f.t.toLowerCase())+'</h3><div class="small muted">Sugerencias generales para no olvidar lo habitual. Marca los que apliquen a este paciente y agrégalos.</div>'+
+   f.tasks.map(function(t,i){var h=have[norm(t)];return '<label class="task" style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" class="esT" value="'+i+'"'+(h?' disabled':'')+'><span class="t">'+esc(t)+(h?' · ya está':'')+'</span></label>';}).join('')+
+   '<div class="row"><button class="btn primary" data-a="espAdd">Agregar los marcados</button><button class="btn ghost" data-a="espClose">Cerrar</button></div></div>';
+}
+
+/* ===== v62: vista de calculadoras ===== */
+function calcById(id){for(var i=0;i<CALCS.length;i++)if(CALCS[i].id===id)return CALCS[i];return null;}
+function calcAreaName(k){for(var i=0;i<CALC_AREAS.length;i++)if(CALC_AREAS[i][0]===k)return CALC_AREAS[i][1];return k;}
+function calcCtx(){var p=S.cpid&&pat(S.cpid);return {p:p||null,sv:p?svc(p.serviceId):(S.csid?svc(S.csid):null)};}
+function calcRecAreas(){var c=calcCtx(),e=svEsp(c.sv);return e?e.ca:null;}
+function calcListHtml(){
+  var q=norm(S.cq||''),rec=calcRecAreas(),area=S.carea||(rec?'rec':'all'),tk=q?q.split(' '):[];
+  var list=CALCS.filter(function(c){
+    if(tk.length){var t=norm(c.n+' '+c.d+' '+c.g.map(calcAreaName).join(' '));return tk.every(function(w){return t.indexOf(w)>=0;});}
+    if(area==='all')return true;
+    if(area==='rec')return c.g.some(function(g){return rec&&rec.indexOf(g)>=0;});
+    return c.g.indexOf(area)>=0;
+  });
+  if(!list.length)return '<div class="empty">Ninguna calculadora coincide. Prueba con otra palabra o elige “Todas”.</div>';
+  var out='';
+  CALC_AREAS.forEach(function(a){
+    var l=list.filter(function(c){return (tk.length||area==='all'||area==='rec')?c.g[0]===a[0]:c.g.indexOf(a[0])>=0&&a[0]===area;});
+    if(!l.length)return;
+    out+='<h3 class="cgh">'+esc(a[1])+' <span class="muted small">'+l.length+'</span></h3><div class="cols">'+l.map(function(c){return '<button class="pcard ccard" data-a="calcOpen" data-id="'+c.id+'"><strong>'+esc(c.n)+'</strong><div class="small muted">'+esc(c.d)+'</div></button>';}).join('')+'</div>';
+  });
+  return out||'<div class="empty">Ninguna calculadora coincide.</div>';
+}
+function calcFieldHtml(f,p){
+  var id='cf_'+f.id,pre='';
+  if(f.k==='n'){
+    var v=f.def;
+    if(p){if(f.pf==='age'&&p.age)v=p.age;if(p.esp){if(f.id==='w'&&f.u==='kg'&&p.esp.peso)v=p.esp.peso;if(f.id==='h'&&f.u==='cm'&&p.esp.talla)v=p.esp.talla;}}
+    return '<label><span>'+esc(f.l)+(f.u?' <span class="muted">('+esc(f.u)+')</span>':'')+'</span><input id="'+id+'" inputmode="decimal" autocomplete="off" value="'+esc(String(v).replace('.',','))+'"></label>';
+  }
+  if(f.k==='d')return '<label>'+esc(f.l)+'<input id="'+id+'" type="date"></label>';
+  if(f.k==='c')return '<label class="ccheck"><input id="'+id+'" type="checkbox"><span>'+esc(f.l)+(f.p&&f.p!==1?' <span class="muted">('+(f.p>0?'+':'')+String(f.p).replace('.',',')+')</span>':'')+'</span></label>';
+  var sel=f.def;if(f.pf==='sex'&&p&&p.sex)sel=p.sex;
+  return '<label>'+esc(f.l)+'<select id="'+id+'"><option value="">Elige…</option>'+f.o.map(function(o){return '<option value="'+esc(o[1])+'"'+(sel!=null&&String(sel)===String(o[1])?' selected':'')+'>'+esc(o[0])+'</option>';}).join('')+'</select></label>';
+}
+function calcOpenHtml(c,p){
+  var scoreSel=c.f.some(function(f){return f.k==='s';});
+  return '<div class="card"><div class="row spread"><h2 style="font-size:1.15rem">'+esc(c.n)+'</h2><button class="btn sm ghost" data-a="calcClose">Cerrar</button></div>'+(p?'<div class="small muted">Para '+esc(p.ini)+' · '+esc(p.age)+' a · '+esc(p.sex)+'. Cargué la edad y el sexo cuando la calculadora los usa.</div>':'')+
+   '<div class="small muted">'+esc(c.d)+'</div><div id="calcForm" class="cgrid">'+c.f.map(function(f){return calcFieldHtml(f,p);}).join('')+'</div>'+
+   '<div id="cres" class="cres" aria-live="polite"></div>'+
+   '<div class="row"><button class="btn primary" data-a="calcCopy">Copiar resultado</button><button class="btn" data-a="calcReset">Limpiar</button></div>'+
+   '<details class="cref"><summary class="small">Cómo se calcula y de dónde sale</summary><div class="small muted" style="margin-top:6px">'+esc(c.ref||'')+'</div></details>'+
+   '<div class="note small">Herramienta de apoyo. Verifica los datos, el contexto del paciente y la fuente antes de decidir; no reemplaza el criterio clínico.</div></div>';
+}
+function viewCalc(){
+  var cx=calcCtx(),c=S.cid&&calcById(S.cid);
+  var h='<div class="row spread"><button class="btn sm ghost" data-a="calcBack">‹ Volver</button><h2>Calculadoras</h2><span></span></div>';
+  if(c)return h+calcOpenHtml(c,cx.p);
+  var rec=calcRecAreas(),area=S.carea||(rec?'rec':'all');
+  var opts=(rec?'<option value="rec"'+(area==='rec'?' selected':'')+'>Recomendadas para '+esc(cx.sv?cx.sv.name:'este servicio')+'</option>':'')+'<option value="all"'+(area==='all'?' selected':'')+'>Todas ('+CALCS.length+')</option>'+CALC_AREAS.map(function(a){return '<option value="'+a[0]+'"'+(area===a[0]?' selected':'')+'>'+esc(a[1])+'</option>';}).join('');
+  return h+'<div class="card"><div class="small muted">Escalas, fórmulas y conversiones de uso frecuente. Cada una muestra cómo se calcula.</div><div class="grid"><label>Buscar<input id="cq" autocomplete="off" placeholder="Ej. creatinina, Wells, Parkland" value="'+esc(S.cq||'')+'"></label><label>Especialidad<select id="carea">'+opts+'</select></label></div></div><div id="clist">'+calcListHtml()+'</div>';
+}
+function calcVals(c){
+  var v={};c.f.forEach(function(f){var el=document.getElementById('cf_'+f.id);if(!el)return;
+    if(f.k==='n'){var t=String(el.value).replace(',','.').trim();v[f.id]=t===''?NaN:parseFloat(t);}
+    else if(f.k==='c')v[f.id]=el.checked;else v[f.id]=el.value;});
+  return v;
+}
+function calcFmt(x){return String(x).replace(/(\d)\.(\d)/g,'$1,$2');}
+function calcRun(){
+  var c=S.cid&&calcById(S.cid),box=document.getElementById('cres');if(!c||!box)return;
+  var r=null;try{r=c.run(calcVals(c));}catch(e){r=null;}
+  S.cr=r;
+  if(!r){box.innerHTML='<div class="small muted">Completa los datos para ver el resultado.</div>';return;}
+  box.innerHTML='<div class="cval">'+esc(calcFmt(r.v))+(r.u?' <span>'+esc(r.u)+'</span>':'')+'</div>'+(r.t?'<div class="cint">'+esc(calcFmt(r.t))+'</div>':'');
+}
+document.addEventListener('input',function(e){
+  var el=e.target;if(!el)return;
+  if(el.id==='cq'){S.cq=el.value;var l=document.getElementById('clist');if(l)l.innerHTML=calcListHtml();}
+  else if(el.closest&&el.closest('#calcForm'))calcRun();
+});
+document.addEventListener('change',function(e){
+  var el=e.target;if(!el)return;
+  if(el.id==='carea'){S.carea=el.value;var l=document.getElementById('clist');if(l)l.innerHTML=calcListHtml();}
+  else if(el.closest&&el.closest('#calcForm'))calcRun();
+  else if(el.id==='hfLen'||el.id==='hfOrd'){var o=hf();if(el.id==='hfLen')o.len=el.value;else o.ord=el.value;try{localStorage.setItem('rot_hf',JSON.stringify(o));}catch(x){}render();}
+});
+
+/* ===== v62: entrega de turno con formatos ===== */
+function hf(){
+  if(!S.hf){S.hf={len:'norm',ord:'bed'};try{var o=JSON.parse(localStorage.getItem('rot_hf')||'{}');if(o.len)S.hf.len=o.len;if(o.ord)S.hf.ord=o.ord;}catch(e){}}
+  return S.hf;
+}
+function handPs(s){
+  var ps=activeOf(s.id);
+  if(hf().ord==='sev'){var R={inestable:0,vigilar:1,estable:2};ps.sort(function(a,b){return ((R[a.sev]==null?3:R[a.sev])-(R[b.sev]==null?3:R[b.sev]))||bedSort(a,b);});}
+  else ps.sort(bedSort);
+  return ps;
+}
+function handOpts(){
+  var o=hf();
+  return '<div class="grid"><label>Detalle<select id="hfLen"><option value="corto"'+(o.len==='corto'?' selected':'')+'>Corto: una línea por paciente</option><option value="norm"'+(o.len==='norm'?' selected':'')+'>Normal</option><option value="largo"'+(o.len==='largo'?' selected':'')+'>Detallado</option></select></label>'+
+   '<label>Orden<select id="hfOrd"><option value="bed"'+(o.ord==='bed'?' selected':'')+'>Por cama</option><option value="sev"'+(o.ord==='sev'?' selected':'')+'>Por gravedad: primero los inestables</option></select></label></div>';
+}
+function handoffText(){
+  var sv=svcList().filter(function(s){return S.hand==='all'||s.id===S.hand;}),L=hf().len;
+  var d=new Date().toLocaleString('es-CO',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  var out=[b('ENTREGA DE TURNO','SCHICHTÜBERGABE')+' · '+d,''];
+  sv.forEach(function(s){
+    var ps=handPs(s);
+    if(!ps.length&&S.hand==='all')return;
+    out.push('== '+s.name.toUpperCase()+' ('+ps.length+') ==');
+    if(!ps.length)out.push(b('Sin pacientes activos.','Keine aktiven Patienten.'));
+    ps.forEach(function(p){
+      var es=pEntries(p.id);
+      var ev=es.filter(function(e){return e.type==='evolucion';})[0];
+      var ing=es.filter(function(e){return e.type==='ingreso';})[0];
+      var pl=es.filter(function(e){return e.type==='plan';})[0];
+      var res=ev&&ev.data.a?ev.data.a:(ing&&ing.data.imp?ing.data.imp:'');
+      var plan=ev&&ev.data.p?ev.data.p:(pl&&pl.data.plan?pl.data.plan:(ing&&ing.data.plan?ing.data.plan:''));
+      var head=b('Cama','Bett')+' '+(p.bed||'—')+' · '+p.ini+' · '+p.age+b('a','J.')+' '+p.sex+' · '+b('día','Tag')+' '+hd(p)+' · ['+p.sev.toUpperCase()+(S.bi?' / '+(DE[p.sev]||'').toUpperCase():'')+']';
+      var ec=espLine(p),po=pendOrders(p.id);
+      var ts=openTasks(p.id).map(function(t){return '- '+t.text;});
+      var ics=openICs(p.id).map(function(e){return '- '+b('IC','Konsil')+' '+(e.data.serv||'')+': '+cut(e.data.preg,L==='largo'?240:120);});
+      if(L==='corto'){
+        var np=ts.length+ics.length+po.length;
+        out.push(head+' · '+cut(p.dx||'—',70)+(ec?' · '+ec:'')+(np?' · '+np+' '+b('pend.','offen'):''));
+        return;
+      }
+      out.push(head);
+      out.push(b('Dx','Diagnose')+': '+(p.dx||'—'));
+      if(ec)out.push((b('Datos','Daten'))+': '+ec);
+      var cap=L==='largo'?700:280;
+      if(res)out.push(b('Resumen','Zusammenfassung')+': '+cut(res,cap));
+      if(plan)out.push('Plan: '+cut(plan,cap));
+      if(po.length)out.push(b('Resultados pendientes','Ausstehende Befunde')+': '+po.map(function(x){return x.o.n;}).join('; '));
+      if(ts.length||ics.length){out.push(b('Pendientes','Offene Aufgaben')+':');out=out.concat(ts,ics);}
+      if(p.cont)out.push(b('Si pasa X, hacer Y','Wenn X, dann Y')+': '+cut(p.cont,L==='largo'?400:200));
+      out.push('');
+    });
+    if(L==='corto')out.push('');
+  });
+  return out.join('\n');
+}
+
+/* ===== v62: borrador de resumen de egreso (se arma con lo que ya está en la ficha) ===== */
+function epiDraft(p){
+  var es=pEntries(p.id).slice().reverse();
+  var sv=svc(p.serviceId),L=[];
+  var ing=es.filter(function(e){return e.type==='ingreso';})[0],evs=es.filter(function(e){return e.type==='evolucion';});
+  var fm=function(iso){try{return new Date(iso).toLocaleDateString('es-CO',{day:'numeric',month:'short',year:'numeric'});}catch(e){return iso;}};
+  L.push('RESUMEN DE EGRESO · BORRADOR (revisar, corregir y completar antes de usar)','');
+  L.push('Paciente: '+p.ini+' · '+p.age+' años · '+p.sex+(sv?' · '+sv.name:''));
+  L.push('Ingreso: '+p.adm+(p.active?' · hospitalizado, día '+hd(p):' · egreso '+(p.exitAt?fm(p.exitAt):'')+' · '+hd(p)+' días'));
+  var ec=espLine(p);if(ec)L.push('Datos de la especialidad: '+ec);
+  L.push('');
+  if(ing&&ing.data.motivo)L.push('MOTIVO DE INGRESO','',cut(ing.data.motivo,500),'');
+  if(ing&&ing.data.ea)L.push('ENFERMEDAD ACTUAL (resumen)','',cut(ing.data.ea,700),'');
+  if(ing&&ing.data.ant)L.push('ANTECEDENTES','',cut(ing.data.ant,400),'');
+  L.push('DIAGNÓSTICOS','','Ingreso: '+((ing&&ing.data.imp)?cut(ing.data.imp,300):'—'),'Principal actual: '+(p.dx||'—'),'');
+  if(evs.length){
+    L.push('EVOLUCIÓN','');
+    evs.slice(-4).forEach(function(e){var t=e.data.a||e.data.s||'';if(t)L.push('- '+fm(e.at)+': '+cut(t,320));});
+    L.push('');
+  }
+  var procs={};es.forEach(function(e){if((e.type==='plan'||e.type==='ingreso'||e.type==='epicrisis')&&e.data&&e.data.proc)String(e.data.proc).split(/\n|;/).forEach(function(x){x=x.replace(/^[-\s•]+/,'').trim();if(x)procs[x]=1;});});
+  var pl=Object.keys(procs);
+  if(pl.length)L.push('PROCEDIMIENTOS','',pl.map(function(x){return '- '+x;}).join('\n'),'');
+  var ics=es.filter(function(e){return e.type==='interconsulta';});
+  if(ics.length){L.push('INTERCONSULTAS','');ics.forEach(function(e){L.push('- '+(e.data.serv||'')+': '+cut(e.data.preg,160)+(e.data.resp?' → '+cut(e.data.resp,220):' → sin respuesta registrada'));});L.push('');}
+  var labs=es.filter(function(e){return e.type==='lab'&&e.data;}).slice(-4);
+  if(labs.length){L.push('PARACLÍNICOS RELEVANTES','');labs.forEach(function(e){L.push('- '+fm(e.at)+' · '+(e.data.est||'Paraclínico')+': '+cut(e.data.res,200));});L.push('');}
+  var im=es.filter(function(e){return e.type==='img'&&e.data;}).slice(-3);
+  if(im.length){L.push('IMÁGENES','');im.forEach(function(e){L.push('- '+fm(e.at)+' · '+(e.data.est||'Imagen')+': '+cut(e.data.lec||e.data.mia,220));});L.push('');}
+  var sal=es.filter(function(e){return e.type==='salida';})[0],epi=es.filter(function(e){return e.type==='epicrisis';})[0];
+  L.push('CONDICIÓN AL EGRESO','',(epi&&epi.data.cond)||(sal&&sal.data.tipo?sal.data.tipo+(sal.data.dest?' · '+sal.data.dest:''):'[completar]'),'');
+  L.push('INDICACIONES Y CONTROLES','',(epi&&epi.data.ind)||'[completar]','');
+  var ts=openTasks(p.id).map(function(t){return '- '+t.text;});
+  L.push('PENDIENTES AL MOMENTO','',ts.length?ts.join('\n'):'- Ninguno registrado');
+  return L.join('\n');
+}
+function epiPanel(p){
+  return '<div class="card"><div class="row spread"><h3>Borrador de resumen de egreso</h3><button class="btn sm ghost" data-a="epiOpen">Cerrar</button></div><div class="small muted">Se arma con lo que ya está en la ficha (ingreso, evoluciones, planes, interconsultas y paraclínicos). Revísalo y complétalo: no inventa datos.</div><pre class="out" id="epiOut">'+esc(epiDraft(p))+'</pre><div class="row"><button class="btn primary" data-a="epiCopy">Copiar texto</button></div></div>';
+}
+
+/* ===== v62: recetario (borrador, se activa en Cuenta) ===== */
+var RX={st:0,d:[],q:[],ver:''};
+function rxOn(){try{return localStorage.getItem('rot_rx')==='1';}catch(e){return false;}}
+function rxLoad(cb){
+  if(RX.st===2){cb(true);return;}
+  if(RX.st===1){RX.q.push(cb);return;}
+  RX.st=1;RX.q=[cb];
+  function done(ok){RX.st=ok?2:-1;var q=RX.q;RX.q=[];q.forEach(function(f){try{f(ok);}catch(e){}});}
+  try{fetch('vendor/recetario.json').then(function(r){if(!r.ok)throw new Error('x');return r.json();}).then(function(j){RX.d=j.items||[];RX.ver=j.version||'';done(true);}).catch(function(){done(false);});}catch(e){done(false);}
+}
+function rxCard(){
+  return '<div class="card"><h3>Recetario (borrador)</h3><div class="small muted">Lista de medicamentos con dosis habituales por indicación y tipo de paciente. Es un borrador que aún no está verificado contra fuentes: por eso está apagado. Actívalo solo para revisarlo.</div><label class="ccheck" style="margin-top:8px"><input type="checkbox" data-a="rxTog"'+(rxOn()?' checked':'')+'><span>Mostrar el recetario en la app</span></label></div>';
+}
+function rxList(){
+  var q=norm(S.rq||''),tk=q?q.split(' '):[],pop=S.rpop||'a';
+  var l=RX.d.filter(function(d){
+    if(!tk.length)return true;
+    var t=norm(d.n+' '+d.cl+' '+(d.ind||[]).map(function(x){return x.i;}).join(' '));return tk.every(function(w){return t.indexOf(w)>=0;});
+  });
+  if(!l.length)return '<div class="empty">Ningún medicamento coincide.</div>';
+  var w=parseFloat(String(S.rw||'').replace(',','.'));
+  return '<div class="cols">'+l.map(function(d){
+    return '<div class="card rxc"><div class="row spread"><h3 style="margin:0">'+esc(d.n)+'</h3><span class="chip" style="--c:var(--c-plan)">'+esc(d.cl)+'</span></div>'+
+     (d.v?'':'<div class="rxflag">Borrador sin verificar</div>')+
+     (d.ind||[]).map(function(x){
+       var dose=pop==='a'?x.a:x.p,calc='';
+       if(pop==='p'&&x.k&&w>0){var lo=x.k.lo*w,hi=x.k.hi*w;calc='<div class="rxcalc">Con '+esc(String(S.rw))+' kg: '+calcFmt(cR(lo,1))+(x.k.hi!==x.k.lo?' a '+calcFmt(cR(hi,1)):'')+' mg por dosis'+(x.k.int?' '+esc(x.k.int):'')+(x.k.maxd?' · tope '+esc(x.k.maxd):'')+'</div>';}
+       return '<div class="rxi"><div class="rxh">'+esc(x.i)+'</div><div class="small">'+(dose?esc(dose):'<span class="muted">Sin dato para este grupo en el borrador.</span>')+'</div>'+calc+'</div>';
+     }).join('')+
+     (d.pre?'<div class="small muted"><strong>Precauciones:</strong> '+esc(d.pre)+'</div>':'')+'</div>';
+  }).join('')+'</div>';
+}
+function viewRx(){
+  var h='<div class="row spread"><button class="btn sm ghost" data-a="nav" data-v="services">‹ Servicios</button><h2>Recetario</h2><span></span></div>';
+  if(!rxOn())return h+'<div class="empty">El recetario está apagado. Puedes activarlo en Cuenta.</div>';
+  if(RX.st===0)rxLoad(function(){if(S.view==='rx')render();});
+  if(RX.st===1||RX.st===0)return h+'<div class="empty">Cargando el recetario…</div>';
+  if(RX.st===-1)return h+'<div class="note bad">No pude cargar el recetario. Revisa tu conexión e inténtalo de nuevo.</div>';
+  var pop=S.rpop||'a';
+  return h+'<div class="note warn"><strong>Borrador sin verificar.</strong> Las dosis de esta lista son una primera versión y aún no se han confirmado con la fuente oficial. Confirma cada una en el vademécum, la guía local o con el servicio de farmacia antes de indicarla. No reemplaza el criterio clínico.</div>'+
+   '<div class="card"><div class="grid"><label>Buscar<input id="rq" autocomplete="off" placeholder="Medicamento, clase o indicación" value="'+esc(S.rq||'')+'"></label><label>Tipo de paciente<select id="rpop"><option value="a"'+(pop==='a'?' selected':'')+'>Adulto</option><option value="p"'+(pop==='p'?' selected':'')+'>Pediátrico</option></select></label>'+(pop==='p'?'<label>Peso del niño (kg), para calcular mg<input id="rw" inputmode="decimal" value="'+esc(S.rw||'')+'"></label>':'')+'</div></div><div id="rxl">'+rxList()+'</div>';
+}
+document.addEventListener('input',function(e){var el=e.target;if(!el)return;
+  if(el.id==='rq'){S.rq=el.value;var l=document.getElementById('rxl');if(l)l.innerHTML=rxList();}
+  else if(el.id==='rw'){S.rw=el.value;var l2=document.getElementById('rxl');if(l2)l2.innerHTML=rxList();}});
+document.addEventListener('change',function(e){var el=e.target;if(el&&el.id==='rpop'){S.rpop=el.value;render();}});
+
+/* ===== v62: agregar servicio ===== */
+function svcAddCard(){
+  var have={};db.services.forEach(function(s){if(s.k)have[s.k]=1;});
+  var opts=ESP.filter(function(e){return !have[e.k];});
+  return '<div class="card"><h3>Agregar servicio o rotación</h3><div class="small muted">Los servicios básicos ya están creados y no se pueden borrar. Elige otra especialidad de la lista o escribe el nombre de tu rotación.</div>'+
+   (opts.length?'<label>Especialidades disponibles<select id="newSvcK"><option value="">Escribir otro nombre…</option>'+opts.map(function(e){return '<option value="'+e.k+'">'+esc(e.n)+'</option>';}).join('')+'</select></label>':'')+
+   '<div class="row"><div class="grow"><input id="newSvc" placeholder="Nombre propio, ej. Clínica del dolor" data-enter="addService" aria-label="Nombre del servicio"></div><button class="btn primary" data-a="addService">Agregar</button></div></div>';
+}
+
+/* ===== v62: acciones ===== */
+AT.addService=function(){
+  var k=val('newSvcK'),n=val('newSvc').trim(),e=k?espBy(k):(n?espByName(n):null);
+  if(e){
+    if(db.services.some(function(s){return s.k===e.k;})){toast('Ese servicio ya existe.');return;}
+    db.services.push({id:'b_'+e.k,name:k?e.n:n,k:e.k});save();render();toast('Servicio agregado.');return;
+  }
+  if(!n){toast('Elige una especialidad o escribe un nombre.');return;}
+  db.services.push({id:uid(),name:n});save();render();toast('Servicio agregado.');
+};
+AT.renameService=function(){var s=svc(S.serviceId);if(!s||svFixed(s)){toast('Los servicios básicos no se renombran.');return;}var n=val('renSvc').trim();if(!n)return;s.name=n;save();render();toast('Renombrado.');};
+AT.askDelService=function(){var s=svc(S.serviceId);if(s&&svFixed(s)){toast('Los servicios básicos no se pueden borrar.');return;}S.confirm='svc';render();};
+(function(){var old=A.delService;AT.delService=function(){var s=svc(S.serviceId);if(s&&svFixed(s)){toast('Los servicios básicos no se pueden borrar.');return;}old();};})();
+AT.espTasks=function(){S.espT=!S.espT;S.epi=false;render();};
+AT.espClose=function(){S.espT=false;render();};
+AT.espAdd=function(){
+  var p=pat(S.patientId),f=p&&svFam(svc(p.serviceId));if(!f)return;var n=0,have={};
+  pTasks(p.id).forEach(function(t){if(!t.done)have[norm(t.text)]=1;});
+  Array.prototype.forEach.call(document.querySelectorAll('.esT:checked'),function(el){var t=f.tasks[+el.value];if(t&&!have[norm(t)]){db.tasks.push({id:uid(),patientId:p.id,text:t,done:false,at:new Date().toISOString()});n++;}});
+  if(!n){toast('No marcaste ninguno nuevo.');return;}
+  save();S.espT=false;render();toast(n+(n===1?' pendiente agregado.':' pendientes agregados.'));
+};
+AT.epiOpen=function(){S.epi=!S.epi;S.espT=false;render();};
+AT.epiCopy=function(){var p=pat(S.patientId);if(p)copyText(epiDraft(p),'epiOut');};
+AT.calcFor=function(el){go('calc',{cpid:el.dataset.id,csid:null,cid:null,cq:'',carea:''});};
+AT.calcOpen=function(el){S.cid=el.dataset.id;render();calcRun();window.scrollTo(0,0);};
+AT.calcClose=function(){S.cid=null;render();};
+AT.calcBack=function(){if(S.cid){S.cid=null;render();return;}if(S.cpid&&pat(S.cpid)){var id=S.cpid;S.cpid=null;A.openPatient({dataset:{id:id}});return;}go('services');};
+AT.calcReset=function(){var id=S.cid;S.cid=null;render();S.cid=id;render();calcRun();};
+AT.calcCopy=function(){
+  var c=S.cid&&calcById(S.cid),r=S.cr;if(!c||!r){toast('Completa los datos primero.');return;}
+  var t=c.n+': '+calcFmt(r.v)+(r.u?' '+r.u:'')+(r.t?' — '+calcFmt(r.t):'');
+  var ta=document.getElementById('cres');copyText(t,'cres');
+};
+AT.rxTog=function(el){try{localStorage.setItem('rot_rx',el.checked?'1':'0');}catch(e){}toast(el.checked?'Recetario activado (borrador).':'Recetario apagado.');render();};
+AT.toCalc=function(){go('calc',{cpid:null,csid:null,cid:null,cq:'',carea:''});};
+AT.toRx=function(){go('rx');};
+
+ensureBase();
 for(var k_ in AT)A[k_]=AT[k_];
 document.addEventListener('click',function(e){var el=e.target.closest('[data-a]');if(!el||el.tagName==='SELECT')return;var f=A[el.dataset.a];if(f){if(el.type==='checkbox'){f(el);}else f(el);}});
 document.addEventListener('change',function(e){var el=e.target;if(el.id==='handSel'){A.handSel(el);}
