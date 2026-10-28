@@ -12,6 +12,18 @@
 .rxflag{display:inline-block;font-size:11.5px;font-weight:650;color:#7a4b00;background:#ffe9b8;border-radius:99px;padding:2px 9px;margin:6px 0}
 [data-theme=dark] .rxflag{color:#ffd98a;background:#4a3600}
 .rxi{border-top:1px solid var(--line,rgba(127,127,127,.2));padding:8px 0}.rxh{font-weight:650;font-size:14px;margin-bottom:2px}
+details.card.rxg,details.card.rxs{padding:0!important}.rxg>summary,.rxs>summary{color:var(--ink)}.rxrow:first-child{border-top:0}.rxg>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;font-weight:650}.rxg>summary::-webkit-details-marker{display:none}.rxcount{font-size:12px;font-weight:600;color:var(--muted);background:var(--field);border-radius:99px;padding:2px 9px}
+.rxlist{display:flex;flex-direction:column}.rxrow{all:unset;box-sizing:border-box;display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center;padding:10px 14px;border-top:1px solid var(--line);cursor:pointer;width:100%}.rxrow:hover,.rxrow:focus-visible{background:var(--accent-soft)}
+.rxn{font-weight:650;font-size:14.5px;color:var(--ink)}.rxm{grid-column:1;font-size:12px;color:var(--muted)}.rxals{grid-column:1;display:flex;flex-wrap:wrap;gap:4px}.rxrow .rxb{grid-column:2;grid-row:1/span 2;align-self:center}
+.rxal{font-size:11px;font-weight:600;color:#7a4b00;background:#ffe9b8;border-radius:99px;padding:1px 8px}[data-theme=dark] .rxal{color:#ffd98a;background:#4a3600}
+.rxb{font-size:11px;font-weight:650;border-radius:99px;padding:2px 9px;white-space:nowrap}.rxbdr{color:#7a4b00;background:#ffe9b8}.rxbmid{color:#0b4f7a;background:#d7ecfb}.rxbok{color:#0d5c36;background:#d3f0df}
+[data-theme=dark] .rxbdr{color:#ffd98a;background:#4a3600}[data-theme=dark] .rxbmid{color:#a8d6f5;background:#10344d}[data-theme=dark] .rxbok{color:#9be3bb;background:#0f3b26}
+.rxhead .rxchips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.rxatc{font-size:12px;color:var(--muted);line-height:1.9;margin:6px 0}.rxat b{color:var(--ink)}.rxar{margin:0 4px;color:var(--muted)}.rxvr{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:12.5px;margin-top:6px}
+.rxs{padding:0}.rxs>summary{cursor:pointer;font-weight:650;padding:12px 14px;list-style:none}.rxs>summary::-webkit-details-marker{display:none}.rxs>summary:before{content:'▸';display:inline-block;width:1.2em;color:var(--muted)}.rxs[open]>summary:before{content:'▾'}.rxs>*:not(summary){margin-left:14px;margin-right:14px}.rxs>*:last-child{margin-bottom:14px}
+.rxs h4{margin:12px 0 4px;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}.rxul{margin:0;padding-left:18px;font-size:14px}.rxul li{margin:2px 0}
+.rxkv{display:flex;flex-direction:column;gap:8px}.rxkv>div{display:flex;flex-direction:column;gap:1px;font-size:14px}.rxkv span{font-size:12px;color:var(--muted)}
+.rxit{display:flex;flex-direction:column;gap:8px}.rxit>div{display:flex;flex-direction:column;font-size:14px;border-top:1px solid var(--line);padding-top:6px}.rxit>div:first-child{border-top:0;padding-top:0}.rxit span{color:var(--muted)}
+.rxet{font-size:13.5px;background:var(--field);border-radius:12px;padding:9px 12px;margin-top:8px}.rxun{font-size:13.5px;margin:8px 0}.rxalr{margin:4px 0}.rxalr>summary{cursor:pointer;list-style:none}.rxalr>summary::-webkit-details-marker{display:none}.rxalb{font-size:12.5px}
 .rxcalc{margin-top:4px;font-size:13px;font-weight:600;color:var(--ink);background:var(--accent-soft);border-radius:10px;padding:5px 9px;display:inline-block}
 </style></head><body>
 <!--
@@ -1771,7 +1783,7 @@ function applyDE(){
   var root=document.querySelector('.wrap'),w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[],n;
   while((n=w.nextNode()))nodes.push(n);
   nodes.forEach(function(n){
-    var p=n.parentNode;if(!p||p.closest('dd,pre,textarea,.dx,.t,.dz,script,style,#biBtn,.tools,.chips2,.cmdbar,nav.tabs,.where,.ck,.seg,.tmodal,.tmsgs,#pres'))return;
+    var p=n.parentNode;if(!p||p.closest('dd,pre,textarea,.dx,.t,.dz,script,style,#biBtn,.tools,.chips2,.cmdbar,nav.tabs,.where,.ck,.seg,.tmodal,.tmsgs,#pres,.rxatc'))return;
     var raw=n.nodeValue,m=/^([‹+›✕]\s*)?([\s\S]*?)\s*$/.exec(raw),key=m?m[2]:raw.trim();
     if(!key)return;
     var de=deOf(key);if(!de)return;
@@ -5877,51 +5889,132 @@ function epiPanel(p){
 }
 
 /* ===== v62: recetario (borrador, se activa en Cuenta) ===== */
-var RX={st:0,d:[],q:[],ver:''};
+/* ===== v63: recetario con fichas completas, clasificaciones y ventana de detalle ===== */
+var RX={st:0,idx:[],tax:null,q:[],f:{},fs:{},ver:''};
 function rxOn(){try{return localStorage.getItem('rot_rx')==='1';}catch(e){return false;}}
 function rxLoad(cb){
   if(RX.st===2){cb(true);return;}
   if(RX.st===1){RX.q.push(cb);return;}
   RX.st=1;RX.q=[cb];
   function done(ok){RX.st=ok?2:-1;var q=RX.q;RX.q=[];q.forEach(function(f){try{f(ok);}catch(e){}});}
-  try{fetch('vendor/recetario.json').then(function(r){if(!r.ok)throw new Error('x');return r.json();}).then(function(j){RX.d=j.items||[];RX.ver=j.version||'';done(true);}).catch(function(){done(false);});}catch(e){done(false);}
+  function jf(u){return fetch(u).then(function(r){if(!r.ok)throw new Error('x');return r.json();});}
+  try{Promise.all([jf('vendor/rx/index.json'),jf('vendor/rx/tax.json')]).then(function(a){
+    RX.idx=a[0].items||[];RX.ver=a[0].version||'';RX.tax=a[1];
+    RX.idx.forEach(function(d){d._s=norm([d.n,(d.g||[]).join(' '),d.cl,RX.tax.MC[d.mc]||'',d.atc,(d.us||[]).map(function(u){return RX.tax.US[u]||'';}).join(' '),(d.al||[]).map(function(x){return (RX.tax.AL[x]||[''])[0];}).join(' ')].join(' '));});
+    done(true);}).catch(function(){done(false);});}catch(e){done(false);}
+}
+function rxSheet(id,cb){
+  if(RX.f[id]){cb(RX.f[id]);return;}
+  if(RX.fs[id]==='l')return;
+  RX.fs[id]='l';
+  fetch('vendor/rx/d/'+encodeURIComponent(id)+'.json').then(function(r){if(!r.ok)throw new Error('x');return r.json();}).then(function(j){RX.f[id]=j;RX.fs[id]='ok';cb(j);}).catch(function(){RX.fs[id]='err';cb(null);});
 }
 function rxCard(){
-  return '<div class="card"><h3>Recetario (borrador)</h3><div class="small muted">Lista de medicamentos con dosis habituales por indicación y tipo de paciente. Es un borrador que aún no está verificado contra fuentes: por eso está apagado. Actívalo solo para revisarlo.</div><label class="ccheck" style="margin-top:8px"><input type="checkbox" data-a="rxTog"'+(rxOn()?' checked':'')+'><span>Mostrar el recetario en la app</span></label></div>';
+  return '<div class="card"><h3>Recetario (borrador)</h3><div class="small muted">Medicamentos organizados por familia, sistema, mecanismo, uso, especialidad, vía y alertas, con una ficha completa de cada uno (farmacología, dosis, ajustes, seguridad, interacciones y fuentes). Es un borrador que aún se está verificando contra fuentes: por eso está apagado. Actívalo solo para revisarlo.</div><label class="ccheck" style="margin-top:8px"><input type="checkbox" data-a="rxTog"'+(rxOn()?' checked':'')+'><span>Mostrar el recetario en la app</span></label></div>';
+}
+var RXMODES=[['fam','Familia'],['atc','Sistema (ATC)'],['mc','Mecanismo de acción'],['us','Uso clínico'],['es','Especialidad'],['via','Vía'],['al','Alertas'],['az','A–Z']];
+function rxLv(v){return Math.min(v&&v.d||0,v&&v.f||0,v&&v.s||0);}
+function rxBadge(l,txt){var c=l>=2?'ok':(l===1?'mid':'dr');return '<span class="rxb rxb'+c+'">'+esc(txt||RX.tax.VERL[l])+'</span>';}
+function rxKeys(d,mode){
+  var T=RX.tax;
+  if(mode==='fam')return [[d.cl,d.cl]];
+  if(mode==='atc'){var c=d.atc,k1=c.slice(0,1),k2=c.slice(0,3);return [[k1+'|'+k2,(T.ATC[k1]||k1)+' › '+(T.ATC[k2]||k2)]];}
+  if(mode==='mc')return [[d.mc,T.MC[d.mc]||d.mc]];
+  if(mode==='us')return (d.us||[]).map(function(u){return [u,T.US[u]||u];});
+  if(mode==='es')return (d.es||[]).map(function(e){var x=espBy(e);return [e,x?x.n:e];});
+  if(mode==='via')return (d.via||[]).map(function(v){return [v,T.VIA[v]||v];});
+  if(mode==='al'){var a=(d.al||[]).map(function(x){return [x,(T.AL[x]||[x])[0]];});return a.length?a:[['zz','Sin alertas especiales']];}
+  return [['az','']];
 }
 function rxList(){
-  var q=norm(S.rq||''),tk=q?q.split(' '):[],pop=S.rpop||'a';
-  var l=RX.d.filter(function(d){
-    if(!tk.length)return true;
-    var t=norm(d.n+' '+d.cl+' '+(d.ind||[]).map(function(x){return x.i;}).join(' '));return tk.every(function(w){return t.indexOf(w)>=0;});
-  });
+  var T=RX.tax,mode=S.rmode||'fam',q=norm(S.rq||''),tk=q?q.split(' '):[];
+  var l=RX.idx.filter(function(d){return !tk.length||tk.every(function(w){return d._s.indexOf(w)>=0;});});
   if(!l.length)return '<div class="empty">Ningún medicamento coincide.</div>';
-  var w=parseFloat(String(S.rw||'').replace(',','.'));
-  return '<div class="cols">'+l.map(function(d){
-    return '<div class="card rxc"><div class="row spread"><h3 style="margin:0">'+esc(d.n)+'</h3><span class="chip" style="--c:var(--c-plan)">'+esc(d.cl)+'</span></div>'+
-     (d.v?'':'<div class="rxflag">Borrador sin verificar</div>')+
-     (d.ind||[]).map(function(x){
-       var dose=pop==='a'?x.a:x.p,calc='';
-       if(pop==='p'&&x.k&&w>0){var lo=x.k.lo*w,hi=x.k.hi*w;calc='<div class="rxcalc">Con '+esc(String(S.rw))+' kg: '+calcFmt(cR(lo,1))+(x.k.hi!==x.k.lo?' a '+calcFmt(cR(hi,1)):'')+' mg por dosis'+(x.k.int?' '+esc(x.k.int):'')+(x.k.maxd?' · tope '+esc(x.k.maxd):'')+'</div>';}
-       return '<div class="rxi"><div class="rxh">'+esc(x.i)+'</div><div class="small">'+(dose?esc(dose):'<span class="muted">Sin dato para este grupo en el borrador.</span>')+'</div>'+calc+'</div>';
-     }).join('')+
-     (d.pre?'<div class="small muted"><strong>Precauciones:</strong> '+esc(d.pre)+'</div>':'')+'</div>';
-  }).join('')+'</div>';
+  var groups={},order=[];
+  l.forEach(function(d){rxKeys(d,mode).forEach(function(k){if(!groups[k[0]]){groups[k[0]]={t:k[1],a:[]};order.push(k[0]);}groups[k[0]].a.push(d);});});
+  order.sort(function(a,b){var x=groups[a].t,y=groups[b].t;if(mode==='al'){if(a==='zz')return 1;if(b==='zz')return -1;}if(mode==='atc')return a<b?-1:1;return x.localeCompare(y,'es');});
+  function row(d){
+    var al=(d.al||[]).slice(0,3).map(function(x){return '<span class="rxal">'+esc((T.AL[x]||[x])[0])+'</span>';}).join('');
+    return '<button class="rxrow" data-a="rxOpen" data-id="'+esc(d.id)+'"><span class="rxn">'+esc(d.n)+'</span><span class="rxm">'+esc(d.cl)+(d.atc?' · '+esc(d.atc):'')+'</span>'+(al?'<span class="rxals">'+al+'</span>':'')+rxBadge(rxLv(d.v))+'</button>';
+  }
+  if(mode==='az'){return '<div class="card rxlist">'+l.slice().sort(function(a,b){return a.n.localeCompare(b.n,'es');}).map(row).join('')+'</div>';}
+  var open=tk.length>0||order.length<=2;
+  return order.map(function(k){var g=groups[k];g.a.sort(function(a,b){return a.n.localeCompare(b.n,'es');});
+    return '<details class="card rxg"'+(open?' open':'')+'><summary><span>'+esc(g.t)+'</span><span class="rxcount">'+g.a.length+'</span></summary><div class="rxlist">'+g.a.map(row).join('')+'</div></details>';}).join('');
+}
+function rxAtcPath(code){
+  var T=RX.tax,p=[code.slice(0,1),code.slice(0,3),code.slice(0,4),code.slice(0,5)];
+  return p.map(function(k){return '<span class="rxat"><b>'+esc(k)+'</b> '+esc(T.ATC[k]||'')+'</span>';}).join('<span class="rxar">›</span>')+'<span class="rxar">›</span><span class="rxat"><b>'+esc(code)+'</b></span>';
+}
+function rxUl(a){return a&&a.length?'<ul class="rxul">'+a.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>':'<div class="small muted">Sin dato.</div>';}
+function rxSec(t,body,open){return '<details class="card rxs"'+(open===false?'':' open')+'><summary>'+esc(t)+'</summary>'+body+'</details>';}
+function rxUnits(f){
+  var T=RX.tax,txt=[(f.ind||[]).map(function(x){return (x.a||'')+' '+(x.p||'')+' '+(x.k&&x.k.maxd||'');}).join(' '),(f.pres||[]).join(' '),JSON.stringify(f.aj||{})].join(' '),out=[];
+  (T.UN||[]).forEach(function(u){try{if(new RegExp(u[0]).test(txt))out.push('<div class="rxun"><b>'+esc(u[1])+'.</b> '+esc(u[2])+'</div>');}catch(e){}});
+  return out.join('');
+}
+function rxDetail(f){
+  var T=RX.tax,pop=S.rpop||'a',w=parseFloat(String(S.rw||'').replace(',','.')),v=f.v||{},h='';
+  h+='<div class="card rxhead"><h2 style="margin:0 0 4px">'+esc(f.n)+'</h2>'+
+   '<div class="rxchips"><span class="chip" style="--c:var(--c-plan)">'+esc(f.cl)+'</span><span class="chip" style="--c:var(--c-img)">'+esc(T.MC[f.mc]||f.mc)+'</span></div>'+
+   '<div class="rxatc">'+(f.atc||[]).map(rxAtcPath).join('<br>')+'</div>'+
+   '<div class="rxvr">Dosis '+rxBadge(v.d||0)+' Farmacología '+rxBadge(v.f||0)+' Seguridad '+rxBadge(v.s||0)+'</div>'+
+   (rxLv(v)<2?'<div class="note warn" style="margin-top:8px"><strong>No sustituye al vademécum.</strong> Confirma dosis y ajustes con la fuente oficial o con farmacia antes de indicar. Los bloques en «Borrador» aún no se han contrastado.</div>':'')+'</div>';
+  if(f.al&&f.al.length)h+='<div class="card"><h3>Alertas</h3>'+f.al.map(function(x){var a=T.AL[x]||[x,''];return '<details class="rxalr"><summary><span class="rxal rxalb">'+esc(a[0])+'</span></summary><div class="small">'+esc(a[1])+'</div></details>';}).join('')+'</div>';
+  h+=rxSec('Cómo actúa',(f.mech?'<p>'+esc(f.mech)+'</p>':'')+(f.et?'<div class="rxet"><b>Etimología.</b> '+esc(f.et)+'</div>':''));
+  var pk=f.pk||{};
+  h+=rxSec('Farmacocinética','<div class="rxkv">'+[['Absorción',pk.abs],['Vida media',pk.vm],['Metabolismo',pk.met],['Eliminación',pk.el]].filter(function(x){return x[1];}).map(function(x){return '<div><span>'+x[0]+'</span><b>'+esc(x[1])+'</b></div>';}).join('')+'</div>');
+  var ind='<div class="row" style="gap:10px;flex-wrap:wrap"><label class="grow">Tipo de paciente<select id="rpop"><option value="a"'+(pop==='a'?' selected':'')+'>Adulto</option><option value="p"'+(pop==='p'?' selected':'')+'>Pediátrico</option></select></label>'+(pop==='p'?'<label class="grow">Peso del niño (kg), para calcular mg<input id="rw" inputmode="decimal" value="'+esc(S.rw||'')+'"></label>':'')+'</div>';
+  ind+=(f.ind||[]).map(function(x){
+    var dose=pop==='a'?x.a:x.p,calc='';
+    if(pop==='p'&&x.k&&w>0){var lo=x.k.lo*w,hi=x.k.hi*w;calc='<div class="rxcalc">Con '+esc(String(S.rw))+' kg: '+calcFmt(cR(lo,1))+(x.k.hi!==x.k.lo?' a '+calcFmt(cR(hi,1)):'')+' mg por dosis'+(x.k.int?' '+esc(x.k.int):'')+(x.k.maxd?' · tope '+esc(x.k.maxd):'')+'</div>';}
+    return '<div class="rxi"><div class="rxh">'+esc(x.i)+'</div><div class="small">'+(dose?esc(dose):'<span class="muted">Sin dato para este grupo en el borrador.</span>')+'</div>'+calc+'</div>';
+  }).join('');
+  h+=rxSec('Indicaciones y dosis',ind);
+  var aj=f.aj||{};
+  h+=rxSec('Ajustes y poblaciones especiales','<div class="rxkv">'+[['Insuficiencia renal',aj.r],['Insuficiencia hepática',aj.h],['Embarazo',aj.e],['Lactancia',aj.l],['Adulto mayor',aj.g]].filter(function(x){return x[1];}).map(function(x){return '<div><span>'+x[0]+'</span><b>'+esc(x[1])+'</b></div>';}).join('')+'</div>');
+  var seg='<h4>Contraindicaciones</h4>'+rxUl(f.ci)+'<h4>Efectos adversos frecuentes</h4>'+rxUl(f.fr)+'<h4>Efectos adversos graves</h4>'+rxUl(f.gr);
+  if(f.pre)seg+='<h4>Precauciones</h4><p class="small">'+esc(f.pre)+'</p>';
+  h+=rxSec('Seguridad',seg);
+  h+=rxSec('Interacciones',(f.it&&f.it.length?'<div class="rxit">'+f.it.map(function(x){return '<div><b>'+esc(x[0])+'</b><span>'+esc(x[1])+'</span></div>';}).join('')+'</div>':'<div class="small muted">Sin dato.</div>'));
+  h+=rxSec('Monitoreo y antídoto','<h4>Qué vigilar</h4>'+rxUl(f.mon)+(f.ant?'<h4>Antídoto o reversión</h4><p class="small">'+esc(f.ant)+'</p>':''));
+  h+=rxSec('Presentaciones y nombres comerciales','<h4>Presentaciones</h4>'+rxUl(f.pres)+((f.com&&f.com.length)?'<h4>Nombres comerciales de referencia</h4><p class="small">'+esc(f.com.join(', '))+' <span class="muted">(confirma disponibilidad en Colombia)</span></p>':''));
+  if(f.pe&&f.pe.length)h+=rxSec('Perlas clínicas',rxUl(f.pe));
+  var un=rxUnits(f);if(un)h+=rxSec('Unidades que aparecen en esta ficha',un,false);
+  var vv='<div class="rxkv">'+[['Dosis',v.d],['Farmacología',v.f],['Seguridad',v.s]].map(function(x){return '<div><span>'+x[0]+'</span><b>'+rxBadge(x[1]||0)+'</b></div>';}).join('')+'</div>'+
+   '<div class="small muted" style="margin-top:6px">Niveles: Borrador = escrito sin contrastar; Contrastado = revisado contra fuente citada; Confirmado = verificado por Esteban (por ejemplo, con MediSearch). Última revisión: '+esc(f.rev||'—')+'.</div>'+
+   '<h4>Fuentes</h4>'+((f.src&&f.src.length)?'<ul class="rxul">'+f.src.map(function(s){return '<li>'+(s.u?'<a href="'+esc(s.u)+'" target="_blank" rel="noopener">'+esc(s.t)+'</a>':esc(s.t))+(s.b?' <span class="muted">('+esc(s.b)+')</span>':'')+'</li>';}).join('')+'</ul>':'<div class="small muted">Aún sin fuentes citadas: bloque en borrador.</div>');
+  h+=rxSec('Verificación y fuentes',vv,false);
+  return h;
 }
 function viewRx(){
-  var h='<div class="row spread"><button class="btn sm ghost" data-a="nav" data-v="services">‹ Servicios</button><h2>Recetario</h2><span></span></div>';
+  var h;
+  if(S.rxd){
+    h='<div class="row spread"><button class="btn sm ghost" data-a="rxBack">‹ Recetario</button><h2>Ficha</h2><span></span></div>';
+    if(!rxOn())return h+'<div class="empty">El recetario está apagado. Puedes activarlo en Cuenta.</div>';
+    if(RX.st===0)rxLoad(function(){if(S.view==='rx')render();});
+    if(RX.st!==2)return h+(RX.st===-1?'<div class="note bad">No pude cargar el recetario. Revisa tu conexión e inténtalo de nuevo.</div>':'<div class="empty">Cargando…</div>');
+    var f=RX.f[S.rxd];
+    if(!f){
+      if(RX.fs[S.rxd]==='err')return h+'<div class="note bad">No pude abrir la ficha. Revisa tu conexión (las que ya abriste quedan guardadas para usar sin internet).</div>';
+      rxSheet(S.rxd,function(){if(S.view==='rx')render();});
+      return h+'<div class="empty">Cargando la ficha…</div>';
+    }
+    return h+rxDetail(f);
+  }
+  h='<div class="row spread"><button class="btn sm ghost" data-a="nav" data-v="services">‹ Servicios</button><h2>Recetario</h2><span></span></div>';
   if(!rxOn())return h+'<div class="empty">El recetario está apagado. Puedes activarlo en Cuenta.</div>';
   if(RX.st===0)rxLoad(function(){if(S.view==='rx')render();});
   if(RX.st===1||RX.st===0)return h+'<div class="empty">Cargando el recetario…</div>';
   if(RX.st===-1)return h+'<div class="note bad">No pude cargar el recetario. Revisa tu conexión e inténtalo de nuevo.</div>';
-  var pop=S.rpop||'a';
-  return h+'<div class="note warn"><strong>Borrador sin verificar.</strong> Las dosis de esta lista son una primera versión y aún no se han confirmado con la fuente oficial. Confirma cada una en el vademécum, la guía local o con el servicio de farmacia antes de indicarla. No reemplaza el criterio clínico.</div>'+
-   '<div class="card"><div class="grid"><label>Buscar<input id="rq" autocomplete="off" placeholder="Medicamento, clase o indicación" value="'+esc(S.rq||'')+'"></label><label>Tipo de paciente<select id="rpop"><option value="a"'+(pop==='a'?' selected':'')+'>Adulto</option><option value="p"'+(pop==='p'?' selected':'')+'>Pediátrico</option></select></label>'+(pop==='p'?'<label>Peso del niño (kg), para calcular mg<input id="rw" inputmode="decimal" value="'+esc(S.rw||'')+'"></label>':'')+'</div></div><div id="rxl">'+rxList()+'</div>';
+  var mode=S.rmode||'fam';
+  return h+'<div class="note warn"><strong>Borrador en verificación.</strong> Cada ficha indica qué bloques ya se contrastaron con una fuente y cuáles siguen como borrador. Confirma dosis y ajustes con el vademécum o con farmacia antes de indicar. No reemplaza el criterio clínico.</div>'+
+   '<div class="card"><div class="grid"><label>Buscar<input id="rq" autocomplete="off" placeholder="Medicamento, familia, mecanismo, uso…" value="'+esc(S.rq||'')+'"></label><label>Organizar por<select id="rmode">'+RXMODES.map(function(m){return '<option value="'+m[0]+'"'+(mode===m[0]?' selected':'')+'>'+m[1]+'</option>';}).join('')+'</select></label></div><div class="small muted" style="margin-top:6px">'+RX.idx.length+' medicamentos. Toca uno para abrir su ficha completa.</div></div><div id="rxl">'+rxList()+'</div>';
 }
 document.addEventListener('input',function(e){var el=e.target;if(!el)return;
   if(el.id==='rq'){S.rq=el.value;var l=document.getElementById('rxl');if(l)l.innerHTML=rxList();}
-  else if(el.id==='rw'){S.rw=el.value;var l2=document.getElementById('rxl');if(l2)l2.innerHTML=rxList();}});
-document.addEventListener('change',function(e){var el=e.target;if(el&&el.id==='rpop'){S.rpop=el.value;render();}});
+  else if(el.id==='rw'){S.rw=el.value;render();var r2=document.getElementById('rw');if(r2){r2.focus();try{r2.setSelectionRange(r2.value.length,r2.value.length);}catch(x){}}}});
+document.addEventListener('change',function(e){var el=e.target;if(!el)return;if(el.id==='rpop'){S.rpop=el.value;render();}else if(el.id==='rmode'){S.rmode=el.value;render();}});
 
 /* ===== v62: agregar servicio ===== */
 function svcAddCard(){
@@ -5969,6 +6062,8 @@ AT.calcCopy=function(){
 AT.rxTog=function(el){try{localStorage.setItem('rot_rx',el.checked?'1':'0');}catch(e){}toast(el.checked?'Recetario activado (borrador).':'Recetario apagado.');render();};
 AT.toCalc=function(){go('calc',{cpid:null,csid:null,cid:null,cq:'',carea:''});};
 AT.toRx=function(){go('rx');};
+AT.rxOpen=function(el){S.rxsc=window.scrollY||0;S.rxd=el.dataset.id;render();window.scrollTo(0,0);};
+AT.rxBack=function(){S.rxd=null;render();window.scrollTo(0,S.rxsc||0);};
 
 ensureBase();
 for(var k_ in AT)A[k_]=AT[k_];

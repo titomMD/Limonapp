@@ -1,3 +1,20 @@
+LIMONAPP v63 - recetario reorganizado: clasificaciones, ficha completa por farmaco y primer lote de urologia
+
+QUE CAMBIA EN LA v63 (sobre la v62, que queda incluida)
+  - Recetario: la lista se puede organizar por familia, clasificacion ATC (OMS), mecanismo de accion, uso, especialidad,
+    via de administracion, alertas o alfabetico. La busqueda entiende nombre, alias, marca, familia, mecanismo, uso y alertas.
+  - Cada farmaco abre una ficha completa: mecanismo, farmacocinetica, indicaciones y dosis (adulto y pediatrico con calculo por
+    peso), ajustes (renal, hepatico, embarazo, lactancia, adulto mayor), seguridad, interacciones, monitoreo, presentaciones,
+    perlas clinicas, glosario de unidades y fuentes. Las fichas se descargan al abrirlas y quedan en cache para uso sin red.
+  - Nivel de verificacion por bloque (dosis, farmacologia, seguridad): 0 Borrador, 1 Contrastado con fuente, 2 Confirmado por Esteban.
+  - 86 farmacos: los 68 anteriores migrados (nuevos campos en BORRADOR, escritos sin contrastar) y 18 de urologia contrastados con
+    etiquetas oficiales (drugs.com): tamsulosina, finasterida, dutasterida, oxibutinina, solifenacina, mirabegron, fenazopiridina,
+    fosfomicina, amikacina, ertapenem, cefepima, hidroclorotiazida, citrato de potasio, alopurinol, tadalafilo, desmopresina,
+    bicalutamida y levofloxacino. Siguen pendientes de confirmacion (dosis, ajuste renal, pediatria, disponibilidad en Colombia).
+  - Archivos: public/vendor/rx/index.json (indice liviano), tax.json (clasificaciones), d/<id>.json (una ficha por farmaco).
+    Para agregar o editar un farmaco se edita su d/<id>.json y se corre: python3 tools/rx_index.py (valida y regenera el indice).
+  - Sigue APAGADO por defecto (Cuenta > Recetario). Sin cambios en Gemini ni en el servidor.
+
 LIMONAPP v62 - servicios fijos, datos por especialidad, calculadoras, entrega con formatos y recetario (borrador)
 
 QUE CAMBIA EN LA v62 (sobre la v61 y la v60, que quedan incluidas)

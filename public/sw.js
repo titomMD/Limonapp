@@ -1,5 +1,5 @@
-var CACHE='limonapp-v62';
-var FILES=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','vendor/auth-js.supabase.js','vendor/cie10.txt','vendor/cups.txt','vendor/recetario.json'];
+var CACHE='limonapp-v63';
+var FILES=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','vendor/auth-js.supabase.js','vendor/cie10.txt','vendor/cups.txt','vendor/rx/index.json','vendor/rx/tax.json'];
 self.addEventListener('install',function(e){self.skipWaiting();e.waitUntil(caches.open(CACHE).then(function(c){return c.addAll(FILES);}).catch(function(){}));});
 self.addEventListener('activate',function(e){e.waitUntil(caches.keys().then(function(ks){return Promise.all(ks.filter(function(k){return k!==CACHE;}).map(function(k){return caches.delete(k);}));}).then(function(){return self.clients.claim();}));});
 self.addEventListener('fetch',function(e){
