@@ -1,1 +1,152 @@
-{"id":"amikacina","n":"Amikacina","g":["Amikacina","Amikacin","Amikin"],"atc":["J01GB06"],"cl":"Aminoglucósido","mc":"aminoglucosido","us":["sepsis","itu","abdominal"],"es":["urologia","uci","infecto","medint","cirugia"],"via":["iv","im"],"al":["nefrotox","ototox","ajuste_renal"],"et":"Semisintética derivada de la kanamicina A (de Streptomyces kanamyceticus). «-micina» alude a su origen en actinomicetos (mykes, griego «hongo»).","mech":"Se une a la subunidad ribosomal 30S, provoca lecturas erróneas del ARN mensajero y detiene la síntesis de proteínas: es bactericida con efecto dependiente de la concentración. Resiste muchas enzimas que inactivan a la gentamicina y la tobramicina, por eso sirve frente a gramnegativos resistentes. No cubre anaerobios.","pk":{"abs":"No se absorbe por vía oral; IM completa","vm":"~2 h (se alarga con falla renal)","met":"No se metaboliza","el":"Renal por filtración (se acumula con falla renal)"},"ind":[{"i":"Infección grave por gramnegativos (urinaria complicada, sepsis, intraabdominal)","a":"15 mg/kg al día IV o IM, dividido en 7,5 mg/kg cada 12 h o 5 mg/kg cada 8 h; máximo 1,5 g al día. En obesos calcular sobre masa magra o peso ajustado. Con función renal reducida, el intervalo en horas ≈ 9 × creatinina sérica (mg/dL).","p":"Niños: 15 mg/kg al día en 2 a 3 dosis. Neonatos: carga de 10 mg/kg y luego 7,5 mg/kg cada 12 h.","k":{"lo":5,"hi":7.5,"int":"cada 8 a 12 h","maxd":"1,5 g al día"}}],"aj":{"r":"Imprescindible ajustar: intervalo (h) ≈ 9 × creatinina sérica, o reducir la dosis, y guiarse por niveles.","h":"No se metaboliza; sin ajuste, pero hay más riesgo renal en cirrosis.","e":"Puede causar daño fetal (sordera congénita); evitar salvo riesgo vital.","l":"Pasa a la leche en poca cantidad; poca absorción oral del lactante.","g":"Más nefro y ototoxicidad: dosis según depuración."},"ci":["Hipersensibilidad a aminoglucósidos"],"fr":["Ototoxicidad leve (tinnitus)","Aumento de creatinina","Mareo","Rash"],"gr":["Nefrotoxicidad","Ototoxicidad coclear y vestibular, a veces irreversible","Bloqueo neuromuscular y parálisis respiratoria","Daño fetal"],"it":[["Diuréticos de asa (furosemida), vancomicina, anfotericina, cisplatino, contraste yodado","Suman nefro y ototoxicidad; evitar"],["Bloqueadores neuromusculares y anestésicos","Potencian el bloqueo neuromuscular"],["AINE","Más lesión renal"]],"mon":["Niveles: pico <35 y valle <10 mcg/mL","Creatinina cada 2 a 3 días","Audición y equilibrio si el tratamiento pasa de 5 a 7 días","Duración habitual 7 a 10 días"],"ant":"Hemodiálisis la retira en buena parte. El bloqueo neuromuscular se maneja con calcio y soporte ventilatorio (verificar).","pre":"Advertencia en caja negra: nefrotoxicidad, ototoxicidad y bloqueo neuromuscular. Limita a 7 a 10 días y mide niveles.","pres":["Ampolla 100 mg/2 mL","Ampolla 500 mg/2 mL"],"com":["Amikin"],"pe":["En Urología es pilar para infección urinaria complicada por gramnegativos resistentes a quinolonas o cefalosporinas; vigila la creatinina a diario.","Muchos servicios la dan una vez al día en dosis alta, porque su efecto depende de la concentración y así baja la toxicidad (práctica común; confirma con tu protocolo)."],"v":{"d":1,"f":1,"s":1},"src":[{"t":"Etiqueta de amikacina (drugs.com)","u":"https://www.drugs.com/pro/amikacin.html","b":"dosis, farmacología, seguridad"}],"rev":"2026-10-28","co":{"q":["J01GB06"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":5,"np":23,"pres":["Solucion inyectable 100 mg","Solucion inyectable 500 mg","Solucion inyectable 735,294 mg"],"m":["Deltkacina ® inyectable 500 mg/2ml (Laboratorios Delta)","Amikacina 100 mg / 2 ml (Vitalis C.I)","Amikacina 500 mg/2ml (Vitalis C.I)","Amikacina solucion inyectable 500 mg / 2 ml (Genfar)","Amikacina de 500 mg por 2 ml (Laboratorios Sanderson)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "amikacina",
+ "n": "Amikacina",
+ "g": [
+  "Amikacina",
+  "Amikacin",
+  "Amikin"
+ ],
+ "atc": [
+  "J01GB06"
+ ],
+ "cl": "Aminoglucósido",
+ "mc": "aminoglucosido",
+ "us": [
+  "sepsis",
+  "itu",
+  "abdominal"
+ ],
+ "es": [
+  "urologia",
+  "uci",
+  "infecto",
+  "medint",
+  "cirugia"
+ ],
+ "via": [
+  "iv",
+  "im"
+ ],
+ "al": [
+  "nefrotox",
+  "ototox",
+  "ajuste_renal"
+ ],
+ "et": "Semisintética derivada de la kanamicina A (de Streptomyces kanamyceticus). «-micina» alude a su origen en actinomicetos (mykes, griego «hongo»).",
+ "mech": "Se une a la subunidad ribosomal 30S, provoca lecturas erróneas del ARN mensajero y detiene la síntesis de proteínas: es bactericida con efecto dependiente de la concentración. Resiste muchas enzimas que inactivan a la gentamicina y la tobramicina, por eso sirve frente a gramnegativos resistentes. No cubre anaerobios.",
+ "pk": {
+  "abs": "No se absorbe por vía oral; IM completa",
+  "vm": "~2 h (se alarga con falla renal)",
+  "met": "No se metaboliza",
+  "el": "Renal por filtración (se acumula con falla renal)"
+ },
+ "ind": [
+  {
+   "i": "Infección grave por gramnegativos (urinaria complicada, sepsis, intraabdominal)",
+   "a": "15 mg/kg al día IV o IM, dividido en 7,5 mg/kg cada 12 h o 5 mg/kg cada 8 h; máximo 1,5 g al día. En obesos calcular sobre masa magra o peso ajustado. Con función renal reducida, el intervalo en horas ≈ 9 × creatinina sérica (mg/dL) (regla clásica aproximada; guíate por niveles). Existe el esquema de dosis única diaria alta (intervalo extendido), con pico alto y valle indetectable; según protocolo local.",
+   "p": "Niños: 15 mg/kg al día en 2 a 3 dosis. Neonatos: carga de 10 mg/kg y luego 7,5 mg/kg cada 12 h (verificar). En neonatos la dosis depende de la edad gestacional y los prematuros tienen más toxicidad: medir niveles siempre.",
+   "k": {
+    "lo": 5,
+    "hi": 7.5,
+    "int": "cada 8 a 12 h",
+    "maxd": "1,5 g al día"
+   }
+  }
+ ],
+ "aj": {
+  "r": "Imprescindible ajustar: intervalo (h) ≈ 9 × creatinina sérica, o reducir la dosis, y guiarse por niveles.",
+  "h": "No se metaboliza; sin ajuste, pero hay más riesgo renal en cirrosis.",
+  "e": "Puede causar daño fetal (sordera congénita); evitar salvo riesgo vital.",
+  "l": "Pasa a la leche en poca cantidad; poca absorción oral del lactante.",
+  "g": "Más nefro y ototoxicidad: dosis según depuración."
+ },
+ "ci": [
+  "Hipersensibilidad a aminoglucósidos"
+ ],
+ "fr": [
+  "Ototoxicidad leve (tinnitus)",
+  "Aumento de creatinina",
+  "Mareo",
+  "Rash"
+ ],
+ "gr": [
+  "Nefrotoxicidad",
+  "Ototoxicidad coclear y vestibular, a veces irreversible",
+  "Bloqueo neuromuscular y parálisis respiratoria",
+  "Daño fetal"
+ ],
+ "it": [
+  [
+   "Diuréticos de asa (furosemida), vancomicina, anfotericina, cisplatino, contraste yodado",
+   "Suman nefro y ototoxicidad; evitar"
+  ],
+  [
+   "Bloqueadores neuromusculares y anestésicos",
+   "Potencian el bloqueo neuromuscular"
+  ],
+  [
+   "AINE",
+   "Más lesión renal"
+  ]
+ ],
+ "mon": [
+  "Niveles: pico <35 y valle <10 mcg/mL",
+  "Creatinina cada 2 a 3 días",
+  "Audición y equilibrio si el tratamiento pasa de 5 a 7 días",
+  "Duración habitual 7 a 10 días"
+ ],
+ "ant": "Hemodiálisis la retira en buena parte. El bloqueo neuromuscular se maneja con calcio y soporte ventilatorio (verificar).",
+ "pre": "Advertencia en caja negra: nefrotoxicidad, ototoxicidad y bloqueo neuromuscular. Limita a 7 a 10 días y mide niveles.",
+ "pres": [
+  "Ampolla 100 mg/2 mL",
+  "Ampolla 500 mg/2 mL"
+ ],
+ "com": [
+  "Amikin"
+ ],
+ "pe": [
+  "En Urología es pilar para infección urinaria complicada por gramnegativos resistentes a quinolonas o cefalosporinas; vigila la creatinina a diario.",
+  "Muchos servicios la dan una vez al día en dosis alta, porque su efecto depende de la concentración y así baja la toxicidad (práctica común; confirma con tu protocolo)."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de amikacina (drugs.com)",
+   "u": "https://www.drugs.com/pro/amikacin.html",
+   "b": "dosis, farmacología, seguridad"
+  },
+  {
+   "t": "MediSearch (consulta compartida, 28 oct 2026)",
+   "u": "https://medisearch.io/share/c6qGRS1rApYp7pP5EMjzmV",
+   "b": "contraste de puntos específicos"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01GB06"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 5,
+  "np": 23,
+  "pres": [
+   "Solucion inyectable 100 mg",
+   "Solucion inyectable 500 mg",
+   "Solucion inyectable 735,294 mg"
+  ],
+  "m": [
+   "Deltkacina ® inyectable 500 mg/2ml (Laboratorios Delta)",
+   "Amikacina 100 mg / 2 ml (Vitalis C.I)",
+   "Amikacina 500 mg/2ml (Vitalis C.I)",
+   "Amikacina solucion inyectable 500 mg / 2 ml (Genfar)",
+   "Amikacina de 500 mg por 2 ml (Laboratorios Sanderson)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

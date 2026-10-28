@@ -1,1 +1,169 @@
-{"id":"hidroclorotiazida","n":"Hidroclorotiazida","g":["Hidroclorotiazida","Hydrochlorothiazide","HCTZ","Esidrex","Microzide"],"atc":["C03AA03"],"cl":"Diurético tiazídico","mc":"tiazida","us":["hta","ic","litiasis"],"es":["medint","urologia"],"via":["vo"],"al":[],"et":"«Hidro-cloro-tiazida» describe la molécula: hidrogenada, con cloro y con un anillo que contiene azufre (theion, griego «azufre») y nitrógeno.","mech":"Inhibe el cotransportador Na⁺-Cl⁻ del túbulo contorneado distal: más sodio y agua se eliminan. A largo plazo baja la presión arterial. También aumenta la reabsorción distal de calcio, por eso reduce la calciuria y se usa en cálculos de calcio con hipercalciuria (indicación fuera de etiqueta).","pk":{"abs":"Oral","vm":"5,6 a 14,8 h","met":"No se metaboliza","el":"Renal sin cambios"},"ind":[{"i":"Hipertensión arterial","a":"25 mg VO una vez al día; puede subirse a 50 mg al día.","p":"La etiqueta no da una dosis pediátrica fija (verificar)."},{"i":"Edema","a":"25 a 100 mg VO al día, en una o dos tomas, diaria o intermitente.","p":"Verificar con la etiqueta pediátrica."},{"i":"Cálculos de calcio con hipercalciuria (fuera de etiqueta)","a":"Según guías urológicas, 25 mg dos veces al día o 50 mg al día, junto con restricción de sodio. Verificar con tu servicio.","p":"No establecida."}],"aj":{"r":"Menos eficaz con TFG <30; contraindicada en anuria.","h":"Cuidado: los cambios de líquidos y electrolitos pueden precipitar encefalopatía hepática.","e":"Evitar salvo indicación clara; atraviesa la placenta y puede causar ictericia o trombocitopenia fetal.","l":"Pasa a la leche y puede inhibir la lactancia.","g":"Más riesgo de hiponatremia e hipopotasemia."},"ci":["Anuria","Hipersensibilidad a hidroclorotiazida o a sulfonamidas"],"fr":["Hipopotasemia","Hiponatremia","Hiperuricemia","Hiperglucemia","Hipercalcemia","Mareo","Fotosensibilidad"],"gr":["Cáncer de piel no melanoma con uso prolongado","Glaucoma agudo de ángulo cerrado y miopía aguda","Hiponatremia grave","Pancreatitis","Reacciones de hipersensibilidad, lupus"],"it":[["Litio","Sube el nivel de litio y su toxicidad"],["Digoxina","La hipopotasemia favorece la toxicidad digitálica"],["AINE","Menor efecto diurético y más riesgo renal"],["Corticoides, otros diuréticos","Más pérdida de potasio"],["Antidiabéticos","Pueden requerir ajuste por hiperglucemia"],["Colestiramina","Baja la absorción de la tiazida"]],"mon":["Potasio, sodio, calcio y magnesio","Creatinina","Glucosa y ácido úrico","Presión arterial","Calciuria de 24 h si se usa para litiasis","Revisión de la piel con uso prolongado"],"pre":"Controla el potasio y el sodio; evita en anuria y en alergia a sulfonamidas.","pres":["Tabletas 12,5, 25 y 50 mg"],"com":["Esidrex","Microzide"],"pe":["En litiasis, el efecto sobre la calciuria se pierde si la dieta lleva mucha sal: restringe el sodio.","Puede subir el calcio sérico: si aparece hipercalcemia, descarta hiperparatiroidismo.","La etiqueta no incluye litiasis como indicación; su uso para prevenir cálculos viene de las guías."],"v":{"d":1,"f":1,"s":1},"src":[{"t":"Etiqueta de hidroclorotiazida (drugs.com)","u":"https://www.drugs.com/pro/hydrochlorothiazide-tablets.html","b":"dosis, seguridad"}],"rev":"2026-10-28","co":{"q":["C03AA03"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":8,"np":37,"pres":["Tableta 25 mg","Tableta 25 mg.","Tableta 12,5 mg"],"m":["Hidroclorotiazida 25 mg tabletas (Memphis Products)","Hidroclorotiazida tabletas 25 mg. (Genfar)","Hidroclorotiazida tabletas 25 mg (Laboratorio Profesional Farmaceutico - Laboratorios Laproff)","Hidroclorotiazida 12.5 mg (Tecnoquimicas)","Hidroclorotiazida 25 mg (Tecnoquimicas)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "hidroclorotiazida",
+ "n": "Hidroclorotiazida",
+ "g": [
+  "Hidroclorotiazida",
+  "Hydrochlorothiazide",
+  "HCTZ",
+  "Esidrex",
+  "Microzide"
+ ],
+ "atc": [
+  "C03AA03"
+ ],
+ "cl": "Diurético tiazídico",
+ "mc": "tiazida",
+ "us": [
+  "hta",
+  "ic",
+  "litiasis"
+ ],
+ "es": [
+  "medint",
+  "urologia"
+ ],
+ "via": [
+  "vo"
+ ],
+ "al": [],
+ "et": "«Hidro-cloro-tiazida» describe la molécula: hidrogenada, con cloro y con un anillo que contiene azufre (theion, griego «azufre») y nitrógeno.",
+ "mech": "Inhibe el cotransportador Na⁺-Cl⁻ del túbulo contorneado distal: más sodio y agua se eliminan. A largo plazo baja la presión arterial. También aumenta la reabsorción distal de calcio, por eso reduce la calciuria y se usa en cálculos de calcio con hipercalciuria (indicación fuera de etiqueta).",
+ "pk": {
+  "abs": "Oral",
+  "vm": "5,6 a 14,8 h",
+  "met": "No se metaboliza",
+  "el": "Renal sin cambios"
+ },
+ "ind": [
+  {
+   "i": "Hipertensión arterial",
+   "a": "25 mg VO una vez al día; puede subirse a 50 mg al día.",
+   "p": "La etiqueta no da una dosis pediátrica fija (verificar)."
+  },
+  {
+   "i": "Edema",
+   "a": "25 a 100 mg VO al día, en una o dos tomas, diaria o intermitente.",
+   "p": "Verificar con la etiqueta pediátrica."
+  },
+  {
+   "i": "Cálculos de calcio con hipercalciuria (fuera de etiqueta)",
+   "a": "Según guías urológicas, 25 mg dos veces al día o 50 mg al día, junto con restricción de sodio. Sin restricción de sodio la tiazida pierde su efecto sobre el calcio urinario. El ensayo NOSTONE no mostró beneficio en el desenlace combinado, pero las guías la mantienen en hipercalciuria franca. Verificar con tu servicio.",
+   "p": "No establecida."
+  }
+ ],
+ "aj": {
+  "r": "Menos eficaz con TFG <30; contraindicada en anuria.",
+  "h": "Cuidado: los cambios de líquidos y electrolitos pueden precipitar encefalopatía hepática.",
+  "e": "Evitar salvo indicación clara; atraviesa la placenta y puede causar ictericia o trombocitopenia fetal.",
+  "l": "Pasa a la leche y puede inhibir la lactancia.",
+  "g": "Más riesgo de hiponatremia e hipopotasemia."
+ },
+ "ci": [
+  "Anuria",
+  "Hipersensibilidad a hidroclorotiazida o a sulfonamidas"
+ ],
+ "fr": [
+  "Hipopotasemia",
+  "Hiponatremia",
+  "Hiperuricemia",
+  "Hiperglucemia",
+  "Hipercalcemia",
+  "Mareo",
+  "Fotosensibilidad"
+ ],
+ "gr": [
+  "Cáncer de piel no melanoma con uso prolongado",
+  "Glaucoma agudo de ángulo cerrado y miopía aguda",
+  "Hiponatremia grave",
+  "Pancreatitis",
+  "Reacciones de hipersensibilidad, lupus"
+ ],
+ "it": [
+  [
+   "Litio",
+   "Sube el nivel de litio y su toxicidad"
+  ],
+  [
+   "Digoxina",
+   "La hipopotasemia favorece la toxicidad digitálica"
+  ],
+  [
+   "AINE",
+   "Menor efecto diurético y más riesgo renal"
+  ],
+  [
+   "Corticoides, otros diuréticos",
+   "Más pérdida de potasio"
+  ],
+  [
+   "Antidiabéticos",
+   "Pueden requerir ajuste por hiperglucemia"
+  ],
+  [
+   "Colestiramina",
+   "Baja la absorción de la tiazida"
+  ]
+ ],
+ "mon": [
+  "Potasio, sodio, calcio y magnesio",
+  "Creatinina",
+  "Glucosa y ácido úrico",
+  "Presión arterial",
+  "Calciuria de 24 h si se usa para litiasis",
+  "Revisión de la piel con uso prolongado"
+ ],
+ "pre": "Controla el potasio y el sodio; evita en anuria y en alergia a sulfonamidas.",
+ "pres": [
+  "Tabletas 12,5, 25 y 50 mg"
+ ],
+ "com": [
+  "Esidrex",
+  "Microzide"
+ ],
+ "pe": [
+  "En litiasis, el efecto sobre la calciuria se pierde si la dieta lleva mucha sal: restringe el sodio.",
+  "Puede subir el calcio sérico: si aparece hipercalcemia, descarta hiperparatiroidismo.",
+  "La etiqueta no incluye litiasis como indicación; su uso para prevenir cálculos viene de las guías."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de hidroclorotiazida (drugs.com)",
+   "u": "https://www.drugs.com/pro/hydrochlorothiazide-tablets.html",
+   "b": "dosis, seguridad"
+  },
+  {
+   "t": "MediSearch (consulta compartida, 28 oct 2026)",
+   "u": "https://medisearch.io/share/c6qGRS1rApYp7pP5EMjzmV",
+   "b": "contraste de puntos específicos"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "C03AA03"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 8,
+  "np": 37,
+  "pres": [
+   "Tableta 25 mg",
+   "Tableta 25 mg.",
+   "Tableta 12,5 mg"
+  ],
+  "m": [
+   "Hidroclorotiazida 25 mg tabletas (Memphis Products)",
+   "Hidroclorotiazida tabletas 25 mg. (Genfar)",
+   "Hidroclorotiazida tabletas 25 mg (Laboratorio Profesional Farmaceutico - Laboratorios Laproff)",
+   "Hidroclorotiazida 12.5 mg (Tecnoquimicas)",
+   "Hidroclorotiazida 25 mg (Tecnoquimicas)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

@@ -1,1 +1,135 @@
-{"id":"finasterida","n":"Finasterida","g":["Finasterida","Finasteride","Proscar","Propecia"],"atc":["G04CB01"],"cl":"Inhibidor de la 5-α reductasa","mc":"inh5ar","us":["lut"],"es":["urologia","medint"],"via":["vo"],"al":["emb_evitar"],"et":"El sufijo «-asterida» marca a los inhibidores de la 5-α reductasa (finasterida, dutasterida).","mech":"Inhibe de forma competitiva la 5-α reductasa tipo II, la enzima que convierte la testosterona en dihidrotestosterona (DHT) dentro de la próstata. La DHT baja cerca de 70 % y, con los meses, la próstata se reduce y el flujo mejora.","pk":{"abs":"Buena; la comida no la modifica","vm":"~6 h (8 h en mayores de 70 años)","met":"Hígado: CYP3A4","el":"Heces y orina como metabolitos"},"ind":[{"i":"Hiperplasia prostática benigna con próstata aumentada","a":"5 mg VO una vez al día, con o sin comida. Puede tardar 6 meses en notarse la mejoría.","p":"No indicada en niños."}],"aj":{"r":"Sin ajuste.","h":"Precaución en hepatopatía (se metaboliza en el hígado).","e":"Contraindicada: puede dañar al feto masculino; la mujer embarazada no debe tocar tabletas trituradas o rotas.","l":"No indicada.","g":"Sin ajuste."},"ci":["Embarazo y mujeres que puedan estarlo (por contacto con tabletas rotas)","Hipersensibilidad a finasterida"],"fr":["Disfunción eréctil (8,1 % vs 3,7 % con placebo)","Menor libido","Menor volumen de eyaculado","Sensibilidad o aumento mamario"],"gr":["Cáncer de mama masculino (raro; consultar por masas)","Cáncer de próstata de alto grado (Gleason 8 a 10) algo más frecuente en un estudio de prevención (1,8 % vs 1,1 %)","Alteraciones del ánimo, depresión (reportes poscomercialización)"],"it":[["Dutasterida u otro inhibidor de la 5-α reductasa","Misma clase: no combinar"],["Inhibidores de CYP3A4","Podrían subir el nivel; efecto clínico poco claro"]],"mon":["PSA basal y a los 6 meses (duplicar el valor al interpretarlo)","Síntomas urinarios (IPSS) y flujo","Función sexual y ánimo"],"pre":"Baja el PSA cerca de 50 % tras 6 meses: duplica el valor medido para interpretarlo. Una mujer embarazada no debe manipular tabletas rotas.","pres":["Tabletas 5 mg (HBP). La de 1 mg es para alopecia"],"com":["Proscar","Propecia (1 mg, alopecia)"],"pe":["La dosis para HBP es 5 mg; la de alopecia es 1 mg: no confundirlas.","Tarda meses: la próstata se encoge poco a poco. Rinde más con próstata aumentada (las guías suelen usar cerca de 40 mL como referencia).","Si el PSA no baja la mitad en 6 meses, sospecha mala adherencia o cáncer."],"v":{"d":1,"f":1,"s":1},"src":[{"t":"Etiqueta de Proscar 5 mg (drugs.com)","u":"https://www.drugs.com/pro/proscar.html","b":"dosis, farmacología, seguridad"}],"rev":"2026-10-28","co":{"q":["G04CB01"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":5,"np":12,"pres":["Tableta recubierta 1 mg","Tableta recubierta 5 mg","Tableta cubierta con pelicula 5 mg"],"m":["Fluresp® 1 (Alkem Laboratories)","Fluresp® 5 (Alkem Laboratories)","Propecia® 1 mg tabletas recubiertas (Organon)","Finasteride5mg (Tecnoquimicas)","Opptest5 mg tabletas recubiertas (Hb Human Bioscience)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "finasterida",
+ "n": "Finasterida",
+ "g": [
+  "Finasterida",
+  "Finasteride",
+  "Proscar",
+  "Propecia"
+ ],
+ "atc": [
+  "G04CB01"
+ ],
+ "cl": "Inhibidor de la 5-α reductasa",
+ "mc": "inh5ar",
+ "us": [
+  "lut"
+ ],
+ "es": [
+  "urologia",
+  "medint"
+ ],
+ "via": [
+  "vo"
+ ],
+ "al": [
+  "emb_evitar"
+ ],
+ "et": "El sufijo «-asterida» marca a los inhibidores de la 5-α reductasa (finasterida, dutasterida).",
+ "mech": "Inhibe de forma competitiva la 5-α reductasa tipo II, la enzima que convierte la testosterona en dihidrotestosterona (DHT) dentro de la próstata. La DHT baja cerca de 70 % y, con los meses, la próstata se reduce y el flujo mejora.",
+ "pk": {
+  "abs": "Buena; la comida no la modifica",
+  "vm": "~6 h (8 h en mayores de 70 años)",
+  "met": "Hígado: CYP3A4",
+  "el": "Heces y orina como metabolitos"
+ },
+ "ind": [
+  {
+   "i": "Hiperplasia prostática benigna con próstata aumentada",
+   "a": "5 mg VO una vez al día, con o sin comida. Puede tardar 6 meses en notarse la mejoría.",
+   "p": "No indicada en niños."
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste.",
+  "h": "Precaución en hepatopatía (se metaboliza en el hígado).",
+  "e": "Contraindicada: puede dañar al feto masculino; la mujer embarazada no debe tocar tabletas trituradas o rotas.",
+  "l": "No indicada.",
+  "g": "Sin ajuste."
+ },
+ "ci": [
+  "Embarazo y mujeres que puedan estarlo (por contacto con tabletas rotas)",
+  "Hipersensibilidad a finasterida"
+ ],
+ "fr": [
+  "Disfunción eréctil (8,1 % vs 3,7 % con placebo)",
+  "Menor libido",
+  "Menor volumen de eyaculado",
+  "Sensibilidad o aumento mamario"
+ ],
+ "gr": [
+  "Cáncer de mama masculino (raro; consultar por masas)",
+  "Cáncer de próstata de alto grado (Gleason 8 a 10) algo más frecuente en un estudio de prevención (1,8 % vs 1,1 %)",
+  "Alteraciones del ánimo, depresión (reportes poscomercialización)",
+  "Ideación suicida: señal en farmacovigilancia poscomercialización; la causalidad sigue debatida"
+ ],
+ "it": [
+  [
+   "Dutasterida u otro inhibidor de la 5-α reductasa",
+   "Misma clase: no combinar"
+  ],
+  [
+   "Inhibidores de CYP3A4",
+   "Podrían subir el nivel; efecto clínico poco claro"
+  ]
+ ],
+ "mon": [
+  "PSA basal y a los 6 meses (duplicar el valor al interpretarlo)",
+  "Síntomas urinarios (IPSS) y flujo",
+  "Función sexual y ánimo"
+ ],
+ "pre": "Baja el PSA cerca de 50 % tras 6 meses: duplica el valor medido para interpretarlo. Una mujer embarazada no debe manipular tabletas rotas.",
+ "pres": [
+  "Tabletas 5 mg (HBP). La de 1 mg es para alopecia"
+ ],
+ "com": [
+  "Proscar",
+  "Propecia (1 mg, alopecia)"
+ ],
+ "pe": [
+  "La dosis para HBP es 5 mg; la de alopecia es 1 mg: no confundirlas.",
+  "Tarda meses: la próstata se encoge poco a poco. Rinde más con próstata aumentada (las guías suelen usar cerca de 40 mL como referencia).",
+  "Si el PSA no baja la mitad en 6 meses, sospecha mala adherencia o cáncer."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de Proscar 5 mg (drugs.com)",
+   "u": "https://www.drugs.com/pro/proscar.html",
+   "b": "dosis, farmacología, seguridad"
+  },
+  {
+   "t": "MediSearch (consulta compartida, 28 oct 2026)",
+   "u": "https://medisearch.io/share/c6qGRS1rApYp7pP5EMjzmV",
+   "b": "contraste de puntos específicos"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "G04CB01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 5,
+  "np": 12,
+  "pres": [
+   "Tableta recubierta 1 mg",
+   "Tableta recubierta 5 mg",
+   "Tableta cubierta con pelicula 5 mg"
+  ],
+  "m": [
+   "Fluresp® 1 (Alkem Laboratories)",
+   "Fluresp® 5 (Alkem Laboratories)",
+   "Propecia® 1 mg tabletas recubiertas (Organon)",
+   "Finasteride5mg (Tecnoquimicas)",
+   "Opptest5 mg tabletas recubiertas (Hb Human Bioscience)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

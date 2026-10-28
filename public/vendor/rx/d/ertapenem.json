@@ -1,1 +1,158 @@
-{"id":"ertapenem","n":"Ertapenem","g":["Ertapenem","Invanz"],"atc":["J01DH03"],"cl":"Carbapenémico","mc":"betalact","us":["itu","abdominal","piel","resp","profilaxis"],"es":["urologia","infecto","medint","cirugia","uci"],"via":["iv","im"],"al":["ajuste_renal","convulsiones","cdiff"],"et":"«Carbapenem» viene de «carba-» (un carbono reemplaza al azufre del anillo de la penicilina) y «-penem» (penicilina + ene, por el doble enlace del anillo).","mech":"β-lactámico que se une a las proteínas fijadoras de penicilina y bloquea la síntesis de la pared bacteriana (bactericida). Es estable frente a muchas β-lactamasas, incluidas las BLEE. Cubre enterobacterias, anaerobios y grampositivos sensibles, pero no Pseudomonas, Acinetobacter ni enterococo.","pk":{"abs":"IM casi completa (~90 %); IV directa","vm":"~4 h","met":"Poco; hidrólisis del anillo β-lactámico","el":"Renal. Unión a proteínas alta (85 a 95 %) y saturable"},"ind":[{"i":"Infección urinaria complicada incluida pielonefritis; intraabdominal complicada; piel y pie diabético; neumonía comunitaria; pélvica aguda","a":"1 g IV o IM una vez al día. Duración IV hasta 14 días; IM hasta 7 días.","p":"3 meses a 12 años: 15 mg/kg cada 12 h (máximo 1 g al día). Desde 13 años: dosis del adulto.","k":{"lo":15,"hi":15,"int":"cada 12 h","maxd":"1 g al día"}},{"i":"Profilaxis en cirugía colorrectal electiva","a":"1 g IV en dosis única 1 h antes de la incisión.","p":"No establecida."}],"aj":{"r":"Depuración ≤30 mL/min: 500 mg al día. En hemodiálisis, 500 mg al día; si se dio menos de 6 h antes de la sesión, añadir 150 mg después (verificar en la etiqueta).","h":"Sin ajuste.","e":"Usar solo si es necesario.","l":"Pasa a la leche; precaución.","g":"Ajustar por función renal."},"ci":["Hipersensibilidad a ertapenem u otros carbapenémicos","Reacción anafiláctica a β-lactámicos","Con lidocaína como diluyente IM: alergia a anestésicos de tipo amida"],"fr":["Diarrea","Náuseas","Cefalea","Flebitis en el sitio de infusión","Vaginitis"],"gr":["Convulsiones (0,5 %)","Anafilaxia","Colitis por Clostridioides difficile","Encefalopatía"],"it":[["Ácido valproico","Baja mucho sus niveles y puede perder el control de las convulsiones; evitar"],["Probenecid","Sube el nivel de ertapenem; no se recomienda"],["Otros β-lactámicos","Alergia cruzada posible"]],"mon":["Creatinina para ajustar la dosis","Neurológico (convulsiones, confusión) con falla renal o antecedentes","Diarrea (C. difficile)"],"pre":"No cubre Pseudomonas ni Acinetobacter: si hay riesgo, usa meropenem. Ajusta a 500 mg si la depuración es ≤30.","pres":["Vial 1 g"],"com":["Invanz"],"pe":["Una dosis al día permite continuar en casa por vía IV o IM (OPAT).","Es una opción frecuente para infección urinaria complicada por E. coli o Klebsiella productoras de BLEE.","La vida media y la unión a proteínas explican la dosis única diaria, pero también que se acumule con falla renal."],"v":{"d":1,"f":1,"s":1},"src":[{"t":"Etiqueta de Invanz (drugs.com)","u":"https://www.drugs.com/pro/invanz.html","b":"dosis, farmacología, seguridad"}],"rev":"2026-10-28","co":{"q":["J01DH03"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":5,"np":6,"pres":["Polvo liofilizado para reconstituir a solucion inyectable 1 g","Polvo esteril para reconstituir a solucion inyectable 1 g"],"m":["Ertagram® 1 g (Eugia Pharma Specialities)","Invanz® (Merck Sharp & Dohme)","Ertapenem 1g (Norstray & Nuart)","Ertapenem 1g/vial polvo liofilizado para reconstituir a solucion inyectable (Antibioticos Da Colombia)","Ertapenem sodico 1g/vial. (Vicarfarmaceutica)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "ertapenem",
+ "n": "Ertapenem",
+ "g": [
+  "Ertapenem",
+  "Invanz"
+ ],
+ "atc": [
+  "J01DH03"
+ ],
+ "cl": "Carbapenémico",
+ "mc": "betalact",
+ "us": [
+  "itu",
+  "abdominal",
+  "piel",
+  "resp",
+  "profilaxis"
+ ],
+ "es": [
+  "urologia",
+  "infecto",
+  "medint",
+  "cirugia",
+  "uci"
+ ],
+ "via": [
+  "iv",
+  "im"
+ ],
+ "al": [
+  "ajuste_renal",
+  "convulsiones",
+  "cdiff"
+ ],
+ "et": "«Carbapenem» viene de «carba-» (un carbono reemplaza al azufre del anillo de la penicilina) y «-penem» (penicilina + ene, por el doble enlace del anillo).",
+ "mech": "β-lactámico que se une a las proteínas fijadoras de penicilina y bloquea la síntesis de la pared bacteriana (bactericida). Es estable frente a muchas β-lactamasas, incluidas las BLEE. Cubre enterobacterias, anaerobios y grampositivos sensibles, pero no Pseudomonas, Acinetobacter ni enterococo.",
+ "pk": {
+  "abs": "IM casi completa (~90 %); IV directa",
+  "vm": "~4 h",
+  "met": "Poco; hidrólisis del anillo β-lactámico",
+  "el": "Renal. Unión a proteínas alta (85 a 95 %) y saturable"
+ },
+ "ind": [
+  {
+   "i": "Infección urinaria complicada incluida pielonefritis; intraabdominal complicada; piel y pie diabético; neumonía comunitaria; pélvica aguda",
+   "a": "1 g IV o IM una vez al día. Duración IV hasta 14 días; IM hasta 7 días.",
+   "p": "3 meses a 12 años: 15 mg/kg cada 12 h (máximo 1 g al día). Desde 13 años: dosis del adulto.",
+   "k": {
+    "lo": 15,
+    "hi": 15,
+    "int": "cada 12 h",
+    "maxd": "1 g al día"
+   }
+  },
+  {
+   "i": "Profilaxis en cirugía colorrectal electiva",
+   "a": "1 g IV en dosis única 1 h antes de la incisión.",
+   "p": "No establecida."
+  }
+ ],
+ "aj": {
+  "r": "Depuración ≤30 mL/min: 500 mg al día. En hemodiálisis, 500 mg al día; si se dio menos de 6 h antes de la sesión, añadir 150 mg después (verificar en la etiqueta). Hay reportes de neurotoxicidad en hemodiálisis con 500 mg al día: vigilar el estado neurológico.",
+  "h": "Sin ajuste.",
+  "e": "Usar solo si es necesario.",
+  "l": "Pasa a la leche; precaución.",
+  "g": "Ajustar por función renal."
+ },
+ "ci": [
+  "Hipersensibilidad a ertapenem u otros carbapenémicos",
+  "Reacción anafiláctica a β-lactámicos",
+  "Con lidocaína como diluyente IM: alergia a anestésicos de tipo amida"
+ ],
+ "fr": [
+  "Diarrea",
+  "Náuseas",
+  "Cefalea",
+  "Flebitis en el sitio de infusión",
+  "Vaginitis"
+ ],
+ "gr": [
+  "Convulsiones (0,5 %)",
+  "Anafilaxia",
+  "Colitis por Clostridioides difficile",
+  "Encefalopatía"
+ ],
+ "it": [
+  [
+   "Ácido valproico",
+   "Baja mucho sus niveles y puede perder el control de las convulsiones; evitar"
+  ],
+  [
+   "Probenecid",
+   "Sube el nivel de ertapenem; no se recomienda"
+  ],
+  [
+   "Otros β-lactámicos",
+   "Alergia cruzada posible"
+  ]
+ ],
+ "mon": [
+  "Creatinina para ajustar la dosis",
+  "Neurológico (convulsiones, confusión) con falla renal o antecedentes",
+  "Diarrea (C. difficile)"
+ ],
+ "pre": "No cubre Pseudomonas ni Acinetobacter: si hay riesgo, usa meropenem. Ajusta a 500 mg si la depuración es ≤30.",
+ "pres": [
+  "Vial 1 g"
+ ],
+ "com": [
+  "Invanz"
+ ],
+ "pe": [
+  "Una dosis al día permite continuar en casa por vía IV o IM (OPAT).",
+  "Es una opción frecuente para infección urinaria complicada por E. coli o Klebsiella productoras de BLEE.",
+  "La vida media y la unión a proteínas explican la dosis única diaria, pero también que se acumule con falla renal."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de Invanz (drugs.com)",
+   "u": "https://www.drugs.com/pro/invanz.html",
+   "b": "dosis, farmacología, seguridad"
+  },
+  {
+   "t": "MediSearch (consulta compartida, 28 oct 2026)",
+   "u": "https://medisearch.io/share/c6qGRS1rApYp7pP5EMjzmV",
+   "b": "contraste de puntos específicos"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01DH03"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 5,
+  "np": 6,
+  "pres": [
+   "Polvo liofilizado para reconstituir a solucion inyectable 1 g",
+   "Polvo esteril para reconstituir a solucion inyectable 1 g"
+  ],
+  "m": [
+   "Ertagram® 1 g (Eugia Pharma Specialities)",
+   "Invanz® (Merck Sharp & Dohme)",
+   "Ertapenem 1g (Norstray & Nuart)",
+   "Ertapenem 1g/vial polvo liofilizado para reconstituir a solucion inyectable (Antibioticos Da Colombia)",
+   "Ertapenem sodico 1g/vial. (Vicarfarmaceutica)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}
