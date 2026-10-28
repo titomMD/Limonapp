@@ -672,9 +672,12 @@ var AIPRE=[
    la IA solo decide lo que el lector básico suele confundir, y cada dato se acepta SOLO si su cita literal está en el PDF. */
 function aiNz(t){return aiNorm(t).replace(/[^a-z0-9]+/g,' ').trim();}
 function aiCapDocs(docs){
-  var ds=docs.slice().sort(function(a,b){return a.at<b.at?-1:a.at>b.at?1:a.i-b.i;}),cap=2400,out;
-  function mk(){return ds.map(function(d){var x=d.x||'';if(x.length>cap)x=x.slice(0,Math.floor(cap*.75))+'\n[…]\n'+x.slice(-Math.floor(cap*.25));return {i:d.i,t:d.t,s:d.s,at:d.at,x:x};});}
-  out=mk();while(cap>400&&out.reduce(function(a,d){return a+d.x.length;},0)>85000){cap=Math.floor(cap*.75);out=mk();}
+  /* resumen compacto: los documentos más recientes con más texto, los viejos solo el inicio y el final (Netlify corta a los 10 s) */
+  var ds=docs.slice().sort(function(a,b){return a.at<b.at?-1:a.at>b.at?1:a.i-b.i;}),nNew=12,cNew=1600,cOld=400,out;
+  function cut(x,cap){x=x||'';return x.length>cap?x.slice(0,Math.floor(cap*.7))+'\n[…]\n'+x.slice(-Math.floor(cap*.3)):x;}
+  function mk(){return ds.map(function(d,k){return {i:d.i,t:d.t,s:d.s,at:d.at,x:cut(d.x,k>=ds.length-nNew?cNew:cOld)};});}
+  out=mk();
+  while((cNew>700||cOld>200)&&out.reduce(function(a,d){return a+d.x.length;},0)>28000){cNew=Math.max(700,Math.floor(cNew*.8));cOld=Math.max(200,Math.floor(cOld*.8));out=mk();}
   return out;
 }
 function aiRead(r){
