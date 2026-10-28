@@ -747,6 +747,7 @@ function aiCapDocs(docs){
   while((cNew>700||cOld>200)&&out.reduce(function(a,d){return a+d.x.length;},0)>28000){cNew=Math.max(700,Math.floor(cNew*.8));cOld=Math.max(200,Math.floor(cOld*.8));out=mk();}
   return out;
 }
+function aiEspQ(){try{var s=svc(S.serviceId),e=s&&(s.k?espBy(s.k):espByName(s.name));return e?'&esp='+e.k:'';}catch(x){return '';}}
 function aiRead(r){
   if(!(r&&r.hus&&r.docs&&r.docs.length&&gAvail()&&gUser()))return Promise.resolve(r);
   var c=aiCfg();
@@ -757,7 +758,7 @@ function aiRead(r){
   }
   toast('Leyendo con IA…');
   var tm=new Promise(function(res,rej){setTimeout(function(){rej(new Error('La IA tardó demasiado.'));},40000);});
-  return Promise.race([aiApi('?hc=1',{method:'POST',body:JSON.stringify({docs:aiCapDocs(r.docs)})}),tm]).then(function(j){return aiMerge(r,j&&j.data);}).catch(function(e){r.aiErr=(e&&e.message)||'No pude usar la IA.';return r;});
+  return Promise.race([aiApi('?hc=1'+aiEspQ(),{method:'POST',body:JSON.stringify({docs:aiCapDocs(r.docs)})}),tm]).then(function(j){return aiMerge(r,j&&j.data);}).catch(function(e){r.aiErr=(e&&e.message)||'No pude usar la IA.';return r;});
 }
 function aiMerge(r,a){
   if(!a||typeof a!=='object')return r;
