@@ -60,12 +60,12 @@
   {
    "i": "Crup (laringotraqueítis) (uso habitual, no figura en la etiqueta)",
    "a": "—",
-   "p": "Dosis única de 0,15 a 0,6 mg/kg VO, IM o IV (máximo 10 a 16 mg según la guía) (otras fuentes; no contrastado aquí).",
+   "p": "Dosis única de 0,6 mg/kg (máximo 8 mg VO o IM en el estudio ambulatorio; máximo 12 mg IV en el estudio hospitalario). 0,15 mg/kg (máximo 3 mg) fue igual de eficaz que 0,6 mg/kg en crup moderado a grave. La vía oral es la preferida: eficacia equivalente a la IM, más fácil y barata. Una segunda dosis solo si los síntomas reaparecen. Estudios clínicos y revisión de PubMed; no figura en la etiqueta de la FDA.",
    "k": {
     "lo": 0.15,
     "hi": 0.6,
-    "int": "en dosis única (crup; otras fuentes)",
-    "maxd": "10 mg"
+    "int": "VO, IM o IV, una sola vez (crup; estudios citados en PubMed)",
+    "maxd": "8 mg VO o IM; 12 mg IV (estudios)"
    }
   },
   {
@@ -170,6 +170,21 @@
    "t": "Etiqueta de dexametasona tabletas (DailyMed, Pd-Rx Pharmaceuticals, Inc., Oct 26, 2026)",
    "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=62b1cf42-c53a-40fa-a39c-fa5d90dc065a",
    "b": "indicaciones, dosis oral, edema cerebral, esclerosis múltiple, pediatría, equivalencias, interacciones, embarazo"
+  },
+  {
+   "t": "Dexametasona oral contra intramuscular en crup moderado ambulatorio (Pediatrics 2000)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/11099587/",
+   "b": "0,6 mg/kg, máximo 8 mg; sin diferencia VO e IM"
+  },
+  {
+   "t": "Dexametasona 0,15 contra 0,6 mg/kg en crup moderado a grave (Int J Pediatr Otorhinolaryngol 2007)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/17208307/",
+   "b": "Igual eficacia; máximo 12 mg y 3 mg respectivamente, IV"
+  },
+  {
+   "t": "Crup: una perspectiva actual (Pediatr Clin North Am 1999)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/10629679/",
+   "b": "Glucocorticoide a todo niño con mayor trabajo respiratorio; adrenalina nebulizada"
   }
  ],
  "rev": "2026-10-28",

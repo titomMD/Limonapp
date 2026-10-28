@@ -33,8 +33,13 @@ QUE CAMBIA EN LA v63 (sobre la v62, que queda incluida)
     SNC, electrolitos, obstetricia y vitamina K (22). Lo que la etiqueta no trae (esquemas de guias como CRASH-2/WOMAN, AHA, ACOG,
     crup, asma, EPOC, choque septico, dosis pediatricas por peso fuera de etiqueta) queda escrito en la ficha con "otras fuentes" o
     "no contrastado aqui". El potasio IV se contrasto con la monografia ASHP (cap. 227). Nada esta en nivel 2: eso solo lo confirma Esteban.
-  - Siguen en BORRADOR (nivel 0) por no tener etiqueta en DailyMed: dipirona (metamizol), hioscina butilbromuro y sales de rehidratacion
-    oral. Levofloxacino sigue con farmacologia sin contrastar (solo drugs.com). Hay que cubrirlos con otra fuente (INVIMA, guia OMS, ficha del fabricante).
+  - Dipirona, hioscina y sales de rehidratacion oral no tienen etiqueta en DailyMed. Se cargaron con una sintesis de MediSearch (28-oct-2026)
+    mas articulos de PubMed y la guia OMS (NBK143745). SRO: Plan A/B y zinc contrastados con OMS (nivel 1 en dosis). Dipirona e hioscina: dosis
+    y contraindicaciones vienen de un resumen de fichas tecnicas europeas, NO del documento original; siguen con dosis en nivel 0 y hay que
+    confirmar con el registro INVIMA (en especial: MediSearch dice que dipirona esta contraindicada en el primer trimestre; sin verificar).
+  - Tambien se agregaron con PubMed: acido tranexamico (CRASH-2 y WOMAN), dexametasona en crup (tope 8 mg VO/IM, 12 mg IV) y adrenalina nebulizada en crup.
+  - Sin responder por MediSearch (hay que pedirlos uno a uno): crisis asmatica (GINA), EPOC (GOLD), choque septico (SSC 2021), crisis suprarrenal,
+    HDA con IBP IV, estado epileptico, potasio IV pediatrico e hipomagnesemia. Levofloxacino sigue con farmacologia sin contrastar (solo drugs.com).
   - 86 farmacos: los 68 anteriores migrados (65 ya contrastados, ver arriba) y 18 de urologia contrastados con
     etiquetas oficiales (drugs.com): tamsulosina, finasterida, dutasterida, oxibutinina, solifenacina, mirabegron, fenazopiridina,
     fosfomicina, amikacina, ertapenem, cefepima, hidroclorotiazida, citrato de potasio, alopurinol, tadalafilo, desmopresina,

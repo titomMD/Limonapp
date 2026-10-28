@@ -1,1 +1,202 @@
-{"id":"hioscina","n":"Hioscina (butilbromuro)","g":["Hioscina","butilbromuro","Buscapina"],"atc":["A03BB01"],"cl":"Antiespasmódico","mc":"antimuscarinico","us":["espasmo","dolor"],"es":["cirugia","gastro","urologia","medint","gineco"],"via":["vo","iv","im"],"al":["anticolinergico"],"et":"«Hioscina» deriva de Hyoscyamus (beleño), planta de donde se aisló; «butilbromuro» indica el grupo butilo y el bromuro del amonio cuaternario que no cruza la barrera hematoencefálica.","mech":"Antagonista de receptores muscarínicos M3 del músculo liso. Al bloquear la acetilcolina relaja el músculo liso del tubo digestivo, las vías biliares y urinarias y alivia el cólico. Al ser un amonio cuaternario casi no entra al sistema nervioso central, y por eso no produce sedación ni confusión.","pk":{"abs":"Oral muy baja (<10 %)","vm":"≈5 h","met":"Hidrólisis del éster","el":"Renal y fecal"},"ind":[{"i":"Cólico abdominal, biliar o renal","a":"10 a 20 mg VO, IM o IV cada 6 a 8 h. Máximo 100 mg al día.","p":"Uso según edad y protocolo local (verificar dosis pediátrica)."}],"aj":{"r":"Sin ajuste habitual.","h":"Sin ajuste habitual.","e":"Usar con cautela.","l":"Cautela.","g":"Mayor riesgo de retención urinaria y confusión leve."},"ci":["Glaucoma de ángulo cerrado","Obstrucción intestinal o megacolon","Hipertrofia prostática con retención","Taquiarritmias","Miastenia gravis"],"fr":["Boca seca","Taquicardia","Visión borrosa","Estreñimiento"],"gr":["Retención urinaria aguda","Glaucoma agudo"],"it":[["Otros anticolinérgicos (antidepresivos tricíclicos, antihistamínicos)","Efecto anticolinérgico sumado"],["Metoclopramida","Efectos opuestos sobre la motilidad"]],"mon":["Frecuencia cardíaca","Diuresis","Dolor"],"ant":"Fisostigmina en intoxicación grave con síntomas centrales (poco usada).","pre":"Glaucoma de ángulo cerrado, obstrucción intestinal, taquiarritmias.","pres":["Ampolla 20 mg/mL","Tabletas 10 mg","Gotas"],"com":["Buscapina"],"pe":["Es el antiespasmódico clásico del cólico renal y biliar, pero no sustituye el AINE ni el opioide para el dolor."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["A03BB01"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":19,"np":134,"pres":["Solucion inyectable 20 mg","Tableta cubierta (gragea) 10 mg","Tableta cubierta con pelicula 10 mg","Tableta cubierta (gragea) 300 mg","Tableta recubierta 10 mg","Tableta 10 mg","Solucion oral 10 mg"],"m":["Buscapina® ampollas (Opella Healthcare Colombia)","Hyokem®10 mg (Alkem Laboratories)","Buscapina ® grageas (Opella Healthcare Colombia)","Colespas® 10 mg (Labquifar)","Diuxoton®20 mg/ml solución inyectable (Laboratorios Blaskov)","Espasmobilgrageas (Farmacol Chinoin)","N-butil bromuro de hioscina 20 mg/ml solucion inyectable (Laboratorio Biosano)","Hioscina n-butil bromuro 20 mg / 1 ml (Vitalis C.I)","Labinpina (Laboratorio Internacional De Colombia - Labinco)","N-butilbromuro de hioscina10mg tabletas (Laboratorios Bussié)","Hioscina n-butil bromuro 20 mg /1 ml (Laboratorio Sanderson)","N-butil bromuro de hioscina 20mg/ml (Productora De Capsulas De Gelatina . Procaps)"],"mas":6,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "hioscina",
+ "n": "Hioscina (butilbromuro)",
+ "g": [
+  "Hioscina",
+  "butilbromuro",
+  "Buscapina"
+ ],
+ "atc": [
+  "A03BB01"
+ ],
+ "cl": "Antiespasmódico",
+ "mc": "antimuscarinico",
+ "us": [
+  "espasmo",
+  "dolor"
+ ],
+ "es": [
+  "cirugia",
+  "gastro",
+  "urologia",
+  "medint",
+  "gineco"
+ ],
+ "via": [
+  "vo",
+  "iv",
+  "im"
+ ],
+ "al": [
+  "anticolinergico"
+ ],
+ "et": "«Hioscina» deriva de Hyoscyamus (beleño), planta de donde se aisló; «butilbromuro» indica el grupo butilo y el bromuro del amonio cuaternario que no cruza la barrera hematoencefálica.",
+ "mech": "Antagonista de receptores muscarínicos M3 del músculo liso. Al bloquear la acetilcolina relaja el músculo liso del tubo digestivo, las vías biliares y urinarias y alivia el cólico. Al ser un amonio cuaternario casi no entra al sistema nervioso central, y por eso no produce sedación ni confusión.",
+ "pk": {
+  "abs": "Oral: disponibilidad sistémica baja (<1 % estimada por excreción renal)",
+  "vm": "≈5 h",
+  "met": "Hidrólisis del éster; alta afinidad tisular por los receptores muscarínicos del tubo digestivo (otras fuentes)",
+  "el": "Renal y fecal"
+ },
+ "ind": [
+  {
+   "i": "Cólico abdominal, biliar o renal; espasmo y dolor abdominal de origen digestivo, biliar y genitourinario",
+   "a": "VO: 10 a 20 mg por dosis, 3 a 5 veces al día. IV: 20 mg en dosis lenta, diluida y en no menos de 1 min (dosis única clásica de 20 a 40 mg). IM: 20 mg, repetible a los 30 min si hace falta. Máximo 100 mg al día por cualquier vía. Dosis tomadas de la síntesis de MediSearch sobre fichas técnicas europeas (documento original no revisado): confirma con el registro INVIMA.",
+   "p": "8 a 17 años: 10 mg VO por dosis; en un ensayo aleatorizado (236 niños en urgencias) tuvo una eficacia analgésica igual a la del paracetamol de 15 mg/kg en dolor cólico abdominal inespecífico. Menores de 6 años: fuera de indicación en la mayoría de los prospectos europeos. Verifica el registro INVIMA del producto."
+  },
+  {
+   "i": "Premedicación en estudios diagnósticos (colonoscopia, enema de bario, resonancia abdominal)",
+   "a": "20 mg IV como dosis estándar; dosis de 5 a 10 mg dieron resultados subóptimos en enema de bario.",
+   "p": "—"
+  },
+  {
+   "i": "Prevención de bradicardia por succinilcolina en anestesia pediátrica (uso no estándar)",
+   "a": "—",
+   "p": "0,2 mg/kg IV fue eficaz en lactantes y niños, sin diferencia relevante con 0,4 mg/kg (estudio japonés de 1992)",
+   "k": {
+    "lo": 0.2,
+    "hi": 0.2,
+    "int": "IV, dosis única (anestesia pediátrica; otras fuentes)"
+   }
+  },
+  {
+   "i": "Obstrucción intestinal inoperable (cuidados paliativos) y acortamiento del trabajo de parto (según MediSearch)",
+   "a": "Según protocolo local.",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "No hay guía estandarizada de ajuste. Hay un reporte de lesión renal aguda con medazepam más hioscina en una paciente anciana, que se normalizó al suspender: precaución en función renal comprometida.",
+  "h": "Sin datos sólidos de ajuste; precaución en hepatopatía grave.",
+  "e": "No hay estudios controlados en humanas. Primer trimestre: no está establecida la seguridad; solo si el beneficio supera claramente el riesgo.",
+  "l": "Se desconoce si pasa a la leche; por precaución, evítala o interrumpe la lactancia durante el tratamiento (según MediSearch).",
+  "g": "Mayor riesgo de retención urinaria y confusión (otras fuentes)."
+ },
+ "ci": [
+  "Glaucoma de ángulo cerrado",
+  "Miastenia gravis",
+  "Megacolon tóxico",
+  "Hipertrofia prostática con retención urinaria",
+  "Obstrucción mecánica gastrointestinal",
+  "Taquiarritmias previas",
+  "Hipersensibilidad a la hioscina o a otros anticolinérgicos"
+ ],
+ "fr": [
+  "Boca seca",
+  "Taquicardia",
+  "Visión borrosa",
+  "Estreñimiento"
+ ],
+ "gr": [
+  "Taquicardia dependiente de la dosis con la vía IV; reportes de casos de hipotensión grave e isquemia miocárdica, y de taquicardia supraventricular por reentrada nodal con hipotensión refractaria tras 20 mg IV",
+  "Retención urinaria aguda",
+  "Glaucoma agudo",
+  "Psicosis (reporte de caso en una niña de 9 años)"
+ ],
+ "it": [
+  [
+   "Antihistamínicos, antidepresivos tricíclicos, antipsicóticos",
+   "Efecto anticolinérgico sumado (retención urinaria, íleo, confusión)"
+  ],
+  [
+   "Metoclopramida",
+   "La hioscina antagoniza su efecto procinético"
+  ],
+  [
+   "Quinidina y disopiramida",
+   "Más riesgo de taquiarritmias"
+  ],
+  [
+   "Betabloqueadores",
+   "Pueden atenuar la taquicardia"
+  ],
+  [
+   "Medazepam (benzodiacepina)",
+   "Un caso de lesión renal aguda en combinación"
+  ]
+ ],
+ "mon": [
+  "Frecuencia cardíaca y presión arterial durante la vía IV",
+  "ECG si hay cardiopatía o factores de riesgo",
+  "Diuresis y retención urinaria",
+  "Disponibilidad de adenosina o cardioversión si hay TSV con la vía IV",
+  "Respuesta del dolor"
+ ],
+ "ant": "Fisostigmina en intoxicación grave con síntomas centrales (poco usada).",
+ "pre": "La vía IV produce solo taquicardia (a diferencia de la atropina, sin bradicardia inicial), con una curva dosis-respuesta más plana: monitoriza frecuencia cardíaca y presión. No es lo mismo que la escopolamina base: el butilbromuro no cruza bien la barrera hematoencefálica y no sirve para náuseas posoperatorias ni cinetosis.",
+ "pres": [
+  "Ampolla 20 mg/mL",
+  "Tabletas 10 mg",
+  "Gotas"
+ ],
+ "com": [
+  "Buscapina"
+ ],
+ "pe": [
+  "Es el antiespasmódico clásico del cólico renal y biliar, pero no sustituye el AINE ni el opioide para el dolor.",
+  "Con la vía IV, vigila el corazón: se han descrito arritmias e hipotensión.",
+  "No confundas el butilbromuro (Buscapina) con la escopolamina base."
+ ],
+ "v": {
+  "d": 0,
+  "f": 1,
+  "s": 0
+ },
+ "src": [
+  {
+   "t": "Hioscina butilbromuro: revisión de su uso en cólico y dolor abdominal (Drugs 2007)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/17547475/",
+   "b": "Farmacología: afinidad muscarínica, efecto ganglionar, baja biodisponibilidad oral (<1 %)"
+  },
+  {
+   "t": "Hioscina butilbromuro contra paracetamol en dolor abdominal cólico en niños (CMAJ 2020)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/33257343/",
+   "b": "10 mg VO en niños de 8 a 17 años, eficacia igual a la del paracetamol"
+  },
+  {
+   "t": "Respuesta de la frecuencia cardíaca a hioscina butilbromuro y atropina IV (Br J Clin Pharmacol 1983)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/6661345/",
+   "b": "Solo taquicardia con hioscina, curva más plana"
+  },
+  {
+   "t": "MediSearch: ficha clínica de hioscina butilbromuro (síntesis de fichas técnicas europeas y literatura, 28-oct-2026)",
+   "u": "https://medisearch.io/share/hECgGaV5w5L9quPe27FpTk",
+   "b": "dosis adulto y pediátrica, contraindicaciones, interacciones (documento original de la ficha técnica no revisado)"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "A03BB01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 19,
+  "np": 134,
+  "pres": [
+   "Solucion inyectable 20 mg",
+   "Tableta cubierta (gragea) 10 mg",
+   "Tableta cubierta con pelicula 10 mg",
+   "Tableta cubierta (gragea) 300 mg",
+   "Tableta recubierta 10 mg",
+   "Tableta 10 mg",
+   "Solucion oral 10 mg"
+  ],
+  "m": [
+   "Buscapina® ampollas (Opella Healthcare Colombia)",
+   "Hyokem®10 mg (Alkem Laboratories)",
+   "Buscapina ® grageas (Opella Healthcare Colombia)",
+   "Colespas® 10 mg (Labquifar)",
+   "Diuxoton®20 mg/ml solución inyectable (Laboratorios Blaskov)",
+   "Espasmobilgrageas (Farmacol Chinoin)",
+   "N-butil bromuro de hioscina 20 mg/ml solucion inyectable (Laboratorio Biosano)",
+   "Hioscina n-butil bromuro 20 mg / 1 ml (Vitalis C.I)",
+   "Labinpina (Laboratorio Internacional De Colombia - Labinco)",
+   "N-butilbromuro de hioscina10mg tabletas (Laboratorios Bussié)",
+   "Hioscina n-butil bromuro 20 mg /1 ml (Laboratorio Sanderson)",
+   "N-butil bromuro de hioscina 20mg/ml (Productora De Capsulas De Gelatina . Procaps)"
+  ],
+  "mas": 6,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

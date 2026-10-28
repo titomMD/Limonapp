@@ -66,6 +66,11 @@
     "int": "IV o IO cada 3 a 5 min en paro (AHA, otras fuentes)",
     "maxd": "1 mg por dosis"
    }
+  },
+  {
+   "i": "Crup con dificultad respiratoria moderada a grave (adrenalina nebulizada; no figura en la etiqueta)",
+   "a": "—",
+   "p": "L-adrenalina (epinefrina 1:1.000): 5 mL nebulizados, o adrenalina racémica: 0,5 mL nebulizados. El efecto dura 30 a 120 min: observa al menos 2 a 4 h después por el riesgo de rebote. Dar junto con glucocorticoide (revisión de PubMed y MediSearch; no contrastado con una guía local)."
   }
  ],
  "aj": {
@@ -146,6 +151,11 @@
    "t": "Etiqueta de adrenalina (epinefrina) inyectable 1 mg/mL (DailyMed, Par Health Usa, Llc, Jul 01, 2026)",
    "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=3b7a4364-668d-4eb2-a20c-04adc35aabe4",
    "b": "dosis en anafilaxia y choque séptico, advertencias, interacciones, embarazo, lactancia, pediatría"
+  },
+  {
+   "t": "Crup: una perspectiva actual (Pediatr Clin North Am 1999)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/10629679/",
+   "b": "Adrenalina nebulizada L-epinefrina 5 mL 1:1000 o racémica 0,5 mL"
   }
  ],
  "rev": "2026-10-28",

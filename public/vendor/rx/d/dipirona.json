@@ -1,1 +1,201 @@
-{"id":"dipirona","n":"Dipirona (metamizol)","g":["Dipirona","metamizol","Novalgina","Conmel"],"atc":["N02BB02"],"cl":"Analgésico / antipirético","mc":"cox_central","us":["dolor","fiebre","espasmo"],"es":["cirugia","urologia","pediatria","medint"],"via":["vo","iv","im"],"al":["depresor_snc"],"et":"«Metamizol» (nombre internacional) y «dipirona» (nombre más usado en Latinoamérica) son el mismo fármaco, una pirazolona con sulfonato de sodio (metil-amino-metano-sulfonato).","mech":"Pirazolona con efecto analgésico, antipirético y espasmolítico leve. Inhibe prostaglandinas, sobre todo en el sistema nervioso central, y su metabolito activo actúa también sobre vías cannabinoides y opioides; el mecanismo exacto sigue en discusión. Tiene poco efecto antiinflamatorio y poco daño gástrico.","pk":{"abs":"Profármaco, se hidroliza a 4-metilaminoantipirina (activa)","vm":"Metabolitos de 2 a 4 h","met":"Hepático","el":"Renal"},"ind":[{"i":"Dolor y fiebre","a":"500 a 1.000 mg VO o IV cada 6 a 8 h. Máximo 4 g al día.","p":"10 a 20 mg/kg por dosis cada 6 a 8 h.","k":{"lo":10,"hi":20,"int":"cada 6 a 8 h"}}],"aj":{"r":"Precaución en insuficiencia renal; evitar dosis altas.","h":"Precaución.","e":"Evitar, sobre todo en primer y tercer trimestre.","l":"Evitar o suspender lactancia 48 h.","g":"Dosis menor."},"ci":["Antecedente de agranulocitosis","Porfiria","Déficit de G6PD","Alergia a pirazolonas"],"fr":["Hipotensión con inyección rápida","Rash"],"gr":["Agranulocitosis (rara, impredecible)","Anafilaxia","Choque por inyección IV rápida"],"it":[["Clorpromazina","Hipotermia grave"],["Ciclosporina","Disminuye sus niveles"],["Metotrexato","Más mielotoxicidad"]],"mon":["Hemograma si uso prolongado","Fiebre o dolor de garganta (alerta de agranulocitosis)"],"ant":"No hay antídoto específico; soporte.","pre":"Riesgo raro de agranulocitosis; la disponibilidad y las restricciones varían por país.","pres":["Ampolla 1 g/2 mL","Gotas 500 mg/mL","Tabletas 500 mg"],"com":["Novalgina","Conmel"],"pe":["Está prohibida en EE. UU. y otros países por el riesgo de agranulocitosis; en Colombia sigue en uso.","Pasa la IV lenta: la inyección rápida produce hipotensión."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["N02BB02"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":17,"np":109,"pres":["Solucion inyectable 1 g","Solucion inyectable 2,5 g","Solucion inyectable 2 g","Tableta 500 mg","Tableta 0,5 g","Solucion inyectable 1000 mg","Tableta recubierta 500 mg","Jarabe 5 g"],"m":["Novalgina® ampollas (Opella Healthcare Colombia)","Laper® (Laboratorios Blaskov)","Novalgina® solucion oral (Opella Healthcare Colombia)","Dipiret® tabletas x 500 mg (Cooperativa Nacional De Droguistas Detallistas - Coopidrogas)","Dipirona magnesica 2g / 5 ml solucion inyectable (Vitalis C.I)","Dipirona 1 g /2 ml (Vitalis C.I)","Dipirona sódica 1g / 2ml solución inyectable (Procaps)","Dipirona 1g / 2ml solucion inyectable (Laboratorios Ecar)","Dipironasolucion inyectable 2.5 g / 5 ml (Laboratorios Ecar)","Dipirona sodica 1g/2mlinyectable (Laboratorios Ryan De Colombia)","Novalgina tabletas (Opella Healthcare Colombia)","Metamizol sódico (dipirona) 1 g/2 ml solución inyectable (Laboratorios Biosano)"],"mas":5,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "dipirona",
+ "n": "Dipirona (metamizol)",
+ "g": [
+  "Dipirona",
+  "metamizol",
+  "Novalgina",
+  "Conmel"
+ ],
+ "atc": [
+  "N02BB02"
+ ],
+ "cl": "Analgésico / antipirético",
+ "mc": "cox_central",
+ "us": [
+  "dolor",
+  "fiebre",
+  "espasmo"
+ ],
+ "es": [
+  "cirugia",
+  "urologia",
+  "pediatria",
+  "medint"
+ ],
+ "via": [
+  "vo",
+  "iv",
+  "im"
+ ],
+ "al": [
+  "depresor_snc"
+ ],
+ "et": "«Metamizol» (nombre internacional) y «dipirona» (nombre más usado en Latinoamérica) son el mismo fármaco, una pirazolona con sulfonato de sodio (metil-amino-metano-sulfonato).",
+ "mech": "Pirazolona con efecto analgésico, antipirético y espasmolítico leve. Inhibe prostaglandinas, sobre todo en el sistema nervioso central, y su metabolito activo actúa también sobre vías cannabinoides y opioides; el mecanismo exacto sigue en discusión. Tiene poco efecto antiinflamatorio y poco daño gástrico.",
+ "pk": {
+  "abs": "Profármaco: se hidroliza en el intestino y la sangre a 4-metilaminoantipirina (activa) (otras fuentes)",
+  "vm": "Metabolitos de 2 a 4 h",
+  "met": "Hepático",
+  "el": "Renal"
+ },
+ "ind": [
+  {
+   "i": "Dolor agudo intenso (postoperatorio, cólico, traumático) cuando otros analgésicos fallaron; dolor oncológico intenso",
+   "a": "Segunda línea según la EMA, no para dolor leve o moderado con alternativas. VO: 500 a 1.000 mg hasta 4 veces al día (máximo 4.000 mg al día). IV lenta: 1.000 a 2.500 mg por dosis en no menos de 15 min (máximo 5.000 mg al día). IM: 1.000 a 2.000 mg (máximo 5.000 mg al día). Prefiere la vía oral. Dosis tomadas de la síntesis de MediSearch sobre fichas técnicas europeas (documento original no revisado): confirma con el registro INVIMA del producto. En UCI, el riesgo de lesión renal aguda sube con más gramos IV al día (corte de 2,5 g al día).",
+   "p": "Menores de 3 meses o de menos de 5 kg: contraindicada según los prospectos europeos. 1 a 6 años: 10 a 20 mg/kg IV por dosis (la exposición con 10 mg/kg fue 29 % menor que la del adulto en un estudio farmacocinético). Lactantes de menos de 1 año (fuera de indicación): 5 mg/kg IV por dosis. Mayores de 6 años: similar al adulto por peso. Datos de MediSearch; el estudio original no se revisó.",
+   "k": {
+    "lo": 10,
+    "hi": 20,
+    "int": "IV, cada 6 a 8 h (niños de 1 a 6 años; otras fuentes)"
+   }
+  },
+  {
+   "i": "Fiebre refractaria a otros antipiréticos",
+   "a": "Mismas dosis y precauciones; úsala solo si el paracetamol u otras opciones no sirven.",
+   "p": "Igual que arriba."
+  }
+ ],
+ "aj": {
+  "r": "En UCI, el uso IV se asoció con lesión renal aguda de forma dependiente de la dosis: 1,6 veces más por cada gramo IV adicional al día, con corte de riesgo en más de 2,5 g al día (estudio de cohorte de 500 pacientes). Reduce la dosis, monitoriza la función renal y evítala en insuficiencia renal grave.",
+  "h": "En cirrosis, el paracetamol se considera más seguro: la dipirona redujo prostaglandinas vasodilatadoras renales y un paciente con ascitis desarrolló insuficiencia renal. Evita dosis altas y uso prolongado en hepatopatía importante.",
+  "e": "Tercer trimestre: contraindicada. Primer y segundo trimestre: evita; solo si es estrictamente necesario. MediSearch la reporta como contraindicada en el primer trimestre; confirma con el registro INVIMA.",
+  "l": "Los metabolitos pasan a la leche. MediSearch la reporta como contraindicada en lactancia; otras fuentes sugieren suspender la lactancia unas 48 h.",
+  "g": "Dosis menor y vigilancia renal (otras fuentes)."
+ },
+ "ci": [
+  "Agranulocitosis previa por dipirona u otras pirazolonas",
+  "Leucopenia por cualquier causa",
+  "Porfiria hepática aguda",
+  "Déficit de glucosa-6-fosfato deshidrogenasa (hemólisis)",
+  "Hipersensibilidad a metamizol, pirazolonas o pirazolidinas",
+  "Síndrome de broncoespasmo por analgésicos (aspirina y AINE)",
+  "Menores de 3 meses o de menos de 5 kg",
+  "Tercer trimestre del embarazo"
+ ],
+ "fr": [
+  "Hipotensión con la inyección IV rápida",
+  "Rash"
+ ],
+ "gr": [
+  "Agranulocitosis: muy rara, idiosincrática y potencialmente mortal; puede aparecer semanas después de la última dosis, sin relación con dosis ni duración",
+  "Anafilaxia y reacciones cutáneas graves",
+  "Hipotensión grave con inyección IV rápida, sobre todo en pacientes febriles, hipovolémicos o inestables",
+  "Lesión renal aguda con dosis IV altas en UCI"
+ ],
+ "it": [
+  [
+   "Metotrexato",
+   "Más agranulocitosis mortal (OR 5,18; IC 95 %: 3,06 a 8,78 en EudraVigilance; metotrexato presente en 39,5 % de los casos mortales suizos). La EMA y Swissmedic recomiendan evitar la combinación"
+  ],
+  [
+   "Ciclosporina",
+   "Puede bajar sus niveles; monitoriza (ficha técnica europea, según MediSearch)"
+  ],
+  [
+   "Clorpromazina",
+   "Hipotermia grave (ficha técnica europea, según MediSearch)"
+  ],
+  [
+   "Bupropión",
+   "Posible reducción de sus niveles por inducción del CYP2B6 (según MediSearch)"
+  ],
+  [
+   "Warfarina (otras fuentes)",
+   "Puede potenciar el efecto anticoagulante; monitoriza el INR"
+  ],
+  [
+   "Otros fármacos mielotóxicos",
+   "Riesgo aditivo de supresión medular: evita"
+  ],
+  [
+   "Alcohol y otros depresores del SNC (otras fuentes)",
+   "Suman sedación"
+  ]
+ ],
+ "mon": [
+  "Pide al paciente avisar fiebre, dolor al tragar, úlceras bucales, fatiga o infecciones: ante cualquiera, hemograma diferencial inmediato y suspender el fármaco",
+  "Hemograma diferencial periódico en tratamientos largos (la frecuencia no tiene consenso)",
+  "Presión arterial y frecuencia cardíaca durante la infusión IV",
+  "Función renal si la dosis IV es alta o hay riesgo renal"
+ ],
+ "ant": "No hay antídoto específico; soporte.",
+ "pre": "Reacción rara pero grave: agranulocitosis (en EudraVigilance 1985 a 2017: 1.448 casos, ≈16 % mortales, mediana de 13 días hasta la aparición, 34,7 % en la primera semana, y más rápido si ya había recibido el fármaco: mediana de 6 contra 15 días). La proporción mortal en Suiza bajó de 13,5 % (2014 a 2018) a 5,8 % (2019 a 2023). La EMA exige administración IV lenta y vigilar presión y frecuencia cardíaca. En Colombia, ajústate al registro sanitario INVIMA del producto.",
+ "pres": [
+  "Ampolla 1 g/2 mL",
+  "Gotas 500 mg/mL",
+  "Tabletas 500 mg"
+ ],
+ "com": [
+  "Novalgina",
+  "Conmel"
+ ],
+ "pe": [
+  "Está restringida o retirada en varios países (por ejemplo, EE. UU.) por el riesgo de agranulocitosis; en Colombia sigue en uso.",
+  "No tiene un intervalo de monitoreo de hemograma validado: lo que dispara la alarma es el síntoma. Enseña esos síntomas al paciente.",
+  "Pasa la IV lenta: la inyección rápida produce hipotensión."
+ ],
+ "v": {
+  "d": 0,
+  "f": 0,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Metamizol y agranulocitosis: utilización, señales de farmacovigilancia y minimización de riesgo en Suiza (Swiss Med Wkly 2026)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/42371928/",
+   "b": "Proporción mortal 13,5 % a 5,8 %, metotrexato en 39,5 % de casos mortales, advertencias reforzadas de EMA y Swissmedic"
+  },
+  {
+   "t": "Agranulocitosis atribuida a metamizol: reportes espontáneos en EudraVigilance 1985 a 2017 (Basic Clin Pharmacol Toxicol 2020)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/31449718/",
+   "b": "1.448 casos, 16 % mortales, mediana de 13 días, OR 5,18 con metotrexato"
+  },
+  {
+   "t": "El uso de dipirona en UCI se asocia con lesión renal aguda (Eur J Anaesthesiol 2017)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/28306590/",
+   "b": "1,6 veces más lesión renal por cada gramo IV al día; corte de 2,5 g al día"
+  },
+  {
+   "t": "MediSearch: ficha clínica de dipirona (síntesis de fichas técnicas europeas y literatura, 28-oct-2026)",
+   "u": "https://medisearch.io/share/hECgGaV5w5L9quPe27FpTk",
+   "b": "dosis, contraindicaciones, embarazo, interacciones (documento original de la ficha técnica no revisado)"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "N02BB02"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 17,
+  "np": 109,
+  "pres": [
+   "Solucion inyectable 1 g",
+   "Solucion inyectable 2,5 g",
+   "Solucion inyectable 2 g",
+   "Tableta 500 mg",
+   "Tableta 0,5 g",
+   "Solucion inyectable 1000 mg",
+   "Tableta recubierta 500 mg",
+   "Jarabe 5 g"
+  ],
+  "m": [
+   "Novalgina® ampollas (Opella Healthcare Colombia)",
+   "Laper® (Laboratorios Blaskov)",
+   "Novalgina® solucion oral (Opella Healthcare Colombia)",
+   "Dipiret® tabletas x 500 mg (Cooperativa Nacional De Droguistas Detallistas - Coopidrogas)",
+   "Dipirona magnesica 2g / 5 ml solucion inyectable (Vitalis C.I)",
+   "Dipirona 1 g /2 ml (Vitalis C.I)",
+   "Dipirona sódica 1g / 2ml solución inyectable (Procaps)",
+   "Dipirona 1g / 2ml solucion inyectable (Laboratorios Ecar)",
+   "Dipironasolucion inyectable 2.5 g / 5 ml (Laboratorios Ecar)",
+   "Dipirona sodica 1g/2mlinyectable (Laboratorios Ryan De Colombia)",
+   "Novalgina tabletas (Opella Healthcare Colombia)",
+   "Metamizol sódico (dipirona) 1 g/2 ml solución inyectable (Laboratorios Biosano)"
+  ],
+  "mas": 5,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

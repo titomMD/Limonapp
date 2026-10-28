@@ -52,8 +52,8 @@
   },
   {
    "i": "Hemorragia por trauma (uso fuera de etiqueta; CRASH-2)",
-   "a": "1 g IV en 10 min dentro de las primeras 3 h y luego 1 g en infusión durante 8 h (otras fuentes; no contrastado aquí).",
-   "p": "15 mg/kg IV (máximo 1 g) (otras fuentes; no contrastado aquí).",
+   "a": "CRASH-2: 1 g IV en 10 min y luego 1 g en infusión durante 8 h, lo antes posible y dentro de las 3 h de la lesión. Con tratamiento en la primera hora, el riesgo de muerte por sangrado bajó (RR 0,68; IC 95 % 0,57 a 0,82); entre 1 y 3 h también (RR 0,79; 0,64 a 0,97); después de 3 h pareció aumentar (RR 1,44; 1,12 a 1,84). Mortalidad por todas las causas a 28 días: 14,5 % contra 16,0 % (RR 0,91). Uso fuera de la etiqueta de la FDA.",
+   "p": "15 mg/kg IV (máximo 1 g) (otras fuentes; no contrastado aquí). CRASH-2 solo incluyó adultos.",
    "k": {
     "lo": 15,
     "hi": 15,
@@ -63,7 +63,7 @@
   },
   {
    "i": "Hemorragia posparto (uso fuera de etiqueta; ensayo WOMAN)",
-   "a": "1 g IV en 10 min lo antes posible, dentro de las 3 h del parto; segunda dosis de 1 g si el sangrado continúa tras 30 min o reaparece en 24 h (otras fuentes; no contrastado aquí).",
+   "a": "WOMAN (protocolo): 1 g IV lo antes posible tras el diagnóstico (en 10 min según la OMS); segunda dosis de 1 g si el sangrado sigue a los 30 min o si se detiene y reaparece en las siguientes 24 h. La reducción de la muerte por hemorragia aparece con el tratamiento dentro de las 3 h del parto (resultados de WOMAN, según MediSearch). Uso fuera de la etiqueta de la FDA.",
    "p": "—"
   }
  ],
@@ -141,6 +141,21 @@
    "t": "Etiqueta de ácido tranexámico (inyectable) (DailyMed, Sagent Pharmaceuticals, Oct 20, 2026)",
    "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=0277db2d-7c81-4cd0-ac19-fa12b5721428",
    "b": "dosis en hemofilia con extracción dental, ajuste renal, preparación, contraindicaciones, advertencias, usos fuera de etiqueta"
+  },
+  {
+   "t": "Protocolo del ensayo WOMAN: ácido tranexámico en hemorragia posparto (Trials 2010)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/20398351/",
+   "b": "1 g IV; segunda dosis a los 30 min o si reaparece en 24 h"
+  },
+  {
+   "t": "CRASH-2: importancia del tratamiento temprano con ácido tranexámico en trauma con sangrado (Lancet 2011)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/21439633/",
+   "b": "1 g en 10 min y 1 g en 8 h; RR por ventana de tiempo"
+  },
+  {
+   "t": "CRASH-2: ensayo y evaluación económica (Health Technol Assess 2013)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/23477634/",
+   "b": "Mortalidad a 28 días 14,5 % contra 16,0 %"
   }
  ],
  "rev": "2026-10-28",
