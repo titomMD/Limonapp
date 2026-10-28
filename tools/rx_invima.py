@@ -80,7 +80,7 @@ def main():
         otros = [v for k, v in prods.items() if '®' not in k]
         lista = (marcas + otros)
         m = ['%s (%s)' % v for v in lista[:12]]
-        co = {'f': 'Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el %s' % f,
+        co = {'q': codes, 'fecha': f, 'f': 'Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el %s' % f,
               'n': len(regs), 'np': len(pres_n), 'pres': formas, 'm': m, 'mas': max(0, len(lista) - 12),
               'nota': NOTAS.get(d['id'], '') + (' ' if d['id'] in NOTAS else '') + 'Un registro vigente no garantiza que el producto se esté vendiendo hoy.'}
         if not rows:

@@ -5953,6 +5953,62 @@ function rxUnits(f){
   (T.UN||[]).forEach(function(u){try{if(new RegExp(u[0]).test(txt))out.push('<div class="rxun"><b>'+esc(u[1])+'.</b> '+esc(u[2])+'</div>');}catch(e){}});
   return out.join('');
 }
+var RXAPI='https://www.datos.gov.co/resource/i7cb-raxc.json';
+RX.col={};
+function rxFd(s){var m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||'');return m?m[3]+'/'+m[2]+'/'+m[1]:(s||'');}
+function rxCoNm(s){s=String(s||'').replace(/\s+/g,' ').trim();return (s&&s===s.toUpperCase()&&/[A-ZÁÉÍÓÚÑ]/.test(s))?s.charAt(0)+s.slice(1).toLowerCase():s;}
+function rxCoTit(s){s=String(s||'').replace(/\b(S\.?A\.?S\.?|S\.?A\.?|LTDA\.?|LIMITED|LTD\.?|S\.?R\.?L\.?|INC\.?|LLC|GMBH)\b\.?/gi,'').replace(/\s+/g,' ').trim().replace(/^[ .,]+|[ .,]+$/g,'');return s.toLowerCase().replace(/(^|\s)(\S)/g,function(m,a,b){return a+b.toUpperCase();});}
+function rxCoNum(c){var x=parseFloat(c);return isNaN(x)?String(c==null?'':c):String(+x.toPrecision(10)).replace('.',',');}
+function rxCoBuild(rows){
+  var regs={},pres={},forms={},cnt={},prods={},ord=[];
+  rows.forEach(function(r){
+    regs[r.registrosanitario]=1;pres[r.expediente+'|'+r.consecutivocum]=1;
+    var fm=String(r.formafarmaceutica||'').trim().toLowerCase();fm=fm.charAt(0).toUpperCase()+fm.slice(1);
+    var fk=(fm+' '+rxCoNum(r.cantidad)+' '+(r.unidadmedida||'')).replace(/[æμ]g/g,'µg').trim();forms[fk]=(forms[fk]||0)+1;
+    var k=String(r.producto||'').toUpperCase().trim();
+    if(!prods[k]){prods[k]=rxCoNm(r.producto)+' ('+rxCoTit(r.titular)+')';ord.push(k);}
+    cnt[k]=(cnt[k]||0)+1;
+  });
+  ord.sort(function(a,b){return cnt[b]-cnt[a];});
+  var br=ord.filter(function(k){return k.indexOf('®')>=0;}),ot=ord.filter(function(k){return k.indexOf('®')<0;}),all=br.concat(ot);
+  return {n:Object.keys(regs).length,np:Object.keys(pres).length,
+    pres:Object.keys(forms).sort(function(a,b){return forms[b]-forms[a];}).slice(0,14),
+    m:all.slice(0,12).map(function(k){return prods[k];}),mas:Math.max(0,all.length-12)};
+}
+function rxCoHtml(f){
+  var s=f.co,L=RX.col[f.id]||{},live=L.st==='ok'&&L.co,c=live?L.co:s,h='';
+  var hm=function(t){var d=new Date(t);return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);};
+  h+='<h4>En Colombia (INVIMA)</h4>';
+  if(live)h+='<p class="small"><b>Datos en vivo</b> · consultados a las '+hm(L.t)+(L.mod?' (el INVIMA los actualizó el '+rxFd(L.mod)+')':'')+(s&&s.n!==c.n?' · la copia guardada decía '+s.n+' registro'+(s.n===1?'':'s'):'')+'</p>';
+  else h+='<p class="small muted">Copia guardada del '+esc(rxFd(s.fecha||''))+(L.st==='l'?' · consultando datos al día…':(L.st==='err'||L.st==='off'?' · no pude consultar los datos al día; muestro la copia.':''))+'</p>';
+  if(c.n){
+    h+='<p class="small"><b>'+c.n+' registro'+(c.n===1?'':'s')+' vigente'+(c.n===1?'':'s')+'</b> · '+c.np+' presentaci'+(c.np===1?'ón':'ones')+' activa'+(c.np===1?'':'s')+'</p>';
+    if(c.pres&&c.pres.length)h+='<h4>Presentaciones registradas</h4>'+rxUl(c.pres);
+    h+='<h4>Productos'+(c.mas?' (los '+c.m.length+' con más presentaciones)':'')+'</h4>'+rxUl(c.m)+(c.mas?'<p class="small muted">y '+c.mas+' más.</p>':'');
+  }else h+='<p class="small"><b>Sin presentaciones activas con ese código.</b></p>';
+  h+='<p class="small muted">'+esc(s.nota||'')+' Fuente: Código Único de Medicamentos vigentes del INVIMA (datos.gov.co).</p>';
+  return h;
+}
+function rxCoPaint(id){if(S.view!=='rx'||S.rxd!==id)return;var el=document.getElementById('rxco'),f=RX.f[id];if(el&&f)el.innerHTML=rxCoHtml(f);}
+function rxCoLive(f){
+  var id=f.id;if(!f.co||RX.col[id])return;
+  var codes=(f.co.q||f.atc||[]).filter(function(c){return /^[A-Z][0-9A-Z]{2,7}$/.test(c);});
+  if(!codes.length)return;
+  var key='rot_rxco_'+id;
+  try{var c=JSON.parse(localStorage.getItem(key)||'null');if(c&&c.co&&Date.now()-c.t<6*3600*1000){RX.col[id]={st:'ok',t:c.t,mod:c.mod,co:c.co};rxCoPaint(id);return;}}catch(e){}
+  if(navigator.onLine===false){RX.col[id]={st:'off'};rxCoPaint(id);return;}
+  RX.col[id]={st:'l'};
+  var ctl=typeof AbortController!=='undefined'?new AbortController():null,tm=setTimeout(function(){if(ctl)ctl.abort();},12000);
+  var q="atc in("+codes.map(function(c){return "'"+c+"'";}).join(',')+") AND estadoregistro='Vigente' AND estadocum='Activo'";
+  var u=RXAPI+'?$select='+encodeURIComponent('expediente,consecutivocum,producto,titular,registrosanitario,formafarmaceutica,cantidad,unidadmedida')+'&$limit=5000&$where='+encodeURIComponent(q);
+  fetch(u,ctl?{signal:ctl.signal}:{}).then(function(r){if(!r.ok)throw new Error('x');var mod='';try{var m=r.headers.get('x-soda2-truth-last-modified');if(m)mod=new Date(m).toISOString().slice(0,10);}catch(e){}return r.json().then(function(rows){return {rows:rows,mod:mod};});}).then(function(o){
+    clearTimeout(tm);if(!Array.isArray(o.rows))throw new Error('x');
+    var co=rxCoBuild(o.rows),t=Date.now();RX.col[id]={st:'ok',t:t,mod:o.mod,co:co};
+    try{localStorage.setItem(key,JSON.stringify({t:t,mod:o.mod,co:co}));}catch(e){}
+    rxCoPaint(id);
+  }).catch(function(){clearTimeout(tm);RX.col[id]={st:'err'};rxCoPaint(id);});
+  setTimeout(function(){rxCoPaint(id);},0);
+}
 function rxDetail(f){
   var T=RX.tax,pop=S.rpop||'a',w=parseFloat(String(S.rw||'').replace(',','.')),v=f.v||{},h='';
   h+='<div class="card rxhead"><h2 style="margin:0 0 4px">'+esc(f.n)+'</h2>'+
@@ -5978,7 +6034,7 @@ function rxDetail(f){
   h+=rxSec('Seguridad',seg);
   h+=rxSec('Interacciones',(f.it&&f.it.length?'<div class="rxit">'+f.it.map(function(x){return '<div><b>'+esc(x[0])+'</b><span>'+esc(x[1])+'</span></div>';}).join('')+'</div>':'<div class="small muted">Sin dato.</div>'));
   h+=rxSec('Monitoreo y antídoto','<h4>Qué vigilar</h4>'+rxUl(f.mon)+(f.ant?'<h4>Antídoto o reversión</h4><p class="small">'+esc(f.ant)+'</p>':''));
-  h+=rxSec('Presentaciones y nombres comerciales','<h4>Presentaciones</h4>'+rxUl(f.pres)+((f.com&&f.com.length)?'<h4>Nombres comerciales de referencia</h4><p class="small">'+esc(f.com.join(', '))+' <span class="muted">(confirma disponibilidad en Colombia)</span></p>':'')+(f.co?'<h4>En Colombia (INVIMA)</h4>'+(f.co.n?'<p class="small"><b>'+f.co.n+' registro'+(f.co.n===1?'':'s')+' vigente'+(f.co.n===1?'':'s')+'</b> · '+f.co.np+' presentaci'+(f.co.np===1?'ón':'ones')+' activa'+(f.co.np===1?'':'s')+'</p>'+(f.co.pres&&f.co.pres.length?'<h4>Presentaciones registradas</h4>'+rxUl(f.co.pres):'')+'<h4>Productos'+(f.co.mas?' (los '+f.co.m.length+' con más presentaciones)':'')+'</h4>'+rxUl(f.co.m)+(f.co.mas?'<p class="small muted">y '+f.co.mas+' más.</p>':''):'<p class="small"><b>Sin presentaciones activas con ese código.</b></p>')+'<p class="small muted">'+esc(f.co.nota||'')+' Fuente: '+esc(f.co.f||'')+'.</p>':''));
+  h+=rxSec('Presentaciones y nombres comerciales','<h4>Presentaciones</h4>'+rxUl(f.pres)+((f.com&&f.com.length)?'<h4>Nombres comerciales de referencia</h4><p class="small">'+esc(f.com.join(', '))+' <span class="muted">(confirma disponibilidad en Colombia)</span></p>':'')+(f.co?'<div id="rxco">'+rxCoHtml(f)+'</div>':''));
   if(f.pe&&f.pe.length)h+=rxSec('Perlas clínicas',rxUl(f.pe));
   var un=rxUnits(f);if(un)h+=rxSec('Unidades que aparecen en esta ficha',un,false);
   var vv='<div class="rxkv">'+[['Dosis',v.d],['Farmacología',v.f],['Seguridad',v.s]].map(function(x){return '<div><span>'+x[0]+'</span><b>'+rxBadge(x[1]||0)+'</b></div>';}).join('')+'</div>'+
@@ -6000,6 +6056,7 @@ function viewRx(){
       rxSheet(S.rxd,function(){if(S.view==='rx')render();});
       return h+'<div class="empty">Cargando la ficha…</div>';
     }
+    setTimeout(function(){rxCoLive(f);},0);
     return h+rxDetail(f);
   }
   h='<div class="row spread"><button class="btn sm ghost" data-a="nav" data-v="services">‹ Servicios</button><h2>Recetario</h2><span></span></div>';
