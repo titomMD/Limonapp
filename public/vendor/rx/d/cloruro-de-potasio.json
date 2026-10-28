@@ -46,6 +46,11 @@
    "i": "Hipopotasemia grave por vía IV (monografía ASHP; no es una indicación de la etiqueta oral)",
    "a": "Nunca IV directo ni en bolo (paro cardíaco fatal). Dilúyelo en solución estándar. Potasio menor de 2,5 mEq/L: no más de 10 mEq/h en concentración de 40 mEq/L o menos; máximo 200 mEq en 24 h. Potasio menor de 2 mEq/L con cambios de ECG o parálisis: hasta 40 mEq/h con monitoreo ECG continuo y hasta 400 mEq en 24 h. En críticos, prefiere solución salina a dextrosa (la dextrosa puede bajar el potasio). Concentración máxima habitual de 40 mEq/L; las vías centrales aceptan concentraciones mayores según el protocolo local.",
    "p": "0,5 a 1 mEq/kg por dosis (máximo 40 mEq) en infusión continua a no más de 0,5 mEq/kg/h; en infusión intermitente grave, hasta 1 mEq/kg/h o 40 mEq/h durante 6 h o menos. Por vía periférica hasta 80 mEq/L en hipopotasemia grave según la monografía (ASHP)."
+  },
+  {
+   "i": "Hipopotasemia IV en niños: estudios pediátricos (no es una guía; datos de hospitales concretos)",
+   "a": "Los estudios de esta fila son pediátricos; para adultos usa la fila anterior.",
+   "p": "Con cambios del ECG, dos series pediátricas corrigieron con infusión de 0,25 a 0,3 mEq/kg/h hasta normalizar el trazado, con monitorización ECG y de signos vitales: en 20 niños con KCl a 200 mmol/L y 0,25 mmol/kg/h el ECG se normalizó en 1 a 6 h, con un aumento medio del potasio de 0,75 mmol/L y sin complicaciones (Indian Pediatr 1994); en una UCI pediátrica, 7 pacientes con cambios ECG recibieron 0,3 mEq/kg/h y todos sobrevivieron (Indian Pediatr 1996, serie pequeña). En 794 dosis en cuidados intensivos cardiológicos pediátricos (media 0,97 mEq/kg por dosis) no hubo eventos adversos y el potasio subió 0,8 mEq/L; la respuesta bajó con furosemida, anfotericina B y KCl en nutrición parenteral, y subió con enalapril (Pediatr Cardiol 2012). Límites de un hospital pediátrico canadiense, tras revisar una encuesta: 60 mEq/L por vía periférica, 120 mEq/L por vía central, 80 mEq/L en nutrición parenteral, 150 mEq/L con restricción de líquidos y 0,4 mEq/kg/h sin monitor cardiaco (J Pediatr Pharmacol Ther 2006); otros hospitales usan límites distintos. No se obtuvieron el BNF for Children, el Harriet Lane ni el Nelson, así que no hay un tope diario pediátrico contrastado."
   }
  ],
  "aj": {
@@ -110,7 +115,8 @@
  "pe": [
   "Nunca IV directo ni en bolo: el concentrado se diluye y pasa a máximo 10 mEq/h por vía periférica en la mayoría de los casos.",
   "Si el magnesio está bajo, repón el magnesio primero (otras fuentes).",
-  "No tomes la forma sólida con el estómago vacío."
+  "No tomes la forma sólida con el estómago vacío.",
+  "Los datos pediátricos IV son de series pequeñas y de límites de hospitales concretos; los topes de concentración y velocidad varían entre centros. Usa el protocolo de tu servicio."
  ],
  "v": {
   "d": 1,
@@ -127,6 +133,16 @@
    "t": "Monografía \"Potassium Chloride\" (ASHP, capítulo 227 del libro con ISBN 9781585287192)",
    "u": "https://search.worldcat.org/search?q=isbn:9781585287192",
    "b": "dosis IV en adultos y niños, velocidades, concentraciones máximas, preparación"
+  },
+  {
+   "t": "Estudios pediátricos de KCl IV vía PubMed: Singhi 1994 (PMID 7875888), Singhi 1996 (PMID 8772944), Knudson 2012 (doi 10.1007/s00246-012-0565-4), Lafreniere 2006 (doi 10.5863/1551-6776-11.4.223)",
+   "u": "https://doi.org/10.5863/1551-6776-11.4.223",
+   "b": "dosis 0,25 a 0,3 mEq/kg/h con cambios ECG, 0,97 mEq/kg por dosis en UCI cardiológica, límites de concentración de un hospital"
+  },
+  {
+   "t": "MediSearch (ficha de potasio IV pediátrico; origen no verificado; se descartó su cita PMID 3594358, que no trata de potasio pediátrico)",
+   "u": "https://medisearch.io/share/mMXqqzR5kisVhvBztkLtSz",
+   "b": "recopilación de los estudios anteriores"
   }
  ],
  "rev": "2026-10-28",

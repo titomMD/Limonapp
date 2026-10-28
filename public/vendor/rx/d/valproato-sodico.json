@@ -1,0 +1,158 @@
+{
+ "id": "valproato-sodico",
+ "n": "Valproato sódico IV",
+ "g": [
+  "Valproato sódico",
+  "Ácido valproico",
+  "Depacon"
+ ],
+ "atc": [
+  "N03AG01"
+ ],
+ "cl": "Antiepiléptico (derivado de ácidos grasos)",
+ "mc": "valproato",
+ "us": [
+  "conv"
+ ],
+ "es": [
+  "neuro",
+  "uci",
+  "pediatria",
+  "psiq",
+  "medint"
+ ],
+ "via": [
+  "iv",
+  "vo"
+ ],
+ "al": [
+  "hepatotox",
+  "emb_evitar",
+  "cyp"
+ ],
+ "et": "«Valproato» viene del ácido valérico (de la valeriana, Valeriana officinalis) con el prefijo de propilo.",
+ "mech": "Aumenta la disponibilidad del GABA (neurotransmisor inhibidor) y bloquea los canales de sodio dependientes de voltaje y de calcio tipo T. El resultado es una neurona menos excitable, con efecto de amplio espectro sobre distintos tipos de crisis.",
+ "pk": {
+  "abs": "IV: biodisponibilidad completa",
+  "vm": "Unos 9 a 16 h en adultos (otras fuentes); más corta en niños",
+  "met": "Hepático (glucuronidación y beta-oxidación; inhibe varias enzimas)",
+  "el": "Renal (metabolitos)"
+ },
+ "ind": [
+  {
+   "i": "Estatus epiléptico que persiste tras benzodiacepinas (uso fuera de etiqueta)",
+   "a": "AES 2016 (nivel B): 40 mg/kg IV, máximo 3.000 mg, en dosis única, como terapia de segunda línea urgente (alternativa a fosfenitoína y levetiracetam). Los ensayos citados en la guía usaron 20 a 30 mg/kg, y la etiqueta FDA no tiene indicación de estatus epiléptico: solo establece que la infusión se dé a no más de 20 mg/min.",
+   "p": "No hay dosis pediátrica en la etiqueta para estatus. Un ensayo pediátrico citado por la AES usó 20 mg/kg IV frente a fenitoína. La AES recomienda 40 mg/kg (máximo 3.000 mg) sin separar adultos y niños. Contraindicado en menores de 2 años con sospecha de enfermedad mitocondrial POLG.",
+   "k": {
+    "lo": 20,
+    "hi": 40,
+    "int": "IV, infusión a no más de 20 mg/min (etiqueta; uso en estatus fuera de etiqueta)",
+    "maxd": "3.000 mg (AES 2016)"
+   }
+  },
+  {
+   "i": "Crisis de inicio focal y ausencias, cuando no se puede dar la vía oral (indicación de la etiqueta)",
+   "a": "Dosis diaria total igual a la oral, en infusión de 60 min (máximo 20 mg/min), con la misma frecuencia que la oral. Inicio con 10 a 15 mg/kg/día, aumentos de 5 a 10 mg/kg/semana; dosis máxima 60 mg/kg/día.",
+   "p": "Mismo esquema por kg; la seguridad IV no se estudió en menores de 2 años y ese grupo tiene mayor riesgo de hepatotoxicidad fatal."
+  }
+ ],
+ "aj": {
+  "r": "No detalla ajuste en la etiqueta de la inyección; vigila niveles (otras fuentes).",
+  "h": "Contraindicado en hepatopatía significativa por el riesgo de insuficiencia hepática; la depuración del valproato libre baja 50% en cirrosis (etiqueta).",
+  "e": "Evitar en mujeres embarazadas o en edad fértil sin anticoncepción eficaz: riesgo de malformaciones (defectos del tubo neural), menor CI y trastornos del neurodesarrollo. En epilepsia solo si fallaron otras opciones (recuadro).",
+  "l": "Pasa a la leche en baja concentración (otras fuentes; no contrastado aquí).",
+  "g": "Mayor sedación y menor unión a proteínas; usa dosis menores (otras fuentes)."
+ },
+ "ci": [
+  "Enfermedad mitocondrial por mutaciones POLG (síndrome de Alpers-Huttenlocher) y menores de 2 años con sospecha",
+  "Trastornos del ciclo de la urea",
+  "Hipersensibilidad al valproato",
+  "Profilaxis de migraña en embarazo o en mujer fértil sin anticoncepción eficaz"
+ ],
+ "fr": [
+  "Náuseas, vómito",
+  "Somnolencia, mareo",
+  "Temblor",
+  "Dolor o reacción en el sitio de infusión",
+  "Aumento de peso y alopecia (uso crónico)"
+ ],
+ "gr": [
+  "Insuficiencia hepática fatal, sobre todo en menores de 2 años y en enfermedades mitocondriales (recuadro)",
+  "Pancreatitis hemorrágica potencialmente mortal (recuadro)",
+  "Teratogenicidad (recuadro)",
+  "Hiperamonemia y encefalopatía hiperamonémica, aun con pruebas hepáticas normales",
+  "Trombocitopenia y alteración de la coagulación",
+  "Hipotensión con infusión rápida (>20 mg/min)",
+  "Hipotermia, sobre todo con topiramato"
+ ],
+ "it": [
+  [
+   "Carbapenémicos (meropenem, imipenem, ertapenem)",
+   "Bajan el valproato a niveles subterapéuticos y se pierde el control de las crisis; mide niveles o elige otro antibiótico (etiqueta, 5.12)"
+  ],
+  [
+   "Lamotrigina",
+   "El valproato inhibe su metabolismo y sube sus niveles; riesgo de erupción grave (etiqueta, 7.2)"
+  ],
+  [
+   "Fenitoína",
+   "Valproato desplaza a la fenitoína de las proteínas y altera su metabolismo; niveles variables (etiqueta, 7.2)"
+  ],
+  [
+   "Diazepam y lorazepam",
+   "Menor depuración; con lorazepam la etiqueta de lorazepam indica reducir 50% su dosis (etiqueta)"
+  ],
+  [
+   "Topiramato",
+   "Hiperamonemia con o sin encefalopatía e hipotermia (etiqueta)"
+  ],
+  [
+   "Aspirina y anticonceptivos con estrógenos",
+   "Alteran los niveles de valproato; se sugiere monitorizarlos (etiqueta, 7.1)"
+  ]
+ ],
+ "mon": [
+  "Pruebas hepáticas y amonio si hay letargo o vómito inexplicables",
+  "Hemograma y plaquetas",
+  "Presión arterial durante la infusión",
+  "Niveles de valproato (rango convencional 50 a 100 mcg/mL, otras fuentes)",
+  "Lipasa si hay dolor abdominal"
+ ],
+ "ant": "No hay antídoto específico; en toxicidad se usa carnitina y soporte (otras fuentes; no contrastado aquí).",
+ "pre": "Infundir en 60 min y a no más de 20 mg/min; velocidades altas se asocian a más reacciones adversas (etiqueta). Advertencia en recuadro: insuficiencia hepática, teratogenicidad, pancreatitis. Antes de iniciar, descartar trastorno del ciclo de la urea y sospecha de enfermedad mitocondrial en niños pequeños. Compatible con suero fisiológico, dextrosa 5% y Ringer lactato (otras fuentes).",
+ "pres": [
+  "Ampolla 500 mg/5 mL (100 mg/mL)"
+ ],
+ "com": [
+  "Depacon",
+  "Valproato sódico genérico"
+ ],
+ "pe": [
+  "Las fuentes no coinciden en la dosis: la AES 2016 recomienda 40 mg/kg (nivel B) y los estudios que cita usaron 20 a 30 mg/kg. MediSearch dio 20 a 30 mg/kg como «de la ficha FDA», pero la etiqueta no trae dosis para estatus. Decide con el protocolo de tu servicio.",
+  "Frente a la fenitoína tiene eficacia similar y menos hipotensión; aun así, no pases de 20 mg/min.",
+  "Niño con sospecha de enfermedad mitocondrial o metabólica: no lo uses hasta descartarla."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de valproato sódico inyectable (DailyMed, Sagent, setid 8d5fc1c1, versión 3, mar 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8d5fc1c1-d3c0-497e-971b-6c4dba9a3fad",
+   "b": "velocidad de infusión, dosis aprobadas, contraindicaciones, recuadro, interacciones (carbapenémicos, lamotrigina), embarazo, pediatría"
+  },
+  {
+   "t": "AES: guía de estatus epiléptico convulsivo, Epilepsy Curr 2016;16:48 (PDF aportado por Esteban), Figura 1 p.58",
+   "u": "https://doi.org/10.5698/1535-7597-16.1.48",
+   "b": "valproato 40 mg/kg IV, máximo 3.000 mg, dosis única (nivel B); ensayos con 20 mg/kg"
+  },
+  {
+   "t": "MediSearch (ficha de valproato, origen no verificado)",
+   "u": "https://medisearch.io/share/mMXqqzR5kisVhvBztkLtSz",
+   "b": "dosis de 20 a 30 mg/kg y rango de niveles; difieren de la AES y no están en la etiqueta"
+  }
+ ],
+ "rev": "2026-10-28"
+}

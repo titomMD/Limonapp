@@ -45,9 +45,15 @@ QUE CAMBIA EN LA v63 (sobre la v62, que queda incluida)
     la dosis de prednisona 40 mg en EPOC sigue como "otras fuentes". Los dos documentos INVIMA (dipirona 356-2024 y alerta de hioscina inyectable 2017)
     son alertas de seguridad sin dosis: actualizan advertencias (dipirona: maximo 7 dias, sin hemogramas de rutina; hioscina: cardiopatia y taquicardia).
     Las dosis de dipirona e hioscina siguen sin documento original: falta el inserto del producto del hospital o la ficha del registro INVIMA.
-  - Pendientes sin guia: potasio IV pediatrico e hipomagnesemia (falta capitulo pediatrico o Tintinalli). No hay ficha de lorazepam, valproato ni fenobarbital (AES);
-    ni de vasopresina ni eritromicina (SSC y ACG). Levofloxacino sigue con farmacologia sin contrastar (solo drugs.com).
-  - 86 farmacos: los 68 anteriores migrados (65 ya contrastados, ver arriba) y 18 de urologia contrastados con
+  - Segundo MediSearch (29-oct): fichas nuevas de lorazepam, valproato IV, fenobarbital IV, vasopresina y eritromicina IV, contrastadas con etiquetas DailyMed y con AES/SSC/ACG;
+    potasio IV pediatrico (estudios PubMed) e hipomagnesemia actualizados. Errores de MediSearch descartados: la cita PMID 3594358 (no es de potasio pediatrico),
+    "31% de mortalidad" con correccion lenta, y el "consenso internacional 2019" de eritromicina (sin fuente).
+    Discrepancias que se muestran en la app: valproato AES 40 mg/kg frente a 20-30 mg/kg de los estudios (la etiqueta FDA no tiene dosis de estatus);
+    lorazepam sin dosis pediatrica en la etiqueta (la dosis por kg sale de la AES); vasopresina inicio 0,01 U/min (etiqueta) frente a 0,03 U/min (SSC);
+    fenobarbital: la etiqueta no recomienda esta presentacion con alcohol bencilico en menores de 1 mes.
+    Siguen sin fuente: dosis pediatrica de eritromicina como procinetico, concentracion maxima de magnesio y dosis pediatrica del antidoto (faltan BNFc/Harriet Lane),
+    tope diario pediatrico de potasio. Levofloxacino sigue con farmacologia sin contrastar (solo drugs.com).
+  - 91 farmacos (86 anteriores + 5 nuevos): los 68 anteriores migrados (65 ya contrastados, ver arriba) y 18 de urologia contrastados con
     etiquetas oficiales (drugs.com): tamsulosina, finasterida, dutasterida, oxibutinina, solifenacina, mirabegron, fenazopiridina,
     fosfomicina, amikacina, ertapenem, cefepima, hidroclorotiazida, citrato de potasio, alopurinol, tadalafilo, desmopresina,
     bicalutamida y levofloxacino. Siguen pendientes de confirmacion por Esteban (dosis, ajuste renal, pediatria, disponibilidad en Colombia).

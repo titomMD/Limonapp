@@ -45,9 +45,9 @@
    "p": "Adolescentes embarazadas: igual que la adulta."
   },
   {
-   "i": "Hipomagnesemia (uso habitual, no figura en la etiqueta contrastada)",
-   "a": "1 a 2 g IV en 15 a 60 min (otras fuentes; no contrastado aquí).",
-   "p": "25 a 50 mg/kg IV, máximo 2 g, en 20 a 60 min (otras fuentes; no contrastado aquí)."
+   "i": "Hipomagnesemia (uso habitual; no figura en la etiqueta contrastada)",
+   "a": "StatPearls 2023 vía MediSearch (no contrastado con el texto original): urgencia hemodinámica, 1 a 2 g IV en unos 15 min; hipomagnesemia grave sintomática estable, 1 a 2 g IV en 1 h; reposición no urgente, 4 a 8 g IV en 12 a 24 h. En asintomáticos se prefiere la vía oral de liberación sostenida. En UCI, 1 g IV sube el magnesio sérico una mediana de 0,15 mg/dL (0,25 mg/dL si es grave); tras 2 g el nivel puede volver a menos de 2,0 mg/dL en menos de 24 h (PubMed, 2024 y 2026). Corrige primero el magnesio: ayuda a reponer potasio y calcio resistentes.",
+   "p": "StatPearls 2023 vía MediSearch (no contrastado): 25 a 50 mg/kg IV, máximo 2 g por dosis, en 20 a 60 min (otras fuentes). En tetania aguda del síndrome de Gitelman: MgCl2 al 20%, 0,1 mmol/kg por dosis, repetible cada 6 h. Un ensayo aleatorizado en cirugía cardiaca pediátrica (25 o 50 mg/kg durante el recalentamiento) redujo la taquicardia ectópica de la unión de forma dependiente de la dosis (J Thorac Cardiovasc Surg 2009). En asma, una serie de 100 niños toleró una infusión prolongada de hasta 30 mg/kg/h (mediana 74 h) sin eventos graves (J Pediatr Intensive Care 2022). No se obtuvieron el BNFc ni el Harriet Lane: faltan la concentración máxima por vía periférica o central y la dosis pediátrica del antídoto."
   },
   {
    "i": "Crisis asmática grave que no responde (GINA 2026; no figura en la etiqueta)",
@@ -121,7 +121,8 @@
  "pe": [
   "Preeclampsia: la pérdida del reflejo rotuliano es la primera alerta de toxicidad, antes de la depresión respiratoria.",
   "Ten gluconato de calcio al lado de la cama.",
-  "La etiqueta no aprueba su uso para tocolisis."
+  "La etiqueta no aprueba su uso para tocolisis.",
+  "Toxicidad por nivel sérico (farmacocinética clínica, PubMed 2000): 3,5 a 5 mmol/L pérdida del reflejo patelar; 5 a 6,5 mmol/L parálisis respiratoria; sobre 7,5 mmol/L alteración de la conducción; sobre 12,5 mmol/L paro. Antídoto: gluconato de calcio 1 g IV lento en adultos (StatPearls vía MediSearch); la dosis pediátrica no se contrastó."
  ],
  "v": {
   "d": 1,
@@ -138,6 +139,16 @@
    "t": "GINA 2026 Strategy Report (PDF aportado por Esteban): Box 9-4 p.181, Box 9-6 p.186, texto pp.178-190, Box 12-4 p.220",
    "u": "https://ginasthma.org/reports/",
    "b": "magnesio IV en asma: p.188 y Box 12-4 p.220"
+  },
+  {
+   "t": "Estudios sobre magnesio vía PubMed: Manrique 2009 (doi 10.1016/j.jtcvs.2009.07.064), Awlad Thani 2022 (doi 10.1055/s-0042-1742674), farmacocinética en preeclampsia (PMID 10803454)",
+   "u": "https://doi.org/10.1016/j.jtcvs.2009.07.064",
+   "b": "25 a 50 mg/kg en cirugía cardiaca pediátrica, infusión prolongada en asma, niveles de toxicidad"
+  },
+  {
+   "t": "MediSearch (ficha de hipomagnesemia; datos de StatPearls 2023 sin contrastar con el texto original)",
+   "u": "https://medisearch.io/share/mMXqqzR5kisVhvBztkLtSz",
+   "b": "dosis de reposición en adultos y niños, orden de corrección"
   }
  ],
  "rev": "2026-10-28",
