@@ -1,3 +1,13 @@
+LIMONAPP v61 - tutorial renovado y sello "Potenciado con Gemini"
+
+QUE CAMBIA EN LA v61 (sobre la v60, que queda incluida)
+  - Tutorial: pantalla de bienvenida con el limon latiendo y el ECG animado, pasos con icono, categoria, barra de progreso,
+    tarjeta con animacion, aro que pulsa sobre lo que se explica, consejos destacados y pantalla final con confeti.
+    Dos pasos nuevos: Gemini (la IA lee la historia) y Pendientes que se arman solos. Respeta "reducir movimiento" del sistema
+    y los temas claro, oscuro y 8-bit. Las flechas del teclado ya no saltan dos pasos (habia dos controladores duplicados).
+  - Pagina principal: pastilla discreta "Potenciado con Gemini" (estrella propia en los colores de la app, no el logo oficial
+    de Google). Al tocarla abre el tutorial en el paso de Gemini.
+
 LIMONAPP v60 - la junta medica pedida en la historia queda en Pendientes
 
 QUE CAMBIA EN LA v60 (sobre la v59)
