@@ -1,1 +1,153 @@
-{"id":"oxitocina","n":"Oxitocina","g":["Oxitocina","Syntocinon","Pitocin"],"atc":["H01BB02"],"cl":"Uterotónico","mc":"oxitocina","us":["obstetricia"],"es":["gineco","anest"],"via":["iv","im"],"al":["alto_riesgo","hiperk"],"et":"«Oxitocina» viene del griego okytokos («parto rápido»): ōkys («rápido») + tokos («parto»).","mech":"Agonista del receptor de oxitocina del miometrio, acoplado a proteína Gq: aumenta el calcio intracelular y produce contracciones uterinas rítmicas. A dosis bajas induce o aumenta el trabajo de parto; a dosis mayores, tras el alumbramiento, produce contracción sostenida que comprime los vasos y controla la hemorragia posparto. También tiene un efecto antidiurético débil.","pk":{"abs":"IV inmediata","vm":"1 a 6 min","met":"Hepático y renal","el":"Renal"},"ind":[{"i":"Prevención y tratamiento de hemorragia posparto","a":"10 UI IM en el manejo activo del alumbramiento, o 20 a 40 UI en 1.000 mL de cristaloide en infusión. Vigilar tono uterino y sangrado.","p":""}],"aj":{"r":"Sin ajuste.","h":"Sin ajuste.","e":"Solo en trabajo de parto y puerperio.","l":"Compatible.","g":"No aplica."},"ci":["Desproporción cefalopélvica","Sufrimiento fetal","Placenta previa o vasa previa","Hipertonía uterina","Cesárea previa clásica (relativa)"],"fr":["Náuseas","Cefalea","Hipotensión con bolo"],"gr":["Hiperestimulación uterina","Rotura uterina","Intoxicación hídrica / hiponatremia con infusión prolongada","Hipotensión grave y arritmias si se da en bolo"],"it":[["Prostaglandinas","Potencian el efecto uterotónico"],["Vasopresores","Hipertensión grave"],["Anestésicos halogenados","Menor respuesta uterina"]],"mon":["Contracciones y frecuencia cardíaca fetal","Presión arterial","Sodio con infusiones largas"],"ant":"No aplica; suspender infusión.","pre":"No administrar en bolo IV rápido (hipotensión y arritmias). Intoxicación hídrica con dosis altas prolongadas.","pres":["Ampolla 10 UI/mL"],"com":["Syntocinon","Pitocin"],"pe":["En posparto: 10 UI IM o infusión diluida lenta, nunca en bolo IV (hipotensión y paro).","El bolo no diluido es de los errores más peligrosos en obstetricia."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["H01BB02"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":5,"np":14,"pres":["Solucion inyectable 10 UI","Solucion inyectable 10 IU","Solucion inyectable 5 ui"],"m":["Syntocinon® de 10 u.i. ampollas (Mylan Pharma)","Syntocinon® 5 u.i. (Mylan Pharma)","Oxitocina inyeccion 10 ui (Feparvi)","Oxitocina 10 u.i/ml (Vitalis C.I)","Oxitocina 10 ui (Setaa Pharma)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "oxitocina",
+ "n": "Oxitocina",
+ "g": [
+  "Oxitocina",
+  "Syntocinon",
+  "Pitocin"
+ ],
+ "atc": [
+  "H01BB02"
+ ],
+ "cl": "Uterotónico",
+ "mc": "oxitocina",
+ "us": [
+  "obstetricia"
+ ],
+ "es": [
+  "gineco",
+  "anest"
+ ],
+ "via": [
+  "iv",
+  "im"
+ ],
+ "al": [
+  "alto_riesgo",
+  "hiperk"
+ ],
+ "et": "«Oxitocina» viene del griego okytokos («parto rápido»): ōkys («rápido») + tokos («parto»).",
+ "mech": "Agonista del receptor de oxitocina del miometrio, acoplado a proteína Gq: aumenta el calcio intracelular y produce contracciones uterinas rítmicas. A dosis bajas induce o aumenta el trabajo de parto; a dosis mayores, tras el alumbramiento, produce contracción sostenida que comprime los vasos y controla la hemorragia posparto. También tiene un efecto antidiurético débil.",
+ "pk": {
+  "abs": "IV: inmediata; IM: 3 a 5 min (otras fuentes)",
+  "vm": "1 a 6 min (otras fuentes)",
+  "met": "Hepático y renal (oxitocinasa) (otras fuentes)",
+  "el": "Renal"
+ },
+ "ind": [
+  {
+   "i": "Inducción o estimulación del trabajo de parto (indicación médica)",
+   "a": "Solo por infusión IV con bomba, en hospital y con vigilancia: 10 unidades en 1.000 mL de diluyente sin efecto hidratante (10 mU/mL). Inicial de 1 a 2 mU/min; sube de a 1 a 2 mU/min hasta lograr un patrón similar al trabajo de parto normal. Suspende de inmediato si hay hiperactividad uterina o sufrimiento fetal y da oxígeno a la madre.",
+   "p": "—"
+  },
+  {
+   "i": "Control de hemorragia posparto",
+   "a": "IV: 10 a 40 unidades en 1.000 mL de diluyente sin efecto hidratante, a la velocidad necesaria para controlar la atonía. IM: 10 unidades (1 mL) después del alumbramiento de la placenta.",
+   "p": "—"
+  },
+  {
+   "i": "Aborto incompleto o inevitable (adyuvante)",
+   "a": "10 unidades en 500 mL de solución salina fisiológica o dextrosa al 5 % en solución salina, a 20 a 40 gotas/min.",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste en la etiqueta.",
+  "h": "Sin ajuste en la etiqueta.",
+  "e": "No tiene indicación fuera del trabajo de parto, el puerperio y la relación con el aborto. Con el uso indicado no se espera riesgo de malformaciones.",
+  "l": "Sin datos en la etiqueta; la oxitocina se usa en el puerperio (otras fuentes).",
+  "g": "No aplica."
+ },
+ "ci": [
+  "Desproporción cefalopélvica significativa",
+  "Posiciones o presentaciones fetales que impiden el parto vaginal",
+  "Urgencia obstétrica en la que se favorece la cirugía",
+  "Sufrimiento fetal sin parto inminente",
+  "Uso prolongado en inercia uterina o toxemia grave",
+  "Patrones uterinos hipertónicos",
+  "Cuando el parto vaginal está contraindicado (prolapso de cordón, placenta previa total, vasa previa)",
+  "Hipersensibilidad"
+ ],
+ "fr": [
+  "Náuseas y vómito",
+  "Extrasístoles ventriculares y arritmias",
+  "Hematoma pélvico",
+  "Reacción anafiláctica"
+ ],
+ "gr": [
+  "Hipertonía, espasmo o rotura uterina por exceso de dosis",
+  "Intoxicación hídrica con convulsiones y coma (infusión lenta de 24 h)",
+  "Hemorragia posparto y afibrinogenemia (mortal)",
+  "En el feto: bradicardia, arritmias, daño del SNC, muerte; hemorragia retiniana, ictericia neonatal, Apgar bajo"
+ ],
+ "it": [
+  [
+   "Prostaglandinas (otras fuentes)",
+   "Potencian el efecto uterotónico"
+  ],
+  [
+   "Vasopresores (otras fuentes)",
+   "Hipertensión grave"
+  ],
+  [
+   "Anestésicos halogenados (otras fuentes)",
+   "Menor respuesta uterina"
+  ]
+ ],
+ "mon": [
+  "Contracciones uterinas (frecuencia, duración, fuerza) y tono uterino en reposo",
+  "Frecuencia cardíaca fetal",
+  "Presión arterial",
+  "Sodio y balance de líquidos en infusiones largas"
+ ],
+ "ant": "No aplica; suspender infusión.",
+ "pre": "Para inducir o estimular el parto solo vía IV con bomba de infusión y vigilancia estrecha en hospital. Detén la infusión ante hiperactividad uterina o sufrimiento fetal. Evita el bolo IV rápido sin diluir (hipotensión, arritmias). El riesgo de intoxicación hídrica sube con infusiones largas.",
+ "pres": [
+  "Ampolla 10 UI/mL"
+ ],
+ "com": [
+  "Syntocinon",
+  "Pitocin"
+ ],
+ "pe": [
+  "En posparto: 10 UI IM o infusión diluida lenta; el bolo IV rápido sin diluir es de los errores más peligrosos en obstetricia (otras fuentes).",
+  "Suspender la infusión hace que el efecto uterino ceda pronto.",
+  "Elige un diluyente isotónico; la sobrecarga de líquido puede dar hiponatremia."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de oxitocina inyectable (sintética) (DailyMed, Cardinal Health 107, Llc, Oct 19, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=18fe8365-86e3-414e-84dc-c98e097a2f36",
+   "b": "indicaciones, inducción del trabajo de parto, hemorragia posparto, aborto, contraindicaciones, efectos adversos"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "H01BB02"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 5,
+  "np": 14,
+  "pres": [
+   "Solucion inyectable 10 UI",
+   "Solucion inyectable 10 IU",
+   "Solucion inyectable 5 ui"
+  ],
+  "m": [
+   "Syntocinon® de 10 u.i. ampollas (Mylan Pharma)",
+   "Syntocinon® 5 u.i. (Mylan Pharma)",
+   "Oxitocina inyeccion 10 ui (Feparvi)",
+   "Oxitocina 10 u.i/ml (Vitalis C.I)",
+   "Oxitocina 10 ui (Setaa Pharma)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

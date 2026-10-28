@@ -1,1 +1,191 @@
-{"id":"prednisona-prednisolona","n":"Prednisolona / prednisona","g":["Prednisolona / prednisona","Prednisolona","prednisona","Meticorten"],"atc":["H02AB06","H02AB07"],"cl":"Corticoide","mc":"corticoide","us":["inflam","asma","alergia"],"es":["medint","neumo","pediatria","onco","nefro"],"via":["vo"],"al":[],"mech":"La prednisona es un profármaco que el hígado convierte en prednisolona (la forma activa). Es un glucocorticoide de potencia intermedia (4 veces el cortisol) con poco efecto mineralocorticoide. Se une al receptor intracelular de glucocorticoides y regula la transcripción de genes antiinflamatorios y proinflamatorios. Se usa en asma, EPOC, enfermedades autoinmunes y como parte de esquemas de quimioterapia.","pk":{"abs":"Oral >80 %","vm":"3 a 4 h (efecto 12 a 36 h)","met":"Hepático (prednisona a prednisolona)","el":"Renal"},"ind":[{"i":"Exacerbación de EPOC","a":"40 mg VO al día por 5 días.","p":""},{"i":"Exacerbación de asma","a":"40 a 60 mg VO al día por 5 a 7 días.","p":"1 a 2 mg/kg al día (máximo 40 a 60 mg) por 3 a 5 días.","k":{"lo":1,"hi":2,"int":"al día","maxd":"40 a 60 mg/día"}}],"aj":{"r":"Sin ajuste.","h":"En hepatopatía grave preferir prednisolona.","e":"Se usa si es necesario.","l":"Compatible; separar la toma 4 h si dosis altas.","g":"Mayor riesgo de osteoporosis, diabetes y delirio."},"ci":["Infección sistémica no tratada (relativa)","Hipersensibilidad"],"fr":["Hiperglucemia","Aumento de apetito","Insomnio","Cambios de ánimo"],"gr":["Inmunosupresión","Osteoporosis","Úlcera con AINE","Supresión suprarrenal","Miopatía"],"it":[["AINE","Úlcera"],["Hipoglucemiantes","Sube la glucemia"],["Inductores de CYP3A4","Menor efecto"],["Warfarina","Variación del INR"]],"mon":["Glucemia, presión y peso","Densidad ósea y calcio con uso prolongado"],"ant":"No hay.","pre":"Hiperglucemia, inmunosupresión, úlcera con AINE.","pres":["Tabletas 5, 20 y 50 mg","Jarabe"],"com":["Meticorten"],"pe":["Por la mañana: sigue el ritmo circadiano del cortisol y reduce el insomnio.","Dosis equivalentes: prednisona 5 mg = hidrocortisona 20 mg = dexametasona 0,75 mg."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["H02AB06","H02AB07"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":12,"np":72,"pres":["Solucion oral 300 mg","Tableta 5 mg","Jarabe 100 mg","Solucion oral 0,1 g","Tableta 50 mg","Solucion oral 0,3 g"],"m":["Predis® 3mg /mljarabe (Eurofarma Colombia)","Pepred® plus solución oral (Novamed)","Prednisolin ® (Megalabs Colombia)","Pepred solucion (Novamed)","Prednisolona tabletasx 5 mg (Genfar)","Prednisolona 1 mg/ ml (Tecnofar Tq)","Prednisolona tabletas 5 mg (Laboratorio Profesional Farmaceutico - Laboratorios Laproff)","Prednisolona 5 mg (Tecnoquimicas (Planta Yumbo))","Prednisona mk 50 mg tabletas (Tecnoquimicas)","Prednisolona 3mg/ml solución oral (Laboratorios Mk)","Prednisolona5 mg tabletas (Memphis Products)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "prednisona-prednisolona",
+ "n": "Prednisolona / prednisona",
+ "g": [
+  "Prednisolona / prednisona",
+  "Prednisolona",
+  "prednisona",
+  "Meticorten"
+ ],
+ "atc": [
+  "H02AB06",
+  "H02AB07"
+ ],
+ "cl": "Corticoide",
+ "mc": "corticoide",
+ "us": [
+  "inflam",
+  "asma",
+  "alergia"
+ ],
+ "es": [
+  "medint",
+  "neumo",
+  "pediatria",
+  "onco",
+  "nefro"
+ ],
+ "via": [
+  "vo"
+ ],
+ "al": [],
+ "mech": "La prednisona es un profármaco que el hígado convierte en prednisolona (la forma activa). Es un glucocorticoide de potencia intermedia (4 veces el cortisol) con poco efecto mineralocorticoide. Se une al receptor intracelular de glucocorticoides y regula la transcripción de genes antiinflamatorios y proinflamatorios. Se usa en asma, EPOC, enfermedades autoinmunes y como parte de esquemas de quimioterapia.",
+ "pk": {
+  "abs": "Oral rápida y buena; se convierte en prednisolona en el hígado (otras fuentes)",
+  "vm": "3 a 4 h en plasma; efecto biológico 12 a 36 h (otras fuentes)",
+  "met": "Hepático (prednisona a prednisolona)",
+  "el": "Renal"
+ },
+ "ind": [
+  {
+   "i": "Enfermedades inflamatorias e inmunes (reumatológicas, dermatológicas, respiratorias, hematológicas, alérgicas)",
+   "a": "Inicio de 5 a 60 mg al día de prednisona según la enfermedad; baja de a poco a la dosis mínima eficaz. Si no hay respuesta, suspende y cambia de tratamiento. Si el uso fue largo, retira de forma gradual.",
+   "p": "La etiqueta no da una dosis pediátrica propia; se individualiza según la enfermedad."
+  },
+  {
+   "i": "Exacerbación aguda de esclerosis múltiple",
+   "a": "200 mg de prednisolona al día durante una semana y luego 80 mg en días alternos durante un mes (el mismo rango para prednisona).",
+   "p": "—"
+  },
+  {
+   "i": "Terapia en días alternos (ADT)",
+   "a": "El doble de la dosis diaria habitual cada dos mañanas; reduce la supresión suprarrenal, el aspecto cushingoide y la supresión del crecimiento en tratamientos largos.",
+   "p": "Útil para limitar la supresión del crecimiento."
+  },
+  {
+   "i": "Exacerbación de EPOC (uso habitual, no figura en la etiqueta)",
+   "a": "40 mg VO al día por 5 días (otras fuentes; no contrastado aquí).",
+   "p": "—"
+  },
+  {
+   "i": "Exacerbación de asma (uso habitual, no figura en la etiqueta)",
+   "a": "40 a 60 mg VO al día por 5 a 7 días (otras fuentes; no contrastado aquí).",
+   "p": "1 a 2 mg/kg al día (máximo 40 a 60 mg) por 3 a 5 días (otras fuentes; no contrastado aquí)."
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste en la etiqueta.",
+  "h": "Sin ajuste en la etiqueta; en hepatopatía grave la prednisona se activa menos y se prefiere prednisolona (otras fuentes).",
+  "e": "Úsalo solo si el beneficio justifica el riesgo (teratógeno en animales). Vigila al recién nacido por hipoadrenalismo.",
+  "l": "Pasa a la leche; con dosis altas separa la toma de la lactancia unas 4 h (otras fuentes).",
+  "g": "Mayor riesgo de osteoporosis, diabetes y delirio (otras fuentes); usa la dosis mínima."
+ },
+ "ci": [
+  "Infecciones fúngicas sistémicas",
+  "Hipersensibilidad a algún componente"
+ ],
+ "fr": [
+  "Retención de sodio y líquido, hipopotasemia",
+  "Hiperglucemia",
+  "Hipertensión",
+  "Insomnio, cambios del ánimo",
+  "Aumento de peso y apetito",
+  "Dispepsia"
+ ],
+ "gr": [
+  "Supresión suprarrenal al retirar de golpe",
+  "Úlcera péptica con hemorragia o perforación",
+  "Infecciones oportunistas",
+  "Psicosis",
+  "Osteoporosis y necrosis avascular",
+  "Catarata y glaucoma",
+  "Miopatía"
+ ],
+ "it": [
+  [
+   "AINE y aspirina",
+   "Más úlcera y sangrado digestivo"
+  ],
+  [
+   "Antidiabéticos e insulina",
+   "Suben la glucemia"
+  ],
+  [
+   "Inductores de CYP3A4 (fenitoína, fenobarbital, rifampicina)",
+   "Bajan el efecto del corticoide"
+  ],
+  [
+   "Estrógenos y anticonceptivos orales",
+   "Pueden subir los niveles de prednisolona (otras fuentes)"
+  ],
+  [
+   "Warfarina",
+   "Respuesta variable; controla el INR"
+  ],
+  [
+   "Diuréticos que pierden potasio",
+   "Hipopotasemia"
+  ],
+  [
+   "Vacunas de virus vivos",
+   "Evita con dosis inmunosupresoras"
+  ]
+ ],
+ "mon": [
+  "Glucemia",
+  "Presión arterial, peso y edema",
+  "Potasio",
+  "Densidad ósea y calcio con uso prolongado",
+  "Signos de infección"
+ ],
+ "ant": "No hay.",
+ "pre": "Hiperglucemia, inmunosupresión y riesgo de úlcera con AINE. Tras tratamientos largos no se suspende de golpe. Tómalo en la mañana con comida. Equivalencias orales: prednisona 5 mg = hidrocortisona 20 mg = dexametasona 0,75 mg = metilprednisolona 4 mg.",
+ "pres": [
+  "Tabletas 5, 20 y 50 mg",
+  "Jarabe de prednisolona (según el producto)"
+ ],
+ "com": [
+  "Meticorten"
+ ],
+ "pe": [
+  "Por la mañana: sigue el ritmo circadiano del cortisol y reduce el insomnio.",
+  "En exacerbaciones agudas cortas (5 a 7 días) por lo general no hace falta reducir de a poco (otras fuentes).",
+  "Si necesitas prednisolona en hepatopatía grave, cámbiala: la prednisona exige activación hepática."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de prednisona tabletas (DailyMed, Bryant Ranch Prepack, Oct 22, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=2bb5bba8-60ae-4789-90eb-2d4a43e7a14b",
+   "b": "indicaciones, dosis inicial, esclerosis múltiple, terapia en días alternos, interacciones, embarazo, pediatría"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "H02AB06",
+   "H02AB07"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 12,
+  "np": 72,
+  "pres": [
+   "Solucion oral 300 mg",
+   "Tableta 5 mg",
+   "Jarabe 100 mg",
+   "Solucion oral 0,1 g",
+   "Tableta 50 mg",
+   "Solucion oral 0,3 g"
+  ],
+  "m": [
+   "Predis® 3mg /mljarabe (Eurofarma Colombia)",
+   "Pepred® plus solución oral (Novamed)",
+   "Prednisolin ® (Megalabs Colombia)",
+   "Pepred solucion (Novamed)",
+   "Prednisolona tabletasx 5 mg (Genfar)",
+   "Prednisolona 1 mg/ ml (Tecnofar Tq)",
+   "Prednisolona tabletas 5 mg (Laboratorio Profesional Farmaceutico - Laboratorios Laproff)",
+   "Prednisolona 5 mg (Tecnoquimicas (Planta Yumbo))",
+   "Prednisona mk 50 mg tabletas (Tecnoquimicas)",
+   "Prednisolona 3mg/ml solución oral (Laboratorios Mk)",
+   "Prednisolona5 mg tabletas (Memphis Products)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

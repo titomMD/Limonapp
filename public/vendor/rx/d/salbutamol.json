@@ -1,1 +1,169 @@
-{"id":"salbutamol","n":"Salbutamol","g":["Salbutamol","Ventolin"],"atc":["R03AC02"],"cl":"Agonista beta-2 de acción corta","mc":"beta2","us":["asma"],"es":["neumo","pediatria","medint","uci"],"via":["inh"],"al":[],"mech":"Agonista selectivo de los receptores β2 del músculo liso bronquial. Activa la adenilato ciclasa, sube el AMP cíclico y relaja el músculo liso: el bronquio se dilata en minutos. También baja el potasio sérico porque lo introduce a la célula (efecto usado en hiperpotasemia). El efecto dura 4 a 6 h.","pk":{"abs":"Inhalado: acción local en minutos","vm":"4 a 6 h","met":"Hepático","el":"Renal"},"ind":[{"i":"Broncoespasmo","a":"2 a 4 inhalaciones (100 mcg cada una) con aerocámara cada 4 a 6 h. En crisis: 4 a 8 inhalaciones cada 20 min por la primera hora. Nebulizado: 2,5 a 5 mg.","p":"En crisis: 4 a 8 inhalaciones con aerocámara cada 20 min por 1 hora. Nebulizado: 0,15 mg/kg por dosis (mínimo 2,5 mg)."}],"aj":{"r":"Sin ajuste.","h":"Sin ajuste.","e":"Segura.","l":"Compatible.","g":"Vigilar taquicardia y temblor."},"ci":["Hipersensibilidad"],"fr":["Temblor","Taquicardia","Palpitaciones","Hipopotasemia"],"gr":["Arritmias","Hipopotasemia grave con dosis altas","Acidosis láctica en dosis muy altas"],"it":[["Betabloqueadores no selectivos","Antagonizan su efecto"],["Diuréticos de asa y tiazidas","Más hipopotasemia"],["Digoxina","Hipopotasemia y arritmias"]],"mon":["Frecuencia cardíaca y potasio en uso intensivo","Respuesta clínica"],"ant":"Betabloqueador cardioselectivo con precaución en taquiarritmia.","pre":"Taquicardia, hipopotasemia, temblor.","pres":["Inhalador 100 mcg por puff","Solución para nebulizar 5 mg/mL","Jarabe"],"com":["Ventolin"],"pe":["Con espaciador el inhalador es tan eficaz como el nebulizador en la mayoría de los casos.","En crisis grave se puede repetir cada 20 min durante la primera hora."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["R03AC02"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":13,"np":20,"pres":["Suspension para inhalacion 100 mcg","Suspension para inhalacion 0,17 %","Suspension para inhalacion 0,1 mg","Aerosoles 0,159 % (W/W)","Aerosoles 100 mcg","Suspension para inhalacion 100 µg","Jarabe 40 mg","Suspension para inhalacion 0,215 % (W/W)","Suspension para inhalacion 0,1589 % p/p","Solucion para nebulizacion 0,5 g","Suspension para inhalacion 2 mg"],"m":["Axpira® (Avalon Pharmaceutical)","Rescuwave® 100 mcg suspensión (Glenmark Pharmaceuticals Colombia)","Sacrusyt® (Faes Farma Colombia)","Ventilan® osp inhalador (Glaxosmithkline Colombia)","Asthalin® hfa inhalador (Cipla)","Salbumed® suspension para inhalacion (Cipla)","Deltabutol® (Laboratorios Delta)","Salbutamolinhalador 100 mcg / dosis (Tecnoquimicas)","Salbutamol jarabe 2 mg /5ml (Laboratorio Profesional Farmaceutico - Laboratorios Laproff)","Salbutamol 100mcg/dosis (Faes Faes Farma Chile. Salud Y Nutrición (Faes Farma Chile ))","Ventilan solucion para nebulizaciones 5 mg/ml (Glaxosmithkline Colombia)","Airmaxinhalador (Laboratorios Chalver De Colombia)"],"mas":1,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "salbutamol",
+ "n": "Salbutamol",
+ "g": [
+  "Salbutamol",
+  "Ventolin"
+ ],
+ "atc": [
+  "R03AC02"
+ ],
+ "cl": "Agonista beta-2 de acción corta",
+ "mc": "beta2",
+ "us": [
+  "asma"
+ ],
+ "es": [
+  "neumo",
+  "pediatria",
+  "medint",
+  "uci"
+ ],
+ "via": [
+  "inh"
+ ],
+ "al": [],
+ "mech": "Agonista selectivo de los receptores β2 del músculo liso bronquial. Activa la adenilato ciclasa, sube el AMP cíclico y relaja el músculo liso: el bronquio se dilata en minutos. También baja el potasio sérico porque lo introduce a la célula (efecto usado en hiperpotasemia). El efecto dura 4 a 6 h.",
+ "pk": {
+  "abs": "Inhalado: acción local; el inicio es en minutos (otras fuentes)",
+  "vm": "≈4 a 6 h (otras fuentes)",
+  "met": "Hepático (sulfatación) (otras fuentes)",
+  "el": "Renal"
+ },
+ "ind": [
+  {
+   "i": "Broncoespasmo en enfermedad obstructiva reversible de las vías aéreas (ataques agudos)",
+   "a": "Nebulizado: 2,5 mg (un vial de 3 mL al 0,083 %) tres o cuatro veces al día, durante 5 a 15 min. Más dosis o más frecuencia no se recomiendan en la etiqueta.",
+   "p": "2 a 12 años: 2,5 mg tres o cuatro veces al día si pesan 15 kg o más. Si pesan menos de 15 kg y necesitan menos de 2,5 mg, usa la solución al 0,5 % diluida (no el vial de 0,083 %). Menores de 2 años: seguridad y eficacia no establecidas en la etiqueta."
+  },
+  {
+   "i": "Crisis asmática moderada o grave en urgencias (esquema habitual, no figura en la etiqueta)",
+   "a": "Inhalador de 100 mcg con aerocámara: 4 a 8 inhalaciones cada 20 min durante la primera hora. Nebulizado: 2,5 a 5 mg cada 20 min por 3 dosis (otras fuentes; no contrastado aquí).",
+   "p": "Inhalador con aerocámara: 4 a 8 inhalaciones cada 20 min por 1 hora. Nebulizado: 0,15 mg/kg por dosis (mínimo 2,5 mg) (otras fuentes; no contrastado aquí)."
+  },
+  {
+   "i": "Mantenimiento o alivio de síntomas con inhalador (esquema habitual)",
+   "a": "2 a 4 inhalaciones de 100 mcg con aerocámara cada 4 a 6 h según necesidad (otras fuentes; no contrastado aquí).",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste en la etiqueta.",
+  "h": "Sin ajuste en la etiqueta.",
+  "e": "Categoría C: fue teratógeno en ratones (paladar hendido). En la práctica se han reportado anomalías sin patrón definido. Úsalo solo si el beneficio justifica el riesgo; el control del asma de la madre suele prevalecer (otras fuentes).",
+  "l": "Sin datos en la etiqueta; el uso inhalado se considera compatible (otras fuentes).",
+  "g": "Vigila taquicardia, temblor e hipopotasemia (otras fuentes)."
+ },
+ "ci": [
+  "Antecedente de hipersensibilidad a cualquier componente"
+ ],
+ "fr": [
+  "Temblor (≈20 %)",
+  "Mareo",
+  "Nerviosismo",
+  "Cefalea",
+  "Náuseas",
+  "Taquicardia (≈1 %)"
+ ],
+ "gr": [
+  "Broncoespasmo paradójico (puede ser potencialmente mortal; suspende de inmediato)",
+  "Efectos cardíacos relevantes (arritmias, taquicardia)",
+  "Reacciones de hipersensibilidad inmediata (urticaria, angioedema)",
+  "Hipopotasemia con dosis altas (otras fuentes)"
+ ],
+ "it": [
+  [
+   "Betabloqueadores",
+   "Se antagonizan mutuamente; evita los no selectivos"
+  ],
+  [
+   "IMAO y antidepresivos tricíclicos",
+   "Pueden potenciar el efecto vascular; usa con mucho cuidado"
+  ],
+  [
+   "Otros simpaticomiméticos inhalados o adrenalina",
+   "No los uses a la vez"
+  ],
+  [
+   "Diuréticos de asa o tiazidas (otras fuentes)",
+   "Suma hipopotasemia"
+  ],
+  [
+   "Digoxina (otras fuentes)",
+   "Hipopotasemia y riesgo de arritmia"
+  ]
+ ],
+ "mon": [
+  "Respuesta clínica y trabajo respiratorio",
+  "Frecuencia cardíaca y temblor",
+  "Potasio si el uso es intensivo",
+  "Empeoramiento del asma pese al uso: pide valoración"
+ ],
+ "ant": "Betabloqueador cardioselectivo con precaución en taquiarritmia.",
+ "pre": "Puede causar broncoespasmo paradójico: si ocurre, suspéndelo. Si un esquema que antes servía deja de dar alivio, es señal de empeoramiento del asma y requiere reevaluación inmediata. Cuidado en cardiopatía, arritmias, hipertensión, hipertiroidismo y diabetes (otras fuentes).",
+ "pres": [
+  "Inhalador 100 mcg por puff",
+  "Solución para nebulizar 2,5 mg/3 mL (0,083 %) en vial",
+  "Solución para nebulizar 5 mg/mL (0,5 %)",
+  "Jarabe"
+ ],
+ "com": [
+  "Ventolin"
+ ],
+ "pe": [
+  "Con aerocámara el inhalador es tan eficaz como el nebulizador en la mayoría de las crisis (otras fuentes).",
+  "En crisis grave se repite cada 20 min durante la primera hora (otras fuentes).",
+  "Vigila el potasio y la frecuencia cardíaca si se usan dosis repetidas."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de albuterol (salbutamol) solución para nebulizar 0,083 % (DailyMed, Nephron Pharmaceuticals Corporation, Oct 21, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=574824f3-51cc-4b94-9c10-e3204d8b19f8",
+   "b": "indicación, dosis nebulizada, pediatría, contraindicaciones, interacciones, embarazo, efectos adversos"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "R03AC02"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 13,
+  "np": 20,
+  "pres": [
+   "Suspension para inhalacion 100 mcg",
+   "Suspension para inhalacion 0,17 %",
+   "Suspension para inhalacion 0,1 mg",
+   "Aerosoles 0,159 % (W/W)",
+   "Aerosoles 100 mcg",
+   "Suspension para inhalacion 100 µg",
+   "Jarabe 40 mg",
+   "Suspension para inhalacion 0,215 % (W/W)",
+   "Suspension para inhalacion 0,1589 % p/p",
+   "Solucion para nebulizacion 0,5 g",
+   "Suspension para inhalacion 2 mg"
+  ],
+  "m": [
+   "Axpira® (Avalon Pharmaceutical)",
+   "Rescuwave® 100 mcg suspensión (Glenmark Pharmaceuticals Colombia)",
+   "Sacrusyt® (Faes Farma Colombia)",
+   "Ventilan® osp inhalador (Glaxosmithkline Colombia)",
+   "Asthalin® hfa inhalador (Cipla)",
+   "Salbumed® suspension para inhalacion (Cipla)",
+   "Deltabutol® (Laboratorios Delta)",
+   "Salbutamolinhalador 100 mcg / dosis (Tecnoquimicas)",
+   "Salbutamol jarabe 2 mg /5ml (Laboratorio Profesional Farmaceutico - Laboratorios Laproff)",
+   "Salbutamol 100mcg/dosis (Faes Faes Farma Chile. Salud Y Nutrición (Faes Farma Chile ))",
+   "Ventilan solucion para nebulizaciones 5 mg/ml (Glaxosmithkline Colombia)",
+   "Airmaxinhalador (Laboratorios Chalver De Colombia)"
+  ],
+  "mas": 1,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

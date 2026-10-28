@@ -1,1 +1,150 @@
-{"id":"sulfato-de-magnesio","n":"Sulfato de magnesio","g":["Sulfato de magnesio"],"atc":["A12CC02"],"cl":"Electrolito / anticonvulsivante","mc":"magnesio","us":["electrolitos","obstetricia","conv"],"es":["gineco","uci","medint","anest","cardio"],"via":["iv","im","vo"],"al":["alto_riesgo","depresor_snc","ajuste_renal"],"mech":"El magnesio bloquea el receptor NMDA de glutamato y los canales de calcio presinápticos, reduce la liberación de acetilcolina en la unión neuromuscular y relaja el músculo liso. Esto explica que prevenga las convulsiones eclámpticas, trate la hipomagnesemia, el torsades de pointes y el broncoespasmo grave, y que cause pérdida de reflejos y depresión respiratoria cuando está alto.","pk":{"abs":"IV inmediata; IM 1 h","vm":"4 a 6 h (más en falla renal)","met":"No se metaboliza","el":"Renal"},"ind":[{"i":"Hipomagnesemia","a":"1 a 2 g IV en 15 a 60 min.","p":"25 a 50 mg/kg IV (máximo 2 g) en 20 a 60 min."},{"i":"Preeclampsia grave o eclampsia (según protocolo)","a":"Carga de 4 a 6 g IV en 15 a 20 min y mantenimiento de 1 a 2 g/h. Vigilar reflejos, frecuencia respiratoria y diuresis; el antídoto es gluconato de calcio.","p":""}],"aj":{"r":"Reducir dosis y vigilar niveles con TFG baja; riesgo de acumulación.","h":"Sin ajuste.","e":"Primera línea para prevenir y tratar convulsiones en preeclampsia.","l":"Compatible.","g":"Ajustar por función renal."},"ci":["Miastenia gravis","Bloqueo cardíaco","Insuficiencia renal grave sin monitoreo","Hipermagnesemia"],"fr":["Rubor","Calor","Náuseas","Debilidad leve"],"gr":["Depresión respiratoria","Paro cardíaco con niveles muy altos","Hipotensión","Pérdida de reflejos tendinosos (primer signo)"],"it":[["Bloqueadores neuromusculares","Potencia el bloqueo"],["Calcioantagonistas (nifedipino)","Hipotensión y bloqueo neuromuscular"],["Aminoglucósidos","Más bloqueo neuromuscular"]],"mon":["Reflejos osteotendinosos","Frecuencia respiratoria","Diuresis (≥30 mL/h)","Niveles de magnesio"],"ant":"Gluconato de calcio IV.","pre":"Insuficiencia renal (acumulación), miastenia gravis. Vigilar los niveles si hay oliguria.","pres":["Ampolla 20 % (200 mg/mL) y 50 %"],"com":[],"pe":["Preeclampsia: la pérdida del reflejo rotuliano es la primera alerta de toxicidad, antes de la depresión respiratoria.","Tener gluconato de calcio al lado de la cama."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["B05XA05","A06AD04","A12CC02"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":3,"np":6,"pres":["Solucion inyectable 2 g","Solucion inyectable 2000 mg"],"m":["Sulfato de magnesio al 20% (Laboratorios Ryan De Colombia)","Sulfato de magnesio al 20% solucion inyectable (Laboratorio Sanderson)","Sulfato de magnesio 20% (Ropsohn Therapeutics)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "sulfato-de-magnesio",
+ "n": "Sulfato de magnesio",
+ "g": [
+  "Sulfato de magnesio"
+ ],
+ "atc": [
+  "A12CC02"
+ ],
+ "cl": "Electrolito / anticonvulsivante",
+ "mc": "magnesio",
+ "us": [
+  "electrolitos",
+  "obstetricia",
+  "conv"
+ ],
+ "es": [
+  "gineco",
+  "uci",
+  "medint",
+  "anest",
+  "cardio"
+ ],
+ "via": [
+  "iv",
+  "im",
+  "vo"
+ ],
+ "al": [
+  "alto_riesgo",
+  "depresor_snc",
+  "ajuste_renal"
+ ],
+ "mech": "El magnesio bloquea el receptor NMDA de glutamato y los canales de calcio presinápticos, reduce la liberación de acetilcolina en la unión neuromuscular y relaja el músculo liso. Esto explica que prevenga las convulsiones eclámpticas, trate la hipomagnesemia, el torsades de pointes y el broncoespasmo grave, y que cause pérdida de reflejos y depresión respiratoria cuando está alto.",
+ "pk": {
+  "abs": "IV: inmediata; IM: ≈1 h (otras fuentes)",
+  "vm": "≈4 a 6 h; más larga en insuficiencia renal (otras fuentes)",
+  "met": "No se metaboliza",
+  "el": "Renal"
+ },
+ "ind": [
+  {
+   "i": "Prevención de eclampsia en preeclampsia y tratamiento y prevención de convulsiones recurrentes en eclampsia",
+   "a": "Carga de 4 a 6 g IV en 15 min con bomba de infusión; mantenimiento de 1 a 2 g cada hora. Dosis máxima de 30 a 40 g en 24 h. Ajusta con el magnesio sérico y la clínica. No pases de 5 a 7 días. Insuficiencia renal grave o diuresis menor de 0,5 mL/kg/h: carga de 4 g y mantenimiento de 1 g/h, máximo 20 g en 48 h. El antídoto es calcio inyectable, que debe estar a mano.",
+   "p": "Adolescentes embarazadas: igual que la adulta."
+  },
+  {
+   "i": "Hipomagnesemia (uso habitual, no figura en la etiqueta contrastada)",
+   "a": "1 a 2 g IV en 15 a 60 min (otras fuentes; no contrastado aquí).",
+   "p": "25 a 50 mg/kg IV, máximo 2 g, en 20 a 60 min (otras fuentes; no contrastado aquí)."
+  }
+ ],
+ "aj": {
+  "r": "TFG baja o diuresis menor de 0,5 mL/kg/h: carga de 4 g, mantenimiento de 1 g/h, máximo 20 g en 48 h; vigila niveles, hay riesgo de acumulación.",
+  "h": "Sin ajuste en la etiqueta.",
+  "e": "Es una indicación aprobada en el embarazo (preeclampsia y eclampsia). Más de 5 a 7 días seguidos puede causar hipocalcemia y alteraciones óseas fetales (desmineralización, osteopenia, fracturas). No está aprobado como tocolítico.",
+  "l": "Aumenta poco el magnesio de la leche y su absorción oral por el lactante es baja.",
+  "g": "Ajusta por función renal (otras fuentes)."
+ },
+ "ci": [
+  "Bloqueo cardíaco o daño miocárdico",
+  "Coma diabético",
+  "Miastenia gravis"
+ ],
+ "fr": [
+  "Rubor y sensación de calor",
+  "Náuseas y vómito",
+  "Sudoración",
+  "Hipotensión",
+  "Cefalea, mareo"
+ ],
+ "gr": [
+  "Toxicidad por magnesio: pérdida de reflejos, depresión respiratoria, paro cardíaco",
+  "Toxicidad fetal y neonatal con uso prolongado (hipocalcemia, anomalías óseas)",
+  "Hiperglucemia con la dextrosa",
+  "Toxicidad por aluminio en uso prolongado con insuficiencia renal"
+ ],
+ "it": [
+  [
+   "Bloqueadores neuromusculares (succinilcolina, atracurio, cisatracurio)",
+   "Potencian y prolongan el bloqueo; vigila la respiración y el tren de cuatro"
+  ],
+  [
+   "Beta agonistas (terbutalina) y calcioantagonistas (nifedipino) como tocolíticos",
+   "No usar a la vez (según la etiqueta)"
+  ],
+  [
+   "Salicilatos y carbonatos alcalinos",
+   "Incompatibles en la misma línea IV"
+  ],
+  [
+   "Aminoglucósidos (otras fuentes)",
+   "Más bloqueo neuromuscular"
+  ]
+ ],
+ "mon": [
+  "Reflejos osteotendinosos (la pérdida del rotuliano es la primera señal de toxicidad)",
+  "Frecuencia respiratoria",
+  "Diuresis, al menos 30 mL/h",
+  "Magnesio sérico",
+  "Glucemia (por la dextrosa)"
+ ],
+ "ant": "Gluconato de calcio IV.",
+ "pre": "Antídoto: gluconato de calcio, siempre a mano. Reduce la dosis en insuficiencia renal. Pérdida del reflejo rotuliano, respiración lenta o diuresis baja: detén o baja la infusión. No lo uses más de 5 a 7 días en el embarazo. Contraindicado en miastenia gravis y bloqueo cardíaco.",
+ "pres": [
+  "Bolsa premezclada en dextrosa al 5 %",
+  "Ampolla 20 % (200 mg/mL) y 50 % (500 mg/mL)"
+ ],
+ "com": [],
+ "pe": [
+  "Preeclampsia: la pérdida del reflejo rotuliano es la primera alerta de toxicidad, antes de la depresión respiratoria.",
+  "Ten gluconato de calcio al lado de la cama.",
+  "La etiqueta no aprueba su uso para tocolisis."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de sulfato de magnesio en dextrosa al 5 % (DailyMed, Wg Critical Care, Llc, Oct 22, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8da9c33f-e3cd-4026-b034-2b964401b346",
+   "b": "indicación obstétrica, dosis de carga y mantenimiento, ajuste renal, toxicidad, interacciones, embarazo"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "B05XA05",
+   "A06AD04",
+   "A12CC02"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 3,
+  "np": 6,
+  "pres": [
+   "Solucion inyectable 2 g",
+   "Solucion inyectable 2000 mg"
+  ],
+  "m": [
+   "Sulfato de magnesio al 20% (Laboratorios Ryan De Colombia)",
+   "Sulfato de magnesio al 20% solucion inyectable (Laboratorio Sanderson)",
+   "Sulfato de magnesio 20% (Ropsohn Therapeutics)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

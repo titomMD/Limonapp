@@ -1,1 +1,144 @@
-{"id":"loratadina","n":"Loratadina","g":["Loratadina","Claritin"],"atc":["R06AX13"],"cl":"Antihistamínico","mc":"antih1","us":["alergia"],"es":["medint","pediatria"],"via":["vo"],"al":[],"et":"El sufijo «-tadina» identifica a los antihistamínicos de segunda generación (loratadina, desloratadina).","mech":"Antagonista (agonista inverso) del receptor H1 de histamina de acción periférica. Como casi no atraviesa la barrera hematoencefálica (es de segunda generación), controla rinorrea, estornudos y prurito sin la somnolencia que producen los de primera generación (difenhidramina, clorfeniramina). Su metabolito activo es la desloratadina.","pk":{"abs":"Oral rápida; los alimentos aumentan la absorción","vm":"8 h (metabolito 28 h)","met":"Hepático (CYP3A4 y 2D6) a desloratadina","el":"Renal y fecal"},"ind":[{"i":"Rinitis alérgica y urticaria","a":"10 mg VO una vez al día.","p":"5 mg una vez al día en niños de 2 a 12 años con menos de 30 kg; 10 mg si pesan más."}],"aj":{"r":"Dosis alterna en insuficiencia renal grave.","h":"Dosis menor o alterna en hepatopatía grave.","e":"Segura (categoría B).","l":"Compatible.","g":"Sin ajuste."},"ci":["Hipersensibilidad"],"fr":["Cefalea","Boca seca","Somnolencia leve"],"gr":["Arritmias (muy raras a dosis altas)"],"it":[["Inhibidores de CYP3A4 (eritromicina, ketoconazol, cimetidina)","Sube niveles; pocas consecuencias clínicas"]],"mon":["Respuesta clínica"],"ant":"No hay.","pre":"Ajustar en hepatopatía grave.","pres":["Tabletas 10 mg","Jarabe 5 mg/5 mL"],"com":["Claritin"],"pe":["No sirve en anafilaxia: la prioridad es la adrenalina."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["R06AX13"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":33,"np":240,"pres":["Tableta 10 mg","Jarabe 0,1 g","Jarabe 100 mg","Capsula blanda 10 mg","Tableta 10 mg.","Solucion oral 100 mg","Solucion oral 0,1 g"],"m":["Lordinex ® 10 mg tabletas (Novamed)","Alerclar® 10 mg (Coopidrogas)","Loreze® (Mega Lifesciences Public Company)","Clarityne® jarabe uva 1mg/ml (Bayer)","Eutarpan® 10 mg tabletas (Bioquifar Pharmaceutica)","Histapen® 10 mg tabletas (Inversiones Comerfar)","Hislort® 10 mg tabletas (Farmacoop)","Hislort ® solucion oral (Cooperativa Multiactiva De Producción Distribución. Comercialización Y Servicios Farmacoop -Farmacoop-)","Atadin®10 mg tabletas (Mediseg Laboratories)","Lordinex jarabe. (Novamed)","Loratadina 10 mg tabletas (Tecnoquimicas (Planta Yumbo))","Loratadina tabletas (Memphis Products)"],"mas":15,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "loratadina",
+ "n": "Loratadina",
+ "g": [
+  "Loratadina",
+  "Claritin"
+ ],
+ "atc": [
+  "R06AX13"
+ ],
+ "cl": "Antihistamínico",
+ "mc": "antih1",
+ "us": [
+  "alergia"
+ ],
+ "es": [
+  "medint",
+  "pediatria"
+ ],
+ "via": [
+  "vo"
+ ],
+ "al": [],
+ "et": "El sufijo «-tadina» identifica a los antihistamínicos de segunda generación (loratadina, desloratadina).",
+ "mech": "Antagonista (agonista inverso) del receptor H1 de histamina de acción periférica. Como casi no atraviesa la barrera hematoencefálica (es de segunda generación), controla rinorrea, estornudos y prurito sin la somnolencia que producen los de primera generación (difenhidramina, clorfeniramina). Su metabolito activo es la desloratadina.",
+ "pk": {
+  "abs": "Oral rápida; los alimentos aumentan la absorción (otras fuentes)",
+  "vm": "≈8 h (otras fuentes); el metabolito activo, ≈28 h",
+  "met": "Hepático (CYP3A4 y CYP2D6) a desloratadina",
+  "el": "Renal y fecal"
+ },
+ "ind": [
+  {
+   "i": "Rinitis alérgica y síntomas respiratorios de alergia (estornudos, rinorrea, picazón de ojos, nariz o garganta)",
+   "a": "10 mg VO una vez al día; no más de una tableta en 24 h.",
+   "p": "6 años o más: 10 mg una vez al día. 2 a menos de 6 años: 5 mg una vez al día (forma masticable o jarabe), sin pasar de una dosis en 24 h. Menores de 2 años: consulta al médico."
+  },
+  {
+   "i": "Urticaria crónica (uso habitual, no figura en la etiqueta contrastada)",
+   "a": "10 mg VO una vez al día (otras fuentes; no contrastado aquí).",
+   "p": "2 a 12 años: 5 mg una vez al día si pesan menos de 30 kg y 10 mg si pesan 30 kg o más (otras fuentes; no contrastado aquí)."
+  }
+ ],
+ "aj": {
+  "r": "La etiqueta no da dosis; pide consultar al médico en enfermedad renal. Otras fuentes: dosis cada 48 h en filtrado menor de 30 mL/min.",
+  "h": "La etiqueta pide consultar al médico en enfermedad hepática. Otras fuentes: 10 mg en días alternos en hepatopatía grave.",
+  "e": "Los datos de las etiquetas contrastadas son limitados; consulta al médico (otras fuentes: uso considerado de bajo riesgo).",
+  "l": "Pasa a la leche en poca cantidad (otras fuentes); consulta al médico.",
+  "g": "Sin ajuste en la etiqueta."
+ },
+ "ci": [
+  "Reacción alérgica previa a la loratadina o a algún componente"
+ ],
+ "fr": [
+  "Cefalea",
+  "Somnolencia leve (poco frecuente)",
+  "Boca seca",
+  "Fatiga"
+ ],
+ "gr": [
+  "Reacciones alérgicas graves (anafilaxia, angioedema) (raro)",
+  "Arritmias con sobredosis (otras fuentes)"
+ ],
+ "it": [
+  [
+   "Inhibidores de CYP3A4 (eritromicina, ketoconazol, cimetidina)",
+   "Suben los niveles; con pocas consecuencias clínicas (otras fuentes)"
+  ],
+  [
+   "Otros depresores del SNC o alcohol (otras fuentes)",
+   "Pueden sumar somnolencia"
+  ]
+ ],
+ "mon": [
+  "Respuesta clínica",
+  "Somnolencia al conducir u operar maquinaria (rara)"
+ ],
+ "ant": "No hay.",
+ "pre": "La etiqueta contrastada es la de venta libre, sin dosis para insuficiencia hepática o renal: consulta al médico. No sirve en anafilaxia: la prioridad es la adrenalina.",
+ "pres": [
+  "Tabletas 10 mg",
+  "Tabletas masticables 5 mg",
+  "Jarabe 5 mg/5 mL"
+ ],
+ "com": [
+  "Claritin"
+ ],
+ "pe": [
+  "Es poco sedante, pero no cero: avisa al paciente que conduce.",
+  "No sirve en anafilaxia ni sustituye la adrenalina."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de loratadina (tabletas y masticables) (DailyMed, A-S Medication Solutions, Oct 22, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=64737ead-8fb4-43c8-8a09-9cfd5c8f702b",
+   "b": "dosis por edad, advertencias, hepatopatía y enfermedad renal"
+  },
+  {
+   "t": "Etiqueta de loratadina masticable (Claritin infantil) (DailyMed, Bayer Healthcare Llc., Dec 05, 2025)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=20938e05-bc3e-51aa-e054-00144ff88e88",
+   "b": "dosis en niños de 2 a menos de 6 años"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "R06AX13"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 33,
+  "np": 240,
+  "pres": [
+   "Tableta 10 mg",
+   "Jarabe 0,1 g",
+   "Jarabe 100 mg",
+   "Capsula blanda 10 mg",
+   "Tableta 10 mg.",
+   "Solucion oral 100 mg",
+   "Solucion oral 0,1 g"
+  ],
+  "m": [
+   "Lordinex ® 10 mg tabletas (Novamed)",
+   "Alerclar® 10 mg (Coopidrogas)",
+   "Loreze® (Mega Lifesciences Public Company)",
+   "Clarityne® jarabe uva 1mg/ml (Bayer)",
+   "Eutarpan® 10 mg tabletas (Bioquifar Pharmaceutica)",
+   "Histapen® 10 mg tabletas (Inversiones Comerfar)",
+   "Hislort® 10 mg tabletas (Farmacoop)",
+   "Hislort ® solucion oral (Cooperativa Multiactiva De Producción Distribución. Comercialización Y Servicios Farmacoop -Farmacoop-)",
+   "Atadin®10 mg tabletas (Mediseg Laboratories)",
+   "Lordinex jarabe. (Novamed)",
+   "Loratadina 10 mg tabletas (Tecnoquimicas (Planta Yumbo))",
+   "Loratadina tabletas (Memphis Products)"
+  ],
+  "mas": 15,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

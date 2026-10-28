@@ -1,1 +1,156 @@
-{"id":"cloruro-de-potasio","n":"Cloruro de potasio","g":["Cloruro de potasio"],"atc":["A12BA01"],"cl":"Electrolito","mc":"reposicion","us":["electrolitos"],"es":["medint","uci","nefro","cirugia","pediatria"],"via":["iv","vo"],"al":["alto_riesgo","hiperk","extravasacion","ajuste_renal"],"mech":"Reposición del catión intracelular principal. El potasio mantiene el potencial de reposo de la membrana de las células excitables; su déficit hiperpolariza e hipoexcita (debilidad, íleo, arritmias) y su exceso despolariza (arritmias, paro). Por eso la velocidad de reposición IV es crítica: el corazón no tolera cargas rápidas.","pk":{"abs":"Oral rápida","vm":"No aplica (se redistribuye entre compartimentos)","met":"No se metaboliza","el":"Renal (90 %)"},"ind":[{"i":"Hipopotasemia","a":"10 a 20 mEq IV en 1 a 2 h por vía central o a 10 mEq/h por vía periférica; no administrar en bolo. Vigilar con electrocardiograma si la hipopotasemia es grave.","p":"0,5 a 1 mEq/kg por dosis, a no más de 0,5 mEq/kg/h (verificar)."}],"aj":{"r":"Reducir dosis y vigilar con TFG baja; evitar en hiperpotasemia.","h":"Sin ajuste.","e":"Segura.","l":"Compatible.","g":"Cuidado con ERC y fármacos que suben el potasio."},"ci":["Hiperpotasemia","Insuficiencia renal grave con oliguria","Enfermedad de Addison no tratada"],"fr":["Irritación venosa y dolor","Molestias gástricas (vía oral)"],"gr":["Hiperpotasemia con arritmias y paro (si se pasa rápido o concentrado)","Necrosis por extravasación"],"it":[["IECA, ARA II, espironolactona, TMP-SMX, heparina","Hiperpotasemia"],["Digoxina","Más toxicidad por cambios de K"]],"mon":["Potasio sérico cada 4 a 6 h en reposición IV","ECG en reposición rápida o K <2,5","Función renal y magnesio"],"ant":"Calcio IV, insulina con dextrosa, salbutamol, resinas y diálisis en hiperpotasemia.","pre":"Insuficiencia renal, hiperpotasemia; la administración rápida puede ser fatal.","pres":["Ampolla 2 mEq/mL (concentrado: nunca directo)","Tabletas de liberación prolongada","Solución oral"],"com":[],"pe":["Nunca IV directo ni en bolo: concentrado se diluye y pasa a máx. 10 mEq/h por vía periférica (20 mEq/h central con monitoreo).","Si el magnesio está bajo, el potasio no sube: reponerlo primero."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["B05XA01","A12BA01"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":4,"np":10,"pres":["Solucion inyectable 1,491 g","Solucion inyectable 1,49 g","Solucion inyectable 0,9 g"],"m":["Cloruro de potasio solucion inyectable (Ropsohn Therapeutics)","Cloruro de potasio 2 meq/ml (Laboratorios Medifarma)","Cloruro de potasio 20 meq en sodio cloruro 0.9 % por 100 ml (Laboratorios Medifarma)","Cloruro de potasio inyectable 2meq/ml.. (Laboratorios Ryan De Colombia)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "cloruro-de-potasio",
+ "n": "Cloruro de potasio",
+ "g": [
+  "Cloruro de potasio"
+ ],
+ "atc": [
+  "A12BA01"
+ ],
+ "cl": "Electrolito",
+ "mc": "reposicion",
+ "us": [
+  "electrolitos"
+ ],
+ "es": [
+  "medint",
+  "uci",
+  "nefro",
+  "cirugia",
+  "pediatria"
+ ],
+ "via": [
+  "iv",
+  "vo"
+ ],
+ "al": [
+  "alto_riesgo",
+  "hiperk",
+  "extravasacion",
+  "ajuste_renal"
+ ],
+ "mech": "Reposición del catión intracelular principal. El potasio mantiene el potencial de reposo de la membrana de las células excitables; su déficit hiperpolariza e hipoexcita (debilidad, íleo, arritmias) y su exceso despolariza (arritmias, paro). Por eso la velocidad de reposición IV es crítica: el corazón no tolera cargas rápidas.",
+ "pk": {
+  "abs": "Oral rápida y completa (otras fuentes)",
+  "vm": "No aplica (se redistribuye entre compartimentos)",
+  "met": "No se metaboliza",
+  "el": "Renal ≈90 % (otras fuentes)"
+ },
+ "ind": [
+  {
+   "i": "Hipopotasemia: tratamiento y profilaxis oral",
+   "a": "Tratamiento: 40 a 100 mEq al día en 2 a 5 tomas; no pases de 40 mEq por dosis. Mantenimiento o profilaxis: 20 mEq al día. Si el potasio sérico es menor de 2,5 mEq/L, usa la vía IV en vez de la oral. Tómalo con las comidas y un vaso lleno de agua.",
+   "p": "Tratamiento: 2 a 4 mEq/kg al día divididos, sin pasar de 1 mEq/kg en una dosis o 20 mEq, la menor. Mantenimiento: 1 mEq/kg al día. Si el déficit es grave o las pérdidas siguen, considera la vía IV."
+  },
+  {
+   "i": "Hipopotasemia grave por vía IV (monografía ASHP; no es una indicación de la etiqueta oral)",
+   "a": "Nunca IV directo ni en bolo (paro cardíaco fatal). Dilúyelo en solución estándar. Potasio menor de 2,5 mEq/L: no más de 10 mEq/h en concentración de 40 mEq/L o menos; máximo 200 mEq en 24 h. Potasio menor de 2 mEq/L con cambios de ECG o parálisis: hasta 40 mEq/h con monitoreo ECG continuo y hasta 400 mEq en 24 h. En críticos, prefiere solución salina a dextrosa (la dextrosa puede bajar el potasio). Concentración máxima habitual de 40 mEq/L; las vías centrales aceptan concentraciones mayores según el protocolo local.",
+   "p": "0,5 a 1 mEq/kg por dosis (máximo 40 mEq) en infusión continua a no más de 0,5 mEq/kg/h; en infusión intermitente grave, hasta 1 mEq/kg/h o 40 mEq/h durante 6 h o menos. Por vía periférica hasta 80 mEq/L en hipopotasemia grave según la monografía (ASHP)."
+  }
+ ],
+ "aj": {
+  "r": "Reduce la dosis y vigila el potasio en TFG baja; riesgo de hiperpotasemia (el 90 % se elimina por el riñón). Evítalo en hiperpotasemia.",
+  "h": "Sin ajuste.",
+  "e": "No hay datos en humanos con esta forma; la suplementación que no cause hiperpotasemia no se espera que dañe al feto.",
+  "l": "El potasio normal de la leche es unos 13 mEq/L; el suplemento tiene poco o ningún efecto mientras el potasio corporal no esté alto.",
+  "g": "Empieza por la dosis baja; hay más riesgo de toxicidad con insuficiencia renal."
+ },
+ "ci": [
+  "Uso con amilorida o triamtereno (hiperpotasemia grave)",
+  "Hiperpotasemia",
+  "Insuficiencia renal grave con oliguria (otras fuentes)",
+  "Enfermedad de Addison no tratada (otras fuentes)"
+ ],
+ "fr": [
+  "Náuseas, vómito, dolor abdominal",
+  "Diarrea",
+  "Irritación digestiva"
+ ],
+ "gr": [
+  "Hiperpotasemia (arritmias, paro cardíaco)",
+  "Úlceras y estenosis del tubo digestivo con las formas sólidas",
+  "Flebitis, venoespasmo y necrosis por extravasación con soluciones concentradas por vía IV"
+ ],
+ "it": [
+  [
+   "Amilorida y triamtereno",
+   "Contraindicado: hiperpotasemia grave"
+  ],
+  [
+   "IECA, ARA II, espironolactona, eplerenona, aliskiren",
+   "Retienen potasio; vigila el potasio"
+  ],
+  [
+   "AINE",
+   "Retienen potasio; vigila el potasio"
+  ],
+  [
+   "Trimetoprim-sulfametoxazol y heparina (otras fuentes)",
+   "Hiperpotasemia"
+  ],
+  [
+   "Digoxina (otras fuentes)",
+   "Los cambios de potasio alteran su toxicidad"
+  ]
+ ],
+ "mon": [
+  "Potasio sérico periódicamente; en reposición IV cada 4 a 6 h (otras fuentes)",
+  "ECG si el potasio es menor de 2,5 mEq/L o la reposición es rápida",
+  "Magnesio, sodio, cloro, fosfato y calcio, función renal y estado ácido-base",
+  "Dolor abdominal, vómito o sangrado digestivo con la forma oral"
+ ],
+ "ant": "Calcio IV, insulina con dextrosa, salbutamol, resinas y diálisis en hiperpotasemia.",
+ "pre": "Fármaco de alto riesgo (ISMP). Nunca lo administres IV directo ni sin diluir: puede causar paro cardíaco fatal. La forma oral sólida puede ulcerar el tubo digestivo; considera la solución líquida si hay disfagia o motilidad alterada. Si el magnesio está bajo, el potasio no sube hasta corregirlo (otras fuentes).",
+ "pres": [
+  "Cápsulas o tabletas de liberación prolongada 8 y 10 mEq",
+  "Solución oral",
+  "Ampolla concentrada 2 mEq/mL (solo para diluir; nunca directo)"
+ ],
+ "com": [],
+ "pe": [
+  "Nunca IV directo ni en bolo: el concentrado se diluye y pasa a máximo 10 mEq/h por vía periférica en la mayoría de los casos.",
+  "Si el magnesio está bajo, repón el magnesio primero (otras fuentes).",
+  "No tomes la forma sólida con el estómago vacío."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de cloruro de potasio cápsulas de liberación prolongada (DailyMed, Pd-Rx Pharmaceuticals, Inc., Oct 16, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=018fc687-1fba-202e-e063-6294a90a5c9a",
+   "b": "dosis oral en adultos y niños, contraindicaciones, interacciones, irritación digestiva, embarazo, lactancia"
+  },
+  {
+   "t": "Monografía \"Potassium Chloride\" (ASHP, capítulo 227 del libro con ISBN 9781585287192)",
+   "u": "https://search.worldcat.org/search?q=isbn:9781585287192",
+   "b": "dosis IV en adultos y niños, velocidades, concentraciones máximas, preparación"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "B05XA01",
+   "A12BA01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 4,
+  "np": 10,
+  "pres": [
+   "Solucion inyectable 1,491 g",
+   "Solucion inyectable 1,49 g",
+   "Solucion inyectable 0,9 g"
+  ],
+  "m": [
+   "Cloruro de potasio solucion inyectable (Ropsohn Therapeutics)",
+   "Cloruro de potasio 2 meq/ml (Laboratorios Medifarma)",
+   "Cloruro de potasio 20 meq en sodio cloruro 0.9 % por 100 ml (Laboratorios Medifarma)",
+   "Cloruro de potasio inyectable 2meq/ml.. (Laboratorios Ryan De Colombia)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

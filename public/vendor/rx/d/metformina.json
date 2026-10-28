@@ -1,1 +1,167 @@
-{"id":"metformina","n":"Metformina","g":["Metformina","Glucophage"],"atc":["A10BA02"],"cl":"Biguanida","mc":"biguanida","us":["dm"],"es":["medint","endo","nefro"],"via":["vo"],"al":["ajuste_renal"],"et":"«Biguanida» = dos moléculas de guanidina unidas; la metformina deriva de la Galega officinalis (galega), planta usada en la Edad Media.","mech":"Activa la proteína quinasa activada por AMP (AMPK) en el hígado y reduce la gluconeogénesis, y aumenta la captación de glucosa en el músculo. No estimula la secreción de insulina, por eso no produce hipoglucemia por sí sola y además suele bajar o mantener el peso. El mecanismo exacto sigue siendo estudiado, e involucra la inhibición del complejo I mitocondrial.","pk":{"abs":"Oral 50 a 60 %","vm":"6 h","met":"No se metaboliza","el":"Renal sin cambio"},"ind":[{"i":"Diabetes mellitus tipo 2","a":"500 a 850 mg VO con las comidas, una o dos veces al día; titular. Máximo 2.550 mg al día.","p":"10 a 17 años: 500 mg VO cada 12 h inicial (verificar)."}],"aj":{"r":"Suspender con TFG <30 mL/min; reducir a máx. 1.000 mg/día con 30 a 45.","h":"Evitar en hepatopatía grave (acidosis láctica).","e":"Se usa en diabetes gestacional y SOP.","l":"Compatible.","g":"Ajustar por función renal."},"ci":["TFG <30 mL/min","Acidosis metabólica o riesgo alto de ella (sepsis, hipoxia, insuficiencia hepática)","Contraste yodado en riesgo renal (suspender temporalmente)"],"fr":["Diarrea","Náuseas","Sabor metálico","Déficit de B12 a largo plazo"],"gr":["Acidosis láctica (rara)"],"it":[["Contraste yodado","Suspender al momento del estudio y reiniciar a 48 h con función renal estable"],["Alcohol en exceso","Más acidosis láctica"],["Cimetidina","Sube niveles"]],"mon":["Creatinina/TFG al menos anual","B12 en uso prolongado","HbA1c"],"ant":"Hemodiálisis en acidosis láctica grave.","pre":"No usar con filtración glomerular menor de 30; reducir dosis si es menor de 45. Suspender antes de contraste yodado o cirugía mayor según protocolo y en acidosis o hipoperfusión.","pres":["Tabletas 500, 850 y 1.000 mg","Liberación prolongada"],"com":["Glucophage"],"pe":["Se toma con las comidas para mejorar la tolerancia digestiva.","Se suspende por horas antes de cirugía mayor o contraste yodado."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["A10BA02"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":41,"np":412,"pres":["Tableta de liberacion prolongada 1000 mg","Tableta de liberacion prolongada 750 mg","Tableta de liberacion prolongada 500 mg","Tableta recubierta 850 mg","Tableta recubierta 500 mg","Tableta recubierta 850 mg.","Tableta cubierta con pelicula 1000 mg","Tableta recubierta 1000 MG","Tableta recubierta 1000 mg","Tableta 850 MG","Tableta cubierta con pelicula 500 mg","Tableta 850 mg","Tableta recubierta 1000,06 mg"],"m":["Glucophage ® xr750 mg (Merck)","Wilmetina xr® 750 mg tabletas de liberación prolongada (Brainpharma)","Wilmetina® 1000 mg tabletas recubiertas (Brainpharma)","Wilmetina xr®500mg tabletas de liberación prolongada (Brainpharma)","Wilmetina® 850 mg tabletas recubiertas (Brainpharma)","Wilmetina xr®1000mg tabletas de liberación prolongada (Brainpharma)","Metaglicoz® xr 1000mg tabletas de liberación prolongada (Laboratorios Legrand)","Exelmet® (Exeltis S. A.S)","Glucophage® xr 1000 mg (Merck)","G-met® tabletas (Diabetrics Healthcare)","Metaglicoz ® xr 750 (Laboratorios Legrand)","Gliformin®850 mg tabletas (Laboratorios Siegfried)"],"mas":32,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "metformina",
+ "n": "Metformina",
+ "g": [
+  "Metformina",
+  "Glucophage"
+ ],
+ "atc": [
+  "A10BA02"
+ ],
+ "cl": "Biguanida",
+ "mc": "biguanida",
+ "us": [
+  "dm"
+ ],
+ "es": [
+  "medint",
+  "endo",
+  "nefro"
+ ],
+ "via": [
+  "vo"
+ ],
+ "al": [
+  "ajuste_renal"
+ ],
+ "et": "«Biguanida» = dos moléculas de guanidina unidas; la metformina deriva de la Galega officinalis (galega), planta usada en la Edad Media.",
+ "mech": "Activa la proteína quinasa activada por AMP (AMPK) en el hígado y reduce la gluconeogénesis, y aumenta la captación de glucosa en el músculo. No estimula la secreción de insulina, por eso no produce hipoglucemia por sí sola y además suele bajar o mantener el peso. El mecanismo exacto sigue siendo estudiado, e involucra la inhibición del complejo I mitocondrial.",
+ "pk": {
+  "abs": "Oral ≈50 a 60 % (otras fuentes)",
+  "vm": "≈6 h en plasma (otras fuentes)",
+  "met": "No se metaboliza",
+  "el": "Renal sin cambios, por secreción tubular"
+ },
+ "ind": [
+  {
+   "i": "Diabetes mellitus tipo 2 (adyuvante de dieta y ejercicio)",
+   "a": "Inicio: 500 mg dos veces al día u 850 mg una vez al día, con las comidas. Sube 500 mg por semana o 850 mg cada 2 semanas hasta un máximo de 2.550 mg al día repartidos; más de 2.000 mg se toleran mejor en tres tomas. Liberación prolongada: 500 mg una vez al día con la cena, subiendo 500 mg por semana hasta un máximo de 2.000 mg al día. Cambio de liberación inmediata a prolongada: misma dosis diaria hasta 2.000 mg.",
+   "p": "10 años o más (solo la forma de liberación inmediata): inicio de 500 mg dos veces al día con las comidas; sube 500 mg por semana hasta un máximo de 2.000 mg al día en dos tomas. Menores de 10 años: no establecido."
+  },
+  {
+   "i": "Síndrome de ovario poliquístico o diabetes gestacional (uso habitual, no figura en la etiqueta)",
+   "a": "Según protocolo local (otras fuentes; no contrastado aquí).",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "Evalúa la TFG antes de empezar. TFG menor de 30: no usar (contraindicada). TFG de 30 a 45: no se recomienda iniciarla; si baja de 45 durante el tratamiento, evalúa riesgo y beneficio. Otras fuentes: muchos protocolos limitan a 1.000 mg al día en TFG 30 a 45.",
+  "h": "Evítala en hepatopatía: el hígado deteriorado reduce la depuración del lactato y aumenta el riesgo de acidosis láctica.",
+  "e": "Sin asociación clara con malformaciones mayores ni abortos en los estudios publicados. El mal control de la diabetes sí es riesgoso para madre y feto.",
+  "l": "Pasa a la leche; revisa riesgo y beneficio (otras fuentes: se considera compatible).",
+  "g": "Comienza con la dosis más baja y evalúa la función renal con más frecuencia."
+ },
+ "ci": [
+  "TFG menor de 30 mL/min/1,73 m²",
+  "Acidosis metabólica aguda o crónica, incluida la cetoacidosis diabética",
+  "Hipersensibilidad a la metformina"
+ ],
+ "fr": [
+  "Diarrea",
+  "Náuseas y vómito",
+  "Flatulencia",
+  "Debilidad",
+  "Dispepsia y molestia abdominal",
+  "Cefalea"
+ ],
+ "gr": [
+  "Acidosis láctica (caja negra; puede ser mortal)",
+  "Deficiencia de vitamina B12",
+  "Hipoglucemia al combinar con insulina o secretagogos"
+ ],
+ "it": [
+  [
+   "Medio de contraste yodado",
+   "Suspende al momento del estudio o antes en TFG 30 a 60, hepatopatía, alcoholismo, insuficiencia cardíaca o contraste intraarterial; reevalúa la TFG a las 48 h y reinicia si es estable"
+  ],
+  [
+   "Inhibidores de la anhidrasa carbónica (topiramato, zonisamida, acetazolamida)",
+   "Más riesgo de acidosis láctica; monitoriza con más frecuencia"
+  ],
+  [
+   "Fármacos que reducen su depuración (ranolazina, vandetanib, dolutegravir, cimetidina)",
+   "Suben la exposición; sopesa riesgo y beneficio"
+  ],
+  [
+   "Alcohol",
+   "Potencia el efecto sobre el lactato; evita el consumo excesivo"
+  ],
+  [
+   "Insulina y secretagogos",
+   "Más riesgo de hipoglucemia; puede hacer falta bajar la dosis"
+  ]
+ ],
+ "mon": [
+  "TFG antes de empezar y al menos una vez al año (más seguido en mayores o con riesgo renal)",
+  "Hemograma anual y vitamina B12 cada 2 a 3 años",
+  "HbA1c",
+  "Síntomas de acidosis láctica: malestar, mialgias, dificultad respiratoria, somnolencia"
+ ],
+ "ant": "Hemodiálisis en acidosis láctica grave.",
+ "pre": "Advertencia de caja negra: acidosis láctica. Suspéndela en hipoxia, sepsis, deshidratación, insuficiencia hepática, y antes de cirugía mayor o contraste yodado en pacientes de riesgo. Los síntomas son vagos (malestar, mialgias, somnolencia). No uses liberación prolongada en niños.",
+ "pres": [
+  "Tabletas 500, 850 y 1.000 mg",
+  "Tabletas de liberación prolongada 500, 750 y 1.000 mg"
+ ],
+ "com": [
+  "Glucophage"
+ ],
+ "pe": [
+  "Se toma con las comidas para mejorar la tolerancia digestiva.",
+  "Los síntomas digestivos suelen mejorar con el tiempo; sube la dosis despacio.",
+  "Si el paciente va a recibir contraste o cirugía, avisa para suspenderla a tiempo."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de metformina clorhidrato tabletas (DailyMed, Remedyrepack Inc., Oct 26, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=bfd6ec0f-8264-4877-aa6d-f347f53bc426",
+   "b": "indicación, dosis en adultos y niños, ajuste renal, contraindicaciones, acidosis láctica, interacciones, embarazo"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "A10BA02"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 41,
+  "np": 412,
+  "pres": [
+   "Tableta de liberacion prolongada 1000 mg",
+   "Tableta de liberacion prolongada 750 mg",
+   "Tableta de liberacion prolongada 500 mg",
+   "Tableta recubierta 850 mg",
+   "Tableta recubierta 500 mg",
+   "Tableta recubierta 850 mg.",
+   "Tableta cubierta con pelicula 1000 mg",
+   "Tableta recubierta 1000 MG",
+   "Tableta recubierta 1000 mg",
+   "Tableta 850 MG",
+   "Tableta cubierta con pelicula 500 mg",
+   "Tableta 850 mg",
+   "Tableta recubierta 1000,06 mg"
+  ],
+  "m": [
+   "Glucophage ® xr750 mg (Merck)",
+   "Wilmetina xr® 750 mg tabletas de liberación prolongada (Brainpharma)",
+   "Wilmetina® 1000 mg tabletas recubiertas (Brainpharma)",
+   "Wilmetina xr®500mg tabletas de liberación prolongada (Brainpharma)",
+   "Wilmetina® 850 mg tabletas recubiertas (Brainpharma)",
+   "Wilmetina xr®1000mg tabletas de liberación prolongada (Brainpharma)",
+   "Metaglicoz® xr 1000mg tabletas de liberación prolongada (Laboratorios Legrand)",
+   "Exelmet® (Exeltis S. A.S)",
+   "Glucophage® xr 1000 mg (Merck)",
+   "G-met® tabletas (Diabetrics Healthcare)",
+   "Metaglicoz ® xr 750 (Laboratorios Legrand)",
+   "Gliformin®850 mg tabletas (Laboratorios Siegfried)"
+  ],
+  "mas": 32,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

@@ -1,1 +1,213 @@
-{"id":"dexametasona","n":"Dexametasona","g":["Dexametasona"],"atc":["H02AB02"],"cl":"Corticoide","mc":"corticoide","us":["inflam","nausea","alergia"],"es":["medint","neurocx","onco","anest","neumo","pediatria"],"via":["iv","vo","im"],"al":[],"et":"«Corticoide» viene de «corteza» (la corteza suprarrenal donde se producen); «dexametasona» = dexa + metasona (metilación en C16).","mech":"Glucocorticoide sintético 25 a 30 veces más potente que el cortisol y sin efecto mineralocorticoide. Se une al receptor intracelular de glucocorticoides, se desplaza al núcleo y regula la transcripción: aumenta genes antiinflamatorios (lipocortina) y reprime genes proinflamatorios (NF-κB). Disminuye edema, inflamación e inmunidad celular. Su vida media biológica es muy larga (36 a 72 h).","pk":{"abs":"Oral >80 %","vm":"3 a 4 h (efecto biológico 36 a 72 h)","met":"Hepático (CYP3A4)","el":"Renal"},"ind":[{"i":"Edema cerebral peritumoral","a":"Bolo de 10 mg IV y luego 4 mg cada 6 h.","p":""},{"i":"Náuseas por quimioterapia y otros usos (según protocolo)","a":"4 a 8 mg IV o VO al día.","p":""},{"i":"Crup","a":"","p":"0,15 a 0,6 mg/kg VO, IM o IV en dosis única (máximo 10 a 16 mg según guía).","k":{"lo":0.15,"hi":0.6,"int":"dosis única","maxd":"10 mg"}}],"aj":{"r":"Sin ajuste.","h":"Sin ajuste.","e":"Es el corticoide para madurez pulmonar fetal (6 mg cada 12 h por 4 dosis).","l":"Compatible.","g":"Mayor riesgo de efectos adversos metabólicos."},"ci":["Infección sistémica no tratada (relativa)","Hipersensibilidad"],"fr":["Hiperglucemia","Insomnio","Irritabilidad","Dispepsia"],"gr":["Inmunosupresión","Úlcera con AINE","Psicosis","Supresión suprarrenal con uso prolongado","Miopatía"],"it":[["AINE","Úlcera/sangrado digestivo"],["Hipoglucemiantes e insulina","Sube la glucemia"],["Inductores de CYP3A4 (fenitoína, rifampicina)","Menor efecto"],["Warfarina","Variación del INR"]],"mon":["Glucemia","Presión arterial y electrolitos","Tiempo total de uso"],"ant":"No hay.","pre":"Hiperglucemia, inmunosupresión, úlcera con AINE.","pres":["Ampolla 4 y 8 mg","Tabletas 0,5 y 4 mg"],"com":[],"pe":["Si el tratamiento dura más de 2 a 3 semanas, no se suspende de golpe (insuficiencia suprarrenal).","Dexametasona preoperatoria 4 a 8 mg disminuye náuseas y mejora la analgesia."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["H02AB02"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":28,"np":167,"pres":["Solucion inyectable 8 mg","Suspension inyectable 2 mg","Suspension inyectable 8 mg","Suspension inyectable 16 mg.","Suspension inyectable 4 mg.","Solucion inyectable 4 mg","Tableta 4 mg","Solucion inyectable 5,25 mg","Tableta 0,75 mg","Tableta 40 mg"],"m":["Duodecadron ® suspensión inyectable 1 ml (Tecnoquimicas)","Acefos duo® suspensión inyectable (Novamed)","Chinoin alin ® solucion inyectable (Productos Farmacéuticos De C.V)","Dexablas ® 8mg /2ml solucion inyectable (Laboratorios Blaskov)","Dexablas® 4mg /ml solucion inyectable (Laboratorios Blaskov)","Dexacort® 8 mg /2 ml (Bioquifar Pharmaceutica)","Dexametasin® inyectable (Cooperativa Nacional De Droguistas Detallistas - Coopidrogas)","Balancort® (Balance Pharma)","Myecort® 40 (Genyx)","Duo-decadron suspension inyectable por 2ml (Tecnoquimicas)","Decadron 8 mg/2 ml inyectable (Tecnoquimicas)","Dexametasonafosfato4 mg/ml solucion inyectable (Vitalis C.I)"],"mas":15,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "dexametasona",
+ "n": "Dexametasona",
+ "g": [
+  "Dexametasona"
+ ],
+ "atc": [
+  "H02AB02"
+ ],
+ "cl": "Corticoide",
+ "mc": "corticoide",
+ "us": [
+  "inflam",
+  "nausea",
+  "alergia"
+ ],
+ "es": [
+  "medint",
+  "neurocx",
+  "onco",
+  "anest",
+  "neumo",
+  "pediatria"
+ ],
+ "via": [
+  "iv",
+  "vo",
+  "im"
+ ],
+ "al": [],
+ "et": "«Corticoide» viene de «corteza» (la corteza suprarrenal donde se producen); «dexametasona» = dexa + metasona (metilación en C16).",
+ "mech": "Glucocorticoide sintético 25 a 30 veces más potente que el cortisol y sin efecto mineralocorticoide. Se une al receptor intracelular de glucocorticoides, se desplaza al núcleo y regula la transcripción: aumenta genes antiinflamatorios (lipocortina) y reprime genes proinflamatorios (NF-κB). Disminuye edema, inflamación e inmunidad celular. Su vida media biológica es muy larga (36 a 72 h).",
+ "pk": {
+  "abs": "Oral rápida y casi completa (otras fuentes)",
+  "vm": "3 a 4 h en plasma; efecto biológico 36 a 72 h (otras fuentes)",
+  "met": "Hepático (CYP3A4)",
+  "el": "Renal, como metabolitos"
+ },
+ "ind": [
+  {
+   "i": "Edema cerebral por tumor, craneotomía o traumatismo craneal",
+   "a": "Dexametasona fosfato: 10 mg IV al inicio y luego 4 mg IM cada 6 h hasta que cedan los síntomas. La respuesta se nota en 12 a 24 h; la dosis puede bajar a los 2 a 4 días y retirarse en 5 a 7 días. Tumor cerebral recurrente o inoperable (paliativo): 2 mg dos o tres veces al día, VO o inyectable.",
+   "p": "Etiqueta: dosis inicial pediátrica de 0,02 a 0,3 mg/kg al día en tres o cuatro dosis (0,6 a 9 mg/m² al día), según la enfermedad."
+  },
+  {
+   "i": "Exacerbación aguda de esclerosis múltiple",
+   "a": "30 mg al día durante una semana y luego 4 a 12 mg en días alternos durante un mes.",
+   "p": "—"
+  },
+  {
+   "i": "Estados alérgicos agudos y autolimitados",
+   "a": "Día 1: 1 a 2 mL de fosfato (4 mg/mL) IM; día 2 y 3: 4 tabletas de 0,75 mg al día en dos tomas; día 4: 2 tabletas; día 5 y 6: 1 tableta; día 7 sin tratamiento.",
+   "p": "—"
+  },
+  {
+   "i": "Dosis oral general (enfermedades inflamatorias, endocrinas, hematológicas, reumatológicas)",
+   "a": "Inicio de 0,75 a 9 mg al día según la enfermedad; luego baja de a poco a la dosis mínima eficaz. Si el tratamiento fue largo, retira de forma gradual.",
+   "p": "0,02 a 0,3 mg/kg al día en tres o cuatro dosis (etiqueta)."
+  },
+  {
+   "i": "Crup (laringotraqueítis) (uso habitual, no figura en la etiqueta)",
+   "a": "—",
+   "p": "Dosis única de 0,15 a 0,6 mg/kg VO, IM o IV (máximo 10 a 16 mg según la guía) (otras fuentes; no contrastado aquí).",
+   "k": {
+    "lo": 0.15,
+    "hi": 0.6,
+    "int": "en dosis única (crup; otras fuentes)",
+    "maxd": "10 mg"
+   }
+  },
+  {
+   "i": "Náuseas por quimioterapia y náuseas y vómito posoperatorios (uso habitual, no figura en la etiqueta)",
+   "a": "4 a 8 mg IV o VO (otras fuentes; no contrastado aquí).",
+   "p": "—"
+  },
+  {
+   "i": "Maduración pulmonar fetal (uso obstétrico, no figura en la etiqueta)",
+   "a": "6 mg IM cada 12 h por 4 dosis (otras fuentes; no contrastado aquí).",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste en la etiqueta.",
+  "h": "Sin ajuste en la etiqueta; el efecto puede ser mayor en hipoalbuminemia (otras fuentes).",
+  "e": "Los corticoides fueron teratógenos en animales (paladar hendido). Úsalo solo si el beneficio justifica el riesgo. Los hijos de madres tratadas durante el embarazo deben vigilarse por hipoadrenalismo.",
+  "l": "Los corticoides sistémicos pasan a la leche y pueden frenar el crecimiento del lactante; decide entre suspender la lactancia o el fármaco.",
+  "g": "Mayor riesgo de efectos adversos metabólicos, óseos y de infección (otras fuentes); usa la dosis mínima."
+ },
+ "ci": [
+  "Infecciones fúngicas sistémicas",
+  "Hipersensibilidad a algún componente"
+ ],
+ "fr": [
+  "Retención de líquido y sodio, hipopotasemia",
+  "Hiperglucemia",
+  "Hipertensión",
+  "Insomnio, cambios del ánimo",
+  "Dispepsia",
+  "Debilidad muscular (miopatía)"
+ ],
+ "gr": [
+  "Úlcera péptica con hemorragia o perforación",
+  "Supresión suprarrenal con insuficiencia al retirar de golpe",
+  "Infecciones oportunistas o enmascaramiento de infecciones",
+  "Psicosis y trastornos del ánimo",
+  "Osteoporosis y fracturas",
+  "Catarata y glaucoma",
+  "Anafilaxia (raro)"
+ ],
+ "it": [
+  [
+   "AINE y aspirina",
+   "Más úlcera y sangrado digestivo; la aspirina puede ser menos eficaz si se retira el corticoide"
+  ],
+  [
+   "Antidiabéticos e insulina",
+   "Suben la glucemia; ajusta la dosis"
+  ],
+  [
+   "Inductores de CYP3A4 (fenitoína, fenobarbital, carbamazepina, rifampicina)",
+   "Bajan el efecto del corticoide"
+  ],
+  [
+   "Macrólidos, ketoconazol, itraconazol",
+   "Menor depuración del corticoide; más efecto"
+  ],
+  [
+   "Warfarina",
+   "Respuesta variable; controla el INR con frecuencia"
+  ],
+  [
+   "Anfotericina B y diuréticos que pierden potasio",
+   "Hipopotasemia; vigila"
+  ],
+  [
+   "Anticolinesterásicos",
+   "Debilidad grave en miastenia gravis"
+  ],
+  [
+   "Vacunas de virus vivos",
+   "Evita con dosis inmunosupresoras"
+  ]
+ ],
+ "mon": [
+  "Glucemia",
+  "Presión arterial, peso y edema",
+  "Potasio y sodio",
+  "Tiempo total de uso: no retires de golpe tras uso largo",
+  "Signos de infección"
+ ],
+ "ant": "No hay.",
+ "pre": "Hiperglucemia, inmunosupresión y riesgo de úlcera con AINE. Tras tratamientos largos no se suspende de golpe (insuficiencia suprarrenal). Equivalencias orales o IV: dexametasona 0,75 mg = prednisona 5 mg = hidrocortisona 20 mg = prednisolona 5 mg = metilprednisolona 4 mg; no valen para inyección IM o intraarticular.",
+ "pres": [
+  "Ampolla 4 y 8 mg",
+  "Tabletas 0,5, 0,75 y 4 mg"
+ ],
+ "com": [],
+ "pe": [
+  "Dexametasona preoperatoria 4 a 8 mg reduce náuseas y mejora la analgesia (otras fuentes).",
+  "Para insuficiencia suprarrenal, la etiqueta dice que de elección es hidrocortisona o cortisona.",
+  "Vigila la glucemia aunque la dosis sea única en un diabético."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de dexametasona tabletas (DailyMed, Pd-Rx Pharmaceuticals, Inc., Oct 26, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=62b1cf42-c53a-40fa-a39c-fa5d90dc065a",
+   "b": "indicaciones, dosis oral, edema cerebral, esclerosis múltiple, pediatría, equivalencias, interacciones, embarazo"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "H02AB02"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 28,
+  "np": 167,
+  "pres": [
+   "Solucion inyectable 8 mg",
+   "Suspension inyectable 2 mg",
+   "Suspension inyectable 8 mg",
+   "Suspension inyectable 16 mg.",
+   "Suspension inyectable 4 mg.",
+   "Solucion inyectable 4 mg",
+   "Tableta 4 mg",
+   "Solucion inyectable 5,25 mg",
+   "Tableta 0,75 mg",
+   "Tableta 40 mg"
+  ],
+  "m": [
+   "Duodecadron ® suspensión inyectable 1 ml (Tecnoquimicas)",
+   "Acefos duo® suspensión inyectable (Novamed)",
+   "Chinoin alin ® solucion inyectable (Productos Farmacéuticos De C.V)",
+   "Dexablas ® 8mg /2ml solucion inyectable (Laboratorios Blaskov)",
+   "Dexablas® 4mg /ml solucion inyectable (Laboratorios Blaskov)",
+   "Dexacort® 8 mg /2 ml (Bioquifar Pharmaceutica)",
+   "Dexametasin® inyectable (Cooperativa Nacional De Droguistas Detallistas - Coopidrogas)",
+   "Balancort® (Balance Pharma)",
+   "Myecort® 40 (Genyx)",
+   "Duo-decadron suspension inyectable por 2ml (Tecnoquimicas)",
+   "Decadron 8 mg/2 ml inyectable (Tecnoquimicas)",
+   "Dexametasonafosfato4 mg/ml solucion inyectable (Vitalis C.I)"
+  ],
+  "mas": 15,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

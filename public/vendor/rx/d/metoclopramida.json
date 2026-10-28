@@ -1,1 +1,206 @@
-{"id":"metoclopramida","n":"Metoclopramida","g":["Metoclopramida","Plasil","Primperan"],"atc":["A03FA01"],"cl":"Procinético / antiemético","mc":"d2","us":["nausea","reflujo"],"es":["cirugia","gastro","medint","neuro"],"via":["vo","iv","im"],"al":["ajuste_renal"],"et":"«Metoclopramida» viene de metoxi-cloro-procainamida, por su relación con la procainamida.","mech":"Antagonista del receptor dopaminérgico D2, tanto en la zona gatillo del vómito como en el tubo digestivo (donde la dopamina frena la motilidad), y además agonista 5-HT4. Con eso acelera el vaciamiento gástrico y aumenta el tono del esfínter esofágico inferior, además de actuar como antiemético. Al bloquear D2 en el cerebro puede producir síntomas extrapiramidales.","pk":{"abs":"Oral rápida","vm":"5 a 6 h","met":"Hepático (CYP2D6)","el":"Renal"},"ind":[{"i":"Náuseas, vómito y gastroparesia","a":"10 mg IV o VO cada 8 h.","p":"0,1 a 0,15 mg/kg por dosis cada 8 h; uso restringido en lactantes (verificar)."}],"aj":{"r":"Reducir 50 % con depuración <40 mL/min.","h":"Reducir dosis en cirrosis.","e":"Compatible en uso corto.","l":"Pasa a la leche; evitar uso prolongado.","g":"Dosis menor; mayor riesgo extrapiramidal."},"ci":["Obstrucción o perforación gastrointestinal","Feocromocitoma","Epilepsia","Hemorragia gastrointestinal activa (según contexto)"],"fr":["Somnolencia","Inquietud","Diarrea"],"gr":["Distonía aguda y acatisia","Discinesia tardía con uso prolongado","Síndrome neuroléptico maligno"],"it":[["Antipsicóticos y otros bloqueadores D2","Más síntomas extrapiramidales"],["Anticolinérgicos y opioides","Contrarrestan su efecto procinético"],["Inhibidores de CYP2D6","Más niveles"]],"mon":["Movimientos anormales o rigidez","Función renal en ajuste"],"ant":"Biperideno o difenhidramina para la distonía aguda.","pre":"Riesgo de reacciones extrapiramidales; ajustar en insuficiencia renal. No usar en obstrucción mecánica.","pres":["Ampolla 10 mg/2 mL","Tabletas 10 mg","Gotas"],"com":["Plasil","Primperan"],"pe":["Máximo 5 días por el riesgo de discinesia tardía (alerta de las agencias reguladoras)."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["A03FA01"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":22,"np":107,"pres":["Solucion inyectable 10 mg","Tableta 10 mg","Solucion oral 4 mg","Tableta 10 mg.","Suspension oral 500 mg","Suspension oral 100 mg"],"m":["Digespar®10mg tabletas (Novamed)","Plasil® inyectable (Laboratorios Bussie)","Plasil®10 mg. (Laboratorios Bussie)","Reflufin® plus suspension (Farmaser)","Bonadoxina®4mg/ml (Global International Medicine Gimed)","Metoclopramida 10 mg/2ml solucion inyectable (Productora De Capsulas De Gelatina . Procaps)","Metoclopramida 10 mg tabletas (Laboratorio Internacional De Colombia Labinco)","Metoclopramida 10mg /2ml (Laboratorio Biosano)","Metoclopramida 10mg/2ml (Laboratorios Ryan De Colombia)","Metoclopramida 10mg/2ml solucion inyectable (Genfar)","Metoclopramida 10 mg/2 ml (Vitalis C.I)","Metoclopramida10 mg (Laboratorio Profesional Farmaceutico - Laboratorios Laproff)"],"mas":8,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "metoclopramida",
+ "n": "Metoclopramida",
+ "g": [
+  "Metoclopramida",
+  "Plasil",
+  "Primperan"
+ ],
+ "atc": [
+  "A03FA01"
+ ],
+ "cl": "Procinético / antiemético",
+ "mc": "d2",
+ "us": [
+  "nausea",
+  "reflujo"
+ ],
+ "es": [
+  "cirugia",
+  "gastro",
+  "medint",
+  "neuro"
+ ],
+ "via": [
+  "vo",
+  "iv",
+  "im"
+ ],
+ "al": [
+  "ajuste_renal"
+ ],
+ "et": "«Metoclopramida» viene de metoxi-cloro-procainamida, por su relación con la procainamida.",
+ "mech": "Antagonista del receptor dopaminérgico D2, tanto en la zona gatillo del vómito como en el tubo digestivo (donde la dopamina frena la motilidad), y además agonista 5-HT4. Con eso acelera el vaciamiento gástrico y aumenta el tono del esfínter esofágico inferior, además de actuar como antiemético. Al bloquear D2 en el cerebro puede producir síntomas extrapiramidales.",
+ "pk": {
+  "abs": "Oral rápida, biodisponibilidad ≈80 %; pico a 1 a 2 h",
+  "vm": "5 a 6 h (más larga en insuficiencia renal)",
+  "met": "Hepático (CYP2D6, entre otros)",
+  "el": "Renal, ≈85 % de la dosis en 72 h entre libre y conjugada"
+ },
+ "ind": [
+  {
+   "i": "Gastroparesia diabética aguda o recurrente",
+   "a": "Inyectable si los síntomas son graves: 10 mg IM o IV en 1 a 2 min, hasta 10 días, y luego pasa a la vía oral. Oral: 10 mg cuatro veces al día, 30 min antes de cada comida y al acostarse (máximo 40 mg al día). Evita tratarlo más de 12 semanas.",
+   "p": "No recomendado en niños por el riesgo de discinesia tardía y otros síntomas extrapiramidales (etiqueta oral)."
+  },
+  {
+   "i": "Reflujo gastroesofágico sintomático documentado que no responde al tratamiento convencional (solo vía oral)",
+   "a": "10 a 15 mg VO cuatro veces al día, 30 min antes de cada comida y al acostarse (máximo 60 mg al día) durante 4 a 12 semanas. Intermitente: dosis única de hasta 20 mg antes de la situación que provoca el síntoma.",
+   "p": "—"
+  },
+  {
+   "i": "Prevención de vómito por quimioterapia emetógena",
+   "a": "Inyectable: 2 mg/kg (muy emetógena, por ejemplo cisplatino) o 1 mg/kg (menos emetógena) en infusión IV de al menos 15 min, 30 min antes, repetida cada 2 h por dos dosis y luego cada 3 h por tres dosis. Si la dosis pasa de 10 mg, diluye en 50 mL, de preferencia solución salina.",
+   "p": "—"
+  },
+  {
+   "i": "Prevención de náuseas y vómito posoperatorios",
+   "a": "10 o 20 mg IM en dosis única cerca del final de la cirugía.",
+   "p": "—"
+  },
+  {
+   "i": "Ayuda para pasar la sonda de intubación del intestino delgado",
+   "a": "Dosis IV única sin diluir en 1 a 2 min si la sonda no pasa el píloro tras 10 min: mayores de 14 años, 10 mg.",
+   "p": "6 a 14 años, 2,5 a 5 mg; menores de 6 años, 0,1 mg/kg (dosis única).",
+   "k": {
+    "lo": 0.1,
+    "hi": 0.1,
+    "int": "IV única, solo menores de 6 años (intubación del intestino delgado)",
+    "maxd": "10 mg"
+   }
+  },
+  {
+   "i": "Náuseas y vómito en urgencias (uso habitual, no figura en la etiqueta)",
+   "a": "10 mg IV o VO cada 8 h (otras fuentes; no contrastado aquí).",
+   "p": "No se recomienda por los efectos extrapiramidales; si se usa, 0,1 a 0,15 mg/kg por dosis (otras fuentes; no contrastado aquí)."
+  }
+ ],
+ "aj": {
+  "r": "Depuración de creatinina ≤ 60 mL/min con más de una dosis: la mitad de la dosis; en enfermedad renal terminal (incluye diálisis): un cuarto de la dosis (inyectable). Vía oral en reflujo y gastroparesia: 5 mg cuatro veces al día o 10 mg dos veces al día, máximo 20 mg al día.",
+  "h": "Child-Pugh A: sin ajuste en la forma inyectable (la oral pide 5 mg cuatro veces al día). Child-Pugh B o C: la mitad de la dosis. Vía oral en B o C: 5 mg cuatro veces al día o 10 mg tres veces al día, máximo 30 mg al día.",
+  "e": "Los estudios publicados no muestran más resultados adversos del embarazo. Si se usa cerca del parto, vigila al neonato por síntomas extrapiramidales y metahemoglobinemia.",
+  "l": "Pasa a la leche en cantidades variables; los lactantes tuvieron molestias intestinales y gas. Vigila signos extrapiramidales y metahemoglobinemia. Pondera los beneficios de amamantar.",
+  "g": "Mayor sensibilidad a efectos adversos y a la discinesia tardía; vía oral: 5 mg cuatro veces al día al inicio y titula."
+ },
+ "ci": [
+  "Antecedente de discinesia tardía o de reacción distónica a la metoclopramida",
+  "Cuando estimular la motilidad pueda ser peligroso: hemorragia digestiva, obstrucción mecánica o perforación",
+  "Feocromocitoma u otros paragangliomas que liberan catecolaminas (crisis hipertensiva)",
+  "Epilepsia (aumenta la frecuencia y gravedad de las convulsiones)",
+  "Hipersensibilidad a la metoclopramida (angioedema, broncoespasmo)"
+ ],
+ "fr": [
+  "Inquietud, somnolencia, fatiga",
+  "Insomnio, cefalea, mareo",
+  "Náuseas, diarrea",
+  "Depresión"
+ ],
+ "gr": [
+  "Discinesia tardía, a veces irreversible (advertencia de caja negra)",
+  "Reacciones distónicas agudas",
+  "Síndrome neuroléptico maligno",
+  "Depresión e ideación suicida",
+  "Hipertensión",
+  "Metahemoglobinemia en neonatos",
+  "Hiperprolactinemia"
+ ],
+ "it": [
+  [
+   "Antipsicóticos (haloperidol y otros)",
+   "Evita: suman discinesia tardía, síntomas extrapiramidales y síndrome neuroléptico maligno"
+  ],
+  [
+   "Depresores del SNC (alcohol, sedantes, opioides)",
+   "Más depresión del SNC; evita o vigila"
+  ],
+  [
+   "Inhibidores potentes de CYP2D6 (fluoxetina, paroxetina, bupropión, quinidina)",
+   "Suben la exposición; reduce la dosis (oral: 5 mg cuatro veces al día)"
+  ],
+  [
+   "Inhibidores de la MAO",
+   "Más riesgo de hipertensión; evita"
+  ],
+  [
+   "Anticolinérgicos y opioides",
+   "Pueden contrarrestar el efecto sobre la motilidad (otras fuentes)"
+  ],
+  [
+   "Levodopa y agonistas dopaminérgicos",
+   "Efectos opuestos (otras fuentes)"
+  ]
+ ],
+ "mon": [
+  "Movimientos anormales de cara, lengua o extremidades y rigidez",
+  "Función renal y hepática para ajustar",
+  "Estado de ánimo (depresión)",
+  "Duración total del tratamiento (no más de 12 semanas)"
+ ],
+ "ant": "Biperideno o difenhidramina para la distonía aguda.",
+ "pre": "Advertencia de caja negra: discinesia tardía, a veces irreversible, que crece con la duración y la dosis acumulada. Usa el menor tiempo posible y suspende ante cualquier movimiento anormal. En obstrucción, perforación o hemorragia digestiva, no. Reduce la dosis en insuficiencia renal, hepática y en ancianos. Si hay reacción distónica aguda, la etiqueta indica difenhidramina IM.",
+ "pres": [
+  "Ampolla 10 mg/2 mL (5 mg/mL)",
+  "Tabletas 5 y 10 mg",
+  "Solución oral y gotas"
+ ],
+ "com": [
+  "Plasil",
+  "Primperan"
+ ],
+ "pe": [
+  "Máximo 12 semanas, sin excepción; en gastroparesia, evita superar 12 semanas en total.",
+  "Inyecta lento (1 a 2 min): la inyección rápida produce inquietud intensa (acatisia).",
+  "Se usa mucho en urgencias, pero en menores de edad la etiqueta recomienda evitarlo."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de metoclopramida inyectable (DailyMed, Baxter Healthcare Corporation, Sep 28, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=f6efdc63-a9df-4bbd-acf8-75fc9d1b0347",
+   "b": "dosis IV/IM, ajuste renal y hepático, contraindicaciones, pediatría, embarazo"
+  },
+  {
+   "t": "Etiqueta de metoclopramida tabletas (DailyMed, Ani Pharmaceuticals, Inc., May 18, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=797aad80-0597-42f8-99d5-39de180c3b5a",
+   "b": "dosis oral, tope diario, ajustes, advertencia de discinesia tardía"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "A03FA01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 22,
+  "np": 107,
+  "pres": [
+   "Solucion inyectable 10 mg",
+   "Tableta 10 mg",
+   "Solucion oral 4 mg",
+   "Tableta 10 mg.",
+   "Suspension oral 500 mg",
+   "Suspension oral 100 mg"
+  ],
+  "m": [
+   "Digespar®10mg tabletas (Novamed)",
+   "Plasil® inyectable (Laboratorios Bussie)",
+   "Plasil®10 mg. (Laboratorios Bussie)",
+   "Reflufin® plus suspension (Farmaser)",
+   "Bonadoxina®4mg/ml (Global International Medicine Gimed)",
+   "Metoclopramida 10 mg/2ml solucion inyectable (Productora De Capsulas De Gelatina . Procaps)",
+   "Metoclopramida 10 mg tabletas (Laboratorio Internacional De Colombia Labinco)",
+   "Metoclopramida 10mg /2ml (Laboratorio Biosano)",
+   "Metoclopramida 10mg/2ml (Laboratorios Ryan De Colombia)",
+   "Metoclopramida 10mg/2ml solucion inyectable (Genfar)",
+   "Metoclopramida 10 mg/2 ml (Vitalis C.I)",
+   "Metoclopramida10 mg (Laboratorio Profesional Farmaceutico - Laboratorios Laproff)"
+  ],
+  "mas": 8,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

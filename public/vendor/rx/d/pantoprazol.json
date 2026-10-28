@@ -1,1 +1,192 @@
-{"id":"pantoprazol","n":"Pantoprazol","g":["Pantoprazol","Pantoloc","Protonix"],"atc":["A02BC02"],"cl":"Inhibidor de la bomba de protones","mc":"ibp","us":["reflujo"],"es":["cirugia","medint","gastro","uci"],"via":["vo","iv"],"al":[],"et":"Mismo sufijo «-prazol» de los inhibidores de la bomba de protones.","mech":"Igual que el omeprazol: profármaco que se activa en medio ácido y se une de forma covalente a la H⁺/K⁺-ATPasa de la célula parietal. Tiene menos interacciones porque su metabolismo por CYP2C19 es menos importante, y por eso es el IBP preferido con clopidogrel.","pk":{"abs":"Oral con cubierta entérica","vm":"≈1 h (efecto de 24 h o más)","met":"Hepático (CYP2C19, luego conjugación)","el":"Renal"},"ind":[{"i":"Gastroprotección y úlcera","a":"40 mg VO o IV una vez al día.","p":"1 mg/kg una vez al día (verificar según edad)."},{"i":"Hemorragia digestiva alta (según protocolo)","a":"80 mg IV en bolo y luego 40 mg IV cada 12 h; algunos protocolos usan infusión continua.","p":""}],"aj":{"r":"Sin ajuste.","h":"Máximo 20 mg/día en hepatopatía grave.","e":"Datos limitados; aceptable si es necesario.","l":"Probablemente compatible.","g":"Sin ajuste."},"ci":["Hipersensibilidad a IBP"],"fr":["Cefalea","Diarrea","Náuseas"],"gr":["Hipomagnesemia","Déficit de B12","Nefritis intersticial","Infección por C. difficile"],"it":[["Metotrexato","Sube sus niveles"],["Levotiroxina, hierro","Menor absorción"]],"mon":["Magnesio y B12 en uso prolongado"],"ant":"No hay.","pre":"Igual que el omeprazol.","pres":["Tabletas 20 y 40 mg","Vial IV 40 mg"],"com":["Pantoloc","Protonix"],"pe":["El vial IV se pasa en 2 a 15 min o en infusión; la IV continua se usa en sangrado digestivo alto."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["A02BC02"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":23,"np":182,"pres":["Tableta con cubierta enterica con pelicula 40 mg","Tableta con cubierta enterica con pelicula 20 mg","Tableta de liberacion retardada 40 mg","Capsula de liberacion prolongada 40 mg","Tableta con cubierta enterica(gragea) 20 mg","Tableta con cubierta enterica con pelicula 20 mg.","Tableta con recubrimiento entérico 20 mg","Tableta cubierta con pelicula 40 mg","Polvo esteril para reconstituir a solucion inyectable 40 mg","Tableta con cubierta enterica(gragea) 40 mg","Tableta con cubierta enterica(gragea) 45,1 mg","Tableta recubierta 40 mg","Tableta de liberacion retardada 20 mg","Tableta con recubrimiento entérico 40 mg"],"m":["Segregam® 40 mg comprimidos con cubierta enterica (Monte Verde)","Gastropanto® 40 mg capsulas (Especialistas Farmaceuticos)","Zurcal ® 20 mggrageas (Monte Verde)","Pantoprax® 20 mg tabletas recubiertas (Megalabs Colombia)","Zurcal ® i.v. polvo liofilizado para solucion inyectable (Monte Verde)","Zurcal® (Monte Verde)","Pantocal® (Eurofarma Colombia)","Panto-denk® 20 mg (Denk Pharmagmbh& Co. Kg)","Tecta® 40 mg tabletas (Monte Verde)","Zolpant® 20 mgtableta gastroresistente (Hetero Labs)","Zolpant® 40 mg tableta gastroresistente (Hetero Labs)","Zolem® (Tecnoquimicas)"],"mas":9,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "pantoprazol",
+ "n": "Pantoprazol",
+ "g": [
+  "Pantoprazol",
+  "Pantoloc",
+  "Protonix"
+ ],
+ "atc": [
+  "A02BC02"
+ ],
+ "cl": "Inhibidor de la bomba de protones",
+ "mc": "ibp",
+ "us": [
+  "reflujo"
+ ],
+ "es": [
+  "cirugia",
+  "medint",
+  "gastro",
+  "uci"
+ ],
+ "via": [
+  "vo",
+  "iv"
+ ],
+ "al": [],
+ "et": "Mismo sufijo «-prazol» de los inhibidores de la bomba de protones.",
+ "mech": "Igual que el omeprazol: profármaco que se activa en medio ácido y se une de forma covalente a la H⁺/K⁺-ATPasa de la célula parietal. Tiene menos interacciones porque su metabolismo por CYP2C19 es menos importante, y por eso es el IBP preferido con clopidogrel.",
+ "pk": {
+  "abs": "Oral con cubierta entérica: la absorción comienza al salir del estómago; la Cmax y el AUC suben de forma proporcional a la dosis",
+  "vm": "≈1 h (7 a 9 h en cirrosis); el efecto dura 24 h o más",
+  "met": "Hepático (CYP2C19, luego conjugación)",
+  "el": "Renal ≈71 % como metabolitos (otras fuentes)"
+ },
+ "ind": [
+  {
+   "i": "Esofagitis erosiva asociada a reflujo (tratamiento y mantenimiento)",
+   "a": "40 mg VO una vez al día hasta 8 semanas; si no cicatriza, otras 8 semanas. Mantenimiento: 40 mg una vez al día (estudios hasta 12 meses). IV (si no tolera la vía oral, hasta 10 días): 40 mg una vez al día en inyección IV de al menos 2 min o infusión de 15 min.",
+   "p": "5 años o más: 15 a menos de 40 kg, 20 mg VO una vez al día; 40 kg o más, 40 mg VO una vez al día (hasta 8 semanas). IV desde los 3 meses, infusión de 15 min una vez al día por hasta 7 días: menos de 1 año y menos de 12,5 kg, 0,8 mg/kg; 12,5 kg o más, 10 mg; 1 a 17 años: hasta 15 kg, 10 mg; más de 15 y hasta 40 kg, 20 mg; más de 40 kg, 40 mg."
+  },
+  {
+   "i": "Hipersecreción patológica, incluido Zollinger-Ellison",
+   "a": "40 mg VO dos veces al día (se han usado hasta 240 mg al día). IV: 80 mg cada 12 h en inyección de al menos 2 min o infusión de 15 min.",
+   "p": "—"
+  },
+  {
+   "i": "Hemorragia digestiva alta (uso habitual; la etiqueta de la FDA dice que su eficacia no está establecida)",
+   "a": "80 mg IV en bolo y luego 40 mg IV cada 12 h, o infusión continua (otras fuentes; no contrastado aquí).",
+   "p": "—"
+  },
+  {
+   "i": "Gastroprotección en paciente hospitalizado (uso habitual)",
+   "a": "40 mg VO o IV una vez al día (otras fuentes; no contrastado aquí).",
+   "p": "1 mg/kg una vez al día según edad (otras fuentes; no contrastado aquí)."
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste en la etiqueta.",
+  "h": "En cirrosis la vida media sube a 7 a 9 h y el AUC 5 a 7 veces; no se recomienda superar 40 mg al día en hepatopatía grave (reduce la dosis).",
+  "e": "Los estudios observacionales no mostraron asociación con malformaciones mayores ni resultados adversos del embarazo; en animales no hubo daño del desarrollo.",
+  "l": "Se detectó en leche tras una dosis única de 40 mg, sin efectos en el lactante. Pondera los beneficios de amamantar.",
+  "g": "Sin ajuste de dosis; sin diferencias de eficacia en ≥65 años."
+ },
+ "ci": [
+  "Hipersensibilidad al pantoprazol, a un bencimidazol sustituido o a la formulación (anafilaxia, angioedema, broncoespasmo, nefritis tubulointersticial)",
+  "Uso con productos con rilpivirina"
+ ],
+ "fr": [
+  "Cefalea",
+  "Diarrea",
+  "Náuseas, dolor abdominal, flatulencia",
+  "Mareo",
+  "Artralgias",
+  "Flebitis en el sitio de infusión (IV)"
+ ],
+ "gr": [
+  "Nefritis tubulointersticial aguda",
+  "Diarrea por Clostridioides difficile",
+  "Fracturas con uso prolongado",
+  "Lupus cutáneo y sistémico",
+  "Deficiencia de vitamina B12",
+  "Hipomagnesemia",
+  "Pólipos de glándulas fúndicas"
+ ],
+ "it": [
+  [
+   "Rilpivirina",
+   "Contraindicado"
+  ],
+  [
+   "Atazanavir y nelfinavir",
+   "Menor exposición del antirretroviral; evitar; saquinavir sube de exposición"
+  ],
+  [
+   "Metotrexato (dosis altas)",
+   "Sube sus niveles; considera suspender el IBP"
+  ],
+  [
+   "Warfarina",
+   "Puede subir el INR: monitorea"
+  ],
+  [
+   "Hierro, ketoconazol, levotiroxina",
+   "Menor absorción por menos acidez (otras fuentes)"
+  ],
+  [
+   "Cromogranina A (diagnóstico)",
+   "Falso positivo: suspende el IBP antes"
+  ]
+ ],
+ "mon": [
+  "Magnesio y vitamina B12 si el uso es prolongado",
+  "Creatinina si hay sospecha de nefritis",
+  "Diarrea persistente",
+  "Duración: la forma IV se limita a 10 días en adultos y 7 días en niños"
+ ],
+ "ant": "No hay.",
+ "pre": "Interactúa menos con el clopidogrel que el omeprazol. Los síntomas de respuesta no descartan malignidad gástrica. Pasa a la vía oral en cuanto pueda tragar (la forma IV hasta 10 días en adultos). Compatibilidad: según la etiqueta IV, reconstituye y no mezcles con otros fármacos en la misma línea.",
+ "pres": [
+  "Tabletas de liberación retardada 20 y 40 mg",
+  "Vial IV 40 mg"
+ ],
+ "com": [
+  "Pantoloc",
+  "Protonix"
+ ],
+ "pe": [
+  "El bolo de 80 mg y luego 40 mg cada 12 h para hemorragia digestiva alta no figura en la etiqueta: sigue el protocolo local.",
+  "No partas ni tritures las tabletas de liberación retardada.",
+  "Se puede tomar con o sin comida."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de pantoprazol sódico (tabletas e inyectable) (DailyMed, Cardinal Health 107, Llc, Oct 19, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=410d5577-e50a-44f3-aaa8-fbf391a0c261",
+   "b": "dosis oral e IV en adultos y niños, contraindicaciones, interacciones, embarazo, lactancia, hemorragia digestiva"
+  },
+  {
+   "t": "Etiqueta de pantoprazol IV (Protonix I.V.) (DailyMed, Cardinal Health 107, Llc, Apr 06, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=50802e19-72d3-4130-8d14-eb94361b38e7",
+   "b": "dosis IV, indicaciones y límites de uso"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "A02BC02"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 23,
+  "np": 182,
+  "pres": [
+   "Tableta con cubierta enterica con pelicula 40 mg",
+   "Tableta con cubierta enterica con pelicula 20 mg",
+   "Tableta de liberacion retardada 40 mg",
+   "Capsula de liberacion prolongada 40 mg",
+   "Tableta con cubierta enterica(gragea) 20 mg",
+   "Tableta con cubierta enterica con pelicula 20 mg.",
+   "Tableta con recubrimiento entérico 20 mg",
+   "Tableta cubierta con pelicula 40 mg",
+   "Polvo esteril para reconstituir a solucion inyectable 40 mg",
+   "Tableta con cubierta enterica(gragea) 40 mg",
+   "Tableta con cubierta enterica(gragea) 45,1 mg",
+   "Tableta recubierta 40 mg",
+   "Tableta de liberacion retardada 20 mg",
+   "Tableta con recubrimiento entérico 40 mg"
+  ],
+  "m": [
+   "Segregam® 40 mg comprimidos con cubierta enterica (Monte Verde)",
+   "Gastropanto® 40 mg capsulas (Especialistas Farmaceuticos)",
+   "Zurcal ® 20 mggrageas (Monte Verde)",
+   "Pantoprax® 20 mg tabletas recubiertas (Megalabs Colombia)",
+   "Zurcal ® i.v. polvo liofilizado para solucion inyectable (Monte Verde)",
+   "Zurcal® (Monte Verde)",
+   "Pantocal® (Eurofarma Colombia)",
+   "Panto-denk® 20 mg (Denk Pharmagmbh& Co. Kg)",
+   "Tecta® 40 mg tabletas (Monte Verde)",
+   "Zolpant® 20 mgtableta gastroresistente (Hetero Labs)",
+   "Zolpant® 40 mg tableta gastroresistente (Hetero Labs)",
+   "Zolem® (Tecnoquimicas)"
+  ],
+  "mas": 9,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

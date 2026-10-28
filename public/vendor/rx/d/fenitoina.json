@@ -1,1 +1,177 @@
-{"id":"fenitoina","n":"Fenitoína","g":["Fenitoína","Epamin","Dilantin"],"atc":["N03AB02"],"cl":"Anticonvulsivante","mc":"canal_na","us":["conv"],"es":["neuro","neurocx","uci","medint"],"via":["iv","vo"],"al":["cyp","alto_riesgo","hepatotox","emb_evitar","ajuste_renal"],"mech":"Bloquea los canales de sodio dependientes de voltaje en estado inactivo, lo que impide que la neurona dispare de manera repetida y rápida (bloqueo dependiente de uso). Frena la propagación de la descarga epiléptica sin sedar. Tiene cinética de saturación: a dosis terapéuticas altas el metabolismo se satura y pequeños aumentos de dosis disparan los niveles (cinética de orden cero).","pk":{"abs":"Oral variable; IM errática","vm":"7 a 42 h (dependiente de la dosis)","met":"Hepático (CYP2C9 y 2C19), saturable","el":"Renal (metabolitos)"},"ind":[{"i":"Estatus epiléptico y profilaxis","a":"Carga de 15 a 20 mg/kg IV a no más de 50 mg/min y mantenimiento de 5 a 7 mg/kg al día. Monitorizar ritmo y presión.","p":"Carga de 15 a 20 mg/kg IV a no más de 1 mg/kg/min; mantenimiento 5 a 8 mg/kg al día."}],"aj":{"r":"Sin ajuste de dosis, pero cuidado con la unión a proteínas (hipoalbuminemia): interpretar el nivel corregido.","h":"Reducir dosis; ajustar por niveles.","e":"Teratógena (síndrome de hidantoína fetal).","l":"Compatible con vigilancia.","g":"Dosis menores; sensibilidad aumentada."},"ci":["Bloqueo AV o bradicardia sinusal (vía IV)","Porfiria","Hipersensibilidad"],"fr":["Nistagmo","Ataxia","Sedación","Hiperplasia gingival","Hirsutismo"],"gr":["Hipotensión y arritmias con infusión rápida","Síndrome de Stevens-Johnson (HLA-B*1502)","Hepatitis","Toxicidad por niveles altos (ataxia, confusión)","Necrosis tisular por extravasación (síndrome del guante púrpura)"],"it":[["Inductor potente de CYP3A4 y 2C9","Baja niveles de warfarina, anticonceptivos, ciclosporina y otros"],["Fluconazol, metronidazol, TMP-SMX, amiodarona","Sube niveles de fenitoína"],["Nutrición enteral","Menor absorción"]],"mon":["Niveles séricos (libre si hay hipoalbuminemia)","ECG y presión durante la infusión IV","Hemograma y transaminasas"],"ant":"No hay; soporte.","pre":"Bradicardia e hipotensión con infusión rápida; interacciones; niveles séricos; extravasación (usar solución salina, no glucosada).","pres":["Ampolla 250 mg/5 mL","Tabletas y cápsulas 100 mg"],"com":["Epamin","Dilantin"],"pe":["La infusión IV no debe pasar de 50 mg/min (25 mg/min en ancianos o cardiópatas).","Cuando los niveles totales son bajos pero la albúmina también, el nivel libre puede ser normal."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["N03AB02"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":7,"np":45,"pres":["Capsula dura 100 mg","Solucion inyectable 250 mg","Suspension oral 2,5 g"],"m":["Epamin ® suspension (Aspen Colombiana)","Fenaten®250 mg/5ml solucion inyectable. i.v. (Laboratorios Pisa De C.V)","Blask® solucion inyectable (Laboratorios Blaskov)","Epamin 100 mg capsulas (Aspen Colombiana)","Fenitoina sodica 250 mg/5 ml (Vitalis C.I)","Fenitoina sodica solucion inyectable 250 mg/5ml (Laboratorio Biosano)","Fenitoina 100 mg (Laboratorios Mk)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "fenitoina",
+ "n": "Fenitoína",
+ "g": [
+  "Fenitoína",
+  "Epamin",
+  "Dilantin"
+ ],
+ "atc": [
+  "N03AB02"
+ ],
+ "cl": "Anticonvulsivante",
+ "mc": "canal_na",
+ "us": [
+  "conv"
+ ],
+ "es": [
+  "neuro",
+  "neurocx",
+  "uci",
+  "medint"
+ ],
+ "via": [
+  "iv",
+  "vo"
+ ],
+ "al": [
+  "cyp",
+  "alto_riesgo",
+  "hepatotox",
+  "emb_evitar",
+  "ajuste_renal"
+ ],
+ "mech": "Bloquea los canales de sodio dependientes de voltaje en estado inactivo, lo que impide que la neurona dispare de manera repetida y rápida (bloqueo dependiente de uso). Frena la propagación de la descarga epiléptica sin sedar. Tiene cinética de saturación: a dosis terapéuticas altas el metabolismo se satura y pequeños aumentos de dosis disparan los niveles (cinética de orden cero).",
+ "pk": {
+  "abs": "Oral variable; la IM es errática y no se recomienda",
+  "vm": "7 a 42 h, dependiente de la dosis (otras fuentes)",
+  "met": "Hepático (CYP2C9 y CYP2C19), saturable",
+  "el": "Renal, como metabolitos"
+ },
+ "ind": [
+  {
+   "i": "Estatus epiléptico tonicoclónico generalizado y prevención y tratamiento de convulsiones en neurocirugía",
+   "a": "Carga de 10 a 15 mg/kg IV, a no más de 50 mg/min (unos 20 min en 70 kg), con monitoreo continuo de ECG y presión y vigilancia de la respiración. Luego mantenimiento de 100 mg VO o IV cada 6 a 8 h. En la práctica se usa carga de 15 a 20 mg/kg en estatus (otras fuentes; no contrastado aquí). Mide niveles séricos.",
+   "p": "Carga de 15 a 20 mg/kg IV, a no más de 1 a 3 mg/kg/min o 50 mg/min, la más lenta; da concentraciones totales de 10 a 20 mcg/mL. Mantenimiento 5 a 8 mg/kg al día (otras fuentes; no contrastado aquí).",
+   "k": {
+    "lo": 15,
+    "hi": 20,
+    "int": "carga IV única; 1 a 3 mg/kg/min o 50 mg/min, la más lenta",
+    "maxd": "según protocolo (otras fuentes)"
+   }
+  },
+  {
+   "i": "Sustitución a corto plazo de la fenitoína oral cuando no se puede usar la vía oral",
+   "a": "La etiqueta indica que la IV solo se usa si la vía oral no es posible y por poco tiempo. Evita la vía IM (absorción errática y toxicidad local).",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste de dosis en la etiqueta; con enfermedad renal o hepática o hipoalbuminemia sube la fracción libre, por lo que el control de niveles debe basarse en la fracción libre.",
+  "h": "Igual que en la renal: monitoriza la fracción libre; usa dosis menores (otras fuentes).",
+  "e": "Teratógeno (síndrome de hidantoína fetal). Los niveles bajan durante el embarazo: mide la fracción libre periódicamente y ajusta; después del parto es probable volver a la dosis original.",
+  "l": "Se excreta en la leche; pondera los beneficios de amamantar.",
+  "g": "La depuración baja un poco con la edad: dosis menores o menos frecuentes."
+ },
+ "ci": [
+  "Hipersensibilidad a la fenitoína, a sus excipientes o a otras hidantoínas",
+  "Bradicardia sinusal, bloqueo sinoauricular, bloqueo AV de segundo y tercer grado, síndrome de Adams-Stokes",
+  "Antecedente de hepatotoxicidad aguda atribuible a la fenitoína",
+  "Uso con delavirdina"
+ ],
+ "fr": [
+  "Nistagmo, ataxia, mareo",
+  "Somnolencia, confusión",
+  "Náuseas y vómito",
+  "Hiperplasia gingival (uso crónico)",
+  "Hirsutismo y rash (otras fuentes)"
+ ],
+ "gr": [
+  "Hipotensión y arritmias con infusión rápida (caja negra de riesgo cardiovascular)",
+  "Toxicidad local, incluido el síndrome del guante morado",
+  "Reacciones dermatológicas graves (SJS/TEN) y DRESS",
+  "Hepatotoxicidad",
+  "Alteraciones hematológicas",
+  "Convulsiones por retirada brusca",
+  "Hiperglucemia",
+  "Exacerbación de porfiria"
+ ],
+ "it": [
+  [
+   "Delavirdina",
+   "Contraindicado"
+  ],
+  [
+   "Inductor potente de CYP3A4 y CYP2C9 (warfarina, anticonceptivos, ciclosporina, antirretrovirales y otros)",
+   "Baja los niveles de muchos fármacos; revisa cada caso"
+  ],
+  [
+   "Fluconazol, metronidazol, trimetoprim-sulfametoxazol, amiodarona, isoniazida",
+   "Suben los niveles de fenitoína"
+  ],
+  [
+   "Carbamazepina, fenobarbital, rifampicina, alcohol crónico (otras fuentes)",
+   "Bajan los niveles de fenitoína"
+  ],
+  [
+   "Nutrición enteral (otras fuentes)",
+   "Menor absorción; separa las tomas"
+  ]
+ ],
+ "mon": [
+  "ECG, presión y respiración durante la infusión IV y después",
+  "Niveles séricos (fracción libre si hay hipoalbuminemia o enfermedad hepática o renal)",
+  "Sitio de infusión: extravasación y síndrome del guante morado",
+  "Hemograma, transaminasas y rash",
+  "Glucemia"
+ ],
+ "ant": "No hay; soporte.",
+ "pre": "La velocidad de infusión es lo crítico: no más de 50 mg/min en adultos y 1 a 3 mg/kg/min (o 50 mg/min, la más lenta) en niños. Úsalo diluido en solución salina; evita dextrosa (precipita). Lava la vena con solución salina antes y después por la alcalinidad. Usa la vía oral cuando sea posible. Retira de forma gradual.",
+ "pres": [
+  "Ampolla 250 mg/5 mL (50 mg/mL)",
+  "Cápsulas de 100 mg",
+  "Tabletas masticables y suspensión oral (según el producto)"
+ ],
+ "com": [
+  "Epamin",
+  "Dilantin"
+ ],
+ "pe": [
+  "La infusión IV no debe pasar de 50 mg/min; en ancianos o cardiópatas, más lenta (25 mg/min o menos, otras fuentes).",
+  "Un nivel total bajo con albúmina baja puede corresponder a un nivel libre normal.",
+  "Nunca la mezcles con dextrosa ni la pases por la misma línea sin lavar."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de fenitoína sódica inyectable (DailyMed, Hikma Pharmaceuticals Usa Inc., Apr 09, 2024)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=035a8d4e-2063-4240-83cb-d7eebcabe301",
+   "b": "dosis de carga y mantenimiento, velocidad de infusión, pediatría, contraindicaciones, embarazo, lactancia"
+  },
+  {
+   "t": "Etiqueta de fenitoína cápsulas de liberación prolongada (DailyMed, Major Pharmaceuticals, Sep 02, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=46d5c0d1-a97b-46d9-8cf4-994780673337",
+   "b": "presentación y uso oral"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "N03AB02"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 7,
+  "np": 45,
+  "pres": [
+   "Capsula dura 100 mg",
+   "Solucion inyectable 250 mg",
+   "Suspension oral 2,5 g"
+  ],
+  "m": [
+   "Epamin ® suspension (Aspen Colombiana)",
+   "Fenaten®250 mg/5ml solucion inyectable. i.v. (Laboratorios Pisa De C.V)",
+   "Blask® solucion inyectable (Laboratorios Blaskov)",
+   "Epamin 100 mg capsulas (Aspen Colombiana)",
+   "Fenitoina sodica 250 mg/5 ml (Vitalis C.I)",
+   "Fenitoina sodica solucion inyectable 250 mg/5ml (Laboratorio Biosano)",
+   "Fenitoina 100 mg (Laboratorios Mk)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

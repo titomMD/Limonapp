@@ -1,1 +1,181 @@
-{"id":"levetiracetam","n":"Levetiracetam","g":["Levetiracetam","Keppra"],"atc":["N03AX14"],"cl":"Anticonvulsivante","mc":"sv2a","us":["conv"],"es":["neuro","neurocx","uci","medint","pediatria"],"via":["vo","iv"],"al":["ajuste_renal"],"mech":"Se une a la proteína SV2A de las vesículas sinápticas y modula la liberación de neurotransmisores; el mecanismo exacto que explica su efecto anticonvulsivante no está del todo claro. No afecta los canales de sodio ni el GABA directamente. Su ventaja práctica es el perfil farmacocinético: casi no se une a proteínas, no se metaboliza en el hígado por CYP y casi no interactúa con otros fármacos.","pk":{"abs":"Oral >95 %","vm":"6 a 8 h","met":"Hidrólisis enzimática fuera del CYP","el":"Renal (66 % sin cambio)"},"ind":[{"i":"Epilepsia y estatus epiléptico","a":"Mantenimiento 500 a 1.500 mg VO o IV cada 12 h. Estatus: 60 mg/kg IV (máximo 4.500 mg) en 10 a 15 min.","p":"20 a 60 mg/kg al día divididos cada 12 h. Estatus: 60 mg/kg IV (máximo 4.500 mg).","k":{"lo":10,"hi":30,"int":"cada 12 h"}}],"aj":{"r":"Reducir según depuración: 500 a 1.000 mg cada 12 h con 50 a 80; menos con valores bajos.","h":"Sin ajuste (en hepatopatía grave ajustar según función renal).","e":"Uno de los más seguros en embarazo.","l":"Compatible con vigilancia del lactante.","g":"Ajustar por función renal."},"ci":["Hipersensibilidad"],"fr":["Somnolencia","Astenia","Mareo","Irritabilidad"],"gr":["Psicosis y agresividad","Ideación suicida","Reacciones cutáneas graves","Pancitopenia"],"it":[["Casi ninguna relevante","No inhibe ni induce CYP"],["Carbamazepina","Posible toxicidad aditiva"]],"mon":["Estado de ánimo y conducta","Función renal"],"ant":"No hay; hemodiálisis lo retira.","pre":"Ajustar en insuficiencia renal. Irritabilidad y alteraciones del ánimo.","pres":["Tabletas 250, 500 y 1.000 mg","Solución oral","Solución IV 500 mg/5 mL"],"com":["Keppra"],"pe":["Cuando no se puede dar la vía oral, la dosis IV es la misma que la oral.","Vigila irritabilidad: es el efecto adverso que más lleva a suspender."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["N03AX14"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":32,"np":135,"pres":["Tableta recubierta 500 mg","Tableta recubierta 1000 mg","Tableta cubierta con pelicula 1000 mg","Tableta de liberacion prolongada 750 mg","Solucion inyectable 500 mg","Tableta de liberacion prolongada 500 mg","Solucion oral 100 mg","Solucion inyectable 100 mg","Solucion oral 10000 mg","Solucion oral 30 g","Tableta recubierta 1 g","Solución concentrada para infusión 500 mg","Solución para infusión 100 mg","Solucion oral 10 g"],"m":["Ceumid® comprimidos recubiertos 1000 mg (Megalabs Colombia)","Lamolet®levetiracetam 750 mg tableta recubierta de liberación prolongada (Eurofarma Colombia)","Ceumid® 500 mg (Megalabs Colombia)","Levevitae® 1000 mg tabletas recubiertas (Galenicum Health Colombia)","Levevitae ® 500 mg tableta recubierta (Galenicum Health Colombia)","Julitam® 500mg tabletas recubiertas (Laboratorios La Sante)","Julitam® 1000mg tabletas recubiertas (Laboratorios La Sante)","Benliv® 100 mg/ml (Eurofarma Colombia)","Ceumid® concentrado para solución para perfusión 500 mg / 5 ml (Megalabs Colombia)","Acizan® 1000mg tabletas recubiertas (Altadis Farmaceutica)","Lamolet® 500 mg tableta de liberación prolongada (Eurofarma Colombia)","Keppra ® concentrado para solucion para perfusion 100mg/ ml (Glaxosmithkline Trading Services)"],"mas":20,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "levetiracetam",
+ "n": "Levetiracetam",
+ "g": [
+  "Levetiracetam",
+  "Keppra"
+ ],
+ "atc": [
+  "N03AX14"
+ ],
+ "cl": "Anticonvulsivante",
+ "mc": "sv2a",
+ "us": [
+  "conv"
+ ],
+ "es": [
+  "neuro",
+  "neurocx",
+  "uci",
+  "medint",
+  "pediatria"
+ ],
+ "via": [
+  "vo",
+  "iv"
+ ],
+ "al": [
+  "ajuste_renal"
+ ],
+ "mech": "Se une a la proteína SV2A de las vesículas sinápticas y modula la liberación de neurotransmisores; el mecanismo exacto que explica su efecto anticonvulsivante no está del todo claro. No afecta los canales de sodio ni el GABA directamente. Su ventaja práctica es el perfil farmacocinético: casi no se une a proteínas, no se metaboliza en el hígado por CYP y casi no interactúa con otros fármacos.",
+ "pk": {
+  "abs": "Oral >95 % (otras fuentes)",
+  "vm": "6 a 8 h (otras fuentes)",
+  "met": "Hidrólisis enzimática, sin CYP",
+  "el": "Renal, ≈66 % sin cambios"
+ },
+ "ind": [
+  {
+   "i": "Convulsiones de inicio parcial (monoterapia o adyuvante)",
+   "a": "Adultos de 16 años o más: 500 mg dos veces al día; sube 500 mg dos veces al día cada 2 semanas hasta la dosis recomendada de 1.500 mg dos veces al día.",
+   "p": "1 mes a menos de 6 meses: 7 mg/kg dos veces al día, sube 7 mg/kg cada 2 semanas hasta 21 mg/kg dos veces al día. 6 meses a menos de 4 años: 10 mg/kg dos veces al día hasta 25 mg/kg. 4 a menos de 16 años: 10 mg/kg dos veces al día hasta 30 mg/kg dos veces al día. Con 20 kg o menos usa la solución oral.",
+   "k": {
+    "lo": 10,
+    "hi": 30,
+    "int": "cada 12 h, incrementos cada 2 semanas (4 a menos de 16 años; la dosis meta es 30 mg/kg)",
+    "maxd": "1.500 mg por dosis"
+   }
+  },
+  {
+   "i": "Convulsiones mioclónicas (12 años o más)",
+   "a": "500 mg dos veces al día; sube 500 mg dos veces al día cada 2 semanas hasta 1.500 mg dos veces al día.",
+   "p": "12 años o más: igual que el adulto."
+  },
+  {
+   "i": "Convulsiones tonicoclónicas generalizadas primarias",
+   "a": "500 mg dos veces al día; sube 500 mg dos veces al día cada 2 semanas hasta 1.500 mg dos veces al día.",
+   "p": "6 a menos de 16 años: 10 mg/kg dos veces al día hasta 30 mg/kg dos veces al día."
+  },
+  {
+   "i": "Estatus epiléptico (uso habitual, no figura en la etiqueta)",
+   "a": "60 mg/kg IV (máximo 4.500 mg) en 10 a 15 min (otras fuentes; no contrastado aquí). La vía IV es temporal cuando no se puede usar la oral, con la misma dosis total diaria que la oral.",
+   "p": "60 mg/kg IV (máximo 4.500 mg) (otras fuentes; no contrastado aquí). La etiqueta del inyectable solo cubre mayores de 16 años."
+  }
+ ],
+ "aj": {
+  "r": "Ajusta por depuración de creatinina (mL/min/1,73 m²): mayor de 80: 500 a 1.500 mg cada 12 h; 50 a 80: 500 a 1.000 mg cada 12 h; 30 a 50: 250 a 750 mg cada 12 h; menor de 30: 250 a 500 mg cada 12 h; diálisis: 500 a 1.000 mg cada 24 h con 250 a 500 mg extra tras la diálisis.",
+  "h": "Sin ajuste en la etiqueta contrastada; en hepatopatía grave ajusta según la función renal (otras fuentes).",
+  "e": "Los niveles bajan de forma gradual durante el embarazo, sobre todo en el tercer trimestre. Monitoriza de cerca, incluso en el posparto si cambió la dosis.",
+  "l": "Se excreta en la leche; sin datos sobre efectos en el lactante. Pondera los beneficios de amamantar.",
+  "g": "Ajusta según la función renal; sin diferencias de seguridad en ≥65 años."
+ },
+ "ci": [
+  "Hipersensibilidad al levetiracetam o a sus componentes (anafilaxia y angioedema)"
+ ],
+ "fr": [
+  "Somnolencia",
+  "Astenia, fatiga",
+  "Mareo",
+  "Infección",
+  "Irritabilidad y cambios del comportamiento"
+ ],
+ "gr": [
+  "Reacciones psiquiátricas (agresión, psicosis, ideación suicida)",
+  "Reacciones dermatológicas graves (SJS/TEN)",
+  "DRESS",
+  "Anafilaxia y angioedema",
+  "Incoordinación",
+  "Convulsiones por retirada brusca",
+  "Alteraciones hematológicas"
+ ],
+ "it": [
+  [
+   "Casi ninguna relevante",
+   "No inhibe ni induce las enzimas CYP (otras fuentes)"
+  ],
+  [
+   "Carbamazepina (otras fuentes)",
+   "Posible toxicidad aditiva"
+  ]
+ ],
+ "mon": [
+  "Estado de ánimo, conducta y pensamientos suicidas",
+  "Función renal para ajustar la dosis",
+  "Somnolencia, mareo e incoordinación",
+  "Rash"
+ ],
+ "ant": "No hay; hemodiálisis lo retira.",
+ "pre": "Ajusta la dosis en insuficiencia renal. No retires de golpe (riesgo de aumento de crisis y estatus). Vigila irritabilidad, agresividad y depresión, sobre todo en niños y adolescentes. Para niños de 20 kg o menos, usa la solución oral con jeringa calibrada.",
+ "pres": [
+  "Tabletas 250, 500, 750 y 1.000 mg",
+  "Solución oral 100 mg/mL",
+  "Solución IV 500 mg/5 mL"
+ ],
+ "com": [
+  "Keppra"
+ ],
+ "pe": [
+  "Cuando no se puede dar la vía oral, la dosis IV total diaria es la misma que la oral (otras fuentes).",
+  "Vigila irritabilidad: es el efecto adverso que más lleva a suspenderlo.",
+  "Es de los más seguros durante el embarazo, pero los niveles bajan al final."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de levetiracetam tabletas (DailyMed, Major Pharmaceuticals, Oct 23, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=c4b27429-50a3-467c-a5ff-7e49a01a1088",
+   "b": "dosis por edad y renal, retirada gradual, advertencias, embarazo, lactancia"
+  },
+  {
+   "t": "Etiqueta de levetiracetam inyectable en solución salina (DailyMed, Somerset Therapeutics, Llc, Apr 20, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=2b37c579-ebe7-4ce1-8a34-03e974a77439",
+   "b": "uso IV y pediatría"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "N03AX14"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 32,
+  "np": 135,
+  "pres": [
+   "Tableta recubierta 500 mg",
+   "Tableta recubierta 1000 mg",
+   "Tableta cubierta con pelicula 1000 mg",
+   "Tableta de liberacion prolongada 750 mg",
+   "Solucion inyectable 500 mg",
+   "Tableta de liberacion prolongada 500 mg",
+   "Solucion oral 100 mg",
+   "Solucion inyectable 100 mg",
+   "Solucion oral 10000 mg",
+   "Solucion oral 30 g",
+   "Tableta recubierta 1 g",
+   "Solución concentrada para infusión 500 mg",
+   "Solución para infusión 100 mg",
+   "Solucion oral 10 g"
+  ],
+  "m": [
+   "Ceumid® comprimidos recubiertos 1000 mg (Megalabs Colombia)",
+   "Lamolet®levetiracetam 750 mg tableta recubierta de liberación prolongada (Eurofarma Colombia)",
+   "Ceumid® 500 mg (Megalabs Colombia)",
+   "Levevitae® 1000 mg tabletas recubiertas (Galenicum Health Colombia)",
+   "Levevitae ® 500 mg tableta recubierta (Galenicum Health Colombia)",
+   "Julitam® 500mg tabletas recubiertas (Laboratorios La Sante)",
+   "Julitam® 1000mg tabletas recubiertas (Laboratorios La Sante)",
+   "Benliv® 100 mg/ml (Eurofarma Colombia)",
+   "Ceumid® concentrado para solución para perfusión 500 mg / 5 ml (Megalabs Colombia)",
+   "Acizan® 1000mg tabletas recubiertas (Altadis Farmaceutica)",
+   "Lamolet® 500 mg tableta de liberación prolongada (Eurofarma Colombia)",
+   "Keppra ® concentrado para solucion para perfusion 100mg/ ml (Glaxosmithkline Trading Services)"
+  ],
+  "mas": 20,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}
