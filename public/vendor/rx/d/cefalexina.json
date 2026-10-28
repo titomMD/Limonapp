@@ -1,1 +1,170 @@
-{"id":"cefalexina","n":"Cefalexina","g":["Cefalexina","Keflex"],"atc":["J01DB01"],"cl":"Cefalosporina de primera generación","mc":"betalact","us":["piel","itu","resp"],"es":["pediatria","medint","cirugia","urologia"],"via":["vo"],"al":["cdiff","ajuste_renal"],"mech":"Cefalosporina de primera generación: comparte con las penicilinas el anillo β-lactámico y el mecanismo (inhibe las PBP y la síntesis de pared). Cubre bien cocos grampositivos (estafilococo sensible a meticilina, estreptococos) y algunos gramnegativos de la comunidad (E. coli, Klebsiella, Proteus); no cubre enterococo, SAMR ni anaerobios.","pk":{"abs":"Oral casi completa","vm":"0,5 a 1 h","met":"No se metaboliza","el":"Renal (>90 % sin cambio)"},"ind":[{"i":"Infección de piel y tejidos blandos, faringitis, cistitis","a":"500 mg VO cada 6 h.","p":"25 a 50 mg/kg al día divididos cada 6 a 8 h (hasta 100 mg/kg al día en infecciones más graves).","k":{"lo":6.25,"hi":12.5,"int":"cada 6 h","maxd":"100 mg/kg/día"}}],"aj":{"r":"Ajustar con depuración <50 mL/min (espaciar a cada 8 a 12 h o más).","h":"Sin ajuste.","e":"Segura.","l":"Compatible.","g":"Ajustar por función renal."},"ci":["Alergia grave a β-lactámicos"],"fr":["Diarrea","Náuseas","Rash"],"gr":["Anafilaxia","Colitis por C. difficile","Nefritis intersticial"],"it":[["Probenecid","Eleva niveles"],["Metformina","Aumenta sus niveles en algunos casos"],["Warfarina","Puede subir el INR"]],"mon":["Función renal","Diarrea persistente"],"ant":"No hay.","pre":"Alergia a betalactámicos. Ajustar en insuficiencia renal.","pres":["Cápsulas 500 mg","Suspensión 250 mg/5 mL"],"com":["Keflex"],"pe":["La alergia cruzada con penicilina es baja (≈1 a 2 %), mayor con cadenas laterales parecidas a la ampicilina."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["J01DB01"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":45,"np":180,"pres":["Capsula dura 500 mg","Polvo para reconstituir a suspension oral 5 g","Tableta cubierta con pelicula 500 mg","Capsula dura 525,9 mg","Tableta 526,04 mg","Capsula dura 500 mg.","Tableta recubierta 1000 mg","Tableta 500 mg","Tableta recubierta 500 mg","Polvo para reconstituir a suspension oral 3 g","Polvo para reconstituir a suspension oral 5 mg"],"m":["Ceflaxqrp® 500 mg capsulas (Quirupos)","Tiacef® 500 mg capsula. (Global International Medicine Gimed)","Efaltec® capsulas 500 mg (Faes Farma Colombia)","Cefaflex® 500 mg tabletas (Bioquifar Pharmaceutica)","Lospor® 500 mg capsulas (Leperpharm)","Ceflaxilin tridex® (Tridex Farmaceutica)","Enfarxin® (Ive Pharma)","Ceprax® capsulas de 500 mg (Anglopharma)","Ceprax® polvo para reconstituir a suspension oral (Anglopharma)","Biocefal® 500 mg cápsula dura (Laboratorios Bioline Colombia)","Keflex ®polvo para reconstituir a suspensión oral (Farma De Colombia)","Enfarxin® polvo para reconstituir a suspension oral (Lg Pharma Cia)"],"mas":28,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "cefalexina",
+ "n": "Cefalexina",
+ "g": [
+  "Cefalexina",
+  "Keflex"
+ ],
+ "atc": [
+  "J01DB01"
+ ],
+ "cl": "Cefalosporina de primera generación",
+ "mc": "betalact",
+ "us": [
+  "piel",
+  "itu",
+  "resp"
+ ],
+ "es": [
+  "pediatria",
+  "medint",
+  "cirugia",
+  "urologia"
+ ],
+ "via": [
+  "vo"
+ ],
+ "al": [
+  "cdiff",
+  "ajuste_renal"
+ ],
+ "mech": "Cefalosporina de primera generación: comparte con las penicilinas el anillo β-lactámico y el mecanismo (inhibe las PBP y la síntesis de pared). Cubre bien cocos grampositivos (estafilococo sensible a meticilina, estreptococos) y algunos gramnegativos de la comunidad (E. coli, Klebsiella, Proteus); no cubre enterococo, SAMR ni anaerobios.",
+ "pk": {
+  "abs": "Oral completa, estable en ácido; se toma con o sin comida",
+  "vm": "Pico a la hora; detectable hasta 6 h",
+  "met": "No se metaboliza",
+  "el": "Renal: >90 % sin cambios en 8 h; unión a proteínas 10 a 15 %"
+ },
+ "ind": [
+  {
+   "i": "Infecciones de vías respiratorias, piel y tejidos blandos, hueso y genitourinarias",
+   "a": "250 mg VO cada 6 h, o 500 mg cada 12 h, por 7 a 14 días. En infecciones más graves hasta 4 g al día en 2 a 4 dosis.",
+   "p": "Mayores de 1 año: 25 a 50 mg/kg/día en dosis iguales por 7 a 14 días (50 a 100 mg/kg/día si es grave). No superar la dosis del adulto.",
+   "k": {
+    "lo": 6.25,
+    "hi": 12.5,
+    "int": "cada 6 h (25 a 50 mg/kg/día)",
+    "maxd": "1 g por dosis"
+   }
+  },
+  {
+   "i": "Otitis media",
+   "a": "Igual que arriba.",
+   "p": "75 a 100 mg/kg/día en dosis iguales cada 6 h.",
+   "k": {
+    "lo": 18.75,
+    "hi": 25,
+    "int": "cada 6 h (75 a 100 mg/kg/día)",
+    "maxd": "1 g por dosis"
+   }
+  }
+ ],
+ "aj": {
+  "r": "Aplica a adultos y mayores de 15 años. No hay datos suficientes para menores de 15 años con falla renal.\nDepuración (mL/min) | Dosis\n60 o más | Sin ajuste\n30 a 59 | Sin ajuste; máximo 1 g al día\n15 a 29 | 250 mg cada 8 o 12 h\n5 a 14 (sin diálisis) | 250 mg cada 24 h\n1 a 4 (sin diálisis) | 250 mg cada 48 o 60 h\nNo hay datos para recomendar dosis en hemodiálisis.",
+  "h": "Sin ajuste.",
+  "e": "Los datos de décadas de uso no establecen riesgo de malformaciones ni de otros resultados adversos.",
+  "l": "Pasa a la leche en poca cantidad; se considera compatible (otras fuentes).",
+  "g": "Ajusta por función renal."
+ },
+ "ci": [
+  "Hipersensibilidad conocida a cefalexina u otras cefalosporinas"
+ ],
+ "fr": [
+  "Diarrea",
+  "Náuseas y vómito",
+  "Dolor abdominal",
+  "Rash"
+ ],
+ "gr": [
+  "Anafilaxia",
+  "Colitis por Clostridioides difficile",
+  "Convulsiones (sobre todo con falla renal sin ajuste)",
+  "Prolongación del tiempo de protrombina",
+  "Coombs directo positivo"
+ ],
+ "it": [
+  [
+   "Metformina",
+   "Sube sus niveles y baja su depuración renal; vigila y ajusta (riesgo de hipoglucemia)"
+  ],
+  [
+   "Probenecid",
+   "Inhibe la excreción renal de cefalexina; no se recomienda"
+  ],
+  [
+   "Pruebas de glucosa en orina (Benedict, Fehling)",
+   "Falso positivo"
+  ]
+ ],
+ "mon": [
+  "Función renal",
+  "Diarrea persistente",
+  "Estado neurológico si hay falla renal",
+  "INR si usa anticoagulantes"
+ ],
+ "ant": "No hay.",
+ "pre": "Alergia a cefalosporinas. Ajusta en insuficiencia renal. La etiqueta indica 10 días mínimo en infección por estreptococo β-hemolítico. Los niños deben poder tragar la cápsula.",
+ "pres": [
+  "Cápsulas 250 y 500 mg",
+  "Suspensión 125 y 250 mg/5 mL (otras fuentes)"
+ ],
+ "com": [
+  "Keflex"
+ ],
+ "pe": [
+  "La alergia cruzada con penicilina es baja (≈1 a 2 %), mayor si comparten cadenas laterales (ampicilina, amoxicilina).",
+  "No está establecida su seguridad en menores de 1 año según la etiqueta.",
+  "Es primera elección oral en celulitis no purulenta."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de cefalexina cápsulas (DailyMed, Remedyrepack Inc., Oct 26, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=c0ca008e-0e28-412e-a58f-70f63817713b",
+   "b": "dosis adulto y pediátrica, ajuste renal, contraindicaciones, interacciones, embarazo, farmacocinética"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01DB01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 45,
+  "np": 180,
+  "pres": [
+   "Capsula dura 500 mg",
+   "Polvo para reconstituir a suspension oral 5 g",
+   "Tableta cubierta con pelicula 500 mg",
+   "Capsula dura 525,9 mg",
+   "Tableta 526,04 mg",
+   "Capsula dura 500 mg.",
+   "Tableta recubierta 1000 mg",
+   "Tableta 500 mg",
+   "Tableta recubierta 500 mg",
+   "Polvo para reconstituir a suspension oral 3 g",
+   "Polvo para reconstituir a suspension oral 5 mg"
+  ],
+  "m": [
+   "Ceflaxqrp® 500 mg capsulas (Quirupos)",
+   "Tiacef® 500 mg capsula. (Global International Medicine Gimed)",
+   "Efaltec® capsulas 500 mg (Faes Farma Colombia)",
+   "Cefaflex® 500 mg tabletas (Bioquifar Pharmaceutica)",
+   "Lospor® 500 mg capsulas (Leperpharm)",
+   "Ceflaxilin tridex® (Tridex Farmaceutica)",
+   "Enfarxin® (Ive Pharma)",
+   "Ceprax® capsulas de 500 mg (Anglopharma)",
+   "Ceprax® polvo para reconstituir a suspension oral (Anglopharma)",
+   "Biocefal® 500 mg cápsula dura (Laboratorios Bioline Colombia)",
+   "Keflex ®polvo para reconstituir a suspensión oral (Farma De Colombia)",
+   "Enfarxin® polvo para reconstituir a suspension oral (Lg Pharma Cia)"
+  ],
+  "mas": 28,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

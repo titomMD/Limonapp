@@ -1,1 +1,224 @@
-{"id":"fluconazol","n":"Fluconazol","g":["Fluconazol","Diflucan"],"atc":["J02AC01"],"cl":"Antifúngico azólico","mc":"azol","us":["hongos"],"es":["medint","infecto","uci","gineco"],"via":["vo","iv"],"al":["qt","cyp","hepatotox","emb_evitar","ajuste_renal"],"et":"«Azol» describe el anillo con nitrógeno (imidazol, triazol) del grupo.","mech":"Inhibe la 14-α-desmetilasa fúngica (una enzima del citocromo P450 del hongo), que convierte el lanosterol en ergosterol, esencial para la membrana fúngica. Sin ergosterol la membrana se vuelve disfuncional y el hongo no crece (fungistático contra Candida). Cubre Candida albicans, Cryptococcus y algunos dimorfos; no cubre Aspergillus ni Candida krusei y glabrata de forma confiable.","pk":{"abs":"Oral >90 %, igual que la vía IV","vm":"≈30 h","met":"Poco","el":"Renal (≈80 % sin cambio)"},"ind":[{"i":"Candidiasis vaginal","a":"150 mg VO en dosis única.","p":""},{"i":"Candidiasis invasiva","a":"Carga 800 mg IV y luego 400 mg al día (según guía).","p":"6 a 12 mg/kg al día (verificar)."}],"aj":{"r":"Reducir 50 % con depuración <50 mL/min.","h":"Precaución.","e":"Evitar en primer trimestre, sobre todo con dosis altas.","l":"Compatible en dosis únicas.","g":"Ajustar por función renal."},"ci":["Uso con fármacos que prolongan el QT (cisaprida, terfenadina, quinidina)","Hipersensibilidad a azoles"],"fr":["Náuseas","Cefalea","Rash","Elevación de transaminasas"],"gr":["Hepatotoxicidad","Prolongación del QT","Síndrome de Stevens-Johnson"],"it":[["Warfarina","Sube mucho el INR"],["Fenitoína","Sube sus niveles"],["Sulfonilureas","Hipoglucemia"],["Estatinas (simvastatina, atorvastatina)","Más riesgo de miopatía"],["Fármacos que prolongan el QT","Arritmia"]],"mon":["Transaminasas","ECG con factores de riesgo de QT","Función renal"],"ant":"No hay.","pre":"Prolonga el QT, interacciones por CYP, ajustar en insuficiencia renal.","pres":["Cápsulas 50, 100 y 150 mg","Solución IV 200 mg/100 mL"],"com":["Diflucan"],"pe":["Sin efecto contra Aspergillus.","Candida glabrata y krusei suelen ser resistentes."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["J02AC01"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":39,"np":192,"pres":["Capsula dura 200 mg","Capsula dura 150 mg","Solucion inyectable 200 mg","Capsula dura 50 mg","Polvo para reconstituir a suspension oral 1 g","Tableta recubierta 75 mg","Tableta recubierta 1000 mg","Tableta recubierta 500 mg","Tableta recubierta 37,5 mg","Solucion inyectable 0,2 g"],"m":["Diflucan ® cápsulas 150 mg (Pfizer)","Diflucan ® capsulas 200 mg (Pfizer)","Tavor® 150 mg capsulas (Farmaceutica Paraguaya)","Multifunguin® 200 mg capsula (Global International Medicine Gimed)","Itraisdin® 50 mg capsulas duras (Isdin Colombia)","Miczol® 200mg capsula dura (Bioquimico Pharmas.A)","Multifunguin® 150 mg capsula (Global International Medicine Gimed)","Gynflu® d tabletas (Laboratorio Franco Colombiano - Lafrancol)","Baten® 150 mg capsulas (Laboratorios Bussié)","Diflucan ® inyectable. (Pfizer)","Mikopent® 150 mg capsulas (Inversiones Comerfar)","Cindimizol® 200 mg (Bioquifar Pharmaceutica)"],"mas":25,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "fluconazol",
+ "n": "Fluconazol",
+ "g": [
+  "Fluconazol",
+  "Diflucan"
+ ],
+ "atc": [
+  "J02AC01"
+ ],
+ "cl": "Antifúngico azólico",
+ "mc": "azol",
+ "us": [
+  "hongos"
+ ],
+ "es": [
+  "medint",
+  "infecto",
+  "uci",
+  "gineco"
+ ],
+ "via": [
+  "vo",
+  "iv"
+ ],
+ "al": [
+  "qt",
+  "cyp",
+  "hepatotox",
+  "emb_evitar",
+  "ajuste_renal"
+ ],
+ "et": "«Azol» describe el anillo con nitrógeno (imidazol, triazol) del grupo.",
+ "mech": "Inhibe la 14-α-desmetilasa fúngica (una enzima del citocromo P450 del hongo), que convierte el lanosterol en ergosterol, esencial para la membrana fúngica. Sin ergosterol la membrana se vuelve disfuncional y el hongo no crece (fungistático contra Candida). Cubre Candida albicans, Cryptococcus y algunos dimorfos; no cubre Aspergillus ni Candida krusei y glabrata de forma confiable.",
+ "pk": {
+  "abs": "Oral rápida y casi completa; la dosis diaria oral e IV es la misma",
+  "vm": "≈30 h",
+  "met": "Poco; inhibe CYP2C9, CYP3A4 y CYP2C19",
+  "el": "Renal ≈80 % sin cambios"
+ },
+ "ind": [
+  {
+   "i": "Candidiasis vaginal",
+   "a": "150 mg VO en dosis única.",
+   "p": "—"
+  },
+  {
+   "i": "Candidiasis orofaríngea y esofágica",
+   "a": "Orofaríngea: 200 mg el día 1 y luego 100 mg al día por al menos 2 semanas. Esofágica: 200 mg el día 1 y luego 100 mg al día (hasta 400 mg), mínimo 3 semanas y 2 semanas después de resolver los síntomas.",
+   "p": "Desde 6 meses: 6 mg/kg el día 1 y luego 3 mg/kg una vez al día (hasta 12 mg/kg/día en esofágica). Mínimo 2 semanas (orofaríngea) o 3 semanas (esofágica).",
+   "k": {
+    "lo": 3,
+    "hi": 12,
+    "int": "una vez al día (carga de 6 mg/kg el día 1)",
+    "maxd": "400 mg al día"
+   }
+  },
+  {
+   "i": "Candidiasis sistémica (candidemia, diseminada, neumonía) e infecciones urinarias o peritoneales por Candida",
+   "a": "Etiqueta: hasta 400 mg al día; no se estableció la dosis óptima. Las guías IDSA usan 800 mg de carga y luego 400 mg al día (otras fuentes). Urinaria o peritoneal: 50 a 200 mg al día.",
+   "p": "Desde 3 meses: 25 mg/kg el día 1 (máximo 800 mg) y luego 12 mg/kg una vez al día (máximo 400 mg). Recién nacidos de 30 semanas o más: 25 mg/kg y luego 12 mg/kg; de menos de 30 semanas: 25 mg/kg y luego 9 mg/kg. Mínimo 3 semanas y 2 semanas tras resolver los síntomas.",
+   "k": {
+    "lo": 12,
+    "hi": 12,
+    "int": "una vez al día (carga de 25 mg/kg el día 1)",
+    "maxd": "400 mg al día"
+   }
+  },
+  {
+   "i": "Meningitis criptocócica y prevención de recaídas",
+   "a": "400 mg el día 1 y luego 200 mg al día (o 400 mg al día); 10 a 12 semanas tras cultivo negativo de LCR. Supresión de recaídas en SIDA: 200 mg al día.",
+   "p": "12 mg/kg el día 1 y luego 6 mg/kg una vez al día (o 12 mg/kg); supresión: 6 mg/kg al día.",
+   "k": {
+    "lo": 6,
+    "hi": 12,
+    "int": "una vez al día (carga de 12 mg/kg el día 1)",
+    "maxd": "400 mg al día"
+   }
+  },
+  {
+   "i": "Profilaxis en trasplante de médula ósea",
+   "a": "400 mg una vez al día; si se espera neutropenia grave (<500/mm³), empieza varios días antes y sigue 7 días tras superar 1.000/mm³.",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "Dosis única de candidiasis vaginal: sin ajuste. Con dosis múltiples, da una carga de 50 a 400 mg y luego:\nDepuración (mL/min) | Dosis diaria\nMás de 50 | 100 % de la dosis\n50 o menos (sin diálisis) | 50 % de la dosis\nHemodiálisis | 100 % después de cada diálisis; en días sin diálisis, dosis reducida según la depuración\nEn niños, reduce de forma parecida.",
+  "h": "Hepatotoxicidad rara, a veces grave; con hepatopatía usa con precaución y vigila.",
+  "e": "Evítalo salvo infección grave o con riesgo vital. Dosis altas (400 a 800 mg/día) en todo el primer trimestre se han asociado a anomalías congénitas (braquicefalia, labio y paladar hendidos, huesos largos, cardiopatía).",
+  "l": "Pasa a la leche en niveles bajos (≈13 % de la dosis pediátrica); una dosis única de 150 mg suele considerarse compatible con la lactancia.",
+  "g": "Ajusta por función renal."
+ },
+ "ci": [
+  "Hipersensibilidad a fluconazol o a sus excipientes (precaución con alergia a otros azoles)",
+  "Uso con fármacos que prolongan el QT y se metabolizan por CYP3A4: eritromicina, pimozida, quinidina",
+  "Con dosis múltiples de 400 mg o más: terfenadina; con cualquier dosis: cisaprida"
+ ],
+ "fr": [
+  "Náuseas",
+  "Cefalea",
+  "Rash",
+  "Vómito",
+  "Dolor abdominal",
+  "Diarrea",
+  "Elevación de transaminasas"
+ ],
+ "gr": [
+  "Hepatotoxicidad grave",
+  "Prolongación del QT y torsades de pointes",
+  "Reacciones cutáneas graves (Stevens-Johnson, necrólisis epidérmica)",
+  "Anafilaxia",
+  "Insuficiencia suprarrenal",
+  "Trombocitopenia y leucopenia"
+ ],
+ "it": [
+  [
+   "Quinidina, pimozida, eritromicina, cisaprida",
+   "Contraindicados: QT largo y torsades"
+  ],
+  [
+   "Warfarina",
+   "Sube mucho el INR; vigila"
+  ],
+  [
+   "Fenitoína",
+   "Sube sus niveles; vigila"
+  ],
+  [
+   "Sulfonilureas (tolbutamida, glipizida, glibenclamida)",
+   "Alarga su semivida: riesgo de hipoglucemia"
+  ],
+  [
+   "Estatinas (simvastatina, atorvastatina)",
+   "Más riesgo de miopatía"
+  ],
+  [
+   "Ciclosporina, tacrolimus, sirolimus",
+   "Suben sus niveles; vigila"
+  ],
+  [
+   "Anticonceptivos orales",
+   "Pequeño aumento de estrógeno y progestina"
+  ],
+  [
+   "Rifampicina",
+   "Baja los niveles de fluconazol"
+  ],
+  [
+   "Teofilina, carbamazepina, benzodiacepinas (midazolam), amiodarona",
+   "Suben sus niveles; vigila"
+  ]
+ ],
+ "mon": [
+  "Transaminasas en tratamientos largos o con hepatopatía",
+  "ECG con factores de riesgo de QT",
+  "Función renal para ajustar la dosis",
+  "Interacciones al iniciar y al suspender"
+ ],
+ "ant": "No hay.",
+ "pre": "Sin efecto contra Aspergillus. Candida glabrata y C. krusei suelen ser resistentes. Evita en el primer trimestre y con dosis altas. Interacciones frecuentes por CYP: revisa la lista de fármacos del paciente.",
+ "pres": [
+  "Tabletas 50, 100, 150 y 200 mg",
+  "Solución IV 200 mg/100 mL",
+  "Suspensión oral (otras fuentes)"
+ ],
+ "com": [
+  "Diflucan"
+ ],
+ "pe": [
+  "La carga del primer día (el doble de la dosis diaria) llega al nivel estable en 2 días.",
+  "Vía oral e IV tienen la misma dosis: pasa a oral apenas haya tolerancia.",
+  "Para Candida glabrata las guías usan dosis altas (800 mg) o cambian de antifúngico."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de fluconazol tabletas (DailyMed, Sportpharm Llc, Oct 12, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=98ac5455-d26c-4780-a5a3-bf8d85917626",
+   "b": "dosis adulto y pediátrica, ajuste renal, contraindicaciones, interacciones, embarazo y lactancia"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J02AC01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 39,
+  "np": 192,
+  "pres": [
+   "Capsula dura 200 mg",
+   "Capsula dura 150 mg",
+   "Solucion inyectable 200 mg",
+   "Capsula dura 50 mg",
+   "Polvo para reconstituir a suspension oral 1 g",
+   "Tableta recubierta 75 mg",
+   "Tableta recubierta 1000 mg",
+   "Tableta recubierta 500 mg",
+   "Tableta recubierta 37,5 mg",
+   "Solucion inyectable 0,2 g"
+  ],
+  "m": [
+   "Diflucan ® cápsulas 150 mg (Pfizer)",
+   "Diflucan ® capsulas 200 mg (Pfizer)",
+   "Tavor® 150 mg capsulas (Farmaceutica Paraguaya)",
+   "Multifunguin® 200 mg capsula (Global International Medicine Gimed)",
+   "Itraisdin® 50 mg capsulas duras (Isdin Colombia)",
+   "Miczol® 200mg capsula dura (Bioquimico Pharmas.A)",
+   "Multifunguin® 150 mg capsula (Global International Medicine Gimed)",
+   "Gynflu® d tabletas (Laboratorio Franco Colombiano - Lafrancol)",
+   "Baten® 150 mg capsulas (Laboratorios Bussié)",
+   "Diflucan ® inyectable. (Pfizer)",
+   "Mikopent® 150 mg capsulas (Inversiones Comerfar)",
+   "Cindimizol® 200 mg (Bioquifar Pharmaceutica)"
+  ],
+  "mas": 25,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

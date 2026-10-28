@@ -1,1 +1,197 @@
-{"id":"piperacilina-tazobactam","n":"Piperacilina con tazobactam","g":["Piperacilina con tazobactam","Piperacilina","tazobactam","Tazocin","Zosyn"],"atc":["J01CR05"],"cl":"Penicilina antipseudomonas","mc":"betalact_inh","us":["sepsis","abdominal","resp","piel"],"es":["uci","medint","infecto","cirugia","urologia"],"via":["iv"],"al":["cdiff","ajuste_renal","nefrotox"],"mech":"Ureidopenicilina antipseudomonas (piperacilina) protegida por tazobactam, un inhibidor de β-lactamasa. Inhibe las PBP de la pared bacteriana y cubre grampositivos, la mayoría de gramnegativos incluida Pseudomonas aeruginosa, y anaerobios. No cubre SAMR ni la mayoría de las bacterias con BLEE de forma confiable.","pk":{"abs":"Parenteral","vm":"1 h","met":"Poco","el":"Renal"},"ind":[{"i":"Neumonía nosocomial, sepsis intraabdominal, neutropenia febril, infección grave por gramnegativos","a":"4,5 g IV cada 6 a 8 h (o 3,375 g cada 6 h); en infección por Pseudomonas se suele usar 4,5 g cada 6 h, con infusión extendida según protocolo.","p":"240 a 300 mg/kg al día de piperacilina divididos cada 8 h (verificar)."}],"aj":{"r":"Ajustar con depuración <40 mL/min; infusión extendida disminuye la dosis necesaria.","h":"Sin ajuste.","e":"Segura.","l":"Compatible.","g":"Ajustar por función renal."},"ci":["Alergia grave a penicilinas"],"fr":["Diarrea","Rash","Flebitis"],"gr":["Anafilaxia","Colitis por C. difficile","Citopenias","Lesión renal (sobre todo con vancomicina)"],"it":[["Vancomicina","Mayor riesgo de lesión renal aguda"],["Metotrexato","Menor eliminación"],["Anticoagulantes","Alteraciones de coagulación"]],"mon":["Creatinina","Hemograma en tratamientos prolongados"],"ant":"No hay.","pre":"Alergia a penicilinas. Ajustar en insuficiencia renal.","pres":["Vial 4,5 g (4 g + 0,5 g) y 2,25 g"],"com":["Tazocin","Zosyn"],"pe":["La infusión extendida (4 h) mejora el tiempo sobre la concentración mínima inhibitoria, que es lo que importa para los β-lactámicos."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["J01CR05"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":16,"np":66,"pres":["Polvo esteril para reconstituir a solucion inyectable 0,5 g","Polvo esteril para reconstituir a solucion inyectable 4 g","Polvo liofilizado para reconstituir a solucion inyectable 4 g","Polvo liofilizado para reconstituir a solucion inyectable 500 mg","Polvo liofilizado para reconstituir a solucion inyectable 0,5 g","Polvo para solución inyectable 0 -","Polvo esteril para reconstituir a solucion inyectable 500 MG","Polvo esteril para reconstituir a solucion inyectable 4000 MG"],"m":["Sumimed pipertazo® (Blau Farmacéutica Colombia)","Tapectam® (Procaps)","Kabictam® polvo liofilizado para reconstituir a solucion inyectable (Fresenius Kabi Pharma Portugal)","Salataz® 4 /0.5 g (Laboratorios Baxter)","Delbactam® (Laboratorios Delta)","Tazodelt® (Laboratorios Delta)","Penibectam® (Bioselect C.I)","Piperacilina 4.0 g + tazobactam 0.5 g polvo para reconstituir a solucion inyectable (North China Pharmaceutical Co)","Piperacilina 4g + tazobactam 0.5g (Norstray Nuart)","Aurotaz-p 4.5 g (Eugia Pharma Specialities)","Piperacilina 4g + tazobactam 0.5g polvo esteril para reconstituir a solucion inyectable (Vitalis C.I)","Piperacilina + tazobactam 4.5g (Norstray & Nuart)"],"mas":4,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "piperacilina-tazobactam",
+ "n": "Piperacilina con tazobactam",
+ "g": [
+  "Piperacilina con tazobactam",
+  "Piperacilina",
+  "tazobactam",
+  "Tazocin",
+  "Zosyn"
+ ],
+ "atc": [
+  "J01CR05"
+ ],
+ "cl": "Penicilina antipseudomonas",
+ "mc": "betalact_inh",
+ "us": [
+  "sepsis",
+  "abdominal",
+  "resp",
+  "piel"
+ ],
+ "es": [
+  "uci",
+  "medint",
+  "infecto",
+  "cirugia",
+  "urologia"
+ ],
+ "via": [
+  "iv"
+ ],
+ "al": [
+  "cdiff",
+  "ajuste_renal",
+  "nefrotox"
+ ],
+ "mech": "Ureidopenicilina antipseudomonas (piperacilina) protegida por tazobactam, un inhibidor de β-lactamasa. Inhibe las PBP de la pared bacteriana y cubre grampositivos, la mayoría de gramnegativos incluida Pseudomonas aeruginosa, y anaerobios. No cubre SAMR ni la mayoría de las bacterias con BLEE de forma confiable.",
+ "pk": {
+  "abs": "Solo IV (infusión de 30 min según etiqueta)",
+  "vm": "≈0,8 h (ambos componentes)",
+  "met": "Piperacilina se metaboliza poco; tazobactam, en parte",
+  "el": "Renal"
+ },
+ "ind": [
+  {
+   "i": "Infecciones intraabdominales (apendicitis complicada, peritonitis), de piel y tejidos blandos, pélvicas femeninas, neumonía comunitaria",
+   "a": "3,375 g IV cada 6 h (13,5 g al día) en infusión de 30 min, por 7 a 10 días.",
+   "p": "Desde 2 meses y hasta 40 kg, apendicitis o peritonitis: 2 a 9 meses, 90 mg/kg (80 mg de piperacilina + 10 mg de tazobactam) cada 8 h; más de 9 meses, 112,5 mg/kg (100 mg + 12,5 mg) cada 8 h. Desde 40 kg, dosis de adulto.",
+   "k": {
+    "lo": 90,
+    "hi": 112.5,
+    "int": "cada 8 h (combinación)",
+    "maxd": "3,375 g por dosis (dosis de adulto)"
+   }
+  },
+  {
+   "i": "Neumonía nosocomial",
+   "a": "4,5 g IV cada 6 h (18 g al día) más un aminoglucósido, por 7 a 14 días. Continúa el aminoglucósido si aíslas Pseudomonas.",
+   "p": "2 a 9 meses: 90 mg/kg cada 6 h; más de 9 meses: 112,5 mg/kg cada 6 h (hasta 40 kg).",
+   "k": {
+    "lo": 90,
+    "hi": 112.5,
+    "int": "cada 6 h (combinación)",
+    "maxd": "4,5 g por dosis"
+   }
+  },
+  {
+   "i": "Sepsis, neutropenia febril e infecciones graves por gramnegativos (uso clínico habitual)",
+   "a": "4,5 g IV cada 6 a 8 h; muchos protocolos usan infusión extendida de 4 h. La etiqueta usa infusión de 30 min y no describe la extendida (otras fuentes).",
+   "p": "Según guías; no contrastado aquí."
+  }
+ ],
+ "aj": {
+  "r": "Aplica a adultos; las dosis son gramos totales de piperacilina + tazobactam.\nDepuración (mL/min) | Todas las indicaciones salvo neumonía nosocomial | Neumonía nosocomial\nMás de 40 | 3,375 g cada 6 h | 4,5 g cada 6 h\n20 a 40 | 2,25 g cada 6 h | 3,375 g cada 6 h\nMenos de 20 | 2,25 g cada 8 h | 2,25 g cada 6 h\nHemodiálisis | 2,25 g cada 12 h | 2,25 g cada 8 h\nDiálisis peritoneal continua (CAPD) | 2,25 g cada 12 h | 2,25 g cada 8 h\nEn hemodiálisis la sesión retira 30 a 40 % de la dosis: da 0,75 g extra después de cada sesión (no en CAPD).",
+  "h": "Sin ajuste en cirrosis.",
+  "e": "Atraviesan la placenta; no hay datos suficientes para definir riesgo de malformaciones; sin anomalías estructurales en ratas ni ratones.",
+  "l": "La piperacilina pasa a la leche; la del tazobactam no se estudió. Considera los beneficios de la lactancia con la necesidad de la madre.",
+  "g": "Ajusta por función renal."
+ },
+ "ci": [
+  "Antecedente de reacción alérgica a cualquier penicilina, cefalosporina o inhibidor de β-lactamasa"
+ ],
+ "fr": [
+  "Diarrea",
+  "Estreñimiento",
+  "Náuseas y vómito",
+  "Cefalea",
+  "Insomnio",
+  "Rash",
+  "Fiebre"
+ ],
+ "gr": [
+  "Anafilaxia",
+  "Reacciones cutáneas graves (Stevens-Johnson, necrólisis epidérmica, DRESS, PEGA)",
+  "Linfohistiocitosis hemofagocítica",
+  "Rabdomiólisis",
+  "Sangrado y alteraciones hematológicas (leucopenia, neutropenia, trombocitopenia)",
+  "Convulsiones y excitabilidad neuromuscular en falla renal",
+  "Lesión renal en pacientes críticos",
+  "Colitis por Clostridioides difficile"
+ ],
+ "it": [
+  [
+   "Vancomicina",
+   "Más lesión renal aguda; vigila la función renal"
+  ],
+  [
+   "Aminoglucósidos (sobre todo tobramicina) en hemodiálisis",
+   "La piperacilina los inactiva; baja sus niveles; no los mezcles en el mismo frasco"
+  ],
+  [
+   "Probenecid",
+   "Alarga la semivida; no combinar salvo que el beneficio supere el riesgo"
+  ],
+  [
+   "Heparina y anticoagulantes orales",
+   "Vigila pruebas de coagulación"
+  ],
+  [
+   "Vecuronio y otros bloqueadores no despolarizantes",
+   "Prolonga el bloqueo neuromuscular"
+  ],
+  [
+   "Metotrexato",
+   "Reduce su depuración; vigila niveles y toxicidad"
+  ]
+ ],
+ "mon": [
+  "Creatinina y diuresis (sobre todo con vancomicina)",
+  "Hemograma y coagulación en tratamientos largos",
+  "Electrolitos: potasio bajo en tratamiento prolongado",
+  "Estado neurológico en falla renal",
+  "Diarrea persistente"
+ ],
+ "ant": "No hay.",
+ "pre": "Alergia a penicilinas: contraindicada. Ajusta en depuración ≤40 mL/min. En paciente crítico, la etiqueta advierte de mayor riesgo de insuficiencia renal y retraso de la recuperación frente a otros β-lactámicos: considera alternativas. Aporta sodio (≈2,35 mEq por gramo de piperacilina).",
+ "pres": [
+  "Vial 2,25 g (2 g + 0,25 g), 3,375 g (3 g + 0,375 g) y 4,5 g (4 g + 0,5 g)"
+ ],
+ "com": [
+  "Tazocin",
+  "Zosyn"
+ ],
+ "pe": [
+  "La infusión extendida (3 a 4 h) mejora el tiempo por encima de la concentración mínima inhibitoria; es práctica de guías y no figura en la etiqueta.",
+  "Cubre anaerobios y Pseudomonas; no cubre SAMR ni la mayoría de enterococos resistentes.",
+  "En fibrosis quística hay más fiebre y rash con piperacilina."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de piperacilina-tazobactam para inyección (DailyMed, Wg Critical Care, L, Oct 16, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=2cd82553-79dc-45f0-9755-2c08df524ed5",
+   "b": "dosis adulto y pediátrica, ajuste renal, contraindicaciones, interacciones, embarazo y lactancia"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01CR05"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 16,
+  "np": 66,
+  "pres": [
+   "Polvo esteril para reconstituir a solucion inyectable 0,5 g",
+   "Polvo esteril para reconstituir a solucion inyectable 4 g",
+   "Polvo liofilizado para reconstituir a solucion inyectable 4 g",
+   "Polvo liofilizado para reconstituir a solucion inyectable 500 mg",
+   "Polvo liofilizado para reconstituir a solucion inyectable 0,5 g",
+   "Polvo para solución inyectable 0 -",
+   "Polvo esteril para reconstituir a solucion inyectable 500 MG",
+   "Polvo esteril para reconstituir a solucion inyectable 4000 MG"
+  ],
+  "m": [
+   "Sumimed pipertazo® (Blau Farmacéutica Colombia)",
+   "Tapectam® (Procaps)",
+   "Kabictam® polvo liofilizado para reconstituir a solucion inyectable (Fresenius Kabi Pharma Portugal)",
+   "Salataz® 4 /0.5 g (Laboratorios Baxter)",
+   "Delbactam® (Laboratorios Delta)",
+   "Tazodelt® (Laboratorios Delta)",
+   "Penibectam® (Bioselect C.I)",
+   "Piperacilina 4.0 g + tazobactam 0.5 g polvo para reconstituir a solucion inyectable (North China Pharmaceutical Co)",
+   "Piperacilina 4g + tazobactam 0.5g (Norstray Nuart)",
+   "Aurotaz-p 4.5 g (Eugia Pharma Specialities)",
+   "Piperacilina 4g + tazobactam 0.5g polvo esteril para reconstituir a solucion inyectable (Vitalis C.I)",
+   "Piperacilina + tazobactam 4.5g (Norstray & Nuart)"
+  ],
+  "mas": 4,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

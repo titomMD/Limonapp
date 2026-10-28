@@ -1,1 +1,198 @@
-{"id":"metronidazol","n":"Metronidazol","g":["Metronidazol","Flagyl"],"atc":["J01XD01"],"cl":"Nitroimidazol","mc":"nitroimidazol","us":["abdominal","piel"],"es":["cirugia","gineco","infecto","gastro","medint"],"via":["vo","iv"],"al":["convulsiones"],"mech":"Es un profármaco: en bacterias anaerobias y protozoos el nitro del anillo imidazol se reduce a radicales libres que dañan el ADN y causan la muerte. Como esa reducción necesita un medio con muy poco oxígeno, no actúa en bacterias aerobias, y por eso se combina con otros antibióticos para cubrir flora mixta. Cubre Bacteroides, Clostridium, Giardia, Trichomonas y Entamoeba.","pk":{"abs":"Oral casi completa","vm":"8 h","met":"Hepático","el":"Renal"},"ind":[{"i":"Infecciones anaerobias, amebiasis, tricomoniasis, infecciones intraabdominales (combinado)","a":"500 mg VO o IV cada 8 h. En tricomoniasis, 2 g VO en dosis única o 500 mg cada 12 h por 7 días.","p":"30 mg/kg al día divididos cada 8 h (7,5 mg/kg por dosis).","k":{"lo":7.5,"hi":7.5,"int":"cada 8 h"}}],"aj":{"r":"Sin ajuste en general; los metabolitos se acumulan con depuración <10 mL/min.","h":"Reducir 50 % en Child-Pugh C.","e":"Evitar en primer trimestre si es posible.","l":"Suspender lactancia 12 a 24 h tras dosis única.","g":"Sin ajuste."},"ci":["Primer trimestre (según etiqueta)","Uso con disulfiram","Hipersensibilidad a nitroimidazoles"],"fr":["Sabor metálico","Náuseas","Orina oscura"],"gr":["Neuropatía periférica y encefalopatía con uso prolongado","Convulsiones","Reacción tipo disulfiram con alcohol"],"it":[["Alcohol","Reacción tipo disulfiram (náuseas, rubor, taquicardia)"],["Warfarina","Sube mucho el INR"],["Litio","Sube niveles"],["Fenitoína","Sube sus niveles"]],"mon":["Síntomas neurológicos en tratamientos largos"],"ant":"No hay.","pre":"Evitar alcohol durante el tratamiento. Neurotoxicidad con uso prolongado. Ajustar en insuficiencia hepática grave.","pres":["Tabletas 250 y 500 mg","Solución IV 500 mg/100 mL","Suspensión"],"com":["Flagyl"],"pe":["Dar con comida disminuye las náuseas; la orina oscura no es hematuria."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["J01XD01"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":4,"np":8,"pres":["Solucion inyectable 500 mg","Inyectables 500 mg"],"m":["Tenaflox® solucion parenteral para infusion (Otsuka Pharmaceutical India Private)","Otrozol® (Laboratorios Pisa De C.V)","Metronidazol 500 mg / 100ml (Laboratorios Medifarma)","Metronidazol 500 mg (Laboratorios Baxter)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "metronidazol",
+ "n": "Metronidazol",
+ "g": [
+  "Metronidazol",
+  "Flagyl"
+ ],
+ "atc": [
+  "J01XD01"
+ ],
+ "cl": "Nitroimidazol",
+ "mc": "nitroimidazol",
+ "us": [
+  "abdominal",
+  "piel"
+ ],
+ "es": [
+  "cirugia",
+  "gineco",
+  "infecto",
+  "gastro",
+  "medint"
+ ],
+ "via": [
+  "vo",
+  "iv"
+ ],
+ "al": [
+  "convulsiones"
+ ],
+ "mech": "Es un profármaco: en bacterias anaerobias y protozoos el nitro del anillo imidazol se reduce a radicales libres que dañan el ADN y causan la muerte. Como esa reducción necesita un medio con muy poco oxígeno, no actúa en bacterias aerobias, y por eso se combina con otros antibióticos para cubrir flora mixta. Cubre Bacteroides, Clostridium, Giardia, Trichomonas y Entamoeba.",
+ "pk": {
+  "abs": "Oral casi completa",
+  "vm": "≈8 h",
+  "met": "Hepático",
+  "el": "Renal 60 a 80 %; fecal 6 a 15 %"
+ },
+ "ind": [
+  {
+   "i": "Infecciones graves por anaerobios, intraabdominales e infección de pelvis (junto con cobertura de aerobios)",
+   "a": "IV: carga 15 mg/kg (≈1 g) en 1 h, y mantenimiento 7,5 mg/kg (≈500 mg) en 1 h cada 6 h, empezando 6 h después de la carga. Oral: 7,5 mg/kg cada 6 h (≈500 mg). Máximo 4 g en 24 h. Duración usual 7 a 10 días. En la práctica se usa 500 mg cada 8 h (otras fuentes).",
+   "p": "Menores de 4 meses, intraabdominal: carga 15 mg/kg y mantenimiento 7,5 mg/kg; el intervalo depende de la edad posmenstrual: 23 a <34 semanas cada 12 h, 34 a 40 cada 8 h, >40 a 48 cada 6 h (primera dosis de mantenimiento a las 24 h). Mayores de 4 meses: 7,5 mg/kg cada 6 h o 30 mg/kg/día (otras fuentes).",
+   "k": {
+    "lo": 7.5,
+    "hi": 7.5,
+    "int": "cada 6 a 12 h según la edad posmenstrual (menores de 4 meses); cada 6 h en mayores",
+    "maxd": "500 mg por dosis (4 g en 24 h)"
+   }
+  },
+  {
+   "i": "Amebiasis intestinal aguda y absceso hepático amebiano",
+   "a": "Intestinal aguda: 750 mg VO cada 8 h por 5 a 10 días. Absceso hepático: 500 o 750 mg VO cada 8 h por 5 a 10 días.",
+   "p": "35 a 50 mg/kg/día VO divididos en 3 dosis por 10 días.",
+   "k": {
+    "lo": 11.7,
+    "hi": 16.7,
+    "int": "cada 8 h (35 a 50 mg/kg/día)",
+    "maxd": "750 mg por dosis"
+   }
+  },
+  {
+   "i": "Tricomoniasis",
+   "a": "2 g VO dosis única (o 1 g dos veces el mismo día), o 250 mg cada 8 h por 7 días. Otras guías usan 500 mg cada 12 h por 7 días. Trata a la pareja.",
+   "p": "—"
+  },
+  {
+   "i": "Profilaxis en cirugía colorrectal",
+   "a": "15 mg/kg IV en 30 a 60 min, terminando cerca de 1 h antes de la cirugía, y luego 7,5 mg/kg a las 6 y 12 h.",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "No reduzcas la dosis en anuria: los metabolitos acumulados se eliminan con diálisis. La hemodiálisis retira cantidades importantes del fármaco y sus metabolitos: da la dosis después de la sesión, o una dosis extra si no puedes separarla.",
+  "h": "Hepatopatía grave (Child-Pugh C): reducir la dosis oral en 50 %. En hepatopatía grave se acumulan el fármaco y sus metabolitos; vigila niveles y toxicidad.",
+  "e": "Atraviesa la placenta. En tricomoniasis está contraindicado en el primer trimestre; si el tratamiento alternativo no basta, no uses el esquema de un solo día (da niveles fetales más altos). Los estudios en más de 5.000 embarazadas no mostraron un riesgo claro de malformaciones; un estudio señaló labio leporino sin confirmarse.",
+  "l": "Pasa a la leche en concentraciones similares a las del plasma. Decide si suspender el fármaco o la lactancia según la necesidad (etiqueta); en la práctica suele pausarse la lactancia 12 a 24 h tras dosis única (otras fuentes).",
+  "g": "La farmacocinética puede cambiar: puede ser necesario medir niveles."
+ },
+ "ci": [
+  "Hipersensibilidad a metronidazol o a otros nitroimidazoles",
+  "Disulfiram en las últimas 2 semanas (reacciones psicóticas)",
+  "Alcohol durante el tratamiento y hasta 3 días después",
+  "Síndrome de Cockayne (hepatotoxicidad grave irreversible)",
+  "Tricomoniasis en el primer trimestre de embarazo (oral)"
+ ],
+ "fr": [
+  "Náuseas",
+  "Cefalea",
+  "Anorexia",
+  "Vómito",
+  "Diarrea",
+  "Sabor metálico",
+  "Orina oscura (sin significado clínico)"
+ ],
+ "gr": [
+  "Convulsiones, encefalopatía, meningitis aséptica",
+  "Neuropatía periférica y óptica",
+  "Reacciones cutáneas graves",
+  "Hepatotoxicidad grave en síndrome de Cockayne",
+  "Prolongación del QT",
+  "Carcinogenicidad en roedores (advertencia en recuadro)"
+ ],
+ "it": [
+  [
+   "Alcohol y productos con propilenglicol",
+   "Cólicos, náuseas, vómito, cefalea y rubor; evita durante y 3 días después"
+  ],
+  [
+   "Disulfiram",
+   "Reacciones psicóticas; no lo des si lo tomó en las últimas 2 semanas"
+  ],
+  [
+   "Warfarina y otros cumarínicos",
+   "Potencia el efecto; vigila INR"
+  ],
+  [
+   "Litio",
+   "Sube el litio; mide litio y creatinina a los pocos días"
+  ],
+  [
+   "Fenitoína y fenobarbital",
+   "Aceleran la eliminación de metronidazol; la fenitoína puede acumularse"
+  ],
+  [
+   "Cimetidina",
+   "Alarga la semivida de metronidazol"
+  ],
+  [
+   "Fármacos que prolongan el QT",
+   "Más riesgo de QT largo"
+  ],
+  [
+   "Busulfán",
+   "Sube sus niveles y la toxicidad (ver etiqueta)"
+  ]
+ ],
+ "mon": [
+  "Síntomas neurológicos (parestesias, confusión) en tratamientos largos",
+  "INR si usa anticoagulantes",
+  "Litio si lo usa",
+  "Leucocitos antes y después de repetir cursos",
+  "Función hepática en hepatopatía"
+ ],
+ "ant": "No hay.",
+ "pre": "Evita alcohol durante el tratamiento y 3 días después. Ajusta en hepatopatía grave. Tómalo con comida si hay náuseas. Los tratamientos de más de 7 a 10 días elevan el riesgo de neuropatía.",
+ "pres": [
+  "Tabletas 250 y 500 mg",
+  "Solución IV 500 mg/100 mL",
+  "Suspensión oral y óvulos (otras fuentes)"
+ ],
+ "com": [
+  "Flagyl"
+ ],
+ "pe": [
+  "No cubre aerobios: en infección intraabdominal combínalo con un fármaco que cubra gramnegativos y estreptococos.",
+  "La orina oscura no es hematuria ni daño renal; es por los metabolitos.",
+  "Para colitis por C. difficile ya no es de primera línea; lo es la vancomicina oral o la fidaxomicina."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de metronidazol inyectable (DailyMed, Sagent Pharmaceuticals, Oct 20, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=d46870f5-e2b1-46bd-8413-4a0a8bcf3175",
+   "b": "dosis IV, neonatos, profilaxis quirúrgica, contraindicaciones, interacciones, embarazo"
+  },
+  {
+   "t": "Etiqueta de metronidazol tabletas (DailyMed, Pd-Rx Pharmaceuticals, Inc., Oct 19, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8f1de4ca-a005-4ca9-a43a-380429c80d6f",
+   "b": "dosis oral: anaerobios, amebiasis, tricomoniasis; ajuste hepático y hemodiálisis"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01XD01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 4,
+  "np": 8,
+  "pres": [
+   "Solucion inyectable 500 mg",
+   "Inyectables 500 mg"
+  ],
+  "m": [
+   "Tenaflox® solucion parenteral para infusion (Otsuka Pharmaceutical India Private)",
+   "Otrozol® (Laboratorios Pisa De C.V)",
+   "Metronidazol 500 mg / 100ml (Laboratorios Medifarma)",
+   "Metronidazol 500 mg (Laboratorios Baxter)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

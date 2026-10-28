@@ -1,1 +1,164 @@
-{"id":"clindamicina","n":"Clindamicina","g":["Clindamicina","Dalacin"],"atc":["J01FF01"],"cl":"Lincosamida","mc":"macrolido","us":["piel","abdominal","profilaxis"],"es":["cirugia","ortopedia","infecto","gineco","medint"],"via":["vo","iv","im"],"al":["cdiff"],"mech":"Se une a la subunidad ribosomal 50S e inhibe la síntesis proteica. Cubre cocos grampositivos (incluido SAMR de la comunidad), anaerobios y reduce la producción de toxinas; por eso se usa en infección de piel, aspiración, profilaxis quirúrgica en alérgicos a β-lactámicos y como parte del tratamiento de fascitis necrosante. No cubre gramnegativos aerobios ni enterococo.","pk":{"abs":"Oral ≈90 %","vm":"2 a 3 h","met":"Hepático (CYP3A4)","el":"Renal y biliar"},"ind":[{"i":"Infecciones de piel y tejidos blandos, anaerobios, aspiración, profilaxis con alergia a betalactámicos","a":"300 a 450 mg VO cada 6 a 8 h; 600 a 900 mg IV cada 8 h.","p":"20 a 40 mg/kg al día divididos cada 6 a 8 h.","k":{"lo":6.7,"hi":13.3,"int":"cada 8 h","maxd":"40 mg/kg/día"}}],"aj":{"r":"Sin ajuste habitual.","h":"Reducir dosis en hepatopatía grave.","e":"Compatible.","l":"Compatible; vigilar diarrea del lactante.","g":"Sin ajuste."},"ci":["Alergia a lincosamidas","Antecedente de colitis por antibióticos"],"fr":["Diarrea","Náuseas","Rash"],"gr":["Colitis por C. difficile (la más asociada)","Anafilaxia"],"it":[["Bloqueadores neuromusculares","Potencia el bloqueo"],["Eritromicina","Antagonismo"],["Inductores de CYP3A4","Menor efecto"]],"mon":["Diarrea (descartar C. difficile)"],"ant":"No hay.","pre":"Riesgo de colitis por C. difficile.","pres":["Cápsulas 300 mg","Ampolla 600 mg/4 mL"],"com":["Dalacin"],"pe":["Es el antibiótico con mayor riesgo relativo de C. difficile."],"v":{"d":0,"f":0,"s":0},"src":[],"rev":"2026-10-28","co":{"q":["J01FF01"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":16,"np":93,"pres":["Capsula dura 300 mg","Solucion inyectable 600 mg","Solucion inyectable 600 mg.","Solucion inyectable 150 mg"],"m":["Dalacin® c 300 mg capsulas (Pfizer)","Clindacil® 300 mg capsulas (Anglopharma)","Clinbac® 300 mg (Labquifar)","Baclin® 300mg capsulas. (Bioquimico Pharmas.A)","Clindamicina 600 mg / 4 ml solución inyectable (Vitalis C.I)","Clindamicina300 mg capsulas (Memphis Products)","Clindamicina600 mg /4ml (Laboratorios Blaskov)","Clindamicina inyectable 600 mg/ 4 ml (Laboratorios Ryan De Colombia)","Clindamicina 600 mg/4ml solución inyectable (Procaps)","Clindamicina600 mg/ 4 ml solucion inyectable. (Laboratorio Sanderson)","Clindamicina capsulas 300 mg. (Laboratorios La Sante)","Clindamicina 300 mg cápsula (Laboratorio Profesional Farmaceutico - Laboratorios Laproff)"],"mas":3,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "clindamicina",
+ "n": "Clindamicina",
+ "g": [
+  "Clindamicina",
+  "Dalacin"
+ ],
+ "atc": [
+  "J01FF01"
+ ],
+ "cl": "Lincosamida",
+ "mc": "macrolido",
+ "us": [
+  "piel",
+  "abdominal",
+  "profilaxis"
+ ],
+ "es": [
+  "cirugia",
+  "ortopedia",
+  "infecto",
+  "gineco",
+  "medint"
+ ],
+ "via": [
+  "vo",
+  "iv",
+  "im"
+ ],
+ "al": [
+  "cdiff"
+ ],
+ "mech": "Se une a la subunidad ribosomal 50S e inhibe la síntesis proteica. Cubre cocos grampositivos (incluido SAMR de la comunidad), anaerobios y reduce la producción de toxinas; por eso se usa en infección de piel, aspiración, profilaxis quirúrgica en alérgicos a β-lactámicos y como parte del tratamiento de fascitis necrosante. No cubre gramnegativos aerobios ni enterococo.",
+ "pk": {
+  "abs": "Oral ≈90 %",
+  "vm": "≈2 a 3 h (≈4 h en ancianos)",
+  "met": "Hepático (CYP3A4 y CYP3A5)",
+  "el": "Renal y biliar"
+ },
+ "ind": [
+  {
+   "i": "Infecciones graves por anaerobios y por estreptococos, neumococos y estafilococos sensibles en pacientes alérgicos a penicilinas",
+   "a": "VO: 150 a 300 mg cada 6 h; más graves 300 a 450 mg cada 6 h. IV: infecciones graves 600 a 1.200 mg/día en 2, 3 o 4 dosis; más graves (B. fragilis, Clostridium distinto de perfringens) 1.200 a 2.700 mg/día; en peligro de vida hasta 4.800 mg/día. No pases de 1.200 mg en una sola infusión de 1 hora; la velocidad máxima es 30 mg/min.",
+   "p": "VO (si pueden tragar cápsulas): 8 a 16 mg/kg/día en 3 o 4 dosis; más graves 16 a 20 mg/kg/día. IV de 1 mes a 16 años: 20 a 40 mg/kg/día en 3 o 4 dosis, o 350 a 450 mg/m²/día. Menores de 1 mes: 15 a 20 mg/kg/día en 3 o 4 dosis; neonatos con edad posmenstrual ≤32 semanas: 5 mg/kg cada 8 h; de 32 a 40 semanas: 7 mg/kg cada 8 h. Dosifica por peso real, aun con obesidad.",
+   "k": {
+    "lo": 6.7,
+    "hi": 13.3,
+    "int": "cada 8 h (20 a 40 mg/kg/día IV)",
+    "maxd": "900 mg por dosis IV"
+   }
+  }
+ ],
+ "aj": {
+  "r": "No requiere ajuste en enfermedad renal; la hemodiálisis y la diálisis peritoneal no lo eliminan.",
+  "h": "La semivida sube poco en falla hepática marcada; sin ajuste establecido. Úsala con precaución.",
+  "e": "En el segundo y tercer trimestre no se asoció a malformaciones; en el primer trimestre úsala solo si es claramente necesaria.",
+  "l": "Pasa a la leche (<0,5 a 3,8 mcg/mL). No es motivo para suspender la lactancia, aunque puede preferirse otro fármaco; vigila diarrea o candidiasis del lactante.",
+  "g": "La edad por sí sola no cambia la farmacocinética IV."
+ },
+ "ci": [
+  "Hipersensibilidad a clindamicina o a lincomicina"
+ ],
+ "fr": [
+  "Diarrea",
+  "Dolor abdominal",
+  "Náuseas y vómito",
+  "Rash",
+  "Esofagitis si se toma sin agua suficiente"
+ ],
+ "gr": [
+  "Colitis por Clostridioides difficile hasta colitis fulminante (advertencia en recuadro)",
+  "Anafilaxia",
+  "Reacciones cutáneas graves",
+  "Hepatotoxicidad",
+  "Neutropenia y agranulocitosis"
+ ],
+ "it": [
+  [
+   "Bloqueadores neuromusculares",
+   "Potencia el bloqueo; úsala con cuidado"
+  ],
+  [
+   "Inhibidores fuertes de CYP3A4/3A5",
+   "Suben los niveles de clindamicina; vigila reacciones adversas"
+  ],
+  [
+   "Inductores fuertes de CYP3A4 (rifampicina)",
+   "Bajan los niveles; vigila pérdida de efecto"
+  ],
+  [
+   "Eritromicina",
+   "Antagonismo in vitro (otras fuentes)"
+  ]
+ ],
+ "mon": [
+  "Diarrea: si es importante, suspende y descarta C. difficile (puede aparecer semanas después)",
+  "Pruebas hepáticas y renales y hemograma en tratamientos largos",
+  "Función de órganos en niños"
+ ],
+ "ant": "No hay.",
+ "pre": "Advertencia en recuadro por colitis por C. difficile: reserva el fármaco para infecciones graves o alergia a penicilinas. Toma las cápsulas con un vaso lleno de agua (200 a 250 mL) y al menos 30 minutos antes de acostarte. Las cápsulas no dan dosis exactas por kg en niños: usa solución de palmitato si hace falta.",
+ "pres": [
+  "Cápsulas 150 y 300 mg",
+  "Ampolla IV 300 mg/2 mL y 600 mg/4 mL; bolsa 300, 600 y 900 mg en dextrosa 5 %",
+  "Solución oral pediátrica (palmitato) 75 mg/5 mL (otras fuentes)"
+ ],
+ "com": [
+  "Dalacin"
+ ],
+ "pe": [
+  "Es el antibiótico clásicamente asociado a C. difficile; el riesgo existe con cualquier vía.",
+  "Si la infección es por estreptococo β-hemolítico, trata al menos 10 días.",
+  "No penetra bien el líquido cefalorraquídeo."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de clindamicina cápsulas (DailyMed, Sun Pharmaceutical Industries, Inc., Oct 19, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=1dbd8448-c1e5-46df-8060-50ef82380445",
+   "b": "dosis adulto y pediátrica oral, interacciones, embarazo"
+  },
+  {
+   "t": "Etiqueta de clindamicina en dextrosa 5 % (IV) (DailyMed, Civica, Inc., Jul 13, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=80217bd6-2bc4-401c-9345-22532b36a24f",
+   "b": "dosis parenteral adulto, pediátrica y neonatal; lactancia; función renal y hepática"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01FF01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 16,
+  "np": 93,
+  "pres": [
+   "Capsula dura 300 mg",
+   "Solucion inyectable 600 mg",
+   "Solucion inyectable 600 mg.",
+   "Solucion inyectable 150 mg"
+  ],
+  "m": [
+   "Dalacin® c 300 mg capsulas (Pfizer)",
+   "Clindacil® 300 mg capsulas (Anglopharma)",
+   "Clinbac® 300 mg (Labquifar)",
+   "Baclin® 300mg capsulas. (Bioquimico Pharmas.A)",
+   "Clindamicina 600 mg / 4 ml solución inyectable (Vitalis C.I)",
+   "Clindamicina300 mg capsulas (Memphis Products)",
+   "Clindamicina600 mg /4ml (Laboratorios Blaskov)",
+   "Clindamicina inyectable 600 mg/ 4 ml (Laboratorios Ryan De Colombia)",
+   "Clindamicina 600 mg/4ml solución inyectable (Procaps)",
+   "Clindamicina600 mg/ 4 ml solucion inyectable. (Laboratorio Sanderson)",
+   "Clindamicina capsulas 300 mg. (Laboratorios La Sante)",
+   "Clindamicina 300 mg cápsula (Laboratorio Profesional Farmaceutico - Laboratorios Laproff)"
+  ],
+  "mas": 3,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}
