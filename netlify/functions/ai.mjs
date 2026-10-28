@@ -1,3 +1,5 @@
+import { getStore } from '@netlify/blobs';
+
 /* Limonapp v55: Gemini como LECTOR de historias clinicas (PDF). La clave de Gemini vive SOLO aqui, en las variables de
    entorno de Netlify (GEMINI_API_KEY). El navegador nunca la ve. Cualquier persona con sesion de Google verificada puede
    usarla al importar un PDF (sin aprobacion), con topes por persona. No se guarda el texto de las historias: solo se
