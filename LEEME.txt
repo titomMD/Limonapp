@@ -1,3 +1,17 @@
+LIMONAPP v59 - la IA lee con Gemini 3.6 Flash y, si se acaba su cuota, con Flash Lite
+
+QUE CAMBIA EN LA v59 (sobre la v58, que queda incluida)
+  - Modelo principal: gemini-3.6-flash (acerto el diagnostico principal en las 3 juntas de prueba; Flash Lite solo en 1 de 3).
+    Si Google responde que se agoto la cuota (plan gratuito: ~20 solicitudes al dia en ese modelo), si tarda mas de 6 s o si
+    devuelve algo ilegible, la funcion prueba al instante con gemini-3.5-flash-lite (hasta 500 al dia). Si tambien falla, la app
+    usa el lector basico, como antes.
+  - Instrucciones nuevas: la IA lista "candidatos" (diagnosticos con su papel: motivo, comorbilidad, consecuencia u otro proceso)
+    y elige solo uno con papel de motivo. En consulta externa ya no inventa una fecha de ingreso. Los candidatos no se guardan.
+  - Si el modelo escribe "cite" en vez de "cita", se corrige antes de verificar la cita.
+  - El gasto ESTIMADO del panel usa el precio de cada modelo (3.6 Flash 0.75 / 3.75; Flash Lite 0.30 / 2.50 dolares por millon).
+  VARIABLES OPCIONALES EN NETLIFY: AI_MODEL (principal), AI_MODEL2 (respaldo; vacio = sin respaldo). Si no pones nada,
+  usa los de arriba. Cambiar de modelo es solo cambiar esa variable y volver a desplegar.
+
 LIMONAPP v58 - la IA distingue el diagnostico principal de las comorbilidades
 
 QUE CAMBIA EN LA v58 (sobre la v57)
