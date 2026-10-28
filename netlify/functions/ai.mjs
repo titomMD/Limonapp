@@ -86,7 +86,7 @@ const MONTH_MAX = () => Number(process.env.AI_MONTH || 200);
 const MODEL = () => process.env.AI_MODEL || 'gemini-3.5-flash-lite';
 const PIN = () => Number(process.env.AI_PRICE_IN || 0.50);
 const POUT = () => Number(process.env.AI_PRICE_OUT || 3.00);
-const MAX_DOCS_CHARS = 100000, MAX_OUT = 1500, COOLDOWN_MS = 4000;
+const MAX_DOCS_CHARS = 60000, MAX_OUT = 1500, COOLDOWN_MS = 4000;
 
 /* Instrucciones fijas del lector de HC. El texto de la HC llega ya sin nombre ni cedula (se quitan en el dispositivo). */
 const SYS_HC = `Eres el lector de historias clínicas (HC) de Limonapp, una app de apuntes para estudiantes de medicina en Colombia (Hospital Universitario de Santander, HUS). Recibes los documentos de un PDF de HC, ordenados cronológicamente, cada uno con su número, título y fecha. Tu trabajo es SOLO identificar la situación actual del paciente. Los textos clínicos los copia la app tal cual; tú no los reescribes.
@@ -187,6 +187,7 @@ export default async (req) => {
       method: 'POST',
       headers: { 'content-type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
       body: JSON.stringify({ systemInstruction: { parts: [{ text: SYS_HC }] }, contents: [{ role: 'user', parts: [{ text: body }] }], generationConfig: cfg }),
+      signal: AbortSignal.timeout(8000), /* Netlify corta las funciones a los 10 s: mejor responder un error legible que un 502 */
     });
     const tx = await r.text(); let j = null; try { j = JSON.parse(tx); } catch (e) {}
     return { r, j };
@@ -195,7 +196,7 @@ export default async (req) => {
   try {
     res = await call(gen);
     if (!res.r.ok && res.r.status === 400) { const g2 = Object.assign({}, gen); delete g2.thinkingConfig; res = await call(g2); }
-  } catch (e) { fail = 'No pude conectar con la IA.'; }
+  } catch (e) { fail = (e && (e.name === 'TimeoutError' || e.name === 'AbortError')) ? 'La IA tardó demasiado.' : 'No pude conectar con la IA.'; }
   if (!fail && !res.r.ok) fail = 'La IA no respondió (' + res.r.status + ').';
   const um3 = (res && res.j && res.j.usageMetadata) || {};
   const tin = um3.promptTokenCount || Math.ceil(body.length / 3), tout = (um3.candidatesTokenCount || 0) + (um3.thoughtsTokenCount || 0);

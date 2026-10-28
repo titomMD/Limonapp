@@ -1,3 +1,8 @@
+LIMONAPP v56 - proyecto para Netlify (la IA lee las historias mas rapido)
+
+QUE CAMBIA EN LA v56 (sobre la v55)
+- Error 502 al leer con IA: Netlify corta las funciones a los 10 s y el envio era muy grande (unos 120.000 caracteres). Ahora la app manda un resumen compacto (los 12 documentos mas recientes con mas texto, los viejos solo inicio y final; ~23.000 caracteres) y el servidor corta a los 8 s con un mensaje legible ('La IA tardo demasiado') en vez de un 502. Si pasa, se usa el lector basico, como antes.
+
 LIMONAPP v55 - proyecto para Netlify (login con Supabase + Google + Gemini como lector de historias)
 
 QUE CAMBIA EN LA v55 (sobre la v54)
