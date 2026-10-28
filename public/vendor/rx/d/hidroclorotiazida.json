@@ -48,7 +48,7 @@
   {
    "i": "Cálculos de calcio con hipercalciuria (fuera de etiqueta)",
    "a": "Según guías urológicas, 25 mg dos veces al día o 50 mg al día, junto con restricción de sodio. Sin restricción de sodio la tiazida pierde su efecto sobre el calcio urinario. El ensayo NOSTONE no mostró beneficio en el desenlace combinado, pero las guías la mantienen en hipercalciuria franca. Verificar con tu servicio.",
-   "p": "No establecida."
+   "p": "Fuera de etiqueta. Series pediátricas: empezar con 0,5 a 1 mg/kg al día y subir hasta 2 mg/kg al día si no baja la calciuria (relación calcio/creatinina urinaria <0,2 mg/mg), con control de electrolitos. Puede subir el LDL (colesterol malo) y causar hipopotasemia o hiponatremia."
   }
  ],
  "aj": {
@@ -140,6 +140,11 @@
    "t": "MediSearch (consulta compartida, 28 oct 2026)",
    "u": "https://medisearch.io/share/c6qGRS1rApYp7pP5EMjzmV",
    "b": "contraste de puntos específicos"
+  },
+  {
+   "t": "MediSearch (pediatría y guías, 28 oct 2026)",
+   "u": "https://medisearch.io/share/5Ze194iSMqoZ4qg8F7XAJ7",
+   "b": "pediatría, guías EAU/ESPU, series"
   }
  ],
  "rev": "2026-10-28",

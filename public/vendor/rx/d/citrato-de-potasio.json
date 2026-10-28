@@ -38,7 +38,7 @@
   {
    "i": "Acidosis tubular renal con cálculos de calcio; hipocitraturia con cálculos de oxalato de calcio; litiasis por ácido úrico",
    "a": "Hipocitraturia grave (<150 mg/día): 60 mEq al día (30 mEq dos veces o 20 mEq tres veces). Hipocitraturia leve a moderada: 30 mEq al día (15 mEq dos veces o 10 mEq tres veces). Máximo estudiado 100 mEq al día. Con las comidas o hasta 30 min después. Meta: diuresis ≥2 L al día.",
-   "p": "No establecida en la etiqueta. En series pediátricas (no es dosis de etiqueta): 1 a 2 mEq/kg al día repartidos en 2 a 3 tomas; meta de pH urinario 6,0 a 7,0 (6,5 a 7,5 en cistinuria). La define el especialista."
+   "p": "No establecida en la etiqueta y sin guía pediátrica de alto grado. En series: hipocitraturia idiopática con cálculos de calcio, 1 mEq/kg al día en 2 a 3 tomas (pH urinario meta 6,0 a 6,5); acidosis tubular renal distal, hasta 4 mEq/kg al día en 3 tomas; cistinuria, 1 mEq/kg al día ajustado a pH urinario 6,5 a 7,5; ácido úrico, pH ≥6,5. La define el especialista."
   }
  ],
  "aj": {
@@ -111,6 +111,11 @@
    "t": "MediSearch (consulta compartida, 28 oct 2026)",
    "u": "https://medisearch.io/share/c6qGRS1rApYp7pP5EMjzmV",
    "b": "contraste de puntos específicos"
+  },
+  {
+   "t": "MediSearch (pediatría y guías, 28 oct 2026)",
+   "u": "https://medisearch.io/share/5Ze194iSMqoZ4qg8F7XAJ7",
+   "b": "pediatría, guías EAU/ESPU, series"
   }
  ],
  "rev": "2026-10-28",

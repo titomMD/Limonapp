@@ -44,7 +44,7 @@
   {
    "i": "Enuresis nocturna primaria (≥6 años)",
    "a": "No aplica a adultos en esta presentación.",
-   "p": "Desde los 6 años: 0,2 mg VO al acostarse; puede subir hasta 0,6 mg según respuesta. Limitar los líquidos al mínimo desde 1 h antes hasta la mañana siguiente (al menos 8 h después). Suspender durante enfermedad aguda con pérdida de líquidos o electrolitos (fiebre, vómito, diarrea), calor extremo o ejercicio intenso."
+   "p": "Desde los 6 años: 0,2 mg VO al acostarse; puede subir hasta 0,6 mg según respuesta (la etiqueta llega a 0,6 mg; en atención primaria se recomienda quedarse en 0,2 a 0,4 mg y reservar dosis mayores a un centro especializado). Liofilizado oral (melt): 120 µg al acostarse, habitual hasta 240 µg; 120 µg equivalen a 0,2 mg de tableta y 240 µg a 0,4 mg. El spray nasal ya no está indicado en enuresis desde la alerta de la FDA de 2007. Limitar los líquidos al mínimo desde 1 h antes hasta la mañana siguiente (al menos 8 h después). Suspender durante enfermedad aguda con pérdida de líquidos o electrolitos (fiebre, vómito, diarrea), calor extremo o ejercicio intenso. Factores de riesgo de hiponatremia: exceso de líquidos, dosis mayor a la indicada, edad <6 años y vía nasal. Si aparece cefalea, náuseas, vómito o alteración de conciencia, suspender y consultar de urgencia."
   }
  ],
  "aj": {
@@ -114,6 +114,11 @@
    "t": "Etiqueta de DDAVP tabletas (DailyMed, Ferring)",
    "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=6d55baa9-2b62-469c-93ae-3909ab249332",
    "b": "dosis, pediatría, contraindicaciones"
+  },
+  {
+   "t": "MediSearch (pediatría y guías, 28 oct 2026)",
+   "u": "https://medisearch.io/share/5Ze194iSMqoZ4qg8F7XAJ7",
+   "b": "pediatría, guías EAU/ESPU, series"
   }
  ],
  "rev": "2026-10-28",

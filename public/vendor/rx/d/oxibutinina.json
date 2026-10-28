@@ -42,7 +42,7 @@
   {
    "i": "Vejiga neurogénica pediátrica por vía intravesical (fuera de etiqueta)",
    "a": "No hay dosis de adulto estandarizada en la etiqueta para esta vía; ver la columna pediátrica.",
-   "p": "Solución 1 mg/mL: 0,2 mg/kg (máximo 5 mg) en 5 mL, 2 veces al día, en una serie de 15 niños con mala respuesta o intolerancia a la vía oral. Casi no produce efectos anticolinérgicos sistémicos. Verificar con tu servicio."
+   "p": "Guía EAU/ESPU: alternativa en niños con efectos adversos graves o respuesta insuficiente a la dosis máxima oral (0,2 a 0,4 mg/kg al día por vía oral), sin recomendación de alto grado: la evidencia es de series pequeñas (revisión de 8 estudios, 297 niños). Esquemas descritos, dos veces al día: 5 mg en 10 mL de suero estéril; 1,25 mg en 5 mL con hidroxipropilcelulosa; o 0,2 mg/kg (máximo 5 mg) en 5 mL. En esa revisión bajó la presión de llenado en unos 16 cmH₂O y solo el 9 % suspendió por efectos sistémicos. Verificar con tu servicio."
   }
  ],
  "aj": {
@@ -126,6 +126,11 @@
    "t": "MediSearch (consulta compartida, 28 oct 2026)",
    "u": "https://medisearch.io/share/c6qGRS1rApYp7pP5EMjzmV",
    "b": "contraste de puntos específicos"
+  },
+  {
+   "t": "MediSearch (pediatría y guías, 28 oct 2026)",
+   "u": "https://medisearch.io/share/5Ze194iSMqoZ4qg8F7XAJ7",
+   "b": "pediatría, guías EAU/ESPU, series"
   }
  ],
  "rev": "2026-10-28",

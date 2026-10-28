@@ -45,7 +45,12 @@
   {
    "i": "Hiperuricemia asociada a tratamiento oncológico",
    "a": "300 a 800 mg VO al día.",
-   "p": "100 mg/m² VO cada 8 a 12 h (equivale a 10 mg/kg al día; máximo 800 mg al día). No se ha estudiado con depuración <20 mL/min ni en diálisis."
+   "p": "100 mg/m² VO cada 8 a 12 h (equivale a 10 mg/kg al día; máximo 800 mg al día). Algunas referencias usan la dosis de adulto desde los 11 años. No se ha estudiado con depuración <20 mL/min ni en diálisis."
+  },
+  {
+   "i": "Errores congénitos del metabolismo de purinas, como déficit de HPRT o de APRT (fuera de etiqueta)",
+   "a": "No aplica.",
+   "p": "Lo define el especialista. En series: HPRT, media de 6,4 mg/kg al día (el exceso puede causar cálculos de xantina; ajustar con la oxipurina en orina); APRT, 25 a 200 mg al día (mediana 100 mg), que protege la función renal si se empieza en la infancia."
   },
   {
    "i": "Cálculos de oxalato de calcio recurrentes con hiperuricosuria",
@@ -58,7 +63,7 @@
   "h": "Precaución; vigilar transaminasas.",
   "e": "Usar solo si es necesario.",
   "l": "Pasa a la leche; precaución.",
-  "g": "Empezar con dosis menor por la función renal."
+  "g": "Empezar con dosis menor por la función renal. En niños con enfermedad renal crónica 1 a 3 se usaron 5 mg/kg al día con seguridad en un estudio; en enfermedad avanzada o diálisis pediátrica no hay evidencia directa."
  },
  "ci": [
   "Hipersensibilidad a alopurinol",
@@ -124,6 +129,11 @@
    "t": "Etiqueta de alopurinol tabletas (DailyMed, A-S Medication Solutions, 12 oct 2026)",
    "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=bb1cb8ea-cf1c-4ad3-afeb-c11986f0e9bc",
    "b": "dosis, ajuste renal, pediatría"
+  },
+  {
+   "t": "MediSearch (pediatría y guías, 28 oct 2026)",
+   "u": "https://medisearch.io/share/5Ze194iSMqoZ4qg8F7XAJ7",
+   "b": "pediatría, guías EAU/ESPU, series"
   }
  ],
  "rev": "2026-10-28",
