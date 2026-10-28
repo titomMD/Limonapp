@@ -43,8 +43,8 @@
  "ind": [
   {
    "i": "Infección grave por gramnegativos (urinaria complicada, sepsis, intraabdominal)",
-   "a": "15 mg/kg al día IV o IM, dividido en 7,5 mg/kg cada 12 h o 5 mg/kg cada 8 h; máximo 1,5 g al día. En obesos calcular sobre masa magra o peso ajustado. Con función renal reducida, el intervalo en horas ≈ 9 × creatinina sérica (mg/dL) (regla clásica aproximada; guíate por niveles). Existe el esquema de dosis única diaria alta (intervalo extendido), con pico alto y valle indetectable; según protocolo local.",
-   "p": "Niños: 15 mg/kg al día en 2 a 3 dosis. Neonatos: carga de 10 mg/kg y luego 7,5 mg/kg cada 12 h (verificar). En neonatos la dosis depende de la edad gestacional y los prematuros tienen más toxicidad: medir niveles siempre.",
+   "a": "15 mg/kg al día IV o IM, dividido en 7,5 mg/kg cada 12 h o 5 mg/kg cada 8 h. Máximo 1,5 g al día.\nEn obesos calcular sobre masa magra o peso ajustado.\nCon función renal reducida: intervalo en horas ≈ 9 × creatinina sérica (mg/dL). Es una regla clásica aproximada; guíate por niveles.\nExiste el esquema de dosis única diaria alta (intervalo extendido), con pico alto y valle indetectable; según protocolo local.",
+   "p": "Niños: 15 mg/kg al día en 2 a 3 dosis.\nNeonatos: carga de 10 mg/kg y luego 7,5 mg/kg cada 12 h (verificar). La dosis depende de la edad gestacional y los prematuros tienen más toxicidad: medir niveles siempre.",
    "k": {
     "lo": 5,
     "hi": 7.5,

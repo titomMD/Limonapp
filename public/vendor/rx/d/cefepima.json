@@ -77,7 +77,7 @@
   }
  ],
  "aj": {
-  "r": "Imprescindible ajustar. Tabla de la etiqueta, según la dosis habitual que tendría con función normal (500 mg c/12 h, 1 g c/12 h, 2 g c/12 h, 2 g c/8 h). Depuración 30 a 60 mL/min: 500 mg c/24 h, 1 g c/24 h, 2 g c/24 h, 2 g c/12 h. 11 a 29: 500 mg c/24 h, 500 mg c/24 h, 1 g c/24 h, 2 g c/24 h. Menos de 11: 250 mg c/24 h, 250 mg c/24 h, 500 mg c/24 h, 1 g c/24 h. Diálisis peritoneal ambulatoria: 500 mg, 1 g, 2 g y 2 g c/48 h. Hemodiálisis: 1 g el día 1 y luego 500 mg c/24 h (1 g c/24 h si es neutropenia febril), después de la sesión. La primera dosis es la misma que con función normal, salvo en hemodiálisis.",
+  "r": "Se ajusta la dosis según la depuración de creatinina. La primera dosis es la misma que con función normal, salvo en hemodiálisis. Elige la columna según la dosis que usarías con función normal:\nDepuración (mL/min) | 500 mg c/12 h | 1 g c/12 h | 2 g c/12 h | 2 g c/8 h\nMás de 60 | 500 mg c/12 h | 1 g c/12 h | 2 g c/12 h | 2 g c/8 h\n30 a 60 | 500 mg c/24 h | 1 g c/24 h | 2 g c/24 h | 2 g c/12 h\n11 a 29 | 500 mg c/24 h | 500 mg c/24 h | 1 g c/24 h | 2 g c/24 h\nMenos de 11 | 250 mg c/24 h | 250 mg c/24 h | 500 mg c/24 h | 1 g c/24 h\nDiálisis peritoneal | 500 mg c/48 h | 1 g c/48 h | 2 g c/48 h | 2 g c/48 h\nHemodiálisis:\n- 1 g el día 1 y luego 500 mg cada 24 h, después de la sesión.\n- En neutropenia febril: 1 g cada 24 h.",
   "h": "Sin ajuste.",
   "e": "Usar solo si es necesaria.",
   "l": "Pasa a la leche en poca cantidad; precaución.",

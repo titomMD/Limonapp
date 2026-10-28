@@ -38,7 +38,7 @@
   {
    "i": "Hipertensión arterial",
    "a": "25 mg VO una vez al día; puede subirse a 50 mg al día.",
-   "p": "1 a 2 mg/kg al día en 1 o 2 tomas; máximo 37,5 mg al día en menores de 2 años y 100 mg al día de 2 a 12 años. En menores de 6 meses pueden necesitarse hasta 3 mg/kg al día en 2 tomas. La etiqueta aclara que no hay ensayos controlados en niños: se apoya en uso empírico y literatura."
+   "p": "1 a 2 mg/kg al día en 1 o 2 tomas.\nMáximo: 37,5 mg al día en menores de 2 años; 100 mg al día de 2 a 12 años.\nEn menores de 6 meses pueden necesitarse hasta 3 mg/kg al día en 2 tomas.\nLa etiqueta aclara que no hay ensayos controlados en niños: se apoya en uso empírico y literatura."
   },
   {
    "i": "Edema",
@@ -47,8 +47,8 @@
   },
   {
    "i": "Cálculos de calcio con hipercalciuria (fuera de etiqueta)",
-   "a": "Según guías urológicas, 25 mg dos veces al día o 50 mg al día, junto con restricción de sodio. Sin restricción de sodio la tiazida pierde su efecto sobre el calcio urinario. El ensayo NOSTONE no mostró beneficio en el desenlace combinado, pero las guías la mantienen en hipercalciuria franca. Verificar con tu servicio.",
-   "p": "Fuera de etiqueta. Series pediátricas: empezar con 0,5 a 1 mg/kg al día y subir hasta 2 mg/kg al día si no baja la calciuria (relación calcio/creatinina urinaria <0,2 mg/mg), con control de electrolitos. Puede subir el LDL (colesterol malo) y causar hipopotasemia o hiponatremia."
+   "a": "Según guías urológicas: 25 mg dos veces al día o 50 mg al día, junto con restricción de sodio.\nSin restricción de sodio la tiazida pierde su efecto sobre el calcio urinario.\nEl ensayo NOSTONE no mostró beneficio en el desenlace combinado, pero las guías la mantienen en hipercalciuria franca.\nVerificar con tu servicio.",
+   "p": "Fuera de etiqueta. Series pediátricas:\n- Empezar con 0,5 a 1 mg/kg al día y subir hasta 2 mg/kg al día si no baja la calciuria (relación calcio/creatinina urinaria <0,2 mg/mg).\n- Controlar electrolitos.\n- Puede subir el LDL (colesterol malo) y causar hipopotasemia o hiponatremia."
   }
  ],
  "aj": {

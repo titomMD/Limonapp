@@ -50,7 +50,7 @@
   {
    "i": "Errores congénitos del metabolismo de purinas, como déficit de HPRT o de APRT (fuera de etiqueta)",
    "a": "No aplica.",
-   "p": "Lo define el especialista. En series: HPRT, media de 6,4 mg/kg al día (el exceso puede causar cálculos de xantina; ajustar con la oxipurina en orina); APRT, 25 a 200 mg al día (mediana 100 mg), que protege la función renal si se empieza en la infancia."
+   "p": "Lo define el especialista. Datos de series:\n- Déficit de HPRT: media de 6,4 mg/kg al día. El exceso puede causar cálculos de xantina; ajustar con la oxipurina en orina.\n- Déficit de APRT: 25 a 200 mg al día (mediana 100 mg). Protege la función renal si se empieza en la infancia."
   },
   {
    "i": "Cálculos de oxalato de calcio recurrentes con hiperuricosuria",
@@ -59,11 +59,11 @@
   }
  ],
  "aj": {
-  "r": "Dosis inicial en gota según TFG: >60 sin cambio; 30 a 60, 50 mg al día; 15 a 30, 50 mg día por medio; 5 a 15, 50 mg dos veces por semana; <5, 50 mg una vez por semana. Subir de a 50 mg cada 2 a 4 semanas. En hiperuricemia por cáncer: 20 a 60 sin cambio; 10 a 20, 200 mg al día; <10, 100 mg al día; en diálisis, 50 mg c/12 h o 100 mg c/24 h. En cálculos de oxalato de calcio no hay datos suficientes para dar dosis con insuficiencia renal.",
+  "r": "Dosis inicial en gota, según la filtración glomerular (TFG, mL/min):\nTFG | Dosis inicial\nMás de 60 | Sin cambio\n30 a 60 | 50 mg al día\n15 a 30 | 50 mg día por medio\n5 a 15 | 50 mg dos veces por semana\nMenos de 5 | 50 mg una vez por semana\nSubir de a 50 mg cada 2 a 4 semanas.\nHiperuricemia por tratamiento oncológico:\nTFG | Dosis\n20 a 60 | Sin cambio\n10 a 20 | 200 mg al día\nMenos de 10 | 100 mg al día\nDiálisis | 50 mg c/12 h o 100 mg c/24 h\nCálculos de oxalato de calcio: no hay datos suficientes para dar dosis con insuficiencia renal.",
   "h": "Precaución; vigilar transaminasas.",
   "e": "Usar solo si es necesario.",
   "l": "Pasa a la leche; precaución.",
-  "g": "Empezar con dosis menor por la función renal. En niños con enfermedad renal crónica 1 a 3 se usaron 5 mg/kg al día con seguridad en un estudio; en enfermedad avanzada o diálisis pediátrica no hay evidencia directa."
+  "g": "Empezar con dosis menor por la función renal.\nNiños con enfermedad renal crónica 1 a 3: se usaron 5 mg/kg al día con seguridad en un estudio.\nEnfermedad avanzada o diálisis pediátrica: no hay evidencia directa."
  },
  "ci": [
   "Hipersensibilidad a alopurinol",
