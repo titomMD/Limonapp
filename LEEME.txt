@@ -1,3 +1,8 @@
+LIMONAPP v57 - arreglo del servidor de IA
+
+QUE CAMBIA EN LA v57 (sobre la v56)
+- Arreglo: en la v55 se borro por error la linea que importa getStore en netlify/functions/ai.mjs, y la funcion se caia ('getStore is not defined', error 502). Se restituye. Ademas se reviso con un analizador (no-undef) que las 3 funciones (ai, sync, social) no tengan nombres sin definir.
+
 LIMONAPP v56 - proyecto para Netlify (la IA lee las historias mas rapido)
 
 QUE CAMBIA EN LA v56 (sobre la v55)
