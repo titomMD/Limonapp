@@ -1,3 +1,8 @@
+LIMONAPP v58 - la IA distingue el diagnostico principal de las comorbilidades
+
+QUE CAMBIA EN LA v58 (sobre la v57)
+- Gemini tomaba como diagnostico principal la cardiopatia isquemica porque el documento mas reciente era una consulta preanestesica (que solo lista comorbidades). Ahora las instrucciones (SYS_HC en netlify/functions/ai.mjs) definen el diagnostico principal como la enfermedad que motiva la atencion actual, excluyen comorbidades/antecedentes y le dan menos peso a preanestesia y valoraciones preoperatorias.
+
 LIMONAPP v57 - arreglo del servidor de IA
 
 QUE CAMBIA EN LA v57 (sobre la v56)
