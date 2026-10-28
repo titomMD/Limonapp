@@ -40,6 +40,7 @@ for fn in sorted(os.listdir(os.path.join(RX, 'd'))):
     if any(v.get(b, 0) >= 1 for b in 'dfs') and not d.get('src'): err.append((i, 'verificada sin fuentes'))
     for s in d.get('src', []):
         if not (s.get('t') and str(s.get('u', '')).startswith('https://')): err.append((i, 'fuente mal formada'))
+    if 'co' in d and not (d['co'].get('f') and isinstance(d['co'].get('m'), list)): err.append((i, 'co mal formado'))
     for x in d.get('ind', []):
         if not x.get('i'): err.append((i, 'indicación sin título'))
     items.append({'id': i, 'n': d['n'], 'g': d['g'], 'atc': d['atc'][0], 'cl': d['cl'], 'mc': d['mc'], 'us': d['us'], 'es': d['es'], 'via': d['via'], 'al': d['al'], 'v': d['v']})
