@@ -13,6 +13,9 @@ QUE CAMBIA EN LA v63 (sobre la v62, que queda incluida)
     bicalutamida y levofloxacino. Siguen pendientes de confirmacion (dosis, ajuste renal, pediatria, disponibilidad en Colombia).
   - Archivos: public/vendor/rx/index.json (indice liviano), tax.json (clasificaciones), d/<id>.json (una ficha por farmaco).
     Para agregar o editar un farmaco se edita su d/<id>.json y se corre: python3 tools/rx_index.py (valida y regenera el indice).
+  - Disponibilidad en Colombia: cada ficha muestra los registros y presentaciones vigentes del Codigo Unico de Medicamentos (CUM) del
+    INVIMA, leidos de la API abierta datos.gov.co (dataset i7cb-raxc, CC BY-SA 4.0). Se actualiza con: python3 tools/rx_invima.py
+    y luego python3 tools/rx_index.py. Un registro vigente no garantiza que el producto se venda hoy.
   - Sigue APAGADO por defecto (Cuenta > Recetario). Sin cambios en Gemini ni en el servidor.
 
 LIMONAPP v62 - servicios fijos, datos por especialidad, calculadoras, entrega con formatos y recetario (borrador)
