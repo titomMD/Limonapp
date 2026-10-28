@@ -1,1 +1,171 @@
-{"id":"cefepima","n":"Cefepima","g":["Cefepima","Cefepime","Maxipime"],"atc":["J01DE01"],"cl":"Cefalosporina de 4.ª generación","mc":"betalact","us":["itu","resp","sepsis","piel"],"es":["infecto","uci","medint","urologia","pediatria"],"via":["iv","im"],"al":["ajuste_renal","convulsiones","cdiff"],"et":"«Cefalosporina» viene de Cephalosporium (hongo aislado por Brotzu en Cerdeña): kephale (griego «cabeza») y sporos («semilla»).","mech":"β-lactámico que bloquea las proteínas fijadoras de penicilina y la síntesis de la pared bacteriana (bactericida). Penetra bien la membrana externa de gramnegativos y resiste muchas β-lactamasas de tipo AmpC. Cubre Pseudomonas aeruginosa y grampositivos sensibles a meticilina; no cubre SAMR, enterococo ni anaerobios.","pk":{"abs":"IM completa; IV directa","vm":"~2 h","met":"Poco","el":"Renal (~85 % sin cambios)"},"ind":[{"i":"Infección urinaria complicada grave, incluida pielonefritis","a":"2 g IV cada 12 h por unos 10 días. Formas leves a moderadas: 0,5 a 1 g cada 12 h.","p":"Niños de 2 meses a 16 años (≤40 kg): 50 mg/kg cada 12 h; cada 8 h si hay neutropenia febril o neumonía por Pseudomonas. No superar la dosis del adulto.","k":{"lo":50,"hi":50,"int":"cada 12 h (cada 8 h si neutropenia febril)","maxd":"2 g por dosis"}},{"i":"Neutropenia febril empírica","a":"2 g IV cada 8 h por 7 días o hasta resolver la neutropenia.","p":"50 mg/kg cada 8 h.","k":{"lo":50,"hi":50,"int":"cada 8 h","maxd":"2 g por dosis"}},{"i":"Neumonía","a":"1 a 2 g IV cada 8 a 12 h por unos 10 días.","p":"50 mg/kg cada 12 h (cada 8 h si Pseudomonas).","k":{"lo":50,"hi":50,"int":"cada 12 h (cada 8 h si Pseudomonas)","maxd":"2 g por dosis"}}],"aj":{"r":"Imprescindible ajustar por depuración. Con 30 a 60 mL/min suele pasarse al esquema cada 24 h (o 2 g cada 12 h si la dosis era 2 g cada 8 h); por debajo de 30 se reduce más. Usa la tabla de la etiqueta.","h":"Sin ajuste.","e":"Usar solo si es necesaria.","l":"Pasa a la leche en poca cantidad; precaución.","g":"Ajustar por función renal para evitar neurotoxicidad."},"ci":["Hipersensibilidad a cefepima, a otras cefalosporinas, a penicilinas o a otros β-lactámicos"],"fr":["Diarrea","Rash","Náuseas","Flebitis","Cefalea","Coombs directo positivo (16 %), casi siempre sin hemólisis"],"gr":["Encefalopatía, mioclonías y convulsiones (neurotoxicidad), sobre todo con falla renal sin ajuste","Colitis por Clostridioides difficile","Anafilaxia","Citopenias"],"it":[["Aminoglucósidos, diuréticos de asa a dosis altas","Más riesgo de nefrotoxicidad"],["Otros fármacos que bajan el umbral convulsivo (carbapenémicos, quinolonas)","Más riesgo neurológico"]],"mon":["Creatinina y depuración para ajustar la dosis","Estado neurológico (confusión, mioclonías)","Diarrea","Hemograma si el tratamiento es largo"],"pre":"En falla renal sin ajuste causa encefalopatía y convulsiones: ajusta siempre por depuración.","pres":["Vial 500 mg, 1 g y 2 g"],"com":["Maxipime"],"pe":["No cubre SAMR, enterococo ni anaerobios: añade metronidazol en infección intraabdominal.","Coombs positivo no significa hemólisis; solo aparece en el laboratorio.","Si el paciente cambia de estado mental con falla renal, sospecha neurotoxicidad por cefepima."],"v":{"d":1,"f":1,"s":1},"src":[{"t":"Etiqueta de cefepima (drugs.com)","u":"https://www.drugs.com/pro/cefepime.html","b":"dosis, farmacología, seguridad"}],"rev":"2026-10-28","co":{"q":["J01DE01"],"fecha":"2026-10-16","f":"Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16","n":11,"np":32,"pres":["Polvo esteril para reconstituir a solucion inyectable 1 g","Polvo esteril para reconstituir a solucion inyectable 1000 mg"],"m":["Pimecef®1000 polvo esteril para reconstituir (Nectar Lifesciences)","Cefdeltime® (Laboratorios Delta)","Pozineg® 1000 mg (Aurobindo Pharma)","Cefepima 1 g (Vitalis C.I)","Cefepime 1g polvo para reconstituir a solucion inyectable (Norstray & Nuart)","Cefepima 1.000mg (North China Pharmaceutical Co.. - Ncpc Hebei Huamin Pharmaceutical Co)","Cefepime para inyeccionusp 1.0g (Venus Remedies)","Cefepime 1 g (Farmalogica)","Cefepima 1g/vial (Antibioticos Da Colombia)","Cefepima 1g para inyección (Holland Group)"],"mas":0,"nota":"Un registro vigente no garantiza que el producto se esté vendiendo hoy."}}
+{
+ "id": "cefepima",
+ "n": "Cefepima",
+ "g": [
+  "Cefepima",
+  "Cefepime",
+  "Maxipime"
+ ],
+ "atc": [
+  "J01DE01"
+ ],
+ "cl": "Cefalosporina de 4.ª generación",
+ "mc": "betalact",
+ "us": [
+  "itu",
+  "resp",
+  "sepsis",
+  "piel"
+ ],
+ "es": [
+  "infecto",
+  "uci",
+  "medint",
+  "urologia",
+  "pediatria"
+ ],
+ "via": [
+  "iv",
+  "im"
+ ],
+ "al": [
+  "ajuste_renal",
+  "convulsiones",
+  "cdiff"
+ ],
+ "et": "«Cefalosporina» viene de Cephalosporium (hongo aislado por Brotzu en Cerdeña): kephale (griego «cabeza») y sporos («semilla»).",
+ "mech": "β-lactámico que bloquea las proteínas fijadoras de penicilina y la síntesis de la pared bacteriana (bactericida). Penetra bien la membrana externa de gramnegativos y resiste muchas β-lactamasas de tipo AmpC. Cubre Pseudomonas aeruginosa y grampositivos sensibles a meticilina; no cubre SAMR, enterococo ni anaerobios.",
+ "pk": {
+  "abs": "IM completa; IV directa",
+  "vm": "~2 h",
+  "met": "Poco",
+  "el": "Renal (~85 % sin cambios)"
+ },
+ "ind": [
+  {
+   "i": "Infección urinaria complicada grave, incluida pielonefritis",
+   "a": "2 g IV cada 12 h por unos 10 días. Formas leves a moderadas: 0,5 a 1 g cada 12 h.",
+   "p": "Niños de 2 meses a 16 años (≤40 kg): 50 mg/kg cada 12 h; cada 8 h si hay neutropenia febril o neumonía por Pseudomonas. No superar la dosis del adulto.",
+   "k": {
+    "lo": 50,
+    "hi": 50,
+    "int": "cada 12 h (cada 8 h si neutropenia febril)",
+    "maxd": "2 g por dosis"
+   }
+  },
+  {
+   "i": "Neutropenia febril empírica",
+   "a": "2 g IV cada 8 h por 7 días o hasta resolver la neutropenia.",
+   "p": "50 mg/kg cada 8 h.",
+   "k": {
+    "lo": 50,
+    "hi": 50,
+    "int": "cada 8 h",
+    "maxd": "2 g por dosis"
+   }
+  },
+  {
+   "i": "Neumonía",
+   "a": "1 a 2 g IV cada 8 a 12 h por unos 10 días.",
+   "p": "50 mg/kg cada 12 h (cada 8 h si Pseudomonas).",
+   "k": {
+    "lo": 50,
+    "hi": 50,
+    "int": "cada 12 h (cada 8 h si Pseudomonas)",
+    "maxd": "2 g por dosis"
+   }
+  }
+ ],
+ "aj": {
+  "r": "Imprescindible ajustar. Tabla de la etiqueta, según la dosis habitual que tendría con función normal (500 mg c/12 h, 1 g c/12 h, 2 g c/12 h, 2 g c/8 h). Depuración 30 a 60 mL/min: 500 mg c/24 h, 1 g c/24 h, 2 g c/24 h, 2 g c/12 h. 11 a 29: 500 mg c/24 h, 500 mg c/24 h, 1 g c/24 h, 2 g c/24 h. Menos de 11: 250 mg c/24 h, 250 mg c/24 h, 500 mg c/24 h, 1 g c/24 h. Diálisis peritoneal ambulatoria: 500 mg, 1 g, 2 g y 2 g c/48 h. Hemodiálisis: 1 g el día 1 y luego 500 mg c/24 h (1 g c/24 h si es neutropenia febril), después de la sesión. La primera dosis es la misma que con función normal, salvo en hemodiálisis.",
+  "h": "Sin ajuste.",
+  "e": "Usar solo si es necesaria.",
+  "l": "Pasa a la leche en poca cantidad; precaución.",
+  "g": "Ajustar por función renal: hay neurotoxicidad grave en ancianos con insuficiencia renal si no se ajusta."
+ },
+ "ci": [
+  "Hipersensibilidad a cefepima, a otras cefalosporinas, a penicilinas o a otros β-lactámicos"
+ ],
+ "fr": [
+  "Diarrea",
+  "Rash",
+  "Náuseas",
+  "Flebitis",
+  "Cefalea",
+  "Coombs directo positivo (16 %), casi siempre sin hemólisis"
+ ],
+ "gr": [
+  "Encefalopatía, mioclonías y convulsiones (neurotoxicidad), sobre todo con falla renal sin ajuste",
+  "Colitis por Clostridioides difficile",
+  "Anafilaxia",
+  "Citopenias"
+ ],
+ "it": [
+  [
+   "Aminoglucósidos, diuréticos de asa a dosis altas",
+   "Más riesgo de nefrotoxicidad"
+  ],
+  [
+   "Otros fármacos que bajan el umbral convulsivo (carbapenémicos, quinolonas)",
+   "Más riesgo neurológico"
+  ]
+ ],
+ "mon": [
+  "Creatinina y depuración para ajustar la dosis",
+  "Estado neurológico (confusión, mioclonías)",
+  "Diarrea",
+  "Hemograma si el tratamiento es largo"
+ ],
+ "pre": "En falla renal sin ajuste causa encefalopatía y convulsiones: ajusta siempre por depuración.",
+ "pres": [
+  "Vial 500 mg, 1 g y 2 g"
+ ],
+ "com": [
+  "Maxipime"
+ ],
+ "pe": [
+  "No cubre SAMR, enterococo ni anaerobios: añade metronidazol en infección intraabdominal.",
+  "Coombs positivo no significa hemólisis; solo aparece en el laboratorio.",
+  "Si el paciente cambia de estado mental con falla renal, sospecha neurotoxicidad por cefepima."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de cefepima (DailyMed, Sagent, 24 sep 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=de477f37-40f6-4295-ae72-a2ee36a8922e",
+   "b": "dosis adulto y pediátrica, ajuste renal"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01DE01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 11,
+  "np": 32,
+  "pres": [
+   "Polvo esteril para reconstituir a solucion inyectable 1 g",
+   "Polvo esteril para reconstituir a solucion inyectable 1000 mg"
+  ],
+  "m": [
+   "Pimecef®1000 polvo esteril para reconstituir (Nectar Lifesciences)",
+   "Cefdeltime® (Laboratorios Delta)",
+   "Pozineg® 1000 mg (Aurobindo Pharma)",
+   "Cefepima 1 g (Vitalis C.I)",
+   "Cefepime 1g polvo para reconstituir a solucion inyectable (Norstray & Nuart)",
+   "Cefepima 1.000mg (North China Pharmaceutical Co.. - Ncpc Hebei Huamin Pharmaceutical Co)",
+   "Cefepime para inyeccionusp 1.0g (Venus Remedies)",
+   "Cefepime 1 g (Farmalogica)",
+   "Cefepima 1g/vial (Antibioticos Da Colombia)",
+   "Cefepima 1g para inyección (Holland Group)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

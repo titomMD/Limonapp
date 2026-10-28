@@ -38,12 +38,12 @@
   {
    "i": "Hipertensión arterial",
    "a": "25 mg VO una vez al día; puede subirse a 50 mg al día.",
-   "p": "La etiqueta no da una dosis pediátrica fija (verificar)."
+   "p": "1 a 2 mg/kg al día en 1 o 2 tomas; máximo 37,5 mg al día en menores de 2 años y 100 mg al día de 2 a 12 años. En menores de 6 meses pueden necesitarse hasta 3 mg/kg al día en 2 tomas. La etiqueta aclara que no hay ensayos controlados en niños: se apoya en uso empírico y literatura."
   },
   {
    "i": "Edema",
    "a": "25 a 100 mg VO al día, en una o dos tomas, diaria o intermitente.",
-   "p": "Verificar con la etiqueta pediátrica."
+   "p": "1 a 2 mg/kg al día en 1 o 2 tomas, con los mismos máximos por edad que en hipertensión."
   },
   {
    "i": "Cálculos de calcio con hipercalciuria (fuera de etiqueta)",
@@ -132,9 +132,9 @@
  },
  "src": [
   {
-   "t": "Etiqueta de hidroclorotiazida (drugs.com)",
-   "u": "https://www.drugs.com/pro/hydrochlorothiazide-tablets.html",
-   "b": "dosis, seguridad"
+   "t": "Etiqueta de hidroclorotiazida tabletas (DailyMed, RemedyRepack, 26 oct 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=f20fd735-30c7-4f89-8ceb-b6186646eea6",
+   "b": "dosis adulto y pediátrica"
   },
   {
    "t": "MediSearch (consulta compartida, 28 oct 2026)",
