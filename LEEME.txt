@@ -17,6 +17,7 @@ QUE CAMBIA EN LA v63 (sobre la v62, que queda incluida)
   - Calculadoras de insulina (4 nuevas, 70 en total): insulina subcutanea en hospitalizados (dosis diaria por peso, basal y prandial, factor de
     correccion), reglas de 500 y 1800 (relacion insulina:carbohidrato y factor de sensibilidad), cetoacidosis/estado hiperosmolar del adulto
     (consenso ADA/EASD 2024) y cetoacidosis pediatrica (ISPAD 2022). Verificadas con resumenes de las guias; falta contrastar con los textos originales.
+  - Codigo azul: recordatorio compacto del algoritmo (ciclo, ritmo desfibrilable y no desfibrilable) bajo el reloj, distinto en cada pestaña.
   - Codigo azul pediatrico: metas despues del paro agregadas (PA sobre percentil 10, evitar fiebre, diastolica 25/30 durante la RCP, CO2 espirado > 20).
   - Nivel de verificacion por bloque (dosis, farmacologia, seguridad): 0 Borrador, 1 Contrastado con fuente, 2 Confirmado por Esteban.
   - 86 farmacos: los 68 anteriores migrados (nuevos campos en BORRADOR, escritos sin contrastar) y 18 de urologia contrastados con

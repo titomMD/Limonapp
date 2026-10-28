@@ -31,7 +31,7 @@ details.card.rxg,details.card.rxs{padding:0!important}.rxg>summary,.rxs>summary{
 #cbFab[hidden]{display:none}.cbcross{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;color:#1d4ed8;font-size:18px;line-height:1;font-weight:800}
 @media(max-width:899px){#cbFab{bottom:calc(92px + env(safe-area-inset-bottom,0px))!important;left:14px!important}}
 .cbtabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.cbtab{padding:11px 4px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font-weight:650;font-size:14px;cursor:pointer;min-width:0}.cbtab.on{background:#1d4ed8;border-color:#1d4ed8;color:#fff}
-@media(max-width:520px){.cbtabs{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.cbtabs{grid-template-columns:repeat(2,1fr)}}.cbrem{border:2px solid var(--cb);border-radius:14px;padding:10px 12px;margin:8px 0;background:var(--surface)}.cbrem h3{margin:0 0 6px;font-size:.95rem;color:var(--cb)}.cbrr{margin:6px 0}.cbrl{font:700 11.5px var(--font);letter-spacing:.03em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}.cbrf{display:flex;flex-wrap:wrap;align-items:center;gap:4px 5px}.cbrc{padding:4px 9px;border-radius:999px;background:var(--bg,#f7f5f0);border:1px solid var(--line);font-size:13px;line-height:1.25;font-weight:600}.cbrc.sh{border-color:var(--cb)}.cbra{color:var(--muted);font-size:13px}.cbrft{margin-top:8px;padding-top:6px;border-top:1px dashed var(--line);font-size:12.5px;line-height:1.4;color:var(--muted)}
 .cbtim{border:2px solid #1d4ed8}.cbgrid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}.cbgrid3 span,.cbline span{font-size:12px;color:var(--muted);display:block}.cbgrid3 b{font-size:30px;font-variant-numeric:tabular-nums;line-height:1.15;display:block}.cbgrid3 i{font-style:normal}
 
 .cbmini{position:sticky;top:var(--cbtop,0px);z-index:15;display:flex;justify-content:space-around;gap:6px;background:#1d4ed8;color:#fff;border-radius:12px;padding:6px 8px;margin:8px 0;text-align:center}.cbmini span{display:block;font-size:11px;opacity:.85}.cbmini b{font-size:20px;font-variant-numeric:tabular-nums}.cbmini .cbamb{color:#ffd98a}.cbmini .cbred{color:#ffb4b4}
@@ -6340,6 +6340,7 @@ function viewCb(){
   h+='<div class="cbtabs">'+CBP.map(function(x){return '<button class="cbtab'+(P===x[0]?' on':'')+'" data-a="cbPop" data-p="'+x[0]+'">'+x[1]+'</button>';}).join('')+'</div>';
   h+='<div class="note warn" style="margin:8px 0"><strong>Resumen de apoyo, no reemplaza tu entrenamiento ni el protocolo de tu institución.</strong> Basado en las guías AHA y AAP de 2025 (enlaces al final).</div>';
   h+=cbMiniHtml()+cbTimerHtml();
+  h+=cbRemHtml();
   if(P==='p'||P==='r')h+=cbKgBox().replace('<div class="card">','<div class="card cbdosebox">');
   h+=cbSec('1. Haz esto ya',cbList(C.ya));
   if(P==='a'){
@@ -6370,6 +6371,19 @@ function viewCb(){
   h+='<div class="card"><h3>Registro</h3><div id="cbLog">'+cbLogHtml()+'</div>'+(CB.log.length?'<div class="row"><button class="btn sm" data-a="cbCopy">Copiar registro</button></div>':'')+'</div>';
   h+=cbSec('Fuente',cbUl(CBSRC[P].map(function(s){return s[0]+': '+s[1];})).replace(/(https:\/\/[^<\s]+)/g,'<a href="$1" target="_blank" rel="noopener">enlace</a>'),false);
   return h;
+}
+var CBREM={
+ a:{r:[['Ciclo',['RCP 2 min','Revisa el ritmo']],['Desfibrilable',['Choque','RCP 2 min','2.º choque','Epinefrina','RCP 2 min','3.er choque','Amiodarona'],[0,2,5]],['No desfibrilable',['Epinefrina ya','RCP 2 min','Repite epinefrina cada 3 a 5 min']]],f:'30:2 · 100 a 120/min · 5 cm o más · tórax que sube por completo · cambia de compresor cada 2 min · busca las H y las T'},
+ p:{r:[['Ciclo',['RCP 2 min','Revisa el ritmo']],['Desfibrilable',['Choque 2 J/kg','RCP 2 min','Choque 4 J/kg','Epinefrina','RCP 2 min','Choque 4 J/kg o más','Amiodarona o lidocaína'],[0,2,5]],['No desfibrilable',['Epinefrina ya','RCP 2 min','Repite epinefrina cada 3 a 5 min']]],f:'15:2 con dos rescatistas (30:2 con uno) · 100 a 120/min · un tercio del tórax · cambia de compresor cada 2 min · busca las H y las T'},
+ e:{r:[['Madre',['RCP de adulto','Útero a la izquierda','Vía aérea temprana','Choque y epinefrina como en el adulto']],['Parto',['Meta: 5 min del paro','Cesárea perimortem junto a la cama','Equipo de neonatología']]],f:'30:2 · 100 a 120/min · 5 cm o más · busca las H y las T y las causas del embarazo'},
+ r:{r:[['1',['Calor, seca, estimula','Menos de 100 a los 60 s','Ventila 30 a 60/min']],['2',['Menos de 60 tras 30 s de ventilación efectiva','Compresiones 3:1']],['3',['Menos de 60 tras 60 s de compresiones','Epinefrina cada 3 a 5 min']]],f:'Oxígeno al 100 % durante las compresiones · cambia de compresor cada 2 a 5 min'}
+};
+function cbRemHtml(){
+  var R=CBREM[CB.pop];if(!R)return '';
+  return '<div class="cbrem"><h3>Recordatorio del algoritmo</h3>'+R.r.map(function(r){
+    var sh=r[2]||[];
+    return '<div class="cbrr"><div class="cbrl">'+esc(r[0])+'</div><div class="cbrf">'+r[1].map(function(x,i){return (i?'<span class="cbra" aria-hidden="true">›</span>':'')+'<span class="cbrc'+(sh.indexOf(i)>=0?' sh':'')+'">'+esc(x)+'</span>';}).join('')+'</div></div>';
+  }).join('')+'<div class="cbrft">'+esc(R.f)+'</div></div>';
 }
 function cbFab(){
   var f=document.getElementById('cbFab');
