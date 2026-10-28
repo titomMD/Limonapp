@@ -698,7 +698,7 @@ function aiMerge(r,a){
   function ok(o){return !!(o&&typeof o.cita==='string'&&o.cita.length>=8&&full.indexOf(aiNz(o.cita))>=0);}
   function clean(t,n){return String(t||'').replace(/\s+/g,' ').replace(/^[A-Z]\d+[A-Z0-9]?\s*[-–]\s*/,'').trim().slice(0,n);}
   var dx=a.diagnostico_actual;
-  if(ok(dx)&&clean(dx.texto,140).length>=3){r.dx=clean(dx.texto,140);r.dxAi=1;used.push('diagnóstico actual');}
+  if(ok(dx)&&clean(dx.texto,140).length>=3){var dt=clean(dx.texto,140);if(dx.certeza==='sospecha'&&!/^(sospecha|probable|posible)/i.test(dt))dt=('Sospecha de '+dt.charAt(0).toLowerCase()+dt.slice(1)).slice(0,140);r.dx=dt;r.dxAi=1;used.push(dx.certeza==='sospecha'?'diagnóstico actual (en sospecha)':'diagnóstico actual');}
   var mo=a.motivo_ingreso_actual;
   if(ok(mo)&&clean(mo.texto,600).length>=3){r.hx=r.hx||{};r.hx.motivo=clean(mo.texto,600);used.push('motivo de ingreso');}
   var fi=/^\d{4}-\d{2}-\d{2}$/.test(a.fecha_ingreso_actual||'')?a.fecha_ingreso_actual:'';
