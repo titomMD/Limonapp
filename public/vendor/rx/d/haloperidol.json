@@ -1,0 +1,177 @@
+{
+ "id": "haloperidol",
+ "n": "Haloperidol",
+ "g": [
+  "Haloperidol",
+  "Haldol"
+ ],
+ "atc": [
+  "N05AD01"
+ ],
+ "cl": "Antipsicótico",
+ "mc": "d2",
+ "us": [
+  "agitacion",
+  "nausea"
+ ],
+ "es": [
+  "psiq",
+  "medint",
+  "uci",
+  "cirugia",
+  "neuro"
+ ],
+ "via": [
+  "iv",
+  "im",
+  "vo"
+ ],
+ "al": [
+  "qt",
+  "anticolinergico"
+ ],
+ "mech": "Antipsicótico típico (butirofenona) que bloquea con alta afinidad los receptores dopaminérgicos D2 en la vía mesolímbica (reduce alucinaciones y agitación) pero también en la vía nigroestriada (síntomas extrapiramidales) y en la zona gatillo del vómito (antiemético). Casi no tiene efecto anticolinérgico ni sedante, por lo que se usa en delirium agudo y agitación.",
+ "pk": {
+  "abs": "IM: rápida (pico en 20 a 40 min, otras fuentes); oral ≈60 % (otras fuentes)",
+  "vm": "≈18 a 24 h (otras fuentes)",
+  "met": "Hepático (CYP3A4 y CYP2D6)",
+  "el": "Renal y fecal (otras fuentes)"
+ },
+ "ind": [
+  {
+   "i": "Agitación aguda en esquizofrenia (único uso de la etiqueta del inyectable)",
+   "a": "2 a 5 mg IM para control rápido de síntomas moderados a muy graves. Si hace falta, repite incluso cada hora, aunque 4 a 8 h suele bastar. Máximo 20 mg al día. Cambia a la vía oral en cuanto sea posible, con la dosis parenteral de las 24 h anteriores como cálculo inicial.",
+   "p": "Seguridad y eficacia no establecidas en niños (la IM no se ha estudiado en niños)."
+  },
+  {
+   "i": "Delirium o agitación en urgencias o UCI (uso habitual, no figura en la etiqueta)",
+   "a": "2,5 a 5 mg IM o IV; en ancianos 0,5 a 1 mg. Repite con cautela (otras fuentes; no contrastado aquí). Importante: la etiqueta dice que el haloperidol inyectable NO está aprobado para vía intravenosa.",
+   "p": "—"
+  },
+  {
+   "i": "Náuseas y vómito refractarios (uso habitual, no figura en la etiqueta)",
+   "a": "0,5 a 2 mg IM o IV (otras fuentes; no contrastado aquí).",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste en la etiqueta.",
+  "h": "No hay estudios; las concentraciones pueden subir porque se metaboliza en el hígado y disminuye la unión a proteínas. Usa dosis menores.",
+  "e": "En animales hubo reabsorción, menor fertilidad y paladar hendido en ratones. Hay reportes de malformaciones de miembros con otros fármacos en el primer trimestre. Los neonatos expuestos en el tercer trimestre pueden tener síntomas extrapiramidales y de abstinencia.",
+  "l": "Pasa a la leche: según la etiqueta, no se debe amamantar durante el tratamiento.",
+  "g": "Usa dosis bajas y titula despacio; el riesgo de discinesia tardía es mayor en ancianas. Aumenta la mortalidad en ancianos con psicosis relacionada con demencia (caja negra)."
+ },
+ "ci": [
+  "Depresión grave del SNC o estados comatosos por cualquier causa",
+  "Hipersensibilidad (anafilaxia, angioedema)",
+  "Enfermedad de Parkinson",
+  "Demencia con cuerpos de Lewy"
+ ],
+ "fr": [
+  "Trastorno extrapiramidal, distonía, hipertonía",
+  "Hipercinesia, temblor",
+  "Somnolencia",
+  "Hipotensión (otras fuentes)"
+ ],
+ "gr": [
+  "Prolongación del QTc y torsades de pointes (mayor riesgo con dosis altas o vía IV)",
+  "Síndrome neuroléptico maligno",
+  "Discinesia tardía",
+  "Mayor mortalidad en ancianos con demencia",
+  "Leucopenia, neutropenia y agranulocitosis",
+  "Caídas",
+  "Hipersensibilidad"
+ ],
+ "it": [
+  [
+   "Fármacos que prolongan el QT (ondansetrón, azitromicina, quinolonas, amiodarona, metadona)",
+   "Más riesgo de arritmia; ECG"
+  ],
+  [
+   "Litio",
+   "Riesgo de neurotoxicidad; la etiqueta advierte sobre el uso combinado"
+  ],
+  [
+   "Metoclopramida y otros antagonistas de la dopamina",
+   "Más síntomas extrapiramidales"
+  ],
+  [
+   "Carbamazepina, fenitoína, rifampicina (otras fuentes)",
+   "Bajan los niveles de haloperidol"
+  ],
+  [
+   "Depresores del SNC y alcohol (otras fuentes)",
+   "Suman sedación"
+  ]
+ ],
+ "mon": [
+  "ECG y QTc (suspende o reconsidera si pasa de 500 ms)",
+  "Potasio y magnesio",
+  "Rigidez, fiebre o cambio del estado mental (síndrome neuroléptico maligno)",
+  "Movimientos anormales",
+  "Hemograma si hay infección o fiebre inexplicada"
+ ],
+ "ant": "No hay; tratar distonía con biperideno o difenhidramina.",
+ "pre": "La etiqueta dice que el haloperidol inyectable no está aprobado para vía IV, y que la IV y las dosis altas se asocian a más prolongación del QTc y torsades. Corrige potasio y magnesio y pide ECG si usas IV. No lo uses en Parkinson ni demencia con cuerpos de Lewy. Aumenta la mortalidad en ancianos con demencia.",
+ "pres": [
+  "Ampolla 5 mg/mL (lactato)",
+  "Tabletas 1, 5 y 10 mg",
+  "Gotas 2 mg/mL",
+  "Decanoato para depósito (otro producto)"
+ ],
+ "com": [
+  "Haldol"
+ ],
+ "pe": [
+  "La vía IV se usa en delirium en UCI, pero no figura en la etiqueta: sigue el protocolo local y monitoriza el QTc.",
+  "En ancianos, empieza con 0,5 a 1 mg.",
+  "Si hay rigidez y fiebre después de empezarlo, piensa en síndrome neuroléptico maligno."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de haloperidol lactato inyectable (DailyMed, Fresenius Kabi Usa, Llc, Sep 22, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=b1ad2abd-a9d6-44e3-957b-36a73260f4f5",
+   "b": "indicación, dosis IM, vía IV no aprobada, QT, contraindicaciones, embarazo, lactancia, ancianos"
+  },
+  {
+   "t": "Etiqueta de haloperidol tabletas (DailyMed, Cardinal Health 107, Llc, Oct 21, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8ca14b79-6671-4e44-aa34-6564a92aa197",
+   "b": "presentación oral y advertencias generales"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "N05AD01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 10,
+  "np": 32,
+  "pres": [
+   "Solucion inyectable 5 mg",
+   "Solucion oral 2 mg",
+   "Tableta 5 mg",
+   "Tableta 10 mg"
+  ],
+  "m": [
+   "Apracal® 5 mg tabletas (Laboratorios Siegfried)",
+   "Haloperidol 5mg/ml solucion inyectable (Salus Pharma Labs)",
+   "Haloperidolinyectable 5 mg/1 ml (Actifarma)",
+   "Haloperidol solucion oral2 mg/ml (Humax Pharmaceutical)",
+   "Haloperidol solución inyectable 5 mg/ml (Laboratorio Biosano)",
+   "Haloperidol inyectable 5mg/ml (Laboratorios Ryan De Colombia)",
+   "Haloperidol tabletas 5 mg (Humax Pharmaceutical)",
+   "Haloperidol tabletas 10 mg (Humax Pharmaceutical)",
+   "Apracal gotas (Laboratorios Siegfried)",
+   "Haloperidol solucion oral 2 mg / ml (Actifarma)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

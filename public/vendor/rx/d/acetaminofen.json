@@ -1,0 +1,171 @@
+{
+ "id": "acetaminofen",
+ "n": "Acetaminofén (paracetamol)",
+ "g": [
+  "Acetaminofén",
+  "paracetamol",
+  "Dolex",
+  "Winadol"
+ ],
+ "atc": [
+  "N02BE01"
+ ],
+ "cl": "Analgésico / antipirético",
+ "mc": "cox_central",
+ "us": [
+  "dolor",
+  "fiebre"
+ ],
+ "es": [
+  "cirugia",
+  "medint",
+  "pediatria",
+  "gineco",
+  "ortopedia",
+  "uci",
+  "urologia",
+  "cxped",
+  "neurocx"
+ ],
+ "via": [
+  "vo",
+  "iv",
+  "rectal"
+ ],
+ "al": [
+  "hepatotox"
+ ],
+ "et": "«Paracetamol» viene de para-acetil-amino-fenol y «acetaminofén» de N-acetil-para-aminofenol: dos formas de nombrar la misma molécula (por eso en Colombia se dice acetaminofén y en Europa paracetamol).",
+ "mech": "Disminuye la producción de prostaglandinas dentro del sistema nervioso central y actúa sobre el centro de la temperatura en el hipotálamo; el mecanismo exacto no se conoce del todo. Casi no tiene efecto antiinflamatorio periférico (en el tejido inflamado abundan los peróxidos que anulan su acción), y por eso baja la fiebre y el dolor pero no inflama menos, ni daña la mucosa gástrica ni las plaquetas como lo hacen los AINE.",
+ "pk": {
+  "abs": "Oral rápida, pico en 30 a 60 min; IV en infusión de 15 min",
+  "vm": "≈2 a 3 h",
+  "met": "Hígado: glucuronidación y sulfatación; 5 a 10 % por CYP2E1 hacia NAPQI (tóxico) que neutraliza el glutatión",
+  "el": "Renal, como conjugados"
+ },
+ "ind": [
+  {
+   "i": "Dolor leve a moderado (solo, o con opioide si es moderado a grave) y fiebre",
+   "a": "≥50 kg: 1.000 mg IV (o VO) cada 6 h, o 650 mg cada 4 h. Dosis única máxima 1.000 mg, intervalo mínimo 4 h, máximo 4.000 mg al día sumando todas las vías y todos los productos. <50 kg: 15 mg/kg cada 6 h o 12,5 mg/kg cada 4 h (máximo 75 mg/kg al día).",
+   "p": "2 a 12 años: 15 mg/kg cada 6 h o 12,5 mg/kg cada 4 h; máximo 75 mg/kg al día. Fiebre en neonatos (≥32 semanas, hasta 28 días): 12,5 mg/kg cada 6 h, máximo 50 mg/kg al día. Lactantes de 29 días a 2 años: 15 mg/kg cada 6 h, máximo 60 mg/kg al día. Por vía oral las guías pediátricas usan 10 a 15 mg/kg cada 4 a 6 h (otras fuentes).",
+   "k": {
+    "lo": 12.5,
+    "hi": 15,
+    "int": "cada 4 a 6 h (IV, de 2 a 12 años)",
+    "maxd": "1 g por dosis y 75 mg/kg/día (4 g/día en adultos)"
+   }
+  }
+ ],
+ "aj": {
+  "r": "En insuficiencia renal grave pueden ser necesarios intervalos más largos y menor dosis total diaria (la etiqueta no da cifras; guías: cada 6 a 8 h con depuración <10 a 30 mL/min).",
+  "h": "Contraindicado en insuficiencia hepática grave o enfermedad hepática activa grave. Con hepatopatía leve o moderada usa con precaución; muchas guías limitan a 2 a 3 g al día en hepatopatía crónica, alcoholismo o desnutrición (otras fuentes).",
+  "e": "Es el analgésico y antipirético de elección en cualquier trimestre a dosis habituales (otras fuentes; no extraído de esta etiqueta).",
+  "l": "Compatible con la lactancia (otras fuentes).",
+  "g": "Sin diferencias de seguridad; cuida la suma de productos combinados."
+ },
+ "ci": [
+  "Hipersensibilidad al acetaminofén o a los excipientes de la formulación IV",
+  "Insuficiencia hepática grave o enfermedad hepática activa grave"
+ ],
+ "fr": [
+  "Náuseas",
+  "Vómito",
+  "Cefalea",
+  "Reacción local o dolor en el sitio de infusión (IV)",
+  "Insomnio"
+ ],
+ "gr": [
+  "Lesión hepática y falla hepática aguda (por sobredosis; también por errores de dosis en niños)",
+  "Reacciones cutáneas graves (Stevens-Johnson, necrólisis epidérmica, PEGA)",
+  "Anafilaxia y hipersensibilidad"
+ ],
+ "it": [
+  [
+   "Warfarina",
+   "El uso crónico de 4 g al día puede subir el INR; vigila con más frecuencia"
+  ],
+  [
+   "Inductores de CYP2E1 (alcohol crónico, isoniazida, carbamazepina, fenitoína, fenobarbital)",
+   "Más NAPQI y más riesgo hepático; efectos del alcohol complejos"
+  ],
+  [
+   "Otros productos con acetaminofén (gripales, opioides combinados)",
+   "Suma de dosis: máximo 4 g al día en adultos"
+  ]
+ ],
+ "mon": [
+  "Dosis total diaria sumando todas las vías y todos los productos",
+  "Transaminasas con uso prolongado, hepatopatía o desnutrición",
+  "En IV: confirmar que la dosis en mL es la correcta (error de medicación frecuente: mg frente a mL)"
+ ],
+ "ant": "N-acetilcisteína; sirve mejor si se inicia en las primeras 8 a 10 h de una ingesta tóxica (nomograma de Rumack-Matthew).",
+ "pre": "Advertencia en recuadro: errores de dosificación (confundir mg con mL) y hepatotoxicidad. Máximo 4 g al día en adultos (menos si hay hepatopatía, alcoholismo o desnutrición). En niños calcula por peso y revisa que no reciba otros productos con acetaminofén.",
+ "pres": [
+  "Solución IV 1 g/100 mL (10 mg/mL)",
+  "Tabletas 500 mg",
+  "Jarabe 120 mg/5 mL y 150 mg/5 mL; gotas 100 mg/mL; supositorios (otras fuentes)"
+ ],
+ "com": [
+  "Dolex",
+  "Winadol"
+ ],
+ "pe": [
+  "La dosis tóxica de una sola toma ronda 150 mg/kg en niños y 7,5 a 10 g en adultos; el antídoto es N-acetilcisteína.",
+  "Pregunta siempre por productos gripales combinados, que también contienen acetaminofén.",
+  "Para fiebre y dolor en niños, el acetaminofén y el ibuprofeno tienen eficacia parecida."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de Ofirmev (acetaminofén IV) (DailyMed, Hf Acquisition Co Llc, Dba Healthfirst, Feb 24, 2020)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=9a38f63a-8852-6dab-e053-2a95a90a90d6",
+   "b": "dosis IV adulto, pediátrica y neonatal, contraindicaciones, advertencia de hepatotoxicidad, interacciones"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "N02BE01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 95,
+  "np": 526,
+  "pres": [
+   "Tableta 500 mg",
+   "Tableta recubierta 500 mg",
+   "Jarabe 3 g",
+   "Tableta cubierta con pelicula 500 mg",
+   "Capsula blanda 500 mg",
+   "Solucion inyectable 1 g",
+   "Jarabe 3,2 g",
+   "Capsula blanda 325 mg",
+   "Capsula blanda 10 mg",
+   "Capsula blanda 5 mg",
+   "Solucion oral 100 mg",
+   "Capsula blanda 6,25 mg",
+   "Solucion inyectable 10 mg",
+   "Tableta recubierta 5 mg"
+  ],
+  "m": [
+   "Tabcin® extra fuerte noche (Bayer)",
+   "Nadorex® tabletas (Laboratorios Best)",
+   "Dolofen® 500 mg. (Procaps)",
+   "Dolofen-e ® tableta recubierta (Colmed)",
+   "Catalac® 500 mg (Cooperativa Nacional De Droguistas Detallistas - Coopidrogas)",
+   "Cronofen® l 150 mg / 5 ml jarabe (Novamed)",
+   "Mejoral® tableta recubierta (Tecnoquimicas)",
+   "Dolex® tabletas recubiertas (Haleon Colombia)",
+   "Altachis ® noche tabletas recubiertas (Altadis Farmaceutica)",
+   "Dolex® activgel (Haleon Colombia)",
+   "Ametrex ® tabletas 500 mg (Anglopharma)",
+   "Geniol®500mg (Laboratorio Mintlab)"
+  ],
+  "mas": 75,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

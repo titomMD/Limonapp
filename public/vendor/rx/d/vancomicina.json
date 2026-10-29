@@ -1,0 +1,168 @@
+{
+ "id": "vancomicina",
+ "n": "Vancomicina",
+ "g": [
+  "Vancomicina",
+  "Vancocin"
+ ],
+ "atc": [
+  "J01XA01"
+ ],
+ "cl": "Glucopéptido",
+ "mc": "glucopeptido",
+ "us": [
+  "sepsis",
+  "piel",
+  "abdominal"
+ ],
+ "es": [
+  "uci",
+  "infecto",
+  "medint",
+  "ortopedia",
+  "neurocx"
+ ],
+ "via": [
+  "iv",
+  "vo"
+ ],
+ "al": [
+  "nefrotox",
+  "ototox",
+  "ajuste_renal",
+  "extravasacion"
+ ],
+ "et": "«Vancomicina» viene del inglés «vanquish» (vencer): se llamó «compuesto 05865» y luego «vancomicina» por su capacidad de vencer estafilococos resistentes.",
+ "mech": "Glucopéptido que se une a la porción D-alanil-D-alanina de los precursores del peptidoglicano y bloquea físicamente su entrecruzamiento (no actúa sobre las PBP). Es bactericida lento contra grampositivos, incluidos SAMR y enterococo sensible, pero no entra a las bacterias gramnegativas por su tamaño. Por vía oral no se absorbe y sirve solo para C. difficile.",
+ "pk": {
+  "abs": "Oral casi nula (por eso la vía oral solo sirve para infección intestinal); se usa IV",
+  "vm": "4 a 6 h (7,5 días en anuria)",
+  "met": "Poco",
+  "el": "Renal por filtración glomerular (≈75 % en 24 h)"
+ },
+ "ind": [
+  {
+   "i": "Infecciones graves por estafilococos resistentes a β-lactámicos (SAMR): endocarditis, bacteriemia, huesos y articulaciones, piel, vías respiratorias bajas; alérgicos a penicilinas",
+   "a": "Etiqueta: 2 g al día, como 500 mg cada 6 h o 1 g cada 12 h, a no más de 10 mg/min y en al menos 60 min; dosis inicial no menor de 15 mg/kg. Las guías actuales (ASHP/IDSA 2020) usan 15 a 20 mg/kg cada 8 a 12 h guiados por AUC/valle (otras fuentes).",
+   "p": "10 mg/kg por dosis cada 6 h, en al menos 60 min. Neonatos: dosis inicial de 15 mg/kg y luego 10 mg/kg cada 12 h en la primera semana de vida y cada 8 h hasta el mes de edad. Guías: 40 a 60 mg/kg/día (otras fuentes). Mide niveles en niños.",
+   "k": {
+    "lo": 10,
+    "hi": 15,
+    "int": "cada 6 h (dosis de la etiqueta: 10 mg/kg)",
+    "maxd": "1 g por dosis; velocidad máxima 10 mg/min"
+   }
+  },
+  {
+   "i": "Colitis por Clostridioides difficile",
+   "a": "125 mg VO cada 6 h por 10 días (esquema de guías; no figura en la etiqueta IV).",
+   "p": "Según guías.",
+   "k": null
+  }
+ ],
+ "aj": {
+  "r": "La dosis diaria en mg es unas 15 veces la depuración de creatinina en mL/min. La dosis inicial no debe ser menor de 15 mg/kg, aun con función renal reducida. La tabla no vale para pacientes con anuria funcional ni en diálisis.\nDepuración (mL/min) | Dosis por 24 h\n100 | 1.545 mg\n80 | 1.235 mg\n60 | 925 mg\n40 | 620 mg\n20 | 310 mg\n10 | 155 mg\nEn prematuros y ancianos pueden necesitarse reducciones mayores.",
+  "h": "Sin ajuste.",
+  "e": "No se han hecho estudios en animales. En un estudio controlado con embarazadas tratadas en el segundo y tercer trimestre no hubo pérdida auditiva neurosensorial ni nefrotoxicidad en el recién nacido.",
+  "l": "Pasa a la leche; precaución. Decide si suspender el fármaco o la lactancia.",
+  "g": "La filtración glomerular baja con la edad y sube los niveles: ajusta la dosis."
+ },
+ "ci": [
+  "Hipersensibilidad conocida a vancomicina"
+ ],
+ "fr": [
+  "Síndrome de infusión (enrojecimiento de cuello y tronco, hipotensión) por infusión rápida",
+  "Flebitis",
+  "Neutropenia reversible",
+  "Rash",
+  "Fiebre"
+ ],
+ "gr": [
+  "Nefrotoxicidad con lesión renal aguda",
+  "Ototoxicidad transitoria o permanente",
+  "Reacciones anafilactoides con hipotensión, sibilancias, urticaria",
+  "Reacciones cutáneas graves (Stevens-Johnson, necrólisis epidérmica, DRESS)",
+  "Trombocitopenia y agranulocitosis",
+  "Colitis por Clostridioides difficile"
+ ],
+ "it": [
+  [
+   "Piperacilina-tazobactam",
+   "Más lesión renal aguda (otras fuentes y etiqueta de pip-tazo)"
+  ],
+  [
+   "Aminoglucósidos, anfotericina B, bacitracina, polimixina B, colistina, cisplatino",
+   "Más nefro y ototoxicidad; vigila la función renal"
+  ],
+  [
+   "Anestésicos",
+   "Eritema, enrojecimiento y reacciones anafilactoides; sobre todo en niños"
+  ]
+ ],
+ "mon": [
+  "Creatinina, urea y diuresis",
+  "Niveles séricos (AUC o valle) según protocolo; en niños y prematuros especialmente",
+  "Velocidad de infusión",
+  "Audición en tratamientos largos o con otros ototóxicos",
+  "Hemograma si el tratamiento es largo"
+ ],
+ "ant": "No hay; hemodiálisis de alto flujo la retira en parte.",
+ "pre": "Infunde despacio: concentración máxima 5 mg/mL (hasta 10 mg/mL si hay restricción de líquidos) y no más de 10 mg/min; 1 g en al menos 60 min. La infusión rápida produce el síndrome del hombre rojo. Ajusta por función renal. Vigila el extravasado: irrita el tejido.",
+ "pres": [
+  "Vial 500 mg y 1 g",
+  "Vial 5 g y 10 g (paquete a granel)",
+  "Cápsulas orales 125 y 250 mg (otras fuentes)"
+ ],
+ "com": [
+  "Vancocin"
+ ],
+ "pe": [
+  "El síndrome del hombre rojo es liberación de histamina por infusión rápida, no alergia: para la infusión, trata con antihistamínico y reinicia más lenta.",
+  "Para infección intestinal por C. difficile se usa por vía oral, porque no se absorbe; la IV no sirve en esa indicación.",
+  "No es mejor que la cefazolina o una penicilina antiestafilocócica para SAMS."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de vancomicina para inyección (DailyMed, Sagent Pharmaceuticals, Oct 20, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=06dcfd36-942f-4752-86ad-4c5a6fc3e48f",
+   "b": "dosis adulto, pediátrica y neonatal, ajuste renal, velocidad de infusión, interacciones, lactancia"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01XA01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 16,
+  "np": 46,
+  "pres": [
+   "Polvo liofilizado para reconstituir a solucion inyectable 500 mg",
+   "Polvo esteril para reconstituir a solucion inyectable 500 mg",
+   "Polvo liofilizado para reconstituir a solucion inyectable 1000 mg",
+   "Capsula dura 250 mg",
+   "Capsula dura 125 mg"
+  ],
+  "m": [
+   "Vanbiotic® (Vitalis C.I)",
+   "Injovan®1000 mg polvo liofilizado para reconstituir a solución inyectable (Aspiro Pharma)",
+   "Sumicina® 500 mg inyectable (Blau Farmaceutica Colombia)",
+   "Injovan®500 mg polvo liofilizado para reconstituir a solución inyectable (Aspiro Pharma)",
+   "Alvanco® (Al Pharma)",
+   "Vanoxat® 1000 mg polvo liofilizado (Xinetix Pharma)",
+   "Vaneotik® 125 mg (Hb Human Bioscience)",
+   "Vaneotik® 250 mg capsulas (Hb Human Bioscience)",
+   "Diclostrid®250 mg (Advance Scientific De Colombia)",
+   "Vankina ® 500 mg . (Procaps)",
+   "Vancosala 500 mg polvo liofilizado para reconstituir a solución inyectable (Laboratorios Baxter)",
+   "Vancomicina clorhidrato para inyeccion 500 mg/vial. (Comercial Medica)"
+  ],
+  "mas": 4,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

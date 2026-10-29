@@ -1,0 +1,176 @@
+{
+ "id": "diazepam",
+ "n": "Diazepam",
+ "g": [
+  "Diazepam",
+  "Valium"
+ ],
+ "atc": [
+  "N05BA01"
+ ],
+ "cl": "Benzodiacepina",
+ "mc": "gaba_a",
+ "us": [
+  "conv",
+  "sedacion"
+ ],
+ "es": [
+  "medint",
+  "uci",
+  "neuro",
+  "anest",
+  "pediatria"
+ ],
+ "via": [
+  "iv",
+  "vo",
+  "rectal",
+  "im"
+ ],
+ "al": [
+  "depresor_snc",
+  "alto_riesgo"
+ ],
+ "et": "El sufijo «-azepam» / «-azolam» identifica a las benzodiacepinas (anillo benceno fusionado con diazepina).",
+ "mech": "Se une a un sitio específico del receptor GABA-A (distinto del sitio del GABA) y aumenta la frecuencia con que se abre el canal de cloro cuando el GABA se une. Más cloro entra a la neurona, la hiperpolariza y la vuelve más difícil de disparar. Por eso produce sedación, ansiólisis, relajación muscular y efecto anticonvulsivante.",
+ "pk": {
+  "abs": "IV directa; la IM es errática (otras fuentes)",
+  "vm": "Fase de distribución ≈0,5 h; vida media terminal ≈18 a 25 h (mediana), con el metabolito desmetildiazepam mucho más largo",
+  "met": "Hepático (CYP2C19 y CYP3A4), con metabolitos activos",
+  "el": "Renal (metabolitos)"
+ },
+ "ind": [
+  {
+   "i": "Estatus epiléptico y crisis recurrentes graves",
+   "a": "5 a 10 mg (preferible IV lento), repetible cada 10 a 15 min hasta un máximo de 30 mg. Si hace falta, puede repetirse el tratamiento a las 2 a 4 h, teniendo en cuenta los metabolitos activos. IM solo si no hay vía IV. Precaución extrema en enfermedad pulmonar crónica o inestabilidad cardiovascular. AES 2016 (nivel A): 0,15 a 0,2 mg/kg IV, máximo 10 mg por dosis, repetible una vez; es una de las tres primeras opciones (con lorazepam IV y midazolam IM), a los 5 minutos de crisis.",
+   "p": "De 3 meses a 17 años: 0,2 mg/kg (máximo 8 mg) IV lento en 1 min; si hace falta, a los 5 min una segunda dosis de 0,1 mg/kg (máximo 4 mg). Por vía rectal 0,5 mg/kg (otras fuentes). AES 2016 (nivel A): 0,15 a 0,2 mg/kg IV, máximo 10 mg, repetible una vez. Por vía rectal, 0,2 a 0,5 mg/kg, máximo 20 mg, en dosis única (nivel B) si no hay vía IV.",
+   "k": {
+    "lo": 0.2,
+    "hi": 0.2,
+    "int": "IV lento en 1 min; segunda dosis a los 5 min de 0,1 mg/kg",
+    "maxd": "8 mg la primera dosis"
+   }
+  },
+  {
+   "i": "Ansiedad",
+   "a": "Moderada: 2 a 5 mg IM o IV, repetible en 3 a 4 h. Grave: 5 a 10 mg IM o IV, repetible en 3 a 4 h.",
+   "p": "Ver rango pediátrico en la etiqueta: la seguridad parenteral no está establecida en neonatos (≤30 días)."
+  },
+  {
+   "i": "Abstinencia alcohólica aguda (agitación, temblor, delirium tremens inminente, alucinosis)",
+   "a": "10 mg IM o IV al inicio; luego 5 a 10 mg a las 3 a 4 h si hace falta.",
+   "p": "—"
+  },
+  {
+   "i": "Espasmo muscular (patología local, parálisis cerebral, atetosis, síndrome de la persona rígida, tétanos)",
+   "a": "5 a 10 mg IM o IV al inicio; luego 5 a 10 mg a las 3 a 4 h si hace falta. En tétanos pueden hacer falta dosis mayores.",
+   "p": "Tétanos en lactantes mayores de 30 días: 1 a 2 mg IM o IV lento, repetido cada 3 a 4 h. Niños de 5 años o más: 5 a 10 mg cada 3 a 4 h."
+  },
+  {
+   "i": "Procedimientos endoscópicos, premedicación y cardioversión",
+   "a": "Endoscopia: titula IV hasta el efecto (arrastre del habla); en general 10 mg o menos, hasta 20 mg si no se usa narcótico; si no hay vía IV, 5 a 10 mg IM unos 30 min antes. Reduce el narcótico al menos un tercio. Premedicación quirúrgica: 10 mg IM. Cardioversión: 5 a 15 mg IV, 5 a 10 min antes.",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "Precaución: los metabolitos activos se acumulan (otras fuentes; la etiqueta de la inyección no detalla ajuste renal).",
+  "h": "Evita o reduce en cirrosis: la vida media sube mucho (otras fuentes).",
+  "e": "Se sugiere mayor riesgo de malformaciones congénitas con tranquilizantes menores en el primer trimestre: evítalo casi siempre en ese periodo. En el parto y al final del embarazo puede causar sedación y abstinencia neonatal.",
+  "l": "Pasa a la leche; evita el uso repetido (otras fuentes).",
+  "g": "Dosis menores (2 a 5 mg) y aumentos lentos en ancianos o debilitados y cuando se dan otros sedantes. Evita en mayores si es posible (caídas, delirio)."
+ },
+ "ci": [
+  "Hipersensibilidad al diazepam",
+  "Glaucoma agudo de ángulo estrecho",
+  "Glaucoma de ángulo abierto, salvo que reciba tratamiento adecuado"
+ ],
+ "fr": [
+  "Somnolencia",
+  "Fatiga",
+  "Ataxia",
+  "Flebitis y trombosis venosa en el sitio de inyección",
+  "Confusión, cefalea, mareo, temblor"
+ ],
+ "gr": [
+  "Depresión respiratoria y apnea, sobre todo con opioides o en ancianos (recuadro)",
+  "Dependencia, abuso y mal uso (recuadro)",
+  "Abstinencia con suspensión brusca",
+  "Hipotensión y paro cardiaco con inyección rápida",
+  "Reacciones paradójicas (agitación, irritabilidad, agresividad)",
+  "Depresión prolongada del SNC en neonatos"
+ ],
+ "it": [
+  [
+   "Opioides",
+   "Sedación profunda, depresión respiratoria, coma y muerte; reduce el opioide al menos un tercio y limita la dosis (recuadro)"
+  ],
+  [
+   "Barbitúricos, alcohol, fenotiazinas, IMAO y otros antidepresivos",
+   "Potencian el diazepam; más hipotensión y debilidad muscular"
+  ],
+  [
+   "Inhibidores de CYP2C19 y CYP3A4 (omeprazol, fluconazol, cimetidina)",
+   "Menor depuración del diazepam (la etiqueta menciona cimetidina, propranolol, ciertos fármacos que alteran la depuración)"
+  ],
+  [
+   "Fenitoína",
+   "Niveles variables de fenitoína (otras fuentes)"
+  ]
+ ],
+ "mon": [
+  "Frecuencia respiratoria, saturación y nivel de sedación",
+  "Presión arterial",
+  "Sitio de inyección (flebitis)",
+  "Equipo de soporte ventilatorio disponible"
+ ],
+ "ant": "Flumazenilo (precaución: puede precipitar convulsiones en dependientes).",
+ "pre": "Advertencia en recuadro: uso con opioides, abuso y dependencia. Inyecta lento (al menos 1 min por cada 5 mg; 1 min en estatus pediátrico), en una vena grande y no del dorso de la mano o la muñeca. No lo mezcles ni lo diluyas con otras soluciones ni en la misma jeringa (precipita). Precaución con miastenia gravis, insuficiencia respiratoria grave y apnea del sueño (otras fuentes). Ten soporte ventilatorio a mano.",
+ "pres": [
+  "Ampolla 10 mg/2 mL (5 mg/mL)",
+  "Tabletas 5 y 10 mg",
+  "Gel rectal"
+ ],
+ "com": [
+  "Valium"
+ ],
+ "pe": [
+  "Es lipofílico: tras una dosis IV se redistribuye en minutos al tejido graso, así que el efecto agudo termina antes de lo que sugiere la vida media (por eso las convulsiones pueden reaparecer).",
+  "No lo diluyas ni lo mezcles en la misma jeringa: precipita.",
+  "En neonatos (≤30 días) no hay seguridad establecida: puede causar depresión prolongada del SNC."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de diazepam inyectable (DailyMed, Fresenius Kabi Usa, Llc, Oct 22, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=ae52866a-0b9a-4baf-af1b-f9d5e00c0e56",
+   "b": "dosis IV e IM por indicación, estatus epiléptico en adultos y niños, contraindicaciones, interacciones, embarazo, pediatría"
+  },
+  {
+   "t": "AES: guía de estatus epiléptico convulsivo, Epilepsy Curr 2016;16:48 (PDF aportado por Esteban), Figura 1 p.58",
+   "u": "https://doi.org/10.5698/1535-7597-16.1.48",
+   "b": "diazepam IV 0,15 a 0,2 mg/kg (máx. 10 mg) y rectal 0,2 a 0,5 mg/kg (máx. 20 mg)"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "N05BA01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 1,
+  "np": 2,
+  "pres": [
+   "Solucion inyectable 10 mg"
+  ],
+  "m": [
+   "Diazepam solucion inyectable 10 mg /2ml (Laboratorio Biosano)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

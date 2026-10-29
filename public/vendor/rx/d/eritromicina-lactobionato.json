@@ -1,0 +1,160 @@
+{
+ "id": "eritromicina-lactobionato",
+ "n": "Eritromicina IV (lactobionato)",
+ "g": [
+  "Eritromicina",
+  "Eritromicina lactobionato",
+  "Erythrocin"
+ ],
+ "atc": [
+  "J01FA01"
+ ],
+ "cl": "Macrólido (antibiótico y procinético)",
+ "mc": "macrolido",
+ "us": [
+  "reflujo",
+  "resp",
+  "piel"
+ ],
+ "es": [
+  "gastro",
+  "infecto",
+  "pediatria",
+  "medint",
+  "uci"
+ ],
+ "via": [
+  "iv",
+  "vo"
+ ],
+ "al": [
+  "qt",
+  "cyp",
+  "hepatotox",
+  "ototox"
+ ],
+ "et": "«Eritro-» (rojo en griego, por el color del hongo Saccharopolyspora erythraea); «-micina» marca a los antibióticos de Streptomyces u hongos afines.",
+ "mech": "Como antibiótico, se une a la subunidad ribosomal 50S y detiene la síntesis de proteínas bacterianas. Como procinético, activa los receptores de motilina en el estómago y provoca contracciones intensas que vacían el contenido gástrico (sangre y restos), lo que mejora la visión en la endoscopia.",
+ "pk": {
+  "abs": "IV; sin absorción que considerar",
+  "vm": "Unas 1,5 a 2 h (otras fuentes)",
+  "met": "Hepático (CYP3A4); además lo inhibe",
+  "el": "Biliar; 12 a 15% por orina activo (etiqueta)"
+ },
+ "ind": [
+  {
+   "i": "Preparación antes de la endoscopia en hemorragia digestiva alta (uso fuera de etiqueta)",
+   "a": "ACG 2021 (recomendación condicional, evidencia muy baja): 250 mg IV en infusión antes de la endoscopia. En los ensayos que sustentan la guía la infusión duró de 5 a 30 min (casi siempre 20 a 30) y la endoscopia se hizo 20 a 90 min después. Riesgo de torsades con 250 mg únicos: muy raro, descrito sobre todo con dosis repetidas o mayores. La etiqueta FDA no incluye esta indicación.",
+   "p": "No hay recomendación pediátrica en una guía ni estudio pediátrico primario recuperado para esta indicación. Un ensayo en adultos usó 3 mg/kg IV en 30 min (MediSearch; sin contrastar)."
+  },
+  {
+   "i": "Infecciones graves por gérmenes sensibles (por ejemplo Legionella, difteria, alergia a penicilina) (etiqueta)",
+   "a": "15 a 20 mg/kg/día IV, hasta 4 g/día en infecciones graves. En infusión intermitente: un cuarto de la dosis diaria en 20 a 60 min cada 6 h (1 a 5 mg/mL, mínimo 100 mL de diluyente), o infusión continua a 1 mg/mL. Pasar a vía oral lo antes posible. EPI por gonococo en alérgicas a penicilina: 500 mg IV cada 6 h por 3 días.",
+   "p": "Adultos y niños: 15 a 20 mg/kg/día IV (etiqueta). Equivale a 3,75 a 5 mg/kg por dosis cada 6 h.",
+   "k": {
+    "lo": 3.75,
+    "hi": 5,
+    "int": "IV en 20 a 60 min, cada 6 h (un cuarto de 15 a 20 mg/kg/día; etiqueta FDA)",
+    "maxd": "1.000 mg (4 g/día)"
+   }
+  }
+ ],
+ "aj": {
+  "r": "La etiqueta no pide ajuste; con dosis de 4 g/día o más hay riesgo de sordera reversible, sobre todo con insuficiencia renal o hepática en ancianos.",
+  "h": "Vigilar toxicidad hepática en insuficiencia hepática; eleva el riesgo de torsades (etiqueta).",
+  "e": "Sin evidencia de teratogenicidad en animales; no hay estudios adecuados en mujeres (etiqueta). Se usa de forma habitual como antibiótico si hace falta (otras fuentes).",
+  "l": "Pasa a la leche; en lactantes se ha asociado estenosis pilórica hipertrófica (otras fuentes).",
+  "g": "Mayor riesgo de torsades y de sordera con dosis altas; usar con cautela (etiqueta)."
+ },
+ "ci": [
+  "Hipersensibilidad a la eritromicina",
+  "Uso con terfenadina, astemizol, cisaprida, pimozida, ergotamina o dihidroergotamina",
+  "QT prolongado, alteraciones electrolíticas o cardiopatía estructural (precaución mayor para el uso procinético; criterios de exclusión de los ensayos)"
+ ],
+ "fr": [
+  "Náuseas, vómito, diarrea y cólico",
+  "Irritación y flebitis de la vena",
+  "Reacciones alérgicas (urticaria)"
+ ],
+ "gr": [
+  "Prolongación del QT y torsades de pointes tras infusión IV (etiqueta)",
+  "Hepatotoxicidad",
+  "Sordera reversible con dosis de 4 g/día o más",
+  "Colitis por Clostridioides difficile",
+  "Estenosis pilórica hipertrófica infantil",
+  "Reacciones graves de piel (SJS, necrólisis epidérmica)"
+ ],
+ "it": [
+  [
+   "Terfenadina, astemizol, cisaprida, pimozida",
+   "Arritmias graves con prolongación del QT; contraindicado (etiqueta)"
+  ],
+  [
+   "Ergotamina y dihidroergotamina",
+   "Vasoespasmo e isquemia; contraindicado (etiqueta)"
+  ],
+  [
+   "Estatinas (simvastatina, atorvastatina, lovastatina)",
+   "Mayor riesgo de rabdomiólisis por inhibición de CYP3A4 (otras fuentes)"
+  ],
+  [
+   "Midazolam, triazolam y benzodiacepinas afines",
+   "Menor depuración y más sedación (etiqueta)"
+  ],
+  [
+   "Antiarrítmicos y otros fármacos que prolongan el QT",
+   "Riesgo de torsades; evita la combinación (etiqueta)"
+  ],
+  [
+   "Verapamilo, diltiazem, azoles",
+   "Pueden elevar los niveles de eritromicina y el riesgo cardiaco (otras fuentes)"
+  ],
+  [
+   "Warfarina, carbamazepina, ciclosporina, teofilina, digoxina",
+   "Niveles elevados de estos fármacos (etiqueta)"
+  ]
+ ],
+ "mon": [
+  "ECG con QTc antes (sobre todo en cardiópatas o con fármacos de riesgo)",
+  "Potasio y magnesio",
+  "Sitio de infusión (flebitis)",
+  "Función hepática si el uso es prolongado",
+  "Diarrea durante o después del tratamiento (C. difficile)"
+ ],
+ "ant": "No hay antídoto específico; se suspende la infusión y se da soporte.",
+ "pre": "Nunca en bolo IV: es irritante. Reconstituir el vial de 500 mg con 10 mL de agua estéril (sin conservante ni sales; 50 mg/mL) y luego diluir en suero fisiológico, Ringer lactato o Normosol-R a 1 a 5 mg/mL (mínimo 100 mL); las soluciones ácidas (pH menor de 5,5) pierden potencia. Corregir potasio y magnesio y revisar el QTc antes de usarla como procinético.",
+ "pres": [
+  "Vial 500 mg (liofilizado)"
+ ],
+ "com": [
+  "Erythrocin Lactobionate-IV"
+ ],
+ "pe": [
+  "Para la endoscopia se usa una sola dosis: el riesgo de torsades se describe sobre todo con dosis repetidas o altas y con otros fármacos que inhiben CYP3A4 o alargan el QT.",
+  "Mejora la visualización y reduce la necesidad de segunda endoscopia, pero no cambió la mortalidad ni el resangrado (ACG 2021).",
+  "MediSearch citó un «consenso internacional 2019» sin fuente; no lo uses como referencia."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de Erythrocin Lactobionate-IV (DailyMed, setid a96c405f, oct 2025)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=a96c405f-bd70-4bb4-719e-ac6a79dcc213",
+   "b": "dosis como antibiótico, dilución y velocidad, contraindicaciones, QT, interacciones, embarazo"
+  },
+  {
+   "t": "ACG: guía de hemorragia digestiva alta y úlcera, Am J Gastroenterol 2021;116:899 (PDF aportado por Esteban), recomendación 3",
+   "u": "https://doi.org/10.14309/ajg.0000000000001245",
+   "b": "250 mg IV antes de la endoscopia en hemorragia digestiva alta; conditional, evidencia muy baja"
+  },
+  {
+   "t": "MediSearch (ficha de eritromicina, origen no verificado)",
+   "u": "https://medisearch.io/share/mMXqqzR5kisVhvBztkLtSz",
+   "b": "metaanálisis y dosis de 3 mg/kg; sin contrastar"
+  }
+ ],
+ "rev": "2026-10-28"
+}

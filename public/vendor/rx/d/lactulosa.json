@@ -1,0 +1,139 @@
+{
+ "id": "lactulosa",
+ "n": "Lactulosa",
+ "g": [
+  "Lactulosa",
+  "Duphalac"
+ ],
+ "atc": [
+  "A06AD11"
+ ],
+ "cl": "Laxante osmótico",
+ "mc": "osmotico",
+ "us": [
+  "estrenimiento"
+ ],
+ "es": [
+  "medint",
+  "gastro",
+  "cirugia",
+  "pediatria",
+  "uci"
+ ],
+ "via": [
+  "vo",
+  "rectal"
+ ],
+ "al": [],
+ "et": "«Lactulosa» viene del latín lac, lactis («leche») + «-ulosa» (una cetosa), porque es un disacárido de galactosa y fructosa.",
+ "mech": "Disacárido sintético que no se absorbe en el intestino delgado. Llega al colon y las bacterias lo fermentan a ácidos orgánicos: baja el pH, que atrae agua por osmosis y ablanda las heces. En la encefalopatía hepática, además, ese pH ácido convierte el amoniaco (NH₃) en amonio (NH₄⁺), que queda atrapado en la luz del colon y no se absorbe.",
+ "pk": {
+  "abs": "Casi nula: llega al colon sin absorberse",
+  "vm": "No aplica (acción local)",
+  "met": "Fermentación bacteriana en el colon a ácidos orgánicos",
+  "el": "Fecal"
+ },
+ "ind": [
+  {
+   "i": "Encefalopatía portosistémica (prevención y tratamiento, incluye precoma y coma)",
+   "a": "30 a 45 mL VO tres o cuatro veces al día, ajustando cada uno o dos días hasta 2 o 3 deposiciones blandas al día. En la fase inicial, 30 a 45 mL cada hora para inducir laxación rápida y luego se baja a la dosis diaria. En coma con riesgo de aspiración: enema de retención con 300 mL de lactulosa en 700 mL de agua o solución salina, retenido 30 a 60 min y repetido cada 4 a 6 h; no uses enemas jabonosos o alcalinos. La mejoría puede tardar 24 a 48 h o más. El tratamiento largo previene las recaídas con la dosis diaria.",
+   "p": "Pocos datos. Lactantes: 2,5 a 10 mL al día divididos. Niños mayores y adolescentes: 40 a 90 mL al día en total. Meta: 2 a 3 deposiciones blandas; si hay diarrea, baja la dosis."
+  },
+  {
+   "i": "Estreñimiento",
+   "a": "15 a 30 mL VO al día (10 a 20 g); se puede subir hasta 60 mL al día si hace falta. Puede tardar 24 a 48 h en dar una deposición normal. Mézclalo con jugo, agua o leche si se tolera mejor.",
+   "p": "La etiqueta de estreñimiento dice que la seguridad y eficacia en niños no están establecidas (dosis pediátrica de otras fuentes: 1 a 3 mL/kg al día, no contrastado aquí)."
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste en la etiqueta.",
+  "h": "La dosis se ajusta a 2 o 3 deposiciones blandas al día en la encefalopatía.",
+  "e": "En animales no hubo daño fetal; úsalo en el embarazo solo si es necesario (sin estudios controlados en mujeres).",
+  "l": "No se sabe si pasa a la leche; la etiqueta pide precaución.",
+  "g": "Vigila deshidratación y electrolitos (otras fuentes)."
+ },
+ "ci": [
+  "Pacientes que necesitan una dieta baja en galactosa (el producto contiene menos de 1,6 g de galactosa por 15 mL)",
+  "Obstrucción intestinal (otras fuentes)"
+ ],
+ "fr": [
+  "Flatulencia y cólicos, sobre todo al inicio",
+  "Distensión abdominal y eructos (≈20 %)",
+  "Náuseas y vómito"
+ ],
+ "gr": [
+  "Diarrea excesiva con pérdida de líquidos, hipopotasemia e hipernatremia",
+  "Hiponatremia y deshidratación en lactantes"
+ ],
+ "it": [
+  [
+   "Neomicina y otros antiinfecciosos orales",
+   "Pueden impedir la degradación de la lactulosa y la acidificación del colon; vigila la respuesta"
+  ],
+  [
+   "Antiácidos no absorbibles",
+   "Pueden impedir la caída del pH del colon y reducir el efecto"
+  ],
+  [
+   "Diuréticos (otras fuentes)",
+   "Suman pérdida de líquidos y potasio"
+  ]
+ ],
+ "mon": [
+  "Número de deposiciones (meta 2 a 3 blandas al día en encefalopatía)",
+  "Estado mental en encefalopatía",
+  "Sodio y potasio si hay diarrea",
+  "Hidratación"
+ ],
+ "ant": "No hay.",
+ "pre": "El objetivo en encefalopatía es 2 a 3 deposiciones blandas al día, no una dosis fija. La diarrea excesiva puede empeorar la encefalopatía (deshidratación, hipopotasemia, hipernatremia). Hay riesgo teórico de gas explosivo (hidrógeno) si se usa electrocauterio en proctoscopia o colonoscopia.",
+ "pres": [
+  "Solución oral 10 g/15 mL (jarabe 66,7 %)"
+ ],
+ "com": [
+  "Duphalac"
+ ],
+ "pe": [
+  "Si la diarrea es profusa, baja la dosis antes de seguir.",
+  "Tarda 24 a 48 h en actuar en estreñimiento; no es de acción inmediata.",
+  "Evita los enemas jabonosos en la encefalopatía."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de lactulosa solución (estreñimiento) (DailyMed, Atlantic Biologicals Corp., Oct 26, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=3fb6e908-893c-5a57-e063-6294a90a1bfc",
+   "b": "dosis en estreñimiento y contraindicaciones"
+  },
+  {
+   "t": "Etiqueta de lactulosa solución (encefalopatía portosistémica) (DailyMed, Rising Pharma Holdings, Inc., Jan 12, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=e75c335b-f19e-42e2-a24f-d891a52d3d34",
+   "b": "dosis en encefalopatía hepática, enema de retención, pediatría"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "A06AD11"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 3,
+  "np": 32,
+  "pres": [
+   "Solucion oral 66,7 g",
+   "Jarabe 66,7 g"
+  ],
+  "m": [
+   "Duphalac® solucion oral (Laboratorio Franco Colombiano Lafrancol)",
+   "Constilax® 66. 7% solucion oral (Humax Pharmaceutical)",
+   "Lactulaxjarabe (Laboratorios Chalver De Colombia)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

@@ -1,0 +1,178 @@
+{
+ "id": "enoxaparina",
+ "n": "Enoxaparina",
+ "g": [
+  "Enoxaparina",
+  "Clexane",
+  "Lovenox"
+ ],
+ "atc": [
+  "B01AB05"
+ ],
+ "cl": "Heparina de bajo peso molecular",
+ "mc": "hbpm",
+ "us": [
+  "anticoag"
+ ],
+ "es": [
+  "cirugia",
+  "ortopedia",
+  "medint",
+  "gineco",
+  "uci",
+  "cardio"
+ ],
+ "via": [
+  "sc",
+  "iv"
+ ],
+ "al": [
+  "sangrado",
+  "alto_riesgo",
+  "ajuste_renal",
+  "hiperk"
+ ],
+ "et": "«Heparina» viene del griego hepar («hígado»), porque se aisló por primera vez del hígado de perro (1916).",
+ "mech": "Es un fragmento de heparina de bajo peso molecular (4,5 kDa promedio) que potencia a la antitrombina. La antitrombina inactiva sobre todo al factor Xa, y por su corto tamaño la enoxaparina no alcanza a ligar antitrombina y trombina a la vez, por lo que su efecto anti-Xa es mayor que el anti-IIa. Resultado: anticoagulación predecible por peso, sin necesidad de monitoreo en la mayoría de los pacientes.",
+ "pk": {
+  "abs": "Subcutánea con biodisponibilidad alta (>90 %, otras fuentes)",
+  "vm": "Actividad anti-Xa: ≈4,5 h tras una dosis SC y ≈7 h con dosis repetidas; queda actividad significativa unas 12 h tras 40 mg SC",
+  "met": "Hepático parcial (desulfatación y despolimerización, otras fuentes)",
+  "el": "Renal"
+ },
+ "ind": [
+  {
+   "i": "Profilaxis de trombosis venosa profunda",
+   "a": "Cirugía abdominal: 40 mg SC una vez al día, con la primera dosis 2 h antes de la cirugía, 7 a 10 días. Cadera o rodilla: 30 mg SC cada 12 h, empezando 12 a 24 h tras la cirugía con hemostasia, 7 a 10 días (en cadera, 40 mg una vez al día hasta 3 semanas es opción, con la primera dosis 12 h antes). Pacientes médicos con movilidad muy restringida: 40 mg SC una vez al día, 6 a 11 días.",
+   "p": "La seguridad y eficacia en pediatría no se han establecido y no está aprobada en neonatos ni lactantes (etiqueta). En la práctica se usan 0,5 mg/kg SC cada 12 h en profilaxis (otras fuentes; no contrastado aquí)."
+  },
+  {
+   "i": "Tratamiento de TVP con o sin embolia pulmonar",
+   "a": "1 mg/kg SC cada 12 h (manejo ambulatorio de TVP sin embolia, o en hospital), o 1,5 mg/kg SC una vez al día a la misma hora (solo hospital). Inicia warfarina cuando corresponda (por lo común en 72 h) y continúa la enoxaparina al menos 5 días y hasta que el INR esté entre 2 y 3.",
+   "p": "En pediatría se usan 1 mg/kg SC cada 12 h (lactantes menores de 2 meses, más: 1,5 mg/kg) con anti-Xa objetivo 0,5 a 1 U/mL (otras fuentes; no contrastado aquí).",
+   "k": {
+    "lo": 1,
+    "hi": 1,
+    "int": "SC cada 12 h (otras fuentes en pediatría; la etiqueta no la aprueba)"
+   }
+  },
+  {
+   "i": "Angina inestable e infarto sin onda Q",
+   "a": "1 mg/kg SC cada 12 h junto con aspirina oral (100 a 325 mg al día), mínimo 2 días y hasta estabilizar (duración usual de 2 a 8 días).",
+   "p": "—"
+  },
+  {
+   "i": "Infarto agudo con elevación del ST (IAMCEST)",
+   "a": "Menores de 75 años: bolo IV de 30 mg más 1 mg/kg SC, y luego 1 mg/kg SC cada 12 h (máximo 100 mg en las dos primeras dosis). Mayores de 75 años: sin bolo IV; 0,75 mg/kg SC cada 12 h (máximo 75 mg en las dos primeras dosis). Con aspirina y, si hay fibrinólisis, entre 15 min antes y 30 min después de iniciarla.",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "Depuración de creatinina <30 mL/min: profilaxis 30 mg SC una vez al día; tratamiento de TVP 1 mg/kg SC una vez al día; en angina inestable e infarto sin onda Q, 1 mg/kg una vez al día; en IAMCEST, 30 mg IV más 1 mg/kg SC y luego 1 mg/kg una vez al día (<75 años) o 1 mg/kg una vez al día (≥75 años, sin bolo). Vigila anti-Xa.",
+  "h": "No se ha estudiado en insuficiencia hepática; el efecto en la exposición se desconoce. Usa con cautela.",
+  "e": "Cruza la placenta en animales; datos humanos de 693 nacidos vivos sugieren que no aumenta el riesgo de malformaciones mayores. Es el anticoagulante habitual en el embarazo (otras fuentes). En prótesis valvulares mecánicas en embarazo hubo trombosis valvular y muertes: no es adecuada sola.",
+  "l": "No se sabe si pasa a la leche humana; en ratas el paso es muy limitado. Pondera los beneficios de amamantar.",
+  "g": "En ≥75 años con IAMCEST, sin bolo y con dosis menor. Vigila la función renal y el sangrado."
+ },
+ "ci": [
+  "Hemorragia mayor activa",
+  "Antecedente de trombocitopenia inducida por heparina (inmunomediada) en los últimos 100 días, o anticuerpos circulantes",
+  "Hipersensibilidad a la enoxaparina",
+  "Hipersensibilidad a la heparina o a productos porcinos"
+ ],
+ "fr": [
+  "Hemorragia, equimosis",
+  "Anemia",
+  "Trombocitopenia",
+  "Elevación de transaminasas",
+  "Náuseas, diarrea, fiebre, edema"
+ ],
+ "gr": [
+  "Hematomas espinales o epidurales con parálisis permanente (advertencia en recuadro)",
+  "Hemorragia mayor",
+  "Trombocitopenia inducida por heparina",
+  "Hiperpotasemia (otras fuentes)",
+  "Trombosis de válvulas mecánicas en el embarazo",
+  "Reacciones de hipersensibilidad"
+ ],
+ "it": [
+  [
+   "Anticoagulantes, antiagregantes (aspirina, clopidogrel), AINE (ketorolaco), dipiridamol, sulfinpirazona",
+   "Más riesgo de hemorragia; suspéndelos antes si es posible o monitorea de cerca"
+  ],
+  [
+   "Anestesia neuroaxial o punción lumbar, catéter epidural permanente",
+   "Riesgo de hematoma espinal/epidural: respeta los intervalos (profilaxis: ≈12 h; dosis terapéuticas: ≈24 h) y retira el catéter con intervalo"
+  ],
+  [
+   "Trombolíticos",
+   "Más sangrado; en IAMCEST se administra entre 15 min antes y 30 min después de la fibrinólisis"
+  ]
+ ],
+ "mon": [
+  "Hemoglobina y plaquetas (recuento basal y periódico; caída >50 % o <100.000 sugiere HIT)",
+  "Creatinina y depuración",
+  "Anti-Xa en obesidad extrema, embarazo, falla renal o peso extremo",
+  "Signos neurológicos tras anestesia neuroaxial",
+  "Signos de sangrado"
+ ],
+ "ant": "Sulfato de protamina (neutraliza ≈60 % del efecto anti-Xa).",
+ "pre": "Advertencia en recuadro: hematomas espinales o epidurales en anestesia neuroaxial o punción lumbar, con riesgo de parálisis permanente. Evalúa trastornos hemorrágicos antes de iniciar. Ajusta por función renal. Obesidad: la dosis profiláctica no tiene consenso de ajuste. No es intercambiable con otras heparinas ni con la heparina no fraccionada.",
+ "pres": [
+  "Jeringa prellenada 20, 30, 40, 60, 80 y 100 mg",
+  "Vial multidosis 300 mg/3 mL"
+ ],
+ "com": [
+  "Clexane",
+  "Lovenox"
+ ],
+ "pe": [
+  "No expulses la burbuja de aire antes de inyectar ni frotes el sitio: inyecta SC en el abdomen alternando lados.",
+  "Profilaxis usual: 40 mg una vez al día; en cadera o rodilla 30 mg cada 12 h.",
+  "Con dosis terapéuticas, espera ≈24 h antes de un bloqueo neuroaxial."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de enoxaparina sódica (inyectable) (DailyMed, Sandoz Inc., Oct 19, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=1e0ac5e2-329c-d0a8-e063-6394a90afba8",
+   "b": "dosis profiláctica y terapéutica, ajuste renal, anestesia neuroaxial, contraindicaciones, embarazo, lactancia"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "B01AB05"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 11,
+  "np": 400,
+  "pres": [
+   "Solucion inyectable 20 mg",
+   "Solucion inyectable 100 mg",
+   "Solucion inyectable 60 mg",
+   "Solucion inyectable 40 mg",
+   "Solucion inyectable 80 mg"
+  ],
+  "m": [
+   "Clenox ® (Procaps)",
+   "Enoxalow® (Blau Farmaceutica)",
+   "Enoxaparina sodica jeringas prellenadas 20 mg/0.2ml (Laboratorios Delta)",
+   "Enoxaparina sodica jeringas prellenadas 60 mg/ 0.6 ml (Laboratorios Delta)",
+   "Enoxaparina sodica 40 mg jeringas prellenadas (Laboratorios Delta)",
+   "Enoxaparinasodica jeringas prellenadas 80 mg/0.8 ml (Laboratorios Delta)",
+   "Enoxaparina sódica (Antibioticos Da Colombia)",
+   "Clexane inyectable 20 mg / 0.2 ml. (Sanofi-Aventis De Colombia)",
+   "Clexane inyectable 60mg / 0.6ml (Sanofi Aventis De Colombia)",
+   "Clexane 40 mg/ 0.4 ml inyectable. (Sanofi-Aventis De Colombia)",
+   "Clexane 80mg/ 0.8 ml (Sanofi Aventis De Colombia)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

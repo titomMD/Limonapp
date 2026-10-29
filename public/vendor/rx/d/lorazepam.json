@@ -1,0 +1,151 @@
+{
+ "id": "lorazepam",
+ "n": "Lorazepam",
+ "g": [
+  "Lorazepam",
+  "Ativan"
+ ],
+ "atc": [
+  "N05BA06"
+ ],
+ "cl": "Benzodiacepina",
+ "mc": "gaba_a",
+ "us": [
+  "conv",
+  "sedacion"
+ ],
+ "es": [
+  "neuro",
+  "uci",
+  "medint",
+  "anest",
+  "pediatria",
+  "psiq"
+ ],
+ "via": [
+  "iv",
+  "im"
+ ],
+ "al": [
+  "depresor_snc",
+  "alto_riesgo"
+ ],
+ "et": "El sufijo «-azepam» identifica a las benzodiacepinas. «Lorazepam» lleva un cloro (lo-) añadido a la estructura del oxazepam.",
+ "mech": "Se une a un sitio del receptor GABA-A distinto del sitio del GABA y aumenta la frecuencia con que se abre el canal de cloro. Entra más cloro a la neurona, la hiperpolariza y la hace más difícil de disparar: de ahí la sedación, la ansiólisis y el efecto anticonvulsivante.",
+ "pk": {
+  "abs": "IV directa; IM bien absorbida (etiqueta)",
+  "vm": "Vida media prolongada; en neonatos con asfixia la depuración baja 80% y la vida media se triplica (etiqueta)",
+  "met": "Hepático, por conjugación (glucurónido) (etiqueta)",
+  "el": "Renal (glucurónido)"
+ },
+ "ind": [
+  {
+   "i": "Estatus epiléptico",
+   "a": "4 mg IV lento, a no más de 2 mg/min, para pacientes de 18 años o más. Si las crisis cesan, no hace falta más. Si continúan o reaparecen tras 10 a 15 min de observación, se puede dar una segunda dosis de 4 mg (etiqueta FDA). AES 2016 (nivel A): 0,1 mg/kg IV, máximo 4 mg por dosis, repetible una vez a los 5 min; es una de las tres primeras opciones (con diazepam IV y midazolam IM).",
+   "p": "La etiqueta FDA no establece eficacia ni seguridad pediátrica con lorazepam inyectable y no da dosis para menores de 18 años. AES 2016 (nivel A): 0,1 mg/kg IV, máximo 4 mg por dosis, repetible una vez. Se usa diluido 1:1 (ver precauciones).",
+   "k": {
+    "lo": 0.1,
+    "hi": 0.1,
+    "int": "IV lento a no más de 2 mg/min, diluido 1:1 (AES 2016; la etiqueta FDA no da dosis pediátrica)",
+    "maxd": "4 mg"
+   }
+  },
+  {
+   "i": "Premedicación anestésica (sedación y amnesia)",
+   "a": "IM: 0,05 mg/kg hasta 4 mg, al menos 2 h antes de la cirugía. IV: 2 mg en total o 0,044 mg/kg (lo que sea menor), 15 a 20 min antes del procedimiento; en mayores de 50 años no suele superarse esa dosis. Para más amnesia, hasta 0,05 mg/kg con un máximo de 4 mg (etiqueta FDA).",
+   "p": "La etiqueta no recomienda la vía IM ni IV como premedicación en menores de 18 años por datos insuficientes."
+  }
+ ],
+ "aj": {
+  "r": "La etiqueta no la recomienda en insuficiencia hepática o renal; usar con cautela en enfermedad leve a moderada, porque el glucurónido se excreta por el riñón.",
+  "h": "La etiqueta no la recomienda en insuficiencia hepática; precaución si es leve a moderada.",
+  "e": "Uso tardío en el embarazo puede causar sedación neonatal (depresión respiratoria, hipotonía) o abstinencia en el recién nacido (etiqueta).",
+  "l": "Pasa a la leche; vigila sedación del lactante (otras fuentes).",
+  "g": "Mayores de 50 años pueden tener sedación más profunda y prolongada con lorazepam IV; usa dosis menores (etiqueta)."
+ },
+ "ci": [
+  "Sensibilidad conocida a benzodiacepinas o a su vehículo (polietilenglicol, propilenglicol, alcohol bencílico)",
+  "Glaucoma agudo de ángulo estrecho",
+  "Síndrome de apnea del sueño",
+  "Insuficiencia respiratoria grave (salvo ansiólisis o amnesia en paciente ventilado)",
+  "Recién nacidos prematuros (contiene alcohol bencílico)",
+  "Inyección intraarterial"
+ ],
+ "fr": [
+  "Sedación y somnolencia",
+  "Depresión respiratoria",
+  "Hipotensión",
+  "Ataxia, confusión",
+  "Reacciones en el sitio de inyección"
+ ],
+ "gr": [
+  "Depresión respiratoria, coma y muerte con opioides (recuadro)",
+  "Abuso, mal uso y adicción; dependencia física y abstinencia (recuadro)",
+  "Obstrucción de la vía aérea en pacientes muy sedados",
+  "Toxicidad por propilenglicol (acidosis láctica, hiperosmolaridad) y por polietilenglicol (necrosis tubular) con dosis altas o prolongadas",
+  "Síndrome de «jadeo» por alcohol bencílico en neonatos",
+  "Reacciones paradójicas (agitación, agresividad)"
+ ],
+ "it": [
+  [
+   "Opioides",
+   "Sedación profunda, depresión respiratoria, coma y muerte; monitoriza de cerca (recuadro)"
+  ],
+  [
+   "Alcohol y otros depresores del SNC (barbitúricos, antipsicóticos sedantes, antidepresivos)",
+   "Sedación y depresión respiratoria aditivas"
+  ],
+  [
+   "Valproato y probenecid",
+   "Reducen la depuración del lorazepam (con valproato, 40%); la etiqueta indica reducir la dosis de lorazepam 50%"
+  ],
+  [
+   "Escopolamina",
+   "No añade beneficio y aumenta sedación, alucinaciones y conducta irracional (etiqueta)"
+  ]
+ ],
+ "mon": [
+  "Frecuencia respiratoria y saturación continuas",
+  "Presión arterial",
+  "Nivel de sedación y estado neurológico",
+  "Equipo de vía aérea y ventilación disponible",
+  "Dolor al inyectar: detén la inyección y descarta vía arterial o extravasación (etiqueta)"
+ ],
+ "ant": "Flumazenilo (precaución: puede precipitar convulsiones en pacientes dependientes o con epilepsia).",
+ "pre": "Antes de la vía IV, diluir con un volumen igual de suero fisiológico, agua estéril o dextrosa al 5%; mezclar invirtiendo suavemente, sin agitar. Inyectar lento (no más de 2 mg/min), con aspiraciones repetidas, y confirmar que no es intraarterial. Conservar en nevera y proteger de la luz. Contiene alcohol bencílico (2%), polietilenglicol y propilenglicol. Advertencia en recuadro por uso con opioides, abuso y dependencia.",
+ "pres": [
+  "Ampolla o vial 2 mg/mL",
+  "Vial 4 mg/mL"
+ ],
+ "com": [
+  "Ativan"
+ ],
+ "pe": [
+  "Dosis bajas se asocian a peor control: un estudio retrospectivo citado por MediSearch encontró más progresión a estatus refractario con menos de 4 mg (no contrastado aquí).",
+  "Se guarda en nevera y protegido de la luz (etiqueta). Los datos de estabilidad a temperatura ambiente de MediSearch no se contrastaron.",
+  "En menores de 18 años la etiqueta no da dosis; la dosis por kg sale de la guía AES 2016."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de Ativan inyectable (DailyMed, setid 5fc0e987, versión de sep 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=5fc0e987-61c9-40c4-b0d5-fcea07c8733e",
+   "b": "dosis en estatus epiléptico y premedicación, dilución 1:1, velocidad, contraindicaciones, advertencias, embarazo, pediatría, conservación"
+  },
+  {
+   "t": "AES: guía de estatus epiléptico convulsivo, Epilepsy Curr 2016;16:48 (PDF aportado por Esteban), Figura 1 p.58",
+   "u": "https://doi.org/10.5698/1535-7597-16.1.48",
+   "b": "lorazepam 0,1 mg/kg IV, máximo 4 mg por dosis, repetible una vez; nivel A"
+  },
+  {
+   "t": "MediSearch (ficha de lorazepam, origen no verificado), usado solo en datos marcados «no contrastado»",
+   "u": "https://medisearch.io/share/mMXqqzR5kisVhvBztkLtSz",
+   "b": "estabilidad, estudio retrospectivo de dosis bajas, interacción con valproato"
+  }
+ ],
+ "rev": "2026-10-28"
+}

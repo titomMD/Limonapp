@@ -1,0 +1,187 @@
+{
+ "id": "meropenem",
+ "n": "Meropenem",
+ "g": [
+  "Meropenem",
+  "Meronem"
+ ],
+ "atc": [
+  "J01DH02"
+ ],
+ "cl": "Carbapenémico",
+ "mc": "betalact",
+ "us": [
+  "sepsis",
+  "abdominal",
+  "resp"
+ ],
+ "es": [
+  "uci",
+  "infecto",
+  "medint",
+  "cirugia"
+ ],
+ "via": [
+  "iv"
+ ],
+ "al": [
+  "convulsiones",
+  "ajuste_renal",
+  "cdiff"
+ ],
+ "mech": "Carbapenémico de amplio espectro: inhibe las PBP de la pared bacteriana y resiste casi todas las β-lactamasas, incluidas BLEE y AmpC, por lo que se reserva para infecciones graves por gramnegativos multirresistentes. Cubre también anaerobios y grampositivos sensibles. No cubre SAMR, enterococo faecium, Stenotrophomonas ni la mayoría de los gérmenes productores de carbapenemasa.",
+ "pk": {
+  "abs": "Solo IV (infusión 15 a 30 min o bolo 3 a 5 min)",
+  "vm": "≈1 h",
+  "met": "Parcialmente hidrolizado por dehidropeptidasa renal; más estable que el imipenem",
+  "el": "Renal ≈70 % sin cambios"
+ },
+ "ind": [
+  {
+   "i": "Infección de piel y tejidos blandos complicada",
+   "a": "500 mg IV cada 8 h; 1 g cada 8 h si es por Pseudomonas aeruginosa.",
+   "p": "Desde 3 meses: 10 mg/kg cada 8 h (máximo 500 mg); 20 mg/kg (o 1 g si pesa más de 50 kg) cada 8 h si es por Pseudomonas.",
+   "k": {
+    "lo": 10,
+    "hi": 20,
+    "int": "cada 8 h",
+    "maxd": "500 mg por dosis (1 g si Pseudomonas)"
+   }
+  },
+  {
+   "i": "Infección intraabdominal complicada",
+   "a": "1 g IV cada 8 h.",
+   "p": "Desde 3 meses: 20 mg/kg cada 8 h (máximo 1 g). Menores de 3 meses según edad gestacional (ver nota).",
+   "k": {
+    "lo": 20,
+    "hi": 20,
+    "int": "cada 8 h",
+    "maxd": "1 g por dosis"
+   }
+  },
+  {
+   "i": "Meningitis bacteriana (la etiqueta la aprueba solo en niños desde 3 meses)",
+   "a": "Etiqueta FDA: no aprobada en adultos. En guías se usan 2 g IV cada 8 h (no contrastado aquí).",
+   "p": "40 mg/kg cada 8 h (máximo 2 g por dosis).",
+   "k": {
+    "lo": 40,
+    "hi": 40,
+    "int": "cada 8 h",
+    "maxd": "2 g por dosis"
+   }
+  },
+  {
+   "i": "Sepsis grave, neutropenia febril y gramnegativos multirresistentes (uso clínico habitual)",
+   "a": "1 g IV cada 8 h (no figura como indicación en la etiqueta FDA).",
+   "p": "20 mg/kg cada 8 h, máximo 1 g (según guías; no contrastado aquí).",
+   "k": {
+    "lo": 20,
+    "hi": 20,
+    "int": "cada 8 h",
+    "maxd": "1 g por dosis"
+   }
+  }
+ ],
+ "aj": {
+  "r": "Aplica a adultos; no hay experiencia en niños con falla renal.\nDepuración (mL/min) | Dosis\nMás de 50 | Dosis recomendada cada 8 h\n26 a 50 | Dosis recomendada cada 12 h\n10 a 25 | La mitad de la dosis cada 12 h\nMenos de 10 | La mitad de la dosis cada 24 h",
+  "h": "Sin ajuste, pero vigila transaminasas.",
+  "e": "No hay datos humanos suficientes para establecer riesgo; sin toxicidad fetal en ratas ni monos.",
+  "l": "Pasa a la leche; considera los beneficios de la lactancia junto con la necesidad de la madre.",
+  "g": "Ajusta por función renal."
+ },
+ "ci": [
+  "Hipersensibilidad a meropenem, a sus componentes o a otros carbapenémicos",
+  "Reacciones anafilácticas previas a β-lactámicos"
+ ],
+ "fr": [
+  "Cefalea",
+  "Náuseas y vómito",
+  "Diarrea",
+  "Rash",
+  "Flebitis en el sitio de infusión",
+  "Anemia"
+ ],
+ "gr": [
+  "Convulsiones",
+  "Anafilaxia",
+  "Reacciones cutáneas graves",
+  "Colitis por Clostridioides difficile",
+  "Pérdida de efecto del valproato con crisis de ruptura"
+ ],
+ "it": [
+  [
+   "Ácido valproico o divalproato",
+   "Baja sus niveles por debajo del rango terapéutico y puede provocar crisis; en general se evita la combinación y se elige un antibiótico no carbapenémico"
+  ],
+  [
+   "Probenecid",
+   "Inhibe la excreción renal de meropenem; no se recomienda"
+  ]
+ ],
+ "mon": [
+  "Creatinina para ajustar la dosis",
+  "Estado neurológico (convulsiones)",
+  "Diarrea",
+  "Hemograma y pruebas hepáticas en tratamientos largos"
+ ],
+ "ant": "No hay.",
+ "pre": "Alergia grave a β-lactámicos. Riesgo de convulsiones, sobre todo con antecedente neurológico o falla renal sin ajuste. Evita con valproato. Recién nacidos y niños: usa las dosis de la etiqueta por edad.",
+ "pres": [
+  "Vial 500 mg y 1 g (polvo para inyección)"
+ ],
+ "com": [
+  "Meronem"
+ ],
+ "pe": [
+  "Menores de 3 meses (infección intraabdominal): menos de 32 semanas de edad gestacional y menos de 2 semanas de vida, 20 mg/kg cada 12 h; menos de 32 semanas y 2 semanas o más, 20 mg/kg cada 8 h; 32 semanas o más y menos de 2 semanas, 20 mg/kg cada 8 h; 32 semanas o más y 2 semanas o más, 30 mg/kg cada 8 h; infusión de 30 min.",
+  "La combinación con valproato anula su efecto anticonvulsivo en horas; cambia de antibiótico en vez de subir el valproato.",
+  "No cubre SAMR ni enterococo faecium; cubre Pseudomonas y la mayoría de anaerobios."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de meropenem para inyección (DailyMed, Wg Critical Care, Llc, Sep 24, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=74ff19b5-6156-4a27-affb-744b0ce1aeec",
+   "b": "dosis adulto y pediátrica, ajuste renal, contraindicaciones, interacciones, embarazo y lactancia"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01DH02"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 21,
+  "np": 72,
+  "pres": [
+   "Polvo esteril para reconstituir a solucion inyectable 500 mg",
+   "Polvo esteril para reconstituir a solucion inyectable 1 g",
+   "Polvo esteril para reconstituir a solucion inyectable 1000 mg",
+   "Polvo esteril para reconstituir a solucion inyectable 1000 mg.",
+   "Polvo esteril para reconstituir a solucion inyectable 0,5 g",
+   "Polvo para solución inyectable 500 mg",
+   "Polvo para solución inyectable 1000 mg"
+  ],
+  "m": [
+   "Kabipenem® 1.0 g polvo para solucion inyectable (Fresenius Kabi Deutschland)",
+   "Merogram® 1000mg (Eugia Pharma Specialities)",
+   "Meronem®500 mg (Pfizer)",
+   "Kabipenem® 500mg polvo para solución inyectable y para infusión (Fresenius Kabi Deutschland)",
+   "Merogram®500mg (Eugia Pharma Specialities)",
+   "Deltapem® (Laboratorios Delta)",
+   "Meropenem 500 mg (Colmed)",
+   "Meropenem 1g (Norstray & Nuart)",
+   "Meropenem 1g polvo esteril para solucion inyectable (Vitalis C.I)",
+   "Meropenem 500 mg polvo esteril para solucion inyectable (Vitalis C.I)",
+   "Meropenem1 g (Vicarfarmaceutica)",
+   "Meropenem para inyeccion usp por 1000 mg (Venus Remedies)"
+  ],
+  "mas": 7,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

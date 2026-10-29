@@ -1,0 +1,228 @@
+{
+ "id": "ciprofloxacino",
+ "n": "Ciprofloxacino",
+ "g": [
+  "Ciprofloxacino",
+  "Ciprobay",
+  "Cipro"
+ ],
+ "atc": [
+  "J01MA02"
+ ],
+ "cl": "Fluoroquinolona",
+ "mc": "quinolona",
+ "us": [
+  "itu",
+  "resp",
+  "abdominal"
+ ],
+ "es": [
+  "urologia",
+  "medint",
+  "infecto",
+  "cirugia"
+ ],
+ "via": [
+  "vo",
+  "iv"
+ ],
+ "al": [
+  "qt",
+  "cyp",
+  "convulsiones",
+  "ajuste_renal",
+  "cdiff"
+ ],
+ "et": "«Quinolona» viene de quinolina, el anillo base. El sufijo «-floxacino» marca a las fluoroquinolonas (por el flúor en la posición 6).",
+ "mech": "Inhibe dos enzimas bacterianas que desenrollan el ADN para replicarse: la ADN girasa (topoisomerasa II, blanco principal en gramnegativos) y la topoisomerasa IV (principal en grampositivos). Al inhibirlas, el ADN queda con cortes y la bacteria muere (bactericida dependiente de concentración). Cubre muy bien gramnegativos (E. coli, Pseudomonas) y atípicos, pero la resistencia es alta.",
+ "pk": {
+  "abs": "Oral ≈70 %; los cationes (calcio, hierro, zinc, antiácidos) la reducen",
+  "vm": "Pico a 1 a 2 h; semivida ≈4 h",
+  "met": "Hepático parcial; inhibe CYP1A2",
+  "el": "Renal y hepática"
+ },
+ "ind": [
+  {
+   "i": "Infección urinaria (complicada, pielonefritis, cistitis no complicada), prostatitis crónica",
+   "a": "Urinaria: 250 a 500 mg VO cada 12 h por 7 a 14 días. Cistitis aguda no complicada: 250 mg cada 12 h por 3 días. Prostatitis crónica: 500 mg cada 12 h por 28 días. IV 400 mg cada 12 h es la dosis de la etiqueta IV (no contrastada aquí).",
+   "p": "Infección urinaria complicada y pielonefritis (1 a 17 años): 10 a 20 mg/kg VO cada 12 h por 10 a 21 días, máximo 750 mg por dosis. Es de segunda línea en niños.",
+   "k": {
+    "lo": 10,
+    "hi": 20,
+    "int": "cada 12 h",
+    "maxd": "750 mg por dosis"
+   }
+  },
+  {
+   "i": "Piel y tejidos blandos, hueso y articulaciones, respiratorias bajas, intraabdominal complicada, diarrea infecciosa, fiebre tifoidea, sinusitis, gonorrea",
+   "a": "Piel y tejidos blandos 500 a 750 mg cada 12 h por 7 a 14 días. Hueso y articulaciones 500 a 750 mg cada 12 h por 4 a 8 semanas. Respiratoria baja 500 a 750 mg cada 12 h por 7 a 14 días. Intraabdominal complicada 500 mg cada 12 h por 7 a 14 días (con metronidazol). Diarrea infecciosa 500 mg cada 12 h por 5 a 7 días. Tifoidea 500 mg cada 12 h por 10 días. Sinusitis 500 mg cada 12 h por 10 días. Gonorrea uretral y cervical no complicada 250 mg dosis única.",
+   "p": "Solo antrax por inhalación (15 mg/kg cada 12 h por 60 días, máximo 500 mg) y peste (15 mg/kg cada 8 a 12 h por 14 días, máximo 500 mg).",
+   "k": {
+    "lo": 15,
+    "hi": 15,
+    "int": "cada 12 h (ántrax) o cada 8 a 12 h (peste)",
+    "maxd": "500 mg por dosis"
+   }
+  },
+  {
+   "i": "Ántrax por inhalación (profilaxis posexposición) y peste",
+   "a": "Ántrax 500 mg cada 12 h por 60 días. Peste 500 a 750 mg cada 12 h por 14 días. Empezar lo antes posible tras la exposición.",
+   "p": "15 mg/kg cada 12 h (ántrax, 60 días) o cada 8 a 12 h (peste, 14 días), máximo 500 mg por dosis.",
+   "k": {
+    "lo": 15,
+    "hi": 15,
+    "int": "cada 12 h (cada 8 a 12 h en peste)",
+    "maxd": "500 mg por dosis"
+   }
+  }
+ ],
+ "aj": {
+  "r": "Adultos según la depuración de creatinina:\nDepuración (mL/min) | Dosis\n30 a 50 | 250 a 500 mg cada 12 h\n5 a 29 | 250 a 500 mg cada 18 h\nHemodiálisis o diálisis peritoneal | 250 a 500 mg cada 24 h, después de la diálisis",
+  "h": "En cirrosis estable la farmacocinética no cambió de forma significativa. En insuficiencia hepática aguda no se ha estudiado.",
+  "e": "Décadas de experiencia no han identificado riesgo de malformaciones ni de aborto. Aun así se prefieren otras alternativas cuando existen (criterio de otras fuentes).",
+  "l": "Pasa a la leche. Para la mayoría de indicaciones se puede extraer y desechar la leche durante el tratamiento y 2 días después de la última dosis, o no amamantar en ese lapso.",
+  "g": "Mayor riesgo de tendinopatía grave y rotura, sobre todo con corticoides; usa la dosis más baja eficaz y ajusta por función renal."
+ },
+ "ci": [
+  "Hipersensibilidad a ciprofloxacino o a cualquier quinolona",
+  "Uso simultáneo con tizanidina"
+ ],
+ "fr": [
+  "Náuseas",
+  "Diarrea",
+  "Elevación de transaminasas",
+  "Vómito",
+  "Rash",
+  "Cefalea y mareo"
+ ],
+ "gr": [
+  "Tendinitis y rotura de tendón (Aquiles)",
+  "Neuropatía periférica",
+  "Efectos en SNC: convulsiones, psicosis, ansiedad, insomnio",
+  "Exacerbación de miastenia gravis",
+  "Prolongación del QT y arritmias",
+  "Aneurisma y disección aórtica",
+  "Hipoglucemia grave, sobre todo con antidiabéticos",
+  "Colitis por Clostridioides difficile",
+  "Anafilaxia y reacciones cutáneas graves"
+ ],
+ "it": [
+  [
+   "Tizanidina",
+   "Contraindicado: hipotensión y sedación extrema"
+  ],
+  [
+   "Teofilina",
+   "Evitar: niveles altos, toxicidad grave o mortal; si no hay opción, mide niveles"
+  ],
+  [
+   "Antiácidos con Mg/Al, sucralfato, sevelamer, calcio, hierro, zinc, didanosina",
+   "Bajan la absorción: toma el cipro 2 h antes o 6 h después"
+  ],
+  [
+   "Lácteos o jugos con calcio solos",
+   "Reducen la absorción"
+  ],
+  [
+   "Warfarina",
+   "Sube el efecto anticoagulante; vigila INR"
+  ],
+  [
+   "Antidiabéticos",
+   "Hipoglucemia, incluso mortal; vigila glucemia"
+  ],
+  [
+   "Fármacos que prolongan el QT",
+   "Evitar combinación"
+  ],
+  [
+   "Duloxetina y zolpidem",
+   "Evitar: suben sus niveles (duloxetina 5 veces)"
+  ],
+  [
+   "Fenitoína, metotrexato, ciclosporina, clozapina, sildenafil, ropinirol",
+   "Usar con cuidado y vigilar niveles o toxicidad"
+  ],
+  [
+   "AINE a dosis muy altas",
+   "Riesgo de convulsiones"
+  ],
+  [
+   "Probenecid",
+   "Sube los niveles de ciprofloxacino"
+  ]
+ ],
+ "mon": [
+  "Dolor o hinchazón en tendones (suspender de inmediato)",
+  "Síntomas neurológicos: entumecimiento, ardor",
+  "Glucemia en diabéticos",
+  "ECG si hay riesgo de QT",
+  "Creatinina para ajustar la dosis",
+  "Diarrea persistente"
+ ],
+ "ant": "No hay.",
+ "pre": "La FDA limita su uso en infecciones leves o no complicadas por los efectos graves e irreversibles. Evita en miastenia gravis y con antecedente de tendinopatía por quinolonas. No es de primera elección en niños por artropatía en animales jóvenes. Hidratación adecuada para evitar cristaluria.",
+ "pres": [
+  "Tabletas 250, 500 y 750 mg",
+  "Solución IV 200 mg/100 mL y 400 mg/200 mL (otras fuentes)"
+ ],
+ "com": [
+  "Ciprobay",
+  "Cipro"
+ ],
+ "pe": [
+  "Advertencia en recuadro: tendinitis, rotura de tendón, neuropatía periférica, efectos en SNC y exacerbación de miastenia gravis; reservar para casos sin alternativa en sinusitis, bronquitis y cistitis no complicada.",
+  "El cipro prácticamente no cubre estreptococo ni neumococo: no lo uses en neumonía comunitaria como único fármaco.",
+  "Cubre Pseudomonas, pero con resistencia creciente: guíate por antibiograma."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de ciprofloxacino tabletas (DailyMed, Pd-Rx Pharmaceuticals, Inc., Oct 19, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=fa32aafd-e3f5-4be6-9413-c7663c1c2cec",
+   "b": "dosis adulto y pediátrica, ajuste renal, contraindicaciones, advertencia en recuadro, interacciones, embarazo y lactancia"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01MA02"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 33,
+  "np": 153,
+  "pres": [
+   "Tableta recubierta 500 mg",
+   "Comprimido 500 mg",
+   "Solucion inyectable 100 mg",
+   "Solucion inyectable 200 mg",
+   "Inyectables 100 mg",
+   "Tableta cubierta con pelicula 500 mg",
+   "Solucion oftalmica 3 mg",
+   "Solución para infusión 200 mg",
+   "Tableta 500 mg",
+   "Solucion inyectable 2 mg"
+  ],
+  "m": [
+   "Cipro® 500 mg comprimidos (Bayer A.G)",
+   "Cimoxen® 500 mg tableta recubierta (Laboratorio Franco Colombiano - Lafrancol)",
+   "Procatec ®tabletas recubiertas (Faes Farma Colombia)",
+   "Cipro® solucion para infusión (Bayer A.G)",
+   "Bioquiflox ® tableta recubierta 500mg. (Bioquifar Pharmaceutica)",
+   "Cinepride® 500 mg tabletas (Cooperativa Nacional De Droguistas Detallistas - Coopidrogas)",
+   "Lapxina® 500 mg tabletas recubiertas (Laboratorios Lebriut)",
+   "Ciprodan® (Global International Medicine Gimed)",
+   "Giraprox® 500 mg tabletas recubiertas (Farmacoop)",
+   "Cifloblas ® 200 mg/10 ml solucion inyectable (Laboratorios Blaskov)",
+   "Benemid® (Bioquimico Pharmas.A)",
+   "Ciprosher®500 mg tabletas (Distribuciones Farmaceuticas Herson)"
+  ],
+  "mas": 20,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

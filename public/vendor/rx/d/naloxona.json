@@ -1,0 +1,179 @@
+{
+ "id": "naloxona",
+ "n": "Naloxona",
+ "g": [
+  "Naloxona",
+  "Narcan"
+ ],
+ "atc": [
+  "V03AB15"
+ ],
+ "cl": "Antagonista opioide",
+ "mc": "opioide_antag",
+ "us": [
+  "reversion"
+ ],
+ "es": [
+  "uci",
+  "medint",
+  "anest",
+  "pediatria"
+ ],
+ "via": [
+  "iv",
+  "im",
+  "sc",
+  "inh"
+ ],
+ "al": [
+  "alto_riesgo"
+ ],
+ "et": "«Naloxona» = N-alil-noroximorfona (nor-oximorfona con un grupo alilo); el sufijo «-xona» marca antagonistas opioides.",
+ "mech": "Antagonista competitivo puro del receptor opioide μ, con mayor afinidad que los opioides. Desplaza al opioide del receptor y revierte en 1 a 2 min la depresión respiratoria, la miosis y la sedación. Como su duración (30 a 90 min) es menor que la de muchos opioides, el paciente puede volver a deprimirse y requiere vigilancia o infusión.",
+ "pk": {
+  "abs": "IV: inicio en unos 2 min; IM o SC un poco más lentos (etiqueta)",
+  "vm": "60 a 90 min (otras fuentes); la duración depende de la dosis y la vía, y la IM dura más que la IV (etiqueta)",
+  "met": "Hepático (glucuronidación, otras fuentes)",
+  "el": "Renal"
+ },
+ "ind": [
+  {
+   "i": "Reversión de la depresión por opioides (incluida la respiratoria) y diagnóstico de sobredosis de opioides sospechada o conocida",
+   "a": "Sobredosis: 0,4 a 2 mg IV, repetible cada 2 a 3 min. Si no hay respuesta tras 10 mg, cuestiona que sea intoxicación por opioides. Si no hay vía IV, usa IM o SC. Nasal (Narcan 4 mg): un atomizador en una fosa nasal; si no despierta, repite cada 2 a 3 min.",
+   "p": "Sobredosis: 0,01 mg/kg IV; si no hay mejoría, una segunda dosis de 0,1 mg/kg. Sin vía IV: IM o SC en dosis divididas (la AAP no recomienda IM ni SC porque la absorción puede ser errática)."
+  },
+  {
+   "i": "Depresión posoperatoria por opioides",
+   "a": "Incrementos de 0,1 a 0,2 mg IV cada 2 a 3 min hasta lograr buena ventilación y alerta sin dolor ni molestia importantes. Pueden hacer falta repeticiones a la hora o dos horas; una dosis IM adicional alarga el efecto.",
+   "p": "Incrementos de 0,005 a 0,01 mg IV cada 2 a 3 min hasta el efecto buscado.",
+   "k": {
+    "lo": 0.005,
+    "hi": 0.01,
+    "int": "IV por incremento, cada 2 a 3 min, posoperatorio"
+   }
+  },
+  {
+   "i": "Neonato con depresión por opioides",
+   "a": "—",
+   "p": "Dosis inicial 0,01 mg/kg IV, IM o SC, repetible según las pautas de adultos para depresión posoperatoria. Si la madre recibió opioides poco antes del parto, mejor dar la naloxona directamente al neonato.",
+   "k": {
+    "lo": 0.01,
+    "hi": 0.01,
+    "int": "IV, IM o SC en el neonato"
+   }
+  },
+  {
+   "i": "Infusión continua (cuando el opioide dura más que la naloxona)",
+   "a": "Diluye 2 mg en 500 mL de solución salina 0,9 % o dextrosa al 5 % (0,004 mg/mL). Usa la mezcla dentro de 24 h. Titula la velocidad según la respuesta. La razón y la velocidad habituales de la infusión son de otras fuentes.",
+   "p": "—"
+  },
+  {
+   "i": "Adyuvante en choque séptico",
+   "a": "La etiqueta lo menciona (sube la presión por horas), pero no se ha demostrado que mejore la supervivencia y la dosis óptima no está establecida.",
+   "p": "No se ha establecido seguridad ni eficacia."
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste en la etiqueta.",
+  "h": "Sin ajuste en la etiqueta.",
+  "e": "Cruza la placenta y puede precipitar abstinencia en el feto y en la madre dependiente. Úsala en el embarazo solo si es claramente necesaria; no la retengas si hay una sobredosis que pone en riesgo la vida.",
+  "l": "Casi no se absorbe por vía oral, así que es poco probable que afecte al lactante (etiqueta de la presentación de 10 mg).",
+  "g": "Sin ajuste en la etiqueta; titula con cuidado si hay enfermedad cardiovascular."
+ },
+ "ci": [
+  "Hipersensibilidad a la naloxona o a los componentes de la fórmula"
+ ],
+ "fr": [
+  "Náuseas y vómito",
+  "Sudoración",
+  "Taquicardia",
+  "Aumento de la presión arterial",
+  "Temblor",
+  "Agitación"
+ ],
+ "gr": [
+  "Síndrome de abstinencia agudo en dependientes de opioides (aun neonatos)",
+  "Edema pulmonar",
+  "Arritmias ventriculares (taquicardia y fibrilación) y paro cardiaco",
+  "Convulsiones",
+  "Hipertensión o hipotensión",
+  "Reversión excesiva de la analgesia en el posoperatorio, con dolor intenso y agitación"
+ ],
+ "it": [
+  [
+   "Opioides de acción larga (metadona) y buprenorfina",
+   "La naloxona dura menos que el opioide: hay re-sedación y se necesitan repeticiones o infusión. Con buprenorfina se requieren dosis altas y el inicio es lento"
+  ],
+  [
+   "Agonistas-antagonistas (pentazocina, nalbufina, butorfanol)",
+   "La reversión puede ser incompleta; se puede necesitar ventilación asistida"
+  ],
+  [
+   "Depresión por no opioides",
+   "La naloxona no revierte la depresión respiratoria por benzodiacepinas, barbitúricos ni otros fármacos"
+  ],
+  [
+   "Metohexital",
+   "Parece bloquear el inicio agudo de los síntomas de abstinencia"
+  ]
+ ],
+ "mon": [
+  "Frecuencia respiratoria, saturación y nivel de conciencia",
+  "Re-sedación: mantén la vigilancia después de la respuesta",
+  "En niños intoxicados con opioides: observación de al menos 24 h por posible recaída (etiqueta)",
+  "Signos de abstinencia en dependientes",
+  "Presión arterial y ritmo cardiaco"
+ ],
+ "ant": "No aplica.",
+ "pre": "Dala con cautela a quien dependa de opioides (también recién nacidos de madres dependientes): una reversión brusca y completa puede precipitar abstinencia aguda. Dosis mayores que las necesarias revierten la analgesia y suben la presión. La respuesta puede ser incompleta con opioides parciales.",
+ "pres": [
+  "Ampolla 0,4 mg/mL",
+  "Frasco multidosis 4 mg/10 mL",
+  "Atomizador nasal 4 mg (Narcan)",
+  "Autoinyector 10 mg/0,4 mL (uso militar, etiqueta distinta)"
+ ],
+ "com": [
+  "Narcan"
+ ],
+ "pe": [
+  "Apunta a respirar, no a despertar del todo: titula con dosis pequeñas, sobre todo si hay dependencia.",
+  "El efecto dura menos que el de muchos opioides: vigila y repite.",
+  "No sustituye la ventilación: da oxígeno y soporte de vía aérea."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de naloxona clorhidrato inyectable (DailyMed, Hospira, Inc., May 27, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8535cc84-ad4a-4d67-8480-fb5a2e3406f8",
+   "b": "dosis en adultos, niños y neonatos, infusión, advertencias, interacciones, embarazo, pediatría"
+  },
+  {
+   "t": "Etiqueta de naloxona nasal (Narcan 4 mg) (DailyMed, Emergent Devices Inc., Aug 17, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=a0ebc83d-2892-40de-bc0a-775ce90b30db",
+   "b": "instrucciones de uso por vía nasal"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "V03AB15"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 2,
+  "np": 2,
+  "pres": [
+   "Solucion inyectable 0,4 mg"
+  ],
+  "m": [
+   "Naloxona clorhidratosolucioninyectable 0.4 mg (Feparvi)",
+   "Naloxiv (Laboratorios Ryan De Colombia)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

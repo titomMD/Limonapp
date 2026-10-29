@@ -1,3 +1,81 @@
+LIMONAPP v63 - recetario reorganizado: clasificaciones, ficha completa por farmaco y primer lote de urologia
+
+QUE CAMBIA EN LA v63 (sobre la v62, que queda incluida)
+  - Recetario: la lista se puede organizar por familia, clasificacion ATC (OMS), mecanismo de accion, uso, especialidad,
+    via de administracion, alertas o alfabetico. La busqueda entiende nombre, alias, marca, familia, mecanismo, uso y alertas.
+  - Cada farmaco abre una ficha completa: mecanismo, farmacocinetica, indicaciones y dosis (adulto y pediatrico con calculo por
+    peso), ajustes (renal, hepatico, embarazo, lactancia, adulto mayor), seguridad, interacciones, monitoreo, presentaciones,
+    perlas clinicas, glosario de unidades y fuentes. Las fichas se descargan al abrirlas y quedan en cache para uso sin red.
+  - Fichas con mejor estructura: los textos largos se ordenan en listas y tablas (por ejemplo, el ajuste renal), con la sangria de
+    Seguridad corregida. Marcado simple en los datos: lineas separadas, "- " viñeta, " | " celdas de tabla.
+  - Codigo azul (boton azul fijo en toda la app): cuatro pestañas separadas (adulto, pediatrico, embarazada, recien nacido) segun las
+    guias AHA/AAP 2025, con reloj de ciclos de 2 min, registro de choques y dosis, y dosis por peso en pediatria y recien nacido.
+    Resumen de apoyo: no reemplaza el protocolo de la institucion.
+  - Calculadoras de liquidos (3 nuevas, 66 en total): plan pediatrico (mantenimiento Holliday-Segar + deficit + perdidas, esquema por fases en
+    24 h, liquido segun AAP 2018), plan del adulto (NICE CG174: 25-30 mL/kg/dia, 20-25 en fragiles, Na/K/Cl 1 mmol/kg/dia, glucosa 50-100 g) y
+    rehidratacion en diarrea con los planes A, B y C de la OMS. El resultado ahora admite varias lineas.
+  - Calculadoras de insulina (4 nuevas, 70 en total): insulina subcutanea en hospitalizados (dosis diaria por peso, basal y prandial, factor de
+    correccion), reglas de 500 y 1800 (relacion insulina:carbohidrato y factor de sensibilidad), cetoacidosis/estado hiperosmolar del adulto
+    (consenso ADA/EASD 2024) y cetoacidosis pediatrica (ISPAD 2022). Verificadas con resumenes de las guias; falta contrastar con los textos originales.
+  - Codigo azul: recordatorio compacto del algoritmo (ciclo, ritmo desfibrilable y no desfibrilable) bajo el reloj, distinto en cada pestaña.
+  - Calculadoras de potasio y sodio (2 nuevas, 72 en total): reposicion intravenosa de potasio (monografia ASHP: velocidad, concentracion y horas;
+    adulto y nino) e hiponatremia (Adrogue-Madias mejorada para cualquier volumen, limites de correccion del consenso europeo y manejo de la
+    correccion excesiva). Las calculadoras de insulina y de liquidos del adulto se contrastaron con los textos originales (ADA 2026, consenso 2024,
+    ISPAD 2022 cap. 11, NICE CG174) y se corrigieron: dosis diaria 0,3 a 0,6 U/kg/dia, insulina de CAD baja a 0,05 U/kg/h con glucemia menor de 250.
+  - Codigo azul recien nacido: tabla de saturacion preductal objetivo (2 a 10 min) y ECG antes de compresiones, segun los aspectos destacados AHA 2025.
+  - AIEPI: boton en Servicios con acceso directo a la Herramienta Clinica de Primera Infancia del Ministerio de Salud (16 modulos y su
+    calculadora de dosis) y a las calculadoras pediatricas de Limonapp. Los cuadros NO se copian: tienen derechos reservados del Ministerio.
+  - Codigo azul pediatrico: metas despues del paro agregadas (PA sobre percentil 10, evitar fiebre, diastolica 25/30 durante la RCP, CO2 espirado > 20).
+  - Nivel de verificacion por bloque (dosis, farmacologia, seguridad): 0 Borrador, 1 Contrastado con fuente, 2 Confirmado por Esteban.
+  - Recetario contrastado con etiquetas oficiales de la FDA (DailyMed, via la API publica; cada ficha cita la etiqueta y su fecha en
+    "Verificacion y fuentes"): de los 68 borradores, 65 pasaron a nivel 1 (contrastado) en cuatro tandas: antimicrobianos (21);
+    analgesicos, sedantes y opioides (9); cardiovasculares, anticoagulantes y reanimacion (15); gastro, corticoides, respiratorio,
+    SNC, electrolitos, obstetricia y vitamina K (22). Lo que la etiqueta no trae (esquemas de guias como CRASH-2/WOMAN, AHA, ACOG,
+    crup, asma, EPOC, choque septico, dosis pediatricas por peso fuera de etiqueta) queda escrito en la ficha con "otras fuentes" o
+    "no contrastado aqui". El potasio IV se contrasto con la monografia ASHP (cap. 227). Nada esta en nivel 2: eso solo lo confirma Esteban.
+  - Dipirona, hioscina y sales de rehidratacion oral no tienen etiqueta en DailyMed. Se cargaron con una sintesis de MediSearch (28-oct-2026)
+    mas articulos de PubMed y la guia OMS (NBK143745). SRO: Plan A/B y zinc contrastados con OMS (nivel 1 en dosis). Dipirona e hioscina: dosis
+    y contraindicaciones vienen de un resumen de fichas tecnicas europeas, NO del documento original; siguen con dosis en nivel 0 y hay que
+    confirmar con el registro INVIMA (en especial: MediSearch dice que dipirona esta contraindicada en el primer trimestre; sin verificar).
+  - Tambien se agregaron con PubMed: acido tranexamico (CRASH-2 y WOMAN), dexametasona en crup (tope 8 mg VO/IM, 12 mg IV) y adrenalina nebulizada en crup.
+  - Guias aportadas por Esteban (28-oct-2026) y cargadas con pagina citada: GINA 2026 (salbutamol, ipratropio, prednisona, dexametasona, magnesio),
+    Surviving Sepsis 2021 (noradrenalina, hidrocortisona, adrenalina), Endocrine Society 2016 y ESE 2024 (hidrocortisona en crisis suprarrenal),
+    ACG 2021 (omeprazol, pantoprazol, metoclopramida), AES 2016 (midazolam, diazepam, fenitoina, levetiracetam).
+    El PDF de GOLD es un resumen de terceros (1aria.com), no el informe oficial: solo da secuencia (SABA/SAMA, corticoide hasta 5 dias, antibiotico 5 dias);
+    la dosis de prednisona 40 mg en EPOC sigue como "otras fuentes". Los dos documentos INVIMA (dipirona 356-2024 y alerta de hioscina inyectable 2017)
+    son alertas de seguridad sin dosis: actualizan advertencias (dipirona: maximo 7 dias, sin hemogramas de rutina; hioscina: cardiopatia y taquicardia).
+    Las dosis de dipirona e hioscina siguen sin documento original: falta el inserto del producto del hospital o la ficha del registro INVIMA.
+  - Segundo MediSearch (29-oct): fichas nuevas de lorazepam, valproato IV, fenobarbital IV, vasopresina y eritromicina IV, contrastadas con etiquetas DailyMed y con AES/SSC/ACG;
+    potasio IV pediatrico (estudios PubMed) e hipomagnesemia actualizados. Errores de MediSearch descartados: la cita PMID 3594358 (no es de potasio pediatrico),
+    "31% de mortalidad" con correccion lenta, y el "consenso internacional 2019" de eritromicina (sin fuente).
+    Discrepancias que se muestran en la app: valproato AES 40 mg/kg frente a 20-30 mg/kg de los estudios (la etiqueta FDA no tiene dosis de estatus);
+    lorazepam sin dosis pediatrica en la etiqueta (la dosis por kg sale de la AES); vasopresina inicio 0,01 U/min (etiqueta) frente a 0,03 U/min (SSC);
+    fenobarbital: la etiqueta no recomienda esta presentacion con alcohol bencilico en menores de 1 mes.
+    Siguen sin fuente: dosis pediatrica de eritromicina como procinetico, concentracion maxima de magnesio y dosis pediatrica del antidoto (faltan BNFc/Harriet Lane),
+    tope diario pediatrico de potasio. Levofloxacino sigue con farmacologia sin contrastar (solo drugs.com).
+  - Tutorial reescrito (26 pasos): redaccion mas fina, y ahora cubre consulta externa y urgencias, AIEPI, codigo azul, recetario, modo ronda y censo en Word,
+    la barra de arriba (buscar, actualizar, tema) y la instalacion en el inicio del iPhone (Safari: Compartir, Añadir a pantalla de inicio) y de Android
+    (Chrome: menu de tres puntos, Instalar app). La respuesta de Ayuda "Instalar la app en el celular" trae los mismos pasos.
+  - Fuentes nuevas (28-oct): levofloxacino contrastado con la etiqueta DailyMed (tabletas e inyectable; dosis pediatrica solo para antrax y plaga);
+    dipirona con la ficha tecnica de la AEMPS de Espana (nov 2024) y Pediamecum, no con insert INVIMA; hioscina con la ficha de Sanofi Mexico (no INVIMA);
+    sales de rehidratacion con la declaracion OMS/UNICEF de 2002 (composicion). Siguen sin insert INVIMA original: dipirona e hioscina.
+  - 91 farmacos (86 anteriores + 5 nuevos): los 68 anteriores migrados (65 ya contrastados, ver arriba) y 18 de urologia contrastados con
+    etiquetas oficiales (drugs.com): tamsulosina, finasterida, dutasterida, oxibutinina, solifenacina, mirabegron, fenazopiridina,
+    fosfomicina, amikacina, ertapenem, cefepima, hidroclorotiazida, citrato de potasio, alopurinol, tadalafilo, desmopresina,
+    bicalutamida y levofloxacino. Siguen pendientes de confirmacion por Esteban (dosis, ajuste renal, pediatria, disponibilidad en Colombia).
+  - Barra de sugerencias: al final de Servicios (tambien en la paleta de comandos y en Ayuda: "Enviar sugerencia") para reportar un error, proponer
+    una idea, señalar un dato dudoso (farmaco o calculadora) u otra cosa. Se escribe sin nombres, cedulas ni datos de pacientes (la app descarta
+    textos con cedulas o telefonos). Con sesion de Google se envia a la nueva funcion /api/feedback (Netlify Blobs, almacen "limonapp-feedback",
+    maximo 6 por dia por persona, 1500 caracteres, se guardan los ultimos 150); adjunta correo, pantalla, version y tipo de dispositivo. Sin sesion
+    abre el correo del administrador con el mensaje listo. El administrador (correo igual a AI_ADMIN_EMAIL en Netlify, la misma variable de /api/ai)
+    ve las sugerencias en Cuenta > "Sugerencias recibidas" y las marca como resueltas o las borra.
+  - Archivos: public/vendor/rx/index.json (indice liviano), tax.json (clasificaciones), d/<id>.json (una ficha por farmaco).
+    Para agregar o editar un farmaco se edita su d/<id>.json y se corre: python3 tools/rx_index.py (valida y regenera el indice).
+  - Disponibilidad en Colombia: cada ficha muestra los registros y presentaciones vigentes del Codigo Unico de Medicamentos (CUM) del
+    INVIMA, leidos de la API abierta datos.gov.co (dataset i7cb-raxc, CC BY-SA 4.0). Al abrir una ficha la app consulta la API en vivo (con copia guardada como respaldo si no hay red);
+    la copia se renueva con: python3 tools/rx_invima.py y luego python3 tools/rx_index.py. Un registro vigente no garantiza que el producto se venda hoy.
+  - Sigue APAGADO por defecto (Cuenta > Recetario). Sin cambios en Gemini; el servidor suma una funcion nueva (/api/feedback).
+
 LIMONAPP v62 - servicios fijos, datos por especialidad, calculadoras, entrega con formatos y recetario (borrador)
 
 QUE CAMBIA EN LA v62 (sobre la v61 y la v60, que quedan incluidas)

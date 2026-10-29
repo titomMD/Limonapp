@@ -1,0 +1,181 @@
+{
+ "id": "tramadol",
+ "n": "Tramadol",
+ "g": [
+  "Tramadol",
+  "Tramal"
+ ],
+ "atc": [
+  "N02AX02"
+ ],
+ "cl": "Opioide débil",
+ "mc": "opioide_mu",
+ "us": [
+  "dolor"
+ ],
+ "es": [
+  "cirugia",
+  "ortopedia",
+  "urologia",
+  "medint",
+  "uci"
+ ],
+ "via": [
+  "vo",
+  "iv",
+  "im"
+ ],
+ "al": [
+  "depresor_snc",
+  "serotoninergico",
+  "convulsiones",
+  "ajuste_renal",
+  "cyp"
+ ],
+ "et": "«Opioide» viene de «opio» (griego opion, «jugo de amapola») + «-oide», «parecido a»: cualquier sustancia que actúe sobre los receptores que activa la morfina.",
+ "mech": "Doble acción: es un agonista débil del receptor opioide μ (sobre todo por su metabolito O-desmetil-tramadol, formado por CYP2D6) y además inhibe la recaptación de noradrenalina y serotonina, dos vías que modulan el dolor descendente. Por eso aguanta dolor moderado, pero baja el umbral convulsivo y puede causar síndrome serotoninérgico.",
+ "pk": {
+  "abs": "Oral ≈75 % (otras fuentes)",
+  "vm": "5 a 6 h; metabolito activo M1 ≈7 h (otras fuentes)",
+  "met": "Hepático: CYP2D6 forma M1 (activo) y CYP3A4",
+  "el": "Renal"
+ },
+ "ind": [
+  {
+   "i": "Dolor lo bastante intenso como para requerir un opioide y en el que otras opciones no bastan (solo adultos según la etiqueta)",
+   "a": "Etiqueta (oral): para evitar efectos adversos puede empezarse con 25 mg al día y subir 25 mg cada 3 días hasta 100 mg al día (25 mg cuatro veces al día); luego subir 50 mg al día cada 3 días hasta 200 mg al día (50 mg cuatro veces al día). Después, 50 a 100 mg cada 4 a 6 h según el dolor, máximo 400 mg al día. IV o IM: no figura en esta etiqueta; en Colombia se usa 50 a 100 mg cada 6 a 8 h (otras fuentes; no contrastado aquí).",
+   "p": "Contraindicado en menores de 12 años y, en menores de 18, después de amigdalectomía o adenoidectomía. La etiqueta desaconseja su uso entre 12 y 18 años con obesidad, apnea del sueño o enfermedad pulmonar grave."
+  }
+ ],
+ "aj": {
+  "r": "Insuficiencia renal grave (depuración de creatinina <30 mL/min): intervalo cada 12 h y máximo 200 mg al día.",
+  "h": "Insuficiencia hepática grave: 50 mg cada 12 h.",
+  "e": "Evítalo si puedes: el uso prolongado produce síndrome de abstinencia neonatal.",
+  "l": "Pasa a la leche; se desaconseja en lactancia por riesgo de depresión respiratoria en el lactante (otras fuentes).",
+  "g": "Mayores de 75 años: máximo 300 mg al día (otras fuentes, de etiquetas anteriores)."
+ },
+ "ci": [
+  "Menores de 12 años",
+  "Menores de 18 años en el posoperatorio de amigdalectomía o adenoidectomía",
+  "Depresión respiratoria significativa",
+  "Asma aguda o grave sin monitoreo ni equipo de reanimación",
+  "Obstrucción digestiva conocida o sospechada, incluido el íleo paralítico",
+  "Hipersensibilidad al tramadol o a opioides",
+  "Uso de IMAO o dentro de los 14 días previos"
+ ],
+ "fr": [
+  "Mareo",
+  "Náuseas",
+  "Estreñimiento",
+  "Cefalea",
+  "Somnolencia",
+  "Vómito"
+ ],
+ "gr": [
+  "Convulsiones (incluso a dosis recomendadas; más riesgo con epilepsia o fármacos que bajan el umbral)",
+  "Síndrome serotoninérgico",
+  "Depresión respiratoria, sobre todo en metabolizadores ultrarrápidos de CYP2D6",
+  "Dependencia, abuso y mal uso (recuadro)",
+  "Hiponatremia e hipoglucemia",
+  "Riesgo de suicidio en pacientes con ideas suicidas o propensos a adicción",
+  "Insuficiencia suprarrenal"
+ ],
+ "it": [
+  [
+   "ISRS, IRSN, tricíclicos, IMAO, triptanes, otros serotoninérgicos",
+   "Síndrome serotoninérgico y convulsiones"
+  ],
+  [
+   "Inhibidores de CYP2D6 (fluoxetina, paroxetina, bupropión, quinidina)",
+   "Más tramadol y menos M1: menos analgesia, más riesgo de convulsiones y de serotonina"
+  ],
+  [
+   "Inhibidores de CYP3A4 (macrólidos, azoles, ritonavir)",
+   "Sube el tramadol; más riesgo de eventos graves"
+  ],
+  [
+   "Benzodiacepinas y otros depresores del SNC",
+   "Sedación profunda y depresión respiratoria"
+  ],
+  [
+   "Carbamazepina (inductor de CYP3A4)",
+   "Baja mucho el efecto analgésico"
+  ],
+  [
+   "Warfarina",
+   "Puede subir el INR"
+  ]
+ ],
+ "mon": [
+  "Frecuencia respiratoria y sedación",
+  "Dolor",
+  "Convulsiones, agitación o signos de síndrome serotoninérgico",
+  "Sodio y glucosa si hay síntomas"
+ ],
+ "ant": "Naloxona para la parte opioide (puede no revertir las convulsiones).",
+ "pre": "Advertencia en recuadro: adicción, depresión respiratoria, metabolismo ultrarrápido por CYP2D6 en niños, interacciones con CYP3A4 y CYP2D6, y riesgo con benzodiacepinas. No lo combines con otros productos que contengan tramadol. Máximo 400 mg al día.",
+ "pres": [
+  "Tabletas 50 mg (y 25 mg)",
+  "Gotas orales 100 mg/mL",
+  "Ampolla 50 mg/mL",
+  "Tabletas de liberación prolongada"
+ ],
+ "com": [
+  "Tramal"
+ ],
+ "pe": [
+  "Es un opioide débil, pero igual puede causar depresión respiratoria y dependencia.",
+  "Puede causar convulsiones aunque se use a dosis normales.",
+  "En niños pequeños se evita por el riesgo de metabolismo ultrarrápido."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de tramadol clorhidrato (tabletas) (DailyMed, Rising Pharma Holdings, Inc., Oct 23, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=b5852b90-e415-47ef-8f73-87266b58e033",
+   "b": "dosis oral, titulación, ajuste renal y hepático, contraindicaciones, interacciones"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "N02AX02"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 38,
+  "np": 188,
+  "pres": [
+   "Solucion inyectable 100 mg",
+   "Solucion inyectable 50 mg",
+   "Solucion oral 100 mg",
+   "Capsula dura 50 mg",
+   "Tableta de liberacion prolongada 50 mg",
+   "Tableta de liberacion prolongada 100 mg",
+   "Capsula blanda 50 mg",
+   "Tableta recubierta 100 mg",
+   "Tableta recubierta 200 mg",
+   "Solucion oral 10 g"
+  ],
+  "m": [
+   "Tramal ® capsulas. (Grünenthal)",
+   "Tramal® long 50mg tabletas (Grunenthal)",
+   "Tramal ® gotas (Grunenthal)",
+   "Tramal long®100 mgtabletas (Grunenthal)",
+   "Tramydol® 100 mg (Labquifar)",
+   "Tramydol® 200 mg (Labquifar)",
+   "Tramasindol® 100 mg/ml solucion oral (Laboratorios Blaskov)",
+   "Tramadol clorhidrato solucion inyectable (Laboratorios Ecar)",
+   "Tramadol clorhidrato ampollas 50 mg / 1 ml. (Vitalis C.I)",
+   "Tramal 100 solución para inyección. (Grunenthal)",
+   "Tramal inyectable 50 mg (Grunenthal)",
+   "Tramadol inyectable x 50 mg/ml (Genfar)"
+  ],
+  "mas": 26,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

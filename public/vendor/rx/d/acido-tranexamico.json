@@ -1,0 +1,193 @@
+{
+ "id": "acido-tranexamico",
+ "n": "Ácido tranexámico",
+ "g": [
+  "Ácido tranexámico",
+  "Amchafibrin",
+  "Cyklokapron"
+ ],
+ "atc": [
+  "B02AA02"
+ ],
+ "cl": "Antifibrinolítico",
+ "mc": "antifibrin",
+ "us": [
+  "sangrado"
+ ],
+ "es": [
+  "cirugia",
+  "ortopedia",
+  "gineco",
+  "anest",
+  "uci",
+  "urologia",
+  "pediatria"
+ ],
+ "via": [
+  "iv",
+  "vo"
+ ],
+ "al": [
+  "ajuste_renal",
+  "convulsiones"
+ ],
+ "et": "«Antifibrinolítico»: que se opone a la lisis (disolución) de la fibrina.",
+ "mech": "Es un análogo sintético del aminoácido lisina. Ocupa los sitios de unión a lisina del plasminógeno e impide que se pegue a la fibrina; sin ese anclaje, la plasmina no se forma sobre el coágulo y este no se disuelve. Por eso estabiliza el coágulo en hemorragias, sobre todo cuando hay hiperfibrinólisis (trauma, cirugía, hemorragia posparto). Se debe dar temprano: en trauma, en las primeras 3 horas.",
+ "pk": {
+  "abs": "IV: biodisponibilidad total. Oral 30 a 50 % (otras fuentes)",
+  "vm": "≈2 h en la fase terminal",
+  "met": "Mínimo",
+  "el": "Renal por filtración glomerular: >95 % sin cambios en orina; depuración renal ≈110 a 116 mL/min"
+ },
+ "ind": [
+  {
+   "i": "Hemofilia: reducir o prevenir hemorragia durante y después de extracción dental (2 a 8 días)",
+   "a": "10 mg/kg IV (peso real) en dosis única justo antes de la extracción, junto con terapia de reemplazo. Después: 10 mg/kg IV 3 a 4 veces al día durante 2 a 8 días. Infunde la solución sin diluir a no más de 1 mL/min (0,5 mL/min usual) para evitar hipotensión. Se puede diluir a 10 o 20 mg/mL.",
+   "p": "Datos limitados en niños con hemofilia en extracción dental; la farmacocinética no difiere de forma significativa de la del adulto.",
+   "k": {
+    "lo": 10,
+    "hi": 10,
+    "int": "IV 3 a 4 veces al día (hemofilia, extracción dental)"
+   }
+  },
+  {
+   "i": "Hemorragia por trauma (uso fuera de etiqueta; CRASH-2)",
+   "a": "CRASH-2: 1 g IV en 10 min y luego 1 g en infusión durante 8 h, lo antes posible y dentro de las 3 h de la lesión. Con tratamiento en la primera hora, el riesgo de muerte por sangrado bajó (RR 0,68; IC 95 % 0,57 a 0,82); entre 1 y 3 h también (RR 0,79; 0,64 a 0,97); después de 3 h pareció aumentar (RR 1,44; 1,12 a 1,84). Mortalidad por todas las causas a 28 días: 14,5 % contra 16,0 % (RR 0,91). Uso fuera de la etiqueta de la FDA.",
+   "p": "15 mg/kg IV (máximo 1 g) (otras fuentes; no contrastado aquí). CRASH-2 solo incluyó adultos.",
+   "k": {
+    "lo": 15,
+    "hi": 15,
+    "int": "IV (otras fuentes; fuera de etiqueta)",
+    "maxd": "1 g"
+   }
+  },
+  {
+   "i": "Hemorragia posparto (uso fuera de etiqueta; ensayo WOMAN)",
+   "a": "WOMAN (protocolo): 1 g IV lo antes posible tras el diagnóstico (en 10 min según la OMS); segunda dosis de 1 g si el sangrado sigue a los 30 min o si se detiene y reaparece en las siguientes 24 h. La reducción de la muerte por hemorragia aparece con el tratamiento dentro de las 3 h del parto (resultados de WOMAN, según MediSearch). Uso fuera de la etiqueta de la FDA.",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "Reduce la dosis según la creatinina (todas las dosis, antes y después de la extracción): 1,36 a 2,83 mg/dL, 10 mg/kg IV cada 12 h; 2,83 a 5,66 mg/dL, 10 mg/kg IV cada 24 h; >5,66 mg/dL, 10 mg/kg IV cada 48 h o 5 mg/kg IV cada 24 h.",
+  "h": "Sin ajuste en la etiqueta.",
+  "e": "Los datos publicados en 2.º y 3.er trimestre y en el parto no aclaran el riesgo de aborto ni de resultados adversos. Dos casos de malformaciones estructurales letales ocurrieron con uso en la concepción o el primer trimestre. Se usa en hemorragia posparto (otras fuentes).",
+  "l": "Se detecta en la leche humana; no hay datos sobre el efecto en el lactante. Pondera los beneficios de amamantar frente a la necesidad materna.",
+  "g": "Ajusta según la función renal; no hay otro ajuste en la etiqueta."
+ },
+ "ci": [
+  "Administración neuraxial (intratecal o epidural)",
+  "Hemorragia subaracnoidea (edema e infarto cerebral en la experiencia anecdótica)",
+  "Coagulación intravascular activa",
+  "Hipersensibilidad al ácido tranexámico o a sus excipientes"
+ ],
+ "fr": [
+  "Cefalea",
+  "Mialgia y dolor de espalda",
+  "Náuseas, vómito, diarrea",
+  "Mareo",
+  "Hipotensión (si se infunde rápido)"
+ ],
+ "gr": [
+  "Eventos tromboembólicos venosos y arteriales",
+  "Convulsiones (más en cirugía cardiovascular con dosis altas)",
+  "Muerte, convulsiones y arritmias por administración intratecal o epidural errónea",
+  "Reacciones de hipersensibilidad y anafilaxia",
+  "Alteraciones visuales",
+  "Hematuria alta con riesgo de coágulos obstructivos en el tracto urinario (otras fuentes)"
+ ],
+ "it": [
+  [
+   "Productos protrombóticos (factor VIIa, complejos protrombínicos, anticonceptivos hormonales)",
+   "Evita combinarlos: suma de riesgo tromboembólico"
+  ],
+  [
+   "Soluciones con penicilina",
+   "No las mezcles en la misma infusión"
+  ],
+  [
+   "Sangre",
+   "No la mezcles con sangre"
+  ]
+ ],
+ "mon": [
+  "Signos de trombosis (dolor, edema en una pierna, disnea, dolor torácico)",
+  "Función renal",
+  "Convulsiones",
+  "Presión arterial durante la infusión",
+  "Alteraciones visuales"
+ ],
+ "ant": "No hay.",
+ "pre": "Solo por vía IV: se han descrito errores letales por vía intratecal o epidural (confusión con otras ampollas): verifica el vial. Infunde despacio (≤1 mL/min sin diluir). Contraindicado en coagulación intravascular activa y hemorragia subaracnoidea. Las indicaciones en trauma y hemorragia posparto no figuran en la etiqueta FDA.",
+ "pres": [
+  "Ampolla o vial 500 mg/5 mL y 1.000 mg/10 mL (100 mg/mL)",
+  "Tabletas 500 mg"
+ ],
+ "com": [
+  "Amchafibrin",
+  "Cyklokapron"
+ ],
+ "pe": [
+  "En trauma, la ventana es de 3 h desde la lesión: pasado ese tiempo el beneficio disminuye (otras fuentes).",
+  "En hematuria alta, evítalo por el riesgo de coágulos que obstruyan el uréter.",
+  "Es de uso exclusivo IV: aleja la ampolla de las de anestesia raquídea."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de ácido tranexámico (inyectable) (DailyMed, Sagent Pharmaceuticals, Oct 20, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=0277db2d-7c81-4cd0-ac19-fa12b5721428",
+   "b": "dosis en hemofilia con extracción dental, ajuste renal, preparación, contraindicaciones, advertencias, usos fuera de etiqueta"
+  },
+  {
+   "t": "Protocolo del ensayo WOMAN: ácido tranexámico en hemorragia posparto (Trials 2010)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/20398351/",
+   "b": "1 g IV; segunda dosis a los 30 min o si reaparece en 24 h"
+  },
+  {
+   "t": "CRASH-2: importancia del tratamiento temprano con ácido tranexámico en trauma con sangrado (Lancet 2011)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/21439633/",
+   "b": "1 g en 10 min y 1 g en 8 h; RR por ventana de tiempo"
+  },
+  {
+   "t": "CRASH-2: ensayo y evaluación económica (Health Technol Assess 2013)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/23477634/",
+   "b": "Mortalidad a 28 días 14,5 % contra 16,0 %"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "B02AA02"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 14,
+  "np": 72,
+  "pres": [
+   "Solucion inyectable 500 mg",
+   "Tableta 500 mg",
+   "Tableta recubierta 500 mg",
+   "Solucion inyectable 100 mg"
+  ],
+  "m": [
+   "Tranexmed® (Novamed)",
+   "Clintranex® (Proclin Pharma)",
+   "Zociled® 500 mg / 5 ml solución inyectable (Knovel Pharma)",
+   "Tranexam® ampollas (Ropsohn Therapeutics)",
+   "Fibrinexam® (Salus Pharma Labs)",
+   "Tarexa® (Vitalis C.I)",
+   "Gotronal® 500 mg tableta (Closter Pharma)",
+   "Auroxamic® (Eugia Pharma Specialities)",
+   "Acitradelt®inyeccion 500mg/5ml (Laboratorios Delta)",
+   "Tranexam® 500 mg (Ropsohn Therapeutics)",
+   "Fibrilok 500mg tabletas (Humax Pharmaceutical)",
+   "Acido tranexamico iny 500 mg / 5 ml (Setaa Pharma)"
+  ],
+  "mas": 2,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

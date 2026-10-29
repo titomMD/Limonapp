@@ -1,0 +1,184 @@
+{
+ "id": "amoxicilina-clavulanico",
+ "n": "Amoxicilina con ácido clavulánico",
+ "g": [
+  "Amoxicilina con ácido clavulánico",
+  "Amoxicilina",
+  "ácido clavulánico",
+  "Augmentin",
+  "Clavulin"
+ ],
+ "atc": [
+  "J01CR02"
+ ],
+ "cl": "Penicilina con inhibidor de betalactamasa",
+ "mc": "betalact_inh",
+ "us": [
+  "resp",
+  "itu",
+  "piel",
+  "abdominal"
+ ],
+ "es": [
+  "pediatria",
+  "medint",
+  "cirugia",
+  "infecto",
+  "urologia"
+ ],
+ "via": [
+  "vo",
+  "iv"
+ ],
+ "al": [
+  "cdiff",
+  "hepatotox"
+ ],
+ "et": "«Clavulánico» viene de Streptomyces clavuligerus, la bacteria del suelo que produce el ácido clavulánico.",
+ "mech": "Combina una penicilina (amoxicilina) con un inhibidor de β-lactamasa (ácido clavulánico). El clavulanato se une de forma irreversible a muchas β-lactamasas y las destruye, protegiendo a la amoxicilina; con eso cubre bacterias productoras de β-lactamasa (S. aureus sensible a meticilina, H. influenzae, Moraxella, E. coli, anaerobios).",
+ "pk": {
+  "abs": "Oral rápida; la absorción del clavulanato mejora si se toma al inicio de una comida",
+  "vm": "≈1 a 1,5 h",
+  "met": "Poco",
+  "el": "Renal"
+ },
+ "ind": [
+  {
+   "i": "Infecciones por gérmenes productores de β-lactamasa: vías respiratorias bajas, sinusitis, otitis media, piel y tejidos blandos, urinarias",
+   "a": "Leves a moderadas: 500/125 mg VO cada 12 h o 250/125 mg cada 8 h. Graves o respiratorias: 875/125 mg cada 12 h o 500/125 mg cada 8 h. Tomar al inicio de una comida.",
+   "p": "Desde 40 kg: dosis de adulto (tabletas). De 3 meses a <40 kg se usa la suspensión: 25 a 45 mg/kg/día de amoxicilina cada 12 h o 20 a 40 mg/kg/día cada 8 h (preferible cada 12 h: menos diarrea). Menores de 3 meses: 30 mg/kg/día cada 12 h con la suspensión de 125 mg/31,25 mg por 5 mL.",
+   "k": {
+    "lo": 12.5,
+    "hi": 22.5,
+    "int": "cada 12 h (de amoxicilina)",
+    "maxd": "875 mg por dosis (dosis de adulto)"
+   }
+  }
+ ],
+ "aj": {
+  "r": "Con depuración ≥30 mL/min no se ajusta. Con <30 mL/min no uses la tableta de 875/125 mg.\nDepuración | Dosis\n10 a 30 mL/min | 500/125 mg o 250/125 mg cada 12 h, según la gravedad\nMenos de 10 mL/min | 500/125 mg o 250/125 mg cada 24 h\nHemodiálisis | 500/125 mg o 250/125 mg cada 24 h, con una dosis extra durante y al final de la sesión",
+  "h": "Puede causar hepatitis e ictericia colestásica, casi siempre reversibles, pero hubo muertes. Evítala si tuvo ictericia colestásica con este fármaco; con hepatopatía vigila las pruebas hepáticas.",
+  "e": "Los estudios epidemiológicos no han establecido riesgo de malformaciones. Un estudio en ruptura prematura de membranas pretérmino asoció su uso profiláctico con más enterocolitis necrosante en el recién nacido.",
+  "l": "Pasa a la leche materna en poca cantidad; se considera compatible (dato de otras fuentes, no figura en esta etiqueta).",
+  "g": "Sin diferencias de eficacia ni seguridad; ajusta por función renal."
+ },
+ "ci": [
+  "Reacción grave de hipersensibilidad (anafilaxia, Stevens-Johnson) a amoxicilina, clavulanato u otros β-lactámicos",
+  "Antecedente de ictericia colestásica o disfunción hepática por amoxicilina-clavulánico"
+ ],
+ "fr": [
+  "Diarrea (más que con amoxicilina sola)",
+  "Náuseas y vómito",
+  "Rash",
+  "Candidiasis mucocutánea"
+ ],
+ "gr": [
+  "Anafilaxia",
+  "Reacciones cutáneas graves",
+  "Síndrome de enterocolitis inducida por fármacos (DIES)",
+  "Hepatitis e ictericia colestásica, a veces mortales",
+  "Colitis por Clostridioides difficile"
+ ],
+ "it": [
+  [
+   "Probenecid",
+   "Sube y prolonga la amoxicilina; no se recomienda"
+  ],
+  [
+   "Anticoagulantes orales",
+   "Puede subir el INR"
+  ],
+  [
+   "Alopurinol",
+   "Más rash; suspéndelo si aparece"
+  ],
+  [
+   "Anticonceptivos orales",
+   "Puede reducir su eficacia"
+  ],
+  [
+   "Metotrexato",
+   "Menor eliminación (no figura en esta etiqueta; descrito en otras fuentes)"
+  ]
+ ],
+ "mon": [
+  "Transaminasas y bilirrubina si el tratamiento es largo o hay hepatopatía",
+  "Diarrea",
+  "Función renal en insuficiencia renal"
+ ],
+ "ant": "No hay.",
+ "pre": "No intercambies formulaciones sin igualar la proporción amoxicilina:clavulánico: dos tabletas de 250/125 mg NO equivalen a una de 500/125 mg. No uses la tableta en <40 kg. La suspensión de 200 y 400 mg/5 mL contiene aspartamo (fenilcetonuria).",
+ "pres": [
+  "Tabletas 250/125, 500/125 y 875/125 mg",
+  "Suspensión 125/31,25, 250/62,5, 200/28,5 y 400/57 mg por 5 mL",
+  "Vial IV 1,2 g (en Colombia; no contrastado con la etiqueta FDA)"
+ ],
+ "com": [
+  "Augmentin",
+  "Clavulin"
+ ],
+ "pe": [
+  "La proporción importa: el clavulanato causa la diarrea; dosificar cada 12 h la reduce.",
+  "Para un niño de menos de 40 kg usa la suspensión, nunca la tableta.",
+  "Si el paciente tuvo ictericia con este fármaco, no lo repitas."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de amoxicilina-clavulanato (tabletas) (DailyMed, Remedyrepack Inc., Oct 23, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=80bef3fd-4f6f-4190-8865-9ac46c8947a3",
+   "b": "dosis adulto, ajuste renal, contraindicaciones, interacciones, hepatotoxicidad"
+  },
+  {
+   "t": "Etiqueta de Augmentin suspensión (amoxicilina-clavulanato) (DailyMed, Allegis Holdings, Llc, May 20, 2024)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=04a31a42-d79e-bbb4-e063-6394a90a63ee",
+   "b": "dosis pediátrica por peso"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01CR02"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 52,
+  "np": 173,
+  "pres": [
+   "Tableta recubierta 125 mg",
+   "Tableta recubierta 875 mg",
+   "Polvo para reconstituir a suspension oral 8 g",
+   "Polvo para reconstituir a suspension oral 1,14 g",
+   "Tableta recubierta 500 mg",
+   "Polvo para reconstituir a suspension oral 12 g",
+   "Polvo para reconstituir a suspension oral 0,858 g",
+   "Polvo para reconstituir a suspension oral 5 g",
+   "Tableta recubierta 1004,5 mg",
+   "Tableta recubierta 148,87 mg",
+   "Tableta recubierta 1026,87 mg",
+   "Tableta recubierta 292,74 mg",
+   "Polvo para reconstituir a suspension oral 1,25 g",
+   "Polvo para reconstituir a suspension oral 858 mg"
+  ],
+  "m": [
+   "Ipiclav® 1 g (Ipca Laboratories Sucursal Colombia)",
+   "Clavulin® junior 12 h (polvo para reconstituir a suspension oral) (Glaxosmithkline Colombia)",
+   "Atak clav® (Eurofarma Colombia)",
+   "Clavutec ® tabletas recubiertas (Faes Farma Colombia)",
+   "Amoclav ® 600 mg / 42.9 mg (Procaps)",
+   "Amoclav® 250 mg / 62.5 mg (Procaps)",
+   "Amoxclaver® 625 (Veros Health)",
+   "Sulamp® duo tableta recubierta (Laboratorios Bussie)",
+   "Curam ® 1g (Sandoz)",
+   "Amoxiclin duo®polvo para reconstituir a suspensión oral (Laboratorios Siegfried)",
+   "Sulamp® duo (Laboratorios Bussie)",
+   "Amoxiclin duo® niños polvo para reconstituir a suspensión oral (Laboratorios Siegfried)"
+  ],
+  "mas": 39,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

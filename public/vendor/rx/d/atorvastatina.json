@@ -1,0 +1,179 @@
+{
+ "id": "atorvastatina",
+ "n": "Atorvastatina",
+ "g": [
+  "Atorvastatina",
+  "Lipitor"
+ ],
+ "atc": [
+  "C10AA05"
+ ],
+ "cl": "Estatina",
+ "mc": "estatina",
+ "us": [
+  "lipidos"
+ ],
+ "es": [
+  "medint",
+  "cardio",
+  "neuro",
+  "nefro",
+  "endo"
+ ],
+ "via": [
+  "vo"
+ ],
+ "al": [
+  "emb_evitar",
+  "hepatotox",
+  "cyp"
+ ],
+ "et": "El sufijo «-statina» (de «stasis», detención) identifica a los inhibidores de la HMG-CoA reductasa.",
+ "mech": "Inhibe la HMG-CoA reductasa, la enzima limitante de la síntesis de colesterol en el hígado. Al caer el colesterol intracelular el hepatocito aumenta los receptores de LDL en su superficie y retira más LDL de la sangre. Además estabiliza la placa de ateroma, reduce la inflamación vascular y baja los triglicéridos de forma moderada (efectos pleiotrópicos).",
+ "pk": {
+  "abs": "Oral rápida; pico en 1 a 2 h; biodisponibilidad absoluta ≈14 % (actividad inhibitoria ≈30 %)",
+  "vm": "≈14 h; la actividad inhibitoria de la enzima dura 20 a 30 h por los metabolitos activos",
+  "met": "Hepático (CYP3A4), con metabolitos activos; transportadores OATP1B1/1B3, P-gp",
+  "el": "Biliar; menos del 2 % por orina"
+ },
+ "ind": [
+  {
+   "i": "Reducir el riesgo de infarto, ACV, revascularización y angina; hiperlipidemia primaria; hipercolesterolemia familiar",
+   "a": "10 a 20 mg una vez al día al inicio; rango 10 a 80 mg una vez al día, a cualquier hora, con o sin comida. Si se requiere bajar el LDL más del 45 %, puede iniciarse con 40 mg. Evalúa el LDL desde las 4 semanas y ajusta.",
+   "p": "Hipercolesterolemia familiar heterocigota, 10 años o más: 10 mg al día, rango 10 a 20 mg. Homocigota, 10 años o más: 10 a 20 mg al día, rango 10 a 80 mg."
+  }
+ ],
+ "aj": {
+  "r": "No cambia las concentraciones de atorvastatina, así que no hay ajuste. La insuficiencia renal es un factor de riesgo de miopatía: vigila.",
+  "h": "Contraindicada en falla hepática aguda o cirrosis descompensada. En enfermedad hepática alcohólica crónica la Cmax y el AUC suben 4 veces (Child-Pugh A) y hasta 16 y 11 veces (Child-Pugh B).",
+  "e": "Suspéndela al reconocer el embarazo (puede dañar al feto). La etiqueta actual ya no la contraindica de forma absoluta: pondera la necesidad terapéutica de la paciente.",
+  "l": "No hay datos en leche humana; otra estatina pasa a la leche y en ratas la atorvastatina sí. Evítala durante la lactancia (otras fuentes).",
+  "g": "Edad ≥65 años es un factor de riesgo de miopatía; sin diferencias de eficacia ni seguridad en los estudios."
+ },
+ "ci": [
+  "Falla hepática aguda o cirrosis descompensada",
+  "Hipersensibilidad a la atorvastatina o a sus excipientes (anafilaxia, angioedema, eritema multiforme, Stevens-Johnson)"
+ ],
+ "fr": [
+  "Nasofaringitis",
+  "Artralgias",
+  "Diarrea",
+  "Dolor en extremidades",
+  "Infección urinaria",
+  "Dispepsia, náuseas"
+ ],
+ "gr": [
+  "Miopatía y rabdomiólisis, con insuficiencia renal aguda por mioglobinuria",
+  "Miopatía necrosante inmunomediada",
+  "Hepatotoxicidad y elevación de transaminasas",
+  "Aumento de HbA1c y glucosa en ayunas",
+  "Hemorragia cerebral en ACV reciente (otras fuentes)"
+ ],
+ "it": [
+  [
+   "Ciclosporina, gemfibrozil, inhibidores de proteasa del VIH con ritonavir, letermovir",
+   "Más riesgo de miopatía; evita o limita la dosis (revisa la tabla de la etiqueta)"
+  ],
+  [
+   "Claritromicina e itraconazol",
+   "No pasar de 20 mg al día de atorvastatina"
+  ],
+  [
+   "Nelfinavir",
+   "No pasar de 40 mg al día"
+  ],
+  [
+   "Jugo de toronja en cantidad",
+   "Sube los niveles; evita grandes cantidades"
+  ],
+  [
+   "Digoxina",
+   "Puede subir sus niveles: monitorea"
+  ],
+  [
+   "Anticonceptivos orales",
+   "Suben noretindrona y etinilestradiol"
+  ],
+  [
+   "Rifampicina",
+   "Bajan las concentraciones de atorvastatina; adminístralas a la vez"
+  ],
+  [
+   "Colchicina, niacina, fibratos",
+   "Más riesgo de miopatía (otras fuentes)"
+  ]
+ ],
+ "mon": [
+  "LDL desde las 4 semanas de iniciar o cambiar la dosis",
+  "CK si hay dolor, sensibilidad o debilidad muscular",
+  "Transaminasas si hay síntomas de daño hepático",
+  "Glucemia y HbA1c"
+ ],
+ "ant": "No hay; suspender y manejar rabdomiólisis con hidratación.",
+ "pre": "Investiga todo dolor muscular inexplicado. Suspende si hay síntomas de miopatía con CK elevada. Evita combinar con ciclosporina o gemfibrozil y respeta los topes de dosis con claritromicina, itraconazol y antivirales. Suspende al reconocer el embarazo.",
+ "pres": [
+  "Tabletas 10, 20, 40 y 80 mg"
+ ],
+ "com": [
+  "Lipitor"
+ ],
+ "pe": [
+  "Se toma a cualquier hora porque su efecto dura más que la vida media del fármaco (a diferencia de la simvastatina, que se toma de noche).",
+  "Mide el LDL a las 4 a 12 semanas.",
+  "El embarazo ya no es una contraindicación absoluta en la etiqueta actual, pero se suspende al reconocerlo."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de atorvastatina cálcica (tabletas) (DailyMed, Nucare Pharmaceuticals, Inc., Oct 26, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=52f99e39-fb92-e9f5-e063-6294a90a1b6a",
+   "b": "dosis en adultos y niños, ajustes por interacción, contraindicaciones, miopatía, embarazo, lactancia"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "C10AA05"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 53,
+  "np": 471,
+  "pres": [
+   "Tableta recubierta 40 mg",
+   "Tableta recubierta 20 mg",
+   "Tableta recubierta 80 mg",
+   "Tableta recubierta 10 mg",
+   "Tableta 40 mg",
+   "Tableta cubierta con pelicula 40 mg",
+   "Tableta cubierta con pelicula 20 mg",
+   "Tableta 20 mg",
+   "Capsula blanda 20 mg",
+   "Tableta recubierta 20,7 mg",
+   "Capsula blanda 840 mg",
+   "Tableta 10 mg",
+   "Tableta cubierta (gragea) 40 mg",
+   "Tableta cubierta con pelicula 21,7 mg."
+  ],
+  "m": [
+   "Lipitor®80 mg tabletas (Aspen Colombiana)",
+   "Corastatin® 10 mg tabletas recubiertas (Msn Laboratories Private)",
+   "Lipitor® 40 mg. tabletas (Aspen Colombiana)",
+   "Lipitor® tabletas 10 mg (Aspen Colombiana)",
+   "Riscol® (Novamed)",
+   "Lipomega® 20 (Procaps)",
+   "Estatlen®40 mg tabletas (Laboratoriossiegfried)",
+   "Corastatin® 20 mg tabletas recubiertas (Msn Laboratories Private)",
+   "Corastatin® 40 mg tabletas recubiertas (Msn Laboratories Private)",
+   "Corastatin® 80 mg tabletas recubiertas (Msn Laboratories Private)",
+   "Estatlen® 20 mg tableta recubierta (Laboratorios Siegfried)",
+   "Atorvastatina® 40 mg tabletas recubiertas (Laboratorio Profesional Farmaceutico - Laboratorios Laproff)"
+  ],
+  "mas": 34,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

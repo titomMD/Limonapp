@@ -1,0 +1,141 @@
+{
+ "id": "mirabegron",
+ "n": "Mirabegrón",
+ "g": [
+  "Mirabegrón",
+  "Mirabegron",
+  "Myrbetriq",
+  "Betmiga"
+ ],
+ "atc": [
+  "G04BD12"
+ ],
+ "cl": "Agonista β3 (vejiga hiperactiva)",
+ "mc": "beta3",
+ "us": [
+  "vejiga"
+ ],
+ "es": [
+  "urologia",
+  "medint"
+ ],
+ "via": [
+  "vo"
+ ],
+ "al": [
+  "cyp",
+  "ajuste_renal"
+ ],
+ "et": "El sufijo «-begrón» marca a los agonistas β3-adrenérgicos (mirabegrón, vibegrón).",
+ "mech": "Agonista de los receptores β3-adrenérgicos del detrusor. Al activarlos el músculo liso de la vejiga se relaja durante el llenado y la capacidad aumenta, sin bloquear la acetilcolina: por eso da menos boca seca y estreñimiento que los antimuscarínicos.",
+ "pk": {
+  "abs": "Biodisponibilidad que crece con la dosis (~29 % a 25 mg y ~35 % a 50 mg)",
+  "vm": "~50 h",
+  "met": "Varias vías: CYP3A4, CYP2D6, butirilcolinesterasa; inhibe CYP2D6 de forma moderada",
+  "el": "Renal y fecal"
+ },
+ "ind": [
+  {
+   "i": "Vejiga hiperactiva (urgencia, polaquiuria, incontinencia de urgencia)",
+   "a": "25 mg VO una vez al día; a las 4 a 8 semanas puede subirse a 50 mg una vez al día. Se traga entero con agua.",
+   "p": "Existe una presentación pediátrica para vejiga neurogénica (verificar en la etiqueta vigente)."
+  }
+ ],
+ "aj": {
+  "r": "TFG 30 a 89: máximo 50 mg. TFG 15 a 29: máximo 25 mg. TFG <15: no recomendado.",
+  "h": "Child-Pugh B: máximo 25 mg. Child-Pugh C: no recomendado.",
+  "e": "Usar solo si el beneficio supera el riesgo.",
+  "l": "No recomendado.",
+  "g": "Sin ajuste; vigilar presión arterial."
+ },
+ "ci": [
+  "Hipersensibilidad a mirabegrón",
+  "Hipertensión grave no controlada (≥180/110 mmHg): no recomendado"
+ ],
+ "fr": [
+  "Hipertensión",
+  "Infección urinaria",
+  "Cefalea",
+  "Nasofaringitis",
+  "Estreñimiento",
+  "Taquicardia"
+ ],
+ "gr": [
+  "Aumento de la presión arterial",
+  "Retención urinaria si hay obstrucción de salida vesical",
+  "Angioedema",
+  "Fibrilación auricular (figura como reacción adversa en la ficha técnica)"
+ ],
+ "it": [
+  [
+   "Metoprolol, desipramina y otros sustratos de CYP2D6",
+   "Mirabegrón sube sus niveles; ajustar dosis"
+  ],
+  [
+   "Digoxina",
+   "Sube su nivel; empezar con dosis baja y vigilar"
+  ],
+  [
+   "Flecainida, propafenona, tioridazina (margen estrecho, CYP2D6)",
+   "Precaución por mayor exposición"
+  ],
+  [
+   "Antimuscarínicos",
+   "Combinación posible, vigilar retención"
+  ]
+ ],
+ "mon": [
+  "Presión arterial antes y durante el tratamiento",
+  "Función renal y hepática para ajustar la dosis",
+  "Síntomas urinarios y residuo posmiccional si hay obstrucción"
+ ],
+ "pre": "Sube la presión arterial: tómala antes de empezar y en los controles.",
+ "pres": [
+  "Tabletas de liberación prolongada 25 y 50 mg"
+ ],
+ "com": [
+  "Myrbetriq",
+  "Betmiga"
+ ],
+ "pe": [
+  "Alternativa cuando los antimuscarínicos dan boca seca, estreñimiento o preocupan por la cognición.",
+  "Inhibe CYP2D6: revisa los betabloqueadores (metoprolol) y la digoxina."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de Myrbetriq (drugs.com)",
+   "u": "https://www.drugs.com/pro/myrbetriq.html",
+   "b": "dosis, farmacología, seguridad"
+  },
+  {
+   "t": "MediSearch (consulta compartida, 28 oct 2026)",
+   "u": "https://medisearch.io/share/c6qGRS1rApYp7pP5EMjzmV",
+   "b": "contraste de puntos específicos"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "G04BD12"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 2,
+  "np": 23,
+  "pres": [
+   "Tableta de liberacion prolongada 25 mg",
+   "Tableta de liberacion prolongada 50 mg"
+  ],
+  "m": [
+   "Myrbetric® 25 mg tabletas de liberacion prolongada (Astellas Pharma Us)",
+   "Myrbetric® 50 mg tabletas de liberacion prolongada (Astellas Pharma Us)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

@@ -1,0 +1,179 @@
+{
+ "id": "espironolactona",
+ "n": "Espironolactona",
+ "g": [
+  "Espironolactona",
+  "Aldactone"
+ ],
+ "atc": [
+  "C03DA01"
+ ],
+ "cl": "Antagonista de aldosterona",
+ "mc": "antialdost",
+ "us": [
+  "ic",
+  "hta"
+ ],
+ "es": [
+  "cardio",
+  "medint",
+  "nefro",
+  "gastro"
+ ],
+ "via": [
+  "vo"
+ ],
+ "al": [
+  "hiperk",
+  "ajuste_renal"
+ ],
+ "mech": "Antagonista competitivo del receptor mineralocorticoide en el túbulo colector. Impide que la aldosterona induzca la reabsorción de sodio y la excreción de potasio, por lo que produce una natriuresis suave y retiene potasio. Además reduce la fibrosis miocárdica y vascular mediada por aldosterona, lo que explica su beneficio en insuficiencia cardíaca con fracción de eyección baja y en la ascitis de la cirrosis.",
+ "pk": {
+  "abs": "Oral; la comida sube la biodisponibilidad ≈95 %, tómala siempre igual respecto a las comidas",
+  "vm": "Espironolactona ≈1,4 h; metabolitos activos (canrenona) mucho más largos (canrenona ≈16 h, otras fuentes)",
+  "met": "Hepático a canrenona y otros metabolitos activos",
+  "el": "Renal y biliar"
+ },
+ "ind": [
+  {
+   "i": "Insuficiencia cardiaca clases III-IV con fracción de eyección reducida",
+   "a": "Si potasio ≤5,0 mEq/L y TFG >50: 25 mg una vez al día; si lo tolera, 50 mg una vez al día. Si hay hiperpotasemia con 25 mg, baja a 25 mg en días alternos. Con TFG de 30 a 50, considera 25 mg en días alternos.",
+   "p": "La seguridad y eficacia en niños no se han establecido (etiqueta)."
+  },
+  {
+   "i": "Hipertensión (adyuvante)",
+   "a": "25 a 100 mg al día en una o varias dosis; titula cada 2 semanas. Dosis >100 mg al día no aportan más descenso.",
+   "p": "—"
+  },
+  {
+   "i": "Edema (cirrosis con ascitis; síndrome nefrótico)",
+   "a": "Inicia en el hospital y titula despacio. Dosis inicial 100 mg al día (rango 25 a 200 mg). Usada sola como diurético, mantén al menos 5 días antes de subir. En ascitis suele combinarse con furosemida en proporción 100:40 (otras fuentes).",
+   "p": "—"
+  },
+  {
+   "i": "Hiperaldosteronismo primario",
+   "a": "100 a 400 mg al día como preparación para cirugía; si no es candidato a cirugía, la dosis eficaz más baja a largo plazo.",
+   "p": "En niños se han usado 1 a 3 mg/kg al día divididos cada 12 a 24 h (otras fuentes; no contrastado aquí)."
+  }
+ ],
+ "aj": {
+  "r": "TFG 30 a 50: considera iniciar a 25 mg en días alternos por el riesgo de hiperpotasemia. Evita en TFG <30 o potasio >5 (otras fuentes).",
+  "h": "En cirrosis con ascitis inicia en el hospital y titula despacio; riesgo de alteración neurológica o coma en hepatopatía.",
+  "e": "Puede afectar la diferenciación sexual masculina del feto (en ratas feminiza a los machos). Los datos humanos son limitados y no mostraron malformaciones. Evítala si es posible (efecto antiandrógeno).",
+  "l": "La espironolactona no pasa a la leche, pero la canrenona sí en cantidades bajas, que se esperan sin consecuencias clínicas en el lactante.",
+  "g": "Monitorea la función renal y el potasio: mayor riesgo de hiperpotasemia."
+ },
+ "ci": [
+  "Hiperpotasemia",
+  "Enfermedad de Addison",
+  "Uso con eplerenona"
+ ],
+ "fr": [
+  "Hiperpotasemia",
+  "Ginecomastia y dolor mamario",
+  "Alteraciones menstruales",
+  "Hiponatremia",
+  "Mareo"
+ ],
+ "gr": [
+  "Hiperpotasemia grave con arritmias",
+  "Hipotensión y empeoramiento de la función renal",
+  "Alteraciones electrolíticas y metabólicas (hiponatremia, acidosis)",
+  "Alteración neurológica o coma en hepatopatía",
+  "Lesión renal aguda"
+ ],
+ "it": [
+  [
+   "IECA, ARA II, suplementos de potasio, sustitutos de sal, trimetoprima",
+   "Hiperpotasemia grave; vigila el potasio, y revísalo si cambias el IECA o ARA II"
+  ],
+  [
+   "AINE",
+   "Menor efecto diurético y antihipertensivo; más riesgo renal e hiperpotasemia"
+  ],
+  [
+   "Litio",
+   "Sube los niveles del litio"
+  ],
+  [
+   "Digoxina",
+   "Interfiere con algunos ensayos de digoxina (radioinmunoensayo)"
+  ],
+  [
+   "Colestiramina",
+   "Acidosis metabólica hiperpotasémica"
+  ],
+  [
+   "Ácido acetilsalicílico",
+   "Puede reducir la eficacia de la espironolactona"
+  ],
+  [
+   "Mitotano y abiraterona",
+   "Evita mitotano; la abiraterona puede subir el PSA"
+  ]
+ ],
+ "mon": [
+  "Potasio y creatinina en la primera semana de iniciar o titular, y de forma regular",
+  "Presión arterial",
+  "Ginecomastia",
+  "Estado neurológico en cirrosis"
+ ],
+ "ant": "No hay; tratar la hiperpotasemia con calcio, insulina-dextrosa, resinas y diálisis según el caso.",
+ "pre": "Hiperpotasemia, sobre todo con insuficiencia renal, suplementos de potasio, IECA o ARA II. Suspende los suplementos de potasio al iniciar en insuficiencia cardiaca. En cirrosis inicia en el hospital. La ginecomastia es un efecto antiandrógeno.",
+ "pres": [
+  "Tabletas 25 y 100 mg"
+ ],
+ "com": [
+  "Aldactone"
+ ],
+ "pe": [
+  "Si hay ginecomastia, el cambio habitual es a eplerenona (otras fuentes).",
+  "Revisa el potasio a la semana y al mes de iniciar o de cada cambio de dosis (otras fuentes para el mes).",
+  "Tómala siempre de la misma manera respecto a las comidas."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de espironolactona (tabletas) (DailyMed, Major Pharmaceuticals, Oct 23, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=0c45d793-6f2f-4622-b5ed-6875acfbc02b",
+   "b": "dosis en insuficiencia cardiaca, hipertensión, edema y aldosteronismo, hiperpotasemia, interacciones, embarazo, lactancia"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "C03DA01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 15,
+  "np": 91,
+  "pres": [
+   "Tableta 25 mg",
+   "Tableta 100 mg",
+   "Tableta recubierta 25 mg",
+   "Tableta recubierta 100 mg",
+   "Tableta 102 mg"
+  ],
+  "m": [
+   "Aldactone® tabletas 25 mg (Pfizer)",
+   "Doxiclat® tableta. (Pharmaderm)",
+   "Aldactone 100mg tabletas (Pfizer)",
+   "Espironolactona 100 mg tabletas recubiertas (Annora Pharma Private)",
+   "Espironolactona 25 mg tabletas recubiertas (Annora Pharma Private)",
+   "Espirolan 100 mg tabletas. (Laboratorio Internacional De Colombia - Labinco)",
+   "Espirolan 25 mg tabletas (Laboratorio Internacional De Colombia - Labinco)",
+   "Espironolactona tabletas 25 mg (Anglopharma)",
+   "Espironolactona 25mg tabletas (Genfar)",
+   "Espironolactona 25 mg tableta recubierta (Momenta Farmaceutica)",
+   "Espironolactona100 mg. (Laboratorios Mk)",
+   "Espironolactona 25 mg (Laboratorios Mk)"
+  ],
+  "mas": 2,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

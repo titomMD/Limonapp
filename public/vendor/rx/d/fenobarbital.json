@@ -1,0 +1,162 @@
+{
+ "id": "fenobarbital",
+ "n": "Fenobarbital IV",
+ "g": [
+  "Fenobarbital",
+  "Fenobarbitona",
+  "Luminal"
+ ],
+ "atc": [
+  "N03AA02"
+ ],
+ "cl": "Barbitúrico",
+ "mc": "barbiturico",
+ "us": [
+  "conv",
+  "sedacion"
+ ],
+ "es": [
+  "neuro",
+  "uci",
+  "pediatria",
+  "psiq",
+  "anest"
+ ],
+ "via": [
+  "iv",
+  "im",
+  "vo"
+ ],
+ "al": [
+  "depresor_snc",
+  "alto_riesgo",
+  "cyp",
+  "hepatotox"
+ ],
+ "et": "«Barbitúrico» viene del ácido barbitúrico, nombre dado por Adolf von Baeyer en 1864; «fenil-» indica el anillo de benceno en la molécula.",
+ "mech": "Se une al receptor GABA-A y prolonga el tiempo que el canal de cloro permanece abierto (las benzodiacepinas aumentan la frecuencia; los barbitúricos, la duración). A dosis altas abren el canal incluso sin GABA. Resultado: depresión del SNC, sedación y efecto anticonvulsivante.",
+ "pk": {
+  "abs": "IV directa; el pico cerebral tarda 15 min o más tras la infusión (etiqueta)",
+  "vm": "Cerca de 100 h en adultos y mayor en neonatos (otras fuentes)",
+  "met": "Hepático (CYP2C9, 2C19, 2E1; es inductor enzimático)",
+  "el": "Renal; cerca de 25% sin cambios (otras fuentes)"
+ },
+ "ind": [
+  {
+   "i": "Estatus epiléptico",
+   "a": "AES 2016 (nivel A): 15 mg/kg IV en dosis única, alternativa de segunda línea (o primera, según la guía, si no hay benzodiacepina). Etiqueta FDA para adultos: crisis agudas 20 a 320 mg IM o IV, repetibles a las 6 h; la velocidad IV en adultos no debe superar 60 mg/min. Niveles terapéuticos de 10 a 25 mcg/mL.",
+   "p": "Etiqueta FDA: estatus epiléptico 15 a 20 mg/kg IV en 10 a 15 min. Cargas de 15 a 20 mg/kg dan cerca de 20 mcg/mL. Espera el efecto antes de una segunda dosis: la depresión por barbitúrico se suma a la postictal. Esta presentación contiene alcohol bencílico y la etiqueta no la recomienda en neonatos (menores de 1 mes).",
+   "k": {
+    "lo": 15,
+    "hi": 20,
+    "int": "IV en 10 a 15 min (etiqueta FDA); no recomendado en menores de 1 mes por el alcohol bencílico"
+   }
+  },
+  {
+   "i": "Sedación y premedicación",
+   "a": "Sedación diurna: 30 a 120 mg al día en 2 a 3 dosis IM o IV. Hipnótico nocturno: 100 a 320 mg IM o IV. Premedicación: 100 a 200 mg IM, 60 a 90 min antes de la cirugía (etiqueta).",
+   "p": "Premedicación: 1 a 3 mg/kg IM o IV (etiqueta, guía de la Academia Americana de Pediatría)."
+  }
+ ],
+ "aj": {
+  "r": "Reducir la dosis en insuficiencia renal; dosis altas contraindicadas en nefritis (etiqueta).",
+  "h": "Contraindicado en deterioro marcado de la función hepática; reducir dosis en hepatopatía (etiqueta).",
+  "e": "Riesgo de malformaciones congénitas y de sedación o abstinencia neonatal (otras fuentes; no contrastado aquí).",
+  "l": "Pasa a la leche; puede sedar al lactante (etiqueta menciona menor interés en lactar).",
+  "g": "Más sensibles: reducir dosis en ancianos y debilitados (etiqueta)."
+ },
+ "ci": [
+  "Sensibilidad conocida a barbitúricos",
+  "Porfiria manifiesta o latente",
+  "Deterioro marcado de la función hepática",
+  "Dificultad respiratoria grave con disnea u obstrucción",
+  "Dosis altas en nefritis",
+  "Inyección intraarterial; la subcutánea no se recomienda"
+ ],
+ "fr": [
+  "Somnolencia, sedación",
+  "Ataxia, confusión, vértigo",
+  "Cefalea",
+  "Reacciones en el sitio de inyección",
+  "Anemia megaloblástica y daño hepático con uso crónico"
+ ],
+ "gr": [
+  "Depresión respiratoria y apnea",
+  "Hipotensión y colapso circulatorio",
+  "Inyección intraarterial: dolor, espasmo arterial y gangrena que puede requerir amputación",
+  "Extravasación: necrosis tisular",
+  "Síndrome de Stevens-Johnson y dermatitis exfoliativa",
+  "Dependencia física y abstinencia",
+  "Síndrome de jadeo («gasping») por alcohol bencílico en neonatos"
+ ],
+ "it": [
+  [
+   "Anticoagulantes orales (warfarina, acenocumarol)",
+   "Menor efecto anticoagulante por inducción enzimática; vigila INR (etiqueta)"
+  ],
+  [
+   "Corticoides",
+   "Metabolismo acelerado; puede hacer falta más dosis (etiqueta)"
+  ],
+  [
+   "Fenitoína",
+   "Efecto variable y no predecible; monitoriza niveles de ambas (etiqueta)"
+  ],
+  [
+   "Valproato",
+   "Sube los niveles de fenobarbital y sedación; reduce dosis y monitoriza (etiqueta)"
+  ],
+  [
+   "Alcohol, opioides y otros depresores del SNC",
+   "Depresión respiratoria y sedación aditivas"
+  ],
+  [
+   "Anticonceptivos hormonales y otros fármacos metabolizados por CYP",
+   "Menor eficacia por inducción enzimática (otras fuentes)"
+  ]
+ ],
+ "mon": [
+  "Frecuencia respiratoria, saturación y presión arterial continuas",
+  "Equipo de reanimación y ventilación a mano",
+  "Sitio de venopunción (extravasación, dolor)",
+  "Niveles séricos (terapéutico 10 a 25 mcg/mL)",
+  "Tiempo: pico cerebral a los 15 min o más"
+ ],
+ "ant": "No hay antídoto específico; soporte ventilatorio y hemodinámico. La alcalinización de la orina y el carbón activado se usan en sobredosis (otras fuentes).",
+ "pre": "No usar venas pequeñas (dorso de mano, muñeca); inyectar lento, con aspiración, para no entrar a una arteria. En IM, no más de 5 mL por sitio. Intraarterial: parar si hay dolor o piel pálida/cianótica; la etiqueta sugiere soltar el torniquete, procaína 1% intraarterial y anticoagulación temprana. Extravasación: calor húmedo y procaína 0,5% local. Contiene alcohol bencílico.",
+ "pres": [
+  "Ampolla 65 mg/mL",
+  "Ampolla 130 mg/mL"
+ ],
+ "com": [
+  "Luminal"
+ ],
+ "pe": [
+  "En el estatus no sigas inyectando hasta que cesen las crisis: el cerebro tarda 15 min o más en alcanzar el pico y la concentración sigue subiendo; da la dosis y espera el efecto (etiqueta).",
+  "Las fuentes difieren: la etiqueta da 15 a 20 mg/kg en niños y 60 mg/min de límite en adultos; la AES recomienda 15 mg/kg.",
+  "MediSearch sugirió 20 mg/kg en neonatos, pero esta presentación con alcohol bencílico no se recomienda en menores de 1 mes (etiqueta). En neonatos usa una presentación sin conservante y un protocolo neonatal."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de fenobarbital sódico inyectable (DailyMed, Nexus, setid 472da201, dic 2025)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=472da201-698e-4d2b-8c53-595461d85bb6",
+   "b": "dosis pediátrica y adulta, velocidad máxima 60 mg/min, contraindicaciones, intraarterial y extravasación, interacciones, neonatos y alcohol bencílico"
+  },
+  {
+   "t": "AES: guía de estatus epiléptico convulsivo, Epilepsy Curr 2016;16:48 (PDF aportado por Esteban), Figura 1 p.58",
+   "u": "https://doi.org/10.5698/1535-7597-16.1.48",
+   "b": "fenobarbital 15 mg/kg IV en dosis única; nivel A"
+  },
+  {
+   "t": "MediSearch (ficha de fenobarbital, origen no verificado)",
+   "u": "https://medisearch.io/share/mMXqqzR5kisVhvBztkLtSz",
+   "b": "dosis neonatales, series de dosis muy altas y niveles; no contrastados"
+  }
+ ],
+ "rev": "2026-10-28"
+}

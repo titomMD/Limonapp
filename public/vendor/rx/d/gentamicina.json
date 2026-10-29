@@ -1,0 +1,161 @@
+{
+ "id": "gentamicina",
+ "n": "Gentamicina",
+ "g": [
+  "Gentamicina"
+ ],
+ "atc": [
+  "J01GB03"
+ ],
+ "cl": "Aminoglucósido",
+ "mc": "aminoglucosido",
+ "us": [
+  "sepsis",
+  "itu",
+  "abdominal"
+ ],
+ "es": [
+  "medint",
+  "infecto",
+  "urologia",
+  "pediatria",
+  "uci"
+ ],
+ "via": [
+  "iv",
+  "im"
+ ],
+ "al": [
+  "nefrotox",
+  "ototox",
+  "ajuste_renal",
+  "alto_riesgo"
+ ],
+ "et": "«Aminoglucósido» = amino-azúcares (aminoglycoside) unidos a un anillo aminociclitol.",
+ "mech": "Se une de forma irreversible a la subunidad ribosomal 30S y provoca lectura errónea del ARNm: la bacteria fabrica proteínas defectuosas que dañan su membrana. Es bactericida dependiente de concentración (mejor con una dosis alta una vez al día) y tiene efecto posantibiótico. Solo actúa contra aerobios (necesita transporte dependiente de oxígeno) y se usa casi siempre combinado con un β-lactámico.",
+ "pk": {
+  "abs": "No se absorbe por vía oral; IV o IM",
+  "vm": "≈2 h (se alarga mucho en falla renal)",
+  "met": "No se metaboliza",
+  "el": "Renal por filtración glomerular"
+ },
+ "ind": [
+  {
+   "i": "Infecciones graves por gramnegativos sensibles (Pseudomonas, E. coli, Klebsiella, Proteus, Serratia, Enterobacter) y estafilococos: sepsis, urinarias complicadas, respiratorias, piel, hueso, SNC, intraabdominales",
+   "a": "Etiqueta: 3 mg/kg/día en 3 dosis iguales cada 8 h (1 mg/kg cada 8 h). Si hay riesgo de vida, hasta 5 mg/kg/día en 3 o 4 dosis, y bajar a 3 mg/kg/día apenas sea posible. En obesos, usa el peso magro estimado. Tratamiento usual 7 a 10 días. Las guías suelen emplear 5 a 7 mg/kg una vez al día (dosificación de intervalo extendido); eso no figura en esta etiqueta.",
+   "p": "Niños: 6 a 7,5 mg/kg/día (2 a 2,5 mg/kg cada 8 h). Lactantes y neonatos: 7,5 mg/kg/día (2,5 mg/kg cada 8 h). Prematuros o recién nacidos de término de 1 semana o menos: 5 mg/kg/día (2,5 mg/kg cada 12 h).",
+   "k": {
+    "lo": 2,
+    "hi": 2.5,
+    "int": "cada 8 h (lactantes y niños; pico objetivo 4 a 6 mcg/mL)"
+   }
+  }
+ ],
+ "aj": {
+  "r": "Etiqueta: ajusta la dosis en insuficiencia renal y mide niveles siempre que puedas.\nMétodo | Cómo se calcula\nAlargar el intervalo | Intervalo en horas ≈ creatinina sérica (mg/dL) × 8; ejemplo: creatinina 2 mg/dL, 60 kg: 60 mg cada 16 h\nDosis más pequeñas cada 8 h | Tras la primera dosis normal, divide la dosis habitual entre la creatinina sérica\nSeguimiento | Pico (30 a 60 min tras terminar la infusión) 4 a 6 mcg/mL; valle (justo antes de la siguiente dosis) menor de 2 mcg/mL\nQuemaduras extensas | La farmacocinética cambia: ajusta por niveles",
+  "h": "Sin ajuste.",
+  "e": "Puede causar daño fetal: atraviesa la placenta. Hay sordera congénita bilateral irreversible descrita con estreptomicina. Úsala solo si el beneficio supera el riesgo.",
+  "l": "Se desconoce si pasa a la leche; decide si suspender el fármaco o la lactancia según la necesidad.",
+  "g": "Mayor riesgo de toxicidad: usa menor dosis, intervalos más largos y niveles."
+ },
+ "ci": [
+  "Hipersensibilidad a gentamicina",
+  "Antecedente de hipersensibilidad o toxicidad grave a otro aminoglucósido (sensibilidad cruzada)"
+ ],
+ "fr": [
+  "Aumento de creatinina y BUN",
+  "Cilindros y proteína en la orina",
+  "Mareo y vértigo",
+  "Náuseas y vómito",
+  "Rash"
+ ],
+ "gr": [
+  "Nefrotoxicidad",
+  "Ototoxicidad vestibular y coclear, a menudo irreversible",
+  "Bloqueo neuromuscular y parálisis respiratoria",
+  "Neurotoxicidad: parestesias, calambres, convulsiones",
+  "Hipomagnesemia, hipocalcemia, hipopotasemia",
+  "Síndrome tipo Fanconi en neonatos"
+ ],
+ "it": [
+  [
+   "Furosemida, ácido etacrínico",
+   "Evitar: aumentan la ototoxicidad y alteran los niveles"
+  ],
+  [
+   "Otros nefrotóxicos y neurotóxicos (cisplatino, amikacina, kanamicina, neomicina, polimixina B, colistina, estreptomicina, tobramicina, vancomicina, anfotericina, contraste IV)",
+   "Evitar uso simultáneo o seguido: más toxicidad"
+  ],
+  [
+   "Cefalosporinas",
+   "Mayor nefrotoxicidad reportada"
+  ],
+  [
+   "Bloqueadores neuromusculares (succinilcolina), anestésicos, transfusiones masivas con citrato",
+   "Bloqueo neuromuscular y parálisis respiratoria; las sales de calcio pueden revertirlo"
+  ],
+  [
+   "Penicilinas (mezcladas en el mismo frasco)",
+   "La penicilina inactiva al aminoglucósido in vitro: no los mezcles"
+  ]
+ ],
+ "mon": [
+  "Creatinina y diuresis antes y durante el tratamiento",
+  "Niveles de pico y valle",
+  "Audición y equilibrio (tinnitus, vértigo); la toxicidad aparece más después de 10 días",
+  "Magnesio, calcio y potasio",
+  "Peso previo para calcular la dosis"
+ ],
+ "ant": "No hay. Hemodiálisis puede retirarlo.",
+ "pre": "Advertencia en recuadro: nefrotoxicidad, ototoxicidad y neurotoxicidad. Evita otros nefrotóxicos y los diuréticos de asa. La presentación en bolsa de cloruro de sodio es solo para vía IV; la ampolla puede usarse IV o IM. En neonatos con sepsis se acompaña de una penicilina.",
+ "pres": [
+  "Ampolla 80 mg/2 mL y 160 mg/2 mL (otras fuentes)",
+  "Bolsa premezclada 60, 80, 100 mg en cloruro de sodio 0,9 %"
+ ],
+ "com": [],
+ "pe": [
+  "Dosis plena del día: la etiqueta usa 3 mg/kg/día en tres dosis; el esquema de una vez al día (5 a 7 mg/kg) se basa en guías y aprovecha que la muerte bacteriana depende de la concentración.",
+  "Peso de dosificación: usa el magro o ajustado en obesos.",
+  "El tinnitus precede a la sordera; pregunta por él en cada visita."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de gentamicina en cloruro de sodio 0,9 % (IV) (DailyMed, Baxter Healthcare Corporation, Oct 09, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=449c9a41-d61e-49fd-b5e3-d76f74b92acf",
+   "b": "dosis adulto y pediátrica, ajuste renal, advertencias, interacciones, embarazo"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01GB03"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 9,
+  "np": 75,
+  "pres": [
+   "Solucion inyectable 160 mg",
+   "Solucion inyectable 80 mg",
+   "Solucion inyectable 40 mg"
+  ],
+  "m": [
+   "Gentamicina 40 mg/1ml solucion inyectable (Vitalis C.I)",
+   "Gentamicina 80 mg/2 ml (Vitalis C.I)",
+   "Gentamicina 160 mg / 2 ml solucion inyectable (Vitalis C.I)",
+   "Gentamicina 160 mg / 2 ml inyectable (Tecnoquimicas)",
+   "Gentamicina 80mg solucion inyectable (Laboratorios Ryan De Colombia)",
+   "Gentamicina 160 mg solucion inyectable (Colmed)",
+   "Gentamicina80 mg/2ml solucion inyectable (Colmed)",
+   "Gentamicina 160mg/2ml (Laboratorios Ryan De Colombia)",
+   "Gentamicina inyectable x 160 mg/2 ml (Genfar)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

@@ -1,0 +1,200 @@
+{
+ "id": "levofloxacino",
+ "n": "Levofloxacino",
+ "g": [
+  "Levofloxacino",
+  "Levofloxacin",
+  "Levaquin",
+  "Tavanic"
+ ],
+ "atc": [
+  "J01MA12"
+ ],
+ "cl": "Fluoroquinolona",
+ "mc": "quinolona",
+ "us": [
+  "itu",
+  "resp",
+  "piel"
+ ],
+ "es": [
+  "urologia",
+  "infecto",
+  "medint"
+ ],
+ "via": [
+  "vo",
+  "iv"
+ ],
+ "al": [
+  "qt",
+  "convulsiones",
+  "cdiff",
+  "ajuste_renal",
+  "cyp"
+ ],
+ "et": "«Levo-» viene del latín laevus, «izquierda»: es el isómero levógiro (S) del ofloxacino, que es la mitad activa de la mezcla racémica.",
+ "mech": "Inhibe la ADN girasa y la topoisomerasa IV bacterianas, enzimas necesarias para replicar y superenrollar el ADN: es bactericida con efecto dependiente de la concentración. Cubre gramnegativos, atípicos y neumococo.",
+ "pk": {
+  "abs": "Casi completa por vía oral (~99 %)",
+  "vm": "6 a 8 h",
+  "met": "Poco",
+  "el": "Renal sin cambios"
+ },
+ "ind": [
+  {
+   "i": "Infección urinaria complicada y pielonefritis",
+   "a": "750 mg VO o IV una vez al día por 5 días, o 250 mg al día por 10 días.",
+   "p": "La etiqueta de EE. UU. no autoriza levofloxacino en menores de 18 años para infección urinaria. En niños de 6 meses o más solo lo indica para profilaxis posexposición de ántrax por inhalación y para plaga (porque en animales jóvenes dañó el cartílago): menos de 50 kg, 8 mg/kg cada 12 h (máximo 250 mg por dosis); 50 kg o más, 500 mg una vez al día. Duración: 60 días en ántrax y 10 a 14 días en plaga.",
+   "k": {
+    "lo": 8,
+    "hi": 8,
+    "int": "VO o IV cada 12 h, solo ántrax posexposición o plaga en menores de 50 kg (etiqueta FDA)",
+    "maxd": "250 mg"
+   }
+  },
+  {
+   "i": "Infección urinaria no complicada",
+   "a": "250 mg VO una vez al día por 3 días. Reservar para quien no tenga alternativa.",
+   "p": "No indicado en menores de 18 años (etiqueta)."
+  },
+  {
+   "i": "Prostatitis bacteriana crónica",
+   "a": "500 mg VO una vez al día por 28 días.",
+   "p": "No indicado en menores de 18 años (etiqueta)."
+  }
+ ],
+ "aj": {
+  "r": "Ajuste según la depuración de creatinina (mL/min):\nDepuración | Si usas 750 mg | Si usas 500 mg\n20 a 49 | 750 mg cada 48 h | 500 mg de carga y luego 250 mg al día\n10 a 19 | 750 mg y luego 500 mg cada 48 h | 500 mg de carga y luego 250 mg cada 48 h\nVerifica la tabla completa en la etiqueta.",
+  "h": "Sin ajuste.",
+  "e": "Evitar salvo que no haya alternativa; la etiqueta resume que no fue teratogénico en ratas a dosis altas, pero no hay estudios adecuados en embarazadas.",
+  "l": "Etiqueta: no se recomienda amamantar durante el tratamiento; la madre puede extraerse la leche y desecharla durante el tratamiento y 2 días después de la última dosis.",
+  "g": "Más riesgo de tendinopatía, delirio y QT largo; ajustar por función renal."
+ },
+ "ci": [
+  "Hipersensibilidad a levofloxacino o a otras quinolonas"
+ ],
+ "fr": [
+  "Náuseas",
+  "Cefalea",
+  "Diarrea",
+  "Insomnio",
+  "Mareo",
+  "Estreñimiento"
+ ],
+ "gr": [
+  "Tendinitis y ruptura de tendón",
+  "Neuropatía periférica",
+  "Efectos en SNC: convulsiones, psicosis",
+  "Empeora la miastenia gravis",
+  "Prolongación del QT",
+  "Hipoglucemia o hiperglucemia",
+  "Aneurisma o disección aórtica",
+  "Colitis por Clostridioides difficile"
+ ],
+ "it": [
+  [
+   "Antiácidos con aluminio o magnesio, hierro, zinc, sucralfato, calcio",
+   "Quelan el fármaco: separar al menos 2 h"
+  ],
+  [
+   "Antiarrítmicos clase IA (quinidina, procainamida) y clase III (amiodarona, sotalol)",
+   "Suma de QT; evitar"
+  ],
+  [
+   "Corticoides sistémicos",
+   "Más riesgo de ruptura de tendón"
+  ],
+  [
+   "AINE",
+   "Más riesgo de convulsiones"
+  ],
+  [
+   "Antidiabéticos",
+   "Disglucemia"
+  ],
+  [
+   "Warfarina",
+   "Puede subir el INR"
+  ]
+ ],
+ "mon": [
+  "Dolor tendinoso: suspender y reposar",
+  "Glucemia en diabéticos",
+  "ECG si hay riesgo de QT largo",
+  "Estado neurológico",
+  "Función renal para ajustar la dosis"
+ ],
+ "pre": "Advertencia en caja negra: tendinitis, neuropatía, efectos en SNC y empeora la miastenia gravis. Evita si hay alternativa.",
+ "pres": [
+  "Tabletas 250, 500 y 750 mg",
+  "Solución IV 5 mg/mL"
+ ],
+ "com": [
+  "Levaquin",
+  "Tavanic"
+ ],
+ "pe": [
+  "Su buena penetración en la próstata la hace útil en prostatitis, pero las advertencias de la FDA piden reservarla cuando no hay alternativa.",
+  "Separa de lácteos, antiácidos y suplementos con minerales.",
+  "Pregunta siempre por tendinopatía previa, corticoides y miastenia."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de levofloxacino tabletas (DailyMed, PD-Rx Pharmaceuticals, setid b8defac4, oct 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=b8defac4-9deb-433b-928e-0ef4ee0123a2",
+   "b": "dosis por indicación, ajuste renal, pediatría (ántrax y plaga), mecanismo, farmacocinética (biodisponibilidad 99%, vida media 6 a 8 h, excreción renal sin cambios), lactancia, contraindicaciones"
+  },
+  {
+   "t": "Etiqueta de levofloxacino inyectable (DailyMed, WG Critical Care, setid 9020cdeb, sep 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=9020cdeb-65fe-458f-bbbd-69265a49906e",
+   "b": "presentación y uso IV"
+  },
+  {
+   "t": "Etiqueta de Levaquin (drugs.com), consultada antes de la etiqueta oficial",
+   "u": "https://www.drugs.com/pro/levaquin.html",
+   "b": "dosis, seguridad"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01MA12"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 30,
+  "np": 153,
+  "pres": [
+   "Tableta recubierta 500 mg",
+   "Tableta recubierta 750 mg",
+   "Tableta cubierta con pelicula 500 mg",
+   "Tableta cubierta con pelicula 750 mg",
+   "Tableta recubierta 768,75 mg",
+   "Tableta recubierta 512,5 mg",
+   "Solucion inyectable 500 mg",
+   "Solución para infusión 0,5 g"
+  ],
+  "m": [
+   "Truxa® 500 mg comprimidos recubiertos (Monte Verde)",
+   "Adix® 500 (Laboratorios Legrand)",
+   "Lexina® 750 mg tabletas recubiertas (Novamed)",
+   "Adix ® 750 (Laboratorios Legrand)",
+   "Safelevo® 500 mg (Msn Laboratories Private)",
+   "Avosal® (Anzg)",
+   "Joinlev® (Joinpharm)",
+   "Prinf® 500 mg (Eurofarma Colombia)",
+   "Lexina ® 500 mg tableta recubierta (Novamed)",
+   "Lequibac® (Leperpharm)",
+   "Truxa® 750 mg (Laboratorio Monte Verde)",
+   "Levofloxacinasandoz ® 500 mg tabletas con pelicula (Sandoz)"
+  ],
+  "mas": 18,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

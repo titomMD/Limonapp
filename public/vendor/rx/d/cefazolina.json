@@ -1,0 +1,163 @@
+{
+ "id": "cefazolina",
+ "n": "Cefazolina",
+ "g": [
+  "Cefazolina",
+  "Kefzol"
+ ],
+ "atc": [
+  "J01DB04"
+ ],
+ "cl": "Cefalosporina de primera generación",
+ "mc": "betalact",
+ "us": [
+  "profilaxis",
+  "piel",
+  "sepsis"
+ ],
+ "es": [
+  "cirugia",
+  "ortopedia",
+  "urologia",
+  "gineco",
+  "infecto",
+  "anest"
+ ],
+ "via": [
+  "iv",
+  "im"
+ ],
+ "al": [
+  "cdiff",
+  "ajuste_renal"
+ ],
+ "mech": "Cefalosporina de primera generación de uso IV: inhibe las PBP y la síntesis de pared. Tiene excelente actividad contra estafilococo sensible a meticilina y estreptococos, y es el antibiótico de elección en la profilaxis quirúrgica para la mayoría de los procedimientos por su vida media relativamente larga y poca toxicidad.",
+ "pk": {
+  "abs": "IV o IM; no se absorbe por vía oral",
+  "vm": "≈1,5 a 2 h",
+  "met": "No se metaboliza",
+  "el": "Renal sin cambios: ≈60 % en 6 h y 70 a 80 % en 24 h"
+ },
+ "ind": [
+  {
+   "i": "Infecciones graves por cocos grampositivos sensibles: respiratorias, urinarias, piel, biliares, hueso y articulaciones, endocarditis, septicemia",
+   "a": "Moderadas a graves: 500 mg a 1 g IV o IM cada 6 a 8 h. Leves por cocos grampositivos: 250 a 500 mg cada 8 h. Cistitis aguda no complicada: 1 g cada 12 h. Neumonía neumocócica: 500 mg cada 12 h. Graves (endocarditis, septicemia): 1 a 1,5 g cada 6 h; rara vez hasta 12 g al día.",
+   "p": "Total diario de 25 a 50 mg/kg dividido en 3 o 4 dosis (leves a moderadas); hasta 100 mg/kg/día en infecciones graves. No se recomienda en recién nacidos ni prematuros.",
+   "k": {
+    "lo": 8.3,
+    "hi": 16.7,
+    "int": "cada 8 h (25 a 50 mg/kg/día)",
+    "maxd": "1,5 g por dosis"
+   }
+  },
+  {
+   "i": "Profilaxis antibiótica quirúrgica (cirugía contaminada o potencialmente contaminada)",
+   "a": "Etiqueta FDA: 1 g IV de 30 a 60 min antes de la incisión; 500 mg a 1 g durante cirugías de 2 h o más; 500 mg a 1 g cada 6 a 8 h por 24 h después. En cirugía cardíaca o prótesis puede continuar 3 a 5 días. Las guías actuales (ASHP/IDSA) usan 2 g (3 g si pesa más de 120 kg); esa cifra no figura en la etiqueta.",
+   "p": "Guías (no etiqueta): 30 mg/kg IV, máximo 2 g, hasta 60 min antes de la incisión.",
+   "k": {
+    "lo": 30,
+    "hi": 30,
+    "int": "una dosis antes de la incisión (guías, no etiqueta)",
+    "maxd": "2 g"
+   }
+  }
+ ],
+ "aj": {
+  "r": "Todas las reducciones aplican después de una dosis de carga adecuada a la gravedad.\nDepuración (mL/min) | Dosis\n55 o más (creatinina ≤1,5 mg/dL) | Dosis completa\n35 a 54 (creatinina 1,6 a 3 mg/dL) | Dosis completa, con intervalo de al menos 8 h\n11 a 34 (creatinina 3,1 a 4,5 mg/dL) | La mitad de la dosis cada 12 h\n10 o menos (creatinina ≥4,6 mg/dL) | La mitad de la dosis cada 18 a 24 h\nNiños con depuración 70 a 40: 60 % de la dosis diaria cada 12 h; 40 a 20: 25 % cada 12 h; 20 a 5: 10 % cada 24 h.",
+  "h": "Sin ajuste.",
+  "e": "Categoría B de la FDA: sin daño en animales y sin estudios controlados en mujeres; atraviesa la placenta. Úsala solo si es necesaria.",
+  "l": "Pasa a la leche en concentraciones muy bajas.",
+  "g": "Ajusta por función renal."
+ },
+ "ci": [
+  "Alergia conocida a cefalosporinas"
+ ],
+ "fr": [
+  "Diarrea",
+  "Náuseas, vómito",
+  "Candidiasis oral",
+  "Rash y prurito",
+  "Flebitis y dolor en el sitio de inyección"
+ ],
+ "gr": [
+  "Anafilaxia",
+  "Colitis pseudomembranosa por Clostridioides difficile",
+  "Convulsiones con dosis altas en falla renal",
+  "Neutropenia, leucopenia, trombocitopenia",
+  "Prolongación del tiempo de protrombina en riesgo (renal, hepático, desnutrido)",
+  "Stevens-Johnson"
+ ],
+ "it": [
+  [
+   "Probenecid",
+   "Reduce la secreción tubular de cefalosporinas y alarga sus niveles"
+  ],
+  [
+   "Pruebas de glucosa en orina (Benedict, Fehling, Clinitest)",
+   "Falso positivo"
+  ],
+  [
+   "Anticoagulantes orales (warfarina)",
+   "Puede subir el INR (otras fuentes)"
+  ]
+ ],
+ "mon": [
+  "Creatinina para ajustar la dosis",
+  "Diarrea",
+  "Coombs positivo posible (también en neonatos de madres tratadas)",
+  "Tiempo de protrombina en pacientes de riesgo"
+ ],
+ "ant": "No hay.",
+ "pre": "Alergia a cefalosporinas. Ajusta en insuficiencia renal: dosis altas en falla renal causan convulsiones. En profilaxis, la dosis debe estar en sangre al momento de la incisión.",
+ "pres": [
+  "Vial 500 mg y 1 g (también 2 g y bolsas premezcladas, otras fuentes)"
+ ],
+ "com": [
+  "Kefzol"
+ ],
+ "pe": [
+  "Para la profilaxis quirúrgica pon la dosis entre 30 y 60 min antes de la incisión y repítela si la cirugía pasa de 4 h o el sangrado supera 1.500 mL (guías ASHP; no figura en la etiqueta).",
+  "Su alergia cruzada con penicilinas es baja porque su cadena lateral no se parece a la de la amoxicilina.",
+  "En endocarditis y bacteriemia por S. aureus sensible a meticilina es de elección frente a vancomicina."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de cefazolina para inyección (DailyMed, Wg Critical Care, Llc, Sep 18, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=1999084a-124c-45f9-801f-416a1b942c96",
+   "b": "dosis adulto y pediátrica, ajuste renal, profilaxis perioperatoria, interacciones, embarazo"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01DB04"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 10,
+  "np": 37,
+  "pres": [
+   "Polvo esteril para reconstituir a solucion inyectable 1 g",
+   "Polvo esteril para reconstituir a solucion inyectable 1000 mg",
+   "Polvo esteril para reconstituir a solucion inyectable 1 g."
+  ],
+  "m": [
+   "Cefazidelt® polvo estéril para reconstituir a solución inyectable 1g (Laboratorios Delta)",
+   "Cefazolina 1.0 g (Ncpc Hebei Huanim Pharmaceutical Co)",
+   "Cefazolina 1 g (Vitalis C.I)",
+   "Cefazolina para inyeccion 1000 mg (Aurobindo Pharma)",
+   "Cefazolina 1g (Norstray Nuart)",
+   "Cefazolina 1 g polvo esteril para reconstituir (Proclin Pharma)",
+   "Cefazolina 1g polvo para reconstituir (Vicarfarmaceutica)",
+   "Zolibios 1 g (Bioselect C.I)",
+   "Cefazolina sódica 1 g / vial polvo para reconstituir a solución inyectable (Antibioticos Da Colombia)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

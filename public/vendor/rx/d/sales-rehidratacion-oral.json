@@ -1,0 +1,161 @@
+{
+ "id": "sales-rehidratacion-oral",
+ "n": "Sales de rehidratación oral",
+ "g": [
+  "Sales de rehidratación oral"
+ ],
+ "atc": [
+  "A07CA"
+ ],
+ "cl": "Rehidratación",
+ "mc": "sro",
+ "us": [
+  "deshid"
+ ],
+ "es": [
+  "pediatria",
+  "medint",
+  "cirugia"
+ ],
+ "via": [
+  "vo"
+ ],
+ "al": [],
+ "mech": "Aprovecha el cotransportador SGLT1 del enterocito, que absorbe una molécula de glucosa junto con dos de sodio y arrastra agua por osmosis. Aunque la diarrea secretora destruya el transporte de sodio por otras vías, este cotransporte acoplado a glucosa sigue intacto. Por eso la solución con glucosa y sodio en proporción adecuada rehidrata aun en cólera. Se le llama «la innovación médica más importante del siglo XX» (The Lancet).",
+ "pk": {
+  "abs": "Intestino delgado: absorción de sodio acoplada a glucosa (cotransporte), que arrastra agua",
+  "vm": "No aplica",
+  "met": "No se metaboliza",
+  "el": "No aplica"
+ },
+ "ind": [
+  {
+   "i": "Prevención de deshidratación en diarrea aguda (Plan A, en casa)",
+   "a": "Mayores de 10 años y adultos: todo lo que toleren, a libre demanda. Continúa la alimentación habitual.",
+   "p": "Después de cada deposición líquida: hasta 2 años, 50 a 100 mL; 2 años o más, 100 a 200 mL (OMS). Continúa la lactancia materna y la alimentación habitual."
+  },
+  {
+   "i": "Deshidratación leve a moderada por diarrea (Plan B, en el servicio de salud, 4 horas)",
+   "a": "Según el déficit estimado, en sorbos frecuentes; reevalúa a las 4 h.",
+   "p": "75 mL/kg de SRO en 4 horas (la OMS usa la edad solo si no se conoce el peso: hasta 4 meses, 200 a 450 mL; 4 a 12 meses, 450 a 800 mL; 12 a 24 meses, 800 a 960 mL; 2 a 5 años, 960 a 1.600 mL). En tomas pequeñas y frecuentes, por cucharadas o jeringa. Tras 4 h: sin deshidratación, Plan A; sigue moderada, repite el Plan B; deshidratación grave, Plan C (IV)."
+  }
+ ],
+ "aj": {
+  "r": "Insuficiencia renal oligúrica: la carga de sodio y potasio puede ser peligrosa; vigila electrolitos y diuresis.",
+  "h": "Sin ajuste.",
+  "e": "Segura (otras fuentes).",
+  "l": "Segura (otras fuentes).",
+  "g": "Sin ajuste (otras fuentes)."
+ },
+ "ci": [
+  "Choque hipovolémico (usa Ringer lactato o solución salina IV)",
+  "Íleo paralítico",
+  "Vómito incoercible que impide la vía oral",
+  "Disminución del nivel de conciencia (riesgo de aspiración)",
+  "Obstrucción intestinal",
+  "Hipernatremia grave: algunos protocolos prefieren la vía IV controlada (según MediSearch)"
+ ],
+ "fr": [
+  "Vómito inicial (se tolera con tomas pequeñas)"
+ ],
+ "gr": [
+  "Hipernatremia si se prepara mal (menos agua de la indicada)"
+ ],
+ "it": [
+  [
+   "Ninguna relevante",
+   "Evita bebidas azucaradas, sal o azúcar añadidos a la solución"
+  ]
+ ],
+ "mon": [
+  "Diuresis y peso",
+  "Estado de hidratación, mucosas y signos de deshidratación",
+  "Reevaluación a las 4 horas del Plan B",
+  "Frecuencia del vómito y capacidad de beber"
+ ],
+ "ant": "No aplica.",
+ "pre": "La fórmula de osmolaridad reducida (sodio 75 mEq/L, potasio 20, cloruro 65, citrato 10, glucosa 75 mmol/L, osmolaridad total 245 mOsm/L) redujo el volumen de heces y la necesidad de suero IV frente a la fórmula antigua de 311 mOsm/L, en diarrea no colérica en niños (declaración OMS/UNICEF de 2002; reducción del 33% de la necesidad de suero IV no programado en niños). Se disuelve el sobre en 1 litro de agua potable hervida y fría; no agregues azúcar ni sal; dura 24 h tapada.",
+ "pres": [
+  "Sobres de polvo (formulación OMS de osmolaridad reducida)"
+ ],
+ "com": [],
+ "pe": [
+  "Si hay vómito: espera 10 min y reinicia con 5 a 10 mL cada 1 a 2 min (cuchara o jeringa); el vómito no contraindica la rehidratación oral. Solo si es incoercible, pasa a la vía IV.",
+  "Zinc con la SRO: la OMS (2004) indica 10 mg al día en menores de 6 meses y 20 mg al día en mayores de 6 meses por 10 a 14 días. La actualización OMS 2024 hace una recomendación condicional de 5 mg al día hasta 14 días en menores de 10 años; el ensayo de 4.500 niños en India y Tanzania mostró que 5 y 10 mg no eran inferiores a 20 mg y daban menos vómito (19,3 % con 20 mg, 15,6 % con 10 mg, 13,7 % con 5 mg). Sigue la norma colombiana vigente.",
+  "Prepararlo con la cantidad exacta de agua indicada en el sobre."
+ ],
+ "v": {
+  "d": 1,
+  "f": 0,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "OMS/UNICEF: declaración sobre la nueva fórmula de SRO de osmolaridad reducida (10-may-2002; informe técnico WHO/CAH/01.22)",
+   "u": "https://rehydrate.org/ors/who-unicef-statement.html",
+   "b": "composición: NaCl 2,6 g/L, glucosa 13,5, KCl 1,5, citrato trisódico 2,9; Na 75, Cl 65, glucosa 75, K 20, citrato 10 mmol/L; 245 mOsm/L"
+  },
+  {
+   "t": "OMS: Libro de bolsillo de atención hospitalaria infantil, 5.2 Diarrea aguda (OMS vía NCBI Bookshelf)",
+   "u": "https://www.ncbi.nlm.nih.gov/books/NBK143745/",
+   "b": "Plan A y B (50 a 100 y 100 a 200 mL; 75 mL/kg en 4 h) y zinc por edad"
+  },
+  {
+   "t": "Actualización de las recomendaciones de la OMS sobre neumonía y diarrea infantil 2024 (Indian Pediatr 2025)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/40839064/",
+   "b": "Zinc 5 mg al día hasta 14 días, recomendación condicional"
+  },
+  {
+   "t": "Zinc en dosis bajas para la diarrea infantil (N Engl J Med 2020)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/32966722/",
+   "b": "5 y 10 mg no inferiores a 20 mg, menos vómito"
+  },
+  {
+   "t": "MediSearch: ficha clínica de SRO (síntesis de literatura, 28-oct-2026)",
+   "u": "https://medisearch.io/share/hECgGaV5w5L9quPe27FpTk",
+   "b": "composición de la fórmula de osmolaridad reducida, manejo del vómito, contraindicaciones (documento original no revisado)"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "A07CA99"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 18,
+  "np": 653,
+  "pres": [
+   "Solucion oral 2,273 g",
+   "Solucion oral 0,216 g",
+   "Solucion oral 0,094 g",
+   "Solucion oral 0,0061 g",
+   "Solucion oral 0,2076 g",
+   "Solucion oral 0,29 g",
+   "Solucion oral 0,26 g",
+   "Solucion oral 0,15 g",
+   "Solucion oral 1,35 g",
+   "Solucion oral 6,043 mg",
+   "Solucion oral 0,314 g",
+   "Solucion oral 0,149 g",
+   "Solucion oral 0,03 g",
+   "Solucion oral 0,041 g"
+  ],
+  "m": [
+   "Hidraplus® 45 con zinc (Tecnoquimicas)",
+   "Electrolit® (Laboratorios Pisa De C.V)",
+   "Hidraplus® 75 con zinc (Tecnoquimicas)",
+   "Solhidrex ® (Laboratorio Internacional De Colombia - Labinco)",
+   "Pedialyte® active 30 meq. (Abbott Laboratories De Colombia)",
+   "Pedialyte ® max 60 meq con zinc (Abbott Laboratories De Colombia)",
+   "Pedialyte® active 45 meq. (Abbott Laboratories De Colombia)",
+   "Pediasol® 60 con zinc (Biofluidos & Farma)",
+   "Hidrasol ® 60 meq con zinc (Cooperativa Nacional De Droguistas Detallistas - Coopidrogas)",
+   "Hidrasol ® 45 solución oral (Biofluidos & Farma)",
+   "Enersal ® (Rociphar)",
+   "Salydrat® polvo (Labquifar)"
+  ],
+  "mas": 6,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

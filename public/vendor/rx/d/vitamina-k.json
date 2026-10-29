@@ -1,0 +1,158 @@
+{
+ "id": "vitamina-k",
+ "n": "Vitamina K (fitomenadiona)",
+ "g": [
+  "Vitamina K",
+  "fitomenadiona",
+  "Konakion"
+ ],
+ "atc": [
+  "B02BA01"
+ ],
+ "cl": "Vitamina",
+ "mc": "vitk",
+ "us": [
+  "sangrado",
+  "reversion"
+ ],
+ "es": [
+  "medint",
+  "cirugia",
+  "pediatria",
+  "gastro",
+  "gineco"
+ ],
+ "via": [
+  "iv",
+  "vo",
+  "im",
+  "sc"
+ ],
+ "al": [
+  "alto_riesgo"
+ ],
+ "mech": "La vitamina K es el cofactor de la γ-glutamil carboxilasa, la enzima que agrega grupos carboxilo a los factores II, VII, IX y X y a las proteínas C y S. Sin carboxilación esos factores no se unen al calcio ni a la membrana plaquetaria y no coagulan. La warfarina bloquea el reciclaje de la vitamina K, y la fitomenadiona lo compensa. El efecto tarda 6 a 12 h porque hay que sintetizar factores nuevos.",
+ "pk": {
+  "abs": "Oral con bilis; IV: inmediata (otras fuentes)",
+  "vm": "1,5 a 3 h; el efecto biológico dura más (otras fuentes)",
+  "met": "Hepático (otras fuentes)",
+  "el": "Biliar y renal (otras fuentes)"
+ },
+ "ind": [
+  {
+   "i": "Hipoprotrombinemia inducida por anticoagulantes cumarínicos o indandiónicos",
+   "a": "Oral: 2,5 a 10 mg, hasta 25 mg. Inyectable: 2,5 a 10 mg o más SC, IM o IV; hasta 25 a 50 mg en dosis única. El INR mejora en 1 a 8 h; si hay sangrado grave se agrega sangre total o componentes. Revisa el INR a las 6 a 8 h y repite si sigue alto. En reversión urgente de warfarina se asocia concentrado de complejo protrombínico (otras fuentes).",
+   "p": "Neonatos: ver abajo. Niños de 6 meses a 17 años: seguridad y eficacia no establecidas en la etiqueta."
+  },
+  {
+   "i": "Hipoprotrombinemia por otras causas (antibióticos, salicilatos, malabsorción, ictericia obstructiva, fístula biliar)",
+   "a": "Oral: 2,5 a 25 mg o más (con sales biliares si falta bilis). Inyectable: 2,5 a 25 mg o más IV, IM o SC; hasta 50 mg en dosis única.",
+   "p": "—"
+  },
+  {
+   "i": "Prevención de hemorragia por déficit de vitamina K en el recién nacido",
+   "a": "—",
+   "p": "0,5 a 1 mg IM en una dosis única en la primera hora de vida (etiqueta del inyectable). Tratamiento: 1 mg SC o IM; considera dosis mayores si la madre recibió anticoagulantes orales."
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste en la etiqueta.",
+  "h": "Si la hepatopatía es grave puede no corregir el INR (déficit de síntesis); no repitas dosis grandes si la primera no respondió.",
+  "e": "Los estudios publicados no muestran asociación clara con efectos adversos del desarrollo. La deficiencia sí aumenta el riesgo de sangrado materno y fetal. La forma con alcohol bencílico se evita si hay una sin preservante.",
+  "l": "Está en la leche materna; sin datos sobre efectos. Usa, si hay, una formulación sin preservante.",
+  "g": "Empieza por el extremo bajo del rango de dosis."
+ },
+ "ci": [
+  "Hipersensibilidad a la fitonadiona o a algún componente"
+ ],
+ "fr": [
+  "Sensación de calor o rubor",
+  "Sabor peculiar",
+  "Mareo, sudoración",
+  "Hipotensión breve, disnea, cianosis"
+ ],
+ "gr": [
+  "Reacciones de hipersensibilidad graves, incluso anafilaxia y muerte, sobre todo por vía IV (caja negra)",
+  "Reacciones cutáneas con la vía parenteral",
+  "Gasping syndrome por alcohol bencílico en neonatos",
+  "Hiperbilirrubinemia y hemólisis en recién nacidos, sobre todo prematuros",
+  "Trombosis por sobrecorrección en pacientes que aún necesitan anticoagular"
+ ],
+ "it": [
+  [
+   "Anticoagulantes orales (warfarina)",
+   "Antagonismo: dosis grandes causan resistencia temporal; al reiniciar pueden hacer falta dosis mayores o cambiar de clase"
+  ],
+  [
+   "Heparina",
+   "La vitamina K no revierte la heparina"
+  ],
+  [
+   "Antibióticos de amplio espectro (otras fuentes)",
+   "Reducen la vitamina K de la flora y suben el INR"
+  ]
+ ],
+ "mon": [
+  "INR a las 6 a 8 h",
+  "Signos de sangrado",
+  "Reacciones durante la infusión IV",
+  "Bilirrubina en recién nacidos prematuros"
+ ],
+ "ant": "No aplica.",
+ "pre": "Si es posible, SC; la vía IV solo si es inevitable y muy lenta (máximo 1 mg/min) por riesgo de anafilaxia. El efecto no es inmediato (1 a 8 h). Usa la dosis más baja posible: la sobrecorrección complica la reanticoagulación. No revierte la heparina. En niños, usa formulaciones sin alcohol bencílico.",
+ "pres": [
+  "Tabletas 5 mg",
+  "Ampolla 10 mg/mL",
+  "Ampolla pediátrica 2 mg/0,2 mL"
+ ],
+ "com": [
+  "Konakion"
+ ],
+ "pe": [
+  "En reversión urgente de warfarina se combina con concentrado de complejo protrombínico o plasma, porque la vitamina K tarda horas (otras fuentes).",
+  "Todo recién nacido recibe vitamina K IM para prevenir la enfermedad hemorrágica (etiqueta: 0,5 a 1 mg en la primera hora).",
+  "Dosis grandes pueden dificultar la anticoagulación posterior."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de fitonadiona (vitamina K1) tabletas (DailyMed, Padagis Us Llc, Oct 16, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=68701a07-2921-4443-bff3-76e261a9eb18",
+   "b": "indicaciones, dosis oral, bilis, interacciones, embarazo, lactancia, pediatría"
+  },
+  {
+   "t": "Etiqueta de fitonadiona inyectable (vitamina K1) (DailyMed, Hospira, Inc., Aug 09, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=e8808230-2c44-44c6-8cab-8f29b6b34051",
+   "b": "dosis parenteral, velocidad IV, dosis neonatal, alcohol bencílico"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "B02BA01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 7,
+  "np": 22,
+  "pres": [
+   "Solucion inyectable 10 mg",
+   "Solucion inyectable 1 mg"
+  ],
+  "m": [
+   "Konakion® mm pediatrico (Cheplapharm Arzneimittel)",
+   "Konakion ® micelas mixtas ampollas 10mg/ml (Cheplapharm Arzneimittel)",
+   "Vitamina k1 solucion inyectable (Laboratorios Ecar)",
+   "Fitomenadiona 10 mg/ml solucion inyectable (Laboratorio Biosano)",
+   "Fitomenadiona solucion inyectable 1 mg / 1 ml (Laboratorio Biosano)",
+   "Fitomenadiona(vitamina k1) 10 mg /ml (Laboratorio Sanderson)",
+   "Fitomenadiona vitaminak1 1mg / ml (Laboratorios Sanderson)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

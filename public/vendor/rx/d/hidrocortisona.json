@@ -1,0 +1,186 @@
+{
+ "id": "hidrocortisona",
+ "n": "Hidrocortisona",
+ "g": [
+  "Hidrocortisona",
+  "Solu-Cortef"
+ ],
+ "atc": [
+  "H02AB09"
+ ],
+ "cl": "Corticoide",
+ "mc": "corticoide",
+ "us": [
+  "inflam",
+  "choque",
+  "alergia"
+ ],
+ "es": [
+  "medint",
+  "uci",
+  "anest",
+  "pediatria",
+  "endo"
+ ],
+ "via": [
+  "iv",
+  "im",
+  "vo"
+ ],
+ "al": [],
+ "et": "«Hidrocortisona» es el nombre farmacéutico del cortisol, la hormona natural de la corteza suprarrenal (de ahí «corticoide»).",
+ "mech": "Es el cortisol natural. Tiene efecto glucocorticoide y también mineralocorticoide (retención de sodio y pérdida de potasio) a dosis altas. Actúa sobre el receptor intracelular regulando la transcripción de genes antiinflamatorios y suprimiendo los proinflamatorios. Es la elección para reemplazo en insuficiencia suprarrenal, crisis suprarrenal y choque séptico refractario a vasopresores.",
+ "pk": {
+  "abs": "IV: inmediata; IM: rápida",
+  "vm": "≈1,5 a 2 h en plasma; efecto biológico 8 a 12 h (otras fuentes)",
+  "met": "Hepático",
+  "el": "Renal, como metabolitos"
+ },
+ "ind": [
+  {
+   "i": "Crisis suprarrenal aguda (uso habitual, la etiqueta dice que es el fármaco de elección en insuficiencia suprarrenal)",
+   "a": "Endocrine Society 2016 (rec. 4.1, evidencia fuerte): 100 mg IV o IM de inmediato, sin esperar laboratorios, y luego 200 mg en 24 h (infusión continua, o 50 mg IV o IM cada 6 h). Después de la primera dosis, repón volumen: en adultos, 1.000 mL de solución salina isotónica en la primera hora (o glucosada al 5 % en salina), y luego salina guiada por la clínica. Cambia a vía oral con una reducción rápida según evolución. Si no hay hidrocortisona, prednisolona; dexametasona solo si no hay otra. La guía ESE 2024 (insuficiencia por glucocorticoides) da el mismo esquema y indica sospecharla ante hipotensión, colapso o dolor abdominal en quien usa o usó glucocorticoides. La dosis inicial de la etiqueta (100 a 500 mg IV) es más amplia.",
+   "p": "Rec. 4.1 y Tabla 3 (Endocrine Society 2016): 50 mg/m² IV o IM de inmediato (lactantes 25 mg, escolares 50 mg, adolescentes 100 mg), y luego 50 a 100 mg/m² en 24 h divididos cada 6 h. Líquidos: bolo de salina 0,9 % de 20 mL/kg, repetible hasta 60 mL/kg en la primera hora si hay choque. Si hay hipoglucemia: dextrosa 0,5 a 1 g/kg (2 a 4 mL/kg de dextrosa al 25 %, máximo 25 g, lento) o 5 a 10 mL/kg de dextrosa al 10 % en menores de 12 años. Etiqueta: 0,56 a 8 mg/kg al día en tres o cuatro dosis."
+  },
+  {
+   "i": "Choque séptico con vasopresor persistente (SSC 2021; no figura en la etiqueta)",
+   "a": "SSC 2021, rec. 58 (débil, evidencia moderada): usa corticoide IV en adultos con requerimiento continuo de vasopresor. Esquema habitual: hidrocortisona 200 mg al día, como 50 mg IV cada 6 h o en infusión continua. Se sugiere iniciarla cuando la dosis de noradrenalina o adrenalina llega a 0,25 mcg/kg/min o más, al menos 4 h después de empezar el vasopresor. Acelera la resolución del choque; aumenta la debilidad neuromuscular (RR 1,21) y no mostró efecto claro en mortalidad.",
+   "p": "—"
+  },
+  {
+   "i": "Estados alérgicos graves, anafilaxia como adyuvante, asma grave y otras indicaciones sistémicas",
+   "a": "Dosis inicial de 100 a 500 mg IV o IM según la enfermedad, repetible cada 2, 4 o 6 h. La terapia de dosis altas se mantiene solo hasta la estabilización, normalmente no más de 48 a 72 h.",
+   "p": "0,56 a 8 mg/kg al día en tres o cuatro dosis (etiqueta)."
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste en la etiqueta.",
+  "h": "Sin ajuste en la etiqueta; en hipoalbuminemia hay más fracción libre (otras fuentes).",
+  "e": "Los corticoides son teratógenos en animales; úsalo si el beneficio justifica el riesgo. Vigila al recién nacido por hipoadrenalismo.",
+  "l": "Los corticoides pasan a la leche; pondera los beneficios de amamantar.",
+  "g": "Sin ajuste en la etiqueta; vigila presión, glucemia y electrolitos."
+ },
+ "ci": [
+  "Infecciones fúngicas sistémicas",
+  "Hipersensibilidad al producto o a sus componentes",
+  "Púrpura trombocitopénica idiopática por vía IM (solo se usa IV)",
+  "Prematuros: la formulación con alcohol bencílico puede estar contraindicada (revisa el producto)"
+ ],
+ "fr": [
+  "Retención de sodio y líquido, hipopotasemia",
+  "Hiperglucemia",
+  "Hipertensión",
+  "Alteraciones del ánimo",
+  "Dispepsia"
+ ],
+ "gr": [
+  "Hipernatremia si la dosis alta se prolonga más de 48 a 72 h",
+  "Úlcera péptica",
+  "Supresión suprarrenal al retirar de golpe",
+  "Infecciones oportunistas",
+  "Anafilaxia",
+  "Psicosis"
+ ],
+ "it": [
+  [
+   "AINE",
+   "Más úlcera y sangrado digestivo"
+  ],
+  [
+   "Antidiabéticos e insulina",
+   "Suben la glucemia"
+  ],
+  [
+   "Diuréticos que pierden potasio y anfotericina B",
+   "Hipopotasemia"
+  ],
+  [
+   "Inductores de CYP3A4 (fenitoína, rifampicina)",
+   "Bajan el efecto del corticoide"
+  ],
+  [
+   "Warfarina",
+   "Respuesta variable; controla el INR"
+  ],
+  [
+   "Vacunas de virus vivos",
+   "Evita con dosis inmunosupresoras"
+  ]
+ ],
+ "mon": [
+  "Glucemia",
+  "Sodio, potasio y presión arterial",
+  "Duración: la dosis alta no pasa de 48 a 72 h sin revaluar",
+  "Signos de infección"
+ ],
+ "ant": "No hay.",
+ "pre": "No diluyas ni mezcles el Solu-Cortef con otras soluciones (incompatibilidades físicas). La vía IV es la preferida en emergencia. Si la dosis alta continúa más de 48 a 72 h puede aparecer hipernatremia; considera otro corticoide con poca retención de sodio.",
+ "pres": [
+  "Vial 100 mg y 500 mg",
+  "Vial 250 mg y 1.000 mg (según el fabricante)",
+  "Tabletas 5 y 10 mg (forma oral)"
+ ],
+ "com": [
+  "Solu-Cortef"
+ ],
+ "pe": [
+  "En sospecha de crisis suprarrenal no se espera a confirmar: se trata de inmediato con hidrocortisona y líquidos.",
+  "Después de la fase de emergencia, la etiqueta sugiere pasar a una forma oral o de acción más larga.",
+  "La hidrocortisona tiene actividad mineralocorticoide; la dexametasona casi no."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de hidrocortisona succinato sódico (Solu-Cortef) (DailyMed, Pharmacia & Upjohn Company Llc, Oct 08, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=65eefd58-b166-4d71-ade6-45c8fdf86922",
+   "b": "vías, dosis inicial IV, pediatría, duración, equivalencias, indicaciones, interacciones"
+  },
+  {
+   "t": "Endocrine Society: insuficiencia suprarrenal primaria, J Clin Endocrinol Metab 2016;101:364 (PDF aportado por Esteban), rec. 4.1 p.378 y Tabla 3 p.379",
+   "u": "https://doi.org/10.1210/jc.2015-1710",
+   "b": "crisis suprarrenal en insuficiencia suprarrenal primaria (adultos y niños)"
+  },
+  {
+   "t": "ESE/Endocrine Society: insuficiencia suprarrenal inducida por glucocorticoides, Eur J Endocrinol 2024;190:G25 (PDF aportado por Esteban), p.G43",
+   "u": "https://doi.org/10.1093/ejendo/lvae029",
+   "b": "crisis suprarrenal en insuficiencia por glucocorticoides"
+  },
+  {
+   "t": "Surviving Sepsis Campaign 2021, Crit Care Med 2021;49:e1063 (PDF aportado por Esteban)",
+   "u": "https://doi.org/10.1097/CCM.0000000000005337",
+   "b": "hidrocortisona en choque séptico (rec. 58)"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "H02AB09"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 8,
+  "np": 29,
+  "pres": [
+   "Polvo esteril para reconstituir a solucion inyectable 100 mg",
+   "Tableta 10 mg",
+   "Tableta 20 mg",
+   "Tableta 5 mg"
+  ],
+  "m": [
+   "Limicort®-10 (Liminal Therapeutics)",
+   "Limicort® 20 tableta (Liminal Therapeutics)",
+   "Kortafgor® 5 mg tabletas (Goram Laboratorios)",
+   "Limicort® - 5 (Liminal Therapeutics)",
+   "Kortafgor® 10 (Goram Laboratorios)",
+   "Vesacort® 10 mg tabletas (Vesalius Pharma)",
+   "Vesacort® 20 mg tabletas (Vesalius Pharma)",
+   "Hidrocortisona 100 mg (Vitalis C.I)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

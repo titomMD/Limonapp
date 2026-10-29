@@ -1,0 +1,207 @@
+{
+ "id": "omeprazol",
+ "n": "Omeprazol",
+ "g": [
+  "Omeprazol",
+  "Losec",
+  "Prilosec"
+ ],
+ "atc": [
+  "A02BC01"
+ ],
+ "cl": "Inhibidor de la bomba de protones",
+ "mc": "ibp",
+ "us": [
+  "reflujo"
+ ],
+ "es": [
+  "cirugia",
+  "medint",
+  "gastro",
+  "uci",
+  "pediatria"
+ ],
+ "via": [
+  "vo",
+  "iv"
+ ],
+ "al": [
+  "cyp"
+ ],
+ "et": "El sufijo «-prazol» identifica a los inhibidores de la bomba de protones; el omeprazol fue el primero que llegó a la clínica (años 80).",
+ "mech": "Es un profármaco que se activa en el ambiente ácido del canalículo de la célula parietal, donde se une de forma covalente (irreversible) a la H⁺/K⁺-ATPasa, la «bomba de protones» que saca ácido al estómago. Como la inhibición es permanente, el efecto dura hasta que la célula sintetiza bombas nuevas (24 a 48 h), muy superior a lo que dura su vida media plasmática.",
+ "pk": {
+  "abs": "Se destruye con el ácido: se da con cubierta entérica; la absorción es rápida tras salir del estómago",
+  "vm": "≈0,5 a 1 h (la vida media es el doble en ancianos, ≈1 h); el efecto dura 24 h o más",
+  "met": "Hepático (CYP2C19 y CYP3A4)",
+  "el": "Renal ≈77 % como metabolitos (otras fuentes)"
+ },
+ "ind": [
+  {
+   "i": "Úlcera duodenal activa",
+   "a": "20 mg una vez al día durante 4 semanas; algunos requieren 4 semanas más. Tómalo antes de las comidas, con la cápsula entera.",
+   "p": "No hay indicación pediátrica en úlcera."
+  },
+  {
+   "i": "Erradicación de Helicobacter pylori (úlcera duodenal)",
+   "a": "Triple: omeprazol 20 mg, amoxicilina 1.000 mg y claritromicina 500 mg, los tres cada 12 h durante 10 días; si hay úlcera al iniciar, sigue omeprazol 20 mg al día otros 18 días. Doble: omeprazol 40 mg una vez al día más claritromicina 500 mg cada 8 h durante 14 días, y luego omeprazol 20 mg al día 14 días más si hay úlcera.",
+   "p": "—"
+  },
+  {
+   "i": "Úlcera gástrica benigna activa",
+   "a": "40 mg una vez al día durante 4 a 8 semanas.",
+   "p": "—"
+  },
+  {
+   "i": "Reflujo gastroesofágico sintomático, esofagitis erosiva y su mantenimiento",
+   "a": "Reflujo sintomático: 20 mg una vez al día hasta 4 semanas. Esofagitis erosiva: 20 mg una vez al día durante 4 a 8 semanas. Mantenimiento: 20 mg una vez al día (estudios hasta 12 meses).",
+   "p": "2 a 16 años: 10 mg una vez al día si pesa de 10 a menos de 20 kg y 20 mg una vez al día si pesa 20 kg o más (reflujo hasta 4 semanas; esofagitis 4 a 8 semanas; mantenimiento sin tope de estudios mayor de 12 meses)."
+  },
+  {
+   "i": "Condiciones hipersecretoras (Zollinger-Ellison)",
+   "a": "Inicio 60 mg una vez al día; ajusta según el paciente. Dosis mayores de 80 mg al día se dividen. Se han usado hasta 120 mg tres veces al día.",
+   "p": "—"
+  },
+  {
+   "i": "Hemorragia digestiva alta por úlcera, después de la hemostasia endoscópica (ACG 2021; no figura en la etiqueta)",
+   "a": "ACG 2021, rec. 13 (fuerte, evidencia moderada a alta): IBP en dosis altas (80 mg al día o más) durante 3 días después de una hemostasia endoscópica exitosa. Continuo: 80 mg IV en bolo y luego 8 mg/h (la mejor evidencia). Intermitente: 80 mg en bolo y luego 40 mg dos a cuatro veces al día, oral o IV (la dosis óptima no es segura; en Occidente se prefieren las dosis totales mayores). Rec. 14 (débil): en pacientes de alto riesgo, sigue con IBP dos veces al día hasta 2 semanas después de la endoscopia. Rec. 4: no hay recomendación a favor ni en contra del IBP antes de la endoscopia. El esquema de 40 mg IV una o dos veces al día que se usa como profilaxis de úlcera de estrés no es el de la guía.",
+   "p": "La guía ACG es para adultos. En niños: 0,7 a 1 mg/kg IV al día, máximo 40 mg (otras fuentes; no contrastado aquí)."
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste en la etiqueta.",
+  "h": "Hepatopatía (Child-Pugh A, B o C): la exposición sube mucho; reduce a 10 mg una vez al día en el mantenimiento de la esofagitis erosiva. Poblaciones asiáticas: también 10 mg en el mantenimiento.",
+  "e": "Los datos epidemiológicos no muestran más malformaciones con el uso en el primer trimestre. En animales hubo embrioletalidad dependiente de la dosis.",
+  "l": "Los datos limitados sugieren que puede estar en la leche; sin datos de efectos en el lactante. Pondera los beneficios de amamantar.",
+  "g": "Sin ajuste de dosis; la vida media es mayor (≈1 h)."
+ },
+ "ci": [
+  "Hipersensibilidad conocida al omeprazol, a algún bencimidazol sustituido o a la formulación (incluye anafilaxia y nefritis tubulointersticial aguda)",
+  "Uso con productos con rilpivirina"
+ ],
+ "fr": [
+  "Cefalea",
+  "Dolor abdominal",
+  "Náuseas, diarrea, vómito",
+  "Flatulencia"
+ ],
+ "gr": [
+  "Nefritis tubulointersticial aguda",
+  "Diarrea asociada a Clostridioides difficile",
+  "Fracturas óseas con uso prolongado",
+  "Lupus cutáneo o sistémico",
+  "Deficiencia de vitamina B12 (uso mayor de 3 años)",
+  "Hipomagnesemia con uso prolongado",
+  "Pólipos de glándulas fúndicas"
+ ],
+ "it": [
+  [
+   "Clopidogrel",
+   "Evita el omeprazol: menor activación del clopidogrel (CYP2C19); usa pantoprazol si hace falta un IBP"
+  ],
+  [
+   "Rilpivirina",
+   "Contraindicado: menor absorción"
+  ],
+  [
+   "Atazanavir y nelfinavir",
+   "Menor exposición del antirretroviral; evitar"
+  ],
+  [
+   "Hierba de San Juan y rifampicina",
+   "Evita: bajan las concentraciones de omeprazol"
+  ],
+  [
+   "Metotrexato (dosis altas)",
+   "Sube los niveles del metotrexato; considera suspender el IBP"
+  ],
+  [
+   "Ketoconazol, itraconazol, hierro, levotiroxina",
+   "Menor absorción por menos acidez (otras fuentes)"
+  ],
+  [
+   "Warfarina y fenitoína",
+   "Pueden cambiar los niveles o el INR; monitorea"
+  ],
+  [
+   "Cromogranina A (diagnóstico)",
+   "Puede dar un falso positivo: suspende el IBP antes de la prueba"
+  ]
+ ],
+ "mon": [
+  "Indicación vigente: revisa si todavía lo necesita",
+  "Magnesio y vitamina B12 si el uso es prolongado",
+  "Creatinina si hay sospecha de nefritis",
+  "Diarrea persistente (C. difficile)"
+ ],
+ "ant": "No hay.",
+ "pre": "Los síntomas no descartan malignidad gástrica: considera estudios antes de tratar de forma prolongada. El uso prolongado se asocia con hipomagnesemia, déficit de B12, fracturas e infección por C. difficile. Evita con clopidogrel. Tómalo antes de las comidas y traga la cápsula entera.",
+ "pres": [
+  "Cápsulas de liberación retardada 10, 20 y 40 mg",
+  "Vial IV 40 mg (presentación local; no aprobada en EE. UU.)"
+ ],
+ "com": [
+  "Losec",
+  "Prilosec"
+ ],
+ "pe": [
+  "Tómalo 30 a 60 min antes del desayuno: la bomba de protones solo se activa con la comida.",
+  "Se prescribe mucho sin indicación: vale la pena preguntar si todavía se necesita.",
+  "Si necesitas un IBP junto con clopidogrel, el pantoprazol interactúa menos."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de omeprazol (cápsulas de liberación retardada) (DailyMed, Proficient Rx Lp, Sep 01, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=c5e3a37a-f6e3-43d4-a8a9-54db6c271908",
+   "b": "dosis en adultos y niños, ajuste hepático, contraindicaciones, interacciones, embarazo, lactancia"
+  },
+  {
+   "t": "ACG: guía de hemorragia digestiva alta y úlcera, Am J Gastroenterol 2021;116:899 (PDF aportado por Esteban)",
+   "u": "https://doi.org/10.14309/ajg.0000000000001245",
+   "b": "IBP en dosis altas tras hemostasia endoscópica (rec. 4, 13 y 14; pp.911 a 912)"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "A02BC01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 36,
+  "np": 280,
+  "pres": [
+   "Capsula dura 20 mg",
+   "Capsula dura 232,8 mg",
+   "Capsula dura 40 mg",
+   "Capsula dura 10 mg",
+   "Polvo liofilizado para reconstituir a solucion inyectable 40 mg",
+   "Capsula dura 20,0001 mg",
+   "Polvo esteril para reconstituir a solucion inyectable 40 mg",
+   "Capsula dura 20 %",
+   "Polvo liofilizado 40 mg",
+   "Capsula dura 470,59 mg."
+  ],
+  "m": [
+   "Prazed ® 20mg cápsulas (Novamed)",
+   "Uprazol® 20 mg (Coopidrogas)",
+   "Genoprazol ® 20 mg cápsulas (Genomma Lab Colombia)",
+   "Orazole® 20 mg capsulas microgránulos con cubierta entérica (Laboratorios Bussié)",
+   "Orazole® 40 mg polvo liofilizado para reconstituir a solución inyectable (Laboratorios Bussié)",
+   "Genoprazol® 20 mg cápsula dura (Genomma Lab Internacional B. De C.V)",
+   "Genoprazol® 10 mg cápsula dura con microgranulos con cubierta enterica (Genomma Lab Internacional B. De C.V)",
+   "Olzol® 40 mg/vial polvo liofilizado. (Aspiro Pharma)",
+   "Gastrosef® 20 mg (Anzg)",
+   "Sumicetron® 40 mg (Blau Farmaceutica Colombia)",
+   "Lorigal® 20 mg (Anglopharma)",
+   "Ulcedine® (Global International Medicine Gimed)"
+  ],
+  "mas": 20,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

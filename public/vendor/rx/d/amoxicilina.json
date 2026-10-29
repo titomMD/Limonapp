@@ -1,0 +1,192 @@
+{
+ "id": "amoxicilina",
+ "n": "Amoxicilina",
+ "g": [
+  "Amoxicilina",
+  "Amoxil"
+ ],
+ "atc": [
+  "J01CA04"
+ ],
+ "cl": "Penicilina",
+ "mc": "betalact",
+ "us": [
+  "resp",
+  "itu",
+  "piel"
+ ],
+ "es": [
+  "pediatria",
+  "medint",
+  "cirugia",
+  "infecto",
+  "urologia"
+ ],
+ "via": [
+  "vo"
+ ],
+ "al": [
+  "cdiff"
+ ],
+ "et": "«Amoxicilina» deriva de amino-hidroxi-penicilina: una penicilina con un grupo amino (amplía el espectro) y un grupo hidroxilo (mejora la absorción oral).",
+ "mech": "Se une a las proteínas fijadoras de penicilina (PBP), que son las enzimas que entrecruzan el peptidoglicano de la pared bacteriana. Sin entrecruzamiento la pared se debilita y la bacteria, con alta presión osmótica interna, se rompe. Por eso es bactericida solo contra bacterias que se están dividiendo. Es una penicilina de amplio espectro: cubre estreptococos, algunos enterococos y gramnegativos sensibles (E. coli, H. influenzae), pero se destruye con las β-lactamasas.",
+ "pk": {
+  "abs": "Rápida y estable en el ácido gástrico; tomar al inicio de una comida reduce la intolerancia digestiva",
+  "vm": "≈1 h (61 min)",
+  "met": "Poco",
+  "el": "Renal: ≈60 % sin cambios en 6 a 8 h; unión a proteínas ≈20 %"
+ },
+ "ind": [
+  {
+   "i": "Infecciones de oído, nariz y garganta, piel y tracto genitourinario (gérmenes sensibles, solo β-lactamasa negativos), leves a moderadas",
+   "a": "500 mg VO cada 12 h o 250 mg cada 8 h.",
+   "p": "Desde los 3 meses y <40 kg: 25 mg/kg/día cada 12 h o 20 mg/kg/día cada 8 h. Menores de 3 meses: máximo 30 mg/kg/día cada 12 h.",
+   "k": {
+    "lo": 12.5,
+    "hi": 12.5,
+    "int": "cada 12 h",
+    "maxd": "500 mg por dosis"
+   }
+  },
+  {
+   "i": "Las mismas infecciones si son graves, e infecciones de vías respiratorias bajas",
+   "a": "875 mg VO cada 12 h o 500 mg cada 8 h.",
+   "p": "Desde los 3 meses y <40 kg: 45 mg/kg/día cada 12 h o 40 mg/kg/día cada 8 h.",
+   "k": {
+    "lo": 22.5,
+    "hi": 22.5,
+    "int": "cada 12 h",
+    "maxd": "875 mg por dosis"
+   }
+  },
+  {
+   "i": "Erradicación de Helicobacter pylori y úlcera duodenal (solo adultos)",
+   "a": "Triple: amoxicilina 1 g + claritromicina 500 mg + lansoprazol 30 mg, los tres cada 12 h por 14 días. Doble: amoxicilina 1 g + lansoprazol 30 mg cada 8 h por 14 días.",
+   "p": "No establecido en niños (etiqueta)."
+  }
+ ],
+ "aj": {
+  "r": "Con depuración de creatinina ≥30 mL/min no suele ser necesario reducir. Con <30 mL/min no uses la dosis de 875 mg.\nDepuración | Dosis\n10 a 30 mL/min | 500 mg o 250 mg cada 12 h, según la gravedad\nMenos de 10 mL/min | 500 mg o 250 mg cada 24 h\nHemodiálisis | 500 mg o 250 mg cada 24 h, con una dosis extra durante y al final de la sesión\nEn menores de 3 meses con función renal alterada la etiqueta no da recomendaciones.",
+  "h": "La etiqueta no da ajuste hepático.",
+  "e": "Categoría B de la FDA: sin daño fetal en animales y sin estudios controlados en mujeres; úsala solo si es necesaria.",
+  "l": "Pasa a la leche en poca cantidad; se considera compatible (dato de otras fuentes, no figura en esta etiqueta).",
+  "g": "Sin diferencias de respuesta, pero la eliminación renal puede estar reducida: elige la dosis con cuidado y vigila la función renal."
+ },
+ "ci": [
+  "Reacción de hipersensibilidad grave (anafilaxia o síndrome de Stevens-Johnson) a amoxicilina o a otros β-lactámicos (penicilinas, cefalosporinas)"
+ ],
+ "fr": [
+  "Diarrea",
+  "Rash",
+  "Vómito",
+  "Náuseas"
+ ],
+ "gr": [
+  "Anafilaxia",
+  "Reacciones cutáneas graves (Stevens-Johnson, necrólisis epidérmica, DRESS, PEGA)",
+  "Síndrome de enterocolitis inducida por fármacos (DIES), sobre todo en ≤18 años",
+  "Colitis por Clostridioides difficile",
+  "Nefritis intersticial en sobredosis"
+ ],
+ "it": [
+  [
+   "Probenecid",
+   "Sube y prolonga los niveles de amoxicilina; no se recomienda"
+  ],
+  [
+   "Anticoagulantes orales (warfarina)",
+   "Puede prolongar el tiempo de protrombina (sube el INR)"
+  ],
+  [
+   "Alopurinol",
+   "Más rash"
+  ],
+  [
+   "Anticonceptivos orales combinados",
+   "Puede reducir su eficacia"
+  ],
+  [
+   "Cloranfenicol, macrólidos, sulfonamidas, tetraciclinas",
+   "In vitro pueden interferir con el efecto bactericida; poca relevancia clínica"
+  ],
+  [
+   "Metotrexato",
+   "Menor eliminación renal (no figura en esta etiqueta; descrito en otras fuentes)"
+  ]
+ ],
+ "mon": [
+  "Reacciones alérgicas",
+  "Diarrea persistente (descarta C. difficile, puede aparecer hasta 2 meses después)",
+  "Función renal en ancianos y en insuficiencia renal"
+ ],
+ "ant": "No hay.",
+ "pre": "Antes de iniciar pregunta por alergia a penicilinas y cefalosporinas. Ajusta con depuración <30 mL/min. Tratamiento mínimo 10 días en faringitis por S. pyogenes (previene fiebre reumática).",
+ "pres": [
+  "Cápsulas 250 y 500 mg",
+  "Tabletas 500 y 875 mg",
+  "Polvo para suspensión 125, 200, 250 y 400 mg/5 mL"
+ ],
+ "com": [
+  "Amoxil"
+ ],
+ "pe": [
+  "Cubre solo cepas β-lactamasa negativas: si el germen produce β-lactamasa, usa amoxicilina-clavulánico.",
+  "El rash morbiliforme con mononucleosis no equivale a alergia verdadera.",
+  "Las guías pediátricas usan dosis altas (80 a 90 mg/kg/día) en otitis media y neumonía; esa cifra no figura en la etiqueta FDA y no se contrastó aquí.",
+  "Con orina de glucosa por Clinitest o Benedict puede dar falso positivo; usa tiras de glucosa oxidasa."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de amoxicilina (DailyMed, Remedyrepack Inc., Oct 21, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=82c0c5d1-df2d-4352-bd12-99f955af569e",
+   "b": "dosis adulto y pediátrica, ajuste renal, contraindicaciones, interacciones, embarazo"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01CA04"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 70,
+  "np": 240,
+  "pres": [
+   "Capsula dura 500 mg",
+   "Polvo para reconstituir a suspension oral 5 g",
+   "Tableta 1 g",
+   "Polvo para reconstituir a suspension oral 15 g",
+   "Capsula dura 588 mg",
+   "Capsula dura 500 mg.",
+   "Polvo para reconstituir a suspension oral 2,5 g",
+   "Tableta recubierta 1000 mg",
+   "Tableta recubierta 500 mg",
+   "Polvo para reconstituir a solucion oral 5 g",
+   "Tableta cubierta con pelicula 875 mg",
+   "Polvo para reconstituir a suspension oral 250 mg",
+   "Tableta recubierta 1006,21 mg",
+   "Tableta recubierta 875 mg"
+  ],
+  "m": [
+   "Amoxolqrp® (Quirupos)",
+   "Amoxal® 500 mg capsulas (Glaxosmithkline Colombia)",
+   "Amoxidal® duo suspension 750 mg (Roemmers I.C.F)",
+   "Tripsopen ® 500 mg capsulas (Anglopharma)",
+   "Falamoxil®capsula 500 mg (Lg Pharma Cia)",
+   "Amoxem® 250 mg /5 ml (Global International Medicine - Gimed)",
+   "Orvimox® (Med Line Colombia)",
+   "Atak bd ® 875 mg tableta recubierta (Eurofarma Colombia)",
+   "Veroxina ® 250 (Veros Health)",
+   "Faramox® (Farmacoop)",
+   "Ampliex® capsulas 500 mg (Tridex Farmaceutica)",
+   "Amoxem ® 500 mg (Global International Medicine Gimed)"
+  ],
+  "mas": 53,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

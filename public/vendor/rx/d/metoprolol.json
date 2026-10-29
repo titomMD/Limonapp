@@ -1,0 +1,193 @@
+{
+ "id": "metoprolol",
+ "n": "Metoprolol",
+ "g": [
+  "Metoprolol",
+  "Lopressor"
+ ],
+ "atc": [
+  "C07AB02"
+ ],
+ "cl": "Betabloqueador",
+ "mc": "beta1",
+ "us": [
+  "hta",
+  "ic"
+ ],
+ "es": [
+  "cardio",
+  "medint",
+  "cirugia",
+  "anest"
+ ],
+ "via": [
+  "vo",
+  "iv"
+ ],
+ "al": [
+  "ajuste_renal"
+ ],
+ "et": "El sufijo «-olol» identifica a los betabloqueadores.",
+ "mech": "Bloquea de forma selectiva los receptores β1 (cardíacos) a dosis habituales. Con menos estímulo de adrenalina baja la frecuencia cardíaca, la contractilidad y la liberación de renina, lo que reduce el consumo de oxígeno del miocardio y la presión arterial. La selectividad β1 se pierde con dosis altas.",
+ "pk": {
+  "abs": "Oral ≈50 % por metabolismo presistémico saturable (la exposición sube más que la dosis)",
+  "vm": "3 a 7 h (otras fuentes); más larga en metabolizadores lentos de CYP2D6",
+  "met": "Hepático, sobre todo CYP2D6; en metabolizadores lentos las concentraciones son varias veces mayores y se pierde cardioselectividad",
+  "el": "Renal ≈95 % (en metabolizadores rápidos, menos de 5 % sin cambios)"
+ },
+ "ind": [
+  {
+   "i": "Hipertensión",
+   "a": "Inicio 100 mg al día en una o varias dosis, con o inmediatamente después de las comidas. Ajusta a intervalos de una semana o más. Rango eficaz: 100 a 450 mg al día; no se han estudiado dosis mayores. Las dosis bajas pueden perder efecto al final de las 24 h: puede requerirse repartir la dosis.",
+   "p": "La seguridad y eficacia en pediatría no se han establecido (etiqueta)."
+  },
+  {
+   "i": "Angina de pecho",
+   "a": "Inicio 100 mg al día en dos dosis; sube cada semana hasta lograr respuesta o bradicardia marcada. Rango eficaz: 100 a 400 mg al día. Si hay que suspenderlo, baja la dosis de forma gradual durante 1 a 2 semanas.",
+   "p": "—"
+  },
+  {
+   "i": "Infarto agudo de miocardio (hemodinámicamente estable)",
+   "a": "IV: tres bolos de 5 mg, separados unos 2 min, en unidad coronaria o similar, con control de presión, frecuencia y ECG. Si tolera toda la dosis IV, 15 min después de la última da 50 mg VO cada 6 h durante 48 h (si no tolera, 25 mg); luego mantenimiento de 100 mg dos veces al día durante al menos 3 meses.",
+   "p": "—"
+  },
+  {
+   "i": "Control de frecuencia en fibrilación auricular (uso habitual, no figura en esta etiqueta)",
+   "a": "2,5 a 5 mg IV lento en 2 min, repetible cada 5 min hasta 15 mg (otras fuentes; no contrastado aquí). VO: tartrato 25 a 100 mg cada 12 h.",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "No se necesita reducir la dosis en insuficiencia renal crónica (la disponibilidad y la vida media no cambian de forma importante).",
+  "h": "Considera empezar con dosis bajas y subir gradualmente, con vigilancia estrecha de efectos adversos.",
+  "e": "Los estudios observacionales no muestran asociación con resultados adversos del desarrollo. En animales hubo más pérdida posimplantación. La hipertensión y el infarto no tratados son riesgos para la madre y el feto. Vigila bradicardia y bajo peso neonatal (otras fuentes).",
+  "l": "Está presente en la leche materna: dosis relativa estimada del lactante de 0,5 a 2 % de la dosis materna. Vigila bradicardia, hipotensión o hipoglucemia en el lactante.",
+  "g": "Sin diferencias claras de respuesta en los estudios; empieza con dosis bajas."
+ },
+ "ci": [
+  "Bradicardia grave",
+  "Bloqueo AV de 2.º o 3.er grado, o de 1.er grado significativo (PR ≥0,24 s en la forma IV)",
+  "Enfermedad del nodo sinusal sin marcapasos",
+  "Choque cardiogénico",
+  "Presión sistólica <100 mmHg",
+  "Insuficiencia cardiaca descompensada",
+  "Frecuencia cardiaca <45 lat/min (forma IV)",
+  "Hipersensibilidad al metoprolol u otros betabloqueadores"
+ ],
+ "fr": [
+  "Cansancio",
+  "Mareo",
+  "Depresión",
+  "Dificultad para respirar",
+  "Bradicardia",
+  "Hipotensión",
+  "Diarrea, prurito y rash"
+ ],
+ "gr": [
+  "Empeoramiento de la angina o infarto al suspender de golpe (advertencia)",
+  "Empeoramiento de la insuficiencia cardiaca",
+  "Bradicardia grave, pausa sinusal, bloqueo AV y paro cardiaco",
+  "Broncoespasmo en enfermedad broncoespástica",
+  "Hipoglucemia no percibida (enmascara la taquicardia), sobre todo en diabéticos, niños y en ayuno",
+  "Agravamiento de la insuficiencia arterial periférica",
+  "Aumento paradójico de la presión en feocromocitoma sin alfa-bloqueo previo"
+ ],
+ "it": [
+  [
+   "Verapamilo, diltiazem, digoxina y clonidina",
+   "Más riesgo de bradicardia y bloqueo AV; la clonidina puede exacerbar la hipertensión de rebote al suspenderla"
+  ],
+  [
+   "Inhibidores fuertes de CYP2D6 (quinidina, fluoxetina, paroxetina, bupropión)",
+   "Suben las concentraciones de metoprolol"
+  ],
+  [
+   "Fármacos que depletan catecolaminas (reserpina, IMAO)",
+   "Efecto aditivo: hipotensión y bradicardia marcadas"
+  ],
+  [
+   "Adrenalina",
+   "Con betabloqueo, la anafilaxia puede responder menos a las dosis habituales de adrenalina"
+  ],
+  [
+   "Insulina y antidiabéticos orales",
+   "Enmascara síntomas de hipoglucemia (otras fuentes)"
+  ]
+ ],
+ "mon": [
+  "Frecuencia cardiaca y presión arterial (también el ECG en dosis IV)",
+  "Síntomas de insuficiencia cardiaca",
+  "Glucemia en diabéticos",
+  "Función respiratoria en broncoespásticos"
+ ],
+ "ant": "Glucagón, atropina, calcio y vasopresores según gravedad.",
+ "pre": "No suspendas de forma brusca: puede haber isquemia y arritmias de rebote; reduce la dosis en 1 a 2 semanas. Evita betabloqueadores en broncoespasmo, aunque el metoprolol, por ser cardioselectivo, puede usarse en infarto. En feocromocitoma, dalo solo tras un alfa-bloqueador. En el perioperatorio no retires de forma rutinaria un betabloqueador crónico.",
+ "pres": [
+  "Tabletas 50 y 100 mg (tartrato)",
+  "Ampolla IV 5 mg/5 mL",
+  "Tabletas de liberación prolongada (succinato; otra etiqueta)"
+ ],
+ "com": [
+  "Lopressor"
+ ],
+ "pe": [
+  "Toma las tabletas con comida o justo después.",
+  "El infarto con insuficiencia cardiaca aguda o hipotensión es una situación en la que no se usa el betabloqueador IV.",
+  "El tartrato (liberación inmediata) y el succinato (prolongada) no son intercambiables mg por mg en el horario."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de metoprolol tartrato (tabletas e inyectable) (DailyMed, Pd-Rx Pharmaceuticals, Inc., Oct 22, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=39d822df-0fa4-4f06-a6f1-d313824c62df",
+   "b": "dosis oral en hipertensión, angina e infarto; dosis IV en infarto; contraindicaciones; interacciones; embarazo; lactancia"
+  },
+  {
+   "t": "Etiqueta de metoprolol tartrato inyectable (DailyMed, Oneosource Specialty Pharma Limited, Mar 17, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=05946833-9d66-4832-a0d8-b91b1ff01b8b",
+   "b": "dosis IV en infarto agudo"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "C07AB02"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 15,
+  "np": 101,
+  "pres": [
+   "Tableta de liberacion prolongada 50 mg",
+   "Tableta 50 mg",
+   "Tableta de liberacion prolongada 25 mg",
+   "Tableta de liberacion prolongada 100 mg",
+   "Tableta 100 mg",
+   "Solucion inyectable 5 mg",
+   "Tableta de liberación modificada 100 mg",
+   "Tableta con cubierta enterica con pelicula 50 mg",
+   "Tableta de liberacion prolongada 200 mg",
+   "Solucion inyectable 1 mg"
+  ],
+  "m": [
+   "Betaloc zok® tabletas 50 mg (Astrazeneca Colombia)",
+   "Betaloc zok® 25 mg (Astrazeneca Colombia)",
+   "Betaloc zok® 100 mg tabletas (Astrazeneca Colombia)",
+   "Betoprolol® 100 mg tabletas (Ropsohn Therapeutics)",
+   "Betaloc zok® 200 mg (Astrazeneca Colombia)",
+   "Metoprolol tartrato 50 mg tabletas (Memphis Products)",
+   "Betoprolol 50 mg tabletas (Ropsohn Therapeutics)",
+   "Metoprolol 50 mg tabletas (Genfar)",
+   "Metoprolol succinato equivalente a 50 mg de metoprolol tartrato (Laboratorios Mk)",
+   "Metoprolol succinato equivalente a metoprolol100 mg (Laboratorios Mk)",
+   "Betoprolol 5 mg/5/ml. ampoulepack (Ropsohn Therapeutics)",
+   "Metoprololtabletasrecubiertas 50 mg (Laboratorio Profesional Farmaceutico - Laboratorios Laproff)"
+  ],
+  "mas": 3,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

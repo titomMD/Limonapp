@@ -1,0 +1,185 @@
+{
+ "id": "ceftriaxona",
+ "n": "Ceftriaxona",
+ "g": [
+  "Ceftriaxona",
+  "Rocephin"
+ ],
+ "atc": [
+  "J01DD04"
+ ],
+ "cl": "Cefalosporina de tercera generación",
+ "mc": "betalact",
+ "us": [
+  "sepsis",
+  "resp",
+  "abdominal",
+  "itu",
+  "piel"
+ ],
+ "es": [
+  "medint",
+  "pediatria",
+  "infecto",
+  "cirugia",
+  "urologia",
+  "uci",
+  "neurocx"
+ ],
+ "via": [
+  "iv",
+  "im"
+ ],
+ "al": [
+  "cdiff"
+ ],
+ "mech": "Cefalosporina de tercera generación: inhibe las PBP de la pared bacteriana y resiste muchas β-lactamasas, por lo que cubre bien gramnegativos de la comunidad (E. coli, Klebsiella, Haemophilus, Neisseria) y neumococo, y penetra bien al sistema nervioso central. No cubre Pseudomonas, enterococo ni bacterias con BLEE. Se elimina en parte por bilis, por eso se usa sin ajuste en insuficiencia renal moderada.",
+ "pk": {
+  "abs": "IV o IM",
+  "vm": "5,8 a 8,7 h",
+  "met": "Poco",
+  "el": "Renal ≈50 % y biliar ≈50 %; unión a proteínas 85 a 95 %"
+ },
+ "ind": [
+  {
+   "i": "Infecciones sensibles: respiratorias bajas, piel, urinarias, intraabdominales (con anaerobicida), pélvicas, septicemia, hueso y articulaciones",
+   "a": "1 a 2 g IV o IM una vez al día (o dividido cada 12 h), máximo 4 g al día. Duración usual 4 a 14 días; al menos 10 días si es S. pyogenes.",
+   "p": "Infecciones de piel: 50 a 75 mg/kg/día en 1 dosis o 2 dosis; otras infecciones graves: 50 a 75 mg/kg/día cada 12 h. Máximo 2 g al día. En neonatos pasa la dosis IV en 60 minutos.",
+   "k": {
+    "lo": 25,
+    "hi": 37.5,
+    "int": "cada 12 h (50 a 75 mg/kg/día)",
+    "maxd": "1 g por dosis (2 g al día)"
+   }
+  },
+  {
+   "i": "Meningitis bacteriana",
+   "a": "El tope de la etiqueta es 4 g al día; el esquema habitual de las guías es 2 g IV cada 12 h.",
+   "p": "Dosis inicial de 100 mg/kg (máximo 4 g); luego 100 mg/kg/día (máximo 4 g) una vez al día o cada 12 h, por 7 a 14 días.",
+   "k": {
+    "lo": 50,
+    "hi": 50,
+    "int": "cada 12 h (100 mg/kg/día)",
+    "maxd": "2 g por dosis (4 g al día)"
+   }
+  },
+  {
+   "i": "Otitis media aguda",
+   "a": "No es indicación habitual en adultos.",
+   "p": "Una sola dosis IM de 50 mg/kg, máximo 1 g.",
+   "k": {
+    "lo": 50,
+    "hi": 50,
+    "int": "dosis única IM",
+    "maxd": "1 g"
+   }
+  },
+  {
+   "i": "Gonorrea no complicada y profilaxis quirúrgica",
+   "a": "Gonorrea (etiqueta): 250 mg IM en dosis única; la guía CDC actual recomienda 500 mg (otras fuentes). Profilaxis quirúrgica: 1 g IV de 30 min a 2 h antes de la cirugía.",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "No requiere ajuste por insuficiencia renal ni hepática por separado. Si hay falla hepática y renal significativa juntas, no pases de 2 g al día y vigila los niveles. No se elimina por hemodiálisis ni diálisis peritoneal de forma importante.",
+  "h": "Sin ajuste, salvo falla renal asociada (máximo 2 g al día).",
+  "e": "Sin teratogenicidad en animales; no hay estudios controlados en mujeres. Úsala solo si es necesaria.",
+  "l": "Pasa a la leche en concentraciones bajas; precaución.",
+  "g": "Sin ajuste: la farmacocinética cambia poco."
+ },
+ "ci": [
+  "Hipersensibilidad a ceftriaxona, a sus excipientes o a cualquier cefalosporina",
+  "Neonatos prematuros hasta 41 semanas de edad posmenstrual",
+  "Neonatos con hiperbilirrubinemia",
+  "Neonatos de ≤28 días que reciben o recibirán soluciones IV con calcio (precipitado mortal en pulmón y riñón)"
+ ],
+ "fr": [
+  "Eosinofilia, trombocitosis, leucopenia",
+  "Diarrea",
+  "Elevación de AST/ALT",
+  "Dolor, induración y calor en el sitio de inyección",
+  "Rash"
+ ],
+ "gr": [
+  "Anafilaxia",
+  "Precipitado de ceftriaxona-calcio en pulmón y riñón (neonatos)",
+  "Seudolitiasis o barro biliar",
+  "Colitis por Clostridioides difficile",
+  "Anemia hemolítica",
+  "Encefalopatía por bilirrubina en neonatos"
+ ],
+ "it": [
+  [
+   "Soluciones con calcio IV (Ringer lactato, nutrición parenteral)",
+   "En neonatos están contraindicadas. En otros pacientes no las mezcles ni las infundas a la vez por la misma línea; puedes darlas una tras otra si lavas la línea entre ambas"
+  ],
+  [
+   "Diluyentes con calcio",
+   "No reconstituyas ni diluyas ceftriaxona con Ringer ni Hartmann"
+  ],
+  [
+   "Anticoagulantes orales",
+   "Puede subir el INR (otras fuentes)"
+  ]
+ ],
+ "mon": [
+  "Reacciones alérgicas",
+  "Estado biliar si el tratamiento es largo (dolor, ecografía)",
+  "Hemograma y pruebas hepáticas en tratamientos largos",
+  "Diarrea"
+ ],
+ "ant": "No hay.",
+ "pre": "No la uses en neonatos con hiperbilirrubinemia, prematuros ni con calcio IV. El diluyente con lidocaína de la presentación IM no se debe usar IV. Si sospechas Chlamydia, añade cobertura específica: ceftriaxona no actúa contra ella.",
+ "pres": [
+  "Vial 250 mg, 500 mg, 1 g y 2 g (polvo para inyección)"
+ ],
+ "com": [
+  "Rocephin"
+ ],
+ "pe": [
+  "No tiene actividad contra Chlamydia ni Listeria, y tampoco contra enterococo ni SAMR.",
+  "En no neonatos puede darse con calcio si lavas la línea entre infusiones, pero en la práctica es más simple separar las vías.",
+  "La ficha pediátrica de meningitis (100 mg/kg/día, máx. 4 g) es de la etiqueta; no la confundas con la dosis de otitis (dosis única IM)."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de ceftriaxona para inyección (DailyMed, Hikma Pharmaceuticals Usa Inc., Oct 02, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8351aa37-552d-471d-b293-c564dcb6ec29",
+   "b": "dosis adulto y pediátrica, contraindicaciones en neonatos, calcio, embarazo, lactancia"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01DD04"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 11,
+  "np": 42,
+  "pres": [
+   "Polvo esteril para reconstituir a solucion inyectable 1 g",
+   "Polvo esteril para reconstituir a solucion inyectable 1000 mg",
+   "Polvo liofilizado para reconstituir a solucion inyectable 1 g"
+  ],
+  "m": [
+   "Ceftrinox® 1000 mg polvo esteril para reconstituir (Nectar Lifesciences)",
+   "Biotraxona® 1g polvo esteril para reconstituir a solucion inyectable (Bioselect C.I)",
+   "Ceftriaxona 1g inyectable (Vitalis C.I)",
+   "Ceftriaxona 1.0 g polvo liofilizado para reconstituir (Proclin Pharma)",
+   "Ceftriaxona 1g (Norstray & Nuart)",
+   "Ceftriaxona para inyección 1 g (Setaa Pharma)",
+   "Ceftriaxona 1.0 g (Vicarfarmaceutica)",
+   "Ceftriaxona para inyeccion1000 mg (Aurobindo Pharma)",
+   "Ceftriaxona 1 g polvo para solucion inyectable (Antibioticos Da Colombia)",
+   "Ceftriaxona sódica 1gramo (Holland Group)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

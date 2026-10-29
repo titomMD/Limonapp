@@ -1,0 +1,151 @@
+{
+ "id": "desmopresina",
+ "n": "Desmopresina",
+ "g": [
+  "Desmopresina",
+  "Desmopressin",
+  "DDAVP",
+  "Minirin"
+ ],
+ "atc": [
+  "H01BA02"
+ ],
+ "cl": "Análogo de vasopresina (V2)",
+ "mc": "v2",
+ "us": [
+  "enuresis"
+ ],
+ "es": [
+  "urologia",
+  "pediatria",
+  "cxped",
+  "medint"
+ ],
+ "via": [
+  "vo"
+ ],
+ "al": [
+  "hiponatremia"
+ ],
+ "et": "«Desmopresina» viene de «des-amino-D-arginina-vasopresina» (DDAVP). «Vasopresina» une «vaso-» (vaso) y «presina» (presión), por su efecto sobre la presión arterial.",
+ "mech": "Análogo sintético de la vasopresina con acción selectiva sobre los receptores V2 del túbulo colector. Aumenta las acuaporinas-2 y por lo tanto la reabsorción de agua libre: la orina se concentra y su volumen baja. Casi no actúa sobre V1, así que tiene poco efecto presor.",
+ "pk": {
+  "abs": "Oral muy baja (~0,16 % respecto a IV)",
+  "vm": "1,5 a 2,5 h",
+  "met": "Poco",
+  "el": "Renal"
+ },
+ "ind": [
+  {
+   "i": "Diabetes insípida central",
+   "a": "0,05 mg VO dos veces al día; ajustar según la diuresis. Rango habitual 0,1 a 0,8 mg al día repartido en 2 a 3 tomas.",
+   "p": "Experiencia de seguridad desde los 4 años (hasta 44 meses).\nEn menores se ajusta individualmente, empezando con 0,05 mg (media tableta de 0,1 mg).\nRestringir líquidos: riesgo de hiponatremia y convulsiones."
+  },
+  {
+   "i": "Enuresis nocturna primaria (≥6 años)",
+   "a": "No aplica a adultos en esta presentación.",
+   "p": "Desde los 6 años.\nDosis:\n- Tableta: 0,2 mg VO al acostarse; puede subir hasta 0,6 mg según respuesta. La etiqueta llega a 0,6 mg; en atención primaria se recomienda 0,2 a 0,4 mg y reservar dosis mayores a un centro especializado.\n- Liofilizado oral (melt): 120 µg al acostarse; habitual hasta 240 µg. 120 µg equivalen a 0,2 mg de tableta y 240 µg a 0,4 mg.\n- Spray nasal: ya no está indicado en enuresis desde la alerta de la FDA de 2007.\nLíquidos: limitar al mínimo desde 1 h antes hasta la mañana siguiente (al menos 8 h después).\nSuspender durante enfermedad aguda con pérdida de líquidos o electrolitos (fiebre, vómito, diarrea), calor extremo o ejercicio intenso.\nRiesgo de hiponatremia:\n- Exceso de líquidos\n- Dosis mayor a la indicada\n- Edad menor de 6 años\n- Vía nasal\nSi aparece cefalea, náuseas, vómito o alteración de conciencia: suspender y consultar de urgencia."
+  }
+ ],
+ "aj": {
+  "r": "Contraindicada con depuración <50 mL/min. También contraindicada en hiponatremia o antecedente de hiponatremia.",
+  "h": "Sin datos suficientes; precaución.",
+  "e": "Usar solo si es necesaria (diabetes insípida central).",
+  "l": "Pasa a la leche en poca cantidad.",
+  "g": "Más riesgo de hiponatremia."
+ },
+ "ci": [
+  "Hiponatremia o antecedente de hiponatremia",
+  "Polidipsia primaria o psicógena",
+  "Insuficiencia cardíaca o uso de diuréticos de asa o corticoides sistémicos",
+  "Depuración de creatinina <50 mL/min",
+  "SIADH",
+  "Hipersensibilidad a desmopresina"
+ ],
+ "fr": [
+  "Cefalea",
+  "Náuseas",
+  "Dolor abdominal",
+  "Hiponatremia leve"
+ ],
+ "gr": [
+  "Hiponatremia grave con convulsiones, coma o muerte",
+  "Retención de líquidos"
+ ],
+ "it": [
+  [
+   "Diuréticos de asa y corticoides sistémicos",
+   "Contraindicados: más riesgo de hiponatremia"
+  ],
+  [
+   "ISRS, tricíclicos, carbamazepina, AINE",
+   "Favorecen hiponatremia"
+  ],
+  [
+   "Loperamida",
+   "Sube el nivel de desmopresina"
+  ]
+ ],
+ "mon": [
+  "Sodio sérico basal, a la semana, al mes y ante cambios",
+  "Peso y diuresis",
+  "Cefalea, náuseas o confusión (sospecha de hiponatremia)"
+ ],
+ "pre": "Riesgo de hiponatremia grave. Restringe líquidos de 1 h antes a 8 h después; suspende si hay vómito o diarrea.",
+ "pres": [
+  "Tabletas 0,1 y 0,2 mg"
+ ],
+ "com": [
+  "DDAVP",
+  "Minirin"
+ ],
+ "pe": [
+  "Explica a la familia la restricción de líquidos en la noche: es lo que previene la hiponatremia.",
+  "En enuresis, las guías suelen empezar por medidas conductuales o alarma, y dejan la desmopresina como opción o para ocasiones puntuales.",
+  "Si el niño tiene gripe con vómito o diarrea, pausar hasta que se recupere."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de DDAVP tabletas (DailyMed, Ferring)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=6d55baa9-2b62-469c-93ae-3909ab249332",
+   "b": "dosis, pediatría, contraindicaciones"
+  },
+  {
+   "t": "MediSearch (pediatría y guías, 28 oct 2026)",
+   "u": "https://medisearch.io/share/5Ze194iSMqoZ4qg8F7XAJ7",
+   "b": "pediatría, guías EAU/ESPU, series"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "H01BA02"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 6,
+  "np": 25,
+  "pres": [
+   "Solucion inyectable 15 mcg",
+   "Solucion inyectable 0,025 mg",
+   "Liofilizado oral de dispersion rapida 120 µg",
+   "Solucionnasal 0,1 mg",
+   "Solución sublingual 0,4 mg"
+  ],
+  "m": [
+   "Octostim ® solucion inyectable (Ferring International Center)",
+   "Dicpresina® spray nasal (Zonepharma)",
+   "Dicpresina® gotas (Zonepharma)",
+   "Hemospep (Solmedical)",
+   "MINIRIN MELT 120 µG (Ferring Pharmaceuticals)",
+   "Desmopresina acetato 15mcg/mlsolución inyectable (Medyseh)"
+  ],
+  "mas": 0,
+  "nota": "No hay tableta oral de 0,1 o 0,2 mg registrada: solo ampolla, spray nasal, gotas sublinguales y liofilizado oral (Minirin Melt 120 µg). La dosis de enuresis de esta ficha corresponde a la tableta; confirmar con el servicio qué presentación se usa. Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

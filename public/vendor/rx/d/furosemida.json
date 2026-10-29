@@ -1,0 +1,189 @@
+{
+ "id": "furosemida",
+ "n": "Furosemida",
+ "g": [
+  "Furosemida",
+  "Lasix"
+ ],
+ "atc": [
+  "C03CA01"
+ ],
+ "cl": "Diurético de asa",
+ "mc": "asa",
+ "us": [
+  "ic",
+  "hta"
+ ],
+ "es": [
+  "medint",
+  "cardio",
+  "nefro",
+  "uci",
+  "cirugia"
+ ],
+ "via": [
+  "iv",
+  "vo"
+ ],
+ "al": [
+  "ototox",
+  "nefrotox"
+ ],
+ "et": "«Diurético» viene del griego dia («a través») + ouron («orina»).",
+ "mech": "Bloquea el cotransportador Na⁺-K⁺-2Cl⁻ en la rama gruesa ascendente del asa de Henle, donde se reabsorbe cerca del 25 % del sodio filtrado. Al llegar más sodio al túbulo distal aumenta la diuresis, y la pérdida de potasio, magnesio y calcio. Es el diurético más potente («de techo alto») y llega a su sitio desde la luz tubular, por lo que necesita cierta filtración glomerular para actuar.",
+ "pk": {
+  "abs": "IV inmediata; oral variable (≈50 %, otras fuentes); se excreta más en orina tras la IV que tras la oral",
+  "vm": "≈2 h (mayor en insuficiencia renal y en prematuros)",
+  "met": "Poco; glucuronidación renal (otras fuentes)",
+  "el": "Renal, sobre todo por secreción tubular en el túbulo proximal"
+ },
+ "ind": [
+  {
+   "i": "Edema por insuficiencia cardiaca, cirrosis o enfermedad renal (incluido síndrome nefrótico)",
+   "a": "Inyectable: 20 a 40 mg IM o IV en dosis única (IV lento en 1 a 2 min); si hace falta, otra dosis igual a las 2 h o aumenta 20 mg cada vez, no antes de 2 h. Luego la dosis eficaz se da una o dos veces al día. Dosis altas por infusión: no más de 4 mg/min, diluida en solución salina, Ringer lactato o dextrosa al 5 % con pH >5,5. Oral: inicio 20 a 80 mg en dosis única; si hace falta repetir a las 6 a 8 h o subir 20 a 40 mg; hasta 600 mg al día en edema grave. La terapia parenteral se reserva para quienes no pueden tomar la vía oral o están en emergencia, y se cambia a oral cuanto antes.",
+   "p": "IV o IM: 1 mg/kg lento bajo supervisión estrecha; si la respuesta no basta, sube 1 mg/kg no antes de 2 h después, hasta lograr el efecto. Oral: 2 mg/kg en dosis única; si no basta, sube 1 o 2 mg/kg no antes de 6 a 8 h después. No se recomiendan dosis mayores de 6 mg/kg. Mantén la dosis mínima eficaz.",
+   "k": {
+    "lo": 1,
+    "hi": 1,
+    "int": "IV o IM, repetible subiendo 1 mg/kg tras 2 h (oral: 2 mg/kg)",
+    "maxd": "6 mg/kg/día"
+   }
+  },
+  {
+   "i": "Edema pulmonar agudo (adyuvante)",
+   "a": "40 mg IV lento (1 a 2 min). Si no hay respuesta satisfactoria en 1 h, sube a 80 mg IV lento (1 a 2 min). Añade otras medidas (oxígeno, digital) según el caso.",
+   "p": "Misma dosificación por peso que arriba."
+  },
+  {
+   "i": "Hipertensión (tabletas)",
+   "a": "Inicio 80 mg al día, usualmente 40 mg dos veces al día; ajusta según la respuesta. Si no basta, añade otros antihipertensivos y reduce los otros agentes al menos un 50 % al agregar furosemida.",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "Con insuficiencia renal se requieren dosis más altas para llegar al túbulo (la etiqueta indica individualizar). Suspéndelo si hay anuria. Vigila creatinina y urea.",
+  "h": "En cirrosis con ascitis, inicia con cuidado: los cambios bruscos de líquidos y electrolitos pueden precipitar encefalopatía hepática; corrige la hipopotasemia.",
+  "e": "Úsalo en el embarazo solo si el beneficio supera el riesgo (en conejos hubo muertes maternas y abortos). Vigila el crecimiento fetal por el posible mayor peso al nacer.",
+  "l": "Pasa a la leche y puede inhibir la lactancia. Precaución.",
+  "g": "Empieza por el extremo bajo del rango; mayor riesgo de depleción de volumen y de electrolitos."
+ },
+ "ci": [
+  "Anuria",
+  "Antecedente de hipersensibilidad a la furosemida"
+ ],
+ "fr": [
+  "Hipopotasemia, hiponatremia, hipomagnesemia",
+  "Hipovolemia y deshidratación",
+  "Hipotensión ortostática",
+  "Hiperuricemia y gota",
+  "Mareo y calambres"
+ ],
+ "gr": [
+  "Diuresis profusa con depleción de agua y electrolitos (advertencia en la etiqueta)",
+  "Ototoxicidad con tinnitus y sordera, sobre todo con dosis rápidas o altas",
+  "Encefalopatía hepática en hepatopatía",
+  "Pancreatitis, colestasis",
+  "Anafilaxia o reacciones cutáneas graves",
+  "Nefrocalcinosis o nefrolitiasis en prematuros y menores de 4 años"
+ ],
+ "it": [
+  [
+   "Aminoglucósidos y cisplatino",
+   "Más ototoxicidad (y nefrotoxicidad con cisplatino); evítalo salvo urgencia vital"
+  ],
+  [
+   "Ácido etacrínico",
+   "No usar juntos: riesgo de ototoxicidad"
+  ],
+  [
+   "IECA y ARA II",
+   "Hipotensión grave y deterioro renal, sobre todo con la primera dosis"
+  ],
+  [
+   "Litio",
+   "Reduce la depuración y eleva el riesgo de toxicidad por litio"
+  ],
+  [
+   "Salicilatos en dosis altas",
+   "Toxicidad por salicilato a dosis menores"
+  ],
+  [
+   "Succinilcolina y tubocurarina",
+   "Potencia la succinilcolina y antagoniza la tubocurarina"
+  ],
+  [
+   "AINE e indometacina",
+   "Menor efecto diurético"
+  ],
+  [
+   "Fármacos ácidos por la misma línea (labetalol, ciprofloxacino, milrinona)",
+   "Forman precipitado: no los infundas juntos"
+  ]
+ ],
+ "mon": [
+  "Peso diario, balance de líquidos y diuresis",
+  "Potasio, sodio, magnesio y creatinina",
+  "Presión arterial (ortostasis)",
+  "Audición si se usan dosis altas, infusión rápida o fármacos ototóxicos",
+  "En prematuros: función renal y ecografía renal"
+ ],
+ "ant": "No hay.",
+ "pre": "Diurético potente: dado en exceso causa diuresis profusa con depleción de agua y electrolitos. La administración IV debe ser lenta (1 a 2 min por dosis) y la infusión no pasar de 4 mg/min (ototoxicidad). La solución inyectable es alcalina (pH ≈9) y precipita con fármacos ácidos. En prematuros y menores de 4 años, riesgo de nefrocalcinosis.",
+ "pres": [
+  "Tabletas 20 y 40 mg",
+  "Ampolla 20 mg/2 mL (10 mg/mL)"
+ ],
+ "com": [
+  "Lasix"
+ ],
+ "pe": [
+  "La respuesta se mide por diuresis y peso, no por la dosis.",
+  "Pasa a la vía oral en cuanto sea posible.",
+  "Revisa el potasio antes y después: la hipopotasemia precipita arritmias y encefalopatía."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de furosemida (inyectable y tabletas) (DailyMed, Cardinal Health 107, Llc, Oct 23, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=2590ebb6-ce2a-4e23-9244-e54e3010d488",
+   "b": "dosis IV, IM y oral en adultos y niños, edema pulmonar agudo, hipertensión, advertencias, interacciones, embarazo, lactancia"
+  },
+  {
+   "t": "Etiqueta de furosemida tabletas (DailyMed, Pd-Rx Pharmaceuticals, Inc., Oct 16, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=48d8f490-e9d1-4c95-ab2f-414d3f4a9df4",
+   "b": "dosis oral en edema, hipertensión y pediatría"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "C03CA01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 11,
+  "np": 56,
+  "pres": [
+   "Solucion inyectable 20 mg",
+   "Tableta 40 mg",
+   "Tableta recubierta 40 mg"
+  ],
+  "m": [
+   "Furosemida 20 mg /2 ml solucion inyectable (Vitalis C.I)",
+   "Furosemida 20mg/2ml solución inyectable (Aspiro Pharma)",
+   "Furosemida 20mg/2ml solucion inyectable (Bio Esteril)",
+   "Furosemida tabletas 40mg (Genfar)",
+   "Furosemida inyectable 20 mg / 2 ml (Laboratorios Ryan De Colombia)",
+   "Furosemida 40mg tableta recubierta (American Generics)",
+   "Furosemidatabletas 40 mg (Laboratorio Profesional Farmacéutico - Laboratorios Laproff)",
+   "Furosemida 40 mg (Tecnoquimicas)",
+   "Furosemida 40 mg tableta (Pentacoop)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

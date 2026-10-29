@@ -1,0 +1,171 @@
+{
+ "id": "ketorolaco",
+ "n": "Ketorolaco",
+ "g": [
+  "Ketorolaco",
+  "Toradol"
+ ],
+ "atc": [
+  "M01AB15"
+ ],
+ "cl": "AINE",
+ "mc": "cox",
+ "us": [
+  "dolor",
+  "espasmo"
+ ],
+ "es": [
+  "cirugia",
+  "ortopedia",
+  "urologia",
+  "uci"
+ ],
+ "via": [
+  "iv",
+  "im",
+  "vo"
+ ],
+ "al": [
+  "nefrotox",
+  "sangrado",
+  "ajuste_renal"
+ ],
+ "et": "El sufijo «-ac» de ketorolac, diclofenac y otros marca derivados de ácidos acéticos o arilacéticos dentro de los AINE.",
+ "mech": "AINE de gran potencia analgésica por inhibir COX-1 y COX-2 de forma no selectiva. Su efecto analgésico es comparable al de dosis pequeñas de opioide en dolor moderado a intenso, pero la inhibición de COX-1 le da un riesgo alto de sangrado digestivo y de daño renal, y por eso se limita a 5 días como máximo.",
+ "pk": {
+  "abs": "IM e IV rápidas; la vía oral tiene la misma biodisponibilidad que la IM",
+  "vm": "5 a 6 h (más en ancianos y en falla renal)",
+  "met": "Hepático (hidroxilación y conjugación)",
+  "el": "Renal ≈92 %"
+ },
+ "ind": [
+  {
+   "i": "Dolor agudo moderadamente intenso que requiere analgesia de nivel opioide, generalmente posoperatorio. Máximo 5 días en total sumando todas las vías.",
+   "a": "Inyectable, dosis única: <65 años, 30 mg IV o 60 mg IM; ≥65 años, con falla renal o <50 kg, 15 mg IV o 30 mg IM. Inyectable, dosis múltiples cada 6 h: <65 años, 30 mg (máximo 120 mg al día); ≥65 años, falla renal o <50 kg, 15 mg (máximo 60 mg al día). Oral solo como continuación: 20 mg una vez y luego 10 mg cada 4 a 6 h (máximo 40 mg al día); en ≥65 años, falla renal o <50 kg: 10 mg una vez y luego 10 mg cada 4 a 6 h (máximo 40 mg al día). La primera dosis nunca es oral. Bolo IV en no menos de 15 segundos; IM profunda y lenta.",
+   "p": "No está indicado en menores de 17 años (etiqueta). Algunos protocolos pediátricos usan 0,5 mg/kg IV (máximo 15 a 30 mg) cada 6 a 8 h por pocos días (otras fuentes; no contrastado aquí)."
+  }
+ ],
+ "aj": {
+  "r": "Contraindicado en insuficiencia renal avanzada y en pacientes con riesgo de falla renal por hipovolemia. Corrige la hipovolemia antes de usarlo. Con falla renal moderada (creatinina elevada) usa la dosis reducida (15 mg IV cada 6 h) y máximo 60 mg al día.",
+  "h": "Sin cambios importantes en la semivida con hepatopatía; vigila porque puede causar falla hepática.",
+  "e": "Los AINE pueden cerrar el ductus arterioso fetal y causar disfunción renal fetal. Limita dosis y duración entre las 20 y 30 semanas y evítalo desde las 30 semanas. Contraindicado en trabajo de parto y parto (puede afectar la circulación fetal y frenar las contracciones).",
+  "l": "Contraindicado en madres que amamantan por el riesgo para el lactante (según la etiqueta).",
+  "g": "Usa la dosis reducida (15 mg) y el menor tiempo posible."
+ },
+ "ci": [
+  "Hipersensibilidad al ketorolaco",
+  "Úlcera péptica activa, antecedente de úlcera o sangrado digestivo reciente o perforación",
+  "Asma, urticaria o reacción alérgica tras aspirina u otros AINE",
+  "Insuficiencia renal avanzada o riesgo de falla renal por hipovolemia",
+  "Sospecha o confirmación de sangrado cerebrovascular, diátesis hemorrágica, hemostasia incompleta o alto riesgo de sangrado",
+  "Antes de cirugía mayor o durante ella (por riesgo de sangrado)",
+  "Trabajo de parto y parto; madres que amamantan",
+  "Uso con aspirina, otros AINE, probenecid o pentoxifilina",
+  "Cirugía de revascularización coronaria (CABG)",
+  "Administración intratecal o epidural (contiene alcohol)"
+ ],
+ "fr": [
+  "Náuseas, dispepsia, dolor abdominal",
+  "Cefalea y mareo",
+  "Edema",
+  "Somnolencia",
+  "Dolor en el sitio de inyección"
+ ],
+ "gr": [
+  "Úlcera, sangrado y perforación digestiva",
+  "Insuficiencia renal aguda",
+  "Sangrado posoperatorio",
+  "Anafilaxia",
+  "Insuficiencia hepática",
+  "Infarto y ACV"
+ ],
+ "it": [
+  [
+   "Aspirina, otros AINE",
+   "Contraindicado: más sangrado y riesgo renal"
+  ],
+  [
+   "Probenecid y pentoxifilina",
+   "Contraindicado combinarlos"
+  ],
+  [
+   "Anticoagulantes (warfarina, heparina)",
+   "Más sangrado; riesgo aumentado"
+  ],
+  [
+   "IECA, ARA II y diuréticos",
+   "Lesión renal aguda; el AINE reduce el efecto natriurético"
+  ],
+  [
+   "Litio y metotrexato",
+   "Suben sus niveles y su toxicidad"
+  ],
+  [
+   "Antiepilépticos (fenitoína, carbamazepina) y psicoactivos",
+   "Se han descrito convulsiones y alucinaciones"
+  ],
+  [
+   "Inhibidores selectivos de recaptación de serotonina",
+   "Más riesgo de sangrado"
+  ]
+ ],
+ "mon": [
+  "Creatinina y diuresis",
+  "Signos de sangrado (digestivo, quirúrgico)",
+  "Volumen intravascular corregido antes de dar la dosis",
+  "Duración total máxima de 5 días"
+ ],
+ "ant": "No hay antídoto específico.",
+ "pre": "Advertencia en recuadro: riesgo digestivo, cardiovascular, renal, de sangrado y de reacciones alérgicas. Corrige la hipovolemia antes. No lo uses en el posparto inmediato con riesgo de hemorragia según protocolo local. No des la tableta como dosis inicial.",
+ "pres": [
+  "Ampolla 30 mg/mL (y 60 mg/2 mL)",
+  "Tabletas 10 mg"
+ ],
+ "com": [
+  "Toradol"
+ ],
+ "pe": [
+  "El límite de 5 días suma todas las vías (IV, IM y oral).",
+  "Dosis más altas de las indicadas no dan más analgesia pero sí más toxicidad.",
+  "Es un AINE: no es un opioide aunque trate dolor de nivel opioide."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de ketorolaco (tabletas e inyectable) (DailyMed, Sportpharm Llc, Oct 26, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=0749f61d-12e6-4280-8f41-bd4df81e7ae6",
+   "b": "dosis IV, IM y oral en adultos, advertencia en recuadro, contraindicaciones, interacciones, embarazo"
+  },
+  {
+   "t": "Etiqueta de ketorolaco inyectable (DailyMed, Hospira, Inc., Jul 20, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=8accbb78-fc64-45d5-69b0-35c23a1d2a2e",
+   "b": "dosis IV e IM, dosis única y múltiple, advertencias"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "M01AB15"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 4,
+  "np": 8,
+  "pres": [
+   "Solucion inyectable 30 mg",
+   "Inyectables 30 mg"
+  ],
+  "m": [
+   "Onemer® (Pisa Farmaceutica De Colombia)",
+   "Toraket 30 (Aspiro Pharma)",
+   "Keradol iny 30 mg / ml (Laboratorios Chalver De Colombia)",
+   "Ketorolaco inyectable 30 mg/ml (Genfar)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

@@ -1,0 +1,156 @@
+{
+ "id": "nitrofurantoina",
+ "n": "Nitrofurantoína",
+ "g": [
+  "Nitrofurantoína",
+  "Macrodantina",
+  "Furadantina"
+ ],
+ "atc": [
+  "J01XE01"
+ ],
+ "cl": "Antiséptico urinario",
+ "mc": "nitrofurano",
+ "us": [
+  "itu"
+ ],
+ "es": [
+  "urologia",
+  "medint",
+  "gineco",
+  "pediatria"
+ ],
+ "via": [
+  "vo"
+ ],
+ "al": [
+  "hepatotox",
+  "ajuste_renal"
+ ],
+ "mech": "Es un profármaco que las bacterias reducen a intermediarios reactivos que atacan varias dianas a la vez (ADN, ribosomas, enzimas), por eso casi no genera resistencia. Se concentra en la orina, no alcanza niveles útiles en tejidos ni en sangre, y por eso solo sirve para cistitis y no para pielonefritis, prostatitis ni urosepsis. Cubre E. coli, enterococo y S. saprophyticus; no cubre Proteus ni Pseudomonas.",
+ "pk": {
+  "abs": "Oral; mejora con comida",
+  "vm": "Corta (≈20 a 30 min)",
+  "met": "Hepático parcial",
+  "el": "Renal; alcanza concentraciones urinarias altas pero niveles séricos bajos"
+ },
+ "ind": [
+  {
+   "i": "Cistitis aguda no complicada por E. coli o Staphylococcus saprophyticus (la forma monohidrato/macrocristales). La forma macrocristales también cubre enterococo, S. aureus y algunas Klebsiella y Enterobacter. No sirve para pielonefritis ni absceso perinefrítico.",
+   "a": "Monohidrato/macrocristales (Macrobid): 100 mg VO cada 12 h por 7 días, con comida. Macrocristales: 50 a 100 mg cuatro veces al día (50 mg en cistitis no complicada), hasta 3 días tras esterilizar la orina o una semana. Las guías suelen usar 5 días (otras fuentes). Supresión prolongada: 50 a 100 mg al acostarse.",
+   "p": "Macrocristales: 5 a 7 mg/kg/día en 4 dosis; contraindicada en menores de 1 mes. La forma Macrobid no está establecida bajo 12 años. Supresión: 1 mg/kg/día en 1 o 2 dosis.",
+   "k": {
+    "lo": 1.25,
+    "hi": 1.75,
+    "int": "cada 6 h (5 a 7 mg/kg/día)",
+    "maxd": "100 mg por dosis"
+   }
+  }
+ ],
+ "aj": {
+  "r": "Contraindicada con anuria, oliguria o depuración de creatinina menor de 60 mL/min según la etiqueta (menos eliminación urinaria, más toxicidad y menos eficacia). Algunas guías la permiten con depuración ≥30 mL/min en ciclos cortos (otras fuentes).",
+  "h": "Contraindicada si tuvo ictericia colestásica o disfunción hepática por nitrofurantoína. Hepatitis, ictericia colestásica y necrosis hepática son raras pero a veces mortales.",
+  "e": "No hay evidencia de daño fetal en animales a dosis bajas; contraindicada a término (38 a 42 semanas), durante el trabajo de parto o si es inminente, por riesgo de anemia hemolítica neonatal.",
+  "l": "Pasa a la leche en trazas. Hay riesgo en lactantes menores de 1 mes y con déficit de G6PD; decide si suspender el fármaco o la lactancia.",
+  "g": "Más reacciones pulmonares y hepáticas graves, sobre todo con uso prolongado; evítala en tratamientos largos."
+ },
+ "ci": [
+  "Anuria, oliguria o depuración de creatinina menor de 60 mL/min, o creatinina elevada de forma significativa",
+  "Embarazo a término (38 a 42 semanas), trabajo de parto o parto inminente",
+  "Recién nacidos menores de 1 mes",
+  "Antecedente de ictericia colestásica o disfunción hepática por nitrofurantoína",
+  "Hipersensibilidad a nitrofurantoína"
+ ],
+ "fr": [
+  "Náuseas (8 %)",
+  "Cefalea (6 %)",
+  "Flatulencia",
+  "Diarrea, dispepsia, dolor abdominal",
+  "Orina de color marrón o amarillo oscuro (sin significado clínico)"
+ ],
+ "gr": [
+  "Reacciones pulmonares agudas, subagudas o crónicas (neumonitis intersticial, fibrosis), a veces mortales",
+  "Hepatotoxicidad: hepatitis, ictericia colestásica, hepatitis crónica activa, necrosis",
+  "Neuropatía periférica, que puede ser grave e irreversible",
+  "Anemia hemolítica en déficit de G6PD",
+  "Colitis por Clostridioides difficile",
+  "Anafilaxia, lupus inducido"
+ ],
+ "it": [
+  [
+   "Antiácidos con trisilicato de magnesio",
+   "Reducen la velocidad y el grado de absorción"
+  ],
+  [
+   "Probenecid y sulfinpirazona",
+   "Inhiben la secreción tubular: suben los niveles séricos (más toxicidad) y bajan los urinarios (menos eficacia)"
+  ],
+  [
+   "Pruebas de glucosa en orina (Benedict, Fehling)",
+   "Falso positivo; las tiras enzimáticas no se afectan"
+  ]
+ ],
+ "mon": [
+  "Síntomas respiratorios (tos seca, disnea, fiebre) en cualquier tratamiento y en especial en los largos",
+  "Transaminasas en tratamientos largos",
+  "Entumecimiento o parestesias (neuropatía)",
+  "Función renal"
+ ],
+ "ant": "No hay.",
+ "pre": "Solo para infección urinaria baja. No la uses para pielonefritis, prostatitis ni en infección con fiebre. Evita con depuración de creatinina menor de 60 mL/min y en el embarazo a término. Tómala con comida. Evita el uso prolongado, sobre todo en ancianos.",
+ "pres": [
+  "Cápsulas de macrocristales 50 y 100 mg",
+  "Cápsulas monohidrato/macrocristales 100 mg",
+  "Suspensión oral (otras fuentes)"
+ ],
+ "com": [
+  "Macrodantina",
+  "Furadantina"
+ ],
+ "pe": [
+  "Es una de las primeras elecciones en cistitis aguda no complicada de la mujer.",
+  "No alcanza niveles útiles en riñón ni próstata ni en sangre: no sirve para pielonefritis ni para bacteriemia.",
+  "La reacción pulmonar crónica aparece con 6 meses o más de uso continuo; la aguda, en días a semanas, con fiebre y tos.",
+  "La orina oscura es benigna."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de nitrofurantoína macrocristales (DailyMed, American Health Packaging, Oct 26, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=ce4afef1-22c1-4a1c-a102-a32fb6a2e045",
+   "b": "dosis adulto y pediátrica, contraindicaciones, interacciones, embarazo, lactancia, advertencias"
+  },
+  {
+   "t": "Etiqueta de nitrofurantoína monohidrato/macrocristales (Macrobid) (DailyMed, Alvogen Inc., Oct 22, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=1a86deef-0887-43b1-bb96-dbc222b15931",
+   "b": "dosis de 100 mg cada 12 h y edad mínima"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01XE01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 5,
+  "np": 34,
+  "pres": [
+   "Capsula dura 100 mg",
+   "Tableta 100 mg"
+  ],
+  "m": [
+   "Furantomed® 100mg capsulas (Novamed)",
+   "Nitrofurantoina cápsulas 100 mg (Laboratorio Profesional Farmacéutico - Laboratorios Laproff)",
+   "Nitrofurantoina 100 mg (Tecnoquimicas)",
+   "Diviaren 100mg (Anglopharma)",
+   "Nitrofurantoina 100 mg tabletas (Andrecol)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

@@ -1,0 +1,156 @@
+{
+ "id": "penicilina-benzatinica",
+ "n": "Penicilina benzatínica",
+ "g": [
+  "Penicilina benzatínica",
+  "Benzetacil"
+ ],
+ "atc": [
+  "J01CE08"
+ ],
+ "cl": "Penicilina",
+ "mc": "betalact",
+ "us": [
+  "piel",
+  "profilaxis"
+ ],
+ "es": [
+  "pediatria",
+  "medint",
+  "infecto",
+  "gineco"
+ ],
+ "via": [
+  "im"
+ ],
+ "al": [],
+ "et": "«Benzatínica» viene de dibenziletilendiamina (benzatina): sal poco soluble de la penicilina G que forma un depósito en el músculo y se libera durante semanas.",
+ "mech": "Penicilina G unida a benzatina. Es la misma molécula que la penicilina G y actúa igual (inhibe las PBP y la pared bacteriana), pero por ser poco soluble queda en el músculo y libera la droga lentamente, con niveles bajos pero sostenidos durante 2 a 4 semanas. Por eso es de elección en sífilis y en la profilaxis de fiebre reumática, infecciones por estreptococo del grupo A que se tratan con una sola inyección.",
+ "pk": {
+  "abs": "Depósito intramuscular de liberación lenta",
+  "vm": "Niveles bajos y muy prolongados (semanas)",
+  "met": "Poco",
+  "el": "Renal"
+ },
+ "ind": [
+  {
+   "i": "Faringitis por estreptococo del grupo A (infección de vías respiratorias altas)",
+   "a": "1.200.000 UI IM en dosis única.",
+   "p": "Niños mayores: 900.000 UI IM dosis única (etiqueta). Lactantes y niños de menos de 27 kg (60 lb): 300.000 a 600.000 UI. Muchas guías usan 600.000 UI si pesa <27 kg y 1.200.000 UI si pesa 27 kg o más (otras fuentes)."
+  },
+  {
+   "i": "Sífilis",
+   "a": "Primaria, secundaria y latente temprana: 2.400.000 UI IM en una dosis. Tardía (terciaria) y neurosífilis: 2.400.000 UI cada 7 días por 3 dosis (la neurosífilis requiere penicilina G cristalina IV en las guías actuales: otras fuentes).",
+   "p": "Congénita en menores de 2 años: 50.000 UI/kg IM. De 2 a 12 años: ajustar según el esquema de adultos."
+  },
+  {
+   "i": "Frambesia, bejel y pinta",
+   "a": "1.200.000 UI IM en una dosis.",
+   "p": "—"
+  },
+  {
+   "i": "Profilaxis de fiebre reumática y glomerulonefritis tras un ataque agudo",
+   "a": "1.200.000 UI IM una vez al mes, o 600.000 UI cada 2 semanas.",
+   "p": "Igual que adultos (según peso en guías)."
+  }
+ ],
+ "aj": {
+  "r": "La etiqueta no da ajuste renal; el depósito prolongado se eliminará despacio si hay falla renal.",
+  "h": "Sin ajuste.",
+  "e": "Sin daño en ratón, rata ni conejo; la experiencia humana no ha mostrado efectos adversos fetales. Es el tratamiento de elección de la sífilis en el embarazo (otras fuentes).",
+  "l": "Pasa a la leche en poca cantidad; se considera compatible (otras fuentes).",
+  "g": "Sin ajuste."
+ },
+ "ci": [
+  "Antecedente de hipersensibilidad a cualquier penicilina",
+  "Nunca por vía intravenosa, intraarterial ni cerca de un nervio o arteria"
+ ],
+ "fr": [
+  "Dolor, induración y sensibilidad en el sitio de inyección",
+  "Fiebre",
+  "Rash",
+  "Reacción de Jarisch-Herxheimer en sífilis"
+ ],
+ "gr": [
+  "Paro cardiorrespiratorio y muerte por inyección intravenosa accidental",
+  "Anafilaxia",
+  "Lesión del nervio ciático o de vasos por mala técnica (necrosis, gangrena)",
+  "Reacciones cutáneas graves (Stevens-Johnson)",
+  "Reacción de Jarisch-Herxheimer",
+  "Síndrome de Hoigné"
+ ],
+ "it": [
+  [
+   "Tetraciclinas",
+   "Pueden antagonizar el efecto bactericida; evitar"
+  ],
+  [
+   "Probenecid",
+   "Sube y prolonga los niveles de penicilina"
+  ],
+  [
+   "Metotrexato",
+   "Menor eliminación (otras fuentes)"
+  ]
+ ],
+ "mon": [
+  "Observar 30 min tras la inyección por anafilaxia",
+  "Sitio de inyección: dolor intenso, palidez, cambio de color de la extremidad",
+  "En sífilis: seguimiento serológico (monitoreo mensual 4 meses si sospecha de sífilis con gonorrea)"
+ ],
+ "ant": "Adrenalina IM en anafilaxia.",
+ "pre": "Solo por vía intramuscular profunda. No uses la región anterolateral del muslo (etiqueta); usa el glúteo dorsal superior externo o el ventroglúteo. En neonatos, lactantes y niños pequeños puede preferirse el tercio medio lateral del muslo. Aspira antes de inyectar. Inyecta lento: la suspensión es espesa y puede tapar la aguja. Alterna el sitio si repites. No mezclar con otros fármacos.",
+ "pres": [
+  "Jeringa 600.000 UI/1 mL (etiqueta FDA); 1.200.000 UI/2 mL y 2.400.000 UI/4 mL",
+  "Polvo para suspensión 1.200.000 UI y 2.400.000 UI (presentación habitual en Colombia, otras fuentes)"
+ ],
+ "com": [
+  "Benzetacil"
+ ],
+ "pe": [
+  "Una dosis de 2.400.000 UI se reparte en dos glúteos, 1.200.000 UI en cada uno.",
+  "Bicillin L-A y Bicillin C-R son distintos: el C-R (combinado) no sirve para sífilis.",
+  "Penetra mal el líquido cefalorraquídeo: no sirve por sí sola para neurosífilis.",
+  "La profilaxis de fiebre reumática se mantiene años según el compromiso cardíaco (guías)."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de Bicillin L-A (penicilina G benzatínica) (DailyMed, Pfizer Laboratories Div Pfizer Inc, Jul 24, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=012d46f1-d0a0-4676-a879-cd320297ab16",
+   "b": "dosis adulto y pediátrica, vía de administración, contraindicaciones, interacciones, embarazo"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01CE08"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 8,
+  "np": 33,
+  "pres": [
+   "Polvo esteril para reconstituir a suspensioninyectable 1,2 MUI",
+   "Polvo esteril para reconstituir a suspensioninyectable 1,2e+06 UI",
+   "Polvo esteril para reconstituir a suspensioninyectable 240000 UI",
+   "Polvo esteril para reconstituir a suspensioninyectable 1,2e+06 IU",
+   "Polvo esteril para reconstituir a suspensioninyectable 2,4 MUI",
+   "Polvo esteril para reconstituir a suspensioninyectable 2,4e+06 IU",
+   "Polvo esteril para reconstituir a suspensioninyectable 2015 mg"
+  ],
+  "m": [
+   "Benzatidelt® polvo para inyección 2.400.000 u.i. (Laboratorios Delta)",
+   "Penicilina g benzatinica 1.200.000 ui (North China Pharmaceutical Co)",
+   "Penicilina g benzatinica 2.400.000 ui (Vitalis C.I)",
+   "Benzatidelt polvo para inyección 1.2 ui (Laboratorios Delta)",
+   "Penicilina g benzatinica 2'400.000 ui (Farmalogica)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

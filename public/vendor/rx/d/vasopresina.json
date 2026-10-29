@@ -1,0 +1,140 @@
+{
+ "id": "vasopresina",
+ "n": "Vasopresina",
+ "g": [
+  "Vasopresina",
+  "Arginina vasopresina",
+  "Hormona antidiurética",
+  "Vasostrict"
+ ],
+ "atc": [
+  "H01BA01"
+ ],
+ "cl": "Vasopresor (hormona peptídica)",
+ "mc": "vasopresina_v1",
+ "us": [
+  "choque"
+ ],
+ "es": [
+  "uci",
+  "anest",
+  "cardio",
+  "medint",
+  "nefro"
+ ],
+ "via": [
+  "iv"
+ ],
+ "al": [
+  "extravasacion",
+  "alto_riesgo",
+  "hiponatremia"
+ ],
+ "et": "«Vaso-» (vaso sanguíneo) + «-presina» (que presiona, sube la presión). Es la misma hormona antidiurética (ADH) de la neurohipófisis.",
+ "mech": "Actúa en receptores V1 del músculo liso vascular y produce vasoconstricción independiente de las catecolaminas, útil cuando el choque tiene vasodilatación y baja respuesta a la noradrenalina. En el choque séptico hay déficit relativo de vasopresina. Con los receptores V2 del riñón retiene agua libre, y por eso puede bajar el sodio.",
+ "pk": {
+  "abs": "IV; sin vía oral",
+  "vm": "10 min o menos con las dosis del choque (etiqueta)",
+  "met": "Hepático y renal (peptidasas)",
+  "el": "Renal"
+ },
+ "ind": [
+  {
+   "i": "Choque séptico con presión media inadecuada pese a noradrenalina (adjunta)",
+   "a": "Etiqueta FDA (choque vasodilatador): inicio con 0,01 U/min y subir 0,005 U/min cada 10 a 15 min hasta la presión objetivo; rango habitual 0,01 a 0,07 U/min. Hay pocos datos con dosis mayores y las reacciones adversas aumentan. Surviving Sepsis 2021 (recomendación débil, evidencia moderada): añadir vasopresina en vez de seguir subiendo la noradrenalina; en la práctica se inicia con noradrenalina de 0,25 a 0,5 mcg/kg/min. La dosis fija habitual en los ensayos fue de 0,03 U/min, hasta 0,06.",
+   "p": "La etiqueta FDA dice que no se estableció seguridad ni eficacia en pediatría. Series pediátricas aisladas la usaron (0,0003 a 0,002 U/kg/min, o 0,02 a 0,03 U/kg/h) como rescate; no contrastado aquí (MediSearch). No se recuperó la recomendación de la guía pediátrica de Surviving Sepsis."
+  },
+  {
+   "i": "Choque posterior a cirugía cardiaca",
+   "a": "Inicio con 0,03 U/min; subir 0,005 U/min cada 10 a 15 min; rango 0,03 a 0,1 U/min (etiqueta FDA).",
+   "p": "No establecido en niños (etiqueta)."
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste en la etiqueta; el efecto antidiurético puede dar hiponatremia.",
+  "h": "Sin ajuste en la etiqueta.",
+  "e": "Puede provocar contracciones uterinas tónicas que amenacen el embarazo. El aclaramiento aumenta en el 2.º y 3.er trimestre, así que podría hacer falta más dosis (etiqueta).",
+  "l": "Sin datos en la etiqueta.",
+  "g": "Sin diferencias de respuesta identificadas; escoger la dosis con cautela (etiqueta)."
+ },
+ "ci": [
+  "Alergia o hipersensibilidad a la arginina vasopresina",
+  "Alergia al clorobutanol (solo en el vial multidosis de 10 mL)"
+ ],
+ "fr": [
+  "Hiponatremia",
+  "Isquemia digital y cutánea",
+  "Disminución del gasto cardiaco y bradicardia",
+  "Arritmias (fibrilación auricular, taquiarritmias)"
+ ],
+ "gr": [
+  "Isquemia coronaria, mesentérica, digital o cutánea",
+  "Disminución del gasto cardiaco",
+  "Insuficiencia renal aguda",
+  "Diabetes insípida reversible, con poliuria e hipernatremia, al suspender",
+  "Necrosis cutánea por extravasación (MediSearch, caso clínico)"
+ ],
+ "it": [
+  [
+   "Noradrenalina y otros vasopresores",
+   "Efecto aditivo; permite bajar la noradrenalina (etiqueta)"
+  ],
+  [
+   "Indometacina",
+   "Prolonga el efecto de la vasopresina sobre el gasto cardiaco y la resistencia vascular; monitoriza y ajusta (etiqueta)"
+  ],
+  [
+   "Bloqueadores ganglionares",
+   "Aumentan el efecto sobre la presión media (etiqueta)"
+  ],
+  [
+   "Fármacos que causan SIADH (carbamazepina, clorpropamida, fluoxetina)",
+   "Aumentan la respuesta presora y la hiponatremia (etiqueta, 7.4)"
+  ]
+ ],
+ "mon": [
+  "Presión arterial media y lactato",
+  "Perfusión de dedos y piel; signos de isquemia",
+  "Sodio sérico y diuresis",
+  "Gasto cardiaco y frecuencia cardiaca",
+  "Electrocardiograma si hay cardiopatía"
+ ],
+ "ant": "No hay antídoto específico; se suspende la infusión y se trata la hiponatremia o la isquemia.",
+ "pre": "Diluir el vial de 20 U/mL en suero fisiológico o dextrosa 5% a 0,1 o 1 U/mL; descartar la dilución tras 18 h a temperatura ambiente o 24 h en nevera (etiqueta). No es vasopresor de primera línea. No titular como una catecolamina: se da a dosis fija baja. La etiqueta no exige vía central; MediSearch y un caso clínico sugieren vía central por riesgo de necrosis cutánea (no contrastado aquí).",
+ "pres": [
+  "Vial 20 U/mL (1 mL)",
+  "Vial multidosis 200 U/10 mL",
+  "Bolsas premezcladas 20, 40 o 60 U en 100 mL"
+ ],
+ "com": [
+  "Vasostrict"
+ ],
+ "pe": [
+  "Se da a dosis fija y baja, no titulada como una catecolamina; Surviving Sepsis usó hasta 0,06 U/min en los ensayos y asocia dosis mayores con isquemia cardiaca, digital y esplácnica.",
+  "Las fuentes difieren en el inicio: la etiqueta FDA parte de 0,01 U/min y sube 0,005 cada 10 a 15 min; Surviving Sepsis cita 0,03 U/min como dosis fija habitual.",
+  "Al retirarla, vigila diuresis y sodio: puede aparecer diabetes insípida reversible (etiqueta)."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de Vasostrict (vasopresina inyectable) (DailyMed, setid b1147beb, abr 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=b1147beb-743e-4c62-8927-91192447f8b8",
+   "b": "indicación, dosis en choque séptico y posoperatorio, dilución y estabilidad, contraindicaciones, embarazo, pediatría"
+  },
+  {
+   "t": "Surviving Sepsis Campaign 2021, Crit Care Med 2021;49:e1063 (PDF aportado por Esteban), recomendación 38",
+   "u": "https://doi.org/10.1097/CCM.0000000000005337",
+   "b": "añadir vasopresina en vez de subir la noradrenalina; dosis fija 0,03 U/min; máximo 0,06 en ensayos"
+  },
+  {
+   "t": "MediSearch (ficha de vasopresina, origen no verificado)",
+   "u": "https://medisearch.io/share/mMXqqzR5kisVhvBztkLtSz",
+   "b": "vía central, datos pediátricos y metaanálisis; sin contrastar"
+  }
+ ],
+ "rev": "2026-10-28"
+}

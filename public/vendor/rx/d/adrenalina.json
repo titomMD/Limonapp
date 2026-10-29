@@ -1,0 +1,194 @@
+{
+ "id": "adrenalina",
+ "n": "Adrenalina",
+ "g": [
+  "Adrenalina"
+ ],
+ "atc": [
+  "C01CA24"
+ ],
+ "cl": "Catecolamina",
+ "mc": "adrenergico",
+ "us": [
+  "paro",
+  "choque",
+  "alergia"
+ ],
+ "es": [
+  "uci",
+  "anest",
+  "medint",
+  "pediatria",
+  "cardio"
+ ],
+ "via": [
+  "iv",
+  "im",
+  "inh",
+  "sc"
+ ],
+ "al": [
+  "alto_riesgo",
+  "extravasacion"
+ ],
+ "et": "«Adrenalina» viene del latín ad («junto a») + renes («riñones»), por las glándulas suprarrenales de donde se aisló; «epinefrina» es el equivalente griego (epi nephros).",
+ "mech": "Agonista no selectivo de los receptores α1, α2, β1 y β2. A dosis bajas predomina el efecto β (taquicardia, más contractilidad, broncodilatación y vasodilatación muscular), y a dosis altas el efecto α (vasoconstricción periférica intensa). En anafilaxia revierte tres cosas a la vez: el broncoespasmo (β2), la vasodilatación e hipotensión (α1) y la liberación de mediadores del mastocito.",
+ "pk": {
+  "abs": "IM en el muslo (vasto lateral) es la vía recomendada para anafilaxia; IV solo en infusión diluida",
+  "vm": "Semivida efectiva <5 min por vía IV; el estado estable en infusión se alcanza en 10 a 15 min",
+  "met": "MAO y COMT en hígado, riñón y otros tejidos, hasta ácido vanililmandélico (inactivo)",
+  "el": "Renal (metabolitos)"
+ },
+ "ind": [
+  {
+   "i": "Anafilaxia (reacción alérgica tipo I)",
+   "a": "Adultos y niños de 30 kg o más: 0,3 a 0,5 mg IM o SC en la cara anterolateral del muslo, máximo 0,5 mg por inyección, repetible cada 5 a 10 min si hace falta. No repitas en el mismo sitio. Con ≥65 años considera empezar con una dosis menor. GINA 2026: si hay anafilaxia además de asma, da primero adrenalina IM y luego el broncodilatador inhalado.",
+   "p": "Menos de 30 kg: 0,01 mg/kg IM o SC en el muslo, hasta 0,3 mg por inyección, repetible cada 5 a 10 min si hace falta (solución sin diluir 1 mg/mL: 0,01 mL/kg).",
+   "k": {
+    "lo": 0.01,
+    "hi": 0.01,
+    "int": "IM o SC en el muslo, repetible cada 5 a 10 min (solo si pesa menos de 30 kg)",
+    "maxd": "0,3 mg por inyección"
+   }
+  },
+  {
+   "i": "Hipotensión asociada con choque séptico (adultos)",
+   "a": "Diluye 1 mg (1 mL) en 1.000 mL de dextrosa al 5 % (1 mcg/mL); la solución salina sola no se recomienda. Infusión IV a 0,05 a 2 mcg/kg/min en una vena grande, titulada a la presión arterial media buscada; ajusta cada 10 a 15 min en pasos de 0,05 a 0,2 mcg/kg/min. Retira de forma gradual (por ejemplo, bajando cada 10 min). SSC 2021: la noradrenalina es de primera línea; la adrenalina se agrega si la PAM sigue baja a pesar de noradrenalina y vasopresina (rec. 39), o se usa sola con disfunción cardiaca y mala perfusión (rec. 41).",
+   "p": "No se ha establecido seguridad ni eficacia en pediatría con choque séptico. Se usan 0,05 a 0,3 mcg/kg/min en la práctica (otras fuentes; no contrastado aquí)."
+  },
+  {
+   "i": "Paro cardiaco (uso de soporte vital, no figura en esta etiqueta)",
+   "a": "1 mg IV o IO cada 3 a 5 min (AHA; otras fuentes).",
+   "p": "0,01 mg/kg IV o IO (0,1 mL/kg de solución 0,1 mg/mL) cada 3 a 5 min, máximo 1 mg por dosis (AHA; otras fuentes).",
+   "k": {
+    "lo": 0.01,
+    "hi": 0.01,
+    "int": "IV o IO cada 3 a 5 min en paro (AHA, otras fuentes)",
+    "maxd": "1 mg por dosis"
+   }
+  },
+  {
+   "i": "Crup con dificultad respiratoria moderada a grave (adrenalina nebulizada; no figura en la etiqueta)",
+   "a": "—",
+   "p": "L-adrenalina (epinefrina 1:1.000): 5 mL nebulizados, o adrenalina racémica: 0,5 mL nebulizados. El efecto dura 30 a 120 min: observa al menos 2 a 4 h después por el riesgo de rebote. Dar junto con glucocorticoide (revisión de PubMed y MediSearch; no contrastado con una guía local)."
+  }
+ ],
+ "aj": {
+  "r": "Constriñe los vasos renales y puede causar oliguria o deterioro renal; sin ajuste de dosis en la etiqueta.",
+  "h": "Sin ajuste en la etiqueta.",
+  "e": "La experiencia de décadas no muestra mayor riesgo de malformaciones, aborto ni resultados adversos. Es el fármaco de elección en la anafilaxia, también en la embarazada. En el parto, la epinefrina puede retrasar la segunda fase y reducir el flujo uterino (etiqueta).",
+  "l": "No hay datos en leche humana, pero por su baja biodisponibilidad oral y su corta vida media, la exposición del lactante sería muy baja. Es el tratamiento de elección en la anafilaxia también durante la lactancia.",
+  "g": "Más sensibilidad a sus efectos: en anafilaxia considera empezar con una dosis menor. Evita las venas de la pierna."
+ },
+ "ci": [
+  "La etiqueta no declara contraindicaciones: en emergencia vital no hay contraindicación absoluta"
+ ],
+ "fr": [
+  "Ansiedad, inquietud, temblor",
+  "Palpitaciones, palidez",
+  "Mareo, cefalea, sudoración",
+  "Náuseas y vómito",
+  "Debilidad"
+ ],
+ "gr": [
+  "Arritmias e isquemia miocárdica, sobre todo con coronariopatía o miocardiopatía",
+  "Hipertensión extrema con hemorragia cerebral, sobre todo en ancianos",
+  "Edema pulmonar",
+  "Necrosis local por extravasación o por inyección en dedos, manos, pies o glúteo",
+  "Infecciones graves en el sitio de inyección (Clostridium, gangrena gaseosa)",
+  "Hiperglucemia e hipopotasemia",
+  "Oliguria o deterioro renal"
+ ],
+ "it": [
+  [
+   "Betabloqueadores (propranolol)",
+   "Potencian la respuesta presora y pueden dar bradicardia y menos efecto: en anafilaxia resistente se usa glucagón (otras fuentes)"
+  ],
+  [
+   "Antidepresivos tricíclicos, IMAO, inhibidores de COMT, clonidina",
+   "Potencian el efecto presor"
+  ],
+  [
+   "Digoxina, anestésicos halogenados, ciclopropano, diuréticos, hormonas tiroideas",
+   "Más riesgo de arritmias"
+  ],
+  [
+   "Alfa-bloqueadores (fentolamina), nitratos, antihipertensivos, diuréticos",
+   "Contrarrestan el efecto presor"
+  ],
+  [
+   "Corticoides, diuréticos y teofilina",
+   "Potencian la hipopotasemia de la epinefrina"
+  ]
+ ],
+ "mon": [
+  "Monitoreo cardiaco continuo si se da IV",
+  "Presión arterial y frecuencia cardiaca",
+  "Perfusión periférica y sitio de infusión (extravasación)",
+  "Potasio y glucemia en infusión prolongada",
+  "En anafilaxia: vía aérea, presión y respuesta tras cada dosis"
+ ],
+ "ant": "No hay; tratar la hipertensión y las arritmias si aparecen.",
+ "pre": "Anafilaxia: la vía IM en el vasto lateral del muslo es la indicada, no la IV directa de la solución 1 mg/mL. No inyectes en glúteo, dedos, manos ni pies. Las diluciones para uso IV (1:10.000 y 1:100.000) se prestan a errores graves: verifica la concentración. El producto contiene bisulfito, que no impide usarlo en una emergencia vital.",
+ "pres": [
+  "Ampolla o vial 1 mg/mL (1:1.000)",
+  "Jeringa 0,1 mg/mL (1:10.000) para paro",
+  "Autoinyector 0,15 y 0,3 mg (otra etiqueta)"
+ ],
+ "com": [],
+ "pe": [
+  "En anafilaxia, no retrases la adrenalina por esperar antihistamínicos ni corticoides.",
+  "Mide el volumen con jeringa de insulina o de 1 mL cuando des 0,01 mg/kg.",
+  "Recuerda la diferencia: 1 mg/mL en anafilaxia (IM) y 0,1 mg/mL en paro (IV)."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de adrenalina (epinefrina) inyectable 1 mg/mL (DailyMed, Par Health Usa, Llc, Jul 01, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=3b7a4364-668d-4eb2-a20c-04adc35aabe4",
+   "b": "dosis en anafilaxia y choque séptico, advertencias, interacciones, embarazo, lactancia, pediatría"
+  },
+  {
+   "t": "Crup: una perspectiva actual (Pediatr Clin North Am 1999)",
+   "u": "https://pubmed.ncbi.nlm.nih.gov/10629679/",
+   "b": "Adrenalina nebulizada L-epinefrina 5 mL 1:1000 o racémica 0,5 mL"
+  },
+  {
+   "t": "Surviving Sepsis Campaign 2021, Crit Care Med 2021;49:e1063 (PDF aportado por Esteban)",
+   "u": "https://doi.org/10.1097/CCM.0000000000005337",
+   "b": "adrenalina como tercer vasopresor (rec. 39 y 41)"
+  },
+  {
+   "t": "GINA 2026 Strategy Report (PDF aportado por Esteban): Box 9-4 p.181, Box 9-6 p.186, texto pp.178-190, Box 12-4 p.220",
+   "u": "https://ginasthma.org/reports/",
+   "b": "adrenalina primero si hay anafilaxia y asma (pp.178, 185)"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "C01CA24"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 5,
+  "np": 23,
+  "pres": [
+   "Solucion inyectable 1 mg",
+   "Solucion inyectable 1 mL"
+  ],
+  "m": [
+   "Adrenalinainyectable 1mg/ml (Laboratorios Ecar)",
+   "Epinefrina solucion inyectable 1 mg /1ml (Laboratorio Biosano)",
+   "Adrenalina 1 mg / ml solucion inyectable (Laboratorios Ryan De Colombia)",
+   "Epinefrina (adrenalina) 1 mg /1mlsolucion inyectable (Laboratorios Sanderson)",
+   "Adrifarcyn solución inyectable 1mg/ml (Representaciones Farmaceuticas De Colombia -Reprefarco)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

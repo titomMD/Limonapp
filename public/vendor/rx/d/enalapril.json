@@ -1,0 +1,175 @@
+{
+ "id": "enalapril",
+ "n": "Enalapril",
+ "g": [
+  "Enalapril",
+  "Renitec"
+ ],
+ "atc": [
+  "C09AA02"
+ ],
+ "cl": "IECA",
+ "mc": "ieca",
+ "us": [
+  "hta",
+  "ic"
+ ],
+ "es": [
+  "medint",
+  "cardio",
+  "nefro",
+  "pediatria"
+ ],
+ "via": [
+  "vo",
+  "iv"
+ ],
+ "al": [
+  "emb_evitar",
+  "hiperk",
+  "nefrotox",
+  "ajuste_renal"
+ ],
+ "et": "El sufijo «-pril» identifica a los inhibidores de la ECA; «enalapril» se parece al captopril, el primero de la familia, desarrollado a partir del veneno de la serpiente Bothrops jararaca.",
+ "mech": "Es un profármaco (enalapril) que el hígado convierte en enalaprilato, inhibidor de la enzima convertidora de angiotensina (ECA). Al bloquear la ECA baja la angiotensina II (vasoconstrictora y que retiene sodio vía aldosterona) y sube la bradicinina (vasodilatadora, causa de la tos). Resultado: vasodilatación, menos precarga y poscarga, menos remodelado cardíaco y protección renal en proteinuria.",
+ "pk": {
+  "abs": "Profármaco oral (≈60 % absorbido, otras fuentes); se hidroliza a enalaprilato",
+  "vm": "≈11 h de vida media efectiva de acumulación del enalaprilato",
+  "met": "Hepático: esterasas lo convierten en enalaprilato (activo)",
+  "el": "Renal"
+ },
+ "ind": [
+  {
+   "i": "Hipertensión",
+   "a": "Sin diurético: 5 mg una vez al día; rango habitual 10 a 40 mg al día en una o dos dosis. Si no se puede suspender el diurético 2 o 3 días antes, inicia con 2,5 mg bajo supervisión médica durante al menos 2 h y 1 h más tras estabilizar la presión. Máximo 40 mg al día.",
+   "p": "Dosis inicial 0,08 mg/kg (hasta 5 mg) una vez al día, ajustando según la presión. No se estudiaron dosis mayores de 0,58 mg/kg (o 40 mg). No se recomienda en neonatos ni con filtrado glomerular <30 mL/min/1,73 m².",
+   "k": {
+    "lo": 0.08,
+    "hi": 0.08,
+    "int": "VO una vez al día, dosis inicial",
+    "maxd": "5 mg"
+   }
+  },
+  {
+   "i": "Insuficiencia cardiaca sintomática y disfunción ventricular izquierda asintomática (fracción de eyección ≤35 %)",
+   "a": "Inicio 2,5 mg; rango 2,5 a 20 mg dos veces al día, titulando durante días o semanas. Máximo diario usado en estudios: 40 mg divididos. Observa al menos 2 h tras la primera dosis y hasta 1 h después de estabilizar la presión. Reduce el diurético si es posible.",
+   "p": "No hay dosificación pediátrica en insuficiencia cardiaca en la etiqueta."
+  }
+ ],
+ "aj": {
+  "r": "Depuración >30 mL/min: dosis habitual. Depuración ≤30 mL/min (creatinina ≥3 mg/dL): primera dosis 2,5 mg al día y subir hasta controlar la presión, máximo 40 mg al día. Diálisis: 2,5 mg los días de diálisis y ajustar los días sin diálisis según la presión.",
+  "h": "Es un profármaco: la activación puede disminuir en hepatopatía grave (otras fuentes).",
+  "e": "Contraindicado en la práctica: el uso en el 2.º y 3.er trimestre daña y puede matar al feto (advertencia en recuadro). Suspéndelo en cuanto se detecte el embarazo.",
+  "l": "El enalapril y el enalaprilato se detectan en la leche materna. Decide entre suspender la lactancia o el fármaco, según su importancia para la madre.",
+  "g": "Empieza con dosis bajas; mayor riesgo de hipotensión y deterioro renal."
+ },
+ "ci": [
+  "Hipersensibilidad al enalapril",
+  "Antecedente de angioedema por un IECA, o angioedema hereditario o idiopático",
+  "Uso con aliskireno en diabéticos",
+  "Uso con un inhibidor de neprilisina (sacubitrilo); espera 36 h al cambiar de o a sacubitrilo/valsartán",
+  "Embarazo (advertencia en recuadro; suspender al detectarlo)"
+ ],
+ "fr": [
+  "Tos seca",
+  "Mareo y cefalea",
+  "Hipotensión",
+  "Fatiga",
+  "Aumento de creatinina y de potasio"
+ ],
+ "gr": [
+  "Toxicidad fetal (recuadro)",
+  "Angioedema de cabeza y cuello (más frecuente en personas negras)",
+  "Hipotensión sintomática, sobre todo con depleción de volumen o diuréticos",
+  "Insuficiencia renal y hiperpotasemia",
+  "Neutropenia o agranulocitosis (raro)",
+  "Ictericia colestásica con necrosis hepática (raro)"
+ ],
+ "it": [
+  [
+   "Diuréticos ahorradores de potasio, suplementos de potasio y sustitutos de sal",
+   "Hiperpotasemia"
+  ],
+  [
+   "AINE",
+   "Menor efecto antihipertensivo y riesgo de lesión renal aguda, sobre todo en ancianos y deshidratados"
+  ],
+  [
+   "Litio",
+   "Sube los niveles y la toxicidad del litio"
+  ],
+  [
+   "Sacubitrilo/valsartán",
+   "Contraindicado: riesgo de angioedema"
+  ],
+  [
+   "Aliskireno (en diabéticos)",
+   "Contraindicado: más hipotensión, hiperpotasemia y daño renal"
+  ],
+  [
+   "Diuréticos",
+   "Hipotensión sintomática tras la primera dosis"
+  ],
+  [
+   "Otros bloqueadores del sistema renina-angiotensina",
+   "Más riesgo renal, hipotensión e hiperpotasemia"
+  ]
+ ],
+ "mon": [
+  "Presión arterial, también tras la primera dosis",
+  "Creatinina y potasio una semana tras iniciar o subir la dosis",
+  "Tos o angioedema",
+  "Recuento de leucocitos si hay infección recurrente (otras fuentes)"
+ ],
+ "ant": "No hay; el angioedema puede requerir adrenalina e icatibant.",
+ "pre": "Advertencia en recuadro: toxicidad fetal. No lo uses en el embarazo ni en mujeres que planean quedar embarazadas sin método. Hipotensión tras la primera dosis, sobre todo con diuréticos o depleción de volumen. Vigila potasio y creatinina. Estenosis bilateral de la arteria renal: puede causar insuficiencia renal aguda (otras fuentes).",
+ "pres": [
+  "Tabletas 2,5, 5, 10 y 20 mg",
+  "Ampolla IV de enalaprilato (otra presentación)"
+ ],
+ "com": [
+  "Renitec"
+ ],
+ "pe": [
+  "Una subida de creatinina de hasta 30 % al iniciar es aceptable; más de eso obliga a buscar estenosis de la arteria renal (otras fuentes).",
+  "La tos puede aparecer meses después de iniciar.",
+  "Si hay tos intolerable, cambia a un ARA II (losartán)."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de enalapril maleato (tabletas) (DailyMed, Amici Pharma, Inc, Sep 21, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=a88902bd-742f-4ea6-b625-cc9df1709efc",
+   "b": "dosis en hipertensión, insuficiencia cardiaca y niños, ajuste renal, contraindicaciones, advertencia en recuadro"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "C09AA02"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 8,
+  "np": 31,
+  "pres": [
+   "Tableta 20 mg",
+   "Tableta 5 mg"
+  ],
+  "m": [
+   "Renitec® 20 mg tabletas (Organon)",
+   "Renitec® 5 mg tabletas (Organon)",
+   "Enalapril tabletas 20 mg (Anglopharma)",
+   "Enalapril maleato 5 mg tabletas (Tecnoquimicas)",
+   "Donapril tabletas (Bioquifar Pharmaceutica)",
+   "Presuren 20 mg tabletas (Patmar)",
+   "Enalapril20 mg (Tecnoquimicas)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

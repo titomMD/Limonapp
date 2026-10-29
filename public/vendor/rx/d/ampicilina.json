@@ -1,0 +1,187 @@
+{
+ "id": "ampicilina",
+ "n": "Ampicilina",
+ "g": [
+  "Ampicilina"
+ ],
+ "atc": [
+  "J01CA01"
+ ],
+ "cl": "Penicilina",
+ "mc": "betalact",
+ "us": [
+  "sepsis",
+  "resp",
+  "piel"
+ ],
+ "es": [
+  "pediatria",
+  "medint",
+  "infecto",
+  "gineco"
+ ],
+ "via": [
+  "iv",
+  "im",
+  "vo"
+ ],
+ "al": [
+  "cdiff"
+ ],
+ "et": "«Ampicilina» viene de amino-penicilina: una penicilina a la que se agregó un grupo amino para ampliar el espectro hacia gramnegativos.",
+ "mech": "Igual que las demás penicilinas, inhibe las PBP y bloquea el entrecruzamiento del peptidoglicano. Con su grupo amino atraviesa las porinas de ciertos gramnegativos, y tiene buena actividad contra Listeria, enterococos y estreptococos; no cubre bacterias que producen β-lactamasa.",
+ "pk": {
+  "abs": "Para infecciones sistémicas se usa IV o IM",
+  "vm": "≈1 a 1,5 h (más larga en neonatos prematuros)",
+  "met": "Poco",
+  "el": "Renal; también alcanza concentraciones altas en bilis"
+ },
+ "ind": [
+  {
+   "i": "Infecciones de vías respiratorias y tejidos blandos",
+   "a": "≥40 kg: 250 a 500 mg IV o IM cada 6 h.",
+   "p": "<40 kg: 25 a 50 mg/kg/día en dosis iguales cada 6 a 8 h.",
+   "k": {
+    "lo": 6,
+    "hi": 12.5,
+    "int": "cada 6 h (25 a 50 mg/kg/día)",
+    "maxd": "500 mg por dosis"
+   }
+  },
+  {
+   "i": "Infecciones gastrointestinales y genitourinarias",
+   "a": "≥40 kg: 500 mg IV o IM cada 6 h. Uretritis gonocócica en varones: dos dosis de 500 mg con 8 a 12 h de intervalo.",
+   "p": "<40 kg: 50 mg/kg/día cada 6 a 8 h.",
+   "k": {
+    "lo": 12.5,
+    "hi": 12.5,
+    "int": "cada 6 h (50 mg/kg/día)",
+    "maxd": "500 mg por dosis"
+   }
+  },
+  {
+   "i": "Meningitis bacteriana",
+   "a": "150 a 200 mg/kg/día en dosis iguales cada 3 a 4 h (en adultos, 2 g cada 4 h es lo habitual).",
+   "p": "Niños: 150 a 200 mg/kg/día cada 3 a 4 h. Neonatos ≤28 días: según edad gestacional y posnatal (ver nota).",
+   "k": {
+    "lo": 25,
+    "hi": 33,
+    "int": "cada 4 h (150 a 200 mg/kg/día)",
+    "maxd": "2 g por dosis (dosis de adulto habitual)"
+   }
+  },
+  {
+   "i": "Septicemia y endocarditis por grampositivos sensibles",
+   "a": "150 a 200 mg/kg/día; iniciar IV al menos 3 días y seguir cada 3 a 4 h.",
+   "p": "Igual que adultos; neonatos según la tabla de edad.",
+   "k": {
+    "lo": 25,
+    "hi": 33,
+    "int": "cada 4 h (150 a 200 mg/kg/día)",
+    "maxd": "2 g por dosis (dosis de adulto habitual)"
+   }
+  }
+ ],
+ "aj": {
+  "r": "La etiqueta de ampicilina no da tabla de ajuste renal. Referencia de otras fuentes (no contrastada aquí): alargar el intervalo a cada 8 a 12 h con depuración 10 a 50 mL/min y a cada 12 a 24 h con <10 mL/min. Se elimina por hemodiálisis, no por diálisis peritoneal.",
+  "h": "Sin ajuste.",
+  "e": "Categoría B de la FDA: sin daño en animales y sin estudios controlados en mujeres; úsala solo si es necesaria.",
+  "l": "Pasa a la leche; se considera compatible (otras fuentes).",
+  "g": "Ajusta por función renal."
+ },
+ "ci": [
+  "Antecedente de hipersensibilidad a cualquier penicilina"
+ ],
+ "fr": [
+  "Diarrea",
+  "Náuseas y vómito",
+  "Rash",
+  "Glositis y estomatitis"
+ ],
+ "gr": [
+  "Anafilaxia",
+  "Colitis por Clostridioides difficile",
+  "Reacciones cutáneas graves"
+ ],
+ "it": [
+  [
+   "Alopurinol",
+   "Aumenta mucho la frecuencia de rash"
+  ],
+  [
+   "Probenecid",
+   "Retrasa la excreción renal de ampicilina y sube sus niveles"
+  ],
+  [
+   "Metotrexato",
+   "Menor eliminación (no figura en esta etiqueta; otras fuentes)"
+  ]
+ ],
+ "mon": [
+  "Reacciones alérgicas",
+  "Función renal",
+  "Diarrea persistente"
+ ],
+ "ant": "No hay.",
+ "pre": "Alergia a penicilinas. Trata al menos 10 días las infecciones por estreptococo β-hemolítico del grupo A. Con sospecha de sífilis concomitante, haz serología mensual por 4 meses.",
+ "pres": [
+  "Vial 500 mg, 1 g y 2 g (polvo para inyección)"
+ ],
+ "com": [],
+ "pe": [
+  "Dosis neonatal de la etiqueta (meningitis y septicemia): edad gestacional ≤34 semanas y ≤7 días de vida: 100 mg/kg/día cada 12 h; ≤34 semanas y 8 a 28 días: 150 mg/kg/día cada 12 h; >34 semanas y ≤28 días: 150 mg/kg/día cada 8 h.",
+  "Es la elección para Listeria y para cubrir enterococo sensible; el aminoglucósido sumado mejora la cobertura de gramnegativos.",
+  "Su uso oral es pobre; para vía oral se prefiere amoxicilina."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de ampicilina para inyección (DailyMed, Sagent Pharmaceuticals, Jul 30, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=9d2aebe8-4f04-49dd-b1e5-80b962868dc3",
+   "b": "dosis adulto, pediátrica y neonatal, contraindicaciones, interacciones, embarazo"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01CA01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 29,
+  "np": 86,
+  "pres": [
+   "Capsula dura 500 mg",
+   "Polvo esteril para reconstituir a solucion inyectable 1 g",
+   "Polvo esteril para reconstituir a solucion inyectable 500 mg",
+   "Polvo esteril para reconstituir a solucion inyectable 0,5 g",
+   "Tableta 1000 mg",
+   "Polvo para reconstituir a suspension oral 5 g",
+   "Tableta 500 mg",
+   "Tableta 800 mg",
+   "Tableta 200 mg",
+   "Polvo para reconstituir a suspension oral 5000 mg",
+   "Tableta 1 g"
+  ],
+  "m": [
+   "Deucilina® tabletas 500 mg (Labquifar)",
+   "Deucilina® tabletas 1000 mg (Labquifar)",
+   "Decapen® 500 mg capsulas (Inversiones Comerfar)",
+   "Amdelt®500mg capsulas (Laboratorios Delta)",
+   "Deucilina® polvo para suspension 250 mg/5 ml (Labquifar)",
+   "Ambigel® 500mg capsulas (Patmar)",
+   "Ampicilina 500 mg capsulas (Tecnoquimicas)",
+   "Ampicilina 0.5 g. polvo para reconstituir a solucion inyectable (North China Pharmaceutical Co)",
+   "Ampicilina cápsulas por 500 mg. (Genfar)",
+   "Ampicilina 1 g (Tecnoquimicas)",
+   "Ampicilina 500 mg (Procaps)",
+   "Ampicilina 500 mg. (Vitalis C.I)"
+  ],
+  "mas": 10,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

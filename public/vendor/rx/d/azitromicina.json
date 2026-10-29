@@ -1,0 +1,188 @@
+{
+ "id": "azitromicina",
+ "n": "Azitromicina",
+ "g": [
+  "Azitromicina",
+  "Zithromax"
+ ],
+ "atc": [
+  "J01FA10"
+ ],
+ "cl": "Macrólido",
+ "mc": "macrolido",
+ "us": [
+  "resp",
+  "piel",
+  "itu"
+ ],
+ "es": [
+  "medint",
+  "pediatria",
+  "infecto",
+  "gineco"
+ ],
+ "via": [
+  "vo",
+  "iv"
+ ],
+ "al": [
+  "qt",
+  "cdiff"
+ ],
+ "et": "«Macrólido» viene de «macro» (grande) + «-ólido» (lactona): un anillo lactónico de 14 a 16 átomos. El sufijo «-micina» indica origen en Streptomyces.",
+ "mech": "Se une a la subunidad ribosomal 50S, en el túnel de salida del péptido naciente, y bloquea la elongación de la proteína; es bacteriostático. Cubre atípicos (Mycoplasma, Chlamydia, Legionella), estreptococos y algunos gramnegativos. Se acumula en los tejidos y por eso tiene una vida media muy larga, lo que permite tratamientos de 1 a 5 días.",
+ "pk": {
+  "abs": "Oral ≈37 %; tabletas y suspensión con o sin comida",
+  "vm": "68 h (se acumula en tejidos)",
+  "met": "Hepático parcial",
+  "el": "Biliar; poco renal"
+ },
+ "ind": [
+  {
+   "i": "Neumonía comunitaria leve, faringitis (segunda línea), piel y estructuras cutáneas no complicada",
+   "a": "500 mg VO el día 1 y luego 250 mg una vez al día los días 2 a 5.",
+   "p": "Neumonía (desde 6 meses): 10 mg/kg el día 1 y 5 mg/kg una vez al día los días 2 a 5. Faringitis y amigdalitis (desde 2 años): 12 mg/kg una vez al día por 5 días."
+  },
+  {
+   "i": "Exacerbación bacteriana de EPOC y sinusitis bacteriana aguda",
+   "a": "EPOC: 500 mg al día por 3 días, o 500 mg el día 1 y 250 mg los días 2 a 5. Sinusitis: 500 mg al día por 3 días.",
+   "p": "Sinusitis (desde 6 meses): 10 mg/kg una vez al día por 3 días.",
+   "k": {
+    "lo": 10,
+    "hi": 10,
+    "int": "una vez al día por 3 días",
+    "maxd": "500 mg por dosis"
+   }
+  },
+  {
+   "i": "Otitis media aguda (desde 6 meses)",
+   "a": "No aplica en adultos.",
+   "p": "30 mg/kg en dosis única, o 10 mg/kg al día por 3 días, o 10 mg/kg el día 1 y 5 mg/kg/día los días 2 a 5."
+  },
+  {
+   "i": "Uretritis, cervicitis y úlcera genital por Chlamydia, gonococo o chancroide",
+   "a": "Uretritis o cervicitis no gonocócica y chancroide: 1 g en dosis única. Gonocócica: 2 g en dosis única.",
+   "p": "—"
+  }
+ ],
+ "aj": {
+  "r": "No se ajusta con depuración de 10 a 80 mL/min (exposición casi igual). Con depuración menor de 10 mL/min la exposición sube 35 % (Cmax 61 %); úsala con precaución.",
+  "h": "Hepatotoxicidad grave descrita; contraindicada si tuvo ictericia colestásica por azitromicina. Con insuficiencia hepática grave no se ha estudiado; usa con precaución.",
+  "e": "Décadas de uso no han identificado riesgo de malformaciones ni de aborto.",
+  "l": "Pasa a la leche; se han descrito reacciones leves en lactantes (diarrea, candidiasis, rash). Considera los beneficios de la lactancia frente a la necesidad de la madre.",
+  "g": "Más sensibles a arritmias y a prolongación del QT: vigila el ECG."
+ },
+ "ci": [
+  "Hipersensibilidad a azitromicina, eritromicina, cualquier macrólido o cetólido",
+  "Antecedente de ictericia colestásica o disfunción hepática por azitromicina"
+ ],
+ "fr": [
+  "Diarrea",
+  "Náuseas",
+  "Dolor abdominal",
+  "Vómito",
+  "Flatulencia"
+ ],
+ "gr": [
+  "Prolongación del QT y torsades de pointes",
+  "Mayor muerte cardiovascular descrita",
+  "Hepatotoxicidad grave",
+  "Estenosis hipertrófica de píloro en lactantes expuestos en las primeras 6 semanas",
+  "Anafilaxia y reacciones cutáneas graves",
+  "Colitis por Clostridioides difficile"
+ ],
+ "it": [
+  [
+   "Nelfinavir",
+   "Sube los niveles de azitromicina; vigila transaminasas y audición"
+  ],
+  [
+   "Warfarina",
+   "Puede potenciar el efecto; vigila el tiempo de protrombina"
+  ],
+  [
+   "Fármacos que prolongan el QT (antiarrítmicos, antipsicóticos, fluoroquinolonas, ondansetrón)",
+   "Más riesgo de arritmia"
+  ],
+  [
+   "Antiácidos con aluminio o magnesio",
+   "Bajan el pico; toma la azitromicina 2 h antes o después (otras fuentes)"
+  ],
+  [
+   "Digoxina, colchicina, fenitoína",
+   "No se han descrito interacciones en estudios, pero vigila niveles (como con otros macrólidos)"
+  ]
+ ],
+ "mon": [
+  "ECG si hay factores de riesgo de QT: hipopotasemia, hipomagnesemia, bradicardia o fármacos que lo prolongan",
+  "Pruebas hepáticas si hay síntomas",
+  "Diarrea persistente"
+ ],
+ "ant": "No hay.",
+ "pre": "No sirve para neumonía grave o con factores de riesgo (comorbilidad, hospitalización, bacteriemia). Prolonga el QT. Evita en lactantes de menos de 6 semanas, salvo indicación (pertussis).",
+ "pres": [
+  "Tabletas 250 y 500 mg",
+  "Suspensión 200 mg/5 mL y 100 mg/5 mL",
+  "Vial IV 500 mg (otras fuentes)"
+ ],
+ "com": [
+  "Zithromax"
+ ],
+ "pe": [
+  "Aunque interactúa menos por CYP3A4 que la claritromicina, también prolonga el QT.",
+  "La vida media tan larga permite cursos cortos de 3 a 5 días.",
+  "La resistencia de neumococo a macrólidos es alta; en neumonía comunitaria se usa asociada a un β-lactámico cuando hay que cubrir atípicos."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de azitromicina tabletas (DailyMed, A-S Medication Solutions, Oct 26, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=3c4861f2-825e-4e3b-9907-9658a849079e",
+   "b": "dosis adulto y pediátrica, contraindicaciones, interacciones, embarazo, lactancia, advertencias"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01FA10"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 62,
+  "np": 219,
+  "pres": [
+   "Tableta recubierta 500 mg",
+   "Polvo para reconstituir a suspension oral 4 g",
+   "Tableta 500 mg",
+   "Tableta cubierta con pelicula 500 mg",
+   "Capsula dura 500 mg",
+   "Polvo liofilizado para reconstituir a solucion inyectable 524,059 mg",
+   "Tableta recubierta 528,5 mg",
+   "Polvo para reconstituir a suspension oral 4,4 g",
+   "Polvo para reconstituir a suspension oral 4,1638 g",
+   "Polvo para reconstituir a solucion oral 4 g",
+   "Suspension oral 4 mg",
+   "Polvo esteril para reconstituir a suspensioninyectable 200 mg"
+  ],
+  "m": [
+   "Bactrosafe®500 mg tabletas recubietas (Msn Laboratories Private)",
+   "Azibiotrim ® 500 mg (Eurofarma Colombia)",
+   "Macrozit® 500 mg tabletas (Megalabs Colombia)",
+   "Orazit® 500 mg tableta cubierta (Global International Medicine Gimed)",
+   "Zitromax® polvo para suspension oral. (Pfizer)",
+   "Alenat ® 500 mg (Novamed)",
+   "Zitromax® 500 mg (Pfizer)",
+   "Tromix® tabletas 500 mg (Laboratorio Franco Colombiano - Lafrancol)",
+   "Azomax® 200 mg/5 ml polvo para suspensión (Grupo Unipharm Y/O Laboratorios Uni)",
+   "Alenat ® polvo para reconstituir a suspensión oral (Novamed)",
+   "Azibiotrim® 500 mg polvo liofilizado para reconstituir a solución inyectable (Eurofarma Colombia)",
+   "Milagram® tabletas (Anglopharma)"
+  ],
+  "mas": 46,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

@@ -1,0 +1,149 @@
+{
+ "id": "gluconato-de-calcio",
+ "n": "Gluconato de calcio",
+ "g": [
+  "Gluconato de calcio"
+ ],
+ "atc": [
+  "A12AA03"
+ ],
+ "cl": "Electrolito",
+ "mc": "reposicion",
+ "us": [
+  "electrolitos",
+  "reversion"
+ ],
+ "es": [
+  "uci",
+  "medint",
+  "nefro",
+  "pediatria",
+  "cardio",
+  "anest"
+ ],
+ "via": [
+  "iv"
+ ],
+ "al": [
+  "extravasacion",
+  "alto_riesgo"
+ ],
+ "mech": "Repone calcio iónico. El calcio estabiliza la membrana de las células cardíacas: aunque no baja el potasio, antagoniza el efecto despolarizante de la hiperpotasemia y evita las arritmias. También revierte la toxicidad por magnesio y por calcioantagonistas y mejora la coagulación al ser cofactor de varios factores.",
+ "pk": {
+  "abs": "IV: inmediata",
+  "vm": "No aplica",
+  "met": "No se metaboliza",
+  "el": "Renal y fecal (otras fuentes)"
+ },
+ "ind": [
+  {
+   "i": "Hipocalcemia sintomática aguda",
+   "a": "Adultos (17 años o más): bolo inicial de 1.000 a 2.000 mg de gluconato de calcio, repetible cada 6 h; en bolo, a no más de 200 mg/min. Infusión continua: empieza con 5,4 a 21,5 mg/kg/h. El producto de la etiqueta no se diluye. En insuficiencia renal, empieza por la dosis más baja y mide calcio cada 4 h.",
+   "p": "Más de 1 mes a menos de 17 años: 29 a 60 mg/kg en bolo, repetible cada 6 h, a no más de 100 mg/min; infusión desde 8 a 13 mg/kg/h. Neonatos: 100 a 200 mg/kg en bolo, repetible cada 6 h; infusión desde 17 a 33 mg/kg/h.",
+   "k": {
+    "lo": 29,
+    "hi": 60,
+    "int": "bolo IV lento (más de 1 mes a menos de 17 años; mg de gluconato de calcio)",
+    "maxd": "2.000 mg por dosis (tope del adulto)"
+   }
+  },
+  {
+   "i": "Hiperpotasemia con cambios electrocardiográficos (uso habitual, no figura en la etiqueta)",
+   "a": "1 a 2 g IV en 2 a 10 min; repite si no hay respuesta (otras fuentes; no contrastado aquí).",
+   "p": "50 a 100 mg/kg por dosis IV lenta, máximo 2 g (otras fuentes; no contrastado aquí)."
+  }
+ ],
+ "aj": {
+  "r": "Empieza con la dosis más baja del rango y mide el calcio cada 4 h.",
+  "h": "Sin ajuste en la etiqueta.",
+  "e": "Los datos son insuficientes para definir el riesgo. La hipocalcemia materna sí aumenta riesgos (aborto, parto prematuro, posible preeclampsia). Vigila al neonato por hipocalcemia o hipercalcemia.",
+  "l": "Sin datos en la etiqueta (otras fuentes: compatible).",
+  "g": "Empieza por la dosis baja del rango."
+ },
+ "ci": [
+  "Hipercalcemia",
+  "Neonatos (28 días o menos) que reciben ceftriaxona"
+ ],
+ "fr": [
+  "Hipotensión, bradicardia y arritmias con infusión rápida",
+  "Sensación de calor, rubor",
+  "Irritación en el sitio de infusión"
+ ],
+ "gr": [
+  "Arritmias con digitálicos",
+  "Precipitados con ceftriaxona (daño pulmonar y renal, muertes en neonatos)",
+  "Necrosis tisular y calcinosis cutis por extravasación",
+  "Toxicidad por aluminio (hasta 25 mcg/L)"
+ ],
+ "it": [
+  [
+   "Ceftriaxona",
+   "Contraindicado en neonatos de 28 días o menos; en mayores no se infunden por la misma línea a la vez: lava la línea entre ambos"
+  ],
+  [
+   "Glucósidos cardíacos (digoxina)",
+   "Arritmias sinérgicas; evita, y si es necesario dalo lento con ECG"
+  ],
+  [
+   "Calcioantagonistas",
+   "El calcio puede reducir su respuesta"
+  ],
+  [
+   "Vitamina D, vitamina A, tiazidas, estrógenos, teriparatida",
+   "Pueden causar hipercalcemia; controla el calcio"
+  ],
+  [
+   "Fosfato y bicarbonato",
+   "Precipitan: no los mezcles en la misma línea"
+  ]
+ ],
+ "mon": [
+  "Calcio sérico cada 4 a 6 h en infusión intermitente y cada 1 a 4 h en infusión continua",
+  "ECG durante la administración",
+  "Sitio de infusión (extravasación)"
+ ],
+ "ant": "No hay.",
+ "pre": "Infunde lento con monitoreo ECG: la rápida causa hipotensión, bradicardia y arritmias. No lo mezcles con ceftriaxona, fosfato ni bicarbonato. Cuidado con digitálicos. Si hay extravasación, detén la infusión en ese sitio y trata.",
+ "pres": [
+  "Ampolla 10 % (100 mg/mL; 0,465 mEq/mL de calcio elemental)",
+  "Bolsa lista para usar 1.000 mg/50 mL y 2.000 mg/100 mL (20 mg/mL)"
+ ],
+ "com": [],
+ "pe": [
+  "El gluconato es menos irritante que el cloruro de calcio y se puede dar por vía periférica.",
+  "Hiperpotasemia con cambios en el ECG: dosis rápida en 2 a 10 min y repetir si no responde (otras fuentes).",
+  "Un gramo de gluconato de calcio contiene unos 93 mg (4,65 mEq) de calcio elemental."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de gluconato de calcio en cloruro de sodio inyectable (DailyMed, Wg Critical Care, Llc, Oct 05, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=0deed071-d89d-420e-b4b4-797dce0ad8f0",
+   "b": "indicación, dosis por edad, velocidad de infusión, contraindicaciones, interacciones con ceftriaxona y digoxina, embarazo"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "A12AA03"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 2,
+  "np": 5,
+  "pres": [
+   "Solucion inyectable 0,95 g",
+   "Solucion inyectable 940 mg"
+  ],
+  "m": [
+   "Gluconato de calcio al 10% solucion inyectable (Laboratorios Sanderson)",
+   "Gluconato de calcio10 % solucion inyectable (B. Braun Melsungen A.G)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

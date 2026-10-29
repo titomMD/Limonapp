@@ -1,0 +1,165 @@
+{
+ "id": "ampicilina-sulbactam",
+ "n": "Ampicilina con sulbactam",
+ "g": [
+  "Ampicilina con sulbactam",
+  "Ampicilina",
+  "sulbactam",
+  "Unasyn"
+ ],
+ "atc": [
+  "J01CR01"
+ ],
+ "cl": "Penicilina con inhibidor de betalactamasa",
+ "mc": "betalact_inh",
+ "us": [
+  "abdominal",
+  "piel",
+  "resp",
+  "sepsis"
+ ],
+ "es": [
+  "cirugia",
+  "medint",
+  "infecto",
+  "ortopedia",
+  "gineco"
+ ],
+ "via": [
+  "iv",
+  "im"
+ ],
+ "al": [
+  "cdiff",
+  "ajuste_renal"
+ ],
+ "et": "«Sulbactam» viene de sulfona + penam (esqueleto del β-lactámico): penicillanic acid sulfone.",
+ "mech": "Ampicilina (penicilina de espectro ampliado) con sulbactam, un inhibidor de β-lactamasa que además tiene actividad propia contra Acinetobacter baumannii por unión a sus PBP. Cubre gramnegativos sensibles, anaerobios (incluido Bacteroides) y grampositivos, y por eso se usa en infecciones intraabdominales, pélvicas y de tejidos blandos de la comunidad.",
+ "pk": {
+  "abs": "Parenteral (IV lenta 10 a 15 min o infusión 15 a 30 min; IM profunda en adultos)",
+  "vm": "≈1 h con función renal normal",
+  "met": "Poco",
+  "el": "Renal; ampicilina y sulbactam se afectan igual, la proporción no cambia"
+ },
+ "ind": [
+  {
+   "i": "Infecciones de piel y tejidos blandos, intraabdominales y ginecológicas por gérmenes productores de β-lactamasa",
+   "a": "1,5 a 3 g (ampicilina 1 a 2 g + sulbactam 0,5 a 1 g) IV o IM cada 6 h. Sulbactam máximo 4 g al día.",
+   "p": "Desde 1 año (solo infecciones de piel y tejidos blandos, IV): 300 mg/kg/día de la combinación (200 mg de ampicilina + 100 mg de sulbactam) cada 6 h. Desde 40 kg, dosis de adulto. No pases de 14 días IV de forma rutinaria.",
+   "k": {
+    "lo": 75,
+    "hi": 75,
+    "int": "cada 6 h (combinación ampicilina + sulbactam)",
+    "maxd": "3 g por dosis (sulbactam máx. 4 g/día)"
+   }
+  }
+ ],
+ "aj": {
+  "r": "Elige según la depuración de creatinina:\nDepuración (mL/min/1,73 m²) | Dosis\n30 o más | 1,5 a 3 g cada 6 a 8 h\n15 a 29 | 1,5 a 3 g cada 12 h\n5 a 14 | 1,5 a 3 g cada 24 h",
+  "h": "Sin ajuste. Contraindicada si tuvo ictericia colestásica por este fármaco.",
+  "e": "Sin daño en animales con dosis hasta 10 veces la humana; no hay estudios controlados en mujeres. Úsala solo si es necesaria.",
+  "l": "Pasa a la leche en poca cantidad; se considera compatible (otras fuentes).",
+  "g": "Ajusta por función renal."
+ },
+ "ci": [
+  "Hipersensibilidad grave (anafilaxia, Stevens-Johnson) a ampicilina, sulbactam u otros β-lactámicos",
+  "Antecedente de ictericia colestásica o disfunción hepática por ampicilina-sulbactam"
+ ],
+ "fr": [
+  "Dolor en el sitio de inyección IM (16 %)",
+  "Diarrea (3 %)",
+  "Tromboflebitis (3 %) y flebitis",
+  "Rash (<2 %)"
+ ],
+ "gr": [
+  "Anafilaxia",
+  "Reacciones cutáneas graves",
+  "Colitis por Clostridioides difficile",
+  "Hepatotoxicidad colestásica"
+ ],
+ "it": [
+  [
+   "Probenecid",
+   "Sube y prolonga los niveles de ampicilina y sulbactam"
+  ],
+  [
+   "Alopurinol",
+   "Más rash (por la ampicilina)"
+  ],
+  [
+   "Aminoglucósidos",
+   "No los mezcles en el mismo frasco: la ampicilina los inactiva in vitro"
+  ],
+  [
+   "Anticonceptivos orales",
+   "Teórica menor eficacia (otras fuentes)"
+  ],
+  [
+   "Metotrexato",
+   "Menor eliminación (otras fuentes)"
+  ]
+ ],
+ "mon": [
+  "Creatinina y depuración",
+  "Hemograma y pruebas hepáticas en tratamientos largos",
+  "Diarrea"
+ ],
+ "ant": "No hay.",
+ "pre": "Alergia a penicilinas. Ajusta en insuficiencia renal. En niños la seguridad IM no está establecida.",
+ "pres": [
+  "Vial 1,5 g (ampicilina 1 g + sulbactam 0,5 g) y 3 g (2 g + 1 g)"
+ ],
+ "com": [
+  "Unasyn"
+ ],
+ "pe": [
+  "Cubre anaerobios (incluido Bacteroides) y muchos gramnegativos productores de β-lactamasa; no cubre Pseudomonas.",
+  "Las dosis altas de sulbactam para Acinetobacter resistente son decisión de infectología y exceden la etiqueta.",
+  "La etiqueta limita el sulbactam a 4 g al día."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de ampicilina-sulbactam para inyección (DailyMed, Sagent Pharmaceuticals, Oct 08, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=a67ae347-487d-4751-a841-b321e81db26f",
+   "b": "dosis adulto y pediátrica, ajuste renal, contraindicaciones, interacciones, embarazo"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "J01CR01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 10,
+  "np": 29,
+  "pres": [
+   "Polvo esteril para reconstituir a solucion inyectable 1 g",
+   "Polvo esteril para reconstituir a solucion inyectable 0,5 g",
+   "Polvo esteril para reconstituir a solucion inyectable 1,5 g",
+   "Polvo liofilizado para reconstituir a solucion inyectable 1000 mg",
+   "Polvo liofilizado para reconstituir a solucion inyectable 500 mg",
+   "Polvo esteril para reconstituir a solucion inyectable 2 g",
+   "Polvo para reconstituir a suspension oral 5 g"
+  ],
+  "m": [
+   "Ampidelt® (Laboratorios Delta)",
+   "Sulpitam ® (Colmed)",
+   "Biosabactam® 1.5 g (Bioselect C.I)",
+   "Sultamix® 250 mg / 5ml polvo para suspension oral (Biochem Farmaceutica De Colombias.A)",
+   "Ampicilina + sulbactam 1.5 g. polvo esterilpara reconstituir a solucion inyectable (North China Pharmaceutical Co)",
+   "Ampicilina + sulbactam 1.5 g polvo esteril para inyeccion. (Eugia Pharma Specialities)",
+   "Ampicilina + sulbactam 1.5 g (Vitalis C.I)",
+   "Unasyn inyectable 1.5 g. (Pfizer)",
+   "Auropennz 3.0 g polvo esteril parainyección (Eugia Pharma Specialities)",
+   "Ampicilina y sulbactam 1.5 g. (Farmalogica)"
+  ],
+  "mas": 0,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}

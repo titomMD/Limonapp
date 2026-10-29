@@ -1,0 +1,189 @@
+{
+ "id": "ondansetron",
+ "n": "Ondansetrón",
+ "g": [
+  "Ondansetrón",
+  "Zofran"
+ ],
+ "atc": [
+  "A04AA01"
+ ],
+ "cl": "Antiemético",
+ "mc": "ht3",
+ "us": [
+  "nausea"
+ ],
+ "es": [
+  "cirugia",
+  "onco",
+  "medint",
+  "pediatria",
+  "gineco",
+  "urologia",
+  "anest"
+ ],
+ "via": [
+  "vo",
+  "iv"
+ ],
+ "al": [
+  "qt"
+ ],
+ "et": "«Ondansetrón» viene de «ondansetron»; el sufijo «-setrón» identifica a los antagonistas 5-HT3 (serotonina = 5-hidroxitriptamina).",
+ "mech": "Bloquea el receptor de serotonina 5-HT3, un canal iónico presente en las terminaciones vagales del intestino y en la zona gatillo quimiorreceptora del tronco encefálico. La serotonina liberada por el intestino durante la quimioterapia o la cirugía activa el reflejo del vómito por ese receptor, y al bloquearlo el reflejo se corta sin sedar ni producir efectos extrapiramidales.",
+ "pk": {
+  "abs": "Oral ≈56 % (primer paso hepático parcial); la comida sube algo la biodisponibilidad",
+  "vm": "≈3 a 4 h (mayor en ancianos y en hepatopatía grave)",
+  "met": "Hepático (CYP3A4, CYP2D6, CYP1A2)",
+  "el": "Renal ≈5 % sin cambios; el resto como metabolitos"
+ },
+ "ind": [
+  {
+   "i": "Prevención de náuseas y vómito por quimioterapia o radioterapia",
+   "a": "Alta emetogenicidad: 24 mg VO en dosis única 30 min antes de la quimioterapia de un solo día. Moderada: 8 mg VO 30 min antes, 8 mg 8 h después y luego 8 mg cada 12 h por 1 a 2 días. IV (diluido en 50 mL de solución salina o dextrosa al 5 %): 0,15 mg/kg por dosis, 3 dosis (máximo 16 mg por dosis), en 15 min: la primera 30 min antes y las otras 4 y 8 h después. Radioterapia: 8 mg VO 1 a 2 h antes; en irradiación abdominal, 8 mg cada 8 h por 1 a 2 días.",
+   "p": "Quimioterapia moderada VO: 12 a 17 años, 8 mg como el adulto; 4 a 11 años, 4 mg 30 min antes, 4 mg a las 4 y 8 h, y luego 4 mg tres veces al día 1 a 2 días. IV desde 6 meses: 0,15 mg/kg por dosis, tres dosis (máximo 16 mg por dosis).",
+   "k": {
+    "lo": 0.15,
+    "hi": 0.15,
+    "int": "IV en 15 min, 3 dosis (30 min antes y a las 4 y 8 h); quimioterapia, desde 6 meses",
+    "maxd": "16 mg por dosis"
+   }
+  },
+  {
+   "i": "Prevención de náuseas y vómito posoperatorios",
+   "a": "VO: 16 mg una hora antes de la inducción de la anestesia. IV o IM: 4 mg (IV en no menos de 30 s, mejor en 2 a 5 min) justo antes de la inducción, o si aparecen náuseas en las 2 h siguientes a la cirugía.",
+   "p": "De 1 mes a 12 años: 0,1 mg/kg IV si pesan 40 kg o menos (máximo 4 mg); 4 mg si pesan más de 40 kg. Mayores de 12 años: 4 mg.",
+   "k": {
+    "lo": 0.1,
+    "hi": 0.1,
+    "int": "IV en 30 s a 5 min, dosis única (posoperatorio)",
+    "maxd": "4 mg"
+   }
+  },
+  {
+   "i": "Náuseas y vómito en urgencias o gastroenteritis (uso habitual, no figura en la etiqueta)",
+   "a": "4 a 8 mg IV o VO cada 8 h (otras fuentes; no contrastado aquí).",
+   "p": "0,1 a 0,15 mg/kg por dosis IV o VO (máximo 4 a 8 mg) cada 8 h (otras fuentes; no contrastado aquí)."
+  }
+ ],
+ "aj": {
+  "r": "Sin ajuste en la etiqueta.",
+  "h": "Hepatopatía grave (Child-Pugh 10 o más): no pases de 8 mg en total al día.",
+  "e": "Los estudios epidemiológicos son inconsistentes sobre malformaciones (posible leve aumento de paladar hendido o cardiopatías, otras fuentes); los datos de posmercadeo no mostraron más abortos. Úsalo si el beneficio supera el riesgo.",
+  "l": "Es poco probable que provoque exposición relevante en lactantes con dosis IV hasta 4 mg al día; con dosis orales vigila sedación y estreñimiento del lactante (otras fuentes).",
+  "g": "Sin ajuste; vigila el QT y electrolitos."
+ },
+ "ci": [
+  "Hipersensibilidad (anafilaxia) al ondansetrón o a sus componentes",
+  "Uso con apomorfina (hipotensión profunda y pérdida de conciencia)",
+  "Síndrome de QT largo congénito (evitar)"
+ ],
+ "fr": [
+  "Cefalea",
+  "Estreñimiento",
+  "Fatiga",
+  "Diarrea",
+  "Mareo",
+  "Sensación de calor"
+ ],
+ "gr": [
+  "Prolongación del QT y torsades de pointes (dependiente de la dosis)",
+  "Síndrome serotoninérgico",
+  "Isquemia miocárdica",
+  "Anafilaxia y reacciones de hipersensibilidad",
+  "Enmascaramiento de íleo progresivo o distensión gástrica en cirugía abdominal"
+ ],
+ "it": [
+  [
+   "Apomorfina",
+   "Contraindicado: hipotensión profunda y pérdida de conciencia"
+  ],
+  [
+   "Otros fármacos que prolongan el QT (haloperidol, azitromicina, quinolonas, amiodarona, metadona)",
+   "Más riesgo de arritmia; ECG si hay factores de riesgo"
+  ],
+  [
+   "ISRS, IRSN, tramadol, otros serotoninérgicos",
+   "Síndrome serotoninérgico (raro)"
+  ],
+  [
+   "Inductores de CYP3A4 (fenitoína, carbamazepina, rifampicina)",
+   "Baja la concentración de ondansetrón; la etiqueta no pide ajustar"
+  ]
+ ],
+ "mon": [
+  "ECG si hay alteraciones electrolíticas, insuficiencia cardiaca, bradiarritmias o fármacos que prolonguen el QT",
+  "Potasio y magnesio",
+  "Distensión abdominal o ileo en cirugía abdominal",
+  "Signos de síndrome serotoninérgico"
+ ],
+ "ant": "No hay antídoto específico; soporte y monitoreo.",
+ "pre": "Prolonga el QT de forma dependiente de la dosis: corrige potasio y magnesio y revisa los fármacos que prolongan el QT. En la quimioterapia IV, diluye en 50 mL. En hepatopatía grave, tope de 8 mg al día. La inyección IV directa debe ser lenta (30 s o más).",
+ "pres": [
+  "Ampolla 4 mg/2 mL y 8 mg/4 mL",
+  "Tabletas 4 y 8 mg",
+  "Tabletas orodispersables 4 y 8 mg"
+ ],
+ "com": [
+  "Zofran"
+ ],
+ "pe": [
+  "El estreñimiento es un efecto frecuente y a veces olvidado.",
+  "No lo uses para tratar el vómito con signos de íleo sin descartar obstrucción.",
+  "La dosis IV de 0,15 mg/kg es para quimioterapia; en posoperatorio se usan 4 mg o 0,1 mg/kg."
+ ],
+ "v": {
+  "d": 1,
+  "f": 1,
+  "s": 1
+ },
+ "src": [
+  {
+   "t": "Etiqueta de ondansetrón (tabletas orodispersables e inyectable) (DailyMed, Sportpharm Llc, Oct 26, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=3c4cda2f-13d9-42c5-b449-77deb06c8de5",
+   "b": "dosis oral e IV, quimioterapia, posoperatorio, prolongación del QT, hepatopatía, embarazo, lactancia"
+  },
+  {
+   "t": "Etiqueta de ondansetrón inyectable (DailyMed, Apotex Corp., Mar 05, 2026)",
+   "u": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=60d09eb8-40e8-48f8-bbbf-70ba701754e2",
+   "b": "dosis IV en quimioterapia y posoperatorio"
+  }
+ ],
+ "rev": "2026-10-28",
+ "co": {
+  "q": [
+   "A04AA01"
+  ],
+  "fecha": "2026-10-16",
+  "f": "Código Único de Medicamentos vigentes (INVIMA, datos.gov.co, dataset i7cb-raxc), actualizado el 2026-10-16",
+  "n": 21,
+  "np": 73,
+  "pres": [
+   "Solucion inyectable 8 mg",
+   "Solucion inyectable 4 mg",
+   "Tableta 8 mg",
+   "Tableta orodispersable 8 mg",
+   "Tableta orodispersable 4 mg",
+   "Tableta recubierta 4 mg",
+   "Tableta cubierta con pelicula 8 mg",
+   "Solución para infusión 0,08 mg",
+   "Solución para infusión 8 mg"
+  ],
+  "m": [
+   "Bryterol®solucioninyectable 4 mg/2ml (Ropsohn Therapeutics)",
+   "Oncoemet® (Cipla)",
+   "Ondanvitae® odt 8 mg tabletas orodispersables (Galenicum Health Colombia)",
+   "Troysetron® (Troikaa Pharmaceutical)",
+   "Ondax® tabletas recubiertas 4 mg (Megalabs Colombia)",
+   "Ondanvitae® odt 4 mg tabletas orodispersables (Galenicum Health Colombia)",
+   "Vonau flash® 8 mg tableta de desintegracion oral (Farma De Colombia)",
+   "Vonau flash® 4 mg tableta de desintegracion oral (Farma De Colombia)",
+   "Ondax® 8 mg tabletas (Megalabs Colombia)",
+   "Cystron ®-solucion inyectable 8 mg/4ml. (Hb Human Bioscience)",
+   "Cystron® solucion inyectable 4 mg/2ml (Hb Human Bioscience)",
+   "Cystron® 4 mg tableta orodispersable (Hb Human Bioscience)"
+  ],
+  "mas": 7,
+  "nota": "Un registro vigente no garantiza que el producto se esté vendiendo hoy."
+ }
+}
